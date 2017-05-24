@@ -1,0 +1,70 @@
+@import "src/assets/styles/colors.scss";
+
+.sidebar-item{
+    color: $app-green;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+//Sidebar
+$sidebar-global-size: 70px;
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: $sidebar-global-size;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: $sidebar-global-size;
+    width: 0;
+    height: 100%;
+    margin-left: -$sidebar-global-size;
+    overflow-y: auto;
+    background: #f7f7f7;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: $sidebar-global-size;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #wrapper.toggled {
+        padding-left: $sidebar-global-size;
+    }
+
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        
+        width: $sidebar-global-size;
+    }
+}
