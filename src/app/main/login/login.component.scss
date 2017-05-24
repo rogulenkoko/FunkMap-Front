@@ -1,0 +1,30 @@
+@import "src/assets/styles/colors.scss";
+
+.login-container{
+    padding: 14%;
+    padding-top: 0;
+    color: $app-grey;
+    font-size: 14px;
+    margin-top: 50px; 
+
+    .error-label{
+        color: red;
+        font-size: 12px;
+    }
+
+    .error-control{
+        border: 1px solid red;
+    }
+}
+
+.login-buttons-container{
+    button{
+        width: 48%;
+        text-align: center;
+    }
+
+    .btn-secondary{
+        color: $app-green;
+        border: none;
+    }
+}

@@ -1,0 +1,64 @@
+@import "src/assets/styles/colors.scss";
+
+.registration-container{
+    padding: 14%;
+    padding-top: 0;
+    color: $app-grey;
+    font-size: 14px;
+    margin-top: 50px;
+
+    .error-label{
+        color: red;
+        font-size: 12px;
+    }
+
+    .error-control{
+        border: 1px solid red;
+    }
+}
+
+.registration-buttons-container{
+    button{
+        width: 48%;
+        text-align: center;
+    }  
+}
+
+.circle{
+    width: 35px;
+    height: 35px;
+    border: 1px solid $app-green;
+    color: $app-green;
+    border-radius: 50%;
+}
+
+.circle-selected{
+    background-color: $app-green;
+    color: white;
+}
+
+.circle-center{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.circle-container{
+    margin-top: 40px;
+}
+
+.btn-secondary{
+        color: $app-green;
+}
+
+.email-container{
+    .email{
+        width: 60%;
+    }
+
+    .code{
+        width: 38%;
+        button{
+            width: 100%;
+        }
+    }
+}
