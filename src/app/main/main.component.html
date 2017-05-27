@@ -1,10 +1,8 @@
 <navbar></navbar>
-<div class="d-flex flex-row">
+<div class="main-container">
   <sidebar></sidebar>
-  <div class="d-flex main-content">
-    <sebm-google-map [latitude]="lat" [longitude]="lng">
-      <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-    </sebm-google-map>
+  <div class="main-content d-flex flex-column">
+   <map style="height:100%"></map>
   </div>
 </div>
 

@@ -18,6 +18,8 @@ import { LoginService, LoginServiceHttp } from "./main/login/login.service";
 import { LoginServiceStub } from "./main/login/login.service.stub";
 import { RegistrationComponent } from './main/registration/registration.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { YaCoreModule }  from 'angular2-yandex-maps';
+import { MapComponent } from './main/map/map.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     ModalComponent,
     LoginComponent,
     RegistrationComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBmJgwbCbgtryIRpxSOCEFJPn10GIAU_84"
-    })
+    }),
+    YaCoreModule.forRoot()
   ],
   exports:[CoreModule],
   providers: [
