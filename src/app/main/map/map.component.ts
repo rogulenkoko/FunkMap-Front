@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MapService } from "./map.service";
+import { MapPoint, MapType, Marker } from "./models";
 
 @Component({
   selector: 'map',
@@ -11,23 +13,23 @@ export class MapComponent implements OnInit {
 
   private center: MapPoint;
 
-  constructor() {
-    this.mapType = 1;
+  private markers: Array<Marker>;
+
+  constructor(private mapService: MapService) {
+    this.mapType = 2;
     this.center = new MapPoint(50, 30);
    }
 
   ngOnInit() {
+      this.getAll();
+  }
+
+  getAll(){
+    this.mapService.getAll().subscribe(markers=>{
+      this.markers = markers;
+    })
   }
 
 }
 
-export enum MapType{
-  Google = 1,
-  Yandex = 2
-}
 
-export class MapPoint{
-  constructor(public lat: number, public lon: number){
-
-  }
-}

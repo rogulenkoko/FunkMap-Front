@@ -1,12 +1,9 @@
 <div class="main-map-container d-flex flex-column">
   <sebm-google-map *ngIf="mapType == 1" [latitude]="center.lat" [longitude]="center.lon">
-    <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+    <sebm-google-map-marker *ngFor="let marker of markers" [latitude]="marker.point.lat" [longitude]="marker.point.lon"></sebm-google-map-marker>
   </sebm-google-map>
 
-  <ya-map *ngIf="mapType == 2" [latitude]="center.lat" [longitude]="center.lon">
-  <ya-marker [latitude]="55.847" [longitude]="38.6">
-          </ya-marker>
-           <ya-marker [latitude]="55.847" [longitude]="35.6">
-          </ya-marker>
+  <ya-map style="height: 100%;" *ngIf="mapType == 2" [latitude]="center.lat" [longitude]="center.lon">
+    <ya-marker *ngFor="let marker of markers" [latitude]="marker.point.lat" [longitude]="marker.point.lon"></ya-marker>
   </ya-map>
 </div>
