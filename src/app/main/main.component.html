@@ -2,7 +2,9 @@
 <div class="d-flex flex-row">
   <sidebar></sidebar>
   <div class="d-flex main-content">
-     тут карта
+    <sebm-google-map [latitude]="lat" [longitude]="lng">
+      <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+    </sebm-google-map>
   </div>
 </div>
 

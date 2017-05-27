@@ -17,7 +17,7 @@ import { LoginComponent } from './main/login/login.component';
 import { LoginService, LoginServiceHttp } from "./main/login/login.service";
 import { LoginServiceStub } from "./main/login/login.service.stub";
 import { RegistrationComponent } from './main/registration/registration.component';
-
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,10 @@ import { RegistrationComponent } from './main/registration/registration.componen
     FormsModule,
     HttpModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBmJgwbCbgtryIRpxSOCEFJPn10GIAU_84"
+    })
   ],
   exports:[CoreModule],
   providers: [
