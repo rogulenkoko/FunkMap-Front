@@ -1,3 +1,5 @@
+@import "src/assets/styles/icons.scss";
+
 .no-image{
     width: 165px;
     height: 165px;
@@ -13,7 +15,7 @@
 
 .musician-details-container{
     width: 100%;
-    overflow-y: auto;
+    //overflow-y: auto;
 }
 
 .property-title{
@@ -26,3 +28,4 @@
     width: calc(100% - 150px);
     margin-bottom: 20px;
 }
+

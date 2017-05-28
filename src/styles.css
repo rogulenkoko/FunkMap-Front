@@ -5,3 +5,7 @@ html, body{
     height: 100%;
 }
 
+#player{
+    
+    border: 1px solid red;
+}
