@@ -13,6 +13,7 @@
 
 .musician-details-container{
     width: 100%;
+    overflow-y: auto;
 }
 
 .property-title{
@@ -23,4 +24,5 @@
 
 .property-value{
     width: calc(100% - 150px);
+    margin-bottom: 20px;
 }

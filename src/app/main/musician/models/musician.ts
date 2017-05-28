@@ -9,6 +9,7 @@ export class Musician{
     public sex: Sex;
     public birthDate: string;
     public years: number;
+    public expirience: number;
 }
 
 export enum MusicStyle{
