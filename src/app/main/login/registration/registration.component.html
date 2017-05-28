@@ -1,4 +1,4 @@
-<modal [title]="'Регистрация'">
+<modal [title]="'Login_SignUp'">
   <div class="d-flex flex-row circle-container justify-content-center">
     <div [class.circle-selected]="currentStep == 1" class="circle d-flex align-items-center justify-content-center">1</div>
     <div [class.circle-selected]="currentStep == 2" class="circle d-flex align-items-center justify-content-center circle-center">2</div>
@@ -8,21 +8,21 @@
     <ng-container *ngIf="currentStep == 1">
       <div>
         <div class="d-flex justify-content-between align-items-center">
-          <label>Логин</label>
-          <label *ngIf="existingLogin" class="error-label">Такой логин уже существует</label>
+          <label>{{'Login_Login' | translate}}</label>
+          <label *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}т</label>
         </div>
         <input class="form-control" [(ngModel)]="login" [class.error-control]="existingLogin" />
       </div>
       <br>
       <div>
-        <label>Пароль</label>
+        <label>{{'Login_Password' | translate}}</label>
         <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds" />
       </div>
       <br>
       <div>
         <div class="d-flex justify-content-between align-items-center">
-          <label>Повторите пароль</label>
-          <label *ngIf="passwordsAreNotMacthing" class="error-label">Пароли не совпадают</label>
+          <label>{{'Login_RepeatPassword' | translate}}</label>
+          <label *ngIf="passwordsAreNotMacthing" class="error-label">{{'Login_WrongPasswords' | translate}}</label>
         </div>
 
         <input type="password" [(ngModel)]="passwordRepeat" class="form-control" [class.error-control]="passwordsAreNotMacthing"
@@ -33,17 +33,17 @@
     <ng-container *ngIf="currentStep == 2">
       <div class="d-flex flex-row justify-content-between align-items-end email-container">
         <div class="email">
-          <label>Ваш e-mail</label>
+          <label>{{'Login_Email' | translate}}</label>
           <input [(ngModel)]="email" class="form-control" [class.error-control]="wrongCreds" />
         </div>
         <div class="code">
-          <button (click)="sendCode()" class="btn btn-secondary">Отправить код</button>
+          <button (click)="sendCode()" class="btn btn-secondary">{{'Login_SendCode' | translate}}</button>
         </div>
       </div>
       <br>
       <div class="d-flex flex-row justify-content-between align-items-end email-container">
         <div class="email">
-          <label>Код подтверждения</label>
+          <label>{{'Login_Code' | translate}}</label>
           <input [(ngModel)]="code" class="form-control" [class.error-control]="wrongCreds" />
         </div>
       </div>
@@ -53,9 +53,9 @@
 
     <br><br>
     <div class="d-flex flex-row justify-content-between registration-buttons-container">
-      <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">Отмена</button>
-      <button *ngIf="currentStep == 2 || currentStep == 3" (click)="moveBack()" class="btn btn-secondary">Назад</button>
-      <button (click)="moveNext()" class="btn btn-success">Далее</button>
+      <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+      <button *ngIf="currentStep == 2 || currentStep == 3" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
+      <button (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
     </div>
 
   </div>

@@ -4,7 +4,7 @@
     <span class="map">Map</span>
   </a>
   <div>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav d-flex align-items-center">
 
       <li class="nav-item">
         <a class="nav-link" href="#">{{'Navbar_ShowAll' | translate}}</a>
@@ -13,11 +13,11 @@
       <!--isLogged из сервиса-->
       <ng-container *ngIf="!isLogged">
         <li class="nav-item">
-          <a routerLink="/signup" class="nav-link">Зарегистрироваться</a>
+          <a routerLink="/signup" class="btn btn-secondary ml-3">{{'Navbar_SignUp' | translate}}</a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/login" class="nav-link">Войти</a>
+          <a routerLink="/login" class="btn btn-success ml-3">{{'Navbar_Login' | translate}}</a>
         </li>
       </ng-container>
 
@@ -27,9 +27,9 @@
           username
         </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/settings">Настройки</a>
-            <a class="dropdown-item" href="#">Помощь</a>
-            <a class="dropdown-item" href="#">Выход</a>
+            <a class="dropdown-item" routerLink="/settings">{{'Navbar_Settings' | translate}}</a>
+            <a class="dropdown-item" href="#">{{'Navbar_Help' | translate}}</a>
+            <a class="dropdown-item" href="#">{{'Navbar_Logout' | translate}}</a>
           </div>
         </li>
       </ng-container>

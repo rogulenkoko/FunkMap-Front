@@ -1,21 +1,21 @@
-<modal [title]="'Вход'">
+<modal [title]="'Login_Entrance'">
   <div class="login-container d-flex flex-column">
     <div class="login">
       <div class="d-flex justify-content-between align-items-center">
-        <label>Логин</label>
-        <label *ngIf="wrongCreds" class="error-label">Неверный логин или пароль</label>
+        <label>{{'Login_Login' | translate}}</label>
+        <label *ngIf="wrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</label>
       </div>
       <input class="form-control" [(ngModel)]="login" [class.error-control]="wrongCreds"/>
     </div>
     <br>
     <div class="password">
-      <label>Пароль</label>
+      <label>{{'Login_Password' | translate}}</label>
       <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds"/>
     </div>
     <br><br>
     <div class="d-flex flex-row justify-content-between login-buttons-container">
-      <button class="btn btn-secondary">Забыли пароль?</button>
-      <button (click)="logIn()" class="btn btn-success">Войти</button>
+      <button class="btn btn-secondary">{{'Login_ForgotPassword' | translate}}</button>
+      <button (click)="logIn()" class="btn btn-success">{{'Login_ToLogIn' | translate}}</button>
     </div>
   </div>
 </modal>

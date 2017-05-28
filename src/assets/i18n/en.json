@@ -1,5 +1,35 @@
 {
     "Navbar_ShowAll":"Show all",
+    "Navbar_Login":"Log in",
+    "Navbar_SignUp":"Sign up",
+    "Navbar_Settings":"Settings",
+    "Navbar_Help":"Help",
+    "Navbar_Logout":"Log out",
+
     "Sex_Female": "Female",
-    "Sex_Male": "Male"
+    "Sex_Male": "Male",
+
+    "Musician_BirthDate":"Date of birth",
+    "Musician_Sex":"Sex",
+    "Musician_Expirience":"Experience",
+    "Musician_Styles":"Styles",
+    "Musician_SocialNets": "Social nets",
+
+
+    "Login_Entrance":"Log in",
+    "Login_Login":"Login",
+    "Login_Password":"Password",
+    "Login_ForgotPassword":"Forgot password?",
+    "Login_ToLogIn":"Log in",
+    "Login_WrongCreds":"Wrong login or password",
+    "Login_RepeatPassword":"Repeat password",
+    "Login_Cancel":"Cancel",
+    "Login_Continue":"Next",
+    "Login_SignUp":"Sign up",
+    "Login_WrongPasswords":"Passwords aren't matching",
+    "Login_LoginExist":"Login exists",
+    "Login_Back":"Back",
+    "Login_SendCode":"Send code",
+    "Login_Email":"Your email",
+    "Login_Code":"Confirmation code"
 }

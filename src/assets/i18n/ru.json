@@ -1,5 +1,35 @@
 {
     "Navbar_ShowAll":"Показать всех",
+    "Navbar_Login":"Войти",
+    "Navbar_SignUp":"Зарегистрироваться",
+    "Navbar_Settings":"Настройки",
+    "Navbar_Help":"Помощь",
+    "Navbar_Logout":"Выход",
+
     "Sex_Female": "Женский",
-    "Sex_Male": "Мужской"
+    "Sex_Male": "Мужской",
+    
+
+    "Musician_BirthDate":"Дата рождения",
+    "Musician_Sex":"Пол",
+    "Musician_Expirience":"Стаж",
+    "Musician_Styles":"Стили",
+    "Musician_SocialNets": "Соц. сети",
+
+    "Login_Entrance":"Вход",
+    "Login_Login":"Логин",
+    "Login_Password":"Пароль",
+    "Login_ForgotPassword":"Забыли пароль?",
+    "Login_ToLogIn":"Войти",
+    "Login_WrongCreds":"Неверный логин или пароль",
+    "Login_RepeatPassword":"Повторите пароль",
+    "Login_Cancel":"Отмена",
+    "Login_Continue":"Далее",
+    "Login_SignUp":"Регистрация",
+    "Login_WrongPasswords":"Пароль несовпадают",
+    "Login_LoginExist":"Такой логин уже существует",
+    "Login_Back":"Назад",
+    "Login_SendCode":"Отправить код",
+    "Login_Email":"Ваш email",
+    "Login_Code":"Код подтверждения"
 }
