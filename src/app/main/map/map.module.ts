@@ -6,6 +6,7 @@ import { HttpModule, Http } from '@angular/http';
 
 import { MapComponent } from './map.component';
 import { MapProvider } from "./map-provider.service";
+import { MarkerFactory } from "./marker-factory.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MapProvider } from "./map-provider.service";
   ],
   exports:[MapComponent],
   providers: [
-    MapProvider
+    MapProvider,
+    MarkerFactory
   ]
 })
 export class MapModule { }

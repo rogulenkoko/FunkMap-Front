@@ -21,10 +21,12 @@
       "styles": [
         "styles.css",
         "assets/font-awesome-4.7.0/css/font-awesome.min.css",
+        "assets/styles/leaflet.scss",
          "../node_modules/leaflet/dist/leaflet.css"
       ],
       "scripts": [
-         "../node_modules/leaflet/dist/leaflet.js"
+         "../node_modules/leaflet/dist/leaflet.js",
+         "../node_modules/leaflet.markercluster/dist/leaflet.markercluster.js"
                ],
       "environmentSource": "environments/environment.ts",
       "environments": {
