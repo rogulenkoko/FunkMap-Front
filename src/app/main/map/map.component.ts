@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapProvider } from "./map-provider.service";
-import { Map, MapPoint } from "./models";
+import { Map, MapMarker } from "./models";
 import { MarkerFactory } from "./marker-factory.service";
 
 @Component({
@@ -12,13 +12,13 @@ export class MapComponent implements OnInit {
 
   private leafletMap: L.Map;
 
-  private center: MapPoint;
+  private center: MapMarker;
 
   private markersLayer: L.LayerGroup;
 
   constructor(private mapProvider: MapProvider,
               private markerFactory: MarkerFactory) {
-    this.center = new MapPoint(50,30);
+    this.center = new MapMarker(1,50,30);
    }
 
   ngOnInit() {

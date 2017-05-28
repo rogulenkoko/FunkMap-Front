@@ -1,2 +1,2 @@
 export { Map, MapType } from "./map";
-export { MapPoint } from "./map-point"; 
+export { MapMarker } from "./map-point"; 

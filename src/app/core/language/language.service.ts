@@ -12,13 +12,14 @@ export class LanguageService {
     var ru = new Language("Russian", "ru");
     var en = new Language("English", "en");
     this.availableLanguages = [ru, en];
+    this.language = this.availableLanguages[0];
     this.translate.addLangs(this.availableLanguages.map(x=>x.value));
 
-    this.translate.setDefaultLang("en");
+    this.translate.setDefaultLang(this.language.value);
   }
 
-  public changeLanguage(lang: Language){
-    this.translate.use(lang.value);
+  public changeLanguage(){
+    this.translate.use(this.language.value);
   }
 
 }

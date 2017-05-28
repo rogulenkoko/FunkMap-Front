@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Dictionary } from "typescript-collections";
-import { Map, MapType, MapPoint } from "./models";
+import { Map, MapType, MapMarker } from "./models";
 
 @Injectable()
 export class MapProvider {

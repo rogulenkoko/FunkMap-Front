@@ -11,7 +11,7 @@ import { CoreModule } from "app/core/core.module";
 import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from "./app.router";
 import { SidebarComponent } from './main/sidebar/sidebar.component';
-import { ModalComponent } from './main/modal/modal.component';
+
 import { LoginComponent } from './main/login/login.component';
 
 import { LoginService, LoginServiceHttp } from "./main/login/login.service";
@@ -20,6 +20,7 @@ import { RegistrationComponent } from './main/registration/registration.componen
 
 import { MapModule } from "./main/map/map.module";
 import { SettingsModule } from "./settings/settings.module";
+import { MusicianComponent } from './main/musician/musician.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,11 @@ import { SettingsModule } from "./settings/settings.module";
     NavbarComponent,
     MainComponent,
     SidebarComponent,
-    ModalComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    MusicianComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
     CoreModule,
     AppRoutingModule,
     MapModule,

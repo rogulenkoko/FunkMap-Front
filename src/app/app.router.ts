@@ -4,6 +4,7 @@ import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./main/login/login.component";
 import { RegistrationComponent } from "./main/registration/registration.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { MusicianComponent } from "./main/musician/musician.component";
 
 const appRoutes: Routes = [
   {
@@ -11,7 +12,9 @@ const appRoutes: Routes = [
     children: [
         {path:"", component: MainComponent, children:[
             {path:"login",component: LoginComponent},
-            {path: "signup", component: RegistrationComponent}
+            {path: "signup", component: RegistrationComponent},
+            {path: "musician", component: MusicianComponent},
+            {path: "musician/:id", component: MusicianComponent}
         ]},
         {path:"settings", component: SettingsComponent}
     ]
