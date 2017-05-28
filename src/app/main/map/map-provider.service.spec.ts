@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { MapProviderService } from './map-provider.service';
+import { MapProvider } from './map-provider.service';
 
 describe('MapProviderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MapProviderService]
+      providers: [MapProvider]
     });
   });
 
-  it('should ...', inject([MapProviderService], (service: MapProviderService) => {
+  it('should ...', inject([MapProvider], (service: MapProvider) => {
     expect(service).toBeTruthy();
   }));
 });

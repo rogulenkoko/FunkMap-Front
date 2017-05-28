@@ -11,25 +11,29 @@
       </li>
 
       <!--isLogged из сервиса-->
-      <ng-container *ngIf="!isLogged">
+      <ng-container *ngIf="!userService.user">
         <li class="nav-item">
-          <a routerLink="/signup" class="btn btn-secondary ml-3">{{'Navbar_SignUp' | translate}}</a>
+          <a routerLink="/signup" class="btn btn-secondary mr-3">{{'Navbar_SignUp' | translate}}</a>
         </li>
 
         <li class="nav-item">
-          <a routerLink="/login" class="btn btn-success ml-3">{{'Navbar_Login' | translate}}</a>
+          <a routerLink="/login" class="btn btn-success mr-3">{{'Navbar_Login' | translate}}</a>
         </li>
       </ng-container>
 
-      <ng-container *ngIf="isLogged">
+      <ng-container *ngIf="userService.user">
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          username
-        </a>
+          <a class="nav-link mr-5 d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="no-image d-flex justify-content-center align-items-center mr-2">
+              <img src="/assets/images/noname.png" />
+            </div>
+            {{userService.user.login}}
+            <i class="fa fa-chevron-down m-2"></i>
+          </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" routerLink="/settings">{{'Navbar_Settings' | translate}}</a>
             <a class="dropdown-item" href="#">{{'Navbar_Help' | translate}}</a>
-            <a class="dropdown-item" href="#">{{'Navbar_Logout' | translate}}</a>
+            <a class="dropdown-item" (click)="logOut()">{{'Navbar_Logout' | translate}}</a>
           </div>
         </li>
       </ng-container>

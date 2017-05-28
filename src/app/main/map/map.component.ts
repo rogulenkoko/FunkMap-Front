@@ -17,38 +17,39 @@ export class MapComponent implements OnInit {
   private markersLayer: L.LayerGroup;
 
   constructor(private mapProvider: MapProvider,
-              private markerFactory: MarkerFactory) {
-    this.center = new MapMarker(1,50,30);
-   }
+    private markerFactory: MarkerFactory) {
+    this.center = new MapMarker(1, 50, 30);
+  }
 
   ngOnInit() {
     this.initMap();
     this.initMarkersLayer();
   }
 
-  private initMap(){
+  private initMap() {
     this.leafletMap = new L.Map('map', { center: new L.LatLng(this.center.lat, this.center.lng), zoom: 7, zoomAnimation: false });
     console.log(this.mapProvider.selectedMap);
     var options = this.buildMapOptions(this.mapProvider.selectedMap);
-    var osm = new L.TileLayer(this.mapProvider.selectedMap.url,options);
+    var osm = new L.TileLayer(this.mapProvider.selectedMap.url, options);
     this.leafletMap.addLayer(osm);
-    
+
   }
 
-  private initMarkersLayer(){
+  private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.refreshMarkers();
     this.leafletMap.addLayer(this.markersLayer);
-    
+
   }
 
-  private refreshMarkers(){
-    var cluster = this.markerFactory.getMarkerCluster([this.center]);
+  private refreshMarkers() {
+    var marker = new MapMarker(2, 51, 30);
+    var cluster = this.markerFactory.getMarkerCluster([this.center, marker]);
     this.markersLayer.clearLayers();
     this.markersLayer.addLayer(cluster);
   }
 
-  private buildMapOptions(map: Map): any{
+  private buildMapOptions(map: Map): any {
     let options: any;
     if (map.subdomains.length == 0) {
       options = {

@@ -16,7 +16,7 @@ export class MapProvider {
         this.maps = [
             new Map(MapType.Google,
                 "Map_GoogleTitle",
-                "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+                "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}&language=ja&region=JP",
                 20,
                 "",
                 ['mt0', 'mt1', 'mt2', 'mt3']),

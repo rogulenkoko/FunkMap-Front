@@ -16,6 +16,7 @@ import { LoginModule } from "./main/login/login.module"
 import { MapModule } from "./main/map/map.module";
 import { SettingsModule } from "./settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
+import { UserModule } from "./main/user/user.module";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MusicianModule } from './main/musician/musician.module';
     MapModule,
     SettingsModule,
     LoginModule,
-    MusicianModule
+    MusicianModule,
+    UserModule
   ],
   exports:[CoreModule],
   providers: [

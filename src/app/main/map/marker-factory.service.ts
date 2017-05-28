@@ -18,7 +18,6 @@ export class MarkerFactory {
       })
     });
     marker.on("click",(marker)=>{
-      console.log("asd");
       this.router.navigate(["/musician"]);
     })
     return marker;
@@ -26,7 +25,19 @@ export class MarkerFactory {
 
   public getMarkerCluster(point: Array<MapMarker>): L.LayerGroup {
     
-    var cluster = L.markerClusterGroup({});
+    var cluster = L.markerClusterGroup({
+      polygonOptions: {
+        opacity:0
+      },
+      iconCreateFunction: (cluster)=>{
+        return L.divIcon({ 
+          html:  `<div class="d-flex jusify-content-center align-items-center cluster-icon-container">
+                    <div>${cluster.getChildCount()}</div>
+                  </div>`,
+                  className:""
+        });
+      }
+    });
     cluster.addLayers(point.map(x=>this.getMarker(x)));
     return cluster;
   }
