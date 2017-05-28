@@ -18,6 +18,7 @@ import { LoginService, LoginServiceHttp } from "./main/login/login.service";
 import { LoginServiceStub } from "./main/login/login.service.stub";
 import { RegistrationComponent } from './main/registration/registration.component';
 
+import { MapModule } from "./main/map/map.module";
 
 @NgModule({
   declarations: [
@@ -27,14 +28,15 @@ import { RegistrationComponent } from './main/registration/registration.componen
     SidebarComponent,
     ModalComponent,
     LoginComponent,
-    RegistrationComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MapModule
   ],
   exports:[CoreModule],
   providers: [
