@@ -5,3 +5,22 @@
     border-radius: 50%; 
     background-color: lightgray;
 }
+
+.musician-name-container{
+    padding: 25px;
+    font-size: 22px;
+}
+
+.musician-details-container{
+    width: 100%;
+}
+
+.property-title{
+    width: 150px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.property-value{
+    width: calc(100% - 150px);
+}

@@ -12,38 +12,29 @@ import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from "./app.router";
 import { SidebarComponent } from './main/sidebar/sidebar.component';
 
-import { LoginComponent } from './main/login/login.component';
-
-import { LoginService, LoginServiceHttp } from "./main/login/login.service";
-import { LoginServiceStub } from "./main/login/login.service.stub";
-import { RegistrationComponent } from './main/registration/registration.component';
-
+import { LoginModule } from "./main/login/login.module"
 import { MapModule } from "./main/map/map.module";
 import { SettingsModule } from "./settings/settings.module";
-import { MusicianComponent } from './main/musician/musician.component';
+import { MusicianModule } from './main/musician/musician.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    NavbarComponent, 
     MainComponent,
-    SidebarComponent,
-    LoginComponent,
-    RegistrationComponent,
-    MusicianComponent
+    SidebarComponent
   ],
   imports: [
     CoreModule,
     AppRoutingModule,
     MapModule,
-    SettingsModule
+    SettingsModule,
+    LoginModule,
+    MusicianModule
   ],
   exports:[CoreModule],
   providers: [
-    {
-      provide: LoginService,
-      useClass: environment.production ? LoginServiceHttp : LoginServiceStub
-    }
+    
   ],
   bootstrap: [AppComponent]
 })
