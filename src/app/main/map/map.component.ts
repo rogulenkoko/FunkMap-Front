@@ -28,9 +28,9 @@ export class MapComponent implements OnInit {
 
   private initMap(){
     this.leafletMap = new L.Map('map', { center: new L.LatLng(this.center.lat, this.center.lng), zoom: 7, zoomAnimation: false });
-    var selectedMap = this.mapProvider.maps.getValue(this.mapProvider.selectedMap);
-    var options = this.buildMapOptions(selectedMap);
-    var osm = new L.TileLayer(selectedMap.url,options);
+    console.log(this.mapProvider.selectedMap);
+    var options = this.buildMapOptions(this.mapProvider.selectedMap);
+    var osm = new L.TileLayer(this.mapProvider.selectedMap.url,options);
     this.leafletMap.addLayer(osm);
     
   }

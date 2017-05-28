@@ -6,7 +6,7 @@ import { HttpModule, Http } from '@angular/http';
  
 import { AppComponent } from './app.component';
 
-import { NavbarComponent } from './main/navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { CoreModule } from "app/core/core.module";
 import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from "./app.router";
@@ -19,6 +19,7 @@ import { LoginServiceStub } from "./main/login/login.service.stub";
 import { RegistrationComponent } from './main/registration/registration.component';
 
 import { MapModule } from "./main/map/map.module";
+import { SettingsModule } from "./settings/settings.module";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MapModule } from "./main/map/map.module";
     HttpModule,
     CoreModule,
     AppRoutingModule,
-    MapModule
+    MapModule,
+    SettingsModule
   ],
   exports:[CoreModule],
   providers: [

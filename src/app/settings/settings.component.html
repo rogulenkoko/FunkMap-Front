@@ -1,0 +1,3 @@
+<select class="form-control" [(ngModel)]="mapProvider.selectedMap" (ngModelChange)="mapProvider.updateMap()">
+  <option *ngFor="let map of mapProvider.maps" [ngValue]="map" >{{map.title}}</option>
+</select>
