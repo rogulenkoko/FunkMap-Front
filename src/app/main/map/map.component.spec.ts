@@ -1,9 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> leaflet
 import { MapComponent } from './map.component';
 
 describe('MapComponent', () => {

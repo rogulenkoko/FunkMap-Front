@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import { MapPoint, MapType, Marker } from "./models";
+import { MapType, MapMarker, Marker } from "./models";
 
 @Injectable()
 export abstract class MapService {

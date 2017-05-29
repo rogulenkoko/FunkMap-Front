@@ -1,13 +1,2 @@
-<<<<<<< HEAD
-<div class="main-map-container d-flex flex-column">
-  <sebm-google-map *ngIf="mapType == 1" [latitude]="center.lat" [longitude]="center.lon">
-    <sebm-google-map-marker *ngFor="let marker of markers" [latitude]="marker.point.lat" [longitude]="marker.point.lon"></sebm-google-map-marker>
-  </sebm-google-map>
 
-  <ya-map style="height: 100%;" *ngIf="mapType == 2" [latitude]="center.lat" [longitude]="center.lon">
-    <ya-marker *ngFor="let marker of markers" [latitude]="marker.point.lat" [longitude]="marker.point.lon"></ya-marker>
-  </ya-map>
-</div>
-=======
 <div class="leaflet-map" id="map"></div>
->>>>>>> leaflet
