@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/layout.scss";
 
 .sidebar-item{
     color: $app-green;
@@ -7,8 +8,7 @@
 }
 
 
-//Sidebar
-$sidebar-global-size: 70px;
+
 
 #wrapper {
     padding-left: 0;

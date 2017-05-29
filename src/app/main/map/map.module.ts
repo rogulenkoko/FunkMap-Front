@@ -3,29 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
-import { MapService, MapServiceHttp } from "./map.service";
-import { MapServiceStub } from "./map.service.stub";
-import { MapComponent } from "./map.component";
-import { YaCoreModule }  from 'angular2-yandex-maps';
-import { AgmCoreModule } from 'angular2-google-maps/core';
+
+
+import { MapComponent } from './map.component';
+import { MapProvider } from "./map-provider.service";
+import { MarkerFactory } from "./marker-factory.service";
 
 @NgModule({
   declarations: [
-      MapComponent
+    MapComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    YaCoreModule,
-    AgmCoreModule
+
+    HttpModule
   ],
   exports:[MapComponent],
   providers: [
-    {
-      provide: MapService,
-      useClass: environment.production ? MapServiceHttp : MapServiceStub
-    }
+    MapProvider,
+    MarkerFactory
   ]
 })
 export class MapModule { }

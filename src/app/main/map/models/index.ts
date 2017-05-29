@@ -1,2 +1,2 @@
-export { MapPoint, MapType } from "./map-point";
-export { Marker } from "./marker"; 
+export { Map, MapType } from "./map";
+export { MapMarker } from "./map-point"; 

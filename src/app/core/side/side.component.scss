@@ -1,0 +1,24 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
+
+.item-content-container{
+    width: $sidebar-item-content-width;
+
+    height: calc(100% - 56px);
+    margin-top: 56px;
+    margin-left:  $sidebar-global-size;
+    
+    position: absolute;
+    top:0;
+    z-index: 1000;
+    background-color: white;
+}
+
+.close-container{
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+

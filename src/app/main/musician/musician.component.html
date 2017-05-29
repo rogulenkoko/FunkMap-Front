@@ -1,0 +1,60 @@
+<side>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div>
+      <div class="no-image d-flex justify-content-center align-items-center">
+        <img src="/assets/images/noname.png" />
+      </div>
+      <div class="musician-name-container">
+        {{musician.name}}
+      </div>
+    </div>
+
+
+    <div class="d-flex flex-column musician-details-container">
+
+      <div class="d-flex ">
+        <label class="property-title">{{'Musician_BirthDate' | translate}}:</label>
+        <div class="d-flex property-value">
+          <label>{{musician.birthDate}}</label>
+          <label>({{musician.years}} лет)</label>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Sex' | translate}}:</label>
+        <label class="d-flex property-value">{{typesProvider.sexTypes.getValue(musician.sex) | translate}}</label>
+      </div>
+
+      <div class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Expirience' | translate}}:</label>
+        <label class="d-flex property-value">3 года</label>
+      </div>
+
+      <div  class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Styles' | translate}}:</label>
+        <label class="d-flex property-value">
+            <span class="mr-2" *ngFor="let style of musician.styles">
+              {{typesProvider.musicStyles.getValue(style)}}
+            </span>
+          </label>
+      </div>
+
+      <div class="d-flex flex-row">
+        <label class="property-title">{{'Musician_SocialNets' | translate}}:</label>
+        <a class="icon-big vk-icon mr-2" href="https://vk.com/id30724049"></a>
+        <a class="icon-big facebook-icon mr-2" href="https://www.facebook.com/"></a>
+        <a class="icon-big youtube-icon mr-2" href="https://www.youtube.com/user/Urgantshow"></a>
+      </div>
+
+      <!--<div  class="d-flex flex-row">
+        <label class="property-title">Описание:</label>
+        <label class="property-value">{{musician.description}}</label>
+      </div>-->
+      <!--todo вынести на отдельную страницу-->
+       <!--<youtube-player [playerId]='"player"' [width]="200" [height]="100" [videoId]='"vntAEVjPBzQ"'> </youtube-player>-->
+    </div>
+
+
+
+  </div>
+</side>

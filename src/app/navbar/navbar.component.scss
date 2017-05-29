@@ -1,0 +1,32 @@
+@import "src/assets/styles/colors.scss";
+
+.funkmap-title{
+    .map{
+        color: $app-green;
+    }
+}
+
+.btn{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.no-image{
+    width: 28px;
+    height: 28px;
+    
+    border-radius: 50%; 
+    background-color: lightgray;
+    img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.dropdown{
+    cursor: pointer;
+}
+
+.fa-chevron-down{
+    font-size: 10px;
+}

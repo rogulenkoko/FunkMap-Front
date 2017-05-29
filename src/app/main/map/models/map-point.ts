@@ -1,10 +1,7 @@
-export enum MapType{
-  Google = 1,
-  Yandex = 2
-}
 
-export class MapPoint{
-  constructor(public lat: number, public lon: number){
 
-  }
+export class MapMarker{
+    constructor(public itemId:number, public lat: number, public lng: number, public iconUrl?: string){
+        
+    }
 }
