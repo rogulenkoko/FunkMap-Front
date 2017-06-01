@@ -8,6 +8,7 @@ import { HttpModule, Http } from '@angular/http';
 import { MapComponent } from './map.component';
 import { MapProvider } from "./map-provider.service";
 import { MarkerFactory } from "./marker-factory.service";
+import { ToolsModule } from "app/tools/tools.module";
 
 @NgModule({
   declarations: [
@@ -16,8 +17,8 @@ import { MarkerFactory } from "./marker-factory.service";
   imports: [
     BrowserModule,
     FormsModule,
-
-    HttpModule
+    HttpModule,
+    ToolsModule
   ],
   exports:[MapComponent],
   providers: [

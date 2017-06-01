@@ -62,14 +62,16 @@ export class MapComponent implements OnInit {
     if (map.subdomains.length == 0) {
       options = {
         attribution: map.attribution,
-        maxZoom: map.maxZoom
+        maxZoom: map.maxZoom,
+        minZoom: 3
       };
     }
     else {
       options = {
         attribution: map.attribution,
         maxZoom: map.maxZoom,
-        subdomains: map.subdomains
+        subdomains: map.subdomains,
+        minZoom: 3
       };
     }
     return options;

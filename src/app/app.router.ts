@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { MainComponent } from "./main/main.component";
 import { LoginComponent } from "./main/login/login.component";
 import { RegistrationComponent } from "./main/login/registration/registration.component";
-import { SettingsComponent } from "./settings/settings.component";
+import { SettingsComponent } from "./main/settings/settings.component";
 import { MusicianComponent } from "./main/musician/musician.component";
 
 const appRoutes: Routes = [

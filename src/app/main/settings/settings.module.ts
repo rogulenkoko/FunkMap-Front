@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { SettingsComponent } from "./settings.component";
 import { CoreModule } from "app/core/core.module";
+import { ToolsModule } from "app/tools/tools.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CoreModule } from "app/core/core.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    CoreModule
+    CoreModule,
+    ToolsModule
   ],
   exports:[SettingsComponent],
   providers: [

@@ -5,6 +5,7 @@ import { LoginServiceStub } from "./login.service.stub";
 import { NgModule } from '@angular/core';
 import { RegistrationComponent } from "./registration/registration.component";
 import { CoreModule } from "app/core/core.module";
+import { ToolsModule } from "app/tools/tools.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { CoreModule } from "app/core/core.module";
     RegistrationComponent
   ],
   imports: [
-    CoreModule
+    CoreModule,
+    ToolsModule
   ],
   exports:[LoginComponent,
             RegistrationComponent],

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { CoreModule } from "app/core/core.module";
+import { ToolsModule } from "app/tools/tools.module";
 import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from "./app.router";
 import { SidebarComponent } from './main/sidebar/sidebar.component';
@@ -15,7 +16,7 @@ import { SidebarComponent } from './main/sidebar/sidebar.component';
 
 import { LoginModule } from "./main/login/login.module"
 import { MapModule } from "./main/map/map.module";
-import { SettingsModule } from "./settings/settings.module";
+import { SettingsModule } from "./main/settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
 
@@ -29,6 +30,7 @@ import { UserModule } from "./main/user/user.module";
   ],
   imports: [
     CoreModule,
+    ToolsModule,
     AppRoutingModule,
     MapModule,
     SettingsModule,
@@ -36,7 +38,7 @@ import { UserModule } from "./main/user/user.module";
     MusicianModule,
     UserModule
   ],
-  exports:[CoreModule],
+  exports:[CoreModule, ToolsModule],
   providers: [
     
   ],
