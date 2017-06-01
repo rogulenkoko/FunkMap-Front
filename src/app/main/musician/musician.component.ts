@@ -26,6 +26,7 @@ export class MusicianComponent implements OnInit {
   }
 
   private updateMusician(id: number){
+    if(this.musician && id == this.musician.id) return;
     this.musicianService.getMusician(id).subscribe(musician=>{
       this.musician = musician;
     });
