@@ -15,10 +15,21 @@
     background-color: white;
 }
 
-.close-container{
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
+.main-side-title{
+    font-weight: 500;
 }
 
+.title-container{
+    padding: 15px;
+    padding-bottom: 10px;
+   
+}
+
+.title-container-colored{
+     background-color: $app-green-transparent;
+}
+
+.side-main-content{
+    padding: 10px;
+}
 

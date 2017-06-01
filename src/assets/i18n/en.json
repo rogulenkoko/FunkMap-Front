@@ -31,5 +31,11 @@
     "Login_Back":"Back",
     "Login_SendCode":"Send code",
     "Login_Email":"Your email",
-    "Login_Code":"Confirmation code"
+    "Login_Code":"Confirmation code",
+
+    "Settings":"Settings",
+    "Settings_Language":"Language",
+    "Settings_MapType":"Map type",
+    "Language_En":"English",
+    "Language_Ru":"Russian"
 }

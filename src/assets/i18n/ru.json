@@ -31,5 +31,11 @@
     "Login_Back":"Назад",
     "Login_SendCode":"Отправить код",
     "Login_Email":"Ваш email",
-    "Login_Code":"Код подтверждения"
+    "Login_Code":"Код подтверждения",
+
+    "Settings":"Настройки",
+    "Settings_Language":"Язык",
+    "Settings_MapType":"Тип карты",
+    "Language_En":"Английский",
+    "Language_Ru":"Русский"
 }

@@ -1,6 +1,16 @@
 <div class="modal-outlet d-flex flex-column item-content-container">
-    <div class="d-flex justify-content-end close-container">
+  <div class="d-flex title-container" 
+      [class.title-container-colored]="title" 
+      [class.justify-content-end]="!title" 
+      [class.justify-content-between]="title">
+    <span *ngIf="title" class="main-side-title">{{title | translate}}</span>
+    <div class="d-flex close-container " >
       <span [routerLink]="['/']" class="icon icon-close"></span>
     </div>
-    <ng-content></ng-content>
+  </div>
+
+<div class="side-main-content">
+  <ng-content></ng-content>
+</div>
+  
 </div>

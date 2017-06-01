@@ -9,8 +9,8 @@ export class LanguageService {
   public availableLanguages: Array<Language>;
 
   constructor(private translate: TranslateService){
-    var ru = new Language("Russian", "ru");
-    var en = new Language("English", "en");
+    var ru = new Language("Language_Ru", "ru");
+    var en = new Language("Language_En", "en");
     this.availableLanguages = [ru, en];
     this.language = this.availableLanguages[1];
     this.translate.addLangs(this.availableLanguages.map(x=>x.value));

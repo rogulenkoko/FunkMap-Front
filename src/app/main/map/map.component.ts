@@ -11,7 +11,8 @@ import { MarkerFactory } from "./marker-factory.service";
 })
 export class MapComponent implements OnInit {
 
-  private leafletMap: L.Map;
+  private map: L.Map;
+  private baseLayer: L.TileLayer;
 
   private center: MapMarker;
 
@@ -20,26 +21,32 @@ export class MapComponent implements OnInit {
   constructor(private mapProvider: MapProvider,
     private markerFactory: MarkerFactory) {
     this.center = new MapMarker(1, 50, 30);
+    this.mapProvider.onMapChange.subscribe(()=>this.updateMap());
   }
 
   ngOnInit() {
+    this.map = new L.Map('map', { center: new L.LatLng(this.center.lat, this.center.lng), zoom: 7, zoomAnimation: false });
     this.initMap();
     this.initMarkersLayer();
   }
 
   private initMap() {
-    this.leafletMap = new L.Map('map', { center: new L.LatLng(this.center.lat, this.center.lng), zoom: 7, zoomAnimation: false });
-    console.log(this.mapProvider.selectedMap);
+    
     var options = this.buildMapOptions(this.mapProvider.selectedMap);
-    var osm = new L.TileLayer(this.mapProvider.selectedMap.url, options);
-    this.leafletMap.addLayer(osm);
+    this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
+    this.map.addLayer(this.baseLayer);
 
   }
+
+  private updateMap(){
+    this.map.removeLayer(this.baseLayer);
+    this.initMap();
+  } 
 
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.refreshMarkers();
-    this.leafletMap.addLayer(this.markersLayer);
+    this.map.addLayer(this.markersLayer);
 
   }
 

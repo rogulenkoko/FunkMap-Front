@@ -13,10 +13,11 @@ const appRoutes: Routes = [
         {path:"", component: MainComponent, children:[
             {path:"login",component: LoginComponent},
             {path: "signup", component: RegistrationComponent},
+            {path: "settings", component: SettingsComponent},
             {path: "musician", component: MusicianComponent},
             {path: "musician/:id", component: MusicianComponent}
         ]},
-        {path:"settings", component: SettingsComponent}
+        
     ]
   },
 ];
