@@ -10,6 +10,17 @@ export class Musician{
     public birthDate: string;
     public years: number;
     public expirience: number;
+
+
+    public static ToMusician(data: any): Musician{
+        console.log(data);
+        var result = new Musician(data.Id, data.Name);
+        result.birthDate = new Date(data.BirthDate).toLocaleDateString();
+        result.description = data.Description;
+        result.expirience = data.Expirience;
+        result.sex = data.Sex;
+        return result;
+    }
 }
 
 export enum MusicStyle{

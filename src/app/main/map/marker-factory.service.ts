@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
-import { MapMarker } from "./models";
+import { Marker, EntityType } from "./models";
 
 @Injectable()
 export class MarkerFactory {
@@ -9,21 +9,27 @@ export class MarkerFactory {
 
   }
 
-  public getMarker(point: MapMarker):L.Marker {
+  public getMarker(point: Marker):L.Marker {
     point.iconUrl = "assets/images/markers/bass.png";
-    var marker = L.marker(new L.LatLng(point.lat, point.lng), {
+    var marker = L.marker(new L.LatLng(point.lat, point.lng),{
       icon: new L.Icon({
         iconUrl: point.iconUrl,
         className: "icon-image-container"
       })
     });
     marker.on("click",(marker)=>{
-      this.router.navigate(["/musician"]);
+
+      switch(point.entityType){
+        case EntityType.Musician: this.router.navigate(["/musician/" + point.id]); break;
+        case EntityType.Shop: this.router.navigate(["/shop/" + point.id]); break;
+      }
+
+      
     })
     return marker;
   }
 
-  public getMarkerCluster(point: Array<MapMarker>): L.LayerGroup {
+  public getMarkerCluster(point: Array<Marker>): L.LayerGroup {
     
     var cluster = L.markerClusterGroup({
       polygonOptions: {

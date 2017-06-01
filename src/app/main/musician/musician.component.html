@@ -1,6 +1,6 @@
-<side>
+<side *ngIf="musician">
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
       <div class="no-image d-flex justify-content-center align-items-center">
         <img src="/assets/images/noname.png" />
       </div>
@@ -30,7 +30,7 @@
         <label class="d-flex property-value">3 года</label>
       </div>
 
-      <div  class="d-flex flex-row">
+      <div *ngIf="musician.styles" class="d-flex flex-row">
         <label class="property-title">{{'Musician_Styles' | translate}}:</label>
         <label class="d-flex property-value">
             <span class="mr-2" *ngFor="let style of musician.styles">

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import { MapType, MapMarker, Marker } from "./models";
+import { MapType, Marker } from "./models";
+import { Http } from "@angular/http";
+import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 
 @Injectable()
 export abstract class MapService {
@@ -14,12 +16,12 @@ export abstract class MapService {
 @Injectable()
 export class MapServiceHttp extends MapService {
 
-  constructor() {
+  constructor(private http: Http) {
     super();
    }
 
    getAll(): Observable<Array<Marker>>{
-     return;
+     return this.http.get(ConfigurationProvider.apiUrl + "search/all").map(x=>Marker.ToMarkerArray(x.json()));
    }
 
 }

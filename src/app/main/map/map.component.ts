@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MapProvider } from "./map-provider.service";
-import { Map, MapMarker } from "./models";
+import { Map, Marker, EntityType } from "./models";
 import { MarkerFactory } from "./marker-factory.service";
+import { MapService } from "./map.service";
 
 @Component({
   selector: 'map',
@@ -14,18 +15,20 @@ export class MapComponent implements OnInit {
   private map: L.Map;
   private baseLayer: L.TileLayer;
 
-  private center: MapMarker;
+  private center: Marker;
 
   private markersLayer: L.LayerGroup;
 
+  private markers: Array<Marker>;
+
   constructor(private mapProvider: MapProvider,
-    private markerFactory: MarkerFactory) {
-    this.center = new MapMarker(1, 50, 30);
+              private markerFactory: MarkerFactory,
+              private mapService: MapService) {
     this.mapProvider.onMapChange.subscribe(()=>this.updateMap());
   }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(this.center.lat, this.center.lng), zoom: 7, zoomAnimation: false });
+    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 7, zoomAnimation: false });
     this.initMap();
     this.initMarkersLayer();
   }
@@ -45,14 +48,19 @@ export class MapComponent implements OnInit {
 
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
-    this.refreshMarkers();
     this.map.addLayer(this.markersLayer);
+    this.getAll();
+  }
 
+  private getAll(){
+    this.mapService.getAll().subscribe(markers=>{
+      this.markers = markers;
+      this.refreshMarkers();
+    });
   }
 
   private refreshMarkers() {
-    var marker = new MapMarker(2, 51, 30);
-    var cluster = this.markerFactory.getMarkerCluster([this.center, marker]);
+    var cluster = this.markerFactory.getMarkerCluster(this.markers);
     this.markersLayer.clearLayers();
     this.markersLayer.addLayer(cluster);
   }
