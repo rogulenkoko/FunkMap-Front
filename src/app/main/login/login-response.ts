@@ -1,9 +1,13 @@
 import { User } from "../user/user";
 
 export class LoginResponse{
-  constructor(public isLogged: boolean){
+  constructor(public token: string, public login: string){
 
   }
 
-  public user: User;
+  public static ToLoginResponsne(data: any):LoginResponse{
+    console.log(data);
+    var result = new LoginResponse(data.access_token, data.Login);
+    return result;
+  }
 }

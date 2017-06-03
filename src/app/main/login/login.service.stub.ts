@@ -13,13 +13,10 @@ export class LoginServiceStub extends LoginService {
 
   login(login: string, password: string): Observable<LoginResponse> {
     if (login == "test" && password == "test") {
-      var response = new LoginResponse(true);
-      var user = new User();
-      user.login = "rogulenkoko";
-      response.user = user;
+      var response = new LoginResponse("token", "rogulenkoko");
       return Observable.of(response);
     }
-    return Observable.of(new LoginResponse(false));
+    return Observable.of(new LoginResponse("token", "rogulenkoko"));
   }
 
   register(login: string, password: string): Observable<LoginResponse> {

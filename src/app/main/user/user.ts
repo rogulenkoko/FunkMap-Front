@@ -1,6 +1,8 @@
 
 
 export class User{
+    public token: string;
+
     public login: string;
     public image: string;
 

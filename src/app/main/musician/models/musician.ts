@@ -13,12 +13,12 @@ export class Musician{
 
 
     public static ToMusician(data: any): Musician{
-        console.log(data);
         var result = new Musician(data.Id, data.Name);
         result.birthDate = new Date(data.BirthDate).toLocaleDateString();
         result.description = data.Description;
         result.expirience = data.Expirience;
         result.sex = data.Sex;
+        result.styles = data.Styles;
         return result;
     }
 }
@@ -26,7 +26,7 @@ export class Musician{
 export enum MusicStyle{
     HipHop = 1,
     Rock = 2,
-    Funk = 3
+    Funk = 4
 }
 
 export enum Sex{
