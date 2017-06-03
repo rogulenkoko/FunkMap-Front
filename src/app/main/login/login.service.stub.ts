@@ -3,6 +3,8 @@ import { LoginService } from "./login.service";
 import { LoginResponse } from "./login-response";
 import { Observable } from "rxjs/Observable";
 import { User } from "../user/user";
+import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
+import { ConfirmationRequest, ConfirmationResponse } from "./registration/confirmation-model";
 
 @Injectable()
 export class LoginServiceStub extends LoginService {
@@ -19,8 +21,28 @@ export class LoginServiceStub extends LoginService {
     return Observable.of(new LoginResponse("token", "rogulenkoko"));
   }
 
-  register(login: string, password: string): Observable<LoginResponse> {
-    return;
+  register(request: RegistrationRequest): Observable<RegistrationModel> {
+    var response = new RegistrationModel(true);
+    if(request.login == "test"){
+      response.success = false;
+    }
+    return Observable.of(response);
   }
+
+   sendEmail(email: string): Observable<ConfirmationResponse>{
+     var response = new ConfirmationResponse(true);
+     if(email == "test"){
+       response.success = false;
+     }
+     return Observable.of(response);
+   }
+
+   confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>{
+     var response = new ConfirmationResponse(true);
+     if(request.code == "1"){
+       response.success = false;
+     }
+     return Observable.of(response);
+   }
 
 }

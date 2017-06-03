@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, URLSearchParams } from "@angular/http"
 import { LoginResponse } from "./login-response";
 import { Observable } from "rxjs/Observable";
-import { ConfigurationProvider } from "app/core/configuration/configuration-provider"
+import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
+import { ConfirmationRequest, ConfirmationResponse } from "./registration/confirmation-model";
 
 @Injectable()
 export abstract class LoginService {
@@ -11,7 +13,11 @@ export abstract class LoginService {
 
   abstract login(login: string, password: string): Observable<LoginResponse>;
 
-  abstract register(login: string, password: string): Observable<LoginResponse>;
+  abstract register(request: RegistrationRequest): Observable<RegistrationModel>;
+
+  abstract sendEmail(email: string): Observable<ConfirmationResponse>;
+
+  abstract confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>;
 
 }
 
@@ -34,7 +40,15 @@ export class LoginServiceHttp extends LoginService {
      return this.http.post(`${ConfigurationProvider.apiUrl}token`,params).map(x=>LoginResponse.ToLoginResponsne(x.json()));
    }
 
-   register(login: string, password: string): Observable<LoginResponse>{
+   register(request: RegistrationRequest): Observable<RegistrationModel>{
+     return;
+   }
+
+   sendEmail(email: string): Observable<ConfirmationResponse>{
+     return;
+   }
+
+   confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>{
      return;
    }
 

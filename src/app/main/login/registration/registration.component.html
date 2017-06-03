@@ -1,62 +1,79 @@
 <modal [title]="'Login_SignUp'">
-  <div class="d-flex flex-row circle-container justify-content-center">
-    <div [class.circle-selected]="currentStep == 1" class="circle d-flex align-items-center justify-content-center">1</div>
-    <div [class.circle-selected]="currentStep == 2" class="circle d-flex align-items-center justify-content-center circle-center">2</div>
-    <div [class.circle-selected]="currentStep == 3" class="circle d-flex align-items-center justify-content-center">3</div>
-  </div>
-  <div class="registration-container d-flex flex-column">
-    <ng-container *ngIf="currentStep == 1">
-      <div>
-        <div class="d-flex justify-content-between align-items-center">
-          <label>{{'Login_Login' | translate}}</label>
-          <label *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}т</label>
+  <div>
+    <div class="d-flex flex-row circle-container justify-content-center">
+      <div [class.circle-selected]="currentStep == 1" class="circle d-flex align-items-center justify-content-center">1</div>
+      <div [class.circle-selected]="currentStep == 2" class="circle d-flex align-items-center justify-content-center circle-center">2</div>
+      <div [class.circle-selected]="currentStep == 3" class="circle d-flex align-items-center justify-content-center">3</div>
+    </div>
+    <div class="registration-container d-flex flex-column">
+      <ng-container *ngIf="currentStep == 1">
+        <div>
+          <div class="d-flex justify-content-between align-items-center">
+            <label>{{'Login_Login' | translate}}</label>
+            <label *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}</label>
+          </div>
+          <input class="form-control" [(ngModel)]="login" [class.error-control]="existingLogin" />
         </div>
-        <input class="form-control" [(ngModel)]="login" [class.error-control]="existingLogin" />
-      </div>
-      <br>
-      <div>
-        <label>{{'Login_Password' | translate}}</label>
-        <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds" />
-      </div>
-      <br>
-      <div>
-        <div class="d-flex justify-content-between align-items-center">
-          <label>{{'Login_RepeatPassword' | translate}}</label>
-          <label *ngIf="passwordsAreNotMacthing" class="error-label">{{'Login_WrongPasswords' | translate}}</label>
+        <br>
+        <div>
+          <label>{{'Login_Password' | translate}}</label>
+          <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds" />
         </div>
+        <br>
+        <div>
+          <div class="d-flex justify-content-between align-items-center">
+            <label>{{'Login_RepeatPassword' | translate}}</label>
+            <label *ngIf="passwordsAreNotMacthing" class="error-label">{{'Login_WrongPasswords' | translate}}</label>
+          </div>
 
-        <input type="password" [(ngModel)]="passwordRepeat" class="form-control" [class.error-control]="passwordsAreNotMacthing"
-        />
-      </div>
-    </ng-container>
+          <input type="password" [(ngModel)]="passwordRepeat" class="form-control" [class.error-control]="passwordsAreNotMacthing"
+          />
+        </div>
+      </ng-container>
 
-    <ng-container *ngIf="currentStep == 2">
-      <div class="d-flex flex-row justify-content-between align-items-end email-container">
-        <div class="email">
-          <label>{{'Login_Email' | translate}}</label>
-          <input [(ngModel)]="email" class="form-control" [class.error-control]="wrongCreds" />
-        </div>
-        <div class="code">
-          <button (click)="sendCode()" class="btn btn-secondary">{{'Login_SendCode' | translate}}</button>
-        </div>
-      </div>
-      <br>
-      <div class="d-flex flex-row justify-content-between align-items-end email-container">
-        <div class="email">
-          <label>{{'Login_Code' | translate}}</label>
-          <input [(ngModel)]="code" class="form-control" [class.error-control]="wrongCreds" />
-        </div>
-      </div>
-      <!--сделать фиксированный размер-->
-      <br><br><br><br>
-    </ng-container>
+      <ng-container *ngIf="currentStep == 2">
+        <div class="d-flex flex-row justify-content-between align-items-end email-container">
+          <div class="email">
+            <div class="d-flex flex-row justify-content-between">
+              <label>{{'Login_Email' | translate}}</label>
+              <label *ngIf="isEmailSent && isCodeSent" class="is-sent">Код отправлен</label>
+              <label *ngIf="isEmailSent && !isCodeSent" class="is-not-sent">Код не отправлен</label>
+            </div>
 
-    <br><br>
-    <div class="d-flex flex-row justify-content-between registration-buttons-container">
-      <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
-      <button *ngIf="currentStep == 2 || currentStep == 3" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
-      <button (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
+            <input [(ngModel)]="email" class="form-control" [class.error-control]="wrongCreds" />
+          </div>
+          <div class="code">
+            <button (click)="sendCode()" class="btn btn-secondary">{{'Login_SendCode' | translate}}</button>
+          </div>
+        </div>
+        <br>
+        <div class="d-flex flex-row justify-content-between align-items-end email-container">
+          <div class="email">
+            <div class="d-flex flex-row justify-content-between">
+              <label>{{'Login_Code' | translate}}</label>
+              <label class="is-not-sent" *ngIf="isCodeWrong">Неверный код</label>
+            </div>
+
+            <input [(ngModel)]="code" class="form-control" [class.error-control]="isCodeWrong" />
+          </div>
+        </div>
+        <!--сделать фиксированный размер-->
+      </ng-container>
+
+      <ng-container *ngIf="currentStep == 3">
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center justify-content-center fa-check-container"><i class="fa fa-check"></i></div>
+        </div>
+      </ng-container>
     </div>
 
+    <div class="d-flex flex-row registration-buttons-container" 
+         [class.justify-content-center]="currentStep == 3"
+         [class.justify-content-between]="currentStep != 3">
+      <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+      <button *ngIf="currentStep == 2" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
+      <button *ngIf="currentStep != 3" (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
+      <button *ngIf="currentStep == 3" routerLink="/" class="btn btn-success">{{'Закрыть' | translate}}</button>
+    </div>
   </div>
 </modal>
