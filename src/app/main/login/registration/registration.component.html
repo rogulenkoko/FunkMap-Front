@@ -72,8 +72,8 @@
          [class.justify-content-between]="currentStep != 3">
       <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
       <button *ngIf="currentStep == 2" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
-      <button *ngIf="currentStep != 3" (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
-      <button *ngIf="currentStep == 3" routerLink="/" class="btn btn-success">{{'Закрыть' | translate}}</button>
+      <button *ngIf="currentStep != 3" [class.disabled]="(!isCodeSent || !code) && currentStep == 2" (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
+      <button  *ngIf="currentStep == 3" routerLink="/" class="btn btn-success">{{'Закрыть' | translate}}</button>
     </div>
   </div>
 </modal>

@@ -11,9 +11,17 @@ html, body{
     border: 1px solid red;
 }
 
+.btn{
+    cursor: pointer;
+}
+
 .btn-secondary{
         color: $app-green;
     }
+
+.btn-success{
+    background-color:  $app-green;
+}
 
 .navbar{
     height: 56px !important;
@@ -23,6 +31,3 @@ i{
     outline: none;
 }
 
-.btn-success{
-    background-color:  $app-green;
-}

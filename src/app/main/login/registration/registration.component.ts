@@ -11,7 +11,7 @@ import { ConfirmationRequest, ConfirmationResponse } from "./confirmation-model"
 })
 export class RegistrationComponent implements OnInit {
 
-  private currentStep = 1;
+  private currentStep = 2;
 
   private login: string = "test";
   private password: string = "1";
@@ -61,9 +61,10 @@ export class RegistrationComponent implements OnInit {
         break;
 
       case 2:
+        if (!this.isCodeSent || !this.code) return;
         var confirmationRequest = new ConfirmationRequest(this.login, this.code);
-        this.loginService.confirm(confirmationRequest).subscribe(response=>{
-          if(response.success){
+        this.loginService.confirm(confirmationRequest).subscribe(response => {
+          if (response.success) {
             this.currentStep++;
           } else {
             this.isCodeWrong = true;
