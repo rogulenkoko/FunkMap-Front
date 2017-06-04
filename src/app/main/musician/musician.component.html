@@ -19,7 +19,7 @@
         <label class="property-title">{{'Musician_BirthDate' | translate}}:</label>
         <div class="d-flex property-value">
           <label>{{musician.birthDate}}</label>
-          <label>({{musician.years}} лет)</label>
+          <label>({{musician.years}} {{'Musician_Years' | translate}})</label>
         </div>
       </div>
 
@@ -42,11 +42,11 @@
           </label>
       </div>
 
-      <div class="d-flex flex-row">
+      <div *ngIf="musician.vkLink || musician.facebookLink || musician.youTubeLink" class="d-flex flex-row">
         <label class="property-title">{{'Musician_SocialNets' | translate}}:</label>
-        <a class="icon-big vk-icon mr-2" href="https://vk.com/id30724049"></a>
-        <a class="icon-big facebook-icon mr-2" href="https://www.facebook.com/"></a>
-        <a class="icon-big youtube-icon mr-2" href="https://www.youtube.com/user/Urgantshow"></a>
+        <a *ngIf="musician.vkLink" class="icon-big vk-icon mr-2" href="https://vk.com/id30724049"></a>
+        <a *ngIf="musician.facebookLink" class="icon-big facebook-icon mr-2" href="https://www.facebook.com/"></a>
+        <a *ngIf="musician.youTubeLink" class="icon-big youtube-icon mr-2" href="https://www.youtube.com/user/Urgantshow"></a>
       </div>
 
       <!--<div  class="d-flex flex-row">

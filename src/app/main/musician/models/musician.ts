@@ -13,6 +13,9 @@ export class Musician{
     public instrument: InstrumentType;
 
     public avatar: string;
+    public vkLink: string;
+    public youTubeLink: string;
+    public facebookLink: string;
 
 
     public static ToMusician(data: any): Musician{
@@ -23,6 +26,10 @@ export class Musician{
         result.sex = data.Sex;
         result.styles = data.Styles;
         result.avatar = data.AvatarImage;
+        result.years = data.Age;
+        result.vkLink = data.VkLink;
+        result.youTubeLink = data.YouTubeLink;
+        result.facebookLink = data.FacebookLink;
         return result;
     }
 }
