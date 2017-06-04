@@ -1,1 +1,1 @@
-export { Musician, MusicStyle, Sex } from "./musician";
+export { Musician, MusicStyle, Sex, InstrumentType } from "./musician";

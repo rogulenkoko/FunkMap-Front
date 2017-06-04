@@ -22,7 +22,7 @@ export class MusicianServiceHttp extends MusicianService {
 
 
    getMusician(id: number): Observable<Musician>{
-     return this.http.get(ConfigurationProvider.apiUrl + "musician/" + id).map(x=>Musician.ToMusician(x.json()));
+     return this.http.get(ConfigurationProvider.apiUrl + "musician/get/" + id).map(x=>Musician.ToMusician(x.json()));
    }
 
 }

@@ -4,7 +4,7 @@
 
 .item-content-container{
     width: $sidebar-item-content-width;
-
+    min-width: 320px;
     height: calc(100% - 56px);
     margin-top: 56px;
     margin-left:  $sidebar-global-size;

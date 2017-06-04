@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MusicianService } from "./musician.service";
 import { Observable } from "rxjs/Observable";
-import { Musician, MusicStyle, Sex } from "./models";
+import { Musician, MusicStyle, Sex, InstrumentType } from "./models";
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -13,6 +13,7 @@ export class MusicianServiceStub extends MusicianService {
    getMusician(id: number): Observable<Musician>{
      var musician = new Musician(1, "Мик Томсон");
      musician.styles = [MusicStyle.Funk, MusicStyle.Rock];
+     musician.instrument = InstrumentType.Drums;
      musician.birthDate = new Date().toLocaleDateString();
      musician.years = 45;
      musician.sex = Sex.Male;

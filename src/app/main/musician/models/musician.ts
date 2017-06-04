@@ -10,6 +10,7 @@ export class Musician{
     public birthDate: string;
     public years: number;
     public expirience: number;
+    public instrument: InstrumentType;
 
 
     public static ToMusician(data: any): Musician{
@@ -32,4 +33,13 @@ export enum MusicStyle{
 export enum Sex{
     Male = 1,
     Female = 2
+}
+
+export enum InstrumentType{
+    Bass = 1,
+    Drums = 2,
+    Vocal = 4,
+    Brass = 8,
+    Guitar = 16,
+    Keyboard = 32
 }

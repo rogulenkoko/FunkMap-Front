@@ -1,11 +1,21 @@
+import { InstrumentType } from "../../musician/models";
 
 export class Marker {
     constructor(public id: number, public lat: number, public lng: number, public entityType: EntityType, public iconUrl?: string) {
 
     }
 
+    //для музыкантов
+    public instrument: InstrumentType;
+
+
     public static ToMarker(data: any):Marker{
         var result = new Marker(data.Id, data.Latitude, data.Longitude, data.ModelType);
+
+        if(result.entityType = EntityType.Musician){
+            result.instrument = data.Instrument;
+        }
+
         return result;
     }
 

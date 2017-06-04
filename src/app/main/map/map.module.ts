@@ -12,6 +12,7 @@ import { ToolsModule } from "app/tools/tools.module";
 
 import { MapService, MapServiceHttp } from "./map.service";
 import { MapServiceStub } from "./map.service.stub";
+import { IconProvider } from "./icon-provider.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MapServiceStub } from "./map.service.stub";
     {
       provide: MapService,
       useClass: environment.production ? MapServiceHttp : MapServiceStub
-    }
+    },
+    IconProvider
   ]
 })
 export class MapModule { }
