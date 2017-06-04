@@ -1,0 +1,45 @@
+<div class="d-flex flex-row align-items-center">
+  <label class="property-title">Имя</label>
+  <input [(ngModel)]="musician.name" class="form-control secondary" />
+</div>
+<br>
+<div class="d-flex flex-row align-items-center">
+  <label class="property-title">Пол</label>
+  <div class="mr-5 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
+    <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="musician.sex" [value]="sexType">
+    <label for="reportType{{sexType}}">{{musicianTypesProvider.sexTypes.getValue(sexType) | translate}}</label>
+  </div>
+</div>
+<br>
+
+<div class="d-flex align-content-start flex-wrap">
+  <div *ngFor="let instrument of iconProvider.icons.keys()"  
+        class="instrument" 
+        [class.instrument-selected]="musician.instrument == instrument" 
+        (click)="selectInstrument(instrument)">
+    <img src="{{iconProvider.icons.getValue(instrument)}}"/>
+  </div>
+</div>
+
+<br>
+<div class="d-flex flex-row align-items-center">
+  <label class="property-title">Описание</label>
+  <textarea [(ngModel)]="musician.description" class="form-control secondary"></textarea>
+</div>
+
+<div class="d-flex flex-row align-items-center">
+  <label class="property-title">Youtube</label>
+  <input [(ngModel)]="musician.youTubeLink" class="form-control secondary" />
+</div>
+
+<div class="d-flex flex-row align-items-center">
+  <label class="property-title">Vk</label>
+  <input [(ngModel)]="musician.vkLink" class="form-control secondary" />
+</div>
+
+<div class="d-flex flex-row align-items-center">
+  <label class="property-title">Facebook</label>
+  <input [(ngModel)]="musician.facebookLink" class="form-control secondary" />
+</div>
+
+<button (click)="save()">Сохранить</button>

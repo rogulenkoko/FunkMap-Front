@@ -19,6 +19,8 @@ import { MapModule } from "./main/map/map.module";
 import { SettingsModule } from "./main/settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
+import { CreationComponent } from './main/creation/creation.component';
+import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,11 @@ import { UserModule } from "./main/user/user.module";
     NavbarComponent, 
     MainComponent,
 
-    SidebarComponent
+    SidebarComponent,
+
+    CreationComponent,
+
+    MusicianCreationComponent
   ],
   imports: [
     CoreModule,

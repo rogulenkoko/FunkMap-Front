@@ -1,0 +1,15 @@
+.instrument{
+    width: 28%;
+    height: 70px;
+    background-color: lightgray;
+    margin: 10px;
+    img{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+
+.instrument-selected{
+    border: 1px solid green;
+}

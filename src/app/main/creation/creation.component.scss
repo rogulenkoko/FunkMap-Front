@@ -1,0 +1,42 @@
+@import "src/assets/styles/colors.scss";
+
+.main-creation-container{
+    width: 100%;
+    padding: 20px;
+
+    .entity-choice-container{
+        width: 50%;
+        padding: 20px;
+        div{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: $app-green; 
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
+    .entity-fields-container{
+        width: 40%;
+    }
+
+    .map-container{
+        width: calc(100% + 40px);
+        height: 500px;
+        margin-top: 50px;
+    }
+
+    .property-title{
+        width: 80px;
+        text-align: left;
+        padding-left: 20px;
+        color: #9b9b9b;
+    }
+}
+
+textarea{
+    height: 50px;
+}
+

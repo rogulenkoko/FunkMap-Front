@@ -1,0 +1,36 @@
+input[type=radio],
+input[type=checkbox]{
+  visibility: hidden;
+  position: absolute;
+}
+
+input[type=radio] + label:before,
+input[type=checkbox] + label:before{
+  margin-right:5px; 
+  display:inline-block;
+  vertical-align: baseline;
+  content: url("/assets/images/radio.png");
+}
+input[type=radio]:checked + label:before,
+input[type=checkbox]:checked + label:before{
+   content: url("/assets/images/radio-active.png");
+}
+
+input[type=radio] + label:before{
+  border-radius:50%;
+}
+input[type=checkbox] + label:before{
+  border-radius:2px;
+}
+
+input, input:focus, textarea{
+    border: none !important;
+    border-bottom: 2px solid #c6c6c6 !important;
+    background-color: rgba(0,0,0,0) !important;
+    border-radius: 0 !important;
+}
+
+textarea{
+  overflow: hidden;
+}
+

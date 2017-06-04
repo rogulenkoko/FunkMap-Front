@@ -5,6 +5,7 @@ import { LoginComponent } from "./main/login/login.component";
 import { RegistrationComponent } from "./main/login/registration/registration.component";
 import { SettingsComponent } from "./main/settings/settings.component";
 import { MusicianComponent } from "./main/musician/musician.component";
+import { CreationComponent } from './main/creation/creation.component';
 
 const appRoutes: Routes = [
   {
@@ -16,7 +17,9 @@ const appRoutes: Routes = [
             {path: "settings", component: SettingsComponent},
             {path: "musician", component: MusicianComponent},
             {path: "musician/:id", component: MusicianComponent}
+            
         ]},
+        {path: "create", component: CreationComponent},
         
     ]
   },

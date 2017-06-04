@@ -1,6 +1,6 @@
 export class Musician{
-    constructor(public id:number, public name: string){
-
+    constructor(public id?:number, public name?: string){
+        this.sex = Sex.Male;
     }
 
     public styles: Array<MusicStyle>;
