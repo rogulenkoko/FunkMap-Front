@@ -12,6 +12,8 @@ export class Musician{
     public expirience: number;
     public instrument: InstrumentType;
 
+    public avatar: string;
+
 
     public static ToMusician(data: any): Musician{
         var result = new Musician(data.Id, data.Name);
@@ -20,6 +22,7 @@ export class Musician{
         result.expirience = data.Expirience;
         result.sex = data.Sex;
         result.styles = data.Styles;
+        result.avatar = data.AvatarImage;
         return result;
     }
 }

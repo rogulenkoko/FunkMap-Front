@@ -8,6 +8,14 @@
     background-color: lightgray;
 }
 
+.image-container{
+    img{
+        width: 165px;
+        height: 165px;
+        border-radius: 50%; 
+    }
+}
+
 .musician-name-container{
     padding: 25px;
     font-size: 22px;

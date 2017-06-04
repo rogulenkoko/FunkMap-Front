@@ -1,8 +1,11 @@
 <side *ngIf="musician">
   <div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-center">
-      <div class="no-image d-flex justify-content-center align-items-center">
-        <img src="/assets/images/noname.png" />
+      <div *ngIf="!musician.avatar" class="no-image d-flex justify-content-center align-items-center">
+        <img  src="/assets/images/noname.png" />
+      </div>
+      <div *ngIf="musician.avatar" class="image-container">
+        <img src="{{avatarImage}}" />
       </div>
       <div class="musician-name-container">
         {{musician.name}}
