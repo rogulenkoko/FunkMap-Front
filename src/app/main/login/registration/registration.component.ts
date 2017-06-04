@@ -11,7 +11,7 @@ import { ConfirmationRequest, ConfirmationResponse } from "./confirmation-model"
 })
 export class RegistrationComponent implements OnInit {
 
-  private currentStep = 2;
+  private currentStep = 1;
 
   private login: string = "test";
   private password: string = "1";
@@ -83,8 +83,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   sendCode() {
-    this.isEmailSent = true;
-    this.loginService.sendEmail(this.email).subscribe(response => {
+    var request = new RegistrationRequest(this.login);
+    request.email = this.email
+    this.loginService.sendEmail(request).subscribe(response => {
+      this.isEmailSent = true;
       if (response.success) {
         this.isCodeSent = true;
       } else {

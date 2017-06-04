@@ -29,9 +29,9 @@ export class LoginServiceStub extends LoginService {
     return Observable.of(response);
   }
 
-   sendEmail(email: string): Observable<ConfirmationResponse>{
+   sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>{
      var response = new ConfirmationResponse(true);
-     if(email == "test"){
+     if(request.email == "test"){
        response.success = false;
      }
      return Observable.of(response);

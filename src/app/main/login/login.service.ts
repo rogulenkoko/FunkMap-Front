@@ -15,7 +15,7 @@ export abstract class LoginService {
 
   abstract register(request: RegistrationRequest): Observable<RegistrationModel>;
 
-  abstract sendEmail(email: string): Observable<ConfirmationResponse>;
+  abstract sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>;
 
   abstract confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>;
 
@@ -41,15 +41,15 @@ export class LoginServiceHttp extends LoginService {
    }
 
    register(request: RegistrationRequest): Observable<RegistrationModel>{
-     return;
+     return this.http.post(`${ConfigurationProvider.apiUrl}auth/register`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
    }
 
-   sendEmail(email: string): Observable<ConfirmationResponse>{
-     return;
+   sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>{
+     return this.http.post(`${ConfigurationProvider.apiUrl}auth/sendEmail`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
    }
 
    confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>{
-     return;
+     return this.http.post(`${ConfigurationProvider.apiUrl}auth/confirm`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));;;
    }
 
 }
