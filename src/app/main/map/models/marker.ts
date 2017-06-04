@@ -11,11 +11,9 @@ export class Marker {
 
     public static ToMarker(data: any):Marker{
         var result = new Marker(data.Id, data.Latitude, data.Longitude, data.ModelType);
-
         if(result.entityType = EntityType.Musician){
             result.instrument = data.Instrument;
         }
-
         return result;
     }
 

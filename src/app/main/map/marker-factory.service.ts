@@ -11,7 +11,6 @@ export class MarkerFactory {
   }
 
   public getMarker(point: Marker): L.Marker {
-
     point.iconUrl = this.iconProvider.getIcon(point);
     var marker = L.marker(new L.LatLng(point.lat, point.lng), {
       icon: new L.Icon({

@@ -38,8 +38,8 @@ export enum Sex{
 export enum InstrumentType{
     Bass = 1,
     Drums = 2,
-    Vocal = 4,
-    Brass = 8,
-    Guitar = 16,
-    Keyboard = 32
+    Vocal = 3,
+    Brass = 4,
+    Guitar = 5,
+    Keyboard = 6
 }
