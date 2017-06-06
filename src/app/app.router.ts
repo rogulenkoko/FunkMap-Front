@@ -6,6 +6,8 @@ import { RegistrationComponent } from "./main/login/registration/registration.co
 import { SettingsComponent } from "./main/settings/settings.component";
 import { MusicianComponent } from "./main/musician/musician.component";
 import { CreationComponent } from './main/creation/creation.component';
+import { MapCreationComponent } from './main/creation/map-creation/map-creation.component';
+import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
 
 const appRoutes: Routes = [
   {
@@ -19,7 +21,10 @@ const appRoutes: Routes = [
             {path: "musician/:id", component: MusicianComponent}
             
         ]},
-        {path: "create", component: CreationComponent},
+        {path: "create", component: CreationComponent, children:[
+          {path: "map", component: MapCreationComponent},
+          {path:"", component: MusicianCreationComponent}
+        ]},
         
     ]
   },

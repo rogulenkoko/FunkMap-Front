@@ -1,45 +1,94 @@
-<div class="d-flex flex-row align-items-center">
-  <label class="property-title">Имя</label>
-  <input [(ngModel)]="musician.name" class="form-control secondary" />
-</div>
-<br>
-<div class="d-flex flex-row align-items-center">
-  <label class="property-title">Пол</label>
-  <div class="mr-5 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
-    <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="musician.sex" [value]="sexType">
-    <label for="reportType{{sexType}}">{{musicianTypesProvider.sexTypes.getValue(sexType) | translate}}</label>
+<div class="musician-form-container d-flex flex-row justify-content-between">
+
+  <div class="left-container d-flex flex-column">
+    <div class="d-flex flex-row align-items-center">
+      <label class="property-title">Имя:</label>
+      <input [class.error]="wasSubmit && !musician.name" [(ngModel)]="musician.name" class="form-control secondary" />
+    </div>
+    <br>
+    <div class="d-flex flex-row align-items-center">
+      <label class="property-title">Дата рождения:</label>
+      <div class="d-flex flex-row date-container">
+        <select [(ngModel)]="dateProvider.day" class="form-control date-select days mr-3">
+        <option *ngFor="let day of dateProvider.days" [ngValue]="day">{{day}}</option>
+      </select>
+
+        <select [(ngModel)]="dateProvider.month" class="form-control date-select months mr-3">
+        <option *ngFor="let month of dateProvider.months" [ngValue]="month">{{month.title}}</option>
+      </select>
+
+        <select [(ngModel)]="dateProvider.year" class="form-control date-select years">
+        <option *ngFor="let year of dateProvider.years" [ngValue]="year">{{year}}</option>
+      </select>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex flex-row align-items-center">
+      <label class="property-title sex-label">Пол:</label>
+      <div class="mr-4 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
+        <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="musician.sex" [value]="sexType">
+        <label class="radio-label" for="reportType{{sexType}}">{{musicianTypesProvider.sexTypes.getValue(sexType) | translate}}</label>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex flex-row align-items-top">
+      <label class="property-title">Описание:</label>
+      <textarea [(ngModel)]="musician.description" class="form-control secondary"></textarea>
+    </div>
+
+    <br>
+
+    <div class="d-flex flex-row align-items-center social-nets">
+      <label class="property-title">Соц. сети:</label>
+      <input placeholder="YouTube" [(ngModel)]="musician.youTubeLink" class="form-control secondary" />
+    </div>
+    <div class="d-flex flex-row align-items-center social-nets">
+      <label class="property-title"></label>
+      <input placeholder="Vk" [(ngModel)]="musician.vkLink" class="form-control secondary" />
+    </div>
+    <div class="d-flex flex-row align-items-center social-nets">
+      <label class="property-title"></label>
+      <input placeholder="Facebook" [(ngModel)]="musician.facebookLink" class="form-control secondary" />
+    </div>
+  </div>
+
+  <div class="right-container d-flex flex-column">
+    <div class="d-flex flex-row align-items-center">
+      <label class="property-title">Видео:</label>
+      <input placeholder="Ссылка Youtube" [(ngModel)]="musician.videoYoutube" class="form-control secondary" />
+    </div>
+    <br>
+    <div class="d-flex flex-row">
+      <label class="property-title">Стиль:</label>
+      <div class="d-flex flex-column selected-styles-container">
+        <select [(ngModel)]="currenSelectedStyle" class="form-control mr-3" (ngModelChange)="onStyleChanged()">
+        <!--<option></option>-->
+        <option *ngFor="let style of styles.keys()" [ngValue]="style">{{musicianTypesProvider.musicStyles.getValue(style)}}</option>
+      </select>
+        <div class="d-flex flex-row">
+          <div *ngFor="let musicianStyle of musician.styles" class="musician-style d-flex align-items-center mr-3">
+            <div (click)="removeStyle(musicianStyle)" class="icon icon-close-red mr-2"></div>
+            <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle)}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="d-flex flex-column">
+      <label>Инструмент:</label>
+      <div class="d-flex align-content-start flex-wrap">
+        <div [class.error]="wasSubmit && !musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index" class="instrument d-flex align-items-center justify-content-center"
+          [class.instrument-selected]="musician.instrument == instrument" 
+          [style.margin-right]="i == 2 || i == 5 ? '0' : '10px'"
+          (click)="selectInstrument(instrument)">
+          <img src="{{iconProvider.icons.getValue(instrument)}}" />
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-end">
+      <button class="btn btn-secondary mr-3" (click)="canccel()">Отмена</button>
+      <button class="btn btn-success" (click)="save()">Сохранить</button>
+    </div>
   </div>
 </div>
-<br>
-
-<div class="d-flex align-content-start flex-wrap">
-  <div *ngFor="let instrument of iconProvider.icons.keys()"  
-        class="instrument" 
-        [class.instrument-selected]="musician.instrument == instrument" 
-        (click)="selectInstrument(instrument)">
-    <img src="{{iconProvider.icons.getValue(instrument)}}"/>
-  </div>
-</div>
-
-<br>
-<div class="d-flex flex-row align-items-center">
-  <label class="property-title">Описание</label>
-  <textarea [(ngModel)]="musician.description" class="form-control secondary"></textarea>
-</div>
-
-<div class="d-flex flex-row align-items-center">
-  <label class="property-title">Youtube</label>
-  <input [(ngModel)]="musician.youTubeLink" class="form-control secondary" />
-</div>
-
-<div class="d-flex flex-row align-items-center">
-  <label class="property-title">Vk</label>
-  <input [(ngModel)]="musician.vkLink" class="form-control secondary" />
-</div>
-
-<div class="d-flex flex-row align-items-center">
-  <label class="property-title">Facebook</label>
-  <input [(ngModel)]="musician.facebookLink" class="form-control secondary" />
-</div>
-
-<button (click)="save()">Сохранить</button>

@@ -3,6 +3,7 @@
     min-height: 12px;
     outline:none;
     cursor: pointer;
+    display: inline-block;
 }
 
 .icon-big{
@@ -14,6 +15,10 @@
 
 .icon-close{
     background: url("/assets/images/close.png") no-repeat;
+}
+
+.icon-close-red{
+    background: url("/assets/images/close-red.png") no-repeat;
 }
 
 .youtube-icon{

@@ -14,7 +14,7 @@ export class MusicianServiceStub extends MusicianService {
      var musician = new Musician(1, "Мик Томсон");
      musician.styles = [MusicStyle.Funk, MusicStyle.Rock];
      musician.instrument = InstrumentType.Drums;
-     musician.birthDate = new Date().toLocaleDateString();
+     musician.birthDate = new Date();
      musician.years = 45;
      musician.sex = Sex.Male;
      musician.expirience = 3;

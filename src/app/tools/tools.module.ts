@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { SideComponent } from './side/side.component';
 import { CoreModule } from "app/core/core.module";
+import { DateSelectProvider } from "./date/date-select-provider.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { CoreModule } from "app/core/core.module";
     RouterModule,
     SideComponent],
   providers: [
-    
+    DateSelectProvider
   ]
 })
 export class ToolsModule { }

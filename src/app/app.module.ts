@@ -19,8 +19,7 @@ import { MapModule } from "./main/map/map.module";
 import { SettingsModule } from "./main/settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
-import { CreationComponent } from './main/creation/creation.component';
-import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
+import { CreationModule } from './main/creation/creation.module';
 
 @NgModule({
   declarations: [
@@ -28,11 +27,7 @@ import { MusicianCreationComponent } from './main/creation/musician-creation/mus
     NavbarComponent, 
     MainComponent,
 
-    SidebarComponent,
-
-    CreationComponent,
-
-    MusicianCreationComponent
+    SidebarComponent
   ],
   imports: [
     CoreModule,
@@ -42,7 +37,8 @@ import { MusicianCreationComponent } from './main/creation/musician-creation/mus
     SettingsModule,
     LoginModule,
     MusicianModule,
-    UserModule
+    UserModule,
+    CreationModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [
