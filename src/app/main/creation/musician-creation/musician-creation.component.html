@@ -53,6 +53,16 @@
   </div>
 
   <div class="right-container d-flex flex-column">
+    <div class="d-flex flex-column ">
+      <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+    
+      <label class="btn btn-secondary btn-file">
+        Browse <input type="file"  (change)="fileChangeListener($event)" hidden>
+      </label>
+    </div>
+    
+
+
     <div class="d-flex flex-row align-items-center">
       <label class="property-title">Видео:</label>
       <input placeholder="Ссылка Youtube" [(ngModel)]="musician.videoYoutube" class="form-control secondary" />
@@ -78,10 +88,9 @@
     <div class="d-flex flex-column">
       <label>Инструмент:</label>
       <div class="d-flex align-content-start flex-wrap">
-        <div [class.error]="wasSubmit && !musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index" class="instrument d-flex align-items-center justify-content-center"
-          [class.instrument-selected]="musician.instrument == instrument" 
-          [style.margin-right]="i == 2 || i == 5 ? '0' : '10px'"
-          (click)="selectInstrument(instrument)">
+        <div [class.error]="wasSubmit && !musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index"
+          class="instrument d-flex align-items-center justify-content-center" [class.instrument-selected]="musician.instrument == instrument"
+          [style.margin-right]="i == 2 || i == 5 ? '0' : '10px'" (click)="selectInstrument(instrument)">
           <img src="{{iconProvider.icons.getValue(instrument)}}" />
         </div>
       </div>

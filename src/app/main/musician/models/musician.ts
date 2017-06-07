@@ -17,7 +17,7 @@ export class Musician{
     public expirience: number;
     public instrument: InstrumentType;
 
-    public avatar: string;
+    public avatar: string;//байты
     public vkLink: string;
     public youTubeLink: string;
     public facebookLink: string;
@@ -30,7 +30,7 @@ export class Musician{
         result.expirience = data.Expirience;
         result.sex = data.Sex;
         result.styles = data.Styles;
-        result.avatar = data.AvatarImage;
+        result.avatar = data.Avatar;
         result.years = data.Age;
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;

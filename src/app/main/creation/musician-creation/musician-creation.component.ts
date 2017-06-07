@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { DateSelectProvider } from "app/tools/date/date-select-provider.service"
 import { MusicianTypesProvider } from "../../musician/musician-types-provider";
@@ -7,6 +7,7 @@ import { IconProvider } from "../../map/icon-provider.service";
 import { Dictionary } from "typescript-collections";
 import { EntityType } from "../../map/models";
 import { CreationService } from "../creation.service";
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
 @Component({
   selector: 'musician-creation',
@@ -16,12 +17,17 @@ import { CreationService } from "../creation.service";
 })
 export class MusicianCreationComponent implements OnInit {
 
+  @ViewChild('cropper') cropper:ImageCropperComponent;
   private musician: Musician;
 
   private currenSelectedStyle: MusicStyle = undefined;
   private styles: Dictionary<MusicStyle, string>;
 
   private wasSubmit: boolean;
+
+
+  data: any;
+  cropperSettings: CropperSettings;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
               private iconProvider: IconProvider, 
@@ -34,6 +40,18 @@ export class MusicianCreationComponent implements OnInit {
       this.styles.setValue(key, this.musicianTypesProvider.musicStyles.getValue(key));
     }); 
     this.creationService.selectedEntity = EntityType.Musician;
+
+    this.cropperSettings = new CropperSettings();
+        this.cropperSettings.width = 100;
+        this.cropperSettings.height = 100;
+        this.cropperSettings.croppedWidth =200;
+        this.cropperSettings.croppedHeight = 200;
+        this.cropperSettings.canvasWidth = 400;
+        this.cropperSettings.canvasHeight = 300;
+        this.cropperSettings.rounded = true;
+        this.cropperSettings.noFileInput = true;
+
+        this.data = {};
    }
 
   ngOnInit() {
@@ -48,11 +66,25 @@ export class MusicianCreationComponent implements OnInit {
       }, 2000);
       return;
     }
-
+    
+    this.musician.avatar = this.data.image.replace("data:image/jpeg;base64,","");
     this.musician.birthDate = this.dateProvider.buildDate();
     this.creationService.musician = this.musician;
     this.router.navigate(["/create/map"]);
   }
+
+  fileChangeListener($event) {
+        var image:any = new Image();
+        var file:File = $event.target.files[0];
+        var myReader:FileReader = new FileReader();
+        var that = this;
+        myReader.onloadend = function (loadEvent:any) {
+            image.src = loadEvent.target.result;
+            that.cropper.setImage(image);
+        };
+
+        myReader.readAsDataURL(file);
+    }
 
   onStyleChanged(){
     this.musician.styles.push(this.currenSelectedStyle);

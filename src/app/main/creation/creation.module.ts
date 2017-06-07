@@ -7,6 +7,7 @@ import { CreationService, CreationServiceHttp } from "./creation.service";
 import { CreationServiceStub } from "./creation.service.stub";
 import { MusicianCreationComponent } from "./musician-creation/musician-creation.component";
 import { MapCreationComponent } from './map-creation/map-creation.component';
+import {ImageCropperModule} from 'ng2-img-cropper';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MapCreationComponent } from './map-creation/map-creation.component';
   ],
   imports: [
     CoreModule,
-    ToolsModule
+    ToolsModule,
+    ImageCropperModule
   ],
   exports:[
       CreationComponent,
