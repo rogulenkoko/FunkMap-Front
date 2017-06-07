@@ -9,7 +9,7 @@
        <i class="fa fa-cog sidebar-item" routerLink="/settings" aria-hidden="true"></i>
       </li>
 
-      <li class="plus-container d-flex align-items-center justify-content-center">
+      <li *ngIf="userService.user" class="plus-container d-flex align-items-center justify-content-center">
        <i class="fa fa-plus sidebar-item" routerLink="/create" aria-hidden="true"></i>
       </li>
 

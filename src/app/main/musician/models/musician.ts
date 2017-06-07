@@ -3,6 +3,7 @@ export class Musician{
         this.sex = Sex.Male;
         this.styles = [];
     }
+    public login: string;
 
     public longitude: number;
     public latitude: number;

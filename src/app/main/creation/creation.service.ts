@@ -4,6 +4,8 @@ import { EntityType } from "../map/models";
 import { Http } from "@angular/http"
 import { Observable } from "rxjs/Observable";
 import { CreationResponse } from "./creation";
+import { UserService } from "../user/user.service";
+import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 
 @Injectable()
 export abstract class CreationService {
@@ -21,12 +23,13 @@ export abstract class CreationService {
 @Injectable()
 export class CreationServiceHttp extends CreationService{
 
-  constructor() { 
+  constructor(private http: Http, private userService: UserService) { 
     super();
   }
 
   saveMusician():Observable<CreationResponse>{
-    return;
+    this.musician.login = this.userService.user.login;
+    return this.http.post(`${ConfigurationProvider.apiUrl}musician/save`,this.musician).map(x=>CreationResponse.ToCreationResponse(x.json()));
   }
 
 }
