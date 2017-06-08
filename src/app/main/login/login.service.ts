@@ -13,6 +13,8 @@ export abstract class LoginService {
 
   abstract login(login: string, password: string): Observable<LoginResponse>;
 
+  abstract prolongate(refreshToken: string): Observable<LoginResponse>;
+
   abstract register(request: RegistrationRequest): Observable<RegistrationModel>;
 
   abstract sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>;
@@ -39,6 +41,19 @@ export class LoginServiceHttp extends LoginService {
      params.set("grant_type", "password");
      return this.http.post(`${ConfigurationProvider.apiUrl}token`,params).map(x=>LoginResponse.ToLoginResponsne(x.json()));
    }
+
+   prolongate(refreshToken: string): Observable<LoginResponse>{
+     var options = new RequestOptions();
+     options.headers = new Headers();
+     options.headers.append("Content-Type","x-www-form-urlencoded");
+
+     var params = new URLSearchParams();
+     params.set("refresh_token", refreshToken);
+     params.set("grant_type", "refresh_token");
+     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params).map(x=>LoginResponse.ToLoginResponsne(x.json()));
+   }
+
+  
 
    register(request: RegistrationRequest): Observable<RegistrationModel>{
      return this.http.post(`${ConfigurationProvider.apiUrl}auth/register`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));

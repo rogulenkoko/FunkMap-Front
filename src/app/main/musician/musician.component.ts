@@ -48,7 +48,6 @@ export class MusicianComponent implements OnInit,OnDestroy {
     if(this.musician && id == this.musician.id) return;
     this.musicianService.getMusician(id).subscribe(musician=>{
       this.musician = musician;
-      console.log(musician);
       this.avatarImage = "data:image/png;base64," + musician.avatar;
     });
   }

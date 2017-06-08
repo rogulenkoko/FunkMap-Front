@@ -21,6 +21,10 @@ export class LoginServiceStub extends LoginService {
     return Observable.of(new LoginResponse("token", "rogulenkoko"));
   }
 
+  prolongate(refreshToken: string): Observable<LoginResponse>{
+     return Observable.of(new LoginResponse("test","test"))
+   }
+
   register(request: RegistrationRequest): Observable<RegistrationModel> {
     var response = new RegistrationModel(true);
     if(request.login == "test"){

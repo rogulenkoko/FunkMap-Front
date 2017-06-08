@@ -66,8 +66,10 @@ export class MusicianCreationComponent implements OnInit {
       }, 2000);
       return;
     }
+    if(this.data.image){  
+      this.musician.avatar = this.data.image.replace("data:image/jpeg;base64,","");
+    }
     
-    this.musician.avatar = this.data.image.replace("data:image/jpeg;base64,","");
     this.musician.birthDate = this.dateProvider.buildDate();
     this.creationService.musician = this.musician;
     this.router.navigate(["/create/map"]);
