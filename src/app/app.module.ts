@@ -2,7 +2,7 @@ import { environment } from "environments/environment";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
  
 import { AppComponent } from './app.component';
 
@@ -20,6 +20,7 @@ import { SettingsModule } from "./main/settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
 import { CreationModule } from './main/creation/creation.module';
+import { AuthRequestOptions } from "app/core/options/auth-request-options"
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { CreationModule } from './main/creation/creation.module';
   ],
   exports:[CoreModule, ToolsModule],
   providers: [
-    
+        
   ],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,7 @@ import { CreationServiceStub } from "./creation.service.stub";
 import { MusicianCreationComponent } from "./musician-creation/musician-creation.component";
 import { MapCreationComponent } from './map-creation/map-creation.component';
 import {ImageCropperModule} from 'ng2-img-cropper';
+import { CanActivateCreation } from "./can-activate-creation";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {ImageCropperModule} from 'ng2-img-cropper';
       provide: CreationService,
       useClass: environment.production ? CreationServiceHttp : CreationServiceStub
     },
-    
+    CanActivateCreation
   ]
 })
 export class CreationModule { }

@@ -12,6 +12,4 @@ export class AppComponent {
 
   constructor(){
   }
-
-  title = 'app works!'; 
 }
