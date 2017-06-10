@@ -11,7 +11,7 @@ export class Marker {
 
     public static ToMarker(data: any):Marker{
         var result = new Marker(data.Id, data.Latitude, data.Longitude, data.ModelType);
-        if(result.entityType = EntityType.Musician){
+        if(result.entityType == EntityType.Musician){
             result.instrument = data.Instrument;
         }
         return result;
@@ -30,5 +30,6 @@ export class Marker {
 
 export enum EntityType {
     Musician = 1,
-    Shop = 2
+    Shop = 2,
+    Band = 4
 }

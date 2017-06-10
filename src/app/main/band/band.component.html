@@ -1,0 +1,24 @@
+<side *ngIf="band">
+
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div *ngIf="!band.avatar" class="no-image d-flex justify-content-center align-items-center">
+      <img src="/assets/images/noname.png" />
+    </div>
+    <div *ngIf="band.avatar" class="image-container">
+      <img src="{{avatarImage}}" />
+    </div>
+    <div class="name-container">
+      {{band.name}}
+    </div>
+  </div>
+
+  <div class="d-flex flex-column details-container">
+    <div class="d-flex flex-row">
+        <label class="property-title">{{'Музыканты' | translate}}:</label>
+        <div  class="d-flex property-value">
+          <a *ngFor="let musician of band.musicians" class="mr-1" [routerLink]="['/musician/' + musician.id]">{{musician.name}}</a>
+        </div>
+      </div>
+  </div>
+
+</side>

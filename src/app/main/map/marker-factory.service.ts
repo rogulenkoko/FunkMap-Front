@@ -12,6 +12,7 @@ export class MarkerFactory {
 
   public getMarker(point: Marker): L.Marker {
     point.iconUrl = this.iconProvider.getIcon(point);
+    console.log(point);
     var marker = L.marker(new L.LatLng(point.lat, point.lng), {
       icon: new L.Icon({
         iconUrl: point.iconUrl,
@@ -22,6 +23,7 @@ export class MarkerFactory {
       switch (point.entityType) {
         case EntityType.Musician: this.router.navigate(["/musician/" + point.id]); break;
         case EntityType.Shop: this.router.navigate(["/shop/" + point.id]); break;
+        case EntityType.Band: this.router.navigate(["/band/"+point.id]); break;
       }
     })
     return marker;

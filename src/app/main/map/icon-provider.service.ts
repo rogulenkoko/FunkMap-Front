@@ -17,6 +17,7 @@ export class IconProvider {
     this.icons.setValue(InstrumentType.Brass, "assets/images/markers/brass.png");
     this.icons.setValue(InstrumentType.Keyboard, "assets/images/markers/keyboard.png");
     this.icons.setValue(InstrumentType.Guitar, "assets/images/markers/guitar.png");
+
   }
 
   public getIcon(point: Marker): string {
@@ -27,6 +28,8 @@ export class IconProvider {
         return this.getMusicianIcon(point.instrument);
       case EntityType.Shop:
         return this.getShopIcon();
+      case EntityType.Band:
+        return this.getBandIcon();
     }
   }
 
@@ -36,6 +39,10 @@ export class IconProvider {
 
   private getShopIcon(): string {
     return "assets/images/markers/shop.png";
+  }
+
+  private getBandIcon(): string{
+    return "assets/images/markers/band.png";
   }
 
 }

@@ -9,6 +9,7 @@ import { CreationComponent } from './main/creation/creation.component';
 import { MapCreationComponent } from './main/creation/map-creation/map-creation.component';
 import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
 import { CanActivateCreation } from "./main/creation/can-activate-creation";
+import { BandComponent } from './main/band/band.component'
 
 const appRoutes: Routes = [
   {
@@ -19,7 +20,9 @@ const appRoutes: Routes = [
             {path: "signup", component: RegistrationComponent},
             {path: "settings", component: SettingsComponent},
             {path: "musician", component: MusicianComponent},
-            {path: "musician/:id", component: MusicianComponent}
+            {path: "musician/:id", component: MusicianComponent},
+            {path: "band", component: BandComponent},
+            {path: "band/:id", component: BandComponent},
             
         ]},
         {path: "create", component: CreationComponent, canActivate:[CanActivateCreation], children:[

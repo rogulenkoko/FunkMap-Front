@@ -20,7 +20,8 @@ import { SettingsModule } from "./main/settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
 import { CreationModule } from './main/creation/creation.module';
-import { AuthRequestOptions } from "app/core/options/auth-request-options"
+import { AuthRequestOptions } from "app/core/options/auth-request-options";
+import { BandModule } from './main/band/band.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthRequestOptions } from "app/core/options/auth-request-options"
     LoginModule,
     MusicianModule,
     UserModule,
-    CreationModule
+    CreationModule,
+    BandModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

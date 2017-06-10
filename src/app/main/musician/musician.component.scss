@@ -1,42 +1,9 @@
 @import "src/assets/styles/icons.scss";
+@import "src/app/tools/side/side.scss";
 
-.no-image{
-    width: 165px;
-    height: 165px;
-    
-    border-radius: 50%; 
-    background-color: lightgray;
-}
 
-.image-container{
-    img{
-        width: 165px;
-        height: 165px;
-        border-radius: 50%; 
-    }
-}
 
-.musician-name-container{
-    padding: 25px;
-    font-size: 22px;
-    width: 100%;
-    text-align: center;
-}
 
-.musician-details-container{
-    width: 100%;
-    overflow-y: auto;
-}
 
-.property-title{
-    width: 150px;
-    text-align: left;
-    padding-left: 20px;
-    color: #9b9b9b;
-}
 
-.property-value{
-    width: calc(100% - 150px);
-    margin-bottom: 20px;
-}
 

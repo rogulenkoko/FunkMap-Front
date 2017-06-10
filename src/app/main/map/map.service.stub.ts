@@ -16,7 +16,9 @@ export class MapServiceStub extends MapService {
     m1.instrument = InstrumentType.Drums;
     var m2 = new Marker(2, 50, 31, EntityType.Musician);
     m2.instrument = InstrumentType.Bass;
-    return Observable.of([m1, m2]);
+
+    var b1 = new Marker(1,50.5, 30.5,EntityType.Band);
+    return Observable.of([m1, m2, b1]);
   }
 
 }
