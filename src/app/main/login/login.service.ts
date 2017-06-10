@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, URLSearchParams } from "@angular/http"
-import { LoginResponse } from "./login-response";
+import { AuthResponse } from "./login-response";
 import { Observable } from "rxjs/Observable";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
@@ -12,9 +12,9 @@ export abstract class LoginService {
 
   constructor() { }
 
-  abstract login(login: string, password: string): Observable<LoginResponse>;
+  abstract login(login: string, password: string): Observable<AuthResponse>;
 
-  abstract prolongate(refreshToken: string): Observable<LoginResponse>;
+  //abstract prolongate(refreshToken: string): Observable<LoginResponse>;
 
   abstract register(request: RegistrationRequest): Observable<RegistrationModel>;
 
@@ -31,7 +31,7 @@ export class LoginServiceHttp extends LoginService {
     super();
    }
 
-   login(login: string, password: string): Observable<LoginResponse>{
+   login(login: string, password: string): Observable<AuthResponse>{
      var options = new RequestOptions();
      options.headers = new Headers();
      options.headers.append("Content-Type","x-www-form-urlencoded");
@@ -40,21 +40,8 @@ export class LoginServiceHttp extends LoginService {
      params.set("username", login);
      params.set("password", password);
      params.set("grant_type", "password");
-     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params, options).map(x=>LoginResponse.ToLoginResponsne(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params, options).map(x=>AuthResponse.ToLoginResponsne(x.json()));
    }
-
-   prolongate(refreshToken: string): Observable<LoginResponse>{
-     var options = new RequestOptions();
-     options.headers = new Headers();
-     options.headers.append("Content-Type","x-www-form-urlencoded");
-
-     var params = new URLSearchParams();
-     params.set("refresh_token", refreshToken);
-     params.set("grant_type", "refresh_token");
-     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params).map(x=>LoginResponse.ToLoginResponsne(x.json()));
-   }
-
-  
 
    register(request: RegistrationRequest): Observable<RegistrationModel>{
      return this.http.post(`${ConfigurationProvider.apiUrl}auth/register`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));

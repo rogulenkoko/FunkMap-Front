@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoginService } from "./login.service";
-import { LoginResponse } from "./login-response";
+import { AuthResponse } from "./login-response";
 import { Observable } from "rxjs/Observable";
 import { User } from "../user/user";
 import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
@@ -13,16 +13,16 @@ export class LoginServiceStub extends LoginService {
     super();
   }
 
-  login(login: string, password: string): Observable<LoginResponse> {
+  login(login: string, password: string): Observable<AuthResponse> {
     if (login == "test" && password == "test") {
-      var response = new LoginResponse("token", "rogulenkoko");
+      var response = new AuthResponse("token", "rogulenkoko");
       return Observable.of(response);
     }
-    return Observable.of(new LoginResponse("token", "rogulenkoko"));
+    return Observable.of(new AuthResponse("token", "rogulenkoko"));
   }
 
-  prolongate(refreshToken: string): Observable<LoginResponse>{
-     return Observable.of(new LoginResponse("test","test"))
+  prolongate(refreshToken: string): Observable<AuthResponse>{
+     return Observable.of(new AuthResponse("test","test"))
    }
 
   register(request: RegistrationRequest): Observable<RegistrationModel> {

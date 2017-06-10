@@ -1,6 +1,6 @@
 import { User } from "../user/user";
 
-export class LoginResponse{
+export class AuthResponse{
   constructor(public token: string, public login: string){
 
   }
@@ -11,8 +11,8 @@ export class LoginResponse{
   public refreshToken: string;
   public expiresIn: number;
 
-  public static ToLoginResponsne(data: any):LoginResponse{
-    var result = new LoginResponse(data.access_token, data.Login);
+  public static ToLoginResponsne(data: any):AuthResponse{
+    var result = new AuthResponse(data.access_token, data.Login);
     result.expiresDate = new Date(data['.expires']);
     result.issuedDate = new Date(data['.issued']);
     result.expiresIn = data.expires_in;

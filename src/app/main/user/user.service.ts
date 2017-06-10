@@ -4,12 +4,14 @@ import { User } from "./user";
 @Injectable()
 export class UserService {
 
+  private funkMapUserKey: string = "funkmap_user";
+
   private _user: User;
 
   public set user(user: User){
     this._user = user;
     this.onUserChanged.emit();
-    console.log("asd");
+    localStorage.setItem(this.funkMapUserKey,JSON.stringify(this._user));
   }
 
   public get user():User{
@@ -19,6 +21,9 @@ export class UserService {
   public onUserChanged: EventEmitter<any>;
 
   constructor() {
+    if(localStorage.getItem(this.funkMapUserKey)){
+      this._user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
+    }
     this.onUserChanged = new EventEmitter();
    }
 

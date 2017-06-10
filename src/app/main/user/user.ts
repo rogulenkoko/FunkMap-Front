@@ -1,4 +1,4 @@
-import { LoginResponse } from "app/main/login/login-response";
+import { AuthResponse } from "app/main/login/login-response";
 
 export class User{
 
@@ -7,7 +7,7 @@ export class User{
 
     public entities: Array<EntityType>;
 
-    public authData: LoginResponse;
+    public authData: AuthResponse;
 
 }
 
