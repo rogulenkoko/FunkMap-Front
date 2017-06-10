@@ -11,6 +11,7 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class BandComponent implements OnInit, OnDestroy {
 
+  private lastBandId: number;
   private band: Band;
 
   private subscription: Subscription;
@@ -34,6 +35,9 @@ export class BandComponent implements OnInit, OnDestroy {
   }
 
   private updateBand(id: number){
+    if(this.lastBandId == id) return;
+    this.lastBandId = id;
+    if(this.band && id == this.band.id) return;
     this.bandService.getBand(id).subscribe(band=>{
       this.band = band;
     })

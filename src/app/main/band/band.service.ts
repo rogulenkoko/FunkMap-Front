@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { Band } from "./band";
+import { HttpClient } from "app/core/http/http-client.service";
+import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 
 @Injectable()
 export abstract class BandService {
@@ -14,12 +16,12 @@ export abstract class BandService {
 @Injectable()
 export class BandServiceHttp extends BandService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
     super();
    }
 
    getBand(id: number): Observable<Band>{
-     return;
+     return this.http.get(`${ConfigurationProvider.apiUrl}band/get/${id}`).map(res=>Band.ToBand(res.json()));
    }
 
 }

@@ -12,7 +12,6 @@ export class MarkerFactory {
 
   public getMarker(point: Marker): L.Marker {
     point.iconUrl = this.iconProvider.getIcon(point);
-    console.log(point);
     var marker = L.marker(new L.LatLng(point.lat, point.lng), {
       icon: new L.Icon({
         iconUrl: point.iconUrl,

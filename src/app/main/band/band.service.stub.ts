@@ -12,7 +12,7 @@ export class BandServiceStub extends BandService {
    }
 
    getBand(id: number): Observable<Band>{
-     var band = new Band("The Beatles",51,31);
+     var band = new Band(1,"The Beatles",51,31);
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
      band.showPrice = 500;
      band.musicians = [
