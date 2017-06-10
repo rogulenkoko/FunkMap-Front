@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import { CreationResponse } from "./creation";
 import { UserService } from "../user/user.service";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { HttpClient } from "app/core/http/http-client.service";
 
 @Injectable()
 export abstract class CreationService {
@@ -23,7 +24,7 @@ export abstract class CreationService {
 @Injectable()
 export class CreationServiceHttp extends CreationService{
 
-  constructor(private http: Http, private userService: UserService) { 
+  constructor(private http: HttpClient, private userService: UserService) { 
     super();
   }
 

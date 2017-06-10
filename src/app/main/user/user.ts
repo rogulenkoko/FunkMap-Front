@@ -1,12 +1,13 @@
-
+import { LoginResponse } from "app/main/login/login-response";
 
 export class User{
-    public token: string;
 
     public login: string;
     public image: string;
 
     public entities: Array<EntityType>;
+
+    public authData: LoginResponse;
 
 }
 

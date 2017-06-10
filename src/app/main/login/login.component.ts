@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       if (response.token) {
         var user = new User();
         user.login = response.login;
+        user.authData = response;
         this.userService.user = user;
         this.router.navigate(['/']);
       } else {

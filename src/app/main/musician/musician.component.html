@@ -18,7 +18,7 @@
       <div class="d-flex ">
         <label class="property-title">{{'Musician_BirthDate' | translate}}:</label>
         <div class="d-flex property-value">
-          <label>{{musician.birthDate}}</label>
+          <label>{{musician.birthDate | date:"dd.MM.yyyy"}}</label>
           <label>({{musician.years}} {{'Musician_Years' | translate}})</label>
         </div>
       </div>

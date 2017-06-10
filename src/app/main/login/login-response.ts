@@ -5,9 +5,18 @@ export class LoginResponse{
 
   }
 
+  public expiresDate: Date;
+  public issuedDate: Date;
+
+  public refreshToken: string;
+  public expiresIn: number;
+
   public static ToLoginResponsne(data: any):LoginResponse{
-    console.log(data);
     var result = new LoginResponse(data.access_token, data.Login);
+    result.expiresDate = new Date(data['.expires']);
+    result.issuedDate = new Date(data['.issued']);
+    result.expiresIn = data.expires_in;
+    result.refreshToken = data.refresh_token;
     return result;
   }
 }

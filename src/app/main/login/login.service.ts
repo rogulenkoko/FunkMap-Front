@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./registration/confirmation-model";
+import { HttpClient } from "app/core/http/http-client.service";
 
 @Injectable()
 export abstract class LoginService {
@@ -26,7 +27,7 @@ export abstract class LoginService {
 @Injectable()
 export class LoginServiceHttp extends LoginService {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     super();
    }
 
@@ -39,7 +40,7 @@ export class LoginServiceHttp extends LoginService {
      params.set("username", login);
      params.set("password", password);
      params.set("grant_type", "password");
-     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params).map(x=>LoginResponse.ToLoginResponsne(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params, options).map(x=>LoginResponse.ToLoginResponsne(x.json()));
    }
 
    prolongate(refreshToken: string): Observable<LoginResponse>{

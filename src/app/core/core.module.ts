@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { AuthRequestOptions } from "./options/auth-request-options"
 import { UserService } from "app/main/user/user.service";
+import { HttpClient } from "./http/http-client.service";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UserService } from "app/main/user/user.service";
     { provide: RequestOptions, 
       useClass: AuthRequestOptions, 
       deps:[UserService]
-    }
+    },
+    HttpClient
   ]
 })
 export class CoreModule { }
