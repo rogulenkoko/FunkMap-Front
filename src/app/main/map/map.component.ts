@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MapProvider } from "./map-provider.service";
-import { Map, Marker, EntityType } from "./models";
+import { Map, Marker, EntityType, NearestRequest } from "./models";
 import { MarkerFactory } from "./marker-factory.service";
 import { MapService } from "./map.service";
 
@@ -21,10 +21,12 @@ export class MapComponent implements OnInit {
 
   private markers: Array<Marker>;
 
+  private nearestRadius = 1;
+
   constructor(private mapProvider: MapProvider,
-              private markerFactory: MarkerFactory,
-              private mapService: MapService) {
-    this.mapProvider.onMapChange.subscribe(()=>this.updateMap());
+    private markerFactory: MarkerFactory,
+    private mapService: MapService) {
+    this.mapProvider.onMapChange.subscribe(() => this.updateMap());
   }
 
   ngOnInit() {
@@ -34,29 +36,40 @@ export class MapComponent implements OnInit {
   }
 
   private initMap() {
-    
+
     var options = this.buildMapOptions(this.mapProvider.selectedMap);
     this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
     this.map.addLayer(this.baseLayer);
 
   }
 
-  private updateMap(){
+  private updateMap() {
     this.map.removeLayer(this.baseLayer);
     this.initMap();
-  } 
+  }
 
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
-    this.getAll();
+    this.getNearest();
   }
 
-  private getAll(){
-    this.mapService.getAll().subscribe(markers=>{
+  private getAll() {
+    this.mapService.getAll().subscribe(markers => {
       this.markers = markers;
       this.refreshMarkers();
     });
+  }
+
+  private getNearest() {
+    var location = navigator.geolocation.getCurrentPosition((position) => {
+      var request = new NearestRequest(position.coords.latitude, position.coords.longitude,this.nearestRadius);
+      this.mapService.getNearest(request).subscribe(markers => {
+        this.markers = markers;
+        this.refreshMarkers();
+      });
+    })
+
   }
 
   private refreshMarkers() {
