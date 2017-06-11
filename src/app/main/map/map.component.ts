@@ -4,6 +4,7 @@ import { MapProvider } from "./map-provider.service";
 import { Map, Marker, EntityType, NearestRequest } from "./models";
 import { MarkerFactory } from "./marker-factory.service";
 import { MapService } from "./map.service";
+import { MapFilter } from "./map-filter.service";
 
 @Component({
   selector: 'map',
@@ -25,13 +26,18 @@ export class MapComponent implements OnInit {
   private currentPosition: Position;
 
   constructor(private mapProvider: MapProvider,
-    private markerFactory: MarkerFactory,
-    private mapService: MapService) {
+              private markerFactory: MarkerFactory,
+              private mapService: MapService,
+              private mapFilter: MapFilter) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
+    this.mapFilter.onSearchAll.subscribe(()=>{
+      if(this.mapFilter.isAllShown) this.getAll();
+      else this.getNearest();
+    })
   }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 7, zoomAnimation: false });
+    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false });
     this.initMap();
     this.initMarkersLayer();
   }
@@ -54,6 +60,7 @@ export class MapComponent implements OnInit {
     this.map.addLayer(this.markersLayer);
     var location = navigator.geolocation.getCurrentPosition((position) => {
       this.currentPosition = position;
+      console.log(this.map.getZoom());
       this.map.setView(new L.LatLng(this.currentPosition.coords.latitude,this.currentPosition.coords.longitude),this.map.getZoom());
       this.getNearest();
     });

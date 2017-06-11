@@ -21,8 +21,13 @@ export class UserService {
   public onUserChanged: EventEmitter<any>;
 
   constructor() {
-    if(localStorage.getItem(this.funkMapUserKey)){
-      this._user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
+    if(localStorage.getItem(this.funkMapUserKey) != undefined){
+      try{
+        this._user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
+      }
+      catch(ex){
+        this._user = undefined;
+      }
     }
     this.onUserChanged = new EventEmitter();
    }
