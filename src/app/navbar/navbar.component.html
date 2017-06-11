@@ -25,8 +25,11 @@
       <ng-container *ngIf="userService.user">
         <li class="nav-item dropdown">
           <a class="nav-link mr-5 d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="no-image d-flex justify-content-center align-items-center mr-2">
+            <div *ngIf="!userService.avatar" class="image no-image d-flex justify-content-center align-items-center mr-2">
               <img src="/assets/images/noname.png" />
+            </div>
+            <div *ngIf="userService.avatar" class="image d-flex justify-content-center align-items-center mr-2">
+              <img src="{{userService.avatar}}" />
             </div>
             {{userService.user.login}}
             <i class="fa fa-chevron-down m-2"></i>
