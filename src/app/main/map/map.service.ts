@@ -27,7 +27,7 @@ export class MapServiceHttp extends MapService {
    }
 
    getNearest(request: NearestRequest):Observable<Array<Marker>>{
-     return this.http.get(`${ConfigurationProvider.apiUrl}search/nearest`).map(x=>Marker.ToMarkerArray(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl}search/nearest`, request).map(x=>Marker.ToMarkerArray(x.json()));
    }
 
 }
