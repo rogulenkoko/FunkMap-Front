@@ -37,7 +37,7 @@ export class MarkerFactory {
       iconCreateFunction: (cluster) => {
         return L.divIcon({
           html: `<div class="d-flex jusify-content-center align-items-center cluster-icon-container">
-                    <div>${cluster.getChildCount()}</div>
+                    <span>${cluster.getChildCount()}</span>
                   </div>`,
           className: ""
         });
