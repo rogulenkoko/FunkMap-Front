@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
 
   private markers: Array<Marker>;
 
-  private nearestRadius = 1;
+  private nearestRadius = 20;
   private currentPosition: Position;
 
   constructor(private mapProvider: MapProvider,
@@ -60,7 +60,6 @@ export class MapComponent implements OnInit {
     this.map.addLayer(this.markersLayer);
     var location = navigator.geolocation.getCurrentPosition((position) => {
       this.currentPosition = position;
-      console.log(this.map.getZoom());
       this.map.setView(new L.LatLng(this.currentPosition.coords.latitude,this.currentPosition.coords.longitude),this.map.getZoom());
       this.getNearest();
     });
@@ -70,6 +69,7 @@ export class MapComponent implements OnInit {
   private getAll() {
     this.mapService.getAll().subscribe(markers => {
       this.markers = markers;
+     
       this.refreshMarkers();
     });
   }
@@ -78,6 +78,7 @@ export class MapComponent implements OnInit {
     var request = new NearestRequest(this.currentPosition.coords.latitude, this.currentPosition.coords.longitude, this.nearestRadius);
     this.mapService.getNearest(request).subscribe(markers => {
       this.markers = markers;
+       console.log(markers);
       this.refreshMarkers();
     });
   }

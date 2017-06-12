@@ -9,7 +9,8 @@ import { CreationComponent } from './main/creation/creation.component';
 import { MapCreationComponent } from './main/creation/map-creation/map-creation.component';
 import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
 import { CanActivateCreation } from "./main/creation/can-activate-creation";
-import { BandComponent } from './main/band/band.component'
+import { BandComponent } from './main/band/band.component';
+import { AvatarComponent } from './main/avatar/avatar.component';
 
 const appRoutes: Routes = [
   {
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
             {path: "musician/:id", component: MusicianComponent},
             {path: "band", component: BandComponent},
             {path: "band/:id", component: BandComponent},
+            {path: "avatar", component: AvatarComponent}
             
         ]},
         {path: "create", component: CreationComponent, canActivate:[CanActivateCreation], children:[

@@ -3,7 +3,6 @@ import { AuthResponse } from "app/main/login/login-response";
 export class User{
 
     public login: string;
-    public image: string;
 
     public entities: Array<EntityType>;
 

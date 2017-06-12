@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
         var user = new User();
         user.login = response.login;
         user.authData = response;
-        user.image = response.avatar;
-        this.userService.user = user;
+        this.userService.user = user; 
         this.router.navigate(['/']);
       } else {
         this.handleLoginError();

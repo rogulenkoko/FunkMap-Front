@@ -22,6 +22,8 @@ import { UserModule } from "./main/user/user.module";
 import { CreationModule } from './main/creation/creation.module';
 import { AuthRequestOptions } from "app/core/options/auth-request-options";
 import { BandModule } from './main/band/band.module';
+import { AvatarComponent } from './main/avatar/avatar.component';
+import {ImageCropperModule} from 'ng2-img-cropper';
 
 @NgModule({
   declarations: [
@@ -29,19 +31,22 @@ import { BandModule } from './main/band/band.module';
     NavbarComponent, 
     MainComponent,
 
-    SidebarComponent
+    SidebarComponent,
+
+    AvatarComponent
   ],
   imports: [
     CoreModule,
     ToolsModule,
-    AppRoutingModule,
+    AppRoutingModule, 
     MapModule,
     SettingsModule,
     LoginModule,
     MusicianModule,
     UserModule,
     CreationModule,
-    BandModule
+    BandModule,
+    ImageCropperModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

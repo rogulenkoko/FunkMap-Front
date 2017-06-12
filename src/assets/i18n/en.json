@@ -38,5 +38,10 @@
     "Settings_Language":"Language",
     "Settings_MapType":"Map type",
     "Language_En":"English",
-    "Language_Ru":"Russian"
+    "Language_Ru":"Russian",
+
+    "Avatar_Title":"Avatar",
+    "Navbar_AvatarChange":"Change avatar",
+    "Avatar_BrowsePhoto": "Browse",
+    "Avatar_SavePhoto":"Save"
 }

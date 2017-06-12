@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Http } from "@angular/http";
 import { User } from "./user"; 
 
 @Injectable()
@@ -11,9 +12,7 @@ export class UserService {
 
   public set user(user: User){
     this._user = user;
-    if(user && user.image){
-      this.avatar = `data:image/png;base64,${user.image}`;
-    }
+    console.log("сэмитировало")
     this.onUserChanged.emit();
     localStorage.setItem(this.funkMapUserKey,JSON.stringify(this._user));
   }
@@ -25,16 +24,19 @@ export class UserService {
   public onUserChanged: EventEmitter<any>;
 
   constructor() {
+     this.onUserChanged = new EventEmitter();
+
     if(localStorage.getItem(this.funkMapUserKey) != undefined){
       try{
-        this._user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
-        this.avatar =  `data:image/png;base64,${this._user.image}`;
+        this.user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
       }
       catch(ex){
-        this._user = undefined;
+        this.user = undefined;
       }
     }
-    this.onUserChanged = new EventEmitter();
+   
    }
+
+   
 
 }

@@ -1,0 +1,13 @@
+.main-avatar-container{
+    margin: 10% 0;
+}
+.img-buttons{
+    width: 400px;
+    div{
+        width: 48%;
+        height: 40px !important;
+        .btn, label{
+            width: 100%;
+        }
+    }
+}

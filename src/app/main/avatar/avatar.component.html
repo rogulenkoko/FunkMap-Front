@@ -1,0 +1,21 @@
+<modal [title]="'Avatar_Title'">
+  <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
+    <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+
+    <div class="d-flex flex-row align-items-center justify-content-between img-buttons">
+      <div>
+        <button routerLink="/" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+      </div>
+      <div *ngIf="!data.image">
+        <label class="btn btn-success btn-file">
+          {{'Avatar_BrowsePhoto' | translate}} <input type="file"  (change)="fileChangeListener($event)" hidden>
+        </label>
+      </div>
+      <div *ngIf="data.image">
+        <button (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+      </div>
+      
+    </div>
+
+  </div>
+</modal>
