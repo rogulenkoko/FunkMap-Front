@@ -22,8 +22,8 @@ export class MapComponent implements OnInit {
 
   private markers: Array<Marker>;
 
-  private nearestRadius = 20;
-  private currentPosition: Position;
+  private nearestRadius = 1;
+  private currentPosition: any;// Position;
 
   constructor(private mapProvider: MapProvider,
     private markerFactory: MarkerFactory,
@@ -62,7 +62,10 @@ export class MapComponent implements OnInit {
       if (position) {
         this.currentPosition = position;
         this.map.setView(new L.LatLng(position.coords.latitude, this.currentPosition.coords.longitude), this.map.getZoom());
+      } else {
+        this.currentPosition = {coords:{latitude:this.map.getCenter().lat, longitude:this.map.getCenter().lng}}
       }
+      
       this.getNearest();
     });
 
@@ -80,7 +83,6 @@ export class MapComponent implements OnInit {
     var request = new NearestRequest(this.currentPosition.coords.latitude, this.currentPosition.coords.longitude, this.nearestRadius);
     this.mapService.getNearest(request).subscribe(markers => {
       this.markers = markers;
-      console.log(markers);
       this.refreshMarkers();
     });
   }
