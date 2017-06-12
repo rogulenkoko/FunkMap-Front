@@ -26,12 +26,12 @@ export class MapComponent implements OnInit {
   private currentPosition: Position;
 
   constructor(private mapProvider: MapProvider,
-              private markerFactory: MarkerFactory,
-              private mapService: MapService,
-              private mapFilter: MapFilter) {
+    private markerFactory: MarkerFactory,
+    private mapService: MapService,
+    private mapFilter: MapFilter) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
-    this.mapFilter.onSearchAll.subscribe(()=>{
-      if(this.mapFilter.isAllShown) this.getAll();
+    this.mapFilter.onSearchAll.subscribe(() => {
+      if (this.mapFilter.isAllShown) this.getAll();
       else this.getNearest();
     })
   }
@@ -59,8 +59,10 @@ export class MapComponent implements OnInit {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
     var location = navigator.geolocation.getCurrentPosition((position) => {
-      this.currentPosition = position;
-      this.map.setView(new L.LatLng(this.currentPosition.coords.latitude,this.currentPosition.coords.longitude),this.map.getZoom());
+      if (position) {
+        this.currentPosition = position;
+        this.map.setView(new L.LatLng(position.coords.latitude, this.currentPosition.coords.longitude), this.map.getZoom());
+      }
       this.getNearest();
     });
 
@@ -69,7 +71,7 @@ export class MapComponent implements OnInit {
   private getAll() {
     this.mapService.getAll().subscribe(markers => {
       this.markers = markers;
-     
+
       this.refreshMarkers();
     });
   }
@@ -78,7 +80,7 @@ export class MapComponent implements OnInit {
     var request = new NearestRequest(this.currentPosition.coords.latitude, this.currentPosition.coords.longitude, this.nearestRadius);
     this.mapService.getNearest(request).subscribe(markers => {
       this.markers = markers;
-       console.log(markers);
+      console.log(markers);
       this.refreshMarkers();
     });
   }
