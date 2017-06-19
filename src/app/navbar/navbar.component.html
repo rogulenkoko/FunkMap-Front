@@ -3,11 +3,14 @@
     <span class="funk">Funk</span> 
     <span class="map">Map</span>
   </a>
-  <div>
+  <div class="right-nav-container">
     <ul class="navbar-nav d-flex align-items-center">
-
-      <li (click)="showAll()" class="nav-item d-flex flex-row align-items-center" >
-        <img class="show-all-img" src="assets/images/show-all.png"/>
+      <li class="nav-item d-flex flex-row align-items-center mr-4">
+        <div class="icon icon-middle notification-icon"></div>
+        <div class="notification-count">10</div>
+      </li>
+      <li (click)="showAll()" class="nav-item d-flex flex-row align-items-center mr-5">
+        <div class="icon icon-middle" [class.show-all-icon]="!mapFilter.isAllShown" [class.show-all-active-icon]="mapFilter.isAllShown"></div>
         <a class="nav-link" [class.show-all-selected]="mapFilter.isAllShown">{{'Navbar_ShowAll' | translate}}</a>
       </li>
 
@@ -17,16 +20,16 @@
           <a routerLink="/signup" class="btn btn-secondary mr-3">{{'Navbar_SignUp' | translate}}</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item ">
           <a routerLink="/login" class="btn btn-success mr-3">{{'Navbar_Login' | translate}}</a>
         </li>
       </ng-container>
 
       <ng-container *ngIf="userService.user">
-        <li class="nav-item dropdown">
-          <a class="nav-link mr-5 d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown ml-2">
+          <a class="nav-link d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div *ngIf="!userService.avatar" class="image no-image d-flex justify-content-center align-items-center mr-2">
-              <img src="/assets/images/noname.png" />
+              <img src="/assets/images/no-name.png" />
             </div>
             <div *ngIf="userService.avatar" class="image d-flex justify-content-center align-items-center mr-2">
               <img src="{{userService.avatar}}" />
@@ -35,9 +38,7 @@
             <i class="fa fa-chevron-down m-2"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/settings">{{'Navbar_Settings' | translate}}</a>
             <a class="dropdown-item" routerLink="/avatar">{{'Navbar_AvatarChange' | translate}}</a>
-            <a class="dropdown-item" (click)="logOut()">{{'Navbar_Logout' | translate}}</a>
           </div>
         </li>
       </ng-container>

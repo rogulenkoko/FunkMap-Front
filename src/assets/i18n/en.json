@@ -43,5 +43,10 @@
     "Avatar_Title":"Avatar",
     "Navbar_AvatarChange":"Change avatar",
     "Avatar_BrowsePhoto": "Browse",
-    "Avatar_SavePhoto":"Save"
+    "Avatar_SavePhoto":"Save",
+
+    "Search":"Search",
+    "Person":"Person",
+    "Messages":"Messages",
+    "Logout":"Log out"
 }

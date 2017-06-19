@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/icons.scss";
 
 .navbar{
     background-color: white;
@@ -18,8 +19,8 @@
 }
 
 .image{
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%; 
     img{
         border-radius: 50%;
@@ -30,15 +31,20 @@
 }
 
 .no-image{
-    background-color: lightgray;
+    background-color: #f7f7f7;
     img{
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
     }
 }
 
 .dropdown{
     cursor: pointer;
+}
+
+.right-nav-container{
+    margin-right: 4.5%;
+    font-size: 14px;
 }
 
 .fa-chevron-down{
@@ -56,4 +62,18 @@
 
 li{
     cursor: pointer;
+}
+
+.notification-count{
+    width: 19px;
+    height: 19px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: $app-red;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    position: absolute;
+    margin-left: 9px;
+    margin-top: -9px;
 }

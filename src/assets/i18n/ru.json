@@ -2,9 +2,8 @@
     "Navbar_ShowAll":"Показать всех",
     "Navbar_Login":"Войти",
     "Navbar_SignUp":"Зарегистрироваться",
-    "Navbar_Settings":"Настройки",
-    "Navbar_Help":"Помощь",
-    "Navbar_Logout":"Выход",
+
+    
 
     "Sex_Female": "Женский",
     "Sex_Male": "Мужской",
@@ -43,6 +42,10 @@
     "Avatar_Title":"Аватар",
     "Navbar_AvatarChange":"Сменить аватар",
     "Avatar_BrowsePhoto": "Выбрать",
-    "Avatar_SavePhoto":"Сохранить"
+    "Avatar_SavePhoto":"Сохранить",
 
+    "Search":"Поиск",
+    "Person":"Персона",
+    "Messages":"Сообщения",
+    "Logout":"Выход"
 }
