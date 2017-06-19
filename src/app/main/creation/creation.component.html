@@ -1,9 +1,40 @@
-<div class="main-creation-container d-flex flex-column">
-  <!--<div class="entity-choice-container d-flex flex-row justify-content-between">
-    <div class="d-flex flex-column align-items-center justify-content-center">Музыкант</div>
-    <div class="d-flex flex-column align-items-center justify-content-center">Магазин</div>
-    <div class="d-flex flex-column align-items-center justify-content-center">Группа</div>
-    
-  </div>-->
-  <router-outlet></router-outlet>  
-</div>
+<modal [title]="'Создание сущности'" [widthPerCent]="'64%'">
+  <div class="main-creation-container">
+    <div class="creation-container d-flex flex-row">
+      <div class="left-container">
+        <musician-creation></musician-creation>
+      </div>
+
+      <div class="right-container">
+        <div class="d-flex flex-row align-items-center">
+          <label class="property-title">Видео (ссылка):</label>
+          <input placeholder="Ссылка Youtube" [(ngModel)]="musician.videoYoutube" class="form-control secondary" />
+        </div>
+
+        <br>
+
+        <div class="d-flex flex-row align-items-center social-nets">
+          <label class="property-title">Соц. сети:</label>
+          <input placeholder="YouTube" [(ngModel)]="musician.youTubeLink" class="form-control secondary" />
+        </div>
+
+        <br>
+
+        <div class="d-flex flex-row align-items-center social-nets">
+          <label class="property-title"></label>
+          <input placeholder="Vk" [(ngModel)]="musician.vkLink" class="form-control secondary" />
+        </div>
+        <br>
+        <div class="d-flex flex-row align-items-center social-nets">
+          <label class="property-title"></label>
+          <input placeholder="Facebook" [(ngModel)]="musician.facebookLink" class="form-control secondary" />
+        </div>
+      </div>
+    </div>
+    <div class="buttons-container d-flex flex-row justify-content-end">
+      <button routerLink="/" class="btn btn-secondary">Отмена</button>
+      <button class="btn btn-success ml-3">Сохранить</button>
+    </div>
+
+  </div>
+</modal>

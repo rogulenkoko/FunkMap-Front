@@ -16,22 +16,26 @@ const appRoutes: Routes = [
   {
     path: "",
     children: [
-        {path:"", component: MainComponent, children:[
-            {path:"login",component: LoginComponent},
-            {path: "signup", component: RegistrationComponent},
-            {path: "settings", component: SettingsComponent},
-            {path: "musician", component: MusicianComponent},
-            {path: "musician/:id", component: MusicianComponent},
-            {path: "band", component: BandComponent},
-            {path: "band/:id", component: BandComponent},
-            {path: "avatar", component: AvatarComponent}
-            
-        ]},
-        {path: "create", component: CreationComponent, canActivate:[CanActivateCreation], children:[
-          {path: "map", component: MapCreationComponent},
-          {path:"", component: MusicianCreationComponent}
-        ]},
-        
+      {
+        path: "", component: MainComponent, children: [
+          { path: "login", component: LoginComponent },
+          { path: "signup", component: RegistrationComponent },
+          { path: "settings", component: SettingsComponent },
+          { path: "musician", component: MusicianComponent },
+          { path: "musician/:id", component: MusicianComponent },
+          { path: "band", component: BandComponent },
+          { path: "band/:id", component: BandComponent },
+          { path: "avatar", component: AvatarComponent },
+          {
+            path: "create", component: CreationComponent, canActivate: [CanActivateCreation], children: [
+              { path: "map", component: MapCreationComponent }
+            ]
+          },
+
+        ]
+      },
+
+
     ]
   },
 ];

@@ -24,11 +24,7 @@ export class NavbarComponent implements OnInit {
     this.getAvatar();
   }
 
-  logOut(){
-    this.userService.user = undefined;
-    this.mapFilter.isAllShown;
-    this.userService.avatar = undefined;
-  }
+  
 
   private getAvatar(){
     if(this.userService.user){

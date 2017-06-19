@@ -7,17 +7,11 @@ export class DateSelectProvider {
   public month: Month;
   public year: number;
 
-  public days: Array<number>;
-  public years: Array<number>;
   public months: Array<Month>;
 
   constructor() {
-    this.initDays();
     this.initMonths();
-    this.initYears();
-    this.day = this.days[0];
     this.month = this.months[0];
-    this.year = this.years[0];
    }
 
    public buildDate(): Date{
@@ -25,12 +19,7 @@ export class DateSelectProvider {
      return date;
    }
 
-   private initDays(){
-     this.days = [];
-     for(var i = 1; i <= 31; i++){
-      this.days.push(i);
-     }
-   }
+
 
    private initMonths(){
     this.months = [
@@ -47,13 +36,6 @@ export class DateSelectProvider {
       new Month(10, "Ноябрь"),
       new Month(11, "Декабрь"),
     ]
-   }
-
-   private initYears(){
-     this.years = [];
-     for(var i = 2017; i >= 1950; i--){
-      this.years.push(i);
-     }
    }
 
 }

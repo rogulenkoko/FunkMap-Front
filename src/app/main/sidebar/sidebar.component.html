@@ -24,7 +24,7 @@
        <span class="menu-text">{{'Settings' | translate}}</span>
       </li>
 
-      <li class="d-flex align-items-center sidebar-item">
+      <li (click)="logOut()" class="d-flex align-items-center sidebar-item">
        <span class="icon icon-middle exit-icon"></span>
        <span class="menu-text">{{'Logout' | translate}}</span>
       </li>
@@ -33,6 +33,6 @@
 </div>
 
 
-<div class="btn btn-success add-circle">
+<div routerLink="/create" *ngIf="userService.user" class="btn btn-success add-circle">
   <img src="assets/images/plus.png"/>
 </div>

@@ -13,4 +13,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  logOut(){
+    this.userService.user = undefined;
+    this.userService.avatar = undefined;
+  }
+
 }

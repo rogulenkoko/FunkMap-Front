@@ -1,93 +1,141 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/icons.scss";
 
-$label-width:180px;
 
-.instrument{
-    width: 32.3%;
-    height: 70px;
-    background-color: lightgray;
-    margin-bottom: 10px;
-    img{
-        width: 60px;
-        height: 60px;
-    }
-    background-color: white;
-     border: 1px solid white;
-    border-radius: 5px;
-    cursor: pointer;
+@import "src/assets/styles/colors.scss";
+
+.date-container{
+    width: 100%;
+}
+
+.days{
+    width: 20%;
+}
+
+.years{
+    width: 30%;
+}
+
+.months{
+    width: 50%;
+}
+
+.sex-radio{
+    width: 40%;
 }
 
 
-.instrument-selected{
-    border: 1px solid $app-green;
-    //background-color:  $app-green;
+.form-control{
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    
+    font-size: 14px;
+    padding-left: 0;
 }
 
-.musician-form-container{
-
-    .left-container{
-        width: 40%;
-    }
-
-    .right-container{
-        width: 55%;
-    }
-
-    label{
-        width: $label-width;
-        color: $app-grey;
-    }
-
-    .sex-label{
-        width: $label-width - 45px !important;
-    }
-
-
-    .radio-label{
-        color: rgba(0,0,0,0.8); 
-        width: auto !important;
-        font-size: 16px;
-    }
-
-    textarea{
-        height: 100px;
-    }
-
-    .social-nets{
-        margin-bottom: 10px;
-    }
-
-    .date-container{
-        width: 100%;
-    }
-
-    .days{
-        width: 20%;
-    }
-
-    .years{
-        width: 30%;
-    }
-
-    .months{
-        width: 50%;
-    }
-
-    .selected-styles-container{
-        width: 100%;
-    }
-
-    .musician-style{
-        padding: 5px;
-    }
-
-    .error{
-        border: 1px solid red;
-    }
+.property-title{
+    width: 45%;
+    color: $app-grey;
 }
 
-.btn-file{
-    margin-top: -10px !important;
+.selected-styles-container{
+    width: 100%;
 }
+
+textarea{
+    height: 100px;
+}
+
+
+
+
+
+// $label-width:180px;
+
+// .instrument{
+//     width: 32.3%;
+//     height: 70px;
+//     background-color: lightgray;
+//     margin-bottom: 10px;
+//     img{
+//         width: 60px;
+//         height: 60px;
+//     }
+//     background-color: white;
+//      border: 1px solid white;
+//     border-radius: 5px;
+//     cursor: pointer;
+// }
+
+
+// .instrument-selected{
+//     border: 1px solid $app-green;
+//     //background-color:  $app-green;
+// }
+
+// .musician-form-container{
+
+//     .left-container{
+//         width: 40%;
+//     }
+
+//     .right-container{
+//         width: 55%;
+//     }
+
+//     label{
+//         width: $label-width;
+//         color: $app-grey;
+//     }
+
+//     .sex-label{
+//         width: $label-width - 45px !important;
+//     }
+
+
+//     .radio-label{
+//         color: rgba(0,0,0,0.8); 
+//         width: auto !important;
+//         font-size: 16px;
+//     }
+
+
+
+//     .social-nets{
+//         margin-bottom: 10px;
+//     }
+
+//     .date-container{
+//         width: 100%;
+//     }
+
+//     .days{
+//         width: 20%;
+//     }
+
+//     .years{
+//         width: 30%;
+//     }
+
+//     .months{
+//         width: 50%;
+//     }
+
+//     .selected-styles-container{
+//         width: 100%;
+//     }
+
+//     .musician-style{
+//         padding: 5px;
+//     }
+
+//     .error{
+//         border: 1px solid red;
+//     }
+// }
+
+// .btn-file{
+//     margin-top: -10px !important;
+// }
 

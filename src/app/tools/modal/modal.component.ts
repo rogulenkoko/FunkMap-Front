@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   @Input() title: string;
+  @Input() widthPerCent: string = "30.5%";
 
   constructor() { }
 
