@@ -28,6 +28,19 @@
     margin-left: 12px;
 }
 
+.add-circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 20000;
+    position: absolute;
+    bottom: 70px;
+    left:  $sidebar-global-size + 60px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: lighter !important;
+}
+
 
 #wrapper {
     padding-left: 0;
