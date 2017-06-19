@@ -1,7 +1,7 @@
 import { InstrumentType } from "../../musician/models";
 
 export class Marker {
-    constructor(public id: number, public lat: number, public lng: number, public entityType: EntityType, public iconUrl?: string) {
+    constructor(public login: string, public lat: number, public lng: number, public entityType: EntityType, public iconUrl?: string) {
 
     }
 
@@ -10,7 +10,7 @@ export class Marker {
 
 
     public static ToMarker(data: any):Marker{
-        var result = new Marker(data.Id, data.Latitude, data.Longitude, data.ModelType);
+        var result = new Marker(data.Login, data.Latitude, data.Longitude, data.ModelType);
         if(result.entityType == EntityType.Musician){
             result.instrument = data.Instrument;
         }
@@ -31,5 +31,5 @@ export class Marker {
 export enum EntityType {
     Musician = 1,
     Shop = 2,
-    Band = 4
+    Band = 3
 }

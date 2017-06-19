@@ -1,19 +1,18 @@
 import { InstrumentType, Musician } from "../musician/models"
+import { BaseModel } from "app/core";
 
-export class Band{
-    constructor(public id:number, public name:string, public latitude: number, public longitude: number){
-
+export class Band extends BaseModel{
+    constructor(login:string, name:string){
+        super(login, name);
     }
 
-    public login: string;
     public showPrice: number;
     public desiredInstruments: Array<InstrumentType>;
     public musicians: Array<Musician>;
     public videoLinks: Array<string>;
 
     public static ToBand(data: any): Band{
-        console.log(data);
-        var result = new Band(data.Id, data.Name,data.Latitude, data.Longitude);
+        var result = new Band(data.Id, data.Name);
         result.desiredInstruments = data.DesiredInstruments;
         result.showPrice = data.ShowPrice;
         result.musicians = [];

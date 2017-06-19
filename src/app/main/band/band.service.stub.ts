@@ -11,13 +11,13 @@ export class BandServiceStub extends BandService {
     super();
    }
 
-   getBand(id: number): Observable<Band>{
-     var band = new Band(1,"The Beatles",51,31);
+   getBand(id: string): Observable<Band>{
+     var band = new Band("beatles","The Beatles");
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
      band.showPrice = 500;
      band.musicians = [
-       new Musician(1, "test"),
-       new Musician(2, "rogulenkoko")
+       new Musician("test", "test"),
+       new Musician("rogulenkoko", "rogulenkoko")
      ];
      return Observable.of(band);
    }

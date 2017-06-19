@@ -1,27 +1,22 @@
-export class Musician{
-    constructor(public id?:number, public name?: string){
+import { BaseModel } from "app/core";
+
+export class Musician extends BaseModel{
+
+    constructor(login:string, name:string){
+        super(login, name);
         this.sex = Sex.Male;
         this.styles = [];
     }
-    public login: string;
-
-    public longitude: number;
-    public latitude: number;
+   
 
     public styles: Array<MusicStyle>;
-    public description: string;
+   
     public videoYoutube: string;
     public sex: Sex;
     public birthDate: Date;
     public years: number;
     public expirience: number;
     public instrument: InstrumentType;
-
-    public avatar: string;//байты
-    public vkLink: string;
-    public youTubeLink: string;
-    public facebookLink: string;
-
 
     public static ToMusician(data: any): Musician{
         var result = new Musician(data.Id, data.Name);
@@ -42,7 +37,7 @@ export class Musician{
 export enum MusicStyle{
     HipHop = 1,
     Rock = 2,
-    Funk = 4
+    Funk = 3
 }
 
 export enum Sex{
@@ -53,8 +48,8 @@ export enum Sex{
 export enum InstrumentType{
     Bass = 1,
     Drums = 2,
-    Vocal = 4,
-    Brass = 8,
-    Guitar = 16,
-    Keyboard = 32
+    Vocal = 3,
+    Brass = 4,
+    Guitar = 5,
+    Keyboard = 6
 }

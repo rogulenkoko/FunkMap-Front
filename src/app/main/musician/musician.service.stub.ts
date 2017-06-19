@@ -10,8 +10,8 @@ export class MusicianServiceStub extends MusicianService {
     super();
   }
 
-   getMusician(id: number): Observable<Musician>{
-     var musician = new Musician(1, "Мик Томсон");
+   getMusician(id: string): Observable<Musician>{
+     var musician = new Musician("tomson", "Мик Томсон");
      musician.styles = [MusicStyle.Funk, MusicStyle.Rock];
      musician.instrument = InstrumentType.Drums;
      musician.birthDate = new Date();

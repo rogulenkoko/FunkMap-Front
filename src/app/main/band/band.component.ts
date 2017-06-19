@@ -11,7 +11,7 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class BandComponent implements OnInit, OnDestroy {
 
-  private lastBandId: number;
+  private lastBandLogin: string;
   private band: Band;
 
   private subscription: Subscription;
@@ -23,7 +23,7 @@ export class BandComponent implements OnInit, OnDestroy {
     this.subscription.add(this.router.events.subscribe((value: NavigationEnd) => {
       var pathParts = value.url.split('/');
       if (!pathParts.find(x => x == "band")) return;
-      this.updateBand(Number(pathParts[pathParts.length - 1]));
+      this.updateBand(pathParts[pathParts.length - 1]);
     }));
   }
 
@@ -34,11 +34,11 @@ export class BandComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private updateBand(id: number){
-    if(this.lastBandId == id) return;
-    this.lastBandId = id;
-    if(this.band && id == this.band.id) return;
-    this.bandService.getBand(id).subscribe(band=>{
+  private updateBand(login: string){
+    if(this.lastBandLogin == login) return;
+    this.lastBandLogin = login;
+    if(this.band && login == this.band.login) return;
+    this.bandService.getBand(login).subscribe(band=>{
       this.band = band;
     })
   }

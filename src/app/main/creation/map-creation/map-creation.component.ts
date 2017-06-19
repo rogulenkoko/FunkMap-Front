@@ -65,7 +65,7 @@ export class MapCreationComponent implements OnInit {
 
   private onMapClicked(event:any){
     
-    var marker = new Marker(0, event.latlng.lat, event.latlng.lng, this.creationService.selectedEntity);
+    var marker = new Marker("", event.latlng.lat, event.latlng.lng, this.creationService.selectedEntity);//todo вместо пустой строки значение от поля логин
     switch(this.creationService.selectedEntity){
       case EntityType.Musician:
         marker.instrument = this.creationService.musician.instrument;

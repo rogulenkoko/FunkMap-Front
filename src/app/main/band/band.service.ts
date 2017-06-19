@@ -9,7 +9,7 @@ export abstract class BandService {
 
   constructor() { }
 
-  abstract getBand(id: number): Observable<Band>;
+  abstract getBand(login: string): Observable<Band>;
 
 }
 
@@ -20,7 +20,7 @@ export class BandServiceHttp extends BandService {
     super();
    }
 
-   getBand(id: number): Observable<Band>{
+   getBand(id: string): Observable<Band>{
      return this.http.get(`${ConfigurationProvider.apiUrl}band/get/${id}`).map(res=>Band.ToBand(res.json()));
    }
 

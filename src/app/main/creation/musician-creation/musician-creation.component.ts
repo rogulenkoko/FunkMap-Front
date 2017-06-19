@@ -34,7 +34,7 @@ export class MusicianCreationComponent implements OnInit {
               private dateProvider: DateSelectProvider,
               private creationService: CreationService,
               private router: Router) {
-    this.musician = new Musician();
+    this.musician = new Musician("","");
     this.styles = new Dictionary<MusicStyle, string>(); 
     this.musicianTypesProvider.musicStyles.keys().forEach(key => {
       this.styles.setValue(key, this.musicianTypesProvider.musicStyles.getValue(key));

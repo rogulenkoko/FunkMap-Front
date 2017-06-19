@@ -9,7 +9,7 @@ export abstract class MusicianService {
 
   constructor() { }
 
-  abstract getMusician(id: number): Observable<Musician>;
+  abstract getMusician(id: string): Observable<Musician>;
 
 }
 
@@ -21,7 +21,7 @@ export class MusicianServiceHttp extends MusicianService {
    }
 
 
-   getMusician(id: number): Observable<Musician>{
+   getMusician(id: string): Observable<Musician>{
      return this.http.get(ConfigurationProvider.apiUrl + "musician/get/" + id).map(x=>Musician.ToMusician(x.json()));
    }
 

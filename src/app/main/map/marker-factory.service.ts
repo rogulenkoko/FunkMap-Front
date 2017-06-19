@@ -20,9 +20,9 @@ export class MarkerFactory {
     });
     marker.on("click", (marker) => {
       switch (point.entityType) {
-        case EntityType.Musician: this.router.navigate(["/musician/" + point.id]); break;
-        case EntityType.Shop: this.router.navigate(["/shop/" + point.id]); break;
-        case EntityType.Band: this.router.navigate(["/band/"+point.id]); break;
+        case EntityType.Musician: this.router.navigate(["/musician/" + point.login]); break;
+        case EntityType.Shop: this.router.navigate(["/shop/" + point.login]); break;
+        case EntityType.Band: this.router.navigate(["/band/" + point.login]); break;
       }
     })
     return marker;

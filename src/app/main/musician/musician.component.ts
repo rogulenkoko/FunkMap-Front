@@ -12,7 +12,7 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class MusicianComponent implements OnInit,OnDestroy {
 
-  private lastMusicianId: number;
+  private lastMusicianLogin: string;
   private musician: Musician;
 
   private subscription: Subscription;
@@ -28,12 +28,12 @@ export class MusicianComponent implements OnInit,OnDestroy {
         this.subscription.add(this.router.events.subscribe((value: NavigationEnd)=>{
           var pathParts = value.url.split('/');
           if(!pathParts.find(x=>x=="musician")) return;
-          this.updateMusician(Number(pathParts[pathParts.length - 1]));
+          this.updateMusician(pathParts[pathParts.length - 1]);
         }));
   }
 
   ngOnInit() {
-    var id = Number(this.route.snapshot.url[this.route.snapshot.url.length - 1].path);
+    var id = this.route.snapshot.url[this.route.snapshot.url.length - 1].path;
     
   }
 
@@ -41,12 +41,12 @@ export class MusicianComponent implements OnInit,OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private updateMusician(id: number){
+  private updateMusician(login: string){
     
-    if(this.lastMusicianId == id) return;
-    this.lastMusicianId = id;
-    if(this.musician && id == this.musician.id) return;
-    this.musicianService.getMusician(id).subscribe(musician=>{
+    if(this.lastMusicianLogin == login) return;
+    this.lastMusicianLogin = login;
+    if(this.musician && login == this.musician.login) return;
+    this.musicianService.getMusician(login).subscribe(musician=>{
       this.musician = musician;
       this.avatarImage = "data:image/png;base64," + musician.avatar;
     });

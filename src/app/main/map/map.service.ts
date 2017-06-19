@@ -23,11 +23,11 @@ export class MapServiceHttp extends MapService {
    }
 
    getAll(): Observable<Array<Marker>>{
-     return this.http.get(`${ConfigurationProvider.apiUrl}search/all`).map(x=>Marker.ToMarkerArray(x.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl}base/all`).map(x=>Marker.ToMarkerArray(x.json()));
    }
 
    getNearest(request: NearestRequest):Observable<Array<Marker>>{
-     return this.http.post(`${ConfigurationProvider.apiUrl}search/nearest`, request).map(x=>Marker.ToMarkerArray(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl}base/nearest`, request).map(x=>Marker.ToMarkerArray(x.json()));
    }
 
 }

@@ -6,11 +6,14 @@
     display: inline-block;
 }
 
+.icon-middle{
+    min-width: 20px;
+    min-height: 20px;
+}
+
 .icon-big{
     min-width: 36px;
     min-height: 36px;
-    outline:none;
-    cursor: pointer;
 }
 
 .icon-close{
@@ -31,4 +34,24 @@
 
 .facebook-icon{
     background: url("/assets/images/facebook.png") no-repeat;
+}
+
+.search-icon{
+    background: url("/assets/images/search.png") no-repeat;
+}
+
+.person-icon{
+    background: url("/assets/images/person.png") no-repeat;
+}
+
+.messenger-icon{
+     background: url("/assets/images/messenger.png") no-repeat;
+}
+
+.exit-icon{
+     background: url("/assets/images/exit.png") no-repeat;
+}
+
+.settings-icon{
+    background: url("/assets/images/settings.png") no-repeat;
 }
