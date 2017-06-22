@@ -26,11 +26,8 @@ const appRoutes: Routes = [
           { path: "band", component: BandComponent },
           { path: "band/:id", component: BandComponent },
           { path: "avatar", component: AvatarComponent },
-          {
-            path: "create", component: CreationComponent, canActivate: [CanActivateCreation], children: [
-              { path: "map", component: MapCreationComponent }
-            ]
-          },
+          { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
+          { path: "checkmap", component: MapCreationComponent }
 
         ]
       },

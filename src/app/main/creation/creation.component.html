@@ -1,40 +1,53 @@
-<modal [title]="'Создание сущности'" [widthPerCent]="'64%'">
+<modal [title]="'Создание сущности'" [widthPerCent]="'64%'" [height]="'80%'">
   <div class="main-creation-container">
-    <div class="creation-container d-flex flex-row">
+    <div id="creation-container" class="creation-container d-flex flex-row">
+      
       <div class="left-container">
-        <musician-creation></musician-creation>
+
+        <div class="d-flex flex-row align-items-baseline social-nets">
+          <label class="property-title">Тип сущности:</label>
+          <select placeholder="YouTube" [(ngModel)]="selectedEntity" class="form-control secondary">
+            <option *ngFor="let entity of availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
+          </select>
+        </div>
+        <br>
+        <div class="d-flex flex-row align-items-baseline social-nets">
+          <label class="property-title">Логин:</label>
+          <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login"/>
+        </div>
+        <br>
+        <musician-creation *ngIf="selectedEntity.type == 1"></musician-creation>
       </div>
 
       <div class="right-container">
         <div class="d-flex flex-row align-items-center">
           <label class="property-title">Видео (ссылка):</label>
-          <input placeholder="Ссылка Youtube" [(ngModel)]="musician.videoYoutube" class="form-control secondary" />
+          <input placeholder="Ссылка Youtube" [(ngModel)]="creationService.baseModel.videoYoutube" class="form-control secondary" />
         </div>
 
         <br>
 
         <div class="d-flex flex-row align-items-center social-nets">
           <label class="property-title">Соц. сети:</label>
-          <input placeholder="YouTube" [(ngModel)]="musician.youTubeLink" class="form-control secondary" />
+          <input placeholder="YouTube" [(ngModel)]="creationService.baseModel.youTubeLink" class="form-control secondary" />
         </div>
 
         <br>
 
         <div class="d-flex flex-row align-items-center social-nets">
           <label class="property-title"></label>
-          <input placeholder="Vk" [(ngModel)]="musician.vkLink" class="form-control secondary" />
+          <input placeholder="Vk" [(ngModel)]="creationService.baseModel.vkLink" class="form-control secondary" />
         </div>
         <br>
         <div class="d-flex flex-row align-items-center social-nets">
           <label class="property-title"></label>
-          <input placeholder="Facebook" [(ngModel)]="musician.facebookLink" class="form-control secondary" />
+          <input placeholder="Facebook" [(ngModel)]="creationService.baseModel.facebookLink" class="form-control secondary" />
         </div>
       </div>
     </div>
-    <div class="buttons-container d-flex flex-row justify-content-end">
+    <div class="buttons-container d-flex flex-row justify-content-end align-items-end ">
       <button routerLink="/" class="btn btn-secondary">Отмена</button>
-      <button class="btn btn-success ml-3">Сохранить</button>
+      <button (click)="save()" class="btn btn-success ml-3">Сохранить</button>
     </div>
-
   </div>
 </modal>

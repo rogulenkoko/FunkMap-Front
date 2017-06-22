@@ -48,5 +48,7 @@
     "Search":"Search",
     "Person":"Person",
     "Messages":"Messages",
-    "Logout":"Log out"
+    "Logout":"Log out",
+    "Musician": "Musician",
+    "Shop":"Shop"
 }

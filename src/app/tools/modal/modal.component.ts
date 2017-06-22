@@ -9,6 +9,9 @@ export class ModalComponent implements OnInit {
 
   @Input() title: string;
   @Input() widthPerCent: string = "30.5%";
+  @Input() height: string;
+
+  @Input() canClose: boolean = true;
 
   constructor() { }
 

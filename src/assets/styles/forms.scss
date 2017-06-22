@@ -21,9 +21,12 @@ input[type=checkbox]:checked + label:before{
 
 input[type=radio] + label:before{
   border-radius:50%;
+  height: 19px;
 }
 input[type=checkbox] + label:before{
   border-radius:2px;
+  height: 19px;
+  
 }
 
 input[type='number'] {

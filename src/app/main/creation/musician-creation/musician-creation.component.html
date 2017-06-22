@@ -1,6 +1,6 @@
 <div class="d-flex flex-row align-items-baseline">
   <label class="property-title">Имя:</label>
-  <input [class.error]="wasSubmit && !musician.name" [(ngModel)]="musician.name" class="form-control secondary" />
+  <input [class.error]="wasSubmit && !creationService.musician.name" [(ngModel)]="creationService.musician.name" class="form-control secondary" />
 </div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
@@ -19,12 +19,23 @@
   <label class="property-title sex-label">Пол:</label>
   <div class="d-flex flex-row" style="width:100%;">
     <div class="mr-4 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
-      <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="musician.sex" [value]="sexType">
+      <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="creationService.musician.sex" [value]="sexType">
       <label class="radio-label" for="reportType{{sexType}}">{{musicianTypesProvider.sexTypes.getValue(sexType) | translate}}</label>
     </div>
   </div>
 
 </div>
+<br>
+<div class="d-flex flex-row">
+      <label class="property-title">Инструмент:</label>
+      <div class="d-flex align-content-start flex-wrap" style="width:100%;">
+        <div [class.error]="wasSubmit && !creationService.musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index"
+          class="instrument d-flex align-items-center justify-content-center" [class.instrument-selected]="creationService.musician.instrument == instrument"
+          (click)="selectInstrument(instrument)">
+          <img src="{{iconProvider.icons.getValue(instrument)}}" />
+        </div>
+      </div>
+  </div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
   <label class="property-title">Стиль:</label>
@@ -35,7 +46,7 @@
       </select>
     <br>
     <div class="d-flex flex-row">
-      <div *ngFor="let musicianStyle of musician.styles" class="musician-style d-flex align-items-center mr-3">
+      <div *ngFor="let musicianStyle of creationService.musician.styles" class="musician-style d-flex align-items-center mr-3">
         <div (click)="removeStyle(musicianStyle)" class="icon icon-close-red mr-2"></div>
         <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle)}}</span>
       </div>
@@ -46,7 +57,7 @@
 <br>
 <div class="d-flex flex-row align-items-top">
   <label class="property-title">Описание:</label>
-  <textarea [(ngModel)]="musician.description" class="form-control secondary"></textarea>
+  <textarea [(ngModel)]="creationService.musician.description" class="form-control secondary"></textarea>
 </div>
 
 

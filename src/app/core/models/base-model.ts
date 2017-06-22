@@ -1,11 +1,11 @@
 
 
-export abstract class BaseModel {
-    constructor(public login:string, public name:string){
+export class BaseModel {
+    constructor(public login?:string, public name?:string){
 
     }
     public userLogin: string;
-
+    public videoYoutube: string;
     public latitude: number;
     public longitude: number;
 

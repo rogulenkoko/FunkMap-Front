@@ -1,9 +1,7 @@
-<h4>Укажите место на карте</h4>
-
-<div class="map-container" id="map">
-
-</div>
-<br>
-<div class="d-flex justify-content-end">
-  <button class="btn btn-success" (click)="save()">Сохранить</button>
-</div>
+<modal [title]="''" [widthPerCent]="'35%'" [canClose]="false">
+  <span class="title">Вы хотите использовать текущее местоположение или указать вручную?</span>
+    <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
+      <button (click)="useCurrentPosition()" routerLink="/" class="btn btn-secondary">Использовать текущее</button>
+      <button (click)="save()" class="btn btn-success ml-3">Указать</button>
+    </div>
+</modal>

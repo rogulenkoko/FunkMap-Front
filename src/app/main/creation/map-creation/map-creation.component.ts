@@ -26,22 +26,21 @@ export class MapCreationComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 7, zoomAnimation: false });
-    this.initMap();
+  }
+
+  useCurrentPosition(){
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.creationService.baseModel.latitude = position.coords.latitude;
+      this.creationService.baseModel.longitude = position.coords.longitude;
+      this.save();
+    })
   }
 
   save(){
     if(!this.creationService.musician || !this.creationService.musician.latitude || !this.creationService.musician.longitude){
       return;
     }
-
-    switch(this.creationService.selectedEntity){
-      case EntityType.Musician:
-        this.creationService.saveMusician().subscribe(response=>this.onSaved(response))
-      break;
-    }
-    
-
+    this.creationService.save().subscribe(response=>this.onSaved(response))
   }
 
   private onSaved(response: CreationResponse){
@@ -52,16 +51,7 @@ export class MapCreationComponent implements OnInit {
     }
   }
 
-  private initMap() {
-    
-    var options = this.buildMapOptions(this.mapProvider.selectedMap);
-    this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
-    this.map.addLayer(this.baseLayer);
-    this.markersLayer = L.layerGroup([]);
-    this.map.addLayer(this.markersLayer);
-
-    this.map.on("click",(event:any)=>this.onMapClicked(event));
-  }
+  
 
   private onMapClicked(event:any){
     
@@ -78,25 +68,4 @@ export class MapCreationComponent implements OnInit {
     this.markersLayer.clearLayers();
     this.markersLayer.addLayer(mapMarker);
   }
-
-  private buildMapOptions(map: Map): any {
-    let options: any;
-    if (map.subdomains.length == 0) {
-      options = {
-        attribution: map.attribution,
-        maxZoom: map.maxZoom,
-        minZoom: 3
-      };
-    }
-    else {
-      options = {
-        attribution: map.attribution,
-        maxZoom: map.maxZoom,
-        subdomains: map.subdomains,
-        minZoom: 3
-      };
-    }
-    return options;
-  }
-
 }

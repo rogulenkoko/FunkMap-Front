@@ -2,7 +2,7 @@ import { BaseModel } from "app/core";
 
 export class Musician extends BaseModel{
 
-    constructor(login:string, name:string){
+    constructor(login?:string, name?:string){
         super(login, name);
         this.sex = Sex.Male;
         this.styles = [];
@@ -11,7 +11,7 @@ export class Musician extends BaseModel{
 
     public styles: Array<MusicStyle>;
    
-    public videoYoutube: string;
+    
     public sex: Sex;
     public birthDate: Date;
     public years: number;

@@ -1,11 +1,12 @@
-<div class="modal-outlet d-flex align-items-center justify-content-center">
-  <div class="modal-container d-flex flex-column" [style.width]="widthPerCent">
-    <div class="d-flex justify-content-end close-container">
+<div class="modal-outlet d-flex align-items-center justify-content-center" > 
+  <div class="modal-container d-flex flex-column" [style.width]="widthPerCent" [style.height]="height">
+    <div *ngIf="canClose" class="d-flex justify-content-end close-container">
       <span [routerLink]="['/']" class="icon icon-close"></span>
     </div>
-    <div class="title-container d-flex justify-content-center">
+    <div class="title-container d-flex justify-content-center align-items-center">
       <span>{{title | translate}}</span>
     </div>
-    <ng-content></ng-content>
+    <ng-content ></ng-content>
+   
   </div>
 </div>

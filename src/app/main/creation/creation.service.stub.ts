@@ -4,15 +4,17 @@ import { EntityType } from "../map/models";
 import { CreationService } from "./creation.service";
 import { Observable } from "rxjs/Observable";
 import { CreationResponse } from "./creation";
+import { UserService } from "../user/user.service";
 
 @Injectable()
 export class CreationServiceStub extends CreationService {
 
-  constructor() {
-    super();
+  constructor(protected userService: UserService) {
+    super(userService);
    }
 
-   saveMusician():Observable<CreationResponse>{
+   save():Observable<CreationResponse>{
+    this.buildEntity();
     var response = new CreationResponse(true);
     return Observable.of(response);
   }

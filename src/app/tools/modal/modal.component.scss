@@ -20,9 +20,14 @@
 .close-container{
     padding-top: 20px;
     padding-right: 20px;
+    z-index: 100000;
 }
 
 .title-container{
     font-size: 22px;
     font-weight: 500;
+    padding: 1.5%;
+    span{
+        text-align: center;
+    }
 }
