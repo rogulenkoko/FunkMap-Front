@@ -10,12 +10,14 @@ import { MapCreationComponent } from './map-creation/map-creation.component';
 
 import { CanActivateCreation } from "./can-activate-creation";
 import {ImageCropperModule} from 'ng2-img-cropper';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
   declarations: [
     CreationComponent,
     MusicianCreationComponent,
-    MapCreationComponent
+    MapCreationComponent,
+    SuccessComponent
   ],
   imports: [
     CoreModule,

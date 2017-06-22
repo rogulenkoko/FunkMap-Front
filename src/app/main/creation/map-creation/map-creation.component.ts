@@ -4,7 +4,7 @@ import { Map, Marker, EntityType } from "../../map/models";
 import { IconProvider } from "../../map/icon-provider.service";
 import { MarkerFactory } from "../../map/marker-factory.service";
 import { CreationService } from "../creation.service";
-import { Router } from "@angular/router";
+import { Router, Params, ActivatedRoute } from "@angular/router";
 import { CreationResponse } from "../creation";
 
 @Component({
@@ -20,15 +20,21 @@ export class MapCreationComponent implements OnInit {
   private markersLayer: L.LayerGroup;
 
   constructor(private mapProvider: MapProvider,
-              private creationService: CreationService,
-              private iconProvider: IconProvider,
-              private markerFactory: MarkerFactory,
-              private router: Router) { }
+    private creationService: CreationService,
+    private iconProvider: IconProvider,
+    private markerFactory: MarkerFactory,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params =>{
+      if(params["save"]){
+        this.save();
+      }
+    });
   }
 
-  useCurrentPosition(){
+  useCurrentPosition() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.creationService.baseModel.latitude = position.coords.latitude;
       this.creationService.baseModel.longitude = position.coords.longitude;
@@ -36,27 +42,39 @@ export class MapCreationComponent implements OnInit {
     })
   }
 
-  save(){
-    if(!this.creationService.musician || !this.creationService.musician.latitude || !this.creationService.musician.longitude){
-      return;
-    }
-    this.creationService.save().subscribe(response=>this.onSaved(response))
+  useCustomPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      var marker = new Marker(this.creationService.baseModel.login, position.coords.latitude, position.coords.longitude, this.creationService.selectedEntity);
+      if(this.creationService.selectedEntity == EntityType.Musician){
+        marker.instrument = this.creationService.musician.instrument;
+      }
+      this.creationService.onSelectPosition.emit(marker);
+      this.router.navigate(['/']);
+    })
+
   }
 
-  private onSaved(response: CreationResponse){
-    if(response.success){
-      this.router.navigate(["/"]);
+  save() {
+    if (!this.creationService.baseModel) {
+      return;
+    }
+    this.creationService.save().subscribe(response => this.onSaved(response))
+  }
+
+  private onSaved(response: CreationResponse) {
+    if (response.success) {
+      this.router.navigate(["/success"]);
     } else {
       alert("Ошибка сохранения");
     }
   }
 
-  
 
-  private onMapClicked(event:any){
-    
+
+  private onMapClicked(event: any) {
+
     var marker = new Marker("", event.latlng.lat, event.latlng.lng, this.creationService.selectedEntity);//todo вместо пустой строки значение от поля логин
-    switch(this.creationService.selectedEntity){
+    switch (this.creationService.selectedEntity) {
       case EntityType.Musician:
         marker.instrument = this.creationService.musician.instrument;
         this.creationService.musician.longitude = marker.lng;

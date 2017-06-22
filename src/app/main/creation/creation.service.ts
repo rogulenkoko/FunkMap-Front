@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { InstrumentType, Musician, MusicStyle, Sex } from "../musician/models";
 import { EntityType } from "../map/models";
 import { Http } from "@angular/http"
@@ -13,16 +13,17 @@ import { BaseModel } from "app/core";
 export abstract class CreationService {
 
   public selectedEntity: EntityType;
-
   public baseModel: BaseModel
-
   public musician: Musician;
+
+  public onSelectPosition: EventEmitter<any>;
 
   abstract save():Observable<CreationResponse>;
 
   constructor(protected userService: UserService) {
     this.baseModel = new BaseModel();
     this.musician = new Musician();
+    this.onSelectPosition = new EventEmitter();
    }
 
 

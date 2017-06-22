@@ -9,6 +9,7 @@
     "Sex_Female": "Female",
     "Sex_Male": "Male",
 
+    "Musician_Name":"Full name",
     "Musician_BirthDate":"Date of birth",
     "Musician_Sex":"Sex",
     "Musician_Expirience":"Experience",
@@ -53,6 +54,7 @@
     "Logout":"Log out",
     "Musician": "Musician",
     "Shop":"Shop",
+    "SocialNets": "Social nets",
 
     "Creation_Title":"New entity",
     "Creation_EntityType":"Entity type",

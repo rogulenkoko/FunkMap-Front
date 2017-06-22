@@ -1,3 +1,6 @@
+.leaflet-div-icon{
+    border: none !important;
+}
 .icon-image-container{
     width: 50px;
 }
@@ -10,4 +13,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.creation-marker-container{
+    width: 50px;
+    img{
+        width: 50px;
+    }
+
+    .creation-icons-container{
+        width: 80px;
+        height: 25px;
+        border-radius: 10px;
+        background: white;
+        margin-left: -15px;
+        margin-bottom: 10px;
+        .cross-container{
+            width: 40px;
+            border-radius: 10px 0 0 10px;
+            height: 25px;
+            img{
+                width: 10px;
+            }
+        }
+
+        .cross-container:hover, .apply-container:hover{
+            background-color: #eeeeee;
+        }
+
+        .apply-container{
+            width: 40px;
+            border-radius: 0 10px 10px 0;
+            height: 25px;
+            img{
+                width: 12px;
+            }
+        }
+        
+        
+    }
 }

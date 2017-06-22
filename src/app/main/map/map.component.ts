@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { MapProvider } from "./map-provider.service";
 import { Map, Marker, EntityType, NearestRequest } from "./models";
 import { MarkerFactory } from "./marker-factory.service";
 import { MapService } from "./map.service";
 import { MapFilter } from "./map-filter.service";
+import { CreationService } from "../creation/creation.service";
 
 @Component({
   selector: 'map',
@@ -28,16 +30,19 @@ export class MapComponent implements OnInit {
   constructor(private mapProvider: MapProvider,
     private markerFactory: MarkerFactory,
     private mapService: MapService,
-    private mapFilter: MapFilter) {
+    private mapFilter: MapFilter,
+    private creationService: CreationService,
+    private router: Router) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapFilter.onSearchAll.subscribe(() => {
       if (this.mapFilter.isAllShown) this.getAll();
       else this.getNearest();
     })
+    this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event))
   }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false, zoomControl:false} );
+    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false, zoomControl: false });
     this.initMap();
     this.initMarkersLayer();
   }
@@ -63,9 +68,9 @@ export class MapComponent implements OnInit {
         this.currentPosition = position;
         this.map.setView(new L.LatLng(position.coords.latitude, this.currentPosition.coords.longitude), this.map.getZoom());
       } else {
-        this.currentPosition = {coords:{latitude:this.map.getCenter().lat, longitude:this.map.getCenter().lng}}
+        this.currentPosition = { coords: { latitude: this.map.getCenter().lat, longitude: this.map.getCenter().lng } }
       }
-      
+
       this.getNearest();
     });
 
@@ -113,4 +118,43 @@ export class MapComponent implements OnInit {
     return options;
   }
 
+  private selectEntityPosition(marker: Marker) {
+    this.clearAllLayers();
+    var result = this.drawCreationMarker(marker);
+    this.map.on("click", (event: any) => {
+      this.clearAllLayers();
+      marker.lat = event.latlng.lat;
+      marker.lng = event.latlng.lng;
+      result = this.drawCreationMarker(marker);
+    })
+  }
+
+  private drawCreationMarker(marker: Marker): L.Marker {
+    var result = this.markerFactory.getCreationMarker(marker);
+    result.on("click", (event: any) => {
+      if (event.originalEvent.target.id == "cross" || event.originalEvent.target.id == "cross-img") {
+        this.router.navigate(['/checkmap']);
+        this.clearAllLayers();
+      }
+
+      if (event.originalEvent.target.id == "apply" || event.originalEvent.target.id == "apply-img") {
+        this.creationService.baseModel.latitude = event.latlng.lat;
+        this.creationService.baseModel.longitude = event.latlng.lng;
+        this.map.removeLayer(result);
+        this.map.off("click");
+        this.router.navigate(['/checkmap', { save: true }]);
+      }
+    })
+    this.map.addLayer(result);
+    return result;
+  }
+
+
+  private clearAllLayers() {
+    this.map.eachLayer((layer) => {
+      if (this.baseLayer != layer) {
+        layer.remove();
+      }
+    });
+  }
 }

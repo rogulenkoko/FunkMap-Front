@@ -12,6 +12,7 @@ export class ModalComponent implements OnInit {
   @Input() height: string;
 
   @Input() canClose: boolean = true;
+  @Input() backgroundEnabled: boolean = true;
 
   constructor() { }
 

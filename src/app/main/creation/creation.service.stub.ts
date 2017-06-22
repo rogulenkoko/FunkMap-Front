@@ -14,8 +14,9 @@ export class CreationServiceStub extends CreationService {
    }
 
    save():Observable<CreationResponse>{
-    this.buildEntity();
+    var entity = this.buildEntity();
     var response = new CreationResponse(true);
+    console.log(entity);
     return Observable.of(response);
   }
 
