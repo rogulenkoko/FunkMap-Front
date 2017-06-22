@@ -13,9 +13,12 @@ export class MarkerFactory {
   public getMarker(point: Marker): L.Marker {
     point.iconUrl = this.iconProvider.getIcon(point);
     var marker = L.marker(new L.LatLng(point.lat, point.lng), {
-      icon: new L.Icon({
-        iconUrl: point.iconUrl,
-        className: "icon-image-container"
+      icon: new L.DivIcon({
+        html:`
+          <div class="icon-image-container d-flex align-items-center justify-content-center">
+            <img src="${point.iconUrl}"/>
+          </div>
+        `
       })
     });
     marker.on("click", (marker) => {

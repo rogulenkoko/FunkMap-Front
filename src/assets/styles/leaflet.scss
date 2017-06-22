@@ -1,8 +1,12 @@
 .leaflet-div-icon{
     border: none !important;
+    background: rgba(0, 0, 0, 0) !important;
 }
-.icon-image-container{
+.icon-image-container, .creation-marker-container{
     width: 50px;
+    img{
+        width: 50px;
+    }
 }
 
 .cluster-icon-container{
@@ -16,10 +20,6 @@
 }
 
 .creation-marker-container{
-    width: 50px;
-    img{
-        width: 50px;
-    }
 
     .creation-icons-container{
         width: 80px;

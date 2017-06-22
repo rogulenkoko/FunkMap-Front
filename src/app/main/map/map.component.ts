@@ -93,6 +93,9 @@ export class MapComponent implements OnInit {
   }
 
   private refreshMarkers() {
+    if(!this.map.hasLayer(this.markersLayer)){
+      this.map.addLayer(this.markersLayer);
+    }
     var cluster = this.markerFactory.getMarkerCluster(this.markers);
     this.markersLayer.clearLayers();
     this.markersLayer.addLayer(cluster);
