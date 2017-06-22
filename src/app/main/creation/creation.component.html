@@ -1,18 +1,18 @@
-<modal [title]="'Создание сущности'" [widthPerCent]="'64%'" [height]="'80%'">
+<modal [title]="'Creation_Title'" [widthPerCent]="'64%'" [height]="'80%'">
   <div class="main-creation-container">
     <div id="creation-container" class="creation-container d-flex flex-row">
       
       <div class="left-container">
 
         <div class="d-flex flex-row align-items-baseline social-nets">
-          <label class="property-title">Тип сущности:</label>
+          <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
           <select placeholder="YouTube" [(ngModel)]="selectedEntity" class="form-control secondary">
             <option *ngFor="let entity of availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
           </select>
         </div>
         <br>
         <div class="d-flex flex-row align-items-baseline social-nets">
-          <label class="property-title">Логин:</label>
+          <label class="property-title">{{'Creation_Login' | translate}}:</label>
           <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login"/>
         </div>
         <br>
@@ -21,14 +21,14 @@
 
       <div class="right-container">
         <div class="d-flex flex-row align-items-center">
-          <label class="property-title">Видео (ссылка):</label>
+          <label class="property-title">{{'VideoLink' | translate}}:</label>
           <input placeholder="Ссылка Youtube" [(ngModel)]="creationService.baseModel.videoYoutube" class="form-control secondary" />
         </div>
 
         <br>
 
         <div class="d-flex flex-row align-items-center social-nets">
-          <label class="property-title">Соц. сети:</label>
+          <label class="property-title">{{'SocialNets' | translate}}:</label>
           <input placeholder="YouTube" [(ngModel)]="creationService.baseModel.youTubeLink" class="form-control secondary" />
         </div>
 
@@ -46,8 +46,8 @@
       </div>
     </div>
     <div class="buttons-container d-flex flex-row justify-content-end align-items-end ">
-      <button routerLink="/" class="btn btn-secondary">Отмена</button>
-      <button (click)="save()" class="btn btn-success ml-3">Сохранить</button>
+      <button routerLink="/" class="btn btn-secondary">{{'Cancel' | translate}}</button>
+      <button (click)="save()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
     </div>
   </div>
 </modal>

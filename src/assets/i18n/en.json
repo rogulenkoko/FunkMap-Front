@@ -13,6 +13,8 @@
     "Musician_Sex":"Sex",
     "Musician_Expirience":"Experience",
     "Musician_Styles":"Styles",
+    "Musician_Instrument": "Instrument",
+    "Musician_Description":"Description",
     "Musician_SocialNets": "Social nets",
     "Musician_Years":"years",
 
@@ -50,5 +52,15 @@
     "Messages":"Messages",
     "Logout":"Log out",
     "Musician": "Musician",
-    "Shop":"Shop"
+    "Shop":"Shop",
+
+    "Creation_Title":"New entity",
+    "Creation_EntityType":"Entity type",
+    "Creation_Login":"Login",
+
+    "Creation_Point":"Specify it manually",
+    "Creation_UseCurrent":"Use the current",
+    "Creation_MapQustion":"Do you want to use the current location or specify it manually",
+   
+    "VideoLink":"Video (link)"
 }

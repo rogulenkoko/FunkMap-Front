@@ -1,10 +1,10 @@
 <div class="d-flex flex-row align-items-baseline">
-  <label class="property-title">Имя:</label>
+  <label class="property-title">{{'Musician_Name' | translate}}:</label>
   <input [class.error]="wasSubmit && !creationService.musician.name" [(ngModel)]="creationService.musician.name" class="form-control secondary" />
 </div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
-  <label class="property-title">Дата рождения:</label>
+  <label class="property-title">{{'Musician_BirthDate' | translate}}:</label>
   <div class="d-flex flex-row date-container">
     <input class="form-control date-select days mr-3" type="number" min="1960" max="2017" [(ngModel)]="dateProvider.day" />
 
@@ -16,7 +16,7 @@
 </div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
-  <label class="property-title sex-label">Пол:</label>
+  <label class="property-title sex-label">{{'Musician_Sex' | translate}}:</label>
   <div class="d-flex flex-row" style="width:100%;">
     <div class="mr-4 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
       <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="creationService.musician.sex" [value]="sexType">
@@ -27,7 +27,7 @@
 </div>
 <br>
 <div class="d-flex flex-row">
-      <label class="property-title">Инструмент:</label>
+      <label class="property-title">{{'Musician_Instrument' | translate}}:</label>
       <div class="d-flex align-content-start flex-wrap" style="width:100%;">
         <div [class.error]="wasSubmit && !creationService.musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index"
           class="instrument d-flex align-items-center justify-content-center" [class.instrument-selected]="creationService.musician.instrument == instrument"
@@ -38,7 +38,7 @@
   </div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
-  <label class="property-title">Стиль:</label>
+  <label class="property-title">{{'Musician_Styles' | translate}}:</label>
   <div class="d-flex flex-column selected-styles-container">
     <select [(ngModel)]="currenSelectedStyle" class="form-control mr-3" (ngModelChange)="onStyleChanged()">
         <!--<option></option>-->
@@ -56,36 +56,6 @@
 
 <br>
 <div class="d-flex flex-row align-items-top">
-  <label class="property-title">Описание:</label>
+  <label class="property-title">{{'Musician_Description' | translate}}:</label>
   <textarea [(ngModel)]="creationService.musician.description" class="form-control secondary"></textarea>
 </div>
-
-
-
-<!--<div class="musician-form-container d-flex flex-row justify-content-between">
-
-  <div class="right-container d-flex flex-column">
-    <div class="d-flex flex-column ">
-      <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-    
-      <label class="btn btn-secondary btn-file">
-        Browse <input type="file"  (change)="fileChangeListener($event)" hidden>
-      </label>
-    </div>
-    
-    <div class="d-flex flex-column">
-      <label>Инструмент:</label>
-      <div class="d-flex align-content-start flex-wrap">
-        <div [class.error]="wasSubmit && !musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index"
-          class="instrument d-flex align-items-center justify-content-center" [class.instrument-selected]="musician.instrument == instrument"
-          [style.margin-right]="i == 2 || i == 5 ? '0' : '10px'" (click)="selectInstrument(instrument)">
-          <img src="{{iconProvider.icons.getValue(instrument)}}" />
-        </div>
-      </div>
-    </div>
-    <div class="d-flex flex-row justify-content-end">
-      <button class="btn btn-secondary mr-3" (click)="canccel()">Отмена</button>
-      <button class="btn btn-success" (click)="save()">Сохранить</button>
-    </div>
-  </div>
-</div>-->

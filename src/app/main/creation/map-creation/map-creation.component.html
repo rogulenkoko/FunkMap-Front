@@ -1,7 +1,7 @@
 <modal [title]="''" [widthPerCent]="'35%'" [canClose]="false">
-  <span class="title">Вы хотите использовать текущее местоположение или указать вручную?</span>
+  <span class="title">{{'Creation_MapQustion' | translate}}?</span>
     <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
-      <button (click)="useCurrentPosition()" routerLink="/" class="btn btn-secondary">Использовать текущее</button>
-      <button (click)="save()" class="btn btn-success ml-3">Указать</button>
+      <button (click)="useCurrentPosition()" routerLink="/" class="btn btn-secondary">{{'Creation_UseCurrent' | translate}}</button>
+      <button (click)="save()" class="btn btn-success ml-3">{{'Creation_Point' | translate}}</button>
     </div>
 </modal>

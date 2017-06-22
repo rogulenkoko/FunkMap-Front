@@ -8,12 +8,14 @@
     "Sex_Female": "Женский",
     "Sex_Male": "Мужской",
     
-
+    "Musician_Name":"ФИО",
     "Musician_BirthDate":"Дата рождения",
     "Musician_Sex":"Пол",
     "Musician_Expirience":"Стаж",
     "Musician_Styles":"Стили",
-    "Musician_SocialNets": "Соц. сети",
+    "Musician_Instrument": "Инструмент",
+    "Musician_Description":"Описание",
+    "SocialNets": "Соц. сети",
     "Musician_Years":"лет",
 
     "Login_Entrance":"Вход",
@@ -23,7 +25,7 @@
     "Login_ToLogIn":"Войти",
     "Login_WrongCreds":"Неверный логин или пароль",
     "Login_RepeatPassword":"Повторите пароль",
-    "Login_Cancel":"Отмена",
+    "Cancel":"Отмена",
     "Login_Continue":"Далее",
     "Login_SignUp":"Регистрация",
     "Login_WrongPasswords":"Пароль несовпадают",
@@ -42,12 +44,24 @@
     "Avatar_Title":"Аватар",
     "Navbar_AvatarChange":"Сменить аватар",
     "Avatar_BrowsePhoto": "Выбрать",
-    "Avatar_SavePhoto":"Сохранить",
+    "Save":"Сохранить",
 
     "Search":"Поиск",
     "Person":"Персона",
     "Messages":"Сообщения",
     "Logout":"Выход",
     "Musician": "Музыкант",
-    "Shop":"Магазин"
+    "Shop":"Магазин",
+
+    "Creation_EntityType":"Тип сущности",
+    "Creation_Login":"Логин",
+    "Creation_Title":"Новая сущность",
+   
+    "Creation_Point":"Указать",
+    "Creation_UseCurrent":"Использовать текущее",
+    "Creation_MapQustion":"Вы хотите использовать текущее местоположение или указать вручную",
+
+    "VideoLink":"Видео (ссылка)"
+
+    
 }
