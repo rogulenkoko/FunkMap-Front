@@ -4,7 +4,7 @@
 
 Ссылка на макеты: https://drive.google.com/drive/folders/0B3VWeKEo7dyydktxRUdYX2V4Sm8
 
-Демо (без сервера): http://funkmap-fake.azurewebsites.net/
+Демо (без сервера): https://funkmap-fake.azurewebsites.net/
 
 Реализовано:
 
