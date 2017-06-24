@@ -16,8 +16,8 @@ export class BandServiceStub extends BandService {
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
      band.showPrice = 500;
      band.musicians = [
-       new Musician("test", "test"),
-       new Musician("rogulenkoko", "rogulenkoko")
+       "test",
+       "rogulenkoko"
      ];
      return Observable.of(band);
    }

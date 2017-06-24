@@ -14,10 +14,7 @@ import { CreationResponse } from "../creation";
 })
 export class MapCreationComponent implements OnInit {
 
-  private map: L.Map;
-  private baseLayer: L.TileLayer;
-
-  private markersLayer: L.LayerGroup;
+  private isNotToSave: boolean;
 
   constructor(private mapProvider: MapProvider,
     private creationService: CreationService,
@@ -27,8 +24,10 @@ export class MapCreationComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isNotToSave = true;
     this.route.params.subscribe(params =>{
       if(params["save"]){
+        this.isNotToSave = false;
         this.save();
       }
     });
@@ -67,23 +66,5 @@ export class MapCreationComponent implements OnInit {
     } else {
       alert("Ошибка сохранения");
     }
-  }
-
-
-
-  private onMapClicked(event: any) {
-
-    var marker = new Marker("", event.latlng.lat, event.latlng.lng, this.creationService.selectedEntity);//todo вместо пустой строки значение от поля логин
-    switch (this.creationService.selectedEntity) {
-      case EntityType.Musician:
-        marker.instrument = this.creationService.musician.instrument;
-        this.creationService.musician.longitude = marker.lng;
-        this.creationService.musician.latitude = marker.lat;
-        break;
-    }
-    marker.iconUrl = this.iconProvider.getIcon(marker);
-    var mapMarker = this.markerFactory.getMarker(marker);
-    this.markersLayer.clearLayers();
-    this.markersLayer.addLayer(mapMarker);
   }
 }

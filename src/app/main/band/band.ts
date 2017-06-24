@@ -1,4 +1,4 @@
-import { InstrumentType, Musician } from "../musician/models"
+import { InstrumentType } from "../musician/models"
 import { BaseModel } from "app/core";
 
 export class Band extends BaseModel{
@@ -8,19 +8,14 @@ export class Band extends BaseModel{
 
     public showPrice: number;
     public desiredInstruments: Array<InstrumentType>;
-    public musicians: Array<Musician>;
+    public musicians: Array<string>;
     public videoLinks: Array<string>;
 
     public static ToBand(data: any): Band{
         var result = new Band(data.Id, data.Name);
         result.desiredInstruments = data.DesiredInstruments;
         result.showPrice = data.ShowPrice;
-        result.musicians = [];
-        if(data.Musicians){
-            data.Musicians.forEach(musician => {
-                result.musicians.push(Musician.ToMusician(musician));
-            });
-        }
+        result.musicians = data.Musicians;
         result.videoLinks = data.VideoLinks;
         return result;
     }
