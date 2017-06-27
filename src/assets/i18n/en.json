@@ -19,6 +19,13 @@
     "Musician_SocialNets": "Social nets",
     "Musician_Years":"years",
 
+    "Bass": "Bass",
+    "Drums": "Drums",
+    "Vocal" : "Vocal",
+    "Brass" : "Brass",
+    "Keyboard" : "Keyboard",
+    "Guitar" : "Guitar",
+
 
     "Login_Entrance":"Log in",
     "Login_Login":"Login",

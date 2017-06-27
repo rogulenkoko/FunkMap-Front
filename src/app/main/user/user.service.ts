@@ -10,9 +10,11 @@ export class UserService {
   private _user: User;
   public avatar: string;
 
+  public latitude: number;
+  public longitude: number;
+
   public set user(user: User){
     this._user = user;
-    console.log("сэмитировало")
     this.onUserChanged.emit();
     localStorage.setItem(this.funkMapUserKey,JSON.stringify(this._user));
   }

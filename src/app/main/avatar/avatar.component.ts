@@ -24,9 +24,9 @@ export class AvatarComponent implements OnInit {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 100;
     this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 200;
-    this.cropperSettings.croppedHeight = 200;
-    this.cropperSettings.canvasWidth = 400;
+    this.cropperSettings.croppedWidth = 300;
+    this.cropperSettings.croppedHeight = 300;
+    this.cropperSettings.canvasWidth = 300;
     this.cropperSettings.canvasHeight = 300;
     this.cropperSettings.rounded = true;
     this.cropperSettings.noFileInput = true;

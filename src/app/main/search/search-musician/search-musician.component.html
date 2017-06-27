@@ -1,0 +1,21 @@
+<div class="d-flex flex-row musician-container"> 
+  <div class="no-image">
+
+  </div>
+  <div class="d-flex flex-column">
+    <div class="title">
+      {{item.title}}
+    </div>
+
+    <div class="d-flex flex-row">
+      <span class="property-title">{{'Musician_Instrument' | translate}}:</span>
+      <span>{{musicianTypesProvider.instruments.getValue(item.instrument) | translate}}</span>
+    </div>
+
+    <div class="d-flex flex-row">
+      <span class="property-title">{{'Musician_Expirience' | translate}}:</span>
+      <span>3 года</span>
+    </div>
+  </div>
+  
+</div>

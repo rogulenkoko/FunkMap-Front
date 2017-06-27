@@ -7,6 +7,7 @@ import { MarkerFactory } from "./marker-factory.service";
 import { MapService } from "./map.service";
 import { MapFilter } from "./map-filter.service";
 import { CreationService } from "../creation/creation.service";
+import { UserService } from "app/main/user/user.service";
 
 @Component({
   selector: 'map',
@@ -32,7 +33,8 @@ export class MapComponent implements OnInit {
     private mapService: MapService,
     private mapFilter: MapFilter,
     private creationService: CreationService,
-    private router: Router) {
+    private router: Router,
+    private userService: UserService) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapFilter.onSearchAll.subscribe(() => {
       if (this.mapFilter.isAllShown) this.getAll();
@@ -65,6 +67,9 @@ export class MapComponent implements OnInit {
     this.map.addLayer(this.markersLayer);
     var location = navigator.geolocation.getCurrentPosition((position) => {
       if (position) {
+        this.userService.latitude = position.coords.latitude;
+        this.userService.longitude = position.coords.longitude;
+        
         this.currentPosition = position;
         this.map.setView(new L.LatLng(position.coords.latitude, this.currentPosition.coords.longitude), this.map.getZoom());
       } else {

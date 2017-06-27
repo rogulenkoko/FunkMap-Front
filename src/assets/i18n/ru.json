@@ -18,6 +18,13 @@
     "SocialNets": "Соц. сети",
     "Musician_Years":"лет",
 
+    "Bass": "Бас-гитара",
+    "Drums": "Барабаны",
+    "Vocal" : "Вокал",
+    "Brass" : "Труба",
+    "Keyboard" : "Клавиши",
+    "Guitar" : "Гитара",
+
     "Login_Entrance":"Вход",
     "Login_Login":"Логин",
     "Login_Password":"Пароль",

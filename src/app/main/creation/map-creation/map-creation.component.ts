@@ -6,6 +6,7 @@ import { MarkerFactory } from "../../map/marker-factory.service";
 import { CreationService } from "../creation.service";
 import { Router, Params, ActivatedRoute } from "@angular/router";
 import { CreationResponse } from "../creation";
+import { UserService } from "app/main/user/user.service";
 
 @Component({
   selector: 'app-map-creation',
@@ -21,12 +22,13 @@ export class MapCreationComponent implements OnInit {
     private iconProvider: IconProvider,
     private markerFactory: MarkerFactory,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.isNotToSave = true;
-    this.route.params.subscribe(params =>{
-      if(params["save"]){
+    this.route.params.subscribe(params => {
+      if (params["save"]) {
         this.isNotToSave = false;
         this.save();
       }
@@ -34,22 +36,18 @@ export class MapCreationComponent implements OnInit {
   }
 
   useCurrentPosition() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.creationService.baseModel.latitude = position.coords.latitude;
-      this.creationService.baseModel.longitude = position.coords.longitude;
-      this.save();
-    })
+    this.creationService.baseModel.latitude = this.userService.latitude;
+    this.creationService.baseModel.longitude = this.userService.longitude;
+    this.save();
   }
 
   useCustomPosition() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      var marker = new Marker(this.creationService.baseModel.login, position.coords.latitude, position.coords.longitude, this.creationService.selectedEntity);
-      if(this.creationService.selectedEntity == EntityType.Musician){
-        marker.instrument = this.creationService.musician.instrument;
-      }
-      this.creationService.onSelectPosition.emit(marker);
-      this.router.navigate(['/']);
-    })
+    var marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
+    if (this.creationService.selectedEntity == EntityType.Musician) {
+      marker.instrument = this.creationService.musician.instrument;
+    }
+    this.creationService.onSelectPosition.emit(marker);
+    this.router.navigate(['/']);
 
   }
 
