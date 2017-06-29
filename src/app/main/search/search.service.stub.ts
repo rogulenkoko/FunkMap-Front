@@ -4,6 +4,7 @@ import { NearestRequest, EntityType } from "app/main/map/models";
 import { Observable } from "rxjs/Observable";
 import { SearchItem } from "app/main/search/search-item";
 import { InstrumentType } from "app/main/musician/models";
+import { FullLocationRequest } from "app/main/search/search-location-request";
 
 @Injectable()
 export class SearchServiceStub extends SearchService{
@@ -12,7 +13,7 @@ export class SearchServiceStub extends SearchService{
     super();
    }
 
-   getNearest(request: NearestRequest): Observable<Array<SearchItem>>{
+   getNearest(request: FullLocationRequest): Observable<Array<SearchItem>>{
      var s1 = new SearchItem();
      s1.login = "test";
      s1.title = "Константинопольский Иван";
