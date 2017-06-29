@@ -13,6 +13,7 @@ import { CanActivateCreation } from "./main/creation/can-activate-creation";
 import { BandComponent } from './main/band/band.component';
 import { AvatarComponent } from './main/avatar/avatar.component';
 import { SearchComponent } from './main/search/search.component';
+import { FavouritesComponent } from "app/main/favourites/favourites.component";
 
 const appRoutes: Routes = [
   {
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
           { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
           { path: "success", component: SuccessComponent},
           { path: "checkmap", component: MapCreationComponent },
-          { path: "search", component: SearchComponent }
+          { path: "search", component: SearchComponent },
+          { path: "favorites", component: FavouritesComponent }
 
         ]
       },

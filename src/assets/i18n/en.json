@@ -5,7 +5,7 @@
     "Navbar_Settings":"Settings",
     "Navbar_Help":"Help",
     "Navbar_Logout":"Log out",
-
+    
     "Sex_Female": "Female",
     "Sex_Male": "Male",
 
@@ -58,6 +58,7 @@
     "Search":"Search",
     "Person":"Person",
     "Messages":"Messages",
+    "Favorites":"Favorites",
     "Logout":"Log out",
     "Musician": "Musician",
     "Shop":"Shop",

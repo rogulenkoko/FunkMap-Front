@@ -25,6 +25,8 @@ import { BandModule } from './main/band/band.module';
 import { AvatarComponent } from './main/avatar/avatar.component';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { SearchModule } from "app/main/search/search.module";
+import { FavouritesModule } from "app/main/favourites/favourites.module";
+
 
 
 @NgModule({
@@ -35,7 +37,7 @@ import { SearchModule } from "app/main/search/search.module";
 
     SidebarComponent,
 
-    AvatarComponent
+    AvatarComponent,
   ],
   imports: [
     CoreModule,
@@ -49,7 +51,8 @@ import { SearchModule } from "app/main/search/search.module";
     CreationModule,
     BandModule,
     SearchModule,
-    ImageCropperModule
+    ImageCropperModule,
+    FavouritesModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

@@ -1,32 +1,37 @@
 <div id="wrapper" class="toggled">
-  <div id="sidebar-wrapper"> 
+  <div id="sidebar-wrapper">
     <ul class="sidebar-nav d-flex flex-column align-items-left">
       <li routerLink="/search" class="d-flex align-items-center sidebar-item">
-       <span class="icon icon-middle search-icon"></span>
-       <span class="menu-text">{{'Search' | translate}}</span>
+        <span class="icon icon-middle search-icon"></span>
+        <span class="menu-text">{{'Search' | translate}}</span>
       </li>
 
       <li class="d-flex align-items-center sidebar-item">
-       <span class="icon icon-middle person-icon"></span>
-       <span class="menu-text">{{'Person' | translate}}</span>
+        <span class="icon icon-middle person-icon"></span>
+        <span class="menu-text">{{'Person' | translate}}</span>
       </li>
 
       <li class="d-flex align-items-center sidebar-item">
-       <span class="icon icon-middle messenger-icon"></span>
-       <span class="menu-text">{{'Messages' | translate}}</span>
-       <span class="message-circle">4</span>
+        <span class="icon icon-middle messenger-icon"></span>
+        <span class="menu-text">{{'Messages' | translate}}</span>
+        <span class="message-circle">4</span>
+      </li>
+
+      <li routerLink="/favorites" class="d-flex align-items-center sidebar-item">
+        <span class="icon icon-middle star-icon"></span>
+        <span class="menu-text">{{'Favorites' | translate}}</span>
       </li>
     </ul>
 
     <ul class="sidebar-nav-bottom d-flex flex-column align-items-left">
       <li routerLink="/settings" class="d-flex align-items-center sidebar-item">
-       <span class="icon icon-middle settings-icon"></span>
-       <span class="menu-text">{{'Settings' | translate}}</span>
+        <span class="icon icon-middle settings-icon"></span>
+        <span class="menu-text">{{'Settings' | translate}}</span>
       </li>
 
       <li (click)="logOut()" class="d-flex align-items-center sidebar-item">
-       <span class="icon icon-middle exit-icon"></span>
-       <span class="menu-text">{{'Logout' | translate}}</span>
+        <span class="icon icon-middle exit-icon"></span>
+        <span class="menu-text">{{'Logout' | translate}}</span>
       </li>
     </ul>
   </div>
@@ -34,5 +39,5 @@
 
 
 <div routerLink="/create" *ngIf="userService.user" class="btn btn-success add-circle">
-  <img src="assets/images/plus.png"/>
+  <img src="assets/images/plus.png" />
 </div>

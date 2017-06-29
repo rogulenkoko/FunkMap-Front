@@ -14,14 +14,17 @@ export class SearchServiceStub extends SearchService{
 
    getNearest(request: NearestRequest): Observable<Array<SearchItem>>{
      var s1 = new SearchItem();
+     s1.login = "test";
      s1.title = "Константинопольский Иван";
      s1.type = EntityType.Musician;
      s1.instrument = InstrumentType.Guitar;
 
      var s2 = new SearchItem();
+     s2.login = "rogul";
      s2.title = "Иванцов Олег";
      s2.type = EntityType.Musician;
      s2.instrument = InstrumentType.Drums;
+     s2.isFavourite = true;
      return Observable.of([s1, s2]);
    }
 

@@ -18,6 +18,4 @@ export class UserDataServiceStub extends UserDataService {
    saveImage(request: SaveImageRequest): Observable<BaseResponse>{
      return Observable.of(new BaseResponse(true));
    }
-
-
 }

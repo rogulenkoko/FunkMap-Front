@@ -6,14 +6,11 @@
 }
 
 .main-search-container{
+    padding-top: 20px;
     padding-left: 15px;
     max-height: 100%;
     margin-top: -35px;
     overflow-y: auto;
-}
-
-.search-items-container{
-    position: relative;
 }
 
 .search-item{
@@ -28,31 +25,8 @@
     border-bottom: 1px solid $app-green;
 }
 
-.no-image{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #f7f7f7;
-    margin-right: 15px;
-}
-
-.search-input{
-    border-bottom: 1px solid $app-green;
-}
-
-.form-control{
-    border: none;
-    border-radius: 0;
-}
-
 .star-icon, .star-selected-icon{
     width: 15px;
     height: 15px;
     background-size: 100% 100%;
-}
-
-.message{
-    margin-top: 5%;
-    color: $app-green;   
-    cursor: pointer;
 }
