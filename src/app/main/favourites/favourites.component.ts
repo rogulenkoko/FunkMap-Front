@@ -9,7 +9,7 @@ import { SearchItem } from "app/main/search/search-item";
 })
 export class FavouritesComponent implements OnInit {
 
-   private items: Array<SearchItem>;
+  private items: Array<SearchItem>;
 
   constructor(private favouritesService: FavouritesService) { }
 
@@ -18,8 +18,13 @@ export class FavouritesComponent implements OnInit {
   }
 
   private refresh(){
-    this.favouritesService.getFavourites().subscribe(items=>{
-      this.items = items;
+    this.favouritesService.getFavouritesLogins().subscribe(logins=>{
+      this.favouritesService.getFavourites(logins).subscribe(items=>{
+        this.items = items;
+        this.items.forEach(item => {
+          item.isFavourite = true;
+        });
+      })
     });
   }
 

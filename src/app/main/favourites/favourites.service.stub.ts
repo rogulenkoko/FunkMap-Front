@@ -13,7 +13,7 @@ export class FavouritesServiceStub extends FavouritesService {
     super();
   }
 
-  getFavourites(): Observable<Array<SearchItem>> {
+  getFavourites(logins: Array<string>): Observable<Array<SearchItem>> {
     var s1 = new SearchItem();
     s1.login = "test";
     s1.title = "Константинопольский Иван";

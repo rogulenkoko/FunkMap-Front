@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("ASdas");
     this.refresh();
   }
 
@@ -34,7 +33,6 @@ export class SearchComponent implements OnInit {
     request.skip = 0;
     request.take = 10;
     this.searchService.getNearest(request).subscribe(items => {
-      console.log(items);
       this.items = items;
       if(this.userService.user) this.getFavourites();
     });
