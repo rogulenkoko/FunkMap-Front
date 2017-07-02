@@ -7,6 +7,7 @@ import { SearchServiceStub } from "./search.service.stub";
 import { environment } from "environments/environment";
 import { SearchMusicianComponent } from "app/main/search/search-musician/search-musician.component";
 import { CoreModule } from "app/core/core.module";
+import { SearchListComponent } from './search-list/search-list.component';
 
 @NgModule({
   imports: [
@@ -16,9 +17,10 @@ import { CoreModule } from "app/core/core.module";
   ],
   exports: [
     SearchComponent,
-    SearchMusicianComponent
+    SearchMusicianComponent,
+    SearchListComponent
   ],
-  declarations: [SearchComponent, SearchMusicianComponent],
+  declarations: [SearchComponent, SearchMusicianComponent, SearchListComponent],
   providers: [
      {
       provide: SearchService,

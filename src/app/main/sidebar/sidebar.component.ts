@@ -16,26 +16,42 @@ export class SidebarComponent implements OnInit {
 
   constructor(private userService: UserService,
     private route: ActivatedRoute) {
-
+      //this.userService.onUserChanged(()=>)
 
   }
 
   ngOnInit() {
+    var searchItem = new SidebarItem("search", "Search", "search-icon");
+
+    var personItem = new SidebarItem("", "Person", "person-icon");
+
+    var messagesItem = new SidebarItem("", "Messages", "messenger-icon");
+    messagesItem.rightTemplate = this.messageCountTemplate;
+    messagesItem.visibleForLogged = true;
+
+    var logoutItem = new SidebarItem("", "Logout", "exit-icon");
+    logoutItem.clickEvent = () => this.logOut();
+
+    var favouriteItem = new SidebarItem("favorites", "Favorites", "star-icon");
+    favouriteItem.visibleForLogged = true;
+
+    var settingsItem = new SidebarItem("settings", "Settings", "settings-icon");
+
     this.topItems = [
-      new SidebarItem("search", "Search", "search-icon"),
-      new SidebarItem("", "Person", "person-icon"),
-      new SidebarItem("", "Messages", "messenger-icon", null, this.messageCountTemplate),
-      new SidebarItem("favorites", "Favorites", "star-icon")
+      searchItem,
+      personItem,
+      messagesItem,
+      favouriteItem
     ]
 
     this.bottomItems = [
-      new SidebarItem("settings", "Settings", "settings-icon"),
-      new SidebarItem("", "Logout", "exit-icon", ()=> this.logOut())
+      settingsItem,
+      logoutItem
     ]
   }
 
-  onItemClick(item: SidebarItem){
-    if(item.clickEvent){
+  onItemClick(item: SidebarItem) {
+    if (item.clickEvent) {
       item.clickEvent();
     }
 
@@ -54,9 +70,13 @@ export class SidebarComponent implements OnInit {
 }
 
 export class SidebarItem {
-  constructor(public route: string, public title, public iconClass, public clickEvent?:()=>void, public rightTemplate?: any) {
+  constructor(public route: string, public title, public iconClass) {
 
   }
+
+  public clickEvent?: () => void;
+  public rightTemplate?: any;
+  public visibleForLogged: boolean;
 
   public isSelected: boolean;
 }

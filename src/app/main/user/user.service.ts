@@ -31,6 +31,7 @@ export class UserService {
     if(localStorage.getItem(this.funkMapUserKey) != undefined){
       try{
         this.user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
+        console.log(this.user);
       }
       catch(ex){
         this.user = undefined;

@@ -1,8 +1,5 @@
 <side>
   <div class="main-search-container">
-      <div *ngFor="let item of items" class="search-item d-flex justify-content-between">
-        <search-musician [item]="item"></search-musician>
-        <span (click)="changeFavourite(item.login)" class="icon" [class.star-selected-icon]="item.isFavourite" [class.star-icon]="!item.isFavourite"></span>
-      </div>
+       <search-list [items]="items"></search-list>
   </div>
 </side>

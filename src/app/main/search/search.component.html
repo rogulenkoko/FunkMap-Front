@@ -5,10 +5,7 @@
       <input class="form-control" [(ngModel)]="search" />
     </div>
     <div class="search-items-container">
-      <div *ngFor="let item of items" class="search-item d-flex justify-content-between">
-        <search-musician *ngIf="item.type == 1" [item]="item"></search-musician>
-        <span *ngIf="userService.user" (click)="changeFavourite(item.login)" class="icon" [class.star-selected-icon]="item.isFavourite" [class.star-icon]="!item.isFavourite"></span>
-      </div>
+        <search-list [items]="items"></search-list>
     </div>
   </div>
 </side>

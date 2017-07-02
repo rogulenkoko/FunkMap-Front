@@ -16,26 +16,6 @@
     position: relative;
 }
 
-.search-item{
-    padding: 20px 0;
-    border-bottom: 1px solid #ececec;
-    font-size: 13px;
-    //cursor: pointer;
-    min-height: 95px;
-}
-
-.search-item:hover{
-    border-bottom: 1px solid $app-green;
-}
-
-.no-image{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #f7f7f7;
-    margin-right: 15px;
-}
-
 .search-input{
     border-bottom: 1px solid $app-green;
 }
@@ -45,14 +25,13 @@
     border-radius: 0;
 }
 
-.star-icon, .star-selected-icon{
-    width: 15px;
-    height: 15px;
-    background-size: 100% 100%;
-}
-
 .message{
     margin-top: 5%;
     color: $app-green;   
     cursor: pointer;
+}
+
+.property-title{
+    color: #b4b5bb;
+    margin-right: 5px;
 }

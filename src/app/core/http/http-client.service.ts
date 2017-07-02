@@ -13,7 +13,8 @@ export class HttpClient {
   private options: RequestOptions;
 
   constructor(private http: Http, private userService: UserService) {
-    this.initOptions(); 
+    this.initOptions();
+    this.updateOptions(); 
     this.userService.onUserChanged.subscribe(() => this.updateOptions());
   }
 
@@ -57,6 +58,7 @@ export class HttpClient {
 
   private updateOptions() {
     var token = this.userService.user ? this.userService.user.authData.token : "";
+    this.options.headers.delete("Authorization");
     this.options.headers.append("Authorization", `Bearer ${token}`);
   }
 

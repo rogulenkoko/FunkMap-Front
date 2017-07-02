@@ -1,0 +1,29 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/icons.scss";
+
+.search-item{
+    padding: 20px 0;
+    border-bottom: 1px solid #ececec;
+    font-size: 13px;
+    //cursor: pointer;
+    min-height: 95px;
+}
+
+.search-item:hover{
+    border-bottom: 1px solid $app-green;
+}
+
+.no-image{
+    border: 1px solid black;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f7f7f7;
+    margin-right: 15px;
+}
+
+.star-icon, .star-selected-icon{
+    width: 15px;
+    height: 15px;
+    background-size: 100% 100%;
+}

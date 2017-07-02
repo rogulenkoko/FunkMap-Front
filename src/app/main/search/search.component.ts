@@ -58,14 +58,4 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  private changeFavourite(login: string) {
-    var selected = this.items.find(x => x.login == login);
-    selected.isFavourite = !selected.isFavourite;
-    this.favouritesService.setFavourite(selected.login).subscribe(x => {
-      if (!x.success) {
-        selected.isFavourite = false;
-      }
-    });
-  }
-
 }
