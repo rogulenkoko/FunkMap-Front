@@ -1,6 +1,6 @@
 
 import { EntityType } from "app/main/map/models";
-import { InstrumentType } from "app/main/musician/models";
+import { InstrumentType, ExpirienceType, MusicStyle } from "app/main/musician/models";
 
 export class SearchItem {
     public login: string;
@@ -11,9 +11,12 @@ export class SearchItem {
     public longitude: number;
 
     public instrument: InstrumentType;
+    public expirience: ExpirienceType;
 
     public address: string;
     public website: string;
+
+    public styles: Array<MusicStyle>;
 
     //Клиентское
     public isFavourite: boolean;
@@ -30,6 +33,8 @@ export class SearchItem {
         result.longitude = data.Longitude;
         result.address = data.Address;
         result.website = data.Website;
+        result.expirience = data.Expirience;
+        result.styles = data.Styles;
         return result;
     }
     public static ToSearchItems(data: any): Array<SearchItem>{

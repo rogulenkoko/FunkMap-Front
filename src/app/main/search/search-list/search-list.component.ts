@@ -33,7 +33,6 @@ export class SearchListComponent implements OnInit {
 
   selectMarkerOnMap(item: SearchItem){
     var marker = new Marker(item.login,item.latitude, item.longitude,item.type);
-    console.log(marker);
     this.mapFilter.onOutItemsSelected.emit(marker);
   }
 

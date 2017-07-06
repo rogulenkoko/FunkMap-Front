@@ -9,6 +9,9 @@ import { CoreModule } from "app/core/core.module";
 import { SearchListComponent } from './search-list/search-list.component';
 import { MusicianModule } from "app/main/musician/musician.module";
 import { BandModule } from "app/main/band/band.module";
+import { ShopModule } from "app/main/shop/shop.module";
+import { StudioModule } from "app/main/studio/studio.module";
+import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
 
 @NgModule({
   imports: [
@@ -16,7 +19,10 @@ import { BandModule } from "app/main/band/band.module";
     ToolsModule,
     CoreModule,
     MusicianModule,
-    BandModule
+    BandModule,
+    ShopModule,
+    StudioModule,
+    RehearsalModule
   ],
   exports: [
     SearchComponent,

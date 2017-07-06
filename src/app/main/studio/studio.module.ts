@@ -6,14 +6,15 @@ import { StudioComponent } from "app/main/studio/studio.component";
 import { StudioService, StudioServiceHttp } from "app/main/studio/studio.service";
 import { StudioServiceStub } from "app/main/studio/studio.service.stub";
 import { environment } from "environments/environment";
+import { SearchStudioComponent } from './search-studio/search-studio.component';
 
 @NgModule({
   imports: [
     CoreModule,
     ToolsModule
   ],
-  declarations: [StudioComponent],
-  exports: [StudioComponent],
+  declarations: [StudioComponent, SearchStudioComponent],
+  exports: [StudioComponent, SearchStudioComponent],
   providers: [
     {
       provide: StudioService,
