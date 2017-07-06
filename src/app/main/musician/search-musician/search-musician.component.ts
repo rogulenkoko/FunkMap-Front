@@ -5,7 +5,7 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
 @Component({
   selector: 'search-musician',
   templateUrl: './search-musician.component.html',
-  styleUrls: ['./search-musician.component.scss', '../search.component.scss']
+  styleUrls: ['./search-musician.component.scss']
 })
 export class SearchMusicianComponent implements OnInit {
 

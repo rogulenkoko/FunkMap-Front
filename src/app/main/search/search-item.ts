@@ -12,6 +12,8 @@ export class SearchItem {
 
     public instrument: InstrumentType;
 
+    public address: string;
+    public website: string;
 
     //Клиентское
     public isFavourite: boolean;
@@ -26,6 +28,8 @@ export class SearchItem {
         result.type = data.Type;
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
+        result.address = data.Address;
+        result.website = data.Website;
         return result;
     }
     public static ToSearchItems(data: any): Array<SearchItem>{

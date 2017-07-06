@@ -7,17 +7,19 @@ import { MusicianServiceStub } from "./musician.service.stub";
 import { MusicianTypesProvider } from "./musician-types-provider";
 import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 import { ToolsModule } from "app/tools/tools.module";
+import { SearchMusicianComponent } from "app/main/musician/search-musician/search-musician.component";
 
 @NgModule({
   declarations: [
-    MusicianComponent
+    MusicianComponent,
+    SearchMusicianComponent
   ],
   imports: [
     CoreModule,
     YoutubePlayerMiniModule,
     ToolsModule
   ],
-  exports:[MusicianComponent],
+  exports:[MusicianComponent, SearchMusicianComponent],
   providers: [
     {
       provide: MusicianService,

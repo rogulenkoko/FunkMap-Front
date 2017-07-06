@@ -5,22 +5,24 @@ import { ToolsModule } from "app/tools/tools.module";
 import { SearchService, SearchServiceHttp } from "./search.service";
 import { SearchServiceStub } from "./search.service.stub";
 import { environment } from "environments/environment";
-import { SearchMusicianComponent } from "app/main/search/search-musician/search-musician.component";
 import { CoreModule } from "app/core/core.module";
 import { SearchListComponent } from './search-list/search-list.component';
+import { MusicianModule } from "app/main/musician/musician.module";
+import { BandModule } from "app/main/band/band.module";
 
 @NgModule({
   imports: [
     CommonModule,
     ToolsModule,
-    CoreModule
+    CoreModule,
+    MusicianModule,
+    BandModule
   ],
   exports: [
     SearchComponent,
-    SearchMusicianComponent,
     SearchListComponent
   ],
-  declarations: [SearchComponent, SearchMusicianComponent, SearchListComponent],
+  declarations: [SearchComponent, SearchListComponent],
   providers: [
      {
       provide: SearchService,
