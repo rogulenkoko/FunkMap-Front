@@ -1,0 +1,63 @@
+<side *ngIf="item">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <div *ngIf="!item.avatar" class="no-image d-flex justify-content-center align-items-center">
+        <img src="/assets/images/no-name.png" />
+      </div>
+      <div *ngIf="item.avatar" class="image-container">
+        <img src="{{avatarImage}}" />
+      </div>
+      <div class="name-container">
+        {{item.name}}
+      </div>
+    </div>
+
+
+    <div class="d-flex flex-column details-container">
+
+      <div *ngIf="expirience" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Expirience' | translate}}:</label>
+        <label class="d-flex property-value">{{typesProvider.expiriences.getValue(expirience) | translate}}</label>
+      </div>
+
+      <div *ngIf="address" class="d-flex flex-row">
+        <label class="property-title">{{'Address' | translate}}:</label>
+        <label class="d-flex property-value">{{address}}</label>
+      </div>
+
+      <div *ngIf="website" class="d-flex flex-row">
+        <label class="property-title">{{'Website' | translate}}:</label>
+        <a class="d-flex property-value" href="{{website}}">{{website}}</a>
+      </div>
+
+      <div *ngIf="styles" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Styles' | translate}}:</label>
+        <label class="d-flex property-value">
+            <span class="mr-2" *ngFor="let style of styles">
+              {{typesProvider.musicStyles.getValue(style)}}
+            </span>
+        </label>
+      </div>
+
+      <div *ngIf="description" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Description' | translate}}:</label>
+        <label class="d-flex property-value">
+            {{description}}
+        </label>
+      </div>
+
+      <div *ngIf="item.vkLink || item.facebookLink || item.youTubeLink" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_SocialNets' | translate}}:</label>
+        <a *ngIf="item.vkLink" class="icon-big vk-icon mr-2" href="{{item.vkLink}}"></a>
+        <a *ngIf="item.facebookLink" class="icon-big facebook-icon mr-2" href="{{item.facebookLink}}"></a>
+        <a *ngIf="item.youTubeLink" class="icon-big youtube-icon mr-2" href="{{item.youTubeLink}}"></a>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</side>

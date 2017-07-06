@@ -10,31 +10,25 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
   templateUrl: './band.component.html',
   styleUrls: ['./band.component.scss']
 })
-export class BandComponent implements OnInit, OnDestroy {
+export class BandComponent implements OnInit {
 
   private lastBandLogin: string;
   private band: BandPreview;
 
-  private subscription: Subscription;
 
   constructor(private bandService: BandService,
               private route: ActivatedRoute,
               private router: Router,
               private typesProvider: MusicianTypesProvider) {
-    this.subscription = new Subscription();
-    this.subscription.add(this.router.events.subscribe((value: NavigationEnd) => {
-      var pathParts = value.url.split('/');
-      if (!pathParts.find(x => x == "band")) return;
-      this.updateBand(pathParts[pathParts.length - 1]);
-    }));
+    
   }
 
   ngOnInit() {
+    this.route.params.subscribe(x=>{
+      this.updateBand(x["id"]);
+    });
   }
 
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
 
   private updateBand(login: string){
     if(this.lastBandLogin == login) return;

@@ -1,50 +1,11 @@
-<side *ngIf="musician">
-  <div class="d-flex flex-column justify-content-center align-items-center">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <div *ngIf="!musician.avatar" class="no-image d-flex justify-content-center align-items-center">
-        <img  src="/assets/images/no-name.png" />
-      </div>
-      <div *ngIf="musician.avatar" class="image-container">
-        <img src="{{avatarImage}}" />
-      </div>
-      <div class="name-container">
-        {{musician.name}}
-      </div>
-    </div>
+<entity-side *ngIf="musician"
+              [item]="musician"
+              [styles]="musician.styles"
+              [expirience]="musician.expirience"></entity-side>
 
-
-    <div class="d-flex flex-column details-container">
-
-      <div class="d-flex flex-row">
-        <label class="property-title">{{'Musician_Expirience' | translate}}:</label>
-        <label class="d-flex property-value">{{typesProvider.expiriences.getValue(musician.expirience) | translate}}</label>
-      </div>
-
-      <div *ngIf="musician.styles" class="d-flex flex-row">
-        <label class="property-title">{{'Musician_Styles' | translate}}:</label>
-        <label class="d-flex property-value">
-            <span class="mr-2" *ngFor="let style of musician.styles">
-              {{typesProvider.musicStyles.getValue(style)}}
-            </span>
-          </label>
-      </div>
-
-      <div *ngIf="musician.vkLink || musician.facebookLink || musician.youTubeLink" class="d-flex flex-row">
-        <label class="property-title">{{'Musician_SocialNets' | translate}}:</label>
-        <a *ngIf="musician.vkLink" class="icon-big vk-icon mr-2" href="https://vk.com/id30724049"></a>
-        <a *ngIf="musician.facebookLink" class="icon-big facebook-icon mr-2" href="https://www.facebook.com/"></a>
-        <a *ngIf="musician.youTubeLink" class="icon-big youtube-icon mr-2" href="https://www.youtube.com/user/Urgantshow"></a>
-      </div>
-
-      <!--<div  class="d-flex flex-row">
+ <!--<div  class="d-flex flex-row">
         <label class="property-title">Описание:</label>
         <label class="property-value">{{musician.description}}</label>
       </div>-->
       <!--todo вынести на отдельную страницу-->
        <!--<youtube-player [playerId]='"player"' [width]="200" [height]="100" [videoId]='"vntAEVjPBzQ"'> </youtube-player>-->
-    </div>
-
-
-
-  </div>
-</side>

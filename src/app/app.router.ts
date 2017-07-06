@@ -14,6 +14,7 @@ import { BandComponent } from './main/band/band.component';
 import { AvatarComponent } from './main/avatar/avatar.component';
 import { SearchComponent } from './main/search/search.component';
 import { FavouritesComponent } from "app/main/favourites/favourites.component";
+import { ShopComponent } from "app/main/shop/shop.component";
 
 const appRoutes: Routes = [
   {
@@ -28,6 +29,8 @@ const appRoutes: Routes = [
           { path: "musician/:id", component: MusicianComponent },
           { path: "band", component: BandComponent },
           { path: "band/:id", component: BandComponent },
+          { path: "shop", component: ShopComponent },
+          { path: "shop/:id", component: ShopComponent },
           { path: "avatar", component: AvatarComponent },
           { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
           { path: "success", component: SuccessComponent},

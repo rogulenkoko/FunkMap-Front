@@ -68,6 +68,8 @@
     "Musician": "Musician",
     "Shop":"Shop",
     "SocialNets": "Social nets",
+    "Address":"Address",
+    "Website":"Website",
 
     "Creation_Title":"New entity",
     "Creation_EntityType":"Entity type",

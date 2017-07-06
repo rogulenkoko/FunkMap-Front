@@ -6,11 +6,13 @@ import { RouterModule } from "@angular/router";
 import { SideComponent } from './side/side.component';
 import { CoreModule } from "app/core/core.module";
 import { DateSelectProvider } from "./date/date-select-provider.service";
+import { EntitySideComponent } from './entity-side/entity-side.component';
 
 @NgModule({
   declarations: [
     ModalComponent,
-    SideComponent
+    SideComponent,
+    EntitySideComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,9 @@ import { DateSelectProvider } from "./date/date-select-provider.service";
     BrowserModule,
     FormsModule,
     RouterModule,
-    SideComponent],
+    SideComponent,
+    EntitySideComponent
+    ],
   providers: [
     DateSelectProvider
   ]

@@ -26,6 +26,7 @@ import { AvatarComponent } from './main/avatar/avatar.component';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { SearchModule } from "app/main/search/search.module";
 import { FavouritesModule } from "app/main/favourites/favourites.module";
+import { ShopModule } from "app/main/shop/shop.module";
 
 
 
@@ -50,6 +51,7 @@ import { FavouritesModule } from "app/main/favourites/favourites.module";
     UserModule,
     CreationModule,
     BandModule,
+    ShopModule,
     SearchModule,
     ImageCropperModule,
     FavouritesModule

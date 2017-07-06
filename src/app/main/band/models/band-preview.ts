@@ -12,10 +12,11 @@ export class BandPreview extends BaseModel{
     public description: string;
 
     public static ToBandPreview(data: any): BandPreview{
-        var result = new BandPreview(data.Id, data.Name);
+        var result = new BandPreview(data.Login, data.Name);
         result.desiredInstruments = data.DesiredInstruments;
         result.musicians = data.Musicians;
         result.styles = data.Styles;
+        result.avatar = data.Avatar;
         result.description = data.Description;
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
