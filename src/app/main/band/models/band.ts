@@ -1,4 +1,4 @@
-import { InstrumentType } from "../musician/models"
+import { InstrumentType } from "../../musician/models"
 import { BaseModel } from "app/core";
 
 export class Band extends BaseModel{

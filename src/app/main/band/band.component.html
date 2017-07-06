@@ -2,7 +2,7 @@
 
   <div class="d-flex flex-column justify-content-center align-items-center">
     <div *ngIf="!band.avatar" class="no-image d-flex justify-content-center align-items-center">
-      <img src="/assets/images/noname.png" />
+      <img src="/assets/images/no-name.png" />
     </div>
     <div *ngIf="band.avatar" class="image-container">
       <img src="{{avatarImage}}" />
@@ -13,12 +13,29 @@
   </div>
 
   <div class="d-flex flex-column details-container">
-    <div class="d-flex flex-row">
-        <label class="property-title">{{'Музыканты' | translate}}:</label>
-        <div  class="d-flex property-value">
-          <a *ngFor="let musician of band.musicians" class="mr-1" [routerLink]="['/musician/' + musician]">{{musician}}</a>
-        </div>
+    <div *ngIf="band.styles" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Styles' | translate}}:</label>
+        <label class="d-flex property-value">
+            <span class="mr-2" *ngFor="let style of band.styles">
+              {{typesProvider.musicStyles.getValue(style)}}
+            </span>
+        </label>
+    </div>
+
+    <div *ngIf="band.description" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_Description' | translate}}:</label>
+        <label class="d-flex property-value">
+            {{band.description}}
+        </label>
+    </div>
+
+    <div *ngIf="band.vkLink || band.facebookLink || band.youTubeLink" class="d-flex flex-row">
+        <label class="property-title">{{'Musician_SocialNets' | translate}}:</label>
+        <a *ngIf="band.vkLink" class="icon-big vk-icon mr-2" href="{{band.vkLink}}"></a>
+        <a *ngIf="band.facebookLink" class="icon-big facebook-icon mr-2" href="https://www.facebook.com/"></a>
+        <a *ngIf="band.youTubeLink" class="icon-big youtube-icon mr-2" href="https://www.youtube.com/user/Urgantshow"></a>
       </div>
+
   </div>
 
 </side>

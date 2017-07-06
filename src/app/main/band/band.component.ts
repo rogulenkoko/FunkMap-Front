@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
-import { Band } from "./band";
+import { BandPreview } from "./models";
 import { BandService } from "./band.service";
 import { Subscription } from "rxjs/Subscription";
+import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 
 @Component({
   selector: 'app-band',
@@ -12,13 +13,14 @@ import { Subscription } from "rxjs/Subscription";
 export class BandComponent implements OnInit, OnDestroy {
 
   private lastBandLogin: string;
-  private band: Band;
+  private band: BandPreview;
 
   private subscription: Subscription;
 
   constructor(private bandService: BandService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private typesProvider: MusicianTypesProvider) {
     this.subscription = new Subscription();
     this.subscription.add(this.router.events.subscribe((value: NavigationEnd) => {
       var pathParts = value.url.split('/');

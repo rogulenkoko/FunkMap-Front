@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import { Band } from "./band";
+import { BandPreview } from "./models";
 import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 
@@ -9,7 +9,7 @@ export abstract class BandService {
 
   constructor() { }
 
-  abstract getBand(login: string): Observable<Band>;
+  abstract getBand(login: string): Observable<BandPreview>;
 
 }
 
@@ -20,8 +20,8 @@ export class BandServiceHttp extends BandService {
     super();
    }
 
-   getBand(id: string): Observable<Band>{
-     return this.http.get(`${ConfigurationProvider.apiUrl}band/get/${id}`).map(res=>Band.ToBand(res.json()));
+   getBand(id: string): Observable<BandPreview>{
+     return this.http.get(`${ConfigurationProvider.apiUrl}band/get/${id}`).map(res=>BandPreview.ToBandPreview(res.json()));
    }
 
 }
