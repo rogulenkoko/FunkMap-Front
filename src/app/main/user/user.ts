@@ -1,4 +1,5 @@
 import { AuthResponse } from "app/main/login/login-response";
+import { EntityType } from "app/main/map/models";
 
 export class User{
 
@@ -8,10 +9,4 @@ export class User{
 
     public authData: AuthResponse;
 
-}
-
-export enum EntityType{
-    Musician = 1,
-    Shop = 2,
-    Group = 3
 }

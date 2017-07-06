@@ -18,13 +18,11 @@ export class FavouritesComponent implements OnInit {
   }
 
   private refresh(){
-    this.favouritesService.getFavouritesLogins().subscribe(logins=>{
-      this.favouritesService.getFavourites(logins).subscribe(items=>{
+      this.favouritesService.getFavourites().subscribe(items=>{
         this.items = items;
         this.items.forEach(item => {
           item.isFavourite = true;
         });
-      })
     });
   }
 

@@ -17,6 +17,7 @@ import { FavouritesComponent } from "app/main/favourites/favourites.component";
 import { ShopComponent } from "app/main/shop/shop.component";
 import { StudioComponent } from "app/main/studio/studio.component";
 import { RehearsalComponent } from "app/main/rehearsal/rehearsal.component";
+import { UserEntitiesComponent } from "app/main/user/user-entities/user-entities.component";
 
 const appRoutes: Routes = [
   {
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
           { path: "login", component: LoginComponent },
           { path: "signup", component: RegistrationComponent },
           { path: "settings", component: SettingsComponent },
+          { path: "profile", component: UserEntitiesComponent },
           { path: "musician", component: MusicianComponent },
           { path: "musician/:id", component: MusicianComponent },
           { path: "band", component: BandComponent },
@@ -43,7 +45,6 @@ const appRoutes: Routes = [
           { path: "checkmap", component: MapCreationComponent },
           { path: "search", component: SearchComponent },
           { path: "favorites", component: FavouritesComponent }
-
         ]
       },
 

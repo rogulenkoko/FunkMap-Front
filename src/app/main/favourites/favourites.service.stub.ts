@@ -13,7 +13,7 @@ export class FavouritesServiceStub extends FavouritesService {
     super();
   }
 
-  getFavourites(logins: Array<string>): Observable<Array<SearchItem>> {
+  getFavourites(): Observable<Array<SearchItem>> {
     var s1 = new SearchItem();
     s1.login = "test";
     s1.title = "Константинопольский Иван";
@@ -30,10 +30,6 @@ export class FavouritesServiceStub extends FavouritesService {
 
   setFavourite(login: string): Observable<BaseResponse> {
     return Observable.of(new BaseResponse(true));
-  };
-
-  getFavouritesLogins(): Observable<Array<string>> {
-    return Observable.of(["test"]);
   };
 
 }

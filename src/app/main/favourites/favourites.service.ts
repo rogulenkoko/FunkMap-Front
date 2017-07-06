@@ -4,17 +4,15 @@ import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
-
+import 'rxjs/add/operator/switchMap';
 @Injectable()
 export abstract class FavouritesService {
 
   constructor() { }
 
-  abstract getFavourites(logins: Array<string>): Observable<Array<SearchItem>>;
+  abstract getFavourites(): Observable<Array<SearchItem>>;
 
   abstract setFavourite(login: string): Observable<BaseResponse>;
-
-  abstract getFavouritesLogins(): Observable<Array<string>>;
 
 }
 
@@ -25,15 +23,15 @@ export class FavouritesServiceHttp extends FavouritesService {
     super();
   }
 
-  getFavourites(logins: Array<string>): Observable<Array<SearchItem>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
+  getFavourites(): Observable<Array<SearchItem>> {
+    return this.http.get(`${ConfigurationProvider.apiUrl}favourites/logins`).switchMap(x=>{
+      var logins = x.json();
+      return this.http.post(`${ConfigurationProvider.apiUrl}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
+    });
   }
 
   setFavourite(login: string): Observable<BaseResponse> {
     return this.http.get(`${ConfigurationProvider.apiUrl}favourites/setfavourite/${login}`).map(x=>BaseResponse.ToBaseResponse(x.json()));
-  }
-  getFavouritesLogins(): Observable<string[]> {
-    return this.http.get(`${ConfigurationProvider.apiUrl}favourites/logins`).map(x=>x.json());
   }
 
 }

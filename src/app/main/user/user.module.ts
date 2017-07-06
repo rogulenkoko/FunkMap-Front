@@ -4,15 +4,21 @@ import { UserService } from "./user.service";
 import { CoreModule } from "app/core/core.module";
 import { UserDataService, UserDataServiceHttp } from "./user-data.service";
 import { UserDataServiceStub } from "./user-data.service.stub";
+import { UserEntitiesComponent } from "app/main/user/user-entities/user-entities.component";
+import { ToolsModule } from "app/tools/tools.module";
+import { SearchModule } from "app/main/search/search.module";
 
 
 @NgModule({
   declarations: [
+    UserEntitiesComponent
   ],
   imports: [
-    CoreModule
+    CoreModule,
+    ToolsModule,
+    SearchModule
   ],
-  exports:[],
+  exports:[UserEntitiesComponent],
   providers: [
       UserService,
       {

@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     var searchItem = new SidebarItem("search", "Search", "search-icon");
 
-    var personItem = new SidebarItem("", "Person", "person-icon");
+    var profileItem = new SidebarItem("profile", "Profile", "person-icon");
 
     var messagesItem = new SidebarItem("", "Messages", "messenger-icon");
     messagesItem.rightTemplate = this.messageCountTemplate;
@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit {
 
     this.topItems = [
       searchItem,
-      personItem,
+      profileItem,
       messagesItem,
       favouriteItem
     ]
