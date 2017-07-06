@@ -28,9 +28,10 @@ export class MarkerFactory {
         case EntityType.Musician: this.router.navigate(["/musician/" + point.login]); break;
         case EntityType.Shop: this.router.navigate(["/shop/" + point.login]); break;
         case EntityType.Band: this.router.navigate(["/band/" + point.login]); break;
+        case EntityType.RehearsalPoint: this.router.navigate(["/rehearsal/" + point.login]); break;
+        case EntityType.Studio: this.router.navigate(["/studio/" + point.login]); break;
       }
     })
-     console.log(marker);
     return marker;
   }
 

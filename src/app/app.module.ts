@@ -27,6 +27,7 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 import { SearchModule } from "app/main/search/search.module";
 import { FavouritesModule } from "app/main/favourites/favourites.module";
 import { ShopModule } from "app/main/shop/shop.module";
+import { StudioModule } from "app/main/studio/studio.module";
 
 
 
@@ -52,6 +53,7 @@ import { ShopModule } from "app/main/shop/shop.module";
     CreationModule,
     BandModule,
     ShopModule,
+    StudioModule,
     SearchModule,
     ImageCropperModule,
     FavouritesModule

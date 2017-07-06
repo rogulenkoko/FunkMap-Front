@@ -30,6 +30,10 @@ export class IconProvider {
         return this.getShopIcon();
       case EntityType.Band:
         return this.getBandIcon();
+      case EntityType.RehearsalPoint:
+        return this.getRehearsalPointIcon();
+      case EntityType.Studio:
+        return this.getStudioIcon();
     }
   }
 
@@ -41,8 +45,16 @@ export class IconProvider {
     return "assets/images/markers/shop.png";
   }
 
-  private getBandIcon(): string{
+  private getBandIcon(): string {
     return "assets/images/markers/band.png";
+  }
+
+  private getRehearsalPointIcon(): string {
+    return "assets/images/markers/rehearsal.png";
+  }
+
+  private getStudioIcon(): string {
+    return "assets/images/markers/studio.png";
   }
 
 }
