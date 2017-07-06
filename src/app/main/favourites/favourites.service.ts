@@ -33,7 +33,6 @@ export class FavouritesServiceHttp extends FavouritesService {
     return this.http.get(`${ConfigurationProvider.apiUrl}favourites/setfavourite/${login}`).map(x=>BaseResponse.ToBaseResponse(x.json()));
   }
   getFavouritesLogins(): Observable<string[]> {
-    console.log(this.http);
     return this.http.get(`${ConfigurationProvider.apiUrl}favourites/logins`).map(x=>x.json());
   }
 

@@ -1,10 +1,10 @@
 <div *ngFor="let item of items" class="search-item d-flex justify-content-between">
   <div class="d-flex flex-row">
-    <div class="no-image"></div>
+    <div class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.png/"></div>
     <search-musician *ngIf="item.type == 1" [item]="item"></search-musician>
   </div>
   <div class="d-flex flex-row">
-    <span class="fa fa-globe mr-2"></span>
+    <span (click)="selectMarkerOnMap(item)" class="fa fa-globe mr-2"></span>
     <span *ngIf="userService.user" class="fa fa-envelope-o mr-2"></span>
     <span *ngIf="userService.user" (click)="changeFavourite(item.login)" class="icon" [class.star-selected-icon]="item.isFavourite"
       [class.star-icon]="!item.isFavourite"></span>

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router"
 import { MusicianService } from "./musician.service";
-import { Musician } from "./models";
+import { MusicianPreview } from "./models";
 import { MusicianTypesProvider } from "./musician-types-provider";
 import { Subscription } from "rxjs/Subscription";
 
@@ -13,7 +13,7 @@ import { Subscription } from "rxjs/Subscription";
 export class MusicianComponent implements OnInit,OnDestroy {
 
   private lastMusicianLogin: string;
-  private musician: Musician;
+  private musician: MusicianPreview;
 
   private subscription: Subscription;
 
@@ -46,7 +46,7 @@ export class MusicianComponent implements OnInit,OnDestroy {
     if(this.lastMusicianLogin == login) return;
     this.lastMusicianLogin = login;
     if(this.musician && login == this.musician.login) return;
-    this.musicianService.getMusician(login).subscribe(musician=>{
+    this.musicianService.getMusicianPreview(login).subscribe(musician=>{
       this.musician = musician;
       this.avatarImage = "data:image/png;base64," + musician.avatar;
     });

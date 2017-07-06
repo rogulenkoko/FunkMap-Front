@@ -9,6 +9,11 @@
     "Sex_Female": "Female",
     "Sex_Male": "Male",
 
+    "Expirience_Advanced": "Advanced",
+    "Expirience_SuperStar": "Super star",
+    "Expirience_Middle" : "Middle",
+    "Expirience_Begginer": "Begginer",
+
     "Musician_Name":"Full name",
     "Musician_BirthDate":"Date of birth",
     "Musician_Sex":"Sex",

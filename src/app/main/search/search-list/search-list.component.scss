@@ -14,12 +14,17 @@
 }
 
 .no-image{
-    border: 1px solid black;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background-color: #f7f7f7;
     margin-right: 15px;
+    img{
+        width: 30px;
+        height: 30px;
+    }
+    
+
 }
 
 .star-icon, .star-selected-icon{

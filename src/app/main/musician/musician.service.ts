@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http"
 import { Observable } from "rxjs/Observable";
-import { Musician, MusicStyle } from "./models";
+import { Musician, MusicStyle, MusicianPreview } from "./models";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 
 @Injectable()
@@ -9,7 +9,7 @@ export abstract class MusicianService {
 
   constructor() { }
 
-  abstract getMusician(id: string): Observable<Musician>;
+  abstract getMusicianPreview(id: string): Observable<Musician>;
 
 }
 
@@ -21,8 +21,8 @@ export class MusicianServiceHttp extends MusicianService {
    }
 
 
-   getMusician(id: string): Observable<Musician>{
-     return this.http.get(ConfigurationProvider.apiUrl + "musician/get/" + id).map(x=>Musician.ToMusician(x.json()));
+   getMusicianPreview(id: string): Observable<MusicianPreview>{
+     return this.http.get(ConfigurationProvider.apiUrl + "musician/get/" + id).map(x=>MusicianPreview.ToMusicianPreview(x.json()));
    }
 
 }

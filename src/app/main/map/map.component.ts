@@ -40,7 +40,8 @@ export class MapComponent implements OnInit {
       if (this.mapFilter.isAllShown) this.getAll();
       else this.getNearest();
     })
-    this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event))
+    this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
+    this.mapFilter.onOutItemsSelected.subscribe((marker)=>this.selectMarker(marker))
   }
 
   ngOnInit() {
@@ -155,6 +156,12 @@ export class MapComponent implements OnInit {
     })
     this.map.addLayer(result);
     return result;
+  }
+
+  private selectMarker(point: Marker){
+    console.log(point);
+    var markerBounds = L.latLngBounds([[point.lat, point.lng]]).pad(20);
+    this.map.fitBounds(markerBounds);
   }
 
 

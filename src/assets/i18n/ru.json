@@ -8,6 +8,11 @@
     "Sex_Female": "Женский",
     "Sex_Male": "Мужской",
     
+    "Expirience_Advanced": "Продвинутый",
+    "Expirience_SuperStar": "Суперзвезда",
+    "Expirience_Middle" : "Средний",
+    "Expirience_Begginer": "Начинающий",
+
     "Musician_Name":"ФИО",
     "Musician_BirthDate":"Дата рождения",
     "Musician_Sex":"Пол",

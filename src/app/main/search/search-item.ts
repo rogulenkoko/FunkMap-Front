@@ -7,6 +7,8 @@ export class SearchItem {
     public title: string;
     public image: string;
     public type: EntityType;
+    public latitude: number;
+    public longitude: number;
 
     public instrument: InstrumentType;
 
@@ -22,6 +24,8 @@ export class SearchItem {
         result.image = data.Avatar;
         result.instrument = data.Instrument;
         result.type = data.Type;
+        result.latitude = data.Latitude;
+        result.longitude = data.Longitude;
         return result;
     }
     public static ToSearchItems(data: any): Array<SearchItem>{

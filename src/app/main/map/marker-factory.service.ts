@@ -12,7 +12,9 @@ export class MarkerFactory {
 
   public getMarker(point: Marker): L.Marker {
     point.iconUrl = this.iconProvider.getIcon(point);
-    var marker = L.marker(new L.LatLng(point.lat, point.lng), {
+   
+    var marker = L.marker(new L.LatLng(point.lat, point.lng),<any>{
+      login: point.login,
       icon: new L.DivIcon({
         html:`
           <div class="icon-image-container d-flex align-items-center justify-content-center">
@@ -28,12 +30,13 @@ export class MarkerFactory {
         case EntityType.Band: this.router.navigate(["/band/" + point.login]); break;
       }
     })
+     console.log(marker);
     return marker;
   }
 
   public getCreationMarker(point: Marker): L.Marker{
     point.iconUrl = this.iconProvider.getIcon(point);
-    var marker = L.marker(new L.LatLng(point.lat, point.lng), {
+    var marker = L.marker(new L.LatLng(point.lat, point.lng),{
       icon: new L.DivIcon({
         html:`
           <div class="creation-marker-container">

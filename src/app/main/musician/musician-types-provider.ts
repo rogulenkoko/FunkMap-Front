@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import { Musician, MusicStyle, Sex } from "./models";
+import { Musician, MusicStyle, Sex, ExpirienceType } from "./models";
 import { Dictionary } from "typescript-collections";
 import { InstrumentType } from "app/main/musician/models/musician";
 
@@ -10,11 +10,13 @@ export class MusicianTypesProvider {
     public musicStyles: Dictionary<MusicStyle, string>;
     public sexTypes: Dictionary<Sex, string>;
     public instruments: Dictionary<InstrumentType, string>;
+    public expiriences: Dictionary<ExpirienceType, string>;
 
     constructor() {
         this.initMusicStyles();
         this.initSexTypes();
         this.initInstruments();
+        this.initExpirience();
      }
 
      private initMusicStyles(){
@@ -38,6 +40,14 @@ export class MusicianTypesProvider {
         this.instruments.setValue(InstrumentType.Brass, "Brass");
         this.instruments.setValue(InstrumentType.Keyboard, "Keyboard");
         this.instruments.setValue(InstrumentType.Guitar, "Guitar");
+     }
+
+     private initExpirience(){
+         this.expiriences = new Dictionary<ExpirienceType, string>();
+         this.expiriences.setValue(ExpirienceType.Advanced, "Expirience_Advanced");
+         this.expiriences.setValue(ExpirienceType.SuperStar, "Expirience_SuperStar");
+         this.expiriences.setValue(ExpirienceType.Middle, "Expirience_Middle");
+         this.expiriences.setValue(ExpirienceType.Begginer, "Expirience_Begginer");
      }
 
 

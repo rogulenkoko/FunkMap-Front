@@ -15,7 +15,7 @@ export class Musician extends BaseModel{
     public sex: Sex;
     public birthDate: Date;
     public years: number;
-    public expirience: number;
+    public expirience: ExpirienceType;
     public instrument: InstrumentType;
 
     public static ToMusician(data: any): Musician{
@@ -52,4 +52,12 @@ export enum InstrumentType{
     Brass = 4,
     Guitar = 5,
     Keyboard = 6
+}
+
+export enum ExpirienceType{
+    None = 0,
+    Begginer = 1,
+    Middle = 2,
+    Advanced = 3,
+    SuperStar = 4
 }
