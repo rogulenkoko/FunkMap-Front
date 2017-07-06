@@ -28,6 +28,7 @@ import { SearchModule } from "app/main/search/search.module";
 import { FavouritesModule } from "app/main/favourites/favourites.module";
 import { ShopModule } from "app/main/shop/shop.module";
 import { StudioModule } from "app/main/studio/studio.module";
+import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
 
 
 
@@ -54,6 +55,7 @@ import { StudioModule } from "app/main/studio/studio.module";
     BandModule,
     ShopModule,
     StudioModule,
+    RehearsalModule,
     SearchModule,
     ImageCropperModule,
     FavouritesModule

@@ -16,6 +16,7 @@ import { SearchComponent } from './main/search/search.component';
 import { FavouritesComponent } from "app/main/favourites/favourites.component";
 import { ShopComponent } from "app/main/shop/shop.component";
 import { StudioComponent } from "app/main/studio/studio.component";
+import { RehearsalComponent } from "app/main/rehearsal/rehearsal.component";
 
 const appRoutes: Routes = [
   {
@@ -34,6 +35,8 @@ const appRoutes: Routes = [
           { path: "shop/:id", component: ShopComponent },
           { path: "studio", component: StudioComponent },
           { path: "studio/:id", component: StudioComponent },
+          { path: "rehearsal", component: RehearsalComponent },
+          { path: "rehearsal/:id", component: RehearsalComponent },
           { path: "avatar", component: AvatarComponent },
           { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
           { path: "success", component: SuccessComponent},
