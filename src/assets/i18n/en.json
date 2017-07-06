@@ -81,5 +81,6 @@
    
     "VideoLink":"Video (link)",
 
-    "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon"
+    "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon",
+    "Search_NoItems":"Results not found"
 }
