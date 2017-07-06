@@ -79,5 +79,7 @@
     "Creation_UseCurrent":"Use the current",
     "Creation_MapQustion":"Do you want to use the current location or specify it manually",
    
-    "VideoLink":"Video (link)"
+    "VideoLink":"Video (link)",
+
+    "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon"
 }
