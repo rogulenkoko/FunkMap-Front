@@ -1,6 +1,11 @@
 @import "src/app/tools/side/side.scss";
 @import "src/assets/styles/icons.scss";
 
+.main-entity-side-container{
+    padding-top: 48px;
+    padding-left: 16px;
+}
+
 .property-value{
     font-size: 14px;
     max-width: 50%;

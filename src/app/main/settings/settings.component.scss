@@ -1,5 +1,11 @@
 @import "src/assets/styles/colors.scss";
 
+.main-settings-container{
+    padding-top: 35px;
+    padding-left: 25px;
+    padding-right: 22px;
+}
+
 label{
     color:  $app-grey
 }

@@ -2,7 +2,8 @@
   <!--(mouseover)="selectMarkerOnMap(item)"-->
   <div class="d-flex flex-row search-item-content">
     <div class="image-container">
-       <div class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.png/"></div>
+       <div *ngIf="!item.image" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.png/"></div>
+       <img *ngIf="item.image" src="data:image/png;base64,{{item.image}}"/>
     </div>
    
     <search-musician *ngIf="item.type == 1" [item]="item"></search-musician>

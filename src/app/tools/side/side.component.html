@@ -4,11 +4,11 @@
       <span [routerLink]="['/']" class="icon icon-close"></span>
   </div>
 
-  <div class="d-flex title-container" 
+  <div *ngIf="title" class="d-flex title-container" 
       [class.title-container-colored]="title" 
       [class.justify-content-end]="!title" 
       [class.justify-content-between]="title">
-    <span *ngIf="title" class="main-side-title">{{title | translate}}</span>
+    <span  class="main-side-title">{{title | translate}}</span>
     
   </div>
 
