@@ -29,4 +29,8 @@ export class SearchServiceStub extends SearchService{
      return Observable.of([s1, s2]);
    }
 
+   getFiltered(): Observable<Array<SearchItem>> {
+    return this.getNearest(null);
+  }
+
 }

@@ -13,8 +13,6 @@ import { SearchFilterService } from "app/main/search/search-filter/search-filter
 })
 export class SearchFilterComponent implements OnInit {
 
-  private selectedEntity: Entity;
-
   private availableEntities: Array<Entity>;
 
   private currenSelectedStyle: MusicStyle;
@@ -23,7 +21,7 @@ export class SearchFilterComponent implements OnInit {
   private currenSelectedInstrument: InstrumentType;
   private instruments: Dictionary<InstrumentType, string>;
 
-  private selectedExpirience: ExpirienceType;
+  
 
   constructor(private entityTypeProvider: EntityTypeProvider,
               private musicianTypesProvider: MusicianTypesProvider,
@@ -44,7 +42,7 @@ export class SearchFilterComponent implements OnInit {
   ngOnInit() {
     var allEntity = [new Entity(0,"All")];
     this.availableEntities = allEntity.concat(this.entityTypeProvider.availableEntities);
-    this.selectedEntity = this.availableEntities[0];
+    this.searchFilterService.selectedEntity = this.availableEntities[0];
   }
 
   private onEntityChange(selectedEntity: Entity){
@@ -54,6 +52,8 @@ export class SearchFilterComponent implements OnInit {
     this.searchFilterService.styles.push(this.currenSelectedStyle);
     this.styles.remove(this.currenSelectedStyle);
     this.currenSelectedStyle = undefined;
+
+    this.searchFilterService.onFilterChanged.emit();
   }
 
   removeStyle(musicianStyle:MusicStyle){

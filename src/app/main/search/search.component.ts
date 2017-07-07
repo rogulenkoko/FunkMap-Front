@@ -6,6 +6,7 @@ import { NearestRequest } from "app/main/map/models";
 import { UserDataService } from "app/main/user/user-data.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { FullLocationRequest } from "app/main/search/search-location-request";
+import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 
 @Component({
   selector: 'app-search',
@@ -16,14 +17,14 @@ export class SearchComponent implements OnInit {
 
   private items: Array<SearchItem>;
 
-  private search: string;
-
   private isFilterEnabled: boolean = true;
 
   constructor(private searchService: SearchService,
     private userService: UserService,
-    private favouritesService: FavouritesService) {
+    private favouritesService: FavouritesService,
+    private filterService: SearchFilterService) {
     this.items = [];
+    this.filterService.onFilterChanged.subscribe(()=>this.refresh());
   }
 
   ngOnInit() {
@@ -34,10 +35,21 @@ export class SearchComponent implements OnInit {
     var request = new FullLocationRequest(this.userService.latitude, this.userService.longitude, 2);
     request.skip = 0;
     request.take = 10;
-    this.searchService.getNearest(request).subscribe(items => {
-      this.items = items;
-      if(this.userService.user) this.getFavourites();
-    });
+
+    if(this.isFilterEnabled){
+      this.searchService.getFiltered().subscribe(items=>{
+        this.onItemsLoaded(items);
+      })
+    } else {
+      this.searchService.getNearest(request).subscribe(items => {
+        this.onItemsLoaded(items);
+      });
+    }
+  }
+
+  private onItemsLoaded(items: Array<SearchItem>){
+    this.items = items;
+    if(this.userService.user) this.getFavourites();
   }
 
   private getFavourites() {
