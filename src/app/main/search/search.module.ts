@@ -12,6 +12,8 @@ import { BandModule } from "app/main/band/band.module";
 import { ShopModule } from "app/main/shop/shop.module";
 import { StudioModule } from "app/main/studio/studio.module";
 import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
+import { SearchFilterComponent } from './search-filter/search-filter.component';
+import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 
 @NgModule({
   imports: [
@@ -22,18 +24,19 @@ import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
     BandModule,
     ShopModule,
     StudioModule,
-    RehearsalModule
+    RehearsalModule,
   ],
   exports: [
     SearchComponent,
     SearchListComponent
   ],
-  declarations: [SearchComponent, SearchListComponent],
+  declarations: [SearchComponent, SearchListComponent, SearchFilterComponent],
   providers: [
      {
       provide: SearchService,
       useClass: environment.production ? SearchServiceHttp : SearchServiceStub
-    }
+    },
+    SearchFilterService
   ]
 })
 export class SearchModule { }

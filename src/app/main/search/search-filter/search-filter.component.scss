@@ -1,0 +1,41 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/icons.scss";
+
+.filter-main-container{
+    background: #f7f7f7;
+    padding: 12px 25px;
+    .filter-container{
+        width: 100%;
+        
+        .filter-label{
+            font-size: 13px;
+            width: 220px !important;
+        }
+
+        .filter-control{
+            border: 1px solid black;
+        }
+    }
+
+    .separator{
+        height: 32px;
+    }
+
+    .separator-mini{
+        height: 16px;
+    }
+
+    .selected-styles-container{
+        margin-left: 140px;
+        margin-top: 5px;
+        font-size: 13px;
+        flex-wrap: wrap;
+    }
+
+    .selected-instruments-container{
+        margin-left: 140px;
+        margin-top: 5px;
+        font-size: 13px;
+        flex-wrap: wrap;
+    }
+}

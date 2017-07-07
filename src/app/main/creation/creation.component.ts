@@ -5,6 +5,8 @@ import { DateSelectProvider } from "app/tools/date/date-select-provider.service"
 import { MusicianTypesProvider } from "../musician/musician-types-provider";
 import { EntityType } from "../map/models";
 import { CreationService } from "./creation.service";
+import { Entity } from "app/tools/models/entity";
+import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 
 @Component({
   selector: 'app-creation',
@@ -14,16 +16,14 @@ import { CreationService } from "./creation.service";
 
 export class CreationComponent implements OnInit {
 
-  private availableEntities: Array<Entity>;
+  
   private selectedEntity: Entity;
 
   constructor(private creationService: CreationService,
-              private router: Router) {
-    this.availableEntities = [
-      new Entity(EntityType.Musician, "Musician"),
-      new Entity(EntityType.Shop, "Shop"),
-    ];
-    this.selectedEntity = this.availableEntities[0];
+              private router: Router,
+              private entityTypeProvider: EntityTypeProvider) {
+    
+    this.selectedEntity = this.entityTypeProvider.availableEntities[0];
    }
 
   ngOnInit(){
@@ -32,11 +32,6 @@ export class CreationComponent implements OnInit {
   save(){
     this.router.navigate(['/checkmap']);
   }
-
 }
 
-export class Entity{
-  constructor(public type: EntityType, public title: string){
 
-  }
-}

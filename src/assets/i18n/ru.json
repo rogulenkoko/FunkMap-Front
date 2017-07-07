@@ -67,6 +67,9 @@
     "Logout":"Выход",
     "Musician": "Музыкант",
     "Shop":"Магазин",
+    "RehearsalPoint":"Репитиционная точка",
+    "Studio":"Студия",
+    "Band":"Группа",
 
     "Creation_EntityType":"Тип сущности",
     "Creation_Login":"Логин",

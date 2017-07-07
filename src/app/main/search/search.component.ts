@@ -18,6 +18,8 @@ export class SearchComponent implements OnInit {
 
   private search: string;
 
+  private isFilterEnabled: boolean = true;
+
   constructor(private searchService: SearchService,
     private userService: UserService,
     private favouritesService: FavouritesService) {
@@ -39,9 +41,9 @@ export class SearchComponent implements OnInit {
   }
 
   private getFavourites() {
-    this.favouritesService.getFavouritesLogins().subscribe(favourites => {
+    this.favouritesService.getFavourites().subscribe(favourites => {
       this.items.forEach(item => {
-        if (favourites.find(x => x == item.login)) {
+        if (favourites.find(x => x.login == item.login)) {
           item.isFavourite = true;
         }
       });
@@ -56,6 +58,10 @@ export class SearchComponent implements OnInit {
       this.items = this.items.concat(items);
       if(this.userService.user) this.getFavourites();
     });
+  }
+
+  private enableFilter(){
+    this.isFilterEnabled = !this.isFilterEnabled;
   }
 
 }

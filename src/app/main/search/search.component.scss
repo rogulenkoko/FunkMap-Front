@@ -6,23 +6,27 @@
 }
 
 .main-search-container{
-    padding-left: 15px;
     max-height: 100%;
-    margin-top: -35px;
     overflow-y: auto;
+    margin-top: 6px; 
 }
 
 .search-items-container{
     position: relative;
 }
 
-.search-input{
-    border-bottom: 1px solid $app-green;
+.search-text-container{
+    border-bottom: 1px solid #ececec;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 8px;
+    .form-control{
+        border: none !important;
+    }
 }
 
-.form-control{
-    border: none;
-    border-radius: 0;
+.filter-text{
+    font-size: 13px;
 }
 
 .message{
@@ -31,8 +35,13 @@
     cursor: pointer;
 }
 
-
-
 .no-items-message-container{
     padding: 20px;
+}
+
+.filter-line{
+    padding-top: 15px;
+    padding-left: 25px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }

@@ -1,9 +1,18 @@
 <side>
   <div class="main-search-container">
-    <div class="search-input d-flex flex-row align-items-center">
-      <span class="icon icon-middle search-icon"></span>
-      <input class="form-control" [(ngModel)]="search" />
+    <div class="search-text-container">
+      <div class="search-input d-flex flex-row align-items-center">
+        <span class="icon icon-middle search-icon mr-2"></span>
+        <input class="form-control" [(ngModel)]="search" />
+      </div>
     </div>
+    
+    <div class="filter-line d-flex justify-content-between">
+      <span (click)="enableFilter()" class="icon icon-middle search-icon mr-2"></span>
+      <span class="filter-text">Сбросить фильтр</span>
+    </div>
+    <search-filter *ngIf="isFilterEnabled"></search-filter>
+
     <div class="search-items-container">
       <search-list [items]="items"></search-list>
       <div *ngIf="!items || items.length == 0" class="no-items-message-container d-flex flex-row justify-content-center">

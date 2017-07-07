@@ -7,6 +7,8 @@ import { SideComponent } from './side/side.component';
 import { CoreModule } from "app/core/core.module";
 import { DateSelectProvider } from "./date/date-select-provider.service";
 import { EntitySideComponent } from './entity-side/entity-side.component';
+import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { EntitySideComponent } from './entity-side/entity-side.component';
     EntitySideComponent
     ],
   providers: [
-    DateSelectProvider
+    DateSelectProvider,
+    EntityTypeProvider
   ]
 })
 export class ToolsModule { }

@@ -1,0 +1,53 @@
+<div class="filter-main-container d-flex flex-column">
+  <div class="d-flex flex-row align-items-baseline filter-container">
+    <label class="filter-label">Cущность:</label>
+    <select class="filter-control" placeholder="YouTube" [(ngModel)]="selectedEntity" class="form-control secondary">
+        <option *ngFor="let entity of availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
+      </select>
+  </div>
+  
+  <div *ngIf="selectedEntity.type == 1" class="separator"></div>
+
+  <ng-container *ngIf="selectedEntity.type == 1">
+    <div class="d-flex flex-row align-items-baseline filter-container">
+      <label class="filter-label">Стили:</label>
+      <select [(ngModel)]="currenSelectedStyle" class="form-control" (ngModelChange)="onStyleChanged()">
+          <option *ngFor="let style of styles.keys()" [ngValue]="style">{{musicianTypesProvider.musicStyles.getValue(style)}}</option>
+      </select>
+    </div>
+    <div class="d-flex flex-row selected-styles-container">
+      <div *ngFor="let musicianStyle of searchFilterService.styles" class="musician-style d-flex align-items-center mr-3">
+        <div (click)="removeStyle(musicianStyle)" class="icon icon-close-red mr-2"></div>
+        <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle)}}</span>
+      </div>
+    </div>
+    <div class="separator-mini"></div>
+  </ng-container>
+  
+
+  <ng-container *ngIf="selectedEntity.type == 1">
+    <div class="d-flex flex-row align-items-baseline filter-container">
+      <label class="filter-label">Инструменты:</label>
+      <select [(ngModel)]="currenSelectedInstrument" class="form-control" (ngModelChange)="onInstrumentChanged()">
+          <option *ngFor="let instrument of instruments.keys()" [ngValue]="instrument">{{musicianTypesProvider.instruments.getValue(instrument)}}</option>
+      </select>
+    </div>
+    <div class="d-flex flex-row selected-instruments-container">
+      <div *ngFor="let instrument of searchFilterService.instruments" class="musician-style d-flex align-items-center mr-3">
+        <div (click)="removeInstrument(instrument)" class="icon icon-close-red mr-2"></div>
+        <span>{{musicianTypesProvider.instruments.getValue(instrument)}}</span>
+      </div>
+    </div>
+     <div class="separator-mini"></div>
+  </ng-container>
+ 
+
+  <ng-container *ngIf="selectedEntity.type == 1">
+    <div class="d-flex flex-row align-items-baseline filter-container">
+      <label class="filter-label">Уровень владения:</label>
+      <select [(ngModel)]="selectedExpirience" class="form-control">
+          <option *ngFor="let expirience of musicianTypesProvider.expiriences.keys()" [ngValue]="selectedExpirience">{{musicianTypesProvider.expiriences.getValue(expirience) | translate}}</option>
+      </select>
+    </div>
+  </ng-container>
+</div>
