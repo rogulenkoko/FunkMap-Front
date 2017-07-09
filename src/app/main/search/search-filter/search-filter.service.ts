@@ -11,6 +11,7 @@ import 'rxjs/add/operator/debounceTime';
 @Injectable()
 export class SearchFilterService {
 
+  public searchTextStub: string; //используется только для сохранения текста в фильтре
   public searchText: string;
 
   public styles: Dictionary<MusicStyle, string>;
@@ -70,6 +71,8 @@ export class SearchFilterService {
     this.selectedStyles = [];
     this.selectedExpirience = this.expiriences.keys[0];
     this.selectedInstruments = [];
+    this.searchText = "";
+    this.searchTextStub = "";
     this.fillDefaultValues();
   }
 }

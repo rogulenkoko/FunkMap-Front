@@ -1,9 +1,9 @@
 <side>
-  <div class="main-search-container">
+  <div id="search-container" class="main-search-container">
     <div class="search-text-container">
       <div class="search-input d-flex flex-row align-items-center">
         <span class="icon icon-middle search-icon mr-2"></span>
-        <input placeholder="{{'Search_Placeholder' | translate}}" class="form-control" [(ngModel)]="searchTextStub" (ngModelChange)="onTextChanged($event)" />
+        <input placeholder="{{'Search_Placeholder' | translate}}" class="form-control" [(ngModel)]="filterService.searchTextStub" (ngModelChange)="onTextChanged($event)" />
       </div>
     </div>
     
@@ -15,6 +15,7 @@
 
     <div class="search-items-container">
       <search-list [items]="items"></search-list>
+      <i *ngIf="isLoaded" class="fa fa-spinner fa-spin fa-2x mt-2"></i>
       <div *ngIf="!items || items.length == 0" class="no-items-message-container d-flex flex-row justify-content-center">
         {{'Search_NoItems' | translate}}
       </div>

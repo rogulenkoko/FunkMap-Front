@@ -10,6 +10,8 @@ import { SearchFilterService } from "app/main/search/search-filter/search-filter
 import 'rxjs/add/operator/distinctUntilChanged';
 import { MapFilter } from "app/main/map/map-filter.service";
 
+declare var $;
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -18,8 +20,10 @@ import { MapFilter } from "app/main/map/map-filter.service";
 export class SearchComponent implements OnInit {
 
   private items: Array<SearchItem>;
+  private allItemsCount: number;
+  private portionCount: number = 5;
 
-  private searchTextStub: string; //не используется
+  private isLoaded: boolean = false;
 
   constructor(private searchService: SearchService,
     private userService: UserService,
@@ -28,8 +32,8 @@ export class SearchComponent implements OnInit {
     private mapFilter: MapFilter) {
     this.items = [];
     this.filterService.onFilterChanged.subscribe(() => this.refresh());
-    this.filterService.searchChanged.debounceTime(200).subscribe((value)=>{
-      if(this.filterService.searchText == value) return;
+    this.filterService.searchChanged.debounceTime(200).subscribe((value) => {
+      if (this.filterService.searchText == value) return;
       this.filterService.searchText = value;
       this.refresh();
     });
@@ -37,16 +41,18 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
+    $('#search-container').on("scroll", ()=> this.onScrollDown());
   }
 
-  private refresh() {
-    var request = new FullLocationRequest(this.userService.latitude, this.userService.longitude, 2);
-    request.skip = 0;
-    request.take = 10;
+  
 
-    this.searchService.getFiltered().subscribe(response => {
+  private refresh() {
+    this.isLoaded = true;
+    this.searchService.getFiltered(0, this.portionCount).subscribe(response => {
+      this.isLoaded = false;
       this.onItemsLoaded(response.items);
       this.mapFilter.onItemsFiltered.emit(response.allLogins);
+      this.allItemsCount = response.allCount;
     });
   }
 
@@ -66,11 +72,11 @@ export class SearchComponent implements OnInit {
   }
 
   private getMore() {
-    var request = new FullLocationRequest(this.userService.latitude, this.userService.longitude, 2);
-    request.skip = this.items.length;
-    request.take = this.items.length + 10;
-    this.searchService.getNearest(request).subscribe(items => {
-      this.items = this.items.concat(items);
+    if(this.items.length == this.allItemsCount) return;
+    this.isLoaded = true;
+    this.searchService.getFiltered(this.items.length, this.items.length + this.portionCount).subscribe(response => {
+      this.isLoaded = false;
+      this.items = this.items.concat(response.items);
       if (this.userService.user) this.getFavourites();
     });
   }
@@ -86,6 +92,12 @@ export class SearchComponent implements OnInit {
 
   private onTextChanged(value: string) {
     this.filterService.searchChanged.next(value);
+  }
+
+  private onScrollDown(){
+    if ($('#search-container').scrollTop() + $('#search-container').height() >= $('#search-container')[0].scrollHeight) {
+        this.getMore();
+      }
   }
 
 }

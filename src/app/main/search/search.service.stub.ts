@@ -30,7 +30,7 @@ export class SearchServiceStub extends SearchService{
      return Observable.of([s1, s2]);
    }
 
-   getFiltered(): Observable<SearchResponse> {
+   getFiltered(skip: number, take: number): Observable<SearchResponse> {
     return Observable.of(new SearchResponse());
   }
 

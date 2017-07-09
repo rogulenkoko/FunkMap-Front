@@ -23,7 +23,7 @@ export abstract class SearchService {
 
   abstract getNearest(request: FullLocationRequest): Observable<Array<SearchItem>>;
 
-  abstract getFiltered(): Observable<SearchResponse>;
+  abstract getFiltered(skip: number, take: number): Observable<SearchResponse>;
 
 }
 
@@ -44,22 +44,22 @@ export class SearchServiceHttp extends SearchService {
     return this.http.post(`${ConfigurationProvider.apiUrl}base/fullnearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
-  getFiltered(): Observable<SearchResponse> {
+  getFiltered(skip: number, take: number): Observable<SearchResponse> {
     
     var filter: any = {};
     switch (this.searchFilterService.selectedEntity.type) {
       case EntityType.Musician:
-        filter = new MusicianFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type);
+        filter = new MusicianFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type, skip, take);
         filter.instruments = this.searchFilterService.selectedInstruments;
         filter.expirience = this.searchFilterService.selectedExpirience;
         filter.styles = this.searchFilterService.selectedStyles;
         break;
       case EntityType.Band:
-        filter = new BandFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type);
+        filter = new BandFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type, skip, take);
         filter.styles = this.searchFilterService.selectedStyles;
         break;
       default:
-        filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type);
+        filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type, skip, take);
     }
     return this.http.post(`${ConfigurationProvider.apiUrl}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
