@@ -12,6 +12,9 @@ import { RehearsalService } from "app/main/rehearsal/rehearsal.service";
 import { StudioService } from "app/main/studio/studio.service";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 import { MusicianFilter } from "app/main/musician/models";
+import { BaseFilter } from "app/main/search/search-filter/base-filter";
+import { BandFilter } from "app/main/band/models/band-filter";
+import { SearchResponse } from "app/main/search/search-response";
 
 @Injectable()
 export abstract class SearchService {
@@ -20,11 +23,11 @@ export abstract class SearchService {
 
   abstract getNearest(request: FullLocationRequest): Observable<Array<SearchItem>>;
 
-  abstract getFiltered(): Observable<Array<SearchItem>>;
+  abstract getFiltered(): Observable<SearchResponse>;
 
 }
 
-@Injectable()
+@Injectable() 
 export class SearchServiceHttp extends SearchService {
 
   constructor(private http: HttpClient,
@@ -41,17 +44,23 @@ export class SearchServiceHttp extends SearchService {
     return this.http.post(`${ConfigurationProvider.apiUrl}base/fullnearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
-  getFiltered(): Observable<Array<SearchItem>> {
+  getFiltered(): Observable<SearchResponse> {
+    
+    var filter: any = {};
     switch (this.searchFilterService.selectedEntity.type) {
       case EntityType.Musician:
-        var musicianFilter = new MusicianFilter();
-        musicianFilter.instruments = this.searchFilterService.instruments;
-        musicianFilter.expirience = this.searchFilterService.selectedExpirience;
-        musicianFilter.styles = this.searchFilterService.styles;
-        musicianFilter.searchText = this.searchFilterService.searchText;
-        console.log(musicianFilter);
-        return this.musicianService.getFiltered(musicianFilter);
+        filter = new MusicianFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type);
+        filter.instruments = this.searchFilterService.selectedInstruments;
+        filter.expirience = this.searchFilterService.selectedExpirience;
+        filter.styles = this.searchFilterService.selectedStyles;
+        break;
+      case EntityType.Band:
+        filter = new BandFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type);
+        filter.styles = this.searchFilterService.selectedStyles;
+        break;
+      default:
+        filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type);
     }
+    return this.http.post(`${ConfigurationProvider.apiUrl}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
-
 }

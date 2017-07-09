@@ -41,7 +41,9 @@ export class MapComponent implements OnInit {
       else this.getNearest();
     })
     this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
-    this.mapFilter.onOutItemsSelected.subscribe((marker)=>this.selectMarker(marker))
+    this.mapFilter.onOutItemsSelected.subscribe((marker)=>this.selectMarker(marker));
+
+    this.mapFilter.onItemsFiltered.subscribe(logins=>this.getSpecific(logins));
   }
 
   ngOnInit() {
@@ -96,6 +98,13 @@ export class MapComponent implements OnInit {
       this.markers = markers;
       this.refreshMarkers();
     });
+  }
+
+  private getSpecific(logins: Array<string>){
+    this.mapService.getSpecific(logins).subscribe(markers=>{
+      this.markers = markers;
+      this.refreshMarkers();
+    })
   }
 
   private refreshMarkers() {
@@ -159,7 +168,6 @@ export class MapComponent implements OnInit {
   }
 
   private selectMarker(point: Marker){
-    console.log(point);
     var markerBounds = L.latLngBounds([[point.lat, point.lng]]).pad(20);
     this.map.fitBounds(markerBounds);
   }

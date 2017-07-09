@@ -2,7 +2,7 @@
 @import "src/assets/styles/icons.scss";
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .main-search-container{
@@ -29,6 +29,8 @@
 
 .filter-text{
     font-size: 13px;
+    color: #d6d7da;
+    cursor: pointer;
 }
 
 .message{

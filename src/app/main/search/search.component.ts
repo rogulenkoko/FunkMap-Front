@@ -7,6 +7,8 @@ import { UserDataService } from "app/main/user/user-data.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { FullLocationRequest } from "app/main/search/search-location-request";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
+import 'rxjs/add/operator/distinctUntilChanged';
+import { MapFilter } from "app/main/map/map-filter.service";
 
 @Component({
   selector: 'app-search',
@@ -17,14 +19,20 @@ export class SearchComponent implements OnInit {
 
   private items: Array<SearchItem>;
 
-  private isFilterEnabled: boolean = true;
+  private searchTextStub: string; //не используется
 
   constructor(private searchService: SearchService,
     private userService: UserService,
     private favouritesService: FavouritesService,
-    private filterService: SearchFilterService) {
+    private filterService: SearchFilterService,
+    private mapFilter: MapFilter) {
     this.items = [];
-    this.filterService.onFilterChanged.subscribe(()=>this.refresh());
+    this.filterService.onFilterChanged.subscribe(() => this.refresh());
+    this.filterService.searchChanged.debounceTime(200).subscribe((value)=>{
+      if(this.filterService.searchText == value) return;
+      this.filterService.searchText = value;
+      this.refresh();
+    });
   }
 
   ngOnInit() {
@@ -36,20 +44,15 @@ export class SearchComponent implements OnInit {
     request.skip = 0;
     request.take = 10;
 
-    if(this.isFilterEnabled){
-      this.searchService.getFiltered().subscribe(items=>{
-        this.onItemsLoaded(items);
-      })
-    } else {
-      this.searchService.getNearest(request).subscribe(items => {
-        this.onItemsLoaded(items);
-      });
-    }
+    this.searchService.getFiltered().subscribe(response => {
+      this.onItemsLoaded(response.items);
+      this.mapFilter.onItemsFiltered.emit(response.allLogins);
+    });
   }
 
-  private onItemsLoaded(items: Array<SearchItem>){
+  private onItemsLoaded(items: Array<SearchItem>) {
     this.items = items;
-    if(this.userService.user) this.getFavourites();
+    if (this.userService.user) this.getFavourites();
   }
 
   private getFavourites() {
@@ -68,12 +71,21 @@ export class SearchComponent implements OnInit {
     request.take = this.items.length + 10;
     this.searchService.getNearest(request).subscribe(items => {
       this.items = this.items.concat(items);
-      if(this.userService.user) this.getFavourites();
+      if (this.userService.user) this.getFavourites();
     });
   }
 
-  private enableFilter(){
-    this.isFilterEnabled = !this.isFilterEnabled;
+  private enableFilter() {
+    this.filterService.isFilterEnabled = !this.filterService.isFilterEnabled;
+  }
+
+  private clearFilter() {
+    this.filterService.clearFilter();
+    this.filterService.onFilterChanged.emit();
+  }
+
+  private onTextChanged(value: string) {
+    this.filterService.searchChanged.next(value);
   }
 
 }

@@ -13,6 +13,8 @@ export abstract class MapService {
 
   abstract getNearest(request: NearestRequest):Observable<Array<Marker>>;
 
+  abstract getSpecific(logins: Array<string>):Observable<Array<Marker>>;
+
 }
 
 @Injectable()
@@ -28,6 +30,10 @@ export class MapServiceHttp extends MapService {
 
    getNearest(request: NearestRequest):Observable<Array<Marker>>{
      return this.http.post(`${ConfigurationProvider.apiUrl}base/nearest`, request).map(x=>Marker.ToMarkerArray(x.json()));
+   }
+
+   getSpecific(logins: Array<string>):Observable<Array<Marker>>{
+      return this.http.post(`${ConfigurationProvider.apiUrl}base/specificmarkers`, logins).map(x=>Marker.ToMarkerArray(x.json()));
    }
 
 }

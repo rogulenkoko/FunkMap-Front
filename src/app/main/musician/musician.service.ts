@@ -12,8 +12,6 @@ export abstract class MusicianService {
 
   abstract getMusicianPreview(id: string): Observable<Musician>;
 
-  abstract getFiltered(request: MusicianFilter):Observable<Array<SearchItem>>;
-
 }
 
 @Injectable()
@@ -26,10 +24,6 @@ export class MusicianServiceHttp extends MusicianService {
 
    getMusicianPreview(id: string): Observable<MusicianPreview>{
      return this.http.get(ConfigurationProvider.apiUrl + "musician/get/" + id).map(x=>MusicianPreview.ToMusicianPreview(x.json()));
-   }
-
-   getFiltered(request: MusicianFilter):Observable<Array<SearchItem>>{
-    return this.http.post(ConfigurationProvider.apiUrl + "musician/getfiltered", request).map(x=>SearchItem.ToSearchItems(x.json()));
    }
 
 }

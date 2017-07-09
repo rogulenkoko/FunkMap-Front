@@ -6,6 +6,8 @@
     "Navbar_Help":"Help",
     "Navbar_Logout":"Log out",
     
+    "All":"All",
+
     "Sex_Female": "Female",
     "Sex_Male": "Male",
 
@@ -86,5 +88,9 @@
     "VideoLink":"Video (link)",
 
     "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon",
-    "Search_NoItems":"Results not found"
+    "Search_NoItems":"Results not found",
+    "Clear_Filter": "Clear filter",
+    "Styles":"Styles",
+    "Instruments":"Instruments",
+    "Entity":"Entity type"
 }

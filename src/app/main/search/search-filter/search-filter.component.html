@@ -1,8 +1,8 @@
 <div class="filter-main-container d-flex flex-column">
   <div class="d-flex flex-row align-items-baseline filter-container">
-    <label class="filter-label">Cущность:</label>
-    <select class="filter-control" placeholder="YouTube" [(ngModel)]="searchFilterService.selectedEntity" class="form-control secondary">
-        <option *ngFor="let entity of availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
+    <label class="filter-label">{{'Entity' | translate}}:</label>
+    <select class="filter-control" placeholder="YouTube" [(ngModel)]="searchFilterService.selectedEntity" (ngModelChange)="onEntityChanged()" class="form-control secondary">
+        <option *ngFor="let entity of searchFilterService.availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
       </select>
   </div>
   
@@ -10,15 +10,15 @@
 
   <ng-container *ngIf="searchFilterService.selectedEntity.type == 1 || searchFilterService.selectedEntity.type == 3">
     <div class="d-flex flex-row align-items-baseline filter-container">
-      <label class="filter-label">Стили:</label>
+      <label class="filter-label">{{'Styles' | translate}}:</label>
       <select [(ngModel)]="currenSelectedStyle" class="form-control" (ngModelChange)="onStyleChanged()">
-          <option *ngFor="let style of styles.keys()" [ngValue]="style">{{musicianTypesProvider.musicStyles.getValue(style)}}</option>
+          <option *ngFor="let style of searchFilterService.styles.keys()" [ngValue]="style">{{musicianTypesProvider.musicStyles.getValue(style) | translate}}</option>
       </select>
     </div>
     <div class="d-flex flex-row selected-styles-container">
-      <div *ngFor="let musicianStyle of searchFilterService.styles" class="musician-style d-flex align-items-center mr-3">
+      <div *ngFor="let musicianStyle of searchFilterService.selectedStyles" class="musician-style d-flex align-items-center mr-3">
         <div (click)="removeStyle(musicianStyle)" class="icon icon-close-red mr-2"></div>
-        <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle)}}</span>
+        <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle) | translate}}</span>
       </div>
     </div>
     <div class="separator-mini"></div>
@@ -27,15 +27,15 @@
 
   <ng-container *ngIf="searchFilterService.selectedEntity.type == 1">
     <div class="d-flex flex-row align-items-baseline filter-container">
-      <label class="filter-label">Инструменты:</label>
+      <label class="filter-label">{{'Instruments' | translate}}:</label>
       <select [(ngModel)]="currenSelectedInstrument" class="form-control" (ngModelChange)="onInstrumentChanged()">
-          <option *ngFor="let instrument of instruments.keys()" [ngValue]="instrument">{{musicianTypesProvider.instruments.getValue(instrument)}}</option>
+          <option *ngFor="let instrument of searchFilterService.instruments.keys()" [ngValue]="instrument">{{musicianTypesProvider.instruments.getValue(instrument) | translate}}</option>
       </select>
     </div>
     <div class="d-flex flex-row selected-instruments-container">
-      <div *ngFor="let instrument of searchFilterService.instruments" class="musician-style d-flex align-items-center mr-3">
+      <div *ngFor="let instrument of searchFilterService.selectedInstruments" class="musician-style d-flex align-items-center mr-3">
         <div (click)="removeInstrument(instrument)" class="icon icon-close-red mr-2"></div>
-        <span>{{musicianTypesProvider.instruments.getValue(instrument)}}</span>
+        <span>{{musicianTypesProvider.instruments.getValue(instrument) | translate}}</span>
       </div>
     </div>
      <div class="separator-mini"></div>
@@ -44,9 +44,9 @@
 
   <ng-container *ngIf="searchFilterService.selectedEntity.type == 1">
     <div class="d-flex flex-row align-items-baseline filter-container">
-      <label class="filter-label">Уровень владения:</label>
-      <select [(ngModel)]="searchFilterService.selectedExpirience" class="form-control">
-          <option *ngFor="let expirience of musicianTypesProvider.expiriences.keys()" [ngValue]="expirience">{{musicianTypesProvider.expiriences.getValue(expirience) | translate}}</option>
+      <label class="filter-label">{{'Musician_Expirience' | translate}}:</label>
+      <select [(ngModel)]="searchFilterService.selectedExpirience" (ngModelChange)="onExpirienceChanged()" class="form-control">
+          <option *ngFor="let expirience of searchFilterService.expiriences.keys()" [ngValue]="expirience">{{searchFilterService.expiriences.getValue(expirience) | translate}}</option>
       </select>
     </div>
   </ng-container>

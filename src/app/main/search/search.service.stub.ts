@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { SearchItem } from "app/main/search/search-item";
 import { InstrumentType } from "app/main/musician/models";
 import { FullLocationRequest } from "app/main/search/search-location-request";
+import { SearchResponse } from "app/main/search/search-response";
 
 @Injectable()
 export class SearchServiceStub extends SearchService{
@@ -29,8 +30,8 @@ export class SearchServiceStub extends SearchService{
      return Observable.of([s1, s2]);
    }
 
-   getFiltered(): Observable<Array<SearchItem>> {
-    return this.getNearest(null);
+   getFiltered(): Observable<SearchResponse> {
+    return Observable.of(new SearchResponse());
   }
 
 }

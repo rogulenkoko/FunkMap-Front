@@ -3,7 +3,7 @@
     "Navbar_Login":"Войти",
     "Navbar_SignUp":"Зарегистрироваться",
     
-    
+    "All":"Все",
 
     "Sex_Female": "Женский",
     "Sex_Male": "Мужской",
@@ -16,7 +16,7 @@
     "Musician_Name":"ФИО",
     "Musician_BirthDate":"Дата рождения",
     "Musician_Sex":"Пол",
-    "Musician_Expirience":"Стаж",
+    "Musician_Expirience":"Уровень владения",
     "Musician_Styles":"Стили",
     "Musician_Instrument": "Инструмент",
     "Musician_Description":"Описание",
@@ -84,6 +84,11 @@
 
     "Favourite_NoItems":"У вас нет избранных сущностей. Для того, чтобы добавить сущность в избранное нажмите на иконку",
 
-    "Search_NoItems":"Результатов не найдено"
+    "Search_NoItems":"Результатов не найдено",
+    "Clear_Filter": "Сбросить фильтр",
+
+    "Styles":"Стили",
+    "Instruments":"Инструменты",
+    "Entity":"Тип сущности"
     
 }
