@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
 
   private items: Array<SearchItem>;
   private allItemsCount: number;
-  private portionCount: number = 5;
+  private portionCount: number = 10;
 
   private isLoaded: boolean = false;
 

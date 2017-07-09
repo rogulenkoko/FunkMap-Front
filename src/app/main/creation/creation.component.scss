@@ -39,10 +39,7 @@
 
         
 
-        .property-title{
-            width: 45%;
-            color: $app-grey;
-        }
+        
 
         
     }
@@ -54,5 +51,14 @@
             border-radius: 20px; 
         }
     }
+}
+
+textarea{
+    height: 100px;
+}
+
+.property-title{
+    width: 45%;
+    color: $app-grey;
 }
 

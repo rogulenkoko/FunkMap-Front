@@ -16,14 +16,12 @@ import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 
 export class CreationComponent implements OnInit {
 
-  
-  private selectedEntity: Entity;
 
   constructor(private creationService: CreationService,
               private router: Router,
               private entityTypeProvider: EntityTypeProvider) {
     
-    this.selectedEntity = this.entityTypeProvider.availableEntities[0];
+    this.creationService.selectedEntity = this.entityTypeProvider.availableEntities[0];
    }
 
   ngOnInit(){

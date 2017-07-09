@@ -1,9 +1,6 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/icons.scss";
 
-
-@import "src/assets/styles/colors.scss";
-
 .date-container{
     width: 100%;
 }
@@ -25,37 +22,15 @@
 }
 
 
-.form-control{
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid #bee8c6;
-    
-    font-size: 14px;
-    padding-left: 0;
-}
-
-.property-title{
-    width: 45%;
-    color: $app-grey;
-}
 
 .selected-styles-container{
     width: 100%;
-}
-
-textarea{
-    height: 100px;
 }
 
 .radio-label{
     display: flex;
     align-items: center;
 }
-
-
-
-
-// $label-width:180px;
 
 .instrument{
     border: 1px solid black;

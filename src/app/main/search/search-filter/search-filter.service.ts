@@ -27,7 +27,7 @@ export class SearchFilterService {
 
   public onFilterChanged: EventEmitter<any>;
 
-  public isFilterEnabled: boolean = true;
+  public isFilterEnabled: boolean = false;
   public availableEntities: Array<Entity>;
 
   public searchChanged: Subject<string>;

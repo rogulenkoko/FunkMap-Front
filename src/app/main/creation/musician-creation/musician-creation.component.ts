@@ -6,8 +6,8 @@ import { InstrumentType, Musician, MusicStyle, Sex } from "../../musician/models
 import { IconProvider } from "../../map/icon-provider.service";
 import { Dictionary } from "typescript-collections";
 import { EntityType } from "../../map/models";
-import { CreationService } from "../creation.service";
 import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+import { CreationService } from "app/main/creation/creation.service";
 
 @Component({
   selector: 'musician-creation',
@@ -27,11 +27,12 @@ export class MusicianCreationComponent implements OnInit {
               private dateProvider: DateSelectProvider,
               private creationService: CreationService,
               private router: Router) {
+    this.creationService.musician = new Musician();
     this.styles = new Dictionary<MusicStyle, string>(); 
     this.musicianTypesProvider.musicStyles.keys().forEach(key => {
       this.styles.setValue(key, this.musicianTypesProvider.musicStyles.getValue(key));
     }); 
-    this.creationService.selectedEntity = EntityType.Musician;
+   
    }
 
   ngOnInit() {

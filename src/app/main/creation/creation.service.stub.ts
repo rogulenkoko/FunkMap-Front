@@ -9,14 +9,13 @@ import { UserService } from "../user/user.service";
 @Injectable()
 export class CreationServiceStub extends CreationService {
 
-  constructor(protected userService: UserService) {
-    super(userService);
+  constructor() {
+    super();
    }
 
    save():Observable<CreationResponse>{
     var entity = this.buildEntity();
     var response = new CreationResponse(true);
-    console.log(entity);
     return Observable.of(response);
   }
 

@@ -6,8 +6,8 @@
 
         <div class="d-flex flex-row align-items-baseline social-nets">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
-          <select placeholder="YouTube" [(ngModel)]="selectedEntity" class="form-control secondary">
-            <option *ngFor="let entity of availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
+          <select placeholder="YouTube" [(ngModel)]="creationService.selectedEntity" class="form-control secondary">
+            <option *ngFor="let entity of entityTypeProvider.availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
           </select>
         </div>
         <br>
@@ -16,7 +16,8 @@
           <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login"/>
         </div>
         <br>
-        <musician-creation *ngIf="selectedEntity.type == 1"></musician-creation>
+        <musician-creation *ngIf="creationService.selectedEntity.type == 1"></musician-creation>
+        <band-creation  *ngIf="creationService.selectedEntity.type == 3"></band-creation>
       </div>
 
       <div class="right-container">

@@ -8,38 +8,53 @@ import { UserService } from "../user/user.service";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 import { HttpClient } from "app/core/http/http-client.service";
 import { BaseModel } from "app/core";
+import { Band } from "app/main/band/models";
+import { Entity } from "app/tools/models/entity";
 
 @Injectable()
 export abstract class CreationService {
 
-  public selectedEntity: EntityType;
+  public selectedEntity: Entity;
   public baseModel: BaseModel
   public musician: Musician;
+  public band: Band;
 
   public onSelectPosition: EventEmitter<any>;
 
   abstract save():Observable<CreationResponse>;
 
-  constructor(protected userService: UserService) {
+  constructor() {
     this.baseModel = new BaseModel();
-    this.musician = new Musician();
     this.onSelectPosition = new EventEmitter();
    }
 
 
    buildEntity(): any{
-     switch(this.selectedEntity){
+     switch(this.selectedEntity.type){
        case EntityType.Musician:
         this.musician.facebookLink = this.baseModel.facebookLink;
         this.musician.vkLink = this.baseModel.vkLink;
         this.musician.youTubeLink = this.baseModel.youTubeLink;
         this.musician.videoYoutube = this.baseModel.videoYoutube;
-        this.musician.userLogin = this.userService.user.login;
         this.musician.login = this.baseModel.login;
         this.musician.latitude = this.baseModel.latitude;
         this.musician.longitude = this.baseModel.longitude;
+        this.musician.name = this.baseModel.name;
+        this.musician.description = this.baseModel.description;
         
         return this.musician;
+
+      case EntityType.Band:
+        this.band.facebookLink = this.baseModel.facebookLink;
+        this.band.vkLink = this.baseModel.vkLink;
+        this.band.youTubeLink = this.baseModel.youTubeLink;
+        this.band.videoYoutube = this.baseModel.videoYoutube;
+        this.band.login = this.baseModel.login;
+        this.band.latitude = this.baseModel.latitude;
+        this.band.longitude = this.baseModel.longitude;
+        this.band.name = this.baseModel.name;
+        this.band.description = this.baseModel.description;
+      return this.band;
      }
    }
 
@@ -48,14 +63,17 @@ export abstract class CreationService {
 @Injectable()
 export class CreationServiceHttp extends CreationService{
 
-  constructor(private http: HttpClient, protected userService: UserService) { 
-    super(userService);
-    
+  constructor(private http: HttpClient) { 
+    super();
   }
 
   save():Observable<CreationResponse>{
     var entity = this.buildEntity();
-    return this.http.post(`${ConfigurationProvider.apiUrl}musician/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
+    switch (this.selectedEntity.type){
+      case EntityType.Musician: return this.http.post(`${ConfigurationProvider.apiUrl}musician/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
+      case EntityType.Band: return this.http.post(`${ConfigurationProvider.apiUrl}band/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
+    }
+    
   }
 
 }
