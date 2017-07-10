@@ -15,8 +15,7 @@ export class SidebarComponent implements OnInit {
   private bottomItems: Array<SidebarItem>;
 
   constructor(private userService: UserService,
-    private route: ActivatedRoute) {
-      //this.userService.onUserChanged(()=>)
+              private route: ActivatedRoute) {
 
   }
 
@@ -24,6 +23,7 @@ export class SidebarComponent implements OnInit {
     var searchItem = new SidebarItem("search", "Search", "search-icon");
 
     var profileItem = new SidebarItem("profile", "Profile", "person-icon");
+    profileItem.visibleForLogged = true;
 
     var messagesItem = new SidebarItem("", "Messages", "messenger-icon");
     messagesItem.rightTemplate = this.messageCountTemplate;
@@ -31,6 +31,7 @@ export class SidebarComponent implements OnInit {
 
     var logoutItem = new SidebarItem("", "Logout", "exit-icon");
     logoutItem.clickEvent = () => this.logOut();
+    logoutItem.visibleForLogged = true;
 
     var favouriteItem = new SidebarItem("favorites", "Favorites", "star-icon");
     favouriteItem.visibleForLogged = true;

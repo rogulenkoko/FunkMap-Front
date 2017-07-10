@@ -27,6 +27,7 @@ export class SearchListComponent implements OnInit {
     this.favouritesService.setFavourite(selected.login).subscribe(x => {
       if (!x.success) {
         selected.isFavourite = false;
+        
       }
     });
   }

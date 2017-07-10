@@ -14,7 +14,7 @@
       <search-studio *ngIf="item.type == 5" [item]="item"></search-studio>
 
     </div>
-    <div class="send-message-label">{{'Send_Message' | translate}}</div>
+    <div *ngIf="userService.user" class="send-message-label">{{'Send_Message' | translate}}</div>
   </div>
 
   <div class="d-flex flex-row">

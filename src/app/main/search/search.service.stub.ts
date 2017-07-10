@@ -3,7 +3,7 @@ import { SearchService } from "app/main/search/search.service";
 import { NearestRequest, EntityType } from "app/main/map/models";
 import { Observable } from "rxjs/Observable";
 import { SearchItem } from "app/main/search/search-item";
-import { InstrumentType } from "app/main/musician/models";
+import { InstrumentType, ExpirienceType } from "app/main/musician/models";
 import { FullLocationRequest } from "app/main/search/search-location-request";
 import { SearchResponse } from "app/main/search/search-response";
 
@@ -15,11 +15,23 @@ export class SearchServiceStub extends SearchService{
    }
 
    getNearest(request: FullLocationRequest): Observable<Array<SearchItem>>{
-     var s1 = new SearchItem();
+     var items = this.getItems();
+     return Observable.of(items);
+   }
+
+   getFiltered(skip: number, take: number): Observable<SearchResponse> {
+    var response = new SearchResponse();
+    response.items = this.getItems();
+    return Observable.of(response);
+  }
+
+  private getItems():Array<SearchItem>{
+    var s1 = new SearchItem();
      s1.login = "test";
      s1.title = "Константинопольский Иван";
      s1.type = EntityType.Musician;
      s1.instrument = InstrumentType.Guitar;
+     s1.expirience = ExpirienceType.Advanced;
 
      var s2 = new SearchItem();
      s2.login = "rogul";
@@ -27,11 +39,8 @@ export class SearchServiceStub extends SearchService{
      s2.type = EntityType.Musician;
      s2.instrument = InstrumentType.Drums;
      s2.isFavourite = true;
-     return Observable.of([s1, s2]);
-   }
-
-   getFiltered(skip: number, take: number): Observable<SearchResponse> {
-    return Observable.of(new SearchResponse());
+     s2.expirience = ExpirienceType.Begginer;
+     return [s1,s2];
   }
 
 }
