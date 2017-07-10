@@ -1,16 +1,19 @@
 <modal [title]="'Login_Entrance'">
   <div class="login-container d-flex flex-column">
     <div class="login">
-      <div class="d-flex justify-content-between align-items-center">
-        <label>{{'Login_Login' | translate}}</label>
+      <div>
+        <div class="d-flex justify-content-between align-items-baseline">
+          <label class="property-title">{{'Login_Login' | translate}}</label>
+          <input class="form-control" [(ngModel)]="login" [class.error-control]="wrongCreds" />
+        </div>
         <label *ngIf="wrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</label>
+        <div *ngIf="!wrongCreds" class="spacer"> </div>
       </div>
-      <input class="form-control" [(ngModel)]="login" [class.error-control]="wrongCreds"/>
     </div>
     <br>
-    <div class="password">
-      <label>{{'Login_Password' | translate}}</label>
-      <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds"/>
+    <div class="password d-flex justify-content-between align-items-baseline">
+      <label class="property-title">{{'Login_Password' | translate}}</label>
+      <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds" />
     </div>
     <br><br>
     <div class="d-flex flex-row justify-content-between login-buttons-container">

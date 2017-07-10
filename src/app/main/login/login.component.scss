@@ -10,22 +10,32 @@
     .error-label{
         color: red;
         font-size: 12px;
+        float: right;
     }
 
     .error-control{
-        border: 1px solid red;
+        border-bottom: 1px solid red;
     }
 }
 
 .login-buttons-container{
     button{
-        width: 48%;
+        width: 175px !important;
+        height: 44px;
+        border-radius: 22px; 
         text-align: center;
     }
 
     .btn-secondary{
         font-size: 14px;
     }
+}
 
-    
+.property-title{
+    min-width: 100px;
+}
+
+.spacer{
+    height: 26px;
+    widows: 10px;
 }

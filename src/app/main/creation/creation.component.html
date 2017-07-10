@@ -1,7 +1,7 @@
 <modal [title]="'Creation_Title'" [widthPerCent]="'64%'" [height]="'80%'">
   <div class="main-creation-container">
     <div id="creation-container" class="creation-container d-flex flex-row">
-      
+
       <div class="left-container">
 
         <div class="d-flex flex-row align-items-baseline social-nets">
@@ -13,14 +13,34 @@
         <br>
         <div class="d-flex flex-row align-items-baseline social-nets">
           <label class="property-title">{{'Creation_Login' | translate}}:</label>
-          <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login"/>
+          <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login" />
         </div>
         <br>
         <musician-creation *ngIf="creationService.selectedEntity.type == 1"></musician-creation>
-        <band-creation  *ngIf="creationService.selectedEntity.type == 3"></band-creation>
+        <band-creation *ngIf="creationService.selectedEntity.type == 3"></band-creation>
       </div>
 
       <div class="right-container">
+
+        <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
+          <img-cropper *ngIf="!isSaved" #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+          <img *ngIf="data.image && isSaved" src="{{data.image}}"/>
+          <div class="d-flex flex-row align-items-center justify-content-center img-buttons">
+            <div *ngIf="data.image && !isSaved" class="d-flex flex-row align-items-center justify-content-between" style="width:100%;">
+              <button (click)="cancelImage()" class="btn btn-secondary mr-2">{{'Login_Cancel' | translate}}</button>
+              <button (click)="saveImage()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+            </div>
+            <div *ngIf="!data.image || isSaved">
+              <label class="btn btn-success btn-file">
+              {{'Avatar_BrowsePhoto' | translate}} <input type="file"  (change)="fileChangeListener($event)" hidden>
+            </label>
+            </div>
+
+          </div>
+
+        </div>
+        <br>
+
         <div class="d-flex flex-row align-items-center">
           <label class="property-title">{{'VideoLink' | translate}}:</label>
           <input placeholder="Ссылка Youtube" [(ngModel)]="creationService.baseModel.videoYoutube" class="form-control secondary" />

@@ -41,6 +41,7 @@ export abstract class CreationService {
         this.musician.longitude = this.baseModel.longitude;
         this.musician.name = this.baseModel.name;
         this.musician.description = this.baseModel.description;
+        this.musician.avatar = this.baseModel.avatar;
         
         return this.musician;
 
@@ -54,6 +55,7 @@ export abstract class CreationService {
         this.band.longitude = this.baseModel.longitude;
         this.band.name = this.baseModel.name;
         this.band.description = this.baseModel.description;
+        this.band.avatar = this.baseModel.avatar;
       return this.band;
      }
    }

@@ -93,5 +93,6 @@
     "Styles":"Styles",
     "Instruments":"Instruments",
     "Entity":"Entity type",
-    "LoadMore": "Load more"
+    "LoadMore": "Load more",
+    "Send_Message" : "Send message"
 }

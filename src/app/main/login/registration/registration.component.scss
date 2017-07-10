@@ -10,10 +10,11 @@
     .error-label{
         color: red;
         font-size: 12px;
+        float: right;
     }
 
     .error-control{
-        border: 1px solid red;
+        border-bottom: 1px solid red;
     }
 }
 
@@ -47,10 +48,6 @@
     margin-top: 40px;
 }
 
-.btn-secondary{
-        color: $app-green;
-}
-
 .email-container{
     .email{
         width: 60%;
@@ -62,16 +59,14 @@
         .is-not-sent{
             color: red;
             font-size: 12px;
-        }
-        
+        }   
     }
-
-    
-
     .code{
         width: 38%;
         button{
-            width: 100%;
+            width: 140px !important;
+            height: 35px;
+            border-radius: 20px !important;
         }
     }
 }
@@ -86,4 +81,19 @@
 .fa-check{
     font-size: 120px;
     color: white;
+}
+
+.property-title{
+    min-width: 140px;
+}
+
+.btn{
+    width: 198px !important;
+    height: 44px;
+    border-radius: 22px; 
+}
+
+.spacer{
+    height: 18px;
+    widows: 10px;
 }

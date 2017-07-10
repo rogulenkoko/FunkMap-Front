@@ -14,20 +14,21 @@
 }
 
 .image-container{
-    width: 70px;
-
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
     img{
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-        }
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+    }
 
     .no-image{
         width: 60px;
         height: 60px;
         border-radius: 50%;
         background-color: #f7f7f7;
-        margin-right: 15px;
+       
         img{
             width: 30px;
             height: 30px;
@@ -35,15 +36,22 @@
     }
 }
 
-
-
 .star-icon, .star-selected-icon{
     width: 15px;
     height: 15px;
     background-size: 100% 100%;
 }
 
-.search-item-content{
+.search-item-content-container{
     max-width: 95%;
+}
+
+.search-item-content{
     overflow: hidden;
+}
+
+.send-message-label{
+    color: $app-green;
+    margin-left: 70px;
+    cursor: pointer;
 }

@@ -35,13 +35,7 @@
             .form-control{
                 color: $app-green;
             }
-        }
-
-        
-
-        
-
-        
+        }        
     }
     .buttons-container{
         height: 13%;
@@ -60,5 +54,29 @@ textarea{
 .property-title{
     width: 45%;
     color: $app-grey;
+}
+
+.img-buttons{
+    width: 200px;
+    div{
+        width: 48%;
+        height: 40px !important;
+        .btn, label{
+            width: 100%;
+        }
+
+        .btn{
+            border-radius: 20px;
+        }
+    }
+}
+
+.main-avatar-container{
+    img{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%; 
+        margin-bottom: 25px;
+    }
 }
 
