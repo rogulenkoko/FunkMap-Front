@@ -3,14 +3,15 @@ import { MapService } from "./map.service";
 import { Observable } from "rxjs/Observable";
 import { Map, MapType, Marker, EntityType, NearestRequest } from "./models";
 import { InstrumentType } from "../musician/models";
+import { Http } from "@angular/http";
 
 @Injectable()
 export class MapServiceStub extends MapService {
 
   private allMarkers: Array<Marker>;
 
-  constructor() {
-    super();
+  constructor(http: Http) {
+    super(http);
 
     var m1 = new Marker("test", 53.8987, 30.0686, EntityType.Musician);
     m1.instrument = InstrumentType.Drums;
@@ -40,6 +41,10 @@ export class MapServiceStub extends MapService {
   getSpecific(logins: Array<string>): Observable<Array<Marker>> {
     return Observable.of(this.allMarkers.slice(0, 5));
   }
+
+  getLocation(): Observable<Marker>{
+     return ;
+   }
 
 }
 

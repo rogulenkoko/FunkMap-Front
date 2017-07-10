@@ -26,7 +26,6 @@ export class MapComponent implements OnInit {
   private markers: Array<Marker>;
 
   private nearestRadius = 1;
-  private currentPosition: any;// Position;
 
   constructor(private mapProvider: MapProvider,
     private markerFactory: MarkerFactory,
@@ -41,9 +40,9 @@ export class MapComponent implements OnInit {
       else this.getNearest();
     })
     this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
-    this.mapFilter.onOutItemsSelected.subscribe((marker)=>this.selectMarker(marker));
+    this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 
-    this.mapFilter.onItemsFiltered.subscribe(logins=>this.getSpecific(logins));
+    this.mapFilter.onItemsFiltered.subscribe(logins => this.getSpecific(logins));
   }
 
   ngOnInit() {
@@ -68,20 +67,23 @@ export class MapComponent implements OnInit {
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
-    var location = navigator.geolocation.getCurrentPosition((position) => {
-      if (position) {
-        this.userService.latitude = position.coords.latitude;
-        this.userService.longitude = position.coords.longitude;
-        
-        this.currentPosition = position;
-        this.map.setView(new L.LatLng(position.coords.latitude, this.currentPosition.coords.longitude), this.map.getZoom());
-      } else {
-        this.currentPosition = { coords: { latitude: this.map.getCenter().lat, longitude: this.map.getCenter().lng } }
-      }
+    console.log(document.location.protocol);
+    if (document.location.protocol == "https:") {
+      var location = navigator.geolocation.getCurrentPosition((position) => {
+        this.setCoordinates(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      this.mapService.getLocation().subscribe(location=>{
+        this.setCoordinates(location.lat, location.lng);
+      });
+    }
+  }
 
-      this.getNearest();
-    });
-
+  private setCoordinates(lat: number, lng: number) {
+    this.userService.latitude = lat;
+    this.userService.longitude = lng;
+    this.map.setView(new L.LatLng(lat, lng), this.map.getZoom());
+    this.getNearest();
   }
 
   private getAll() {
@@ -93,22 +95,22 @@ export class MapComponent implements OnInit {
   }
 
   private getNearest() {
-    var request = new NearestRequest(this.currentPosition.coords.latitude, this.currentPosition.coords.longitude, this.nearestRadius);
+    var request = new NearestRequest(this.userService.latitude, this.userService.longitude, this.nearestRadius);
     this.mapService.getNearest(request).subscribe(markers => {
       this.markers = markers;
       this.refreshMarkers();
     });
   }
 
-  private getSpecific(logins: Array<string>){
-    this.mapService.getSpecific(logins).subscribe(markers=>{
+  private getSpecific(logins: Array<string>) {
+    this.mapService.getSpecific(logins).subscribe(markers => {
       this.markers = markers;
       this.refreshMarkers();
     })
   }
 
   private refreshMarkers() {
-    if(!this.map.hasLayer(this.markersLayer)){
+    if (!this.map.hasLayer(this.markersLayer)) {
       this.map.addLayer(this.markersLayer);
     }
     var cluster = this.markerFactory.getMarkerCluster(this.markers);
@@ -167,7 +169,7 @@ export class MapComponent implements OnInit {
     return result;
   }
 
-  private selectMarker(point: Marker){
+  private selectMarker(point: Marker) {
     var markerBounds = L.latLngBounds([[point.lat, point.lng]]).pad(20);
     this.map.fitBounds(markerBounds);
   }
