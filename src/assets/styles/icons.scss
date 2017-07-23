@@ -19,7 +19,7 @@
 }
 
 .icon-close{
-    background: url("/assets/images/close.png") no-repeat;
+    mask-image: url("/assets/images/close.png");
 }
 
 .icon-close-red{
@@ -39,23 +39,23 @@
 }
 
 .search-icon{
-    background: url("/assets/images/search.png") no-repeat;
+    mask-image: url("/assets/images/search.png");
 }
 
 .person-icon{
-    background: url("/assets/images/person.png") no-repeat;
+    mask-image: url("/assets/images/person.png");
 }
 
 .messenger-icon{
-     background: url("/assets/images/messenger.png") no-repeat;
+     mask-image: url("/assets/images/messenger.png");
 }
 
 .exit-icon{
-     background: url("/assets/images/exit.png") no-repeat;
+     mask-image: url("/assets/images/exit.png");
 }
 
 .settings-icon{
-    background: url("/assets/images/settings.png") no-repeat;
+    mask-image: url("/assets/images/settings.png");
 }
 
 .show-all-icon{

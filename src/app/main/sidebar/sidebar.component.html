@@ -5,10 +5,9 @@
         <li *ngIf="!item.visibleForLogged || (item.visibleForLogged && userService.user)" 
           [routerLink]="['/' + item.route]" 
           (click)="onItemClick(item)" 
-          class="d-flex align-items-center sidebar-item"
-          [class.selected]="item.isSelected">
-          <span class="icon icon-middle {{item.iconClass}}"></span>
-          <span class="menu-text">{{item.title | translate}}</span>
+          class="d-flex align-items-center sidebar-item">
+          <span class="icon icon-middle {{item.iconClass}}" [class.selected-icon]="item.isSelected"></span>
+          <span class="menu-text" [class.selected-text]="item.isSelected">{{item.title | translate}}</span>
           <ng-template *ngIf="item.rightTemplate" [ngTemplateOutlet]="item.rightTemplate"></ng-template>
         </li>
       </ng-container>
@@ -16,14 +15,13 @@
     </ul>
 
     <ul class="sidebar-nav-bottom d-flex flex-column align-items-left">
-      <ng-container *ngFor="let item of bottomItems">1
+      <ng-container *ngFor="let item of bottomItems">
         <li *ngIf="!item.visibleForLogged || (item.visibleForLogged && userService.user)" 
             (click)="onItemClick(item)" 
             [routerLink]="['/' + item.route]" 
-            class="d-flex align-items-center sidebar-item"
-            [class.selected]="item.isSelected">
-          <span class="icon icon-middle {{item.iconClass}}"></span>
-          <span class="menu-text">{{item.title | translate}}</span>
+            class="d-flex align-items-center sidebar-item">
+          <span class="icon icon-middle {{item.iconClass}}" [class.selected-icon]="item.isSelected"></span>
+          <span class="menu-text" [class.selected-text]="item.isSelected">{{item.title | translate}}</span>
           <ng-template *ngIf="item.rightTemplate" [ngTemplateOutlet]="item.rightTemplate"></ng-template>
         </li>
       </ng-container>

@@ -8,6 +8,22 @@
     font-size: 20px;
 }
 
+:host-context(.light) .icon{
+    background-color: #85878c;
+}
+
+:host-context(.dark) .icon{
+    background-color: $dark-icon;
+}
+
+:host-context(.light) .selected-icon{
+    background-color: $app-green;
+}
+
+:host-context(.dark) .selected-icon{
+    background-color: white !important;
+}
+
 .menu-text{
     font-size: 13px;
     height: 20px;
@@ -21,6 +37,14 @@
 
 :host-context(.dark) .menu-text{
     color: $dark-grey;
+}
+
+:host-context(.light) .selected-text{
+     color: $app-green;
+}
+
+:host-context(.dark) .selected-text{
+    color: white;
 }
 
 .message-circle{
@@ -167,3 +191,4 @@ li{
     margin-bottom: 10px;
     outline: none;
 }
+

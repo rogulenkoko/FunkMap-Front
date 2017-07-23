@@ -12,7 +12,16 @@ export class LanguageService {
     var ru = new Language("Language_Ru", "ru");
     var en = new Language("Language_En", "en");
     this.availableLanguages = [ru, en];
-    this.language = this.availableLanguages[0];
+
+
+    try {
+      var savedLanguage = JSON.parse(localStorage.getItem("language")) as Language;
+      this.language = savedLanguage ? this.availableLanguages.find(x=>x.value == savedLanguage.value) : this.availableLanguages[0];
+    } catch (ex) {
+      this.language = this.availableLanguages[0];
+    }
+
+    
     this.translate.addLangs(this.availableLanguages.map(x=>x.value));
 
     this.translate.setDefaultLang(this.language.value);
@@ -20,6 +29,7 @@ export class LanguageService {
 
   public changeLanguage(){
     this.translate.use(this.language.value);
+    localStorage.setItem("language", JSON.stringify(this.language));
   }
 
 }
