@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 
 .main-settings-container{
     padding-top: 35px;
@@ -6,6 +7,10 @@
     padding-right: 22px;
 }
 
-label{
-    color:  $app-grey
+:host-context(.light) label{
+    color:  $app-grey;
+}
+
+:host-context(.dark) label{
+    color:  $dark-grey;
 }

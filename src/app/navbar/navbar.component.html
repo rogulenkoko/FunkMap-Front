@@ -9,10 +9,6 @@
         <div class="icon icon-middle notification-icon"></div>
         <div class="notification-count">10</div>
       </li>
-      <li (click)="showAll()" class="nav-item d-flex flex-row align-items-center mr-5">
-        <div class="icon icon-middle" [class.show-all-icon]="!mapFilter.isAllShown" [class.show-all-active-icon]="mapFilter.isAllShown"></div>
-        <a class="nav-link" [class.show-all-selected]="mapFilter.isAllShown">{{'Navbar_ShowAll' | translate}}</a>
-      </li>
 
       <!--isLogged из сервиса-->
       <ng-container *ngIf="!userService.user">

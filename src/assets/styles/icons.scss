@@ -4,6 +4,8 @@
     outline:none;
     cursor: pointer;
     display: inline-block;
+    background-color: #b9babb;
+    mask-repeat: no-repeat;
 }
 
 .icon-middle{
@@ -80,9 +82,9 @@
 }
 
 .star-icon{
-    background: url("/assets/images/star.png") no-repeat;
+    mask-image: url("/assets/images/star.png");
 }
 
-.star-selected-icon{
-    background: url("/assets/images/star-selected.png") no-repeat;
+.filter-icon{
+    mask-image: url("/assets/images/filter.svg");
 }

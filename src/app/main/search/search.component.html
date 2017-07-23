@@ -8,7 +8,7 @@
     </div>
     
     <div class="filter-line d-flex justify-content-between">
-      <span (click)="enableFilter()" class="icon icon-middle search-icon mr-2"></span>
+      <span (click)="enableFilter()" class="icon icon-middle filter-icon mr-2" [class.selected-filter]="filterService.isFilterEnabled"></span>
       <span *ngIf="filterService.isFilterEnabled" (click)="clearFilter()" class="filter-text">{{'Clear_Filter' | translate}}</span>
     </div>
     <search-filter *ngIf="filterService.isFilterEnabled"></search-filter>

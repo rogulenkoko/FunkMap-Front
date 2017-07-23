@@ -1,19 +1,26 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/layout.scss";
 @import "src/assets/styles/icons.scss";
 
 .sidebar-item{
-    color: $app-green;
     cursor: pointer;
     font-size: 20px;
 }
 
 .menu-text{
     font-size: 13px;
-    color: $app-grey;
     height: 20px;
     padding-left:18px;
     cursor: pointer;
+}
+
+:host-context(.light) .menu-text{
+     color: $app-grey;
+}
+
+:host-context(.dark) .menu-text{
+    color: $dark-grey;
 }
 
 .message-circle{
@@ -21,13 +28,22 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: $app-red;
     color: white;
     font-size: 10px;
     text-align: center;
     margin-left: 12px;
     
 }
+
+:host-context(.light) .message-circle{
+     background-color: $app-red;
+}
+
+:host-context(.dark) .message-circle{
+    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+
+}
+
 
 .add-circle{
     width: 60px;
@@ -41,6 +57,10 @@
     text-align: center;
     font-weight: lighter !important;
     box-shadow: 0 7px 30px rgba(0,0,0,0.5);
+}
+
+:host-context(.dark) .add-circle{
+    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
 }
 
 
@@ -64,12 +84,20 @@
     height: 100%;
     margin-left: -$sidebar-global-size;
     overflow-y: auto;
-    background: #eeeeee;
+    
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
     box-shadow: 3px 2px 5px rgba(0,0,0,0.3);
     
+}
+
+:host-context(.light) #sidebar-wrapper{
+    background: $light-main-side;
+}
+
+:host-context(.dark) #sidebar-wrapper{
+    background: $dark-main-side;
 }
 
 .sidebar-nav{
@@ -98,13 +126,16 @@
     height: 43px;
 }
 
-.selected{
-    background-color: #f7f7f7;
+
+:host-context(.light) .sidebar-item:hover{
+     background-color: #f7f7f7;
 }
 
-.sidebar-item:hover{
-    background-color: #f7f7f7;
+:host-context(.dark) .sidebar-item:hover{
+     background-color: $dark-sub-main;
 }
+
+
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;

@@ -20,7 +20,6 @@ import { SettingsModule } from "./main/settings/settings.module";
 import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
 import { CreationModule } from './main/creation/creation.module';
-import { AuthRequestOptions } from "app/core/options/auth-request-options";
 import { BandModule } from './main/band/band.module';
 import { AvatarComponent } from './main/avatar/avatar.component';
 import { ImageCropperModule } from 'ng2-img-cropper';

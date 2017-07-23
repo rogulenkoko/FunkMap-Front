@@ -1,17 +1,37 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
 
 .navbar{
-    background-color: white;
     height: 75px;
     padding-left: 35px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     z-index:2010;
 }
 
+:host-context(.light) .navbar{
+    background-color: white;
+}
+
+:host-context(.dark) .navbar{
+    background-color: $dark-main;
+}
+
 .funkmap-title{
-    .map{
-        color: $app-green;
+
+    :host-context(.light) .funk{
+         color: black;
+    }
+
+    :host-context(.dark) .funk{
+        color: $dark-title-color;
+    }
+
+    :host-context(.light) .map{
+         color: $app-green;
+    }
+
+    :host-context(.dark) .map{
+        color: $dark-orange;
     }
 }
 
@@ -33,15 +53,29 @@
 }
 
 .no-image{
-    background-color: #f7f7f7;
+    
     img{
         width: 20px;
         height: 20px;
     }
 }
 
+:host-context(.light) .no-image{
+    background-color: $light-sub-main; 
+}
+
+:host-context(.dark) .no-image{
+    background-color: $dark-sub-main;
+}
+
+
+
 .dropdown{
     cursor: pointer;
+}
+
+:host-context(.dark) .nav-link{
+    color: $dark-grey;
 }
 
 .right-nav-container{
@@ -52,10 +86,6 @@
 
 .fa-chevron-down{
     font-size: 10px;
-}
-
-.show-all-selected{
-    color: $app-green !important;
 }
 
 .show-all-img{
@@ -70,13 +100,21 @@ li{
 .notification-count{
     width: 19px;
     height: 19px;
-    border: 2px solid white;
     border-radius: 50%;
-    background-color: $app-red;
     color: white;
     font-size: 10px;
     text-align: center;
     position: absolute;
     margin-left: 9px;
     margin-top: -9px;
+}
+
+:host-context(.light) .notification-count{
+    border: 2px solid white;
+    background-color: $app-red;
+}
+
+:host-context(.dark) .notification-count{
+    border: 2px solid $dark-main;
+    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
 }

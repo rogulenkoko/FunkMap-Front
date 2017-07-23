@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
 
 .search-item{
@@ -9,9 +10,16 @@
     min-height: 95px;
 }
 
-.search-item:hover{
-    border-bottom: 1px solid $app-green;
+:host-context(.light) .search-item:hover{
+     border-bottom: 1px solid $app-green;
 }
+
+
+:host-context(.dark) .search-item:hover{
+     border-bottom: 1px solid $dark-orange-light;
+}
+
+
 
 .image-container{
     width: 60px;
@@ -39,7 +47,8 @@
 .star-icon, .star-selected-icon{
     width: 15px;
     height: 15px;
-    background-size: 100% 100%;
+    background-size: 15px 15px;
+    mask-size: 100%;
 }
 
 .search-item-content-container{
@@ -51,7 +60,24 @@
 }
 
 .send-message-label{
-    color: $app-green;
     margin-left: 70px;
     cursor: pointer;
+}
+
+:host-context(.light) .send-message-label, :host-context(.light) .selected-favorite{
+    color: $app-green;
+}
+
+
+:host-context(.dark) .send-message-label,  :host-context(.dark) .selected-favorite{
+    color: $dark-orange-light;
+}
+
+:host-context(.light) .selected-favorite{
+    background-color: $app-green;
+}
+
+
+:host-context(.dark) .selected-favorite{
+    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
 }

@@ -12,8 +12,17 @@
     <div>
       <label>{{'Settings_Language' | translate}}</label>
       <select class="form-control" [(ngModel)]="languageService.language" (ngModelChange)="languageService.changeLanguage()">
-    <option *ngFor="let language of languageService.availableLanguages" [ngValue]="language" >{{language.title | translate}}</option>
-  </select>
+        <option *ngFor="let language of languageService.availableLanguages" [ngValue]="language" >{{language.title | translate}}</option>
+      </select>
+    </div>
+
+    <br>
+
+    <div>
+      <label>{{'Theme' | translate}}</label>
+      <select class="form-control" [(ngModel)]="themeService.selectedTheme" (ngModelChange)="themeService.changeTheme()">
+        <option *ngFor="let theme of themeService.themes" [ngValue]="theme" >{{theme.title | translate}}</option>
+      </select>
     </div>
   </div>
 </side>

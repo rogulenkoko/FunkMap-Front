@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
 
 ::-webkit-scrollbar {
@@ -52,4 +53,16 @@
 
 .fa-spinner{
    margin-left: 45%;
+}
+
+.filter-icon{
+     background-color: $app-grey;
+}
+
+:host-context(.light) .selected-filter{
+    background-color: $app-green;
+}
+
+:host-context(.dark) .selected-filter{
+    background-color: $dark-orange-light;
 }

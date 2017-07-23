@@ -92,6 +92,9 @@
     "Instruments":"Инструменты",
     "Entity":"Тип сущности",
     "LoadMore": "Загрузить еще",
-    "Send_Message" : "Написать сообщение"
-    
+    "Send_Message" : "Написать сообщение",
+
+    "Theme":"Тема",
+    "Theme_Light":"Светлая",
+    "Theme_Dark":"Темная"
 }

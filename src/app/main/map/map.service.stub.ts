@@ -42,9 +42,5 @@ export class MapServiceStub extends MapService {
     return Observable.of(this.allMarkers.slice(0, 5));
   }
 
-  getLocation(): Observable<Marker>{
-     return ;
-   }
-
 }
 

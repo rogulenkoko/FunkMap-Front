@@ -34,9 +34,4 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  showAll(){
-    this.mapFilter.isAllShown = !this.mapFilter.isAllShown;
-    this.mapFilter.onSearchAll.emit();
-  }
-
 }

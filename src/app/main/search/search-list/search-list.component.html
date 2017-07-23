@@ -18,7 +18,6 @@
   </div>
 
   <div class="d-flex flex-row">
-    <span *ngIf="userService.user" (click)="changeFavourite(item.login)" class="icon" [class.star-selected-icon]="item.isFavourite"
-      [class.star-icon]="!item.isFavourite"></span>
+    <span *ngIf="userService.user" (click)="changeFavourite(item.login)" class="icon star-icon" [class.selected-favorite]="item.isFavourite"></span>
   </div>
 </div>

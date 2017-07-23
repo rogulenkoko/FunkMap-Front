@@ -6,9 +6,9 @@ import { Http, HttpModule, RequestOptions } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
-import { AuthRequestOptions } from "./options/auth-request-options"
 import { UserService } from "app/main/user/user.service";
 import { HttpClient } from "./http/http-client.service";
+import { ThemeService } from "app/tools/theme.service";
 
 
 @NgModule({
@@ -40,11 +40,8 @@ import { HttpClient } from "./http/http-client.service";
       useValue: TranslatePipe,
       multi: true
     },
-    { provide: RequestOptions, 
-      useClass: AuthRequestOptions, 
-      deps:[UserService]
-    },
-    HttpClient
+    HttpClient,
+    ThemeService
   ]
 })
 export class CoreModule { }

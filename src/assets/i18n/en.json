@@ -94,5 +94,9 @@
     "Instruments":"Instruments",
     "Entity":"Entity type",
     "LoadMore": "Load more",
-    "Send_Message" : "Send message"
+    "Send_Message" : "Send message",
+
+    "Theme":"Theme",
+    "Theme_Light":"Light",
+    "Theme_Dark":"Dark"
 }
