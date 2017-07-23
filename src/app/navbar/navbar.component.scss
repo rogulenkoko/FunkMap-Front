@@ -1,6 +1,7 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
+@import "src/assets/styles/forms.scss";
 
 .navbar{
     height: 75px;
@@ -120,70 +121,70 @@ li{
     background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
 }
 
-.search-container{
-    width: 32%;
-}
+// .search-container{
+//     width: 32%;
+// }
 
-.search-input-container{
-    border-radius: 20px;
-    border: none; 
-    padding: 5px 25px;
-    width: 100%;
-    .form-control{
-        border: none;
-    }
-    .icon-close{
-       mask-size: 10px;
-       margin-top: 6px;
-    }
-}
+// .search-input-container{
+//     border-radius: 20px;
+//     border: none; 
+//     padding: 5px 25px;
+//     width: 100%;
+//     .form-control{
+//         border: none;
+//     }
+//     .icon-close{
+//        mask-size: 10px;
+//        margin-top: 6px;
+//     }
+// }
 
-:host-context(.light) .search-input-container{
-    background-color: $light-sub-main !important;
-    .form-control{
-        color:  $app-grey;
-    }
-    .icon{
-        background-color: $app-grey;
-    }
-}
+// :host-context(.light) .search-input-container{
+//     background-color: $light-sub-main !important;
+//     .form-control{
+//         color:  $app-grey;
+//     }
+//     .icon{
+//         background-color: $app-grey;
+//     }
+// }
 
-:host-context(.dark) .search-input-container{
-    background-color: $dark-sub-main !important;
-    .form-control{
-        color: $dark-grey;
-    }
-    .icon{
-        background-color: $dark-grey;
-    }
-}
+// :host-context(.dark) .search-input-container{
+//     background-color: $dark-sub-main !important;
+//     .form-control{
+//         color: $dark-grey;
+//     }
+//     .icon{
+//         background-color: $dark-grey;
+//     }
+// }
 
-.filter-button{
-    width: 42px;
-    height: 42px;
-    padding-left: 6px;
-    padding-top: 6px;
-    border-radius: 50%;
-    text-align: center;
-}
+// .filter-button{
+//     width: 42px;
+//     height: 42px;
+//     padding-left: 6px;
+//     padding-top: 6px;
+//     border-radius: 50%;
+//     text-align: center;
+// }
 
-:host-context(.light) .filter-button{
-    background-color: $light-sub-main !important;
-}
+// :host-context(.light) .filter-button{
+//     background-color: $light-sub-main !important;
+// }
 
-:host-context(.dark) .filter-button{
-    background-color: $dark-sub-main !important;
-}
+// :host-context(.dark) .filter-button{
+//     background-color: $dark-sub-main !important;
+// }
 
-.filter-icon{
-     background-color: $app-grey;
-     mask-size: 16px;
-}
+// .filter-icon{
+//      background-color: $app-grey;
+//      mask-size: 16px;
+// }
 
-:host-context(.light) .selected-filter{
-    background-color: $app-green;
-}
+// :host-context(.light) .selected-filter{
+//     background-color: $app-green;
+// }
 
-:host-context(.dark) .selected-filter{
-    background-color: $dark-orange-light;
-}
+// :host-context(.dark) .selected-filter{
+//     background-color: $dark-orange-light;
+// }

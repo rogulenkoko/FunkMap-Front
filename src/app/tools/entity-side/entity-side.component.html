@@ -12,6 +12,12 @@
       </div>
     </div>
 
+    <div *ngIf="userService.user" class="buttons-container d-flex flex-column justify-content-center">
+      <button class="btn btn-success">{{'Send_Message' | translate}}</button>
+      <button *ngIf="!isFavorite" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
+      <button *ngIf="isFavorite" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
+    </div>
+
 
     <div class="d-flex flex-column details-container">
 

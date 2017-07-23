@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 
 input[type=radio],
 input[type=checkbox]{
@@ -48,13 +49,27 @@ input::-webkit-inner-spin-button {
     background-color: rgba(0,0,0,0) !important;
 }
 
-.form-control:focus{
+:host-context(.light) .form-control:focus, :host-context(.light) .btn:focus{
   border-color: $app-green !important;
+}
+
+:host-context(.dark) .form-control:focus, :host-context(.dark) .btn:focus{
+  border-color:$dark-orange-light !important;
 }
 
 .form-control::-webkit-input-placeholder{
   font-size: 14px;
   color: $app-grey;
+}
+
+.btn{
+   border-radius: 20px;
+   outline: none !important;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus{
+    outline:none;
+    box-shadow:none;
 }
 
 .btn-file {
@@ -78,8 +93,14 @@ input::-webkit-inner-spin-button {
     color: white;
 }
 
-.btn-secondary{
-        color: $app-green;
-        border: 1px solid $app-green;
+:host-context(.dark) .btn-success{
+        color: white;
+        background-color: $dark-orange-light;
+        border: 1px solid $dark-orange-light;
+}
+
+:host-context(.dark) .btn-secondary{
+        color: $dark-orange-light;
+        border: 1px solid $dark-orange-light;
 }
 

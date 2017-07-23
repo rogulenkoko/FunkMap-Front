@@ -67,7 +67,6 @@ export class MapComponent implements OnInit {
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
-    console.log(document.location.protocol);
     if (document.location.protocol == "https:") {
       var location = navigator.geolocation.getCurrentPosition((position) => {
         this.setCoordinates(position.coords.latitude, position.coords.longitude);

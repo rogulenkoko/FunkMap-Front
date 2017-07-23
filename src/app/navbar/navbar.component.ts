@@ -36,17 +36,17 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  private onTextChanged(value: string) {
-    this.filterService.searchChanged.next(value);
-  }
+  // private onTextChanged(value: string) {
+  //   this.filterService.searchChanged.next(value);
+  // }
 
-  private clearSearchText(){
-    this.filterService.searchChanged.next("");
-    this.filterService.searchTextStub = "";
-  }
+  // private clearSearchText(){
+  //   this.filterService.searchChanged.next("");
+  //   this.filterService.searchTextStub = "";
+  // }
 
-  private enableFilter(){
-    this.filterService.isFilterEnabled = !this.filterService.isFilterEnabled;
-  }
+  // private enableFilter(){
+  //   this.filterService.isFilterEnabled = !this.filterService.isFilterEnabled;
+  // }
 
 }

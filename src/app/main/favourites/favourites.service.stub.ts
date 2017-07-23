@@ -32,4 +32,8 @@ export class FavouritesServiceStub extends FavouritesService {
     return Observable.of(new BaseResponse(true));
   };
 
+  getFavouritesLogins(): Observable<Array<string>>{
+    return this.getFavourites().map(x=>x.map(x=>x.login));
+  }
+
 }

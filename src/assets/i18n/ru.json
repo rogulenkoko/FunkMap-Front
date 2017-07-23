@@ -93,7 +93,8 @@
     "Entity":"Тип сущности",
     "LoadMore": "Загрузить еще",
     "Send_Message" : "Написать сообщение",
-
+    "Add_Favorites":"Добавить в избранное",
+    "Remove_Favorites":"Убрать из избранных",
     "Theme":"Тема",
     "Theme_Light":"Светлая",
     "Theme_Dark":"Темная"

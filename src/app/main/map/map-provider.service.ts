@@ -33,12 +33,22 @@ export class MapProvider {
                 22,
                 '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
                 [])];
-            this.selectedMap = this.maps[0];
+
+
+            try {
+                var savedMap = JSON.parse(localStorage.getItem("map")) as Map;
+                this.selectedMap = savedMap ? this.maps.find(x=>x.type == savedMap.type) : this.maps[0];
+            } catch (ex) {
+                this.selectedMap = this.maps[0];
+            }
+
+            
             this.onMapChange = new EventEmitter();
     }
 
     updateMap(){
         this.onMapChange.emit();
+        localStorage.setItem("map", JSON.stringify(this.selectedMap));
     }
 
 }

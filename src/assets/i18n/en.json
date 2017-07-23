@@ -95,6 +95,8 @@
     "Entity":"Entity type",
     "LoadMore": "Load more",
     "Send_Message" : "Send message",
+    "Add_Favorites":"Add to favorites",
+    "Remove_Favorites":"Remove from favorites",
 
     "Theme":"Theme",
     "Theme_Light":"Light",

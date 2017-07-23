@@ -12,6 +12,8 @@ export abstract class FavouritesService {
 
   abstract getFavourites(): Observable<Array<SearchItem>>;
 
+  abstract getFavouritesLogins(): Observable<Array<string>>;
+
   abstract setFavourite(login: string): Observable<BaseResponse>;
 
 }
@@ -28,6 +30,10 @@ export class FavouritesServiceHttp extends FavouritesService {
       var logins = x.json();
       return this.http.post(`${ConfigurationProvider.apiUrl}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
     });
+  }
+
+  getFavouritesLogins(): Observable<Array<string>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl}favourites/logins`).map(x=>x.json());
   }
 
   setFavourite(login: string): Observable<BaseResponse> {

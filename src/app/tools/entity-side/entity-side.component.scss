@@ -1,5 +1,7 @@
 @import "src/app/tools/side/side.scss";
 @import "src/assets/styles/icons.scss";
+@import "src/assets/styles/forms.scss";
+
 
 .main-entity-side-container{
     padding-top: 48px;
@@ -10,4 +12,15 @@
     font-size: 14px;
     max-width: 50%;
     overflow: hidden;
+}
+
+.buttons-container{
+    margin-top: -12px;
+    margin-bottom: 18px;
+    .btn{
+        width: 175px;
+        height: 30px;
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
 }
