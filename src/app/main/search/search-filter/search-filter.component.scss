@@ -1,8 +1,8 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
 
 .filter-main-container{
-    background: #f7f7f7;
     padding: 12px 25px;
     .filter-container{
         width: 100%;
@@ -38,4 +38,12 @@
         font-size: 13px;
         flex-wrap: wrap;
     }
+}
+
+:host-context(.light) .filter-main-container{
+    background-color:  $light-sub-main;
+}
+
+:host-context(.dark) .filter-main-container{
+    background-color: $dark-item-hover;
 }

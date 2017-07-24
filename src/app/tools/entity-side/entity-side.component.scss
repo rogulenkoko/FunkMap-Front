@@ -3,9 +3,15 @@
 @import "src/assets/styles/forms.scss";
 
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 .main-entity-side-container{
     padding-top: 48px;
     padding-left: 16px;
+    max-height: 99%;
+    overflow-y: auto;
 }
 
 .property-value{
