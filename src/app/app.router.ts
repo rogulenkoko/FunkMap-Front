@@ -18,6 +18,7 @@ import { ShopComponent } from "app/main/shop/shop.component";
 import { StudioComponent } from "app/main/studio/studio.component";
 import { RehearsalComponent } from "app/main/rehearsal/rehearsal.component";
 import { UserEntitiesComponent } from "app/main/user/user-entities/user-entities.component";
+import { MusicianFullComponent } from "app/main/musician/musician-full/musician-full.component";
 
 const appRoutes: Routes = [
   {
@@ -45,10 +46,10 @@ const appRoutes: Routes = [
           { path: "checkmap", component: MapCreationComponent },
           { path: "search", component: SearchComponent },
           { path: "favorites", component: FavouritesComponent }
-        ]
+        ],
       },
-
-
+      { path: "musicianPage", component: MusicianFullComponent },
+      { path: "musicianPage/:id", component: MusicianFullComponent },
     ]
   },
 ];

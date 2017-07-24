@@ -14,12 +14,13 @@ export class Musician extends BaseModel{
     
     public sex: Sex;
     public birthDate: Date;
+    public age: number;
     public years: number;
     public expirience: ExpirienceType;
     public instrument: InstrumentType;
 
     public static ToMusician(data: any): Musician{
-        var result = new Musician(data.Id, data.Name);
+        var result = new Musician(data.Login, data.Name);
         result.birthDate = new Date(data.BirthDate);
         result.description = data.Description;
         result.expirience = data.Expirience;
@@ -30,6 +31,8 @@ export class Musician extends BaseModel{
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;
+        result.instrument = data.Instrument;
+        result.age = data.Age;
         return result;
     }
 }

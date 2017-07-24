@@ -1,0 +1,16 @@
+<div class="musician-base-container d-flex flex-column align-items-center">
+  <div class="image-container">
+    <img src="data:image/png;base64,{{musician.avatar}}"/>
+  </div>
+  <div class="name-container">
+    {{musician.name}}
+  </div>
+  <div class="sub-info-container">
+    {{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}, {{musician.age}} {{'Musician_Years' | translate}}
+  </div>
+  <div class="buttons-container d-flex flex-column">
+      <button class="btn btn-success">{{'Send_Message' | translate}}</button>
+      <button *ngIf="!isFavorite" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
+      <button *ngIf="isFavorite" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
+  </div>
+</div>

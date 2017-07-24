@@ -12,6 +12,8 @@ export abstract class MusicianService {
 
   abstract getMusicianPreview(id: string): Observable<Musician>;
 
+  abstract getMusician(id: string): Observable<Musician>;
+
 }
 
 @Injectable()
@@ -24,6 +26,10 @@ export class MusicianServiceHttp extends MusicianService {
 
    getMusicianPreview(id: string): Observable<MusicianPreview>{
      return this.http.get(ConfigurationProvider.apiUrl + "musician/get/" + id).map(x=>MusicianPreview.ToMusicianPreview(x.json()));
+   }
+
+   getMusician(id: string): Observable<Musician>{
+     return this.http.get(`${ConfigurationProvider.apiUrl}musician/getFull/` + id).map(x=>Musician.ToMusician(x.json()));
    }
 
 }

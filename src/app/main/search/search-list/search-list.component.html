@@ -1,4 +1,4 @@
-<div *ngFor="let item of items" class="search-item d-flex justify-content-between">
+<div *ngFor="let item of items" class="search-item d-flex justify-content-between" [routerLink]="['/musicianPage/' + item.login]">
   <!--(mouseover)="selectMarkerOnMap(item)"-->
   <div class="search-sub-item d-flex justify-content-between">
     <div class="search-item-content-container">

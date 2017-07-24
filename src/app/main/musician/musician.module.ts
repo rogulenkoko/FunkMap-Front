@@ -8,11 +8,15 @@ import { MusicianTypesProvider } from "./musician-types-provider";
 import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 import { ToolsModule } from "app/tools/tools.module";
 import { SearchMusicianComponent } from "app/main/musician/search-musician/search-musician.component";
+import { MusicianFullComponent } from './musician-full/musician-full.component';
+import { MusicianBaseComponent } from './musician-full/musician-base/musician-base.component';
 
 @NgModule({
   declarations: [
     MusicianComponent,
-    SearchMusicianComponent
+    SearchMusicianComponent,
+    MusicianFullComponent,
+    MusicianBaseComponent
   ],
   imports: [
     CoreModule,
