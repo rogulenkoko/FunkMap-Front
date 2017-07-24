@@ -3,20 +3,35 @@
 @import "src/assets/styles/icons.scss";
 
 .search-item{
-    padding: 20px 0;
-    border-bottom: 1px solid #ececec;
     font-size: 13px;
     //cursor: pointer;
     min-height: 95px;
+    padding-left: 25px;
+    padding-right: 22px;
+    padding-top: 10px;
 }
 
 :host-context(.light) .search-item:hover{
-     border-bottom: 1px solid $app-green;
+    background-color: $light-sub-main;
 }
 
 
 :host-context(.dark) .search-item:hover{
-     border-bottom: 1px solid $dark-orange-light;
+    background-color: $dark-item-hover;
+}
+
+.search-sub-item{
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+:host-context(.light) .search-sub-item{
+    border-bottom: 1px solid $light-sub-main;
+}
+
+
+:host-context(.dark) .search-sub-item{
+    border-bottom: 1px solid $dark-item-hover;
 }
 
 
