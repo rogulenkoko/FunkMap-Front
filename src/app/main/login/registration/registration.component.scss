@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/forms.scss";
 
 .registration-container{
     height: 250px;
@@ -29,13 +30,26 @@
 .circle{
     width: 35px;
     height: 35px;
-    border: 1px solid $app-green;
-    color: $app-green;
     border-radius: 50%;
 }
 
-.circle-selected{
-    background-color: $app-green;
+:host-context(.light) .circle{
+    border: 1px solid $app-green;
+    color: $app-green;
+}
+
+:host-context(.dark) .circle{
+    border: 1px solid $dark-orange;
+    color: $dark-orange;
+}
+
+:host-context(.light) .circle-selected{
+     background-color: $app-green;
+     color: white;
+}
+
+:host-context(.dark) .circle-selected{
+    background-color: $dark-orange;
     color: white;
 }
 
@@ -88,7 +102,7 @@
 }
 
 .btn{
-    width: 198px !important;
+    width: 48% !important;
     height: 44px;
     border-radius: 22px; 
 }

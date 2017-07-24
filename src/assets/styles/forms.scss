@@ -49,12 +49,20 @@ input::-webkit-inner-spin-button {
     background-color: rgba(0,0,0,0) !important;
 }
 
+:host-context(.light) .form-control{
+  border-color: $light-label !important;
+}
+
+:host-context(.dark) .form-control{
+  border-color: $dark-grey !important;
+}
+
 :host-context(.light) .form-control:focus, :host-context(.light) .btn:focus{
   border-color: $app-green !important;
 }
 
 :host-context(.dark) .form-control:focus, :host-context(.dark) .btn:focus{
-  border-color:$dark-orange-light !important;
+  border-color: $dark-orange-light !important;
 }
 
 .form-control::-webkit-input-placeholder{
