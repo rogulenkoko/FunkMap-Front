@@ -41,6 +41,8 @@
     width: 60px;
     height: 60px;
     margin-right: 10px;
+    outline: none;
+    cursor: pointer;
     img{
         border-radius: 50%;
         width: 60px;
@@ -51,12 +53,19 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background-color: #f7f7f7;
        
         img{
             width: 30px;
             height: 30px;
         }
+    }
+
+    :host-context(.light) .no-image{
+        background-color: $light-sub-main; 
+    }
+
+    :host-context(.dark) .no-image{
+        background-color: $dark-sub-main;
     }
 }
 

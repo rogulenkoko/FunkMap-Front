@@ -1,7 +1,12 @@
 <div class="musician-base-container d-flex flex-column align-items-center">
-  <div class="image-container">
+  <div *ngIf="musician.avatar" class="image-container">
     <img src="data:image/png;base64,{{musician.avatar}}"/>
   </div>
+
+  <div *ngIf="!musician.avatar" class="image-container no-image d-flex align-items-center justify-content-center">
+    <img src="/assets/images/no-name.png" />
+  </div>
+
   <div class="name-container">
     {{musician.name}}
   </div>

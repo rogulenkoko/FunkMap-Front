@@ -1,9 +1,9 @@
-<div *ngFor="let item of items" class="search-item d-flex justify-content-between" [routerLink]="['/musicianPage/' + item.login]">
+<div *ngFor="let item of items" class="search-item d-flex justify-content-between">
   <!--(mouseover)="selectMarkerOnMap(item)"-->
   <div class="search-sub-item d-flex justify-content-between">
     <div class="search-item-content-container">
       <div class="d-flex flex-row search-item-content">
-        <div class="image-container">
+        <div class="image-container"  [routerLink]="['/musicianPage/' + item.login]">
           <div *ngIf="!item.image" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.png/"></div>
           <img *ngIf="item.image" src="data:image/png;base64,{{item.image}}" />
         </div>
