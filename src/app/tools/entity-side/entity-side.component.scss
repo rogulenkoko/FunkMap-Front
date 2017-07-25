@@ -2,6 +2,10 @@
 @import "src/assets/styles/icons.scss";
 @import "src/assets/styles/forms.scss";
 
+.full-page-link{
+    outline: none;
+    cursor: pointer;
+}
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -29,4 +33,12 @@
         font-size: 12px;
         margin-bottom: 12px;
     }
+}
+
+:host-context(.light) .no-image{
+    background-color: $light-sub-main; 
+}
+
+:host-context(.dark) .no-image{
+    background-color: $dark-sub-main;
 }
