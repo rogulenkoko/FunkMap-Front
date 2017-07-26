@@ -1,0 +1,25 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+
+.musician-info-container{
+    width: 528px;
+    background-color: $dark-card-background;
+    padding-top: 45px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    border-radius: 5px; 
+    margin-left: 8px;
+    height: 550px;
+    
+    .info-title-container{
+        font-size: 16px;
+        color: #7a7a7b;
+        margin-bottom: 40px;
+    }
+
+    .property-title{
+        width: 120px;
+        font-size: 13px;
+        color: $dark-title-color;
+    }
+}

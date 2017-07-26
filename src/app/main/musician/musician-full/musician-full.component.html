@@ -1,3 +1,5 @@
-<div class="musician-full-container d-flex">
+<div class="musician-full-container d-flex justify-content-center">
   <musician-base *ngIf="musician" [musician]="musician"></musician-base>
+  <musician-info *ngIf="musician" [musician]="musician"></musician-info>
+  <musician-map></musician-map>
 </div>
