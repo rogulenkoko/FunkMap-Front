@@ -1,4 +1,27 @@
 
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
+
 .leaflet-map{
     height: 100%;
+}
+
+.add-circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 1001;
+    position: absolute;
+    bottom: 70px;
+    left:  $sidebar-global-size + 60px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: lighter !important;
+    box-shadow: 0 7px 30px rgba(0,0,0,0.5);
+}
+
+:host-context(.dark) .add-circle{
+    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
 }

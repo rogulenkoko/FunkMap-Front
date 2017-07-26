@@ -1,13 +1,17 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+
 
 .musician-base-container{
+    
     width: 300px;
     background-color: #f4f6fa;
     padding-top: 60px;
     padding-bottom: 30px;
     border-radius: 5px; 
+    margin-left: $sidebar-global-size;
 
     .image-container{
         width: 180px;

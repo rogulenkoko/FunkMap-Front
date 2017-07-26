@@ -1,2 +1,6 @@
 
 <div class="leaflet-map" id="map"></div>
+
+<div routerLink="/create" *ngIf="userService.user" class="btn btn-success add-circle">
+  <img src="assets/images/plus.png" />
+</div>
