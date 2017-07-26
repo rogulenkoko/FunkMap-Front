@@ -2,7 +2,7 @@
   <div class="d-flex flex-column justify-content-center align-items-center main-entity-side-container">
     <div class="d-flex flex-column justify-content-center align-items-center full-page-link" [routerLink]="['/musicianPage/' + item.login]">
       <div *ngIf="!item.avatar" class="no-image d-flex justify-content-center align-items-center">
-        <img src="/assets/images/no-name.png" />
+        <img src="/assets/images/no-name.svg" />
       </div>
       <div *ngIf="item.avatar" class="image-container">
         <img src="{{avatarImage}}" />

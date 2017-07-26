@@ -3,6 +3,7 @@ import { MapProvider } from "app/main/map/map-provider.service";
 import { Map, Marker } from "app/main/map/models"
 import { BaseModel } from "app/core";
 import { MarkerFactory } from "app/main/map/marker-factory.service";
+import { MapService } from "app/main/map/map.service";
 
 @Component({
   selector: 'entity-map',
@@ -12,18 +13,22 @@ import { MarkerFactory } from "app/main/map/marker-factory.service";
 export class EntityMapComponent implements OnInit {
 
   @Input() marker: Marker;
+  private address: string;
 
   private map: L.Map;
   private baseLayer: L.TileLayer;
   private markersLayer: L.LayerGroup;
 
+
   constructor(private mapProvider: MapProvider,
-              private markerFactory: MarkerFactory) { }
+              private markerFactory: MarkerFactory,
+              private mapService: MapService) { }
 
   ngOnInit() {
     this.map = new L.Map('map-mini', { center: new L.LatLng(this.marker.lat, this.marker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
     this.initMap();
     this.initMarkersLayer();
+    this.getAddress();
   }
 
   private initMap() {
@@ -59,6 +64,12 @@ export class EntityMapComponent implements OnInit {
       };
     }
     return options;
+  }
+
+  private getAddress(){
+    this.mapService.getAddress().subscribe(address=>{
+      this.address = address;
+    })
   }
 
 }

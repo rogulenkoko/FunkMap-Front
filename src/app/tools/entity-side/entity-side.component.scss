@@ -42,3 +42,10 @@
 :host-context(.dark) .no-image{
     background-color: $dark-sub-main;
 }
+
+.no-image{
+    img{
+        width: 120px;
+        height: 120px;
+    }
+}

@@ -28,6 +28,10 @@ export class MusicianServiceStub extends MusicianService {
      musician.years = 45;
      musician.sex = Sex.Male;
      musician.expirience = 3;
+     musician.latitude = 30;
+     musician.longitude = 40;
+     musician.birthDate = new Date();
+     musician.age = 23;
      musician.description = `Мик Томсон (род. 3 ноября 1973 ) - американский музыкант. Он известен как один из трех гитаристов Slipknot`;
      return musician;
    }
