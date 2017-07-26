@@ -20,6 +20,8 @@ export abstract class UserDataService {
 
   abstract getUserEntities(): Observable<Array<SearchItem>>;
 
+  abstract getUserEntitiesLogins(): Observable<Array<string>>;
+
 }
 
 @Injectable()
@@ -42,6 +44,10 @@ export class UserDataServiceHttp extends UserDataService {
       var logins = x.json();
       return this.http.post(`${ConfigurationProvider.apiUrl}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
     });
+  }
+
+  getUserEntitiesLogins(): Observable<Array<string>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl}base/users`).map(x=>x.json());
   }
 
 }

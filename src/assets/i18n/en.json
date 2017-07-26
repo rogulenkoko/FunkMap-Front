@@ -100,5 +100,7 @@
 
     "Theme":"Theme",
     "Theme_Light":"Light",
-    "Theme_Dark":"Dark"
+    "Theme_Dark":"Dark",
+
+    "Edit":"Edit"
 }

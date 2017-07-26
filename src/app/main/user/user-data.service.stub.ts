@@ -28,4 +28,8 @@ export class UserDataServiceStub extends UserDataService {
      s1.type = EntityType.Musician;
     return Observable.of([s1]);
   }
+
+  getUserEntitiesLogins(): Observable<Array<string>>{
+    return Observable.of(["test","rogulenkoko"]);
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { SearchItem } from "app/main/search/search-item";
+import { FavouritesService } from "app/main/favourites/favourites.service";
 
 @Component({
   selector: 'app-user-entities',

@@ -4,6 +4,7 @@ import { MusicStyle, ExpirienceType } from "app/main/musician/models";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { UserService } from "app/main/user/user.service";
+import { UserDataService } from "app/main/user/user-data.service";
 
 @Component({
   selector: 'entity-side',
@@ -23,15 +24,30 @@ export class EntitySideComponent implements OnInit {
 
   private avatarImage: string;
   private isFavorite: boolean;
+  private isUsers: boolean;
 
   constructor(private typesProvider: MusicianTypesProvider,
     private favouritesService: FavouritesService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private userDataService: UserDataService) { }
 
   ngOnInit() {
     if (this.item) this.avatarImage = "data:image/png;base64," + this.item.avatar;
-    this.favouritesService.getFavouritesLogins().subscribe(favorites=>{
-      if(favorites.find(x=>x == this.item.login)){
+    this.checkIsFavorite();
+    this.checkIsUserEntity();
+  }
+
+  private checkIsUserEntity() {
+    if(!this.userService.user) return;
+    this.userDataService.getUserEntitiesLogins().subscribe(logins => {
+      this.isUsers = logins.find(x => x == this.item.login) ? true : false;
+    });
+  }
+
+  private checkIsFavorite() {
+    if(!this.userService.user) return;
+    this.favouritesService.getFavouritesLogins().subscribe(favorites => {
+      if (favorites.find(x => x == this.item.login)) {
         this.isFavorite = true;
       } else {
         this.isFavorite = false;

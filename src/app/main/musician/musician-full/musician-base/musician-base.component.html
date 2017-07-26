@@ -14,8 +14,9 @@
     {{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}, {{musician.age}} {{'Musician_Years' | translate}}
   </div>
   <div class="buttons-container d-flex flex-column">
-      <button class="btn btn-success">{{'Send_Message' | translate}}</button>
-      <button *ngIf="!isFavorite" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
-      <button *ngIf="isFavorite" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
+      <button *ngIf="!isUsers" class="btn btn-success">{{'Send_Message' | translate}}</button>
+      <button *ngIf="isUsers" class="btn btn-success">{{'Edit' | translate}}</button>
+      <button *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
+      <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
   </div>
 </div>
