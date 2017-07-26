@@ -1,0 +1,20 @@
+<div *ngIf="entity" class="entity-base-container d-flex flex-column align-items-center">
+  <div *ngIf="entity.avatar" class="image-container">
+    <img src="data:image/png;base64,{{entity.avatar}}"/>
+  </div>
+
+  <div *ngIf="!entity.avatar" class="image-container no-image d-flex align-items-center justify-content-center">
+    <img src="/assets/images/no-name.png" />
+  </div>
+
+  <div class="name-container">
+    {{entity.name}}
+  </div>
+  <ng-template *ngIf="underNameTemplate" [ngTemplateOutlet]="underNameTemplate"></ng-template>
+  <div class="buttons-container d-flex flex-column">
+      <button *ngIf="!isUsers" class="btn btn-success">{{'Send_Message' | translate}}</button>
+      <button *ngIf="isUsers" class="btn btn-success">{{'Edit' | translate}}</button>
+      <button *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
+      <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
+  </div>
+</div>

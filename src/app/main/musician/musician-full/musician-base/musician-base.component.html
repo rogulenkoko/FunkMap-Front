@@ -1,22 +1,9 @@
-<div class="musician-base-container d-flex flex-column align-items-center">
-  <div *ngIf="musician.avatar" class="image-container">
-    <img src="data:image/png;base64,{{musician.avatar}}"/>
-  </div>
+<entity-base *ngIf="musician"
+             [entity]="musician"
+             [underNameTemplate]="underNameTemplate"></entity-base>
 
-  <div *ngIf="!musician.avatar" class="image-container no-image d-flex align-items-center justify-content-center">
-    <img src="/assets/images/no-name.png" />
-  </div>
-
-  <div class="name-container">
-    {{musician.name}}
-  </div>
+<ng-template #underNameTemplate>
   <div class="sub-info-container">
     {{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}, {{musician.age}} {{'Musician_Years' | translate}}
   </div>
-  <div class="buttons-container d-flex flex-column">
-      <button *ngIf="!isUsers" class="btn btn-success">{{'Send_Message' | translate}}</button>
-      <button *ngIf="isUsers" class="btn btn-success">{{'Edit' | translate}}</button>
-      <button *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
-      <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
-  </div>
-</div>
+</ng-template>

@@ -1,0 +1,63 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+
+
+.entity-base-container{
+    
+    width: 300px;
+    height: 550px;
+    background-color: $dark-card-background;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    border-radius: 5px; 
+
+    .image-container{
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        img{
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+        }
+    }
+
+    .no-image{
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    :host-context(.light) .no-image{
+        background-color: $light-sub-main; 
+    }
+
+    :host-context(.dark) .no-image{
+        background-color: $dark-sub-main;
+    }
+
+    .name-container{
+        font-size: 20px;
+        color: $dark-font-color;
+        font-weight: 0;
+        margin-top: 30px;
+    }
+
+    .sub-info-container{
+        font-size: 13px;
+        color: #b6bec5;
+        margin-bottom: 46px;
+    }
+
+    .buttons-container{
+        .btn{
+            width: 180px;
+            height: 35px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+    }
+}

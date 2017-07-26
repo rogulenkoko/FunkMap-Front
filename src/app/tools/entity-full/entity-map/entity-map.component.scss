@@ -1,0 +1,17 @@
+
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+
+.entity-map-container{
+    width: 300px;
+    height: 550px;
+    background-color: $dark-card-background;
+    border-radius: 5px; 
+    margin-left: 8px;
+}
+
+.leaflet-map{
+    width: 300px;
+    height: 375px;
+    border-radius: 5px; 
+}

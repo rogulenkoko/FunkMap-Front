@@ -8,13 +8,21 @@ import { CoreModule } from "app/core/core.module";
 import { DateSelectProvider } from "./date/date-select-provider.service";
 import { EntitySideComponent } from './entity-side/entity-side.component';
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
+import { EntityFullComponent } from './entity-full/entity-full.component';
+import { EntityBaseComponent } from './entity-full/entity-base/entity-base.component';
+import { EntityMapComponent } from './entity-full/entity-map/entity-map.component';
+import { EntityInfoComponent } from './entity-full/entity-info/entity-info.component';
 
 
 @NgModule({
   declarations: [
     ModalComponent,
     SideComponent,
-    EntitySideComponent
+    EntitySideComponent,
+    EntityFullComponent,
+    EntityBaseComponent,
+    EntityMapComponent,
+    EntityInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,9 @@ import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
     FormsModule,
     RouterModule,
     SideComponent,
-    EntitySideComponent
+    EntitySideComponent,
+    EntityBaseComponent,
+    EntityMapComponent
     ],
   providers: [
     DateSelectProvider,

@@ -33,6 +33,8 @@ export class Musician extends BaseModel{
         result.facebookLink = data.FacebookLink;
         result.instrument = data.Instrument;
         result.age = data.Age;
+        result.latitude = data.Latitude;
+        result.longitude = data.Longitude;
         return result;
     }
 }
