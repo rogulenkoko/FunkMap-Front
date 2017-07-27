@@ -1,6 +1,7 @@
 
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/icons.scss";
 
 .entity-map-container{
     width: 300px;
@@ -8,10 +9,28 @@
     background-color: $dark-card-background;
     border-radius: 5px; 
     margin-left: 8px;
+
+    .leaflet-map{
+        width: 300px;
+        height: 375px;
+        border-radius: 5px; 
+    }
+
+    .map-info-container{
+
+        padding-top: 30px;
+        padding-left: 35px;
+
+        .info-title{
+            font-size: 16px;
+            color: #7a7a7b;
+        }
+
+        .address-container{
+            margin-top: 10px;
+            font-size: 13px;
+            color: $dark-title-color;
+        }
+    }
 }
 
-.leaflet-map{
-    width: 300px;
-    height: 375px;
-    border-radius: 5px; 
-}

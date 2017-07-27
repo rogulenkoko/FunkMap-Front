@@ -4,14 +4,16 @@ import { Observable } from "rxjs/Observable";
 import { Map, MapType, Marker, EntityType, NearestRequest } from "./models";
 import { InstrumentType } from "../musician/models";
 import { Http } from "@angular/http";
+import { TranslateService } from "@ngx-translate/core";
+import { LanguageService } from "app/core";
 
 @Injectable()
 export class MapServiceStub extends MapService {
 
   private allMarkers: Array<Marker>;
 
-  constructor(http: Http) {
-    super(http);
+  constructor(http: Http, translateService: LanguageService) {
+    super(http, translateService);
 
     var m1 = new Marker("test", 53.8987, 30.0686, EntityType.Musician);
     m1.instrument = InstrumentType.Drums;

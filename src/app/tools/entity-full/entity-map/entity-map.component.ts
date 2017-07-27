@@ -28,7 +28,7 @@ export class EntityMapComponent implements OnInit {
     this.map = new L.Map('map-mini', { center: new L.LatLng(this.marker.lat, this.marker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
     this.initMap();
     this.initMarkersLayer();
-    this.getAddress();
+    this.getAddress(this.marker.lat, this.marker.lng);
   }
 
   private initMap() {
@@ -66,8 +66,8 @@ export class EntityMapComponent implements OnInit {
     return options;
   }
 
-  private getAddress(){
-    this.mapService.getAddress().subscribe(address=>{
+  private getAddress(lat: number, lon: number){
+    this.mapService.getAddress(lat, lon).subscribe(address=>{
       this.address = address;
     })
   }

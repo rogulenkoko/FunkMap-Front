@@ -4,11 +4,13 @@ import { MapType, Marker, NearestRequest } from "./models";
 import { Http } from "@angular/http";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 import { GoogleLocation } from "app/main/map/models/location";
+import { TranslateService } from "@ngx-translate/core";
+import { LanguageService } from "app/core";
 
 @Injectable()
 export abstract class MapService {
 
-  constructor(protected http: Http) { }
+  constructor(protected http: Http, private translateService: LanguageService) { }
 
   abstract getAll(): Observable<Array<Marker>>;
 
@@ -23,9 +25,8 @@ export abstract class MapService {
     })
   }
 
-  public getAddress():Observable<string>{
-    //todo язык
-    return this.http.get("http://maps.googleapis.com/maps/api/geocode/json?latlng=50,30&sensor=true&language=ru-RU").map(x=>{
+  public getAddress(lat: number, lon: number):Observable<string>{
+    return this.http.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=true&language=${this.translateService.language.value}`).map(x=>{
       return x.json().results[0].formatted_address;
     })
   }
@@ -35,8 +36,8 @@ export abstract class MapService {
 @Injectable()
 export class MapServiceHttp extends MapService {
 
-  constructor(http: Http) {
-    super(http);
+  constructor(http: Http, translateService: LanguageService) {
+    super(http, translateService);
   }
 
   getAll(): Observable<Array<Marker>> {
