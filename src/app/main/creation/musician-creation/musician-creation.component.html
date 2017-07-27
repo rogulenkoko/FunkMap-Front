@@ -1,6 +1,7 @@
 <div class="d-flex flex-row align-items-baseline">
   <label class="property-title">{{'Musician_Name' | translate}}:</label>
-  <input [class.error]="wasSubmit && !creationService.baseModel.name" [(ngModel)]="creationService.baseModel.name" class="form-control secondary" />
+  <input [class.error]="wasSubmit && !creationService.baseModel.name" [(ngModel)]="creationService.baseModel.name" class="form-control secondary"
+  />
 </div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
@@ -27,15 +28,15 @@
 </div>
 <br>
 <div class="d-flex flex-row">
-      <label class="property-title">{{'Musician_Instrument' | translate}}:</label>
-      <div class="d-flex align-content-start flex-wrap" style="width:100%;">
-        <div [class.error]="wasSubmit && !creationService.musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index"
-          class="instrument d-flex align-items-center justify-content-center" [class.instrument-selected]="creationService.musician.instrument == instrument"
-          (click)="selectInstrument(instrument)">
-          <img src="{{iconProvider.icons.getValue(instrument)}}" />
-        </div>
-      </div>
+  <label class="property-title">{{'Musician_Instrument' | translate}}:</label>
+  <div class="d-flex align-content-start flex-wrap" style="width:100%;">
+    <div [class.error]="wasSubmit && !creationService.musician.instrument" *ngFor="let instrument of iconProvider.icons.keys(); let i=index"
+      class="instrument d-flex align-items-center justify-content-center" [class.instrument-selected]="creationService.musician.instrument == instrument"
+      (click)="selectInstrument(instrument)">
+      <img src="{{iconProvider.icons.getValue(instrument)}}" />
+    </div>
   </div>
+</div>
 <br>
 <div class="d-flex flex-row align-items-baseline">
   <label class="property-title">{{'Musician_Styles' | translate}}:</label>
@@ -50,6 +51,17 @@
         <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle)}}</span>
       </div>
     </div>
+  </div>
+</div>
+
+<br>
+
+<div class="d-flex flex-row align-items-baseline">
+  <label class="property-title">{{'Musician_Expirience' | translate}}:</label>
+  <div class="d-flex flex-column selected-styles-container">
+    <select [(ngModel)]="creationService.musician.expirience" class="form-control mr-3">
+        <option *ngFor="let expirience of musicianTypesProvider.expiriences.keys()" [ngValue]="expirience">{{musicianTypesProvider.expiriences.getValue(expirience) | translate}}</option>
+      </select>
   </div>
 </div>
 

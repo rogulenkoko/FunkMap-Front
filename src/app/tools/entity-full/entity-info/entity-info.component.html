@@ -1,3 +1,11 @@
-<p>
-  entity-info works!
-</p>
+<div class="musician-info-container d-flex flex-column">
+  <div class="info-title-container">
+    Информация
+  </div>
+  <div *ngFor="let item of items" class="d-flex flex-column">
+    <div class="d-flex flex-row property-container">
+      <span class="property-title">{{item.propertyTitle | translate}}:</span>
+      <span class="property-value">{{item.propertyValue | translate}}</span>
+    </div>
+  </div>
+</div>

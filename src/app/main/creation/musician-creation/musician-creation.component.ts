@@ -29,6 +29,7 @@ export class MusicianCreationComponent implements OnInit {
               private router: Router) {
     this.creationService.musician = new Musician();
     this.styles = new Dictionary<MusicStyle, string>(); 
+    this.musicianTypesProvider.expiriences
     this.musicianTypesProvider.musicStyles.keys().forEach(key => {
       this.styles.setValue(key, this.musicianTypesProvider.musicStyles.getValue(key));
     }); 

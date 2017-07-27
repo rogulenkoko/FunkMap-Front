@@ -20,6 +20,7 @@ export class Musician extends BaseModel{
     public instrument: InstrumentType;
 
     public static ToMusician(data: any): Musician{
+        console.log(data);
         var result = new Musician(data.Login, data.Name);
         result.birthDate = new Date(data.BirthDate);
         result.description = data.Description;

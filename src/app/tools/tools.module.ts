@@ -38,6 +38,7 @@ import { EntityInfoComponent } from './entity-full/entity-info/entity-info.compo
     SideComponent,
     EntitySideComponent,
     EntityBaseComponent,
+    EntityInfoComponent,
     EntityMapComponent
     ],
   providers: [

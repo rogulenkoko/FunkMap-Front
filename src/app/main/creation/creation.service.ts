@@ -32,6 +32,7 @@ export abstract class CreationService {
    buildEntity(): any{
      switch(this.selectedEntity.type){
        case EntityType.Musician:
+       console.log(this.musician);
         this.musician.facebookLink = this.baseModel.facebookLink;
         this.musician.vkLink = this.baseModel.vkLink;
         this.musician.youTubeLink = this.baseModel.youTubeLink;
@@ -40,7 +41,6 @@ export abstract class CreationService {
         this.musician.latitude = this.baseModel.latitude;
         this.musician.longitude = this.baseModel.longitude;
         this.musician.name = this.baseModel.name;
-        this.musician.description = this.baseModel.description;
         this.musician.avatar = this.baseModel.avatar;
         
         return this.musician;
