@@ -8,6 +8,10 @@ html, body{
     font-family: 'Roboto', sans-serif;
 }
 
+body{
+    height: calc(100% - 75px);
+}
+
 #player{
     
     border: 1px solid red;
