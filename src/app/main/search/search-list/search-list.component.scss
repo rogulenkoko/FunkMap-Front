@@ -89,12 +89,12 @@
     cursor: pointer;
 }
 
-:host-context(.light) .send-message-label, :host-context(.light) .selected-favorite{
+:host-context(.light) .send-message-label, :host-context(.light) .selected-favorite, :host-context(.light) .title:hover{
     color: $app-green;
 }
 
 
-:host-context(.dark) .send-message-label,  :host-context(.dark) .selected-favorite{
+:host-context(.dark) .send-message-label,  :host-context(.dark) .selected-favorite, :host-context(.dark) .title:hover{
     color: $dark-orange-light;
 }
 
@@ -105,4 +105,9 @@
 
 :host-context(.dark) .selected-favorite{
     background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+}
+
+.title{
+    display: block;
+    cursor: pointer;
 }

@@ -3,8 +3,9 @@ import { SearchItem } from "app/main/search/search-item";
 import { UserService } from "app/main/user/user.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { MapFilter } from "app/main/map/map-filter.service";
-import { Marker } from "app/main/map/models";
+import { Marker, EntityType } from "app/main/map/models";
 import { UserDataService } from "app/main/user/user-data.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'search-list',
@@ -20,7 +21,8 @@ export class SearchListComponent implements OnInit {
   constructor(private userService: UserService,
     private favouritesService: FavouritesService,
     private mapFilter: MapFilter,
-    private userDataService: UserDataService) { }
+    private userDataService: UserDataService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getFavouriteLogins();
@@ -50,6 +52,15 @@ export class SearchListComponent implements OnInit {
 
   private checkIfUserEntity(login: string): boolean {
     return this.userEntities.find(x => x == login) ? true : false;
+  }
+  
+  private navigate(login: string, type: EntityType){
+    var route: string = "";
+    switch (type){
+      case EntityType.Musician: route = "musicianPage";
+    }
+
+    this.router.navigate([`/${route}/${login}`]);
   }
 
 }
