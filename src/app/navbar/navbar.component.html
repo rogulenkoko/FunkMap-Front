@@ -5,7 +5,7 @@
 
   <div class="right-nav-container">
     <ul class="navbar-nav d-flex align-items-center">
-      <li class="nav-item d-flex flex-row align-items-center mr-4">
+      <li *ngIf="userService.user" class="nav-item d-flex flex-row align-items-center mr-4">
         <div class="icon icon-middle notification-icon"></div>
         <div class="notification-count">10</div>
       </li>
@@ -13,11 +13,11 @@
       <!--isLogged из сервиса-->
       <ng-container *ngIf="!userService.user">
         <li class="nav-item">
-          <a routerLink="/signup" class="btn btn-secondary mr-3">{{'Navbar_SignUp' | translate}}</a>
+          <a routerLink="/signup" class="signup mr-3">{{'Navbar_SignUp' | translate}}</a>
         </li>
 
         <li class="nav-item ">
-          <a routerLink="/login" class="btn btn-success mr-3">{{'Navbar_Login' | translate}}</a>
+          <a routerLink="/login" class="login mr-3">{{'Navbar_Login' | translate}}</a>
         </li>
       </ng-container>
 

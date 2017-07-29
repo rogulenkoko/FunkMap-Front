@@ -36,8 +36,7 @@ export class MapComponent implements OnInit {
     private userService: UserService) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapFilter.onSearchAll.subscribe(() => {
-      if (this.mapFilter.isAllShown) this.getAll();
-      else this.getNearest();
+      this.getAll();
     })
     this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
@@ -82,7 +81,7 @@ export class MapComponent implements OnInit {
     this.userService.latitude = lat;
     this.userService.longitude = lng;
     this.map.setView(new L.LatLng(lat, lng), this.map.getZoom());
-    this.getNearest();
+    this.getAll();
   }
 
   private getAll() {
@@ -93,13 +92,13 @@ export class MapComponent implements OnInit {
     });
   }
 
-  private getNearest() {
-    var request = new NearestRequest(this.userService.latitude, this.userService.longitude, this.nearestRadius);
-    this.mapService.getNearest(request).subscribe(markers => {
-      this.markers = markers;
-      this.refreshMarkers();
-    });
-  }
+  // private getNearest() {
+  //   var request = new NearestRequest(this.userService.latitude, this.userService.longitude, this.nearestRadius);
+  //   this.mapService.getNearest(request).subscribe(markers => {
+  //     this.markers = markers;
+  //     this.refreshMarkers();
+  //   });
+  // }
 
   private getSpecific(logins: Array<string>) {
     this.mapService.getSpecific(logins).subscribe(markers => {
