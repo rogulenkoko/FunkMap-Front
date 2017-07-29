@@ -53,11 +53,12 @@
         </label>
       </div>
 
-      <div *ngIf="item.vkLink || item.facebookLink || item.youTubeLink" class="d-flex flex-row">
+      <div class="d-flex flex-row">
         <label class="property-title">{{'Musician_SocialNets' | translate}}:</label>
-        <a *ngIf="item.vkLink" class="icon-big vk-icon mr-2" href="{{item.vkLink}}"></a>
-        <a *ngIf="item.facebookLink" class="icon-big facebook-icon mr-2" href="{{item.facebookLink}}"></a>
-        <a *ngIf="item.youTubeLink" class="icon-big youtube-icon mr-2" href="{{item.youTubeLink}}"></a>
+        <social [vkLink]="item.vkLink"
+                [facebookLink]="item.facebookLink"
+                [youTubeLink]="item.youTubeLink"
+                [soundCloudLink]="item.soundCloudLink"></social>
       </div>
 
 

@@ -15,4 +15,5 @@ export class BaseModel {
     public vkLink: string;
     public youTubeLink: string;
     public facebookLink: string;
+    public soundCloudLink: string;
 }

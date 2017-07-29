@@ -31,6 +31,7 @@ export class Musician extends BaseModel{
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;
+        result.soundCloudLink = data.SoundCloudLink;
         result.instrument = data.Instrument;
         result.age = data.Age;
         result.latitude = data.Latitude;

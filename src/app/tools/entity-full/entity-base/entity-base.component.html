@@ -18,12 +18,12 @@
       <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
   </div>
 
-  <div class="nets-container d-flex flex-row">
-    <div class="youtube-icon"></div>
-      <!-- <div><img src="assets/images/youtube.svg"/></div> -->
-     <!-- <div><img src="assets/images/youtube.svg"/></div>
-     <div><img src="assets/images/youtube.svg"/></div>
-     <div><img src="assets/images/youtube.svg"/></div>  -->
+
+  <div class="nets-container">
+    <social [vkLink]="entity.vkLink"
+            [facebookLink]="entity.facebookLink"
+            [youTubeLink]="entity.youTubeLink"
+            [soundCloudLink]="entity.soundCloudLink"></social>
   </div>
 
 </div>

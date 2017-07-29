@@ -82,8 +82,21 @@
 }
 
 .youtube-icon{
-    mask: url("/assets/images/youtube.svg") 36px 36px luminance;
-    width: 36px;
-    height: 36px;
-    //background-size: 36px 36px;
+    mask-image: url("/assets/images/youtube.svg");
+    background-color: #d22215;
+}
+
+.vk-icon{
+    mask-image: url("/assets/images/vk.svg");
+    background-color: #4d77a2;
+}
+
+.facebook-icon{
+    mask-image: url("/assets/images/facebook.svg");
+    background-color: #3b5998;
+}
+
+.soundcloud-icon{
+    mask-image: url("/assets/images/soundcloud.svg");
+    background-color: #ff6a22;
 }

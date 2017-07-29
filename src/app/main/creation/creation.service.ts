@@ -36,6 +36,7 @@ export abstract class CreationService {
         this.musician.facebookLink = this.baseModel.facebookLink;
         this.musician.vkLink = this.baseModel.vkLink;
         this.musician.youTubeLink = this.baseModel.youTubeLink;
+        this.musician.soundCloudLink = this.baseModel.soundCloudLink;
         this.musician.videosYoutube = this.baseModel.videosYoutube.map(x=>{
           if(!x.includes("https://www.youtube.com/watch?v=")) return "";
           return x.replace("https://www.youtube.com/watch?v=","");
@@ -52,6 +53,7 @@ export abstract class CreationService {
         this.band.facebookLink = this.baseModel.facebookLink;
         this.band.vkLink = this.baseModel.vkLink;
         this.band.youTubeLink = this.baseModel.youTubeLink;
+        this.band.soundCloudLink = this.baseModel.soundCloudLink;
         this.band.videosYoutube = this.baseModel.videosYoutube;
         this.band.login = this.baseModel.login;
         this.band.latitude = this.baseModel.latitude;
@@ -59,6 +61,11 @@ export abstract class CreationService {
         this.band.name = this.baseModel.name;
         this.band.description = this.baseModel.description;
         this.band.avatar = this.baseModel.avatar;
+
+         this.band.videosYoutube = this.baseModel.videosYoutube.map(x=>{
+          if(!x.includes("https://www.youtube.com/watch?v=")) return "";
+          return x.replace("https://www.youtube.com/watch?v=","");
+        });
       return this.band;
      }
    }
