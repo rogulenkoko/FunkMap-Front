@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Musician } from "app/main/musician/models";
 import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
@@ -11,12 +11,16 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
 export class MusicianInfoComponent implements OnInit {
 
   @Input() musician: Musician;
+  @ViewChild("dateTemplate") dateTemplate: any;
 
   private infoItems: Array<InfoItem>;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider) { }
 
   ngOnInit() {
+    var birthDateItem = new InfoItem();
+    birthDateItem.propertyTitle = "Musician_BirthDate";
+    birthDateItem.propertyTemplate = this.dateTemplate;
 
     var sexItem = new InfoItem();
     sexItem.propertyTitle = "Musician_Sex";
@@ -46,6 +50,7 @@ export class MusicianInfoComponent implements OnInit {
     console.log(this.musician);
 
     this.infoItems = [
+      birthDateItem,
       sexItem,
       instrumentItem,
       expirienceItem,

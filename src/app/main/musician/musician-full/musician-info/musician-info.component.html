@@ -1,1 +1,5 @@
 <entity-info [items]="infoItems"></entity-info>
+
+<ng-template #dateTemplate>
+    <span class="date-value">{{this.musician.birthDate | datex: "DD MMMM YYYY"}}</span>
+</ng-template>

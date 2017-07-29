@@ -2,6 +2,7 @@
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/forms.scss";
 @import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
 
 
 .entity-base-container{
@@ -58,6 +59,24 @@
             height: 35px;
             font-size: 13px;
             margin-bottom: 15px;
+        }
+    }
+
+    .nets-container{
+        margin-top: 25px; 
+
+        div{
+            margin-right: 20px;
+        }
+
+        div:last-child{
+             margin-right: 0px;
+        }
+
+        .icon, img{
+            // width: 36px;
+            // height: 36px;
+            //background-color: red;
         }
     }
 }

@@ -9,7 +9,7 @@ import { RouterModule } from "@angular/router";
 import { UserService } from "app/main/user/user.service";
 import { HttpClient } from "./http/http-client.service";
 import { ThemeService } from "app/tools/theme.service";
-
+import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { ThemeService } from "app/tools/theme.service";
     FormsModule,
     HttpModule,
     RouterModule,
+    YoutubePlayerMiniModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -32,6 +33,7 @@ import { ThemeService } from "app/tools/theme.service";
     BrowserModule,
     FormsModule,
     HttpModule,
+    YoutubePlayerMiniModule,
     RouterModule],
   providers: [
     LanguageService,

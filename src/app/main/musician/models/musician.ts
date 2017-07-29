@@ -20,7 +20,6 @@ export class Musician extends BaseModel{
     public instrument: InstrumentType;
 
     public static ToMusician(data: any): Musician{
-        console.log(data);
         var result = new Musician(data.Login, data.Name);
         result.birthDate = new Date(data.BirthDate);
         result.description = data.Description;
@@ -36,6 +35,7 @@ export class Musician extends BaseModel{
         result.age = data.Age;
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
+        result.videosYoutube = data.VideosYoutube;
         return result;
     }
 }

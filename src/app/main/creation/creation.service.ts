@@ -32,11 +32,14 @@ export abstract class CreationService {
    buildEntity(): any{
      switch(this.selectedEntity.type){
        case EntityType.Musician:
-       console.log(this.musician);
+       
         this.musician.facebookLink = this.baseModel.facebookLink;
         this.musician.vkLink = this.baseModel.vkLink;
         this.musician.youTubeLink = this.baseModel.youTubeLink;
-        this.musician.videoYoutube = this.baseModel.videoYoutube;
+        this.musician.videosYoutube = this.baseModel.videosYoutube.map(x=>{
+          if(!x.includes("https://www.youtube.com/watch?v=")) return "";
+          return x.replace("https://www.youtube.com/watch?v=","");
+        });
         this.musician.login = this.baseModel.login;
         this.musician.latitude = this.baseModel.latitude;
         this.musician.longitude = this.baseModel.longitude;
@@ -49,7 +52,7 @@ export abstract class CreationService {
         this.band.facebookLink = this.baseModel.facebookLink;
         this.band.vkLink = this.baseModel.vkLink;
         this.band.youTubeLink = this.baseModel.youTubeLink;
-        this.band.videoYoutube = this.baseModel.videoYoutube;
+        this.band.videosYoutube = this.baseModel.videosYoutube;
         this.band.login = this.baseModel.login;
         this.band.latitude = this.baseModel.latitude;
         this.band.longitude = this.baseModel.longitude;

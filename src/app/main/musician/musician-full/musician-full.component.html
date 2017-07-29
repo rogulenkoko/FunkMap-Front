@@ -1,5 +1,10 @@
-<div class="musician-full-container d-flex justify-content-center">
-  <musician-base *ngIf="musician" [musician]="musician"></musician-base>
-  <musician-info *ngIf="musician" [musician]="musician"></musician-info>
-  <musician-map *ngIf="musician" [musician]="musician"></musician-map>
-</div>
+ <div class="musician-full-container">
+   <div class="d-flex justify-content-center row-container">
+    <musician-base *ngIf="musician" [musician]="musician"></musician-base>
+    <musician-info *ngIf="musician" [musician]="musician"></musician-info>
+    <musician-map *ngIf="musician" [musician]="musician"></musician-map>
+   </div>
+   <div class="d-flex justify-content-center row-container">
+    <musician-video *ngIf="musician" [musician]="musician"></musician-video>
+  </div>
+</div> 

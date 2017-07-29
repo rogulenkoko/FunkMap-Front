@@ -12,6 +12,8 @@ import { EntityFullComponent } from './entity-full/entity-full.component';
 import { EntityBaseComponent } from './entity-full/entity-base/entity-base.component';
 import { EntityMapComponent } from './entity-full/entity-map/entity-map.component';
 import { EntityInfoComponent } from './entity-full/entity-info/entity-info.component';
+import { EntityVideoComponent } from './entity-full/entity-video/entity-video.component';
+import { DatexPipe } from './datex.pipe';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { EntityInfoComponent } from './entity-full/entity-info/entity-info.compo
     EntityFullComponent,
     EntityBaseComponent,
     EntityMapComponent,
-    EntityInfoComponent
+    EntityInfoComponent,
+    EntityVideoComponent,
+    DatexPipe
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { EntityInfoComponent } from './entity-full/entity-info/entity-info.compo
     EntitySideComponent,
     EntityBaseComponent,
     EntityInfoComponent,
-    EntityMapComponent
+    EntityMapComponent,
+    EntityVideoComponent,
+    DatexPipe
     ],
   providers: [
     DateSelectProvider,
