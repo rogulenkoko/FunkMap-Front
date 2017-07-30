@@ -5,7 +5,7 @@
         <img src="/assets/images/no-name.svg" />
       </div>
       <div *ngIf="item.avatar" class="image-container">
-        <img src="{{avatarImage}}" />
+        <img src="data:image/png;base64,{{item.avatar}}" />
       </div>
       <div class="name-container">
         {{item.name}}
@@ -58,7 +58,8 @@
         <social [vkLink]="item.vkLink"
                 [facebookLink]="item.facebookLink"
                 [youTubeLink]="item.youTubeLink"
-                [soundCloudLink]="item.soundCloudLink"></social>
+                [soundCloudLink]="item.soundCloudLink"
+                [isMinified]="true"></social>
       </div>
 
 

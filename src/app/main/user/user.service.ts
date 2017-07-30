@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http } from "@angular/http";
-import { User } from "./user"; 
+import { User } from "./user";
 import { SignalR, SignalRConnection, ISignalRConnection } from "ng2-signalr";
 
 @Injectable()
@@ -14,13 +14,14 @@ export class UserService {
   public latitude: number;
   public longitude: number;
 
-  public set user(user: User){
+  public set user(user: User) {
     this._user = user;
     this.onUserChanged.emit();
-    localStorage.setItem(this.funkMapUserKey,JSON.stringify(this._user));
+    localStorage.setItem(this.funkMapUserKey, JSON.stringify(this._user));
+    this.createSignaRConnection();
   }
 
-  public get user():User{
+  public get user(): User {
     return this._user;
   }
 
@@ -29,24 +30,32 @@ export class UserService {
   private connection: ISignalRConnection;
 
   constructor(private signalR: SignalR) {
-     this.onUserChanged = new EventEmitter();
+    this.onUserChanged = new EventEmitter();
 
-    if(localStorage.getItem(this.funkMapUserKey) != undefined){
-      try{
+    if (localStorage.getItem(this.funkMapUserKey) != undefined) {
+      try {
         this.user = JSON.parse(localStorage.getItem(this.funkMapUserKey));
       }
-      catch(ex){
+      catch (ex) {
         this.user = undefined;
       } finally {
-        if(this.user){
-          this.signalR.connect().then(connection=>{
-            this.connection = connection;
-          }).catch(error=>{
-            console.log(error);
-          });
-          
-        }
+        
       }
     }
-   }
+  }
+
+  private createSignaRConnection() {
+    if (this.user) {
+      this.signalR.connect().then(connection => {
+        this.connection = connection;
+        this.connection.errors.subscribe(errors=>{
+          this.connection.stop();
+          console.log(errors);
+        })
+      }).catch(error => {
+        console.log(error);
+      });
+
+    }
+  }
 }

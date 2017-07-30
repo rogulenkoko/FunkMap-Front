@@ -12,6 +12,8 @@ export class SocialComponent implements OnInit {
   @Input() youTubeLink: string;
   @Input() soundCloudLink: string;
 
+  @Input() isMinified: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

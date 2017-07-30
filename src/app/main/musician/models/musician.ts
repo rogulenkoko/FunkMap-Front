@@ -29,7 +29,7 @@ export class Musician extends BaseModel{
         result.avatar = data.Avatar;
         result.years = data.Age;
         result.vkLink = data.VkLink;
-        result.youTubeLink = data.YouTubeLink;
+        result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
         result.instrument = data.Instrument;

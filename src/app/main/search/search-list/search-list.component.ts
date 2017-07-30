@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { SearchItem } from "app/main/search/search-item";
 import { UserService } from "app/main/user/user.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
   templateUrl: './search-list.component.html',
   styleUrls: ['./search-list.component.scss']
 })
-export class SearchListComponent implements OnInit {
+export class SearchListComponent implements OnInit, OnDestroy {
 
   @Input() items: Array<SearchItem>;
 
@@ -24,8 +24,12 @@ export class SearchListComponent implements OnInit {
     private userDataService: UserDataService,
     private router: Router) { }
 
-  ngOnInit() {
+ngOnInit() {
     this.getFavouriteLogins();
+  }
+
+  ngOnDestroy(){
+    this.items = undefined;
   }
 
   private getFavouriteLogins(){

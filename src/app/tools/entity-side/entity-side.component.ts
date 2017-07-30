@@ -21,8 +21,6 @@ export class EntitySideComponent implements OnInit {
   @Input() expirience: ExpirienceType;
   @Input() address: string;
   @Input() website: string;
-
-  private avatarImage: string;
   private isFavorite: boolean;
   private isUsers: boolean;
 
@@ -32,7 +30,6 @@ export class EntitySideComponent implements OnInit {
     private userDataService: UserDataService) { }
 
   ngOnInit() {
-    if (this.item) this.avatarImage = "data:image/png;base64," + this.item.avatar;
     this.checkIsFavorite();
     this.checkIsUserEntity();
   }

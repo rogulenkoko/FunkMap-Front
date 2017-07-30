@@ -1,4 +1,4 @@
-<div class="nets-container d-flex flex-row">
+<div class="nets-container d-flex flex-row" [class.minified]="isMinified">
     <a href="{{vkLink}}" [class.inactive]="!vkLink" class="icon vk-icon"></a>
     <a href="{{facebookLink}}" [class.inactive]="!facebookLink" class="icon facebook-icon"></a>
     <a href="{{youTubeLink}}" [class.inactive]="!youTubeLink" class="icon youtube-icon"></a>
