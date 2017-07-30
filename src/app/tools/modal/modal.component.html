@@ -1,5 +1,5 @@
 <div class="modal-outlet d-flex align-items-center justify-content-center" [class.background]="backgroundEnabled" > 
-  <div class="modal-container d-flex flex-column" [style.width]="widthPerCent" [style.height]="height">
+  <div class="modal-container d-flex flex-column" [style.min-width]="minWidth" [style.width]="widthPerCent" [style.height]="height">
     <div *ngIf="canClose" class="d-flex justify-content-end close-container">
       <span [routerLink]="['/']" class="icon icon-close"></span>
     </div>

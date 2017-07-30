@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http } from "@angular/http";
 import { User } from "./user"; 
+import { SignalR, SignalRConnection, ISignalRConnection } from "ng2-signalr";
 
 @Injectable()
 export class UserService {
@@ -25,7 +26,9 @@ export class UserService {
 
   public onUserChanged: EventEmitter<any>;
 
-  constructor() {
+  private connection: ISignalRConnection;
+
+  constructor(private signalR: SignalR) {
      this.onUserChanged = new EventEmitter();
 
     if(localStorage.getItem(this.funkMapUserKey) != undefined){
@@ -34,11 +37,16 @@ export class UserService {
       }
       catch(ex){
         this.user = undefined;
+      } finally {
+        if(this.user){
+          this.signalR.connect().then(connection=>{
+            this.connection = connection;
+          }).catch(error=>{
+            console.log(error);
+          });
+          
+        }
       }
     }
-   
    }
-
-   
-
 }

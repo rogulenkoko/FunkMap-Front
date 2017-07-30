@@ -11,6 +11,11 @@ import { HttpClient } from "./http/http-client.service";
 import { ThemeService } from "app/tools/theme.service";
 import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 
+import { SignalRModule } from 'ng2-signalr';
+import { SignalRConfiguration } from 'ng2-signalr';
+import { environment } from "environments/environment";
+import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+
 @NgModule({
   declarations: [
   ],
@@ -26,7 +31,8 @@ import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
         useFactory: translateLoader,
         deps: [Http]
       }
-    })
+    }),
+    SignalRModule.forRoot(createSignalRConfig)
   ],
   exports: [
     TranslateModule, 
@@ -50,4 +56,11 @@ export class CoreModule { }
 
 export function translateLoader(http: Http) {
   return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
+}
+
+export function createSignalRConfig(){
+  var config = new SignalRConfiguration();
+  config.hubName = "messenger";
+  config.url = ConfigurationProvider.apiUrl.replace("/api/","");
+  return config;
 }
