@@ -15,6 +15,7 @@ import { EntityInfoComponent } from './entity-full/entity-info/entity-info.compo
 import { EntityVideoComponent } from './entity-full/entity-video/entity-video.component';
 import { DatexPipe } from './datex.pipe';
 import { SocialComponent } from './social/social.component';
+import { SignalrService } from "app/tools/signalr/signalr.service";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { SocialComponent } from './social/social.component';
     ],
   providers: [
     DateSelectProvider,
-    EntityTypeProvider
+    EntityTypeProvider,
+    SignalrService
   ]
 })
 export class ToolsModule { }

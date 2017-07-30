@@ -33,7 +33,6 @@ export class SearchComponent implements OnInit {
     this.items = [];
     this.filterService.onFilterChanged.subscribe(() => this.refresh());
     this.filterService.searchChanged.debounceTime(200).subscribe((value) => {
-      if (this.filterService.searchText == value) return;
       this.filterService.searchText = value;
       this.refresh();
     });
