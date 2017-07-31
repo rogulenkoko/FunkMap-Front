@@ -19,6 +19,7 @@ import { StudioComponent } from "app/main/studio/studio.component";
 import { RehearsalComponent } from "app/main/rehearsal/rehearsal.component";
 import { UserEntitiesComponent } from "app/main/user/user-entities/user-entities.component";
 import { MusicianFullComponent } from "app/main/musician/musician-full/musician-full.component";
+import { MessengerComponent } from "app/main/messenger/messenger.component";
 
 const appRoutes: Routes = [
   {
@@ -50,6 +51,8 @@ const appRoutes: Routes = [
       },
       { path: "musicianPage", component: MusicianFullComponent },
       { path: "musicianPage/:id", component: MusicianFullComponent },
+
+      { path: "messenger", component: MessengerComponent }
     ]
   },
 ];

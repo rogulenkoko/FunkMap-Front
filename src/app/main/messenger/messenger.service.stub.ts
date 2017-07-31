@@ -24,13 +24,4 @@ export class MessengerServiceStub extends MessengerService {
   getDialogs(request: DialogsRequest): Observable<Dialog[]> {
     throw new Error("Method not implemented.");
   }
-
-
-
-  onMessageRecieved(): Observable<Message> {
-    return;
-  }
-
-
-
 }

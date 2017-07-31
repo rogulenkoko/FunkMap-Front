@@ -28,6 +28,7 @@ import { FavouritesModule } from "app/main/favourites/favourites.module";
 import { ShopModule } from "app/main/shop/shop.module";
 import { StudioModule } from "app/main/studio/studio.module";
 import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
+import { MessengerModule } from "app/main/messenger/messenger.module";
 
 
 
@@ -57,7 +58,8 @@ import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
     RehearsalModule,
     SearchModule,
     ImageCropperModule,
-    FavouritesModule
+    FavouritesModule,
+    MessengerModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

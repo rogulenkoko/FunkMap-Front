@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
     var profileItem = new SidebarItem("profile", "Profile", "person-icon");
     profileItem.visibleForLogged = true;
 
-    var messagesItem = new SidebarItem("", "Messages", "messenger-icon");
+    var messagesItem = new SidebarItem("messenger", "Messages", "messenger-icon");
     messagesItem.rightTemplate = this.messageCountTemplate;
     messagesItem.visibleForLogged = true;
 
