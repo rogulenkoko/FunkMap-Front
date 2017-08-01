@@ -1,4 +1,4 @@
 
-<div *ngFor="let dialog of dialogs" (click)="setDialog(dialog)">
+<div *ngFor="let dialog of dialogs" (click)="setDialog(dialog)" [class.online]="checkIfOnline(dialog.receiver)">
   {{dialog.receiver}}
 </div>

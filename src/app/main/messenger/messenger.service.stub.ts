@@ -9,6 +9,7 @@ import { MessengerService } from "app/main/messenger/messenger.service";
 
 @Injectable()
 export class MessengerServiceStub extends MessengerService {
+  
 
   constructor(signalrService: SignalrService) {
     super(signalrService);
@@ -22,6 +23,10 @@ export class MessengerServiceStub extends MessengerService {
     throw new Error("Method not implemented.");
   }
   getDialogs(request: DialogsRequest): Observable<Dialog[]> {
+    throw new Error("Method not implemented.");
+  }
+
+  getOnlineUsersLogins(): Observable<string[]> {
     throw new Error("Method not implemented.");
   }
 }

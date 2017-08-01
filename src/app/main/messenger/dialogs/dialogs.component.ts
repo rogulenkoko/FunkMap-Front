@@ -10,13 +10,17 @@ import { DialogService } from "app/main/messenger/dialog.service";
 })
 export class DialogsComponent implements OnInit {
 
-  private dialogs: Array<Dialog>;
+  private dialogs: Array<Dialog> = [];
+
+  private onlineUsers: Array<String> = [];
+
 
   constructor(private messengerService:MessengerService,
               private dialogService: DialogService) { }
 
   ngOnInit() {
     this.refreshDialogs();
+    this.getOnlineUsers();
   }
 
   private refreshDialogs(){
@@ -28,6 +32,16 @@ export class DialogsComponent implements OnInit {
 
   private setDialog(dialog: Dialog){
     this.dialogService.setDialog(dialog);
+  }
+
+  private getOnlineUsers(){
+    this.messengerService.getOnlineUsersLogins().subscribe(logins=>{
+      this.onlineUsers = logins;console.log(logins);
+    })
+  }
+
+  private checkIfOnline(login: string): boolean{
+    return this.onlineUsers.find(x=> x == login) ? true : false;
   }
 
 }

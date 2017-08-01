@@ -17,7 +17,6 @@ export class SignalrService {
 
 
    private createSignaRConnection() {
-    console.log(this.signalR);
     (<any>this.signalR)._configuration.qs = { login: this.userService.user.login };
 
     if (this.userService.user) {

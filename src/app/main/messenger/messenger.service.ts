@@ -23,8 +23,9 @@ export abstract class MessengerService {
 
   abstract getDialogs(request: DialogsRequest): Observable<Array<Dialog>>;
 
-  protected onMessageRecievedEvent: BroadcastEventListener<Message>;
+  abstract getOnlineUsersLogins():Observable<Array<string>>;
 
+  protected onMessageRecievedEvent: BroadcastEventListener<Message>;
   public onMessageRecieved: Observable<Message>;
 
   private initializeEvents() {
@@ -37,6 +38,7 @@ export abstract class MessengerService {
 
 @Injectable()
 export class MessengerServiceHub extends MessengerService {
+  
 
   constructor(signalrService: SignalrService, private http: HttpClient) {
     super(signalrService);
@@ -51,6 +53,10 @@ export class MessengerServiceHub extends MessengerService {
   }
   getDialogs(request: DialogsRequest): Observable<Array<Dialog>> {
     return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogs`, request).map(x => Dialog.ToDialogs(x.json()));
+  }
+
+  getOnlineUsersLogins(): Observable<string[]> {
+    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getOnlineUsers`).map(x=> x.json());
   }
 
 }
