@@ -3,6 +3,8 @@ export class Dialog{
 
     }
 
+    public isOnline: boolean;
+
     public static ToDialog(data: any): Dialog{
         return new Dialog(data.Reciever, data.Avatar);
     }

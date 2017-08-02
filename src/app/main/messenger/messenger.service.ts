@@ -14,6 +14,7 @@ export abstract class MessengerService {
 
   constructor(protected signalrService: SignalrService) {
     this.signalrService.onConnectionStart.subscribe(() => this.initializeEvents());
+    if(this.signalrService.connection) this.initializeEvents();
   }
 
 
@@ -25,13 +26,25 @@ export abstract class MessengerService {
 
   abstract getOnlineUsersLogins():Observable<Array<string>>;
 
-  protected onMessageRecievedEvent: BroadcastEventListener<Message>;
+  private onMessageRecievedEvent: BroadcastEventListener<Message>;
   public onMessageRecieved: Observable<Message>;
 
+
+  private onUserDisconnectedEvent:  BroadcastEventListener<string>;
+  public onUserDisconnected: Observable<string>;
+
+  private onUserConnectedEvent:  BroadcastEventListener<string>;
+  public onUserConnected: Observable<string>;
+
   private initializeEvents() {
-    this.onMessageRecievedEvent = new BroadcastEventListener<Message>("OnMessageSent");
-    this.signalrService.connection.listen(this.onMessageRecievedEvent);
+    this.onMessageRecievedEvent = this.signalrService.connection.listenFor("OnMessageSent");
     this.onMessageRecieved = this.onMessageRecievedEvent.map(x=> Message.ToMessage(x));
+
+    this.onUserDisconnectedEvent = this.signalrService.connection.listenFor("onUserDisconnected");
+    this.onUserDisconnected = this.onUserDisconnectedEvent.map(x=> x);
+
+    this.onUserConnectedEvent = this.signalrService.connection.listenFor("onUserConnected");
+    this.onUserConnected = this.onUserConnectedEvent.map(x=> x);
   }
 
 }

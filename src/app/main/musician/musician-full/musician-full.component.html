@@ -4,7 +4,7 @@
     <musician-info *ngIf="musician" [musician]="musician"></musician-info>
     <musician-map *ngIf="musician" [musician]="musician"></musician-map>
    </div>
-   <div class="d-flex justify-content-center row-container">
+   <div *ngIf="musician.videosYoutube && musician.videosYoutube.length > 0" class="d-flex justify-content-center row-container">
     <musician-video *ngIf="musician" [musician]="musician" style="margin-right:9px"></musician-video>
     <musician-video *ngIf="musician" [musician]="musician"></musician-video>
   </div>

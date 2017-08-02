@@ -12,14 +12,15 @@ export class SignalrService {
   constructor(private signalR: SignalR,
               private userService: UserService) {
       this.onConnectionStart = new EventEmitter<any>();
-      this.createSignaRConnection();
+
+      this.updateSignaRConnection();
+      this.userService.onUserChanged.subscribe(()=>this.updateSignaRConnection());
   }
 
 
-   private createSignaRConnection() {
-    (<any>this.signalR)._configuration.qs = { login: this.userService.user.login };
-
+   private updateSignaRConnection() {
     if (this.userService.user) {
+      (<any>this.signalR)._configuration.qs = { login: this.userService.user.login };
       this.signalR.connect().then(connection => {
         this.connection = connection;
         this.onConnectionStart.emit();
@@ -31,6 +32,8 @@ export class SignalrService {
         console.log(error);
       });
 
+    } else {
+      if(this.connection) this.connection.stop();
     }
   }
 

@@ -16,6 +16,7 @@ export class UserService {
 
   public set user(user: User) {
     this._user = user;
+    console.log("юзер засетился");
     this.onUserChanged.emit();
     localStorage.setItem(this.funkMapUserKey, JSON.stringify(this._user));
   }

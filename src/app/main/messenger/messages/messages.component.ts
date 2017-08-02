@@ -20,6 +20,7 @@ export class MessagesComponent implements OnInit {
               private signalrService: SignalrService) {
     this.dialogService.onDialogChanged.subscribe(dialog => this.refreshMessages(dialog));
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
+    if(this.signalrService.connection) this.initializeSubscriptions();
   }
 
   ngOnInit() {
