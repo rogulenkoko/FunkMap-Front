@@ -1,12 +1,12 @@
 export class Dialog{
-    constructor(public receiver: string, public avatar?: string){
+    constructor(public dialogId: string, public name: string, public avatar?: string){
 
     }
 
     public isOnline: boolean;
 
     public static ToDialog(data: any): Dialog{
-        return new Dialog(data.Reciever, data.Avatar);
+        return new Dialog(data.DialogId, data.Name, data.Avatar);
     }
 
     public static ToDialogs(data:any): Array<Dialog>{

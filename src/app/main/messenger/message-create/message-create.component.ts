@@ -21,7 +21,7 @@ export class MessageCreateComponent implements OnInit {
   }
 
   private sendMessage(){
-    let message = new Message(this.userService.user.login, this.dialogService.dialog.receiver, this.text)
+    let message = new Message(this.userService.user.login, this.dialogService.dialog.dialogId, this.text)
     this.messengerService.sendMessage(message).subscribe(response=>{
       console.log(response);
     })

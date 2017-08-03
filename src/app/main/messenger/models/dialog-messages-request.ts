@@ -1,5 +1,5 @@
 export class DialogMessagesRequest{
-    constructor(public reciever: string, public skip: number, public take: number){
+    constructor(public dialogId: string, public skip: number, public take: number){
 
     }
 }

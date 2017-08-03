@@ -33,6 +33,7 @@ export class DialogsComponent implements OnInit {
     var request = new DialogsRequest(0, 10);
     this.messengerService.getDialogs(request).subscribe(dialogs => {
       this.dialogs = dialogs;
+      console.log(dialogs);
     });
   }
 
@@ -48,11 +49,11 @@ export class DialogsComponent implements OnInit {
   }
 
   private updateOnlineUsers() {
-    this.dialogs.forEach(dialog => {
-      if (this.onlineUsers.find(x => x == dialog.receiver)) {
-        dialog.isOnline = true;
-      }
-    })
+    // this.dialogs.forEach(dialog => {
+    //   if (this.onlineUsers.find(x => x == dialog.receiver)) {
+    //     dialog.isOnline = true;
+    //   }
+    // })
   }
 
   private initializeSubscriptions() {

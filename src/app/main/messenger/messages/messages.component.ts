@@ -27,7 +27,7 @@ export class MessagesComponent implements OnInit {
   }
 
   private refreshMessages(dialog: Dialog) {
-    let request = new DialogMessagesRequest(this.dialogService.dialog.receiver, 0, 20)
+    let request = new DialogMessagesRequest(this.dialogService.dialog.dialogId, 0, 20)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
     });
