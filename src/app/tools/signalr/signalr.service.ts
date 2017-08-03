@@ -2,17 +2,28 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { SignalR, SignalRConnection, ISignalRConnection } from "ng2-signalr";
 import { UserService } from "app/main/user/user.service";
 
+
 @Injectable()
 export class SignalrService {
 
   public connection: ISignalRConnection;
-
   public onConnectionStart: EventEmitter<any>;
+
+  constructor(){
+    this.onConnectionStart = new EventEmitter<any>();
+  }
+
+}
+
+@Injectable()
+export class SignalrServiceReal extends SignalrService {
+
+ 
 
   constructor(private signalR: SignalR,
               private userService: UserService) {
-      this.onConnectionStart = new EventEmitter<any>();
-
+      super();
+      
       this.updateSignaRConnection();
       this.userService.onUserChanged.subscribe(()=>this.updateSignaRConnection());
   }

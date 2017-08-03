@@ -33,7 +33,6 @@ export class DialogsComponent implements OnInit {
     var request = new DialogsRequest(0, 10);
     this.messengerService.getDialogs(request).subscribe(dialogs => {
       this.dialogs = dialogs;
-      console.log(dialogs);
     });
   }
 

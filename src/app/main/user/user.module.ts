@@ -22,9 +22,9 @@ import { SearchModule } from "app/main/search/search.module";
   providers: [
       UserService,
       {
-      provide: UserDataService,
-      useClass: environment.production ? UserDataServiceHttp : UserDataServiceStub
-    }
+        provide: UserDataService,
+        useClass: environment.production ? UserDataServiceHttp : UserDataServiceStub
+      }
   ]
 })
 export class UserModule { }

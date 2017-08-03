@@ -17,16 +17,18 @@ export class MessengerServiceStub extends MessengerService {
   }
 
   sendMessage(message: Message): Observable<BaseResponse> {
-    throw new Error("Method not implemented.");
+    return Observable.of(new BaseResponse(true));
   }
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
-    throw new Error("Method not implemented.");
+    var message = new Message("test","1","Привет, как дела");
+    return Observable.of([message]);
   }
   getDialogs(request: DialogsRequest): Observable<Dialog[]> {
-    throw new Error("Method not implemented.");
+    var dialog = new Dialog("1","test");
+    return Observable.of([dialog]);
   }
 
   getOnlineUsersLogins(): Observable<string[]> {
-    throw new Error("Method not implemented.");
+    return Observable.of(["test","rogulenkoko"]);
   }
 }
