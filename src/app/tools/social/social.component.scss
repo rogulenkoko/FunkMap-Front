@@ -5,6 +5,23 @@
 .nets-container{
     a{
         margin-right: 20px;
+        background-color: $dark-title-color;
+    }
+
+    .vk-icon:hover{
+        background-color: #4d77a2;
+    }
+
+    .facebook-icon:hover{
+        background-color: #3b5998;
+    }
+
+    .youtube-icon:hover{
+        background-color: #d22215;
+    }
+
+    .soundcloud-icon:hover{
+        background-color: #ff6a22;
     }
 
     a:first-child{
@@ -18,7 +35,7 @@
 
 .minified{
     a{
-        margin-right: 8px;
+        margin-right: 5px;
     }
 
     a:first-child{
@@ -29,8 +46,4 @@
 .icon, img{
     width: 36px;
     height: 36px;
-}
-
-.inactive{
-    background-color: $dark-item-hover;
 }

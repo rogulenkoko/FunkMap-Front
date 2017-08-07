@@ -56,7 +56,6 @@ import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
   providers: [
     DateSelectProvider,
     EntityTypeProvider,
-    ,
     {
       provide: SignalrService,
       useClass: environment.production ? SignalrServiceReal : SignalrServiceStub
