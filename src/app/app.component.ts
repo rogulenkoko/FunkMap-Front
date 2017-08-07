@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import { ThemeService } from "app/tools/theme.service";
+import { UserService } from "app/main/user/user.service";
+import { Router } from "@angular/router";
 
 
 
@@ -11,6 +13,8 @@ import { ThemeService } from "app/tools/theme.service";
 })
 export class AppComponent {
 
-  constructor(private themeService: ThemeService){
+  constructor(private themeService: ThemeService, private userService: UserService, 
+              private router: Router){
+    if(!userService.user) this.router.navigate(['/start']);
   }
 }

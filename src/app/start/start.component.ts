@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MapProvider } from "app/main/map/map-provider.service";
 import { Map, EntityType } from "app/main/map/models";
+import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'start',
@@ -14,7 +16,9 @@ export class StartComponent implements OnInit {
 
   private items: Array<StartPageItem>;
 
-  constructor(private mapProvider: MapProvider) { }
+  constructor(private mapProvider: MapProvider,
+              private searchFilterService: SearchFilterService,
+              private router: Router) { }
 
   ngOnInit() {
     this.map = new L.Map('map', { center: new L.LatLng(30, 10), zoom: 0, zoomAnimation: false, zoomControl: false });
@@ -29,6 +33,13 @@ export class StartComponent implements OnInit {
       new StartPageItem("icon-shop-start", "Start_Shop", EntityType.Shop),
       new StartPageItem("icon-rehearsal-start", "Start_Rehearsal", EntityType.RehearsalPoint)
     ];
+  }
+
+
+  onItemSelected(type: EntityType){
+    this.searchFilterService.selectedEntity = this.searchFilterService.availableEntities.find(x=>x.type == type);
+    this.searchFilterService.isFilterEnabled = true;
+    this.router.navigate(['/search']);
   }
 
   private buildMapOptions(map: Map): any {
@@ -54,7 +65,7 @@ export class StartComponent implements OnInit {
 }
 
 export class StartPageItem{
-  constructor(public iconClass: string, public title: string, public value: EntityType){
+  constructor(public iconClass: string, public title: string, public type: EntityType){
 
   }
 }

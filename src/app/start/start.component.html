@@ -4,7 +4,7 @@
 <div class="start-page-container-wrapper">
     <div class="start-page-container d-flex align-items-center justify-content-center flex-column">
 
-        <div class="logo-container">
+        <div class="logo-container" routerLink="/" >
              <img src="assets/images/logo.svg"/>
         </div>
 
@@ -17,17 +17,17 @@
         </div>
 
         <div class="entities-container d-flex flex-row">
-            <div *ngFor="let item of items" class="d-flex align-items-center justify-content-center flex-column">
+            <div *ngFor="let item of items" (click)="onItemSelected(item.type)" class="d-flex align-items-center justify-content-center flex-column">
                 <i [ngClass]="item.iconClass"></i>
                 <span>{{item.title | translate}}</span>
             </div>
         </div>
 
-        <div class="login-help">
+        <div class="login-help" >
             {{'Start_Help1' | translate}}
-            <span>{{'Navbar_Login' | translate}}</span> 
+            <span routerLink="/login">{{'Navbar_Login' | translate}}</span> 
             {{'Start_Help_Or' | translate}}
-            <span>{{'Navbar_SignUp' | translate}}</span>
+            <span routerLink="/signup">{{'Navbar_SignUp' | translate}}</span>
         </div>
 
     </div>
