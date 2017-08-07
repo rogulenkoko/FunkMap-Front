@@ -1,3 +1,34 @@
-<h1>
-  stasdasdasadadsadasdasdsdadsadasdasart works!
-</h1>
+<div class="leaflet-map" id="map"></div>
+
+
+<div class="start-page-container-wrapper">
+    <div class="start-page-container d-flex align-items-center justify-content-center flex-column">
+
+        <div class="logo-container">
+             <img src="assets/images/logo.svg"/>
+        </div>
+
+        <div class="description-container">
+            <span>Собери свою музыкальную группу и стань рок звездой.</span>
+        </div>
+
+        <div class="description-container">
+            <span>Сервис для поиска музыкантов, магазинов, репетиционных точек и студий звукозаписи</span>
+        </div>
+
+        <div class="entities-container d-flex flex-row">
+            <div *ngFor="let item of items" class="d-flex align-items-center justify-content-center flex-column">
+                <i [ngClass]="item.iconClass"></i>
+                <span>{{item.title | translate}}</span>
+            </div>
+        </div>
+
+        <div class="login-help">
+            Чтобы получить дополнительные возможности сервиса, Вам необходимо
+            <span>Войти</span> 
+            или
+            <span>Зарегистрироваться</span>
+        </div>
+
+    </div>
+</div>

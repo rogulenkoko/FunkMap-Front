@@ -105,5 +105,11 @@
     "Edit":"Edit",
     "Information":"Information",
     "Youtube_Link":"Youtube link",
-    "Video":"Video"
+    "Video":"Video",
+
+    "Start_Musician": "Musician",
+    "Start_Band": "Band",
+    "Start_Rehearsal": "Rehearsal point",
+    "Start_Shop": "Music store",
+    "Start_Studio" : "Studio"
 }

@@ -102,5 +102,11 @@
     "Edit":"Редактировать",
     "Information":"Информация",
     "Youtube_Link":"Ссылка Youtube",
-    "Video" : "Видео"
+    "Video" : "Видео",
+
+    "Start_Musician": "Музыкант",
+    "Start_Band": "Музыкальная группа",
+    "Start_Rehearsal": "Репетиционная точка",
+    "Start_Shop": "Магазин музыкальных инструментов",
+    "Start_Studio" : "Студия звукозаписи"
 }
