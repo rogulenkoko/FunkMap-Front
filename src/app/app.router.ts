@@ -20,40 +20,48 @@ import { RehearsalComponent } from "app/main/rehearsal/rehearsal.component";
 import { UserEntitiesComponent } from "app/main/user/user-entities/user-entities.component";
 import { MusicianFullComponent } from "app/main/musician/musician-full/musician-full.component";
 import { MessengerComponent } from "app/main/messenger/messenger.component";
+import { StartComponent } from "app/start/start.component";
+import { MainWrapperComponent } from "app/main-wrapper/main-wrapper.component";
 
 const appRoutes: Routes = [
   {
     path: "",
     children: [
       {
-        path: "", component: MainComponent, children: [
-          { path: "login", component: LoginComponent },
-          { path: "signup", component: RegistrationComponent },
-          { path: "settings", component: SettingsComponent },
-          { path: "profile", component: UserEntitiesComponent },
-          { path: "musician", component: MusicianComponent },
-          { path: "musician/:id", component: MusicianComponent },
-          { path: "band", component: BandComponent },
-          { path: "band/:id", component: BandComponent },
-          { path: "shop", component: ShopComponent },
-          { path: "shop/:id", component: ShopComponent },
-          { path: "studio", component: StudioComponent },
-          { path: "studio/:id", component: StudioComponent },
-          { path: "rehearsal", component: RehearsalComponent },
-          { path: "rehearsal/:id", component: RehearsalComponent },
-          { path: "avatar", component: AvatarComponent },
-          { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
-          { path: "success", component: SuccessComponent},
-          { path: "checkmap", component: MapCreationComponent },
-          { path: "search", component: SearchComponent },
-          { path: "favorites", component: FavouritesComponent }
-        ],
-      },
-      { path: "musicianPage", component: MusicianFullComponent },
-      { path: "musicianPage/:id", component: MusicianFullComponent },
+        path: "", component: MainWrapperComponent, children: [
+          {
+            path: "", component: MainComponent, children: [
+              { path: "login", component: LoginComponent },
+              { path: "signup", component: RegistrationComponent },
+              { path: "settings", component: SettingsComponent },
+              { path: "profile", component: UserEntitiesComponent },
+              { path: "musician", component: MusicianComponent },
+              { path: "musician/:id", component: MusicianComponent },
+              { path: "band", component: BandComponent },
+              { path: "band/:id", component: BandComponent },
+              { path: "shop", component: ShopComponent },
+              { path: "shop/:id", component: ShopComponent },
+              { path: "studio", component: StudioComponent },
+              { path: "studio/:id", component: StudioComponent },
+              { path: "rehearsal", component: RehearsalComponent },
+              { path: "rehearsal/:id", component: RehearsalComponent },
+              { path: "avatar", component: AvatarComponent },
+              { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
+              { path: "success", component: SuccessComponent },
+              { path: "checkmap", component: MapCreationComponent },
+              { path: "search", component: SearchComponent },
+              { path: "favorites", component: FavouritesComponent }
+            ],
+          },
+          { path: "musicianPage", component: MusicianFullComponent },
+          { path: "musicianPage/:id", component: MusicianFullComponent },
 
-      { path: "messenger", component: MessengerComponent }
-    ]
+          { path: "messenger", component: MessengerComponent },
+        ]
+      },
+      { path: "start", component: StartComponent }
+    ],
+
   },
 ];
 

@@ -29,6 +29,8 @@ import { ShopModule } from "app/main/shop/shop.module";
 import { StudioModule } from "app/main/studio/studio.module";
 import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
 import { MessengerModule } from "app/main/messenger/messenger.module";
+import { StartComponent } from './start/start.component';
+import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 
 
 
@@ -41,6 +43,10 @@ import { MessengerModule } from "app/main/messenger/messenger.module";
     SidebarComponent,
 
     AvatarComponent,
+
+    StartComponent,
+
+    MainWrapperComponent,
   ],
   imports: [
     CoreModule,

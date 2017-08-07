@@ -9,3 +9,9 @@
     height: 100%;
     //height: calc(100% - 75px); //75 - высота навбара
 }
+
+:host(main) {
+    height: 100%;
+}
+
+
