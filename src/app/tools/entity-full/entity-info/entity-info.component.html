@@ -1,12 +1,21 @@
-<div class="musician-info-container d-flex flex-column">
-  <div class="info-title-container">
-    {{'Information' | translate}}
+<div class="musician-info-container d-flex flex-column" (mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
+  <div class="info-title-container d-flex justify-content-between">
+    <span>{{'Information' | translate}}</span> 
+
+    <div class="edit-buttons-container">
+      <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
+      <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
+      <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
+    </div>
   </div>
+  
   <div *ngFor="let item of items" class="d-flex flex-column">
     <div class="d-flex flex-row property-container">
       <span class="property-title">{{item.propertyTitle | translate}}:</span>
-      <span *ngIf="!item.propertyTemplate" class="property-value">{{item.propertyValue | translate}}</span>
-      <ng-template *ngIf="item.propertyTemplate" [ngTemplateOutlet]="item.propertyTemplate"></ng-template>
+      <span *ngIf="!item.propertyTemplate && !isEditMode" class="property-value">{{item.propertyValue | translate}}</span>
+      <ng-template *ngIf="item.propertyTemplate && !isEditMode" [ngTemplateOutlet]="item.propertyTemplate"></ng-template>
+
+      <ng-template *ngIf="item.propertyEditTemplate && isEditMode" [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
     </div>
   </div>
 </div>

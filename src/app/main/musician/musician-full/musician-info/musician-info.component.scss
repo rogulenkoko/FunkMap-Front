@@ -1,7 +1,36 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
 
 
 .date-value{
     font-size: 13px;
+}
+
+.sex-radio{
+    width: 40%;
+}
+
+.radio-label{
+    font-size: 13px;
+}
+
+textarea{
+    height: 100px;
+}
+
+.date-container{
+    width: 100%;
+}
+
+.days{
+    width: 20%;
+}
+
+.years{
+    width: 30%;
+}
+
+.months{
+    width: 50%;
 }

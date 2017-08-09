@@ -27,7 +27,11 @@ input[type=radio] + label:before{
 input[type=checkbox] + label:before{
   border-radius:2px;
   height: 19px;
-  
+}
+
+.radio-label{
+    display: flex;
+    align-items: center;
 }
 
 input[type='number'] {

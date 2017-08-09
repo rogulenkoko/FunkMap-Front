@@ -19,6 +19,12 @@ export class DateSelectProvider {
      return date;
    }
 
+   public setDate(date: Date){
+     this.day = date.getDate();
+     this.month = this.months.find(x=>x.id == date.getMonth());
+     this.year = date.getFullYear(); 
+   }
+
 
 
    private initMonths(){

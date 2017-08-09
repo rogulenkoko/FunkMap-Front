@@ -3,29 +3,7 @@
   <input [class.error]="wasSubmit && !creationService.baseModel.name" [(ngModel)]="creationService.baseModel.name" class="form-control secondary"
   />
 </div>
-<br>
-<div class="d-flex flex-row align-items-baseline">
-  <label class="property-title">{{'Musician_BirthDate' | translate}}:</label>
-  <div class="d-flex flex-row date-container">
-    <input class="form-control date-select days mr-3" type="number" min="1960" max="2017" [(ngModel)]="dateProvider.day" />
 
-    <select [(ngModel)]="dateProvider.month" class="form-control date-select months mr-3">
-              <option *ngFor="let month of dateProvider.months" [ngValue]="month">{{month.title}}</option>
-            </select>
-    <input class="form-control date-select years" type="number" min="1960" max="2017" [(ngModel)]="dateProvider.year" />
-  </div>
-</div>
-<br>
-<div class="d-flex flex-row align-items-baseline">
-  <label class="property-title sex-label">{{'Musician_Sex' | translate}}:</label>
-  <div class="d-flex flex-row" style="width:100%;">
-    <div class="mr-4 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
-      <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="creationService.musician.sex" [value]="sexType">
-      <label class="radio-label" for="reportType{{sexType}}">{{musicianTypesProvider.sexTypes.getValue(sexType) | translate}}</label>
-    </div>
-  </div>
-
-</div>
 <br>
 <div class="d-flex flex-row">
   <label class="property-title">{{'Musician_Instrument' | translate}}:</label>
@@ -37,7 +15,7 @@
     </div>
   </div>
 </div>
-<br>
+<!-- <br>
 <div class="d-flex flex-row align-items-baseline">
   <label class="property-title">{{'Musician_Styles' | translate}}:</label>
   <div class="d-flex flex-column selected-styles-container">
@@ -52,21 +30,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <br>
-
-<div class="d-flex flex-row align-items-baseline">
-  <label class="property-title">{{'Musician_Expirience' | translate}}:</label>
-  <div class="d-flex flex-column selected-styles-container">
-    <select [(ngModel)]="creationService.musician.expirience" class="form-control mr-3">
-        <option *ngFor="let expirience of musicianTypesProvider.expiriences.keys()" [ngValue]="expirience">{{musicianTypesProvider.expiriences.getValue(expirience) | translate}}</option>
-      </select>
-  </div>
-</div>
-
-<br>
-<div class="d-flex flex-row align-items-top">
-  <label class="property-title">{{'Musician_Description' | translate}}:</label>
-  <textarea [(ngModel)]="creationService.musician.description" class="form-control secondary"></textarea>
-</div>

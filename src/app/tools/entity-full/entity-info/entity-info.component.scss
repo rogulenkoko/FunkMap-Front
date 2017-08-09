@@ -7,6 +7,7 @@
     padding-top: 45px;
     padding-bottom: 30px;
     padding-left: 40px;
+    padding-right: 40px;
     border-radius: 5px; 
     margin-left: 8px;
     height: 550px;
@@ -22,13 +23,30 @@
     }
 
     .property-title{
-        width: 120px;
+        width: 140px;
         font-size: 13px;
         color: $dark-title-color;
     }
 
     .property-value{
         font-size: 13px;
-        width: 340px;
+        width: 300px;
+    }
+
+    .edit-buttons-container{
+        span{
+            font-size: 13px;
+            cursor: pointer;
+            color: $dark-title-color;
+        }
+
+        span:hover{
+            color: $dark-orange-hard;
+        }
+
+        .save-button{
+            color: $dark-orange-hard;
+            margin-left: 25px;
+        }
     }
 }

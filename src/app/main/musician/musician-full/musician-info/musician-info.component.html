@@ -1,5 +1,43 @@
-<entity-info [items]="infoItems"></entity-info>
+<entity-info [items]="infoItems" [entity]="musician" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
 
 <ng-template #dateTemplate>
     <span class="date-value">{{this.musician.birthDate | datex: "DD MMMM YYYY"}}</span>
+</ng-template>
+
+
+<ng-template #instrumentEditTemplate>
+    <select [(ngModel)]="newMusician.instrument" class="form-control mr-3">
+        <option *ngFor="let instrument of musicianTypesProvider.instruments.keys()" [ngValue]="instrument">{{musicianTypesProvider.instruments.getValue(instrument) | translate}}</option>
+    </select>
+</ng-template>
+
+<ng-template #sexEditTemplate>
+    <div class="d-flex flex-row" style="width:100%;">
+        <div class="mr-4 d-flex align-items-center" *ngFor="let sexType of musicianTypesProvider.sexTypes.keys()">
+            <input type="radio" name="reportType" id="reportType{{sexType}}" [(ngModel)]="newMusician.sex" [value]="sexType">
+            <label class="radio-label" for="reportType{{sexType}}">{{musicianTypesProvider.sexTypes.getValue(sexType) | translate}}</label>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #expirienceEditTeplate>
+    <select [(ngModel)]="newMusician.expirience" class="form-control mr-3">
+        <option *ngFor="let expirience of musicianTypesProvider.expiriences.keys()" [ngValue]="expirience">{{musicianTypesProvider.expiriences.getValue(expirience) | translate}}</option>
+      </select>
+</ng-template>
+
+
+<ng-template #descriptionEditTemplate>
+    <textarea [(ngModel)]="newMusician.description" class="form-control secondary"></textarea>
+</ng-template>
+
+<ng-template #dateEditTemplate>
+    <div class="d-flex flex-row date-container">
+    <input class="form-control date-select days mr-3" type="number" min="1960" max="2017" [(ngModel)]="dateProvider.day" />
+
+    <select [(ngModel)]="dateProvider.month" class="form-control date-select months mr-3">
+              <option *ngFor="let month of dateProvider.months" [ngValue]="month">{{month.title}}</option>
+            </select>
+    <input class="form-control date-select years" type="number" min="1960" max="2017" [(ngModel)]="dateProvider.year" />
+  </div>
 </ng-template>
