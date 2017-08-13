@@ -6,26 +6,24 @@ import { Dictionary } from "typescript-collections";
 import { MusicStyle, InstrumentType, ExpirienceType } from "app/main/musician/models";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 
+import {SelectItem} from 'primeng/primeng';
+
 @Component({
   selector: 'search-filter',
   templateUrl: './search-filter.component.html',
   styleUrls: ['./search-filter.component.scss']
 })
 export class SearchFilterComponent implements OnInit {
-
-  
-
   private currenSelectedStyle: MusicStyle;
-  
 
   private currenSelectedInstrument: InstrumentType;
-  
 
-  
+  private styles: Array<StylesItem>;
+  private selectedStyles: Array<MusicStyle> = [];
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
               private searchFilterService: SearchFilterService) {
-
+      this.styles = musicianTypesProvider.musicStyles.keys().map(x=> new StylesItem(x, musicianTypesProvider.musicStyles.getValue(x)));
   }
 
   ngOnInit() {
@@ -36,17 +34,6 @@ export class SearchFilterComponent implements OnInit {
   }
 
   onStyleChanged(){
-    this.searchFilterService.selectedStyles.push(this.currenSelectedStyle);
-    this.searchFilterService.styles.remove(this.currenSelectedStyle);
-    this.currenSelectedStyle = undefined;
-
-    this.searchFilterService.onFilterChanged.emit();
-  }
-
-  removeStyle(musicianStyle:MusicStyle){
-    this.searchFilterService.selectedStyles.splice(this.searchFilterService.selectedStyles.findIndex(x=> x == musicianStyle), 1);
-    this.searchFilterService.styles.setValue(musicianStyle, this.musicianTypesProvider.musicStyles.getValue(musicianStyle));
-
     this.searchFilterService.onFilterChanged.emit();
   }
 
@@ -73,4 +60,12 @@ export class SearchFilterComponent implements OnInit {
     this.searchFilterService.onFilterChanged.emit();
   }
 
+}
+
+
+export class StylesItem implements SelectItem {
+
+  constructor(public value: MusicStyle, public label: string){
+
+  }
 }

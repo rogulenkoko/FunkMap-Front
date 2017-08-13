@@ -11,15 +11,11 @@
   <ng-container *ngIf="searchFilterService.selectedEntity.type == 1 || searchFilterService.selectedEntity.type == 3">
     <div class="d-flex flex-row align-items-baseline filter-container">
       <label class="filter-label">{{'Styles' | translate}}:</label>
-      <select [(ngModel)]="currenSelectedStyle" class="form-control" (ngModelChange)="onStyleChanged()">
-          <option *ngFor="let style of searchFilterService.styles.keys()" [ngValue]="style">{{musicianTypesProvider.musicStyles.getValue(style) | translate}}</option>
-      </select>
-    </div>
-    <div class="d-flex flex-row selected-styles-container">
-      <div *ngFor="let musicianStyle of searchFilterService.selectedStyles" class="musician-style d-flex align-items-center mr-3">
-        <div (click)="removeStyle(musicianStyle)" class="icon icon-close-red mr-2"></div>
-        <span>{{musicianTypesProvider.musicStyles.getValue(musicianStyle) | translate}}</span>
-      </div>
+
+      <p-multiSelect [options]="styles" 
+                     [(ngModel)]="searchFilterService.selectedStyles"
+                     [filter]="false"
+                     (onChange)="onStyleChanged()"></p-multiSelect>
     </div>
     <div class="separator-mini"></div>
   </ng-container>

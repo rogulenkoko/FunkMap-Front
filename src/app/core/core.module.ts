@@ -15,6 +15,8 @@ import { SignalRModule } from 'ng2-signalr';
 import { SignalRConfiguration } from 'ng2-signalr';
 import { environment } from "environments/environment";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { MultiSelectModule } from 'primeng/primeng';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,15 +34,20 @@ import { ConfigurationProvider } from "app/core/configuration/configuration-prov
         deps: [Http]
       }
     }),
-    SignalRModule.forRoot(createSignalRConfig)
+    SignalRModule.forRoot(createSignalRConfig),
+    MultiSelectModule,
+    BrowserAnimationsModule
   ],
   exports: [
-    TranslateModule, 
+    TranslateModule,
     BrowserModule,
     FormsModule,
     HttpModule,
     YoutubePlayerMiniModule,
-    RouterModule],
+    RouterModule,
+    MultiSelectModule,
+    BrowserAnimationsModule
+  ],
   providers: [
     LanguageService,
     {
@@ -58,9 +65,9 @@ export function translateLoader(http: Http) {
   return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
 }
 
-export function createSignalRConfig(){
+export function createSignalRConfig() {
   var config = new SignalRConfiguration();
   config.hubName = "messenger";
-  config.url = ConfigurationProvider.apiUrl.replace("/api/","");
+  config.url = ConfigurationProvider.apiUrl.replace("/api/", "");
   return config;
 }

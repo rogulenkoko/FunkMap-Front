@@ -27,7 +27,7 @@ export class SearchFilterService {
 
   public onFilterChanged: EventEmitter<any>;
 
-  public isFilterEnabled: boolean = false;
+  public isFilterEnabled: boolean = true;
   public availableEntities: Array<Entity>;
 
   public searchChanged: Subject<string>;
@@ -46,7 +46,7 @@ export class SearchFilterService {
   fillDefaultValues(){
     var allEntity = [new Entity(0,"All")];
     this.availableEntities = allEntity.concat(this.entityTypeProvider.availableEntities);
-    this.selectedEntity = this.availableEntities[0];
+    this.selectedEntity = this.availableEntities[1];
 
     this.styles = new Dictionary<MusicStyle, string>(); 
     this.musicianTypesProvider.musicStyles.keys().forEach(key => {

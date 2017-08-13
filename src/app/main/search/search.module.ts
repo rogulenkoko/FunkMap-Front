@@ -24,7 +24,7 @@ import { SearchFilterService } from "app/main/search/search-filter/search-filter
     BandModule,
     ShopModule,
     StudioModule,
-    RehearsalModule,
+    RehearsalModule
   ],
   exports: [
     SearchComponent,

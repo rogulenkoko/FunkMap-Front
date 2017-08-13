@@ -116,3 +116,46 @@ input::-webkit-inner-spin-button {
         border: 1px solid $dark-orange-light;
 }
 
+.ui-multiselect-header{
+  display: none;
+}
+
+.ui-multiselect-label-container{
+  width: 180px;
+  height: 30px;
+  background-color: rgba(0,0,0,0) !important;
+  border: none !important;
+}
+
+.ui-multiselect{
+  border: none;
+  background-color: rgba(0,0,0,0) !important;
+  
+}
+
+.ui-multiselect-label{
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.ui-state-default{
+  border: none !important;
+  outline: none !important;
+}
+
+.ui-multiselect-trigger{
+  display: none;
+}
+
+.ui-chkbox-box.ui-state-active{
+  content: url("/assets/images/facebook.svg") !important;
+}
+
+.ui-chkbox-box.ui-state-active{
+  background-color: white !important;
+  color: black !important;
+}
+
+.ui-multiselect-item{
+  background-color: white !important;
+  color: black !important;
+}
