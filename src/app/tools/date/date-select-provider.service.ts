@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
+import { TranslateSelectItem } from "app/tools/select";
 
 @Injectable()
 export class DateSelectProvider {
 
   public day: number;
-  public month: Month;
+  public month: number;
   public year: number;
 
   public months: Array<Month>;
 
   constructor() {
     this.initMonths();
-    this.month = this.months[0];
+    this.month = this.months[0].value;
    }
 
    public buildDate(): Date{
-     var date = new Date(this.year,this.month.id,this.day);
+     console.log(this.year, this.month, this.day);
+     var date = new Date(this.year,this.month,this.day);
+     console.log(date);
      return date;
    }
 
    public setDate(date: Date){
      this.day = date.getDate();
-     this.month = this.months.find(x=>x.id == date.getMonth());
+     this.month = date.getMonth();
      this.year = date.getFullYear(); 
    }
 
@@ -46,8 +49,8 @@ export class DateSelectProvider {
 
 }
 
-export class Month{
-  constructor(public id: number, public title: string){
-
+export class Month extends TranslateSelectItem{
+  constructor(id: number, title: string){
+    super(id, title);
   }
 }

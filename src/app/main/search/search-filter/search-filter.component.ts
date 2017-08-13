@@ -9,6 +9,7 @@ import { SelectItem } from 'primeng/primeng';
 import { EntityType } from "app/main/map/models";
 import { TranslateService } from "@ngx-translate/core";
 import { Observable } from "rxjs/Observable";
+import { StylesItem, InstrumentsItem, EntityItem, ExpirienceItem } from "app/tools/select";
 
 @Component({
   selector: 'search-filter',
@@ -44,47 +45,4 @@ export class SearchFilterComponent implements OnInit {
     this.searchFilterService.onFilterChanged.emit();
   }
 
-}
-
-export class TranslateSelectItem implements SelectItem {
-  constructor(public value: any, label: string | Observable<string>) {
-    if (typeof (label) === 'string') {
-      this.label = label;
-    } else {
-      var obs = label as Observable<string>;
-      obs.subscribe(text => {
-        this.label = text;
-      })
-    }
-  }
-
-  public label: string;
-}
-
-export class StylesItem extends TranslateSelectItem {
-
-  constructor(value: MusicStyle, label: string | Observable<string>) {
-    super(value, label);
-  }
-}
-
-export class InstrumentsItem extends TranslateSelectItem {
-
-  constructor(value: InstrumentType, label: string | Observable<string>) {
-    super(value, label);
-  }
-
-  public label: string;
-}
-
-export class EntityItem extends TranslateSelectItem {
-  constructor(value: EntityType, label: string | Observable<string>) {
-    super(value, label);
-  }
-}
-
-export class ExpirienceItem extends TranslateSelectItem {
-  constructor(value: ExpirienceType, label: string | Observable<string>) {
-    super(value, label);
-  }
 }

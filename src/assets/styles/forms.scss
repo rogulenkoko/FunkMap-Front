@@ -44,6 +44,7 @@ input::-webkit-inner-spin-button {
 }
 
 .form-control{
+    height: 29px;
     border-radius: 0;
     border: none;
     border-bottom: 1px solid #bee8c6;
@@ -58,7 +59,7 @@ input::-webkit-inner-spin-button {
 }
 
 :host-context(.dark) .form-control{
-  border-color: $dark-grey !important;
+  border-color: $dark-control-border !important;
 }
 
 :host-context(.light) .form-control:focus, :host-context(.light) .btn:focus{

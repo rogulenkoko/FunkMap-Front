@@ -5,6 +5,8 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
 import { MusicianService } from "app/main/musician/musician.service";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { DateSelectProvider } from "app/tools";
+import { StylesItem, InstrumentsItem, ExpirienceItem } from "app/tools/select";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'musician-info',
@@ -17,6 +19,10 @@ export class MusicianInfoComponent implements OnInit {
   private newMusician: Musician;
 
 
+  private styles: Array<StylesItem>;
+  private instruments: Array<InstrumentsItem>;
+  private expiriences: Array<ExpirienceItem>;
+
   @ViewChild("dateTemplate") dateTemplate: any;
 
   @ViewChild("instrumentEditTemplate") instrumentEditTemplate: any;
@@ -24,13 +30,18 @@ export class MusicianInfoComponent implements OnInit {
   @ViewChild("expirienceEditTeplate") expirienceEditTeplate: any;
   @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
   @ViewChild("dateEditTemplate") dateEditTemplate: any;
+  @ViewChild("stylesEditTemplate") stylesEditTemplate: any;
 
   private infoItems: Array<InfoItem>;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
-              private musicianService: MusicianService,
-              private iconProvider: IconProvider,
-              private dateProvider: DateSelectProvider) {
+    private musicianService: MusicianService,
+    private iconProvider: IconProvider,
+    private dateProvider: DateSelectProvider,
+    private translateService: TranslateService) {
+    this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
+    this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
+    this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
   }
 
   ngOnInit() {
@@ -55,6 +66,7 @@ export class MusicianInfoComponent implements OnInit {
       stylesValue += `${this.musicianTypesProvider.musicStyles.getValue(style)} `;
     });
     stylesItem.propertyValue = stylesValue;
+    stylesItem.propertyEditTemplate = this.stylesEditTemplate;
 
 
     var instrumentItem = new InfoItem();
@@ -88,21 +100,19 @@ export class MusicianInfoComponent implements OnInit {
     })
   }
 
-  save(){
-    //this.musicianService
-
+  save() {
+    this.newMusician.login = this.musician.login;
     this.newMusician.birthDate = this.dateProvider.buildDate();
+    this.musicianService.updateMusician(this.newMusician).subscribe(x => {
+      this.refreshMusician(this.musician.login);
+    })
+  }
 
-    console.log(this.newMusician);
+  cancel() {
     this.refreshMusician(this.musician.login);
   }
 
-  cancel(){
-    console.log("Asda");
-    this.refreshMusician(this.musician.login);
-  }
-
-  private selectInstrument(instrument: InstrumentType){
+  private selectInstrument(instrument: InstrumentType) {
     this.newMusician.instrument = instrument;
   }
 

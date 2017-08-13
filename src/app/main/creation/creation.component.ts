@@ -5,7 +5,6 @@ import { DateSelectProvider } from "app/tools/date/date-select-provider.service"
 import { MusicianTypesProvider } from "../musician/musician-types-provider";
 import { EntityType } from "../map/models";
 import { CreationService } from "./creation.service";
-import { Entity } from "app/tools/models/entity";
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 import { CropperSettings, ImageCropperComponent } from "ng2-img-cropper";
 

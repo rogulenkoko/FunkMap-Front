@@ -10,11 +10,10 @@
   </div>
   
   <div *ngFor="let item of items" class="d-flex flex-column">
-    <div class="d-flex flex-row property-container">
+    <div class="d-flex flex-row property-container align-items-baseline">
       <span class="property-title">{{item.propertyTitle | translate}}:</span>
       <span *ngIf="!item.propertyTemplate && !isEditMode" class="property-value">{{item.propertyValue | translate}}</span>
       <ng-template *ngIf="item.propertyTemplate && !isEditMode" [ngTemplateOutlet]="item.propertyTemplate"></ng-template>
-
       <ng-template *ngIf="item.propertyEditTemplate && isEditMode" [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
     </div>
   </div>

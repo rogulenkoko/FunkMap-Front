@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MusicianService } from "./musician.service";
 import { Observable } from "rxjs/Observable";
 import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./models";
+import { BaseResponse } from "app/tools";
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -10,7 +11,7 @@ export class MusicianServiceStub extends MusicianService {
     super();
   }
 
-   getMusicianPreview(id: string): Observable<Musician>{
+   getMusicianPreview(id: string): Observable<MusicianPreview>{
      var musician = this.getModel();
     return Observable.of(musician);
    }
@@ -18,6 +19,10 @@ export class MusicianServiceStub extends MusicianService {
    getMusician(id: string): Observable<Musician>{
     var musician = this.getModel();
     return Observable.of(musician);
+   }
+
+   updateMusician(musician: Musician):Observable<BaseResponse>{
+     return Observable.of(new BaseResponse(true));
    }
 
    private getModel(){

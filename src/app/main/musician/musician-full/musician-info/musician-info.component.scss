@@ -5,8 +5,14 @@
 
 .date-value{
     font-size: 13px;
+    width: 300px;
 }
 
+
+.sex-container{
+    width: 100%;
+    height: 20px;
+}
 .sex-radio{
     width: 40%;
 }
@@ -33,4 +39,18 @@ textarea{
 
 .months{
     width: 50%;
+}
+
+/deep/ .ui-multiselect-label-container, /deep/ .ui-multiselect-panel, /deep/ .ui-dropdown-panel, /deep/ .ui-dropdown{
+    width: 310px !important;
+}
+
+.month-dropdown{
+    /deep/ .ui-multiselect-label-container, /deep/ .ui-multiselect-panel, /deep/ .ui-dropdown-panel, /deep/ .ui-dropdown{
+        width: 180px !important;
+    }
+}
+
+textarea{
+    height: 120px !important;
 }
