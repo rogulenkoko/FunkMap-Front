@@ -32,6 +32,10 @@
     "Keyboard" : "Клавиши",
     "Guitar" : "Гитара",
 
+    "HipHop": "Хип-хоп",
+    "Funk": "Фанк",
+    "Rock" : "Рок",
+
     "Login_Entrance":"Вход",
     "Login_Login":"Логин",
     "Login_Password":"Пароль",
