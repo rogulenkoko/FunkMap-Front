@@ -3,23 +3,25 @@ import { BaseModel } from "app/core";
 import { UserDataService } from "app/main/user/user-data.service";
 import { UserService } from "app/main/user/user.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
+import { EditableCard } from "app/tools/entity-full/editable-card";
 
 @Component({
   selector: 'entity-base',
   templateUrl: './entity-base.component.html',
   styleUrls: ['./entity-base.component.scss']
 })
-export class EntityBaseComponent implements OnInit {
+export class EntityBaseComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
   private isFavorite: boolean;
-  private isUsers: boolean;
 
   @Input() underNameTemplate: any;
 
   constructor(private userService: UserService,
               private userDataService: UserDataService,
-              private favouritesService: FavouritesService) { }
+              private favouritesService: FavouritesService) {
+    super();
+  }
 
   ngOnInit() {
     this.checkIsUserEntity();

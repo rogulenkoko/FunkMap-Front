@@ -10,9 +10,16 @@
     width: 300px;
     height: 550px;
     background-color: $dark-card-background;
-    padding-top: 60px;
+    padding-top: 24px;
     padding-bottom: 30px;
     border-radius: 5px; 
+
+    .edit-buttons-container{
+        height: 20px;
+        width: 100%;
+        margin-bottom: 20px;
+        padding-right: 24px;
+    }
 
     .image-container{
         width: 180px;
@@ -64,6 +71,23 @@
 
     .nets-container{
         margin-top: 25px; 
+    }
+
+    .edit-buttons-container{
+        span{
+            font-size: 13px;
+            cursor: pointer;
+            color: $dark-title-color;
+        }
+
+        span:hover{
+            color: $dark-orange-hard;
+        }
+
+        .save-button{
+            color: $dark-orange-hard;
+            margin-left: 25px;
+        }
     }
 }
 
