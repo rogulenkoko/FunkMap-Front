@@ -47,19 +47,19 @@ export class SearchServiceHttp extends SearchService {
   getFiltered(skip: number, take: number): Observable<SearchResponse> {
     
     var filter: any = {};
-    switch (this.searchFilterService.selectedEntity.type) {
+    switch (this.searchFilterService.selectedEntity) {
       case EntityType.Musician:
-        filter = new MusicianFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type, skip, take);
+        filter = new MusicianFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
         filter.instruments = this.searchFilterService.selectedInstruments;
-        filter.expirience = this.searchFilterService.selectedExpirience;
+        filter.expirience = this.searchFilterService.selectedExpiriences;
         filter.styles = this.searchFilterService.selectedStyles;
         break;
       case EntityType.Band:
-        filter = new BandFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type, skip, take);
+        filter = new BandFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
         filter.styles = this.searchFilterService.selectedStyles;
         break;
       default:
-        filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity.type, skip, take);
+        filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
     }
     return this.http.post(`${ConfigurationProvider.apiUrl}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }

@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Entity } from "app/tools/models/entity";
 import { EntityType } from "app/main/map/models";
+import { Dictionary } from "typescript-collections";
 
 @Injectable()
 export class EntityTypeProvider {
 
-  public readonly availableEntities: Array<Entity>;
+  public entities: Dictionary<EntityType, string>;
 
   constructor() {
-    this.availableEntities = [
-      new Entity(EntityType.Musician, "Musician"),
-      new Entity(EntityType.Shop, "Shop"),
-      new Entity(EntityType.Band, "Band"),
-      new Entity(EntityType.Studio, "Studio"),
-      new Entity(EntityType.RehearsalPoint, "RehearsalPoint"),
-    ];
-   }
+    this.initEntities();
+  }
+
+  private initEntities() {
+    this.entities = new Dictionary<EntityType, string>();
+    this.entities.setValue(EntityType.Musician, "Musician");
+    this.entities.setValue(EntityType.Shop, "Shop");
+    this.entities.setValue(EntityType.Band, "Band");
+    this.entities.setValue(EntityType.Studio, "Studio");
+    this.entities.setValue(EntityType.RehearsalPoint, "RehearsalPoint");
+  }
 
 }

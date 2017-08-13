@@ -37,7 +37,7 @@ export class StartComponent implements OnInit {
 
 
   onItemSelected(type: EntityType){
-    this.searchFilterService.selectedEntity = this.searchFilterService.availableEntities.find(x=>x.type == type);
+    this.searchFilterService.selectedEntity = type;
     this.searchFilterService.isFilterEnabled = true;
     this.router.navigate(['/search']);
   }

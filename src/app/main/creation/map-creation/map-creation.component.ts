@@ -42,8 +42,8 @@ export class MapCreationComponent implements OnInit {
   }
 
   useCustomPosition() {
-    var marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity.type);
-    if (this.creationService.selectedEntity.type == EntityType.Musician) {
+    var marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
+    if (this.creationService.selectedEntity == EntityType.Musician) {
       marker.instrument = this.creationService.musician.instrument;
     }
     console.log(marker);

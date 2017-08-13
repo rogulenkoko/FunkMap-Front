@@ -1,0 +1,80 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+
+
+
+$select-width: 180px;
+
+p-multiselect{
+    height: 0;
+}
+
+.ui-multiselect-header{
+  display: none;
+}
+
+.ui-multiselect-label-container{
+  width: $select-width;
+  height: 30px;
+  background-color: rgba(0,0,0,0) !important;
+  border:none !important;
+  border-bottom: 1px solid $dark-grey !important;
+}
+
+
+
+.ui-multiselect, .ui-dropdown{
+  background-color: rgba(0,0,0,0) !important;
+  
+}
+
+.ui-multiselect-label, .ui-dropdown-label{
+  background-color: rgba(0,0,0,0) !important;
+  font-size: 14px;
+}
+
+.ui-state-default{
+  border: none !important;
+  outline: none !important;
+}
+
+.ui-multiselect-trigger, .ui-dropdown-trigger{
+   background-color: rgba(0,0,0,0) !important;
+   //content: url("/assets/images/facebook.svg") !important;
+}
+
+.ui-chkbox-box.ui-state-active{
+  content: url("/assets/images/facebook.svg") !important;
+}
+
+.ui-chkbox-box.ui-state-active{
+  background-color: white !important;
+  color: black !important;
+}
+
+.ui-chkbox-box:hover{
+    background-color: white !important;
+}
+
+.ui-multiselect-item, .ui-dropdown-item{
+  background-color: white !important;
+  color: black !important;
+   font-size: 14px;
+
+   label{
+       height: 10px;
+   }
+}
+
+.ui-multiselect-panel, .ui-dropdown-panel{
+  width:$select-width;
+}
+
+.ui-helper-hidden-accessible{
+    display: none;
+}
+
+.ui-dropdown{
+  width: $select-width !important;
+  border-bottom: 1px solid $dark-grey !important;
+}

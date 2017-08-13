@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
-import { Entity } from "app/tools/models/entity";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { Dictionary } from "typescript-collections";
 import { MusicStyle, InstrumentType, ExpirienceType } from "app/main/musician/models";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 
-import {SelectItem} from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
+import { EntityType } from "app/main/map/models";
+import { TranslateService } from "@ngx-translate/core";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'search-filter',
@@ -19,53 +21,70 @@ export class SearchFilterComponent implements OnInit {
   private currenSelectedInstrument: InstrumentType;
 
   private styles: Array<StylesItem>;
-  private selectedStyles: Array<MusicStyle> = [];
+  private instruments: Array<InstrumentsItem>;
+  private entities: Array<EntityItem>;
+  private expiriences: Array<ExpirienceItem>;
+
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
-              private searchFilterService: SearchFilterService) {
-      this.styles = musicianTypesProvider.musicStyles.keys().map(x=> new StylesItem(x, musicianTypesProvider.musicStyles.getValue(x)));
+    private searchFilterService: SearchFilterService,
+    private entityTypeProvider: EntityTypeProvider,
+    private translateService: TranslateService) {
+    this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
+    this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
+    this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
+    this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
   }
 
   ngOnInit() {
-   
+
   }
 
-  private onEntityChange(selectedEntity: Entity){
-  }
-
-  onStyleChanged(){
-    this.searchFilterService.onFilterChanged.emit();
-  }
-
-  onInstrumentChanged(){
-    this.searchFilterService.selectedInstruments.push(this.currenSelectedInstrument);
-    this.searchFilterService.instruments.remove(this.currenSelectedInstrument);
-    this.currenSelectedInstrument = undefined;
-
-    this.searchFilterService.onFilterChanged.emit();
-  }
-
-  removeInstrument(instrument:InstrumentType){
-    this.searchFilterService.selectedInstruments.splice(this.searchFilterService.selectedInstruments.findIndex(x=> x == instrument), 1);
-    this.searchFilterService.instruments.setValue(instrument, this.musicianTypesProvider.instruments.getValue(instrument));
-
-    this.searchFilterService.onFilterChanged.emit();
-  }
-
-  onExpirienceChanged(){
-    this.searchFilterService.onFilterChanged.emit();
-  }
-
-  onEntityChanged(){
+  onChanged() {
     this.searchFilterService.onFilterChanged.emit();
   }
 
 }
 
+export class TranslateSelectItem implements SelectItem {
+  constructor(public value: any, label: string | Observable<string>) {
+    if (typeof (label) === 'string') {
+      this.label = label;
+    } else {
+      var obs = label as Observable<string>;
+      obs.subscribe(text => {
+        this.label = text;
+      })
+    }
+  }
 
-export class StylesItem implements SelectItem {
+  public label: string;
+}
 
-  constructor(public value: MusicStyle, public label: string){
+export class StylesItem extends TranslateSelectItem {
 
+  constructor(value: MusicStyle, label: string | Observable<string>) {
+    super(value, label);
+  }
+}
+
+export class InstrumentsItem extends TranslateSelectItem {
+
+  constructor(value: InstrumentType, label: string | Observable<string>) {
+    super(value, label);
+  }
+
+  public label: string;
+}
+
+export class EntityItem extends TranslateSelectItem {
+  constructor(value: EntityType, label: string | Observable<string>) {
+    super(value, label);
+  }
+}
+
+export class ExpirienceItem extends TranslateSelectItem {
+  constructor(value: ExpirienceType, label: string | Observable<string>) {
+    super(value, label);
   }
 }

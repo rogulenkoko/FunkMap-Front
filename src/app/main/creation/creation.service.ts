@@ -9,12 +9,11 @@ import { ConfigurationProvider } from "app/core/configuration/configuration-prov
 import { HttpClient } from "app/core/http/http-client.service";
 import { BaseModel } from "app/core";
 import { Band } from "app/main/band/models";
-import { Entity } from "app/tools/models/entity";
 
 @Injectable()
 export abstract class CreationService {
 
-  public selectedEntity: Entity;
+  public selectedEntity: EntityType;
   public baseModel: BaseModel
   public musician: Musician;
   public band: Band;
@@ -30,7 +29,7 @@ export abstract class CreationService {
 
 
    buildEntity(): any{
-     switch(this.selectedEntity.type){
+     switch(this.selectedEntity){
        case EntityType.Musician:
        
         this.musician.facebookLink = this.baseModel.facebookLink;
@@ -81,7 +80,7 @@ export class CreationServiceHttp extends CreationService{
 
   save():Observable<CreationResponse>{
     var entity = this.buildEntity();
-    switch (this.selectedEntity.type){
+    switch (this.selectedEntity){
       case EntityType.Musician: return this.http.post(`${ConfigurationProvider.apiUrl}musician/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
       case EntityType.Band: return this.http.post(`${ConfigurationProvider.apiUrl}band/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
     }

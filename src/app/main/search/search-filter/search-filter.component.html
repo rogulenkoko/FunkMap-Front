@@ -1,49 +1,44 @@
 <div class="filter-main-container d-flex flex-column">
   <div class="d-flex flex-row align-items-baseline filter-container">
     <label class="filter-label">{{'Entity' | translate}}:</label>
-    <select class="filter-control" placeholder="YouTube" [(ngModel)]="searchFilterService.selectedEntity" (ngModelChange)="onEntityChanged()" class="form-control secondary">
-        <option *ngFor="let entity of searchFilterService.availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
-      </select>
+    <p-dropdown [options]="entities" [placeholder]="'All'" [(ngModel)]="searchFilterService.selectedEntity" (onChange)="onChanged()"></p-dropdown>
   </div>
-  
-  <div *ngIf="searchFilterService.selectedEntity.type == 1 || searchFilterService.selectedEntity.type == 3" class="separator"></div>
 
-  <ng-container *ngIf="searchFilterService.selectedEntity.type == 1 || searchFilterService.selectedEntity.type == 3">
-    <div class="d-flex flex-row align-items-baseline filter-container">
+  <div *ngIf="searchFilterService.selectedEntity == 1 || searchFilterService.selectedEntity  == 3" class="separator"></div>
+
+  <ng-container *ngIf="searchFilterService.selectedEntity  == 1 || searchFilterService.selectedEntity  == 3">
+    <div class="d-flex flex-row align-items-center filter-container">
       <label class="filter-label">{{'Styles' | translate}}:</label>
-
-      <p-multiSelect [options]="styles" 
-                     [(ngModel)]="searchFilterService.selectedStyles"
-                     [filter]="false"
-                     (onChange)="onStyleChanged()"></p-multiSelect>
+      <div>
+        <p-multiSelect [options]="styles" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false" (onChange)="onChanged()"></p-multiSelect>
+      </div>
     </div>
     <div class="separator-mini"></div>
   </ng-container>
-  
 
-  <ng-container *ngIf="searchFilterService.selectedEntity.type == 1">
-    <div class="d-flex flex-row align-items-baseline filter-container">
+
+  <ng-container *ngIf="searchFilterService.selectedEntity  == 1">
+    <div class="d-flex flex-row align-items-center filter-container">
       <label class="filter-label">{{'Instruments' | translate}}:</label>
-      <select [(ngModel)]="currenSelectedInstrument" class="form-control" (ngModelChange)="onInstrumentChanged()">
-          <option *ngFor="let instrument of searchFilterService.instruments.keys()" [ngValue]="instrument">{{musicianTypesProvider.instruments.getValue(instrument) | translate}}</option>
-      </select>
-    </div>
-    <div class="d-flex flex-row selected-instruments-container">
-      <div *ngFor="let instrument of searchFilterService.selectedInstruments" class="musician-style d-flex align-items-center mr-3">
-        <div (click)="removeInstrument(instrument)" class="icon icon-close-red mr-2"></div>
-        <span>{{musicianTypesProvider.instruments.getValue(instrument) | translate}}</span>
+
+      <div>
+        <p-multiSelect [options]="instruments" [(ngModel)]="searchFilterService.selectedInstruments" [filter]="false" [scrollHeight]="'120px'"
+          (onChange)="onChanged()"></p-multiSelect>
       </div>
     </div>
-     <div class="separator-mini"></div>
+    <div class="separator-mini"></div>
   </ng-container>
- 
 
-  <ng-container *ngIf="searchFilterService.selectedEntity.type == 1">
-    <div class="d-flex flex-row align-items-baseline filter-container">
+
+  <ng-container *ngIf="searchFilterService.selectedEntity  == 1">
+    <div class="d-flex flex-row align-items-center filter-container">
       <label class="filter-label">{{'Musician_Expirience' | translate}}:</label>
-      <select [(ngModel)]="searchFilterService.selectedExpirience" (ngModelChange)="onExpirienceChanged()" class="form-control">
-          <option *ngFor="let expirience of searchFilterService.expiriences.keys()" [ngValue]="expirience">{{searchFilterService.expiriences.getValue(expirience) | translate}}</option>
-      </select>
+
+      <div>
+         <p-multiSelect [options]="expiriences" [(ngModel)]="searchFilterService.selectedExpiriences" [filter]="false" [scrollHeight]="'120px'"
+          (onChange)="onChanged()"></p-multiSelect>
+      </div>
+     
     </div>
   </ng-container>
 </div>

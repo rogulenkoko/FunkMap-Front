@@ -27,7 +27,7 @@ export class CreationComponent implements OnInit {
               private router: Router,
               private entityTypeProvider: EntityTypeProvider) {
     
-    this.creationService.selectedEntity = this.entityTypeProvider.availableEntities[0];
+    this.creationService.selectedEntity = this.entityTypeProvider.entities.keys()[0];
     this.setCropperOptions();
     this.data = {};
    }

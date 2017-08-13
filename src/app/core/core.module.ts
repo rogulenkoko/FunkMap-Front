@@ -15,7 +15,7 @@ import { SignalRModule } from 'ng2-signalr';
 import { SignalRConfiguration } from 'ng2-signalr';
 import { environment } from "environments/environment";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
-import { MultiSelectModule } from 'primeng/primeng';
+import { MultiSelectModule, DropdownModule } from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -36,6 +36,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     }),
     SignalRModule.forRoot(createSignalRConfig),
     MultiSelectModule,
+    DropdownModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -46,6 +47,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     YoutubePlayerMiniModule,
     RouterModule,
     MultiSelectModule,
+    DropdownModule,
     BrowserAnimationsModule
   ],
   providers: [
