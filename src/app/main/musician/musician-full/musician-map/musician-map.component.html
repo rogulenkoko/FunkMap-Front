@@ -1,1 +1,1 @@
-<entity-map *ngIf="marker" [marker]="marker"></entity-map>
+<entity-map #entityMap *ngIf="marker" [marker]="marker" (onSaved)="onBaseSaved()" ></entity-map>

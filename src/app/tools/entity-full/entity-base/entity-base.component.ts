@@ -4,6 +4,7 @@ import { UserDataService } from "app/main/user/user-data.service";
 import { UserService } from "app/main/user/user.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { EditableCard } from "app/tools/entity-full/editable-card";
+import { EditService } from "app/tools/entity-full/edit.service";
 
 @Component({
   selector: 'entity-base',
@@ -19,8 +20,9 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   constructor(userService: UserService,
               userDataService: UserDataService,
+              editService: EditService,
               private favouritesService: FavouritesService) {
-    super(userService, userDataService);
+    super(userService, userDataService, editService);
   }
 
   ngOnInit() {

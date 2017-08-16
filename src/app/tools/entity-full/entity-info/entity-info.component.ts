@@ -3,6 +3,7 @@ import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { BaseModel } from "app/core";
 import { EditableCard } from "app/tools/entity-full/editable-card";
+import { EditService } from "app/tools/entity-full/edit.service";
 
 @Component({
   selector: 'entity-info',
@@ -11,12 +12,14 @@ import { EditableCard } from "app/tools/entity-full/editable-card";
 })
 export class EntityInfoComponent extends EditableCard implements OnInit {
 
-  @Input() entity: BaseModel;
+  private entity: BaseModel;
   @Input() items: Array<InfoItem>;
   
   constructor(userService: UserService,
-              userDataService: UserDataService) {
-    super(userService, userDataService);
+              userDataService: UserDataService,
+             editService: EditService) {
+    super(userService, userDataService, editService);
+    this.entity = this.editService.baseModel;
   }
 
   ngOnInit() {

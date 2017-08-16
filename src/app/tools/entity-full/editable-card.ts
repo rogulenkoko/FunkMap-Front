@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
+import { EditService } from "app/tools/entity-full/edit.service";
 
 export class EditableCard {
     protected isEditVisible: boolean = false;
@@ -13,7 +14,8 @@ export class EditableCard {
     protected isUsers: boolean = false;
 
     constructor(protected userService: UserService,
-                protected userDataService: UserDataService) {
+                protected userDataService: UserDataService,
+                protected editService: EditService) {
         this.onSaved = new EventEmitter();
         this.onCanceled = new EventEmitter();
         this.onEditModeEnabled = new EventEmitter();

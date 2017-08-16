@@ -1,4 +1,4 @@
-<entity-info [items]="infoItems" [entity]="musician" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
+<entity-info [items]="infoItems" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
 
 <ng-template #dateTemplate>
     <span class="date-value">{{this.musician.birthDate | datex: "DD MMMM YYYY"}}</span>

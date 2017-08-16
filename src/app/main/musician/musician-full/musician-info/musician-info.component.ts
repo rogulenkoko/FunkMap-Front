@@ -7,6 +7,7 @@ import { IconProvider } from "app/main/map/icon-provider.service";
 import { DateSelectProvider } from "app/tools";
 import { StylesItem, InstrumentsItem, ExpirienceItem } from "app/tools/select";
 import { TranslateService } from "@ngx-translate/core";
+import { EditService } from "app/tools/entity-full/edit.service";
 
 @Component({
   selector: 'musician-info',
@@ -15,9 +16,10 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class MusicianInfoComponent implements OnInit {
 
-  @Input() musician: Musician;
+  private musician: Musician;
   private newMusician: Musician;
 
+   
 
   private styles: Array<StylesItem>;
   private instruments: Array<InstrumentsItem>;
@@ -35,17 +37,24 @@ export class MusicianInfoComponent implements OnInit {
   private infoItems: Array<InfoItem>;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
-    private musicianService: MusicianService,
-    private iconProvider: IconProvider,
-    private dateProvider: DateSelectProvider,
-    private translateService: TranslateService) {
+              private musicianService: MusicianService,
+              private iconProvider: IconProvider,
+              private dateProvider: DateSelectProvider,
+              private translateService: TranslateService,
+              private editService: EditService) {
     this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
+   
+    this.musician = this.editService.baseModel as Musician;
   }
 
   ngOnInit() {
+    this.updateInfoItems();
+    
+  }
 
+  private updateInfoItems(){
     this.newMusician = Object.create(this.musician);
     this.dateProvider.setDate(this.musician.birthDate);
 
@@ -97,6 +106,9 @@ export class MusicianInfoComponent implements OnInit {
   private refreshMusician(login: string) {
     this.musicianService.getMusician(login).subscribe(musician => {
       this.musician = musician;
+      this.updateInfoItems();
+      this.editService.baseModel = musician;
+      this.editService.onSaved.emit();
     })
   }
 

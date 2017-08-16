@@ -1,11 +1,11 @@
  <div class="musician-full-container">
    <div class="d-flex justify-content-center row-container">
-    <musician-base *ngIf="musician" [musician]="musician"></musician-base>
-    <musician-info *ngIf="musician" [musician]="musician"></musician-info>
-    <musician-map *ngIf="musician" [musician]="musician"></musician-map>
+    <musician-base *ngIf="editService.baseModel"></musician-base>
+    <musician-info *ngIf="editService.baseModel"></musician-info>
+    <musician-map *ngIf="editService.baseModel"></musician-map>
    </div>
-   <div *ngIf="musician && musician.videosYoutube && musician.videosYoutube.length > 0" class="d-flex justify-content-center row-container">
-    <musician-video [musician]="musician" style="margin-right:9px"></musician-video>
-    <musician-video [musician]="musician"></musician-video>
+   <div *ngIf="editService.baseModel && editService.baseModel.videosYoutube && editService.baseModel.videosYoutube.length > 0" class="d-flex justify-content-center row-container">
+    <musician-video [musician]="editService.baseModel" style="margin-right:9px"></musician-video>
+    <musician-video [musician]="editService.baseModel"></musician-video>
   </div>
 </div> 

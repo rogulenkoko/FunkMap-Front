@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MapProvider } from "app/main/map/map-provider.service";
 import { Map, Marker, EntityType } from "app/main/map/models"
 import { BaseModel } from "app/core";
@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { MusicianService } from "app/main/musician/musician.service";
 import { Musician } from "app/main/musician/models";
+import { EditService } from "app/tools/entity-full/edit.service";
 
 @Component({
   selector: 'entity-map',
@@ -39,11 +40,11 @@ export class EntityMapComponent extends EditableCard implements OnInit {
               private route: ActivatedRoute,
               userService: UserService,
               userDataService: UserDataService,
-              private musicianService: MusicianService) {
-    super(userService, userDataService);
+            editService: EditService) {
+    super(userService, userDataService, editService);
     this.onEditModeEnabled.subscribe(() => this.toMapCreation());
     this.onSaved.subscribe(() => this.saveLocation());
-    this.onCanceled.subscribe(() => this.cancelChanges())
+    this.onCanceled.subscribe(() => this.cancelChanges());
 
   }
 
@@ -67,12 +68,15 @@ export class EntityMapComponent extends EditableCard implements OnInit {
       mainMarker = this.newMarker;
       this.initMap(mainMarker);
 
+      this.editService.baseModel.latitude = mainMarker.lat;
+      this.editService.baseModel.longitude = mainMarker.lng;
+
       this.isEditMode = true;
     }
 
   }
 
-  private initMap(mainMarker: Marker) {
+  public initMap(mainMarker: Marker) {
     if (this.map) this.map.remove();
     this.map = new L.Map('map-mini', { center: new L.LatLng(mainMarker.lat, mainMarker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
 
@@ -87,14 +91,8 @@ export class EntityMapComponent extends EditableCard implements OnInit {
 
 
   private saveLocation() {
-    var musician = new Musician();
-    musician.login = this.marker.login;
-    musician.latitude = this.newMarker.lat;
-    musician.longitude = this.newMarker.lng;
-    this.musicianService.updateMusician(musician).subscribe(response => {
-      this.isEditMode = false;
-      this.router.navigate([this.getCurrentBaseRoute()]);
-    });
+    this.isEditMode = false;
+    this.router.navigate([this.getCurrentBaseRoute()]);
   }
 
   private cancelChanges() {
@@ -117,7 +115,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
     return `/${route}/${this.marker.login}`;
   }
 
-  toMapCreation() {
+  private toMapCreation() {
     this.subscription = this.mapCreationService.onComplete.subscribe((marker) => this.setCoordinates(marker));
     this.mapCreationService.marker = this.marker;
     this.router.navigate(['/checkmap']);

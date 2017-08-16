@@ -4,6 +4,7 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { UserService } from "app/main/user/user.service";
+import { EditService } from "app/tools/entity-full/edit.service";
 
 @Component({
   selector: 'musician-base',
@@ -12,12 +13,15 @@ import { UserService } from "app/main/user/user.service";
 })
 export class MusicianBaseComponent implements OnInit {
 
-  @Input() musician: Musician;
+  private musician: Musician;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
               private favouritesService: FavouritesService,
               private userDataService: UserDataService,
-              private userService: UserService) { }
+              private userService: UserService,
+            private editService: EditService) {
+    this.musician = this.editService.baseModel as Musician;
+  }
 
   ngOnInit() {
     
