@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { MapProvider } from "../../map/map-provider.service";
 import { Map, Marker, EntityType } from "../../map/models";
 import { IconProvider } from "../../map/icon-provider.service";
@@ -16,27 +17,21 @@ import { MapCreationService } from "app/main/map/map-creation.service";
 })
 export class MapCreationComponent implements OnInit {
 
-  private isNotToSave: boolean;
-
   constructor(private mapProvider: MapProvider,
     private mapCreationService: MapCreationService,
     private iconProvider: IconProvider,
     private markerFactory: MarkerFactory,
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService) { }
+    private userService: UserService,
+    private location: Location) { }
 
   ngOnInit() {
-    this.isNotToSave = true;
-    this.route.params.subscribe(params => {
-      if (params["save"]) {
-        this.isNotToSave = false;
-        //this.save();
-      }
-    });
   }
 
   useCurrentPosition() {
+    this.mapCreationService.marker.lat = this.userService.latitude;
+    this.mapCreationService.marker.lng = this.userService.longitude;
     this.mapCreationService.onComplete.emit(this.mapCreationService.marker);
   }
 
@@ -44,5 +39,9 @@ export class MapCreationComponent implements OnInit {
     this.mapCreationService.onSelectPosition.emit(this.mapCreationService.marker);
     this.router.navigate(['/']);
 
+  }
+
+  private goBack(){
+    this.location.back();
   }
 }

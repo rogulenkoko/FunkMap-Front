@@ -27,6 +27,23 @@
             color: #7a7a7b;
         }
 
+        .edit-buttons-container{
+            span{
+                font-size: 13px;
+                cursor: pointer;
+                color: $dark-title-color;
+            }
+
+            span:hover{
+                color: $dark-orange-hard;
+            }
+
+            .save-button{
+                color: $dark-orange-hard;
+                margin-left: 5px;
+            }
+        }
+
         .address-container{
             margin-top: 10px;
             font-size: 13px;

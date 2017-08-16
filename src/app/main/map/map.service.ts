@@ -27,7 +27,7 @@ export abstract class MapService {
 
   public getAddress(lat: number, lon: number):Observable<string>{
     return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&sensor=true&language=${this.translateService.language.value}`).map(x=>{
-      return x.json().results[0].formatted_address;
+      return x.json().results[0] ? x.json().results[0].formatted_address : "";
     })
   }
 

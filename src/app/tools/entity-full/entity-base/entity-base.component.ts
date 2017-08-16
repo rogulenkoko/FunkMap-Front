@@ -17,22 +17,15 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   @Input() underNameTemplate: any;
 
-  constructor(private userService: UserService,
-              private userDataService: UserDataService,
+  constructor(userService: UserService,
+              userDataService: UserDataService,
               private favouritesService: FavouritesService) {
-    super();
+    super(userService, userDataService);
   }
 
   ngOnInit() {
-    this.checkIsUserEntity();
+    this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
-  }
-
-  private checkIsUserEntity() {
-    if(!this.userService.user) return;
-    this.userDataService.getUserEntitiesLogins().subscribe(logins => {
-      this.isUsers = logins.find(x => x == this.entity.login) ? true : false;
-    });
   }
 
   private checkIsFavorite() {

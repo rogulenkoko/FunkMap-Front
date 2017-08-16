@@ -1,8 +1,13 @@
-<div class="entity-map-container">
+<div class="entity-map-container" (mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
   <div class="leaflet-map" id="map-mini"></div>
   <div class="map-info-container">
-    <div class="info-title">
-      {{'Information' | translate}}
+    <div class="info-title-container d-flex justify-content-between">
+      <span>{{'Information' | translate}}</span>
+      <div class="edit-buttons-container">
+        <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
+        <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
+        <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
+      </div>
     </div>
     <div class="address-container d-flex flex-row">
       <span class="icon icon-middle pin-icon mr-2"></span>

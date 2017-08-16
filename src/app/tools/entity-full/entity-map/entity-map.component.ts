@@ -1,48 +1,133 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MapProvider } from "app/main/map/map-provider.service";
-import { Map, Marker } from "app/main/map/models"
+import { Map, Marker, EntityType } from "app/main/map/models"
 import { BaseModel } from "app/core";
 import { MarkerFactory } from "app/main/map/marker-factory.service";
 import { MapService } from "app/main/map/map.service";
+import { EditableCard } from "app/tools/entity-full/editable-card";
+import { UserService } from "app/main/user/user.service";
+import { UserDataService } from "app/main/user/user-data.service";
+import { MapCreationService } from "app/main/map/map-creation.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs/Subscription";
+import { MusicianService } from "app/main/musician/musician.service";
+import { Musician } from "app/main/musician/models";
 
 @Component({
   selector: 'entity-map',
   templateUrl: './entity-map.component.html',
   styleUrls: ['./entity-map.component.scss']
 })
-export class EntityMapComponent implements OnInit {
+export class EntityMapComponent extends EditableCard implements OnInit {
 
   @Input() marker: Marker;
+
+  private newMarker: Marker;
+
   private address: string;
 
   private map: L.Map;
   private baseLayer: L.TileLayer;
   private markersLayer: L.LayerGroup;
-
+  private subscription: Subscription;
 
   constructor(private mapProvider: MapProvider,
               private markerFactory: MarkerFactory,
-              private mapService: MapService) { }
+              private mapCreationService: MapCreationService,
+              private mapService: MapService,
+              private router: Router,
+              private route: ActivatedRoute,
+              userService: UserService,
+              userDataService: UserDataService,
+              private musicianService: MusicianService) {
+    super(userService, userDataService);
+    this.onEditModeEnabled.subscribe(() => this.toMapCreation());
+    this.onSaved.subscribe(() => this.saveLocation());
+    this.onCanceled.subscribe(() => this.cancelChanges())
 
-  ngOnInit() {
-    this.map = new L.Map('map-mini', { center: new L.LatLng(this.marker.lat, this.marker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
-    this.initMap();
-    this.initMarkersLayer();
-    this.getAddress(this.marker.lat, this.marker.lng);
   }
 
-  private initMap() {
+  ngOnInit() {
+    this.initMap(this.marker);
+    this.route.params.subscribe(params => {
+      this.onParamsLoaded(params);
+    });
+
+    this.checkIsUserEntity(this.marker.login);
+  }
+
+  private onParamsLoaded(params) {
+    let mainMarker = this.marker;
+    if (params['lat'] && params['lng']) {
+
+      this.newMarker = new Marker(this.marker.login, Number(params['lat']), Number(params['lng']), this.marker.entityType);
+      if (this.newMarker.entityType == EntityType.Musician) {
+        this.newMarker.instrument = this.marker.instrument;
+      }
+      mainMarker = this.newMarker;
+      this.initMap(mainMarker);
+
+      this.isEditMode = true;
+    }
+
+  }
+
+  private initMap(mainMarker: Marker) {
+    if (this.map) this.map.remove();
+    this.map = new L.Map('map-mini', { center: new L.LatLng(mainMarker.lat, mainMarker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
 
     var options = this.buildMapOptions(this.mapProvider.selectedMap);
     this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
     this.map.addLayer(this.baseLayer);
 
+    this.initMarkersLayer(mainMarker);
+    this.getAddress(mainMarker.lat, mainMarker.lng);
   }
 
-  private initMarkersLayer() {
+
+
+  private saveLocation() {
+    var musician = new Musician();
+    musician.login = this.marker.login;
+    musician.latitude = this.newMarker.lat;
+    musician.longitude = this.newMarker.lng;
+    this.musicianService.updateMusician(musician).subscribe(response => {
+      this.isEditMode = false;
+      this.router.navigate([this.getCurrentBaseRoute()]);
+    });
+  }
+
+  private cancelChanges() {
+    this.initMap(this.marker);
+    this.newMarker = undefined;
+    this.router.navigate([this.getCurrentBaseRoute()]);
+  }
+
+  private setCoordinates(marker: Marker) {
+    this.subscription.unsubscribe();
+
+    this.router.navigate([this.getCurrentBaseRoute(), { lat: marker.lat, lng: marker.lng }]);
+  }
+
+  private getCurrentBaseRoute(): string {
+    var route: string = "";
+    switch (this.marker.entityType) {
+      case EntityType.Musician: route = "musicianPage";
+    }
+    return `/${route}/${this.marker.login}`;
+  }
+
+  toMapCreation() {
+    this.subscription = this.mapCreationService.onComplete.subscribe((marker) => this.setCoordinates(marker));
+    this.mapCreationService.marker = this.marker;
+    this.router.navigate(['/checkmap']);
+  }
+
+  private initMarkersLayer(mainMarker: Marker) {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
-    var marker = this.markerFactory.getMarker(this.marker);
+    var marker = this.markerFactory.getMarker(mainMarker);
+
     this.markersLayer.addLayer(marker);
   }
 
@@ -66,8 +151,8 @@ export class EntityMapComponent implements OnInit {
     return options;
   }
 
-  private getAddress(lat: number, lon: number){
-    this.mapService.getAddress(lat, lon).subscribe(address=>{
+  private getAddress(lat: number, lon: number) {
+    this.mapService.getAddress(lat, lon).subscribe(address => {
       this.address = address;
     })
   }

@@ -2,7 +2,7 @@ import { InstrumentType } from "../../musician/models";
 
 export class Marker {
     constructor(public login: string, public lat: number, public lng: number, public entityType: EntityType, public iconUrl?: string) {
-
+        this.iconUrl = iconUrl;
     }
 
     //для музыкантов
