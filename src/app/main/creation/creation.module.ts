@@ -10,7 +10,6 @@ import { MapCreationComponent } from './map-creation/map-creation.component';
 
 import { CanActivateCreation } from "./can-activate-creation";
 import {ImageCropperModule} from 'ng2-img-cropper';
-import { SuccessComponent } from './success/success.component';
 import { BandCreationComponent } from './band-creation/band-creation.component';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { BandCreationComponent } from './band-creation/band-creation.component';
     CreationComponent,
     MusicianCreationComponent,
     MapCreationComponent,
-    SuccessComponent,
     BandCreationComponent
   ],
   imports: [

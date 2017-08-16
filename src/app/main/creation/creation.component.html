@@ -1,4 +1,4 @@
-<modal [title]="'Creation_Title'" [widthPerCent]="'64%'" [height]="'80%'">
+<modal *ngIf="!isComplete" [title]="'Creation_Title'" [widthPerCent]="'64%'" [height]="'80%'">
   <div class="main-creation-container">
     <div id="creation-container" class="creation-container d-flex flex-row">
 
@@ -6,9 +6,7 @@
 
         <div class="d-flex flex-row align-items-baseline social-nets">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
-          <select placeholder="YouTube" [(ngModel)]="creationService.selectedEntity" class="form-control secondary">
-            <option *ngFor="let entity of entityTypeProvider.availableEntities" [ngValue]="entity">{{entity.title | translate}}</option>
-          </select>
+          <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
         </div>
         <br>
         <div class="d-flex flex-row align-items-baseline social-nets">
@@ -73,7 +71,16 @@
     </div>
     <div class="buttons-container d-flex flex-row justify-content-end align-items-end ">
       <button routerLink="/" class="btn btn-secondary">{{'Cancel' | translate}}</button>
-      <button (click)="save()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
+      <button (click)="toMapCreation()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
+    </div>
+  </div>
+</modal>
+
+<modal *ngIf="isComplete" [backgroundEnabled]="false" [canClose]="false" [widthPerCent]="'1%'">
+  <div class="success-container d-flex flex-row align-items-center justify-content-center">
+    <div class="d-flex flex-row">
+      <span class="mr-3">Сущность успешно создана</span>
+      <div class="icon success-icon"></div>
     </div>
   </div>
 </modal>

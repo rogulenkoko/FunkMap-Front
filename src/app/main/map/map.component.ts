@@ -8,6 +8,7 @@ import { MapService } from "./map.service";
 import { MapFilter } from "./map-filter.service";
 import { CreationService } from "../creation/creation.service";
 import { UserService } from "app/main/user/user.service";
+import { MapCreationService } from "app/main/map/map-creation.service";
 
 @Component({
   selector: 'map',
@@ -28,17 +29,18 @@ export class MapComponent implements OnInit {
   private nearestRadius = 1;
 
   constructor(private mapProvider: MapProvider,
-    private markerFactory: MarkerFactory,
-    private mapService: MapService,
-    private mapFilter: MapFilter,
-    private creationService: CreationService,
-    private router: Router,
-    private userService: UserService) {
+              private markerFactory: MarkerFactory,
+              private mapService: MapService,
+              private mapFilter: MapFilter,
+              private creationService: CreationService,
+              private router: Router,
+              private userService: UserService,
+              private mapCreationService: MapCreationService) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapFilter.onSearchAll.subscribe(() => {
       this.getAll();
     })
-    this.creationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
+    this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 
     this.mapFilter.onItemsFiltered.subscribe(logins => this.getSpecific(logins));
@@ -156,11 +158,12 @@ export class MapComponent implements OnInit {
       }
 
       if (event.originalEvent.target.id == "apply" || event.originalEvent.target.id == "apply-img") {
-        this.creationService.baseModel.latitude = event.latlng.lat;
-        this.creationService.baseModel.longitude = event.latlng.lng;
+        this.mapCreationService.marker.lat = event.latlng.lat;
+        this.mapCreationService.marker.lng = event.latlng.lng;
         this.map.removeLayer(result);
         this.map.off("click");
-        this.router.navigate(['/checkmap', { save: true }]);
+
+        this.mapCreationService.onComplete.emit(this.mapCreationService.marker);
       }
     })
     this.map.addLayer(result);

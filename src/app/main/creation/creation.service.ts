@@ -18,28 +18,19 @@ export abstract class CreationService {
   public musician: Musician;
   public band: Band;
 
-  public onSelectPosition: EventEmitter<any>;
+  
 
   abstract save():Observable<CreationResponse>;
 
   constructor() {
     this.baseModel = new BaseModel();
-    this.onSelectPosition = new EventEmitter();
+    this.musician = new Musician();
    }
 
 
    buildEntity(): any{
      switch(this.selectedEntity){
        case EntityType.Musician:
-       
-        this.musician.facebookLink = this.baseModel.facebookLink;
-        this.musician.vkLink = this.baseModel.vkLink;
-        this.musician.youTubeLink = this.baseModel.youTubeLink;
-        this.musician.soundCloudLink = this.baseModel.soundCloudLink;
-        this.musician.videosYoutube = this.baseModel.videosYoutube.map(x=>{
-          if(!x.includes("https://www.youtube.com/watch?v=")) return "";
-          return x.replace("https://www.youtube.com/watch?v=","");
-        });
         this.musician.login = this.baseModel.login;
         this.musician.latitude = this.baseModel.latitude;
         this.musician.longitude = this.baseModel.longitude;
@@ -48,24 +39,7 @@ export abstract class CreationService {
         
         return this.musician;
 
-      case EntityType.Band:
-        this.band.facebookLink = this.baseModel.facebookLink;
-        this.band.vkLink = this.baseModel.vkLink;
-        this.band.youTubeLink = this.baseModel.youTubeLink;
-        this.band.soundCloudLink = this.baseModel.soundCloudLink;
-        this.band.videosYoutube = this.baseModel.videosYoutube;
-        this.band.login = this.baseModel.login;
-        this.band.latitude = this.baseModel.latitude;
-        this.band.longitude = this.baseModel.longitude;
-        this.band.name = this.baseModel.name;
-        this.band.description = this.baseModel.description;
-        this.band.avatar = this.baseModel.avatar;
-
-         this.band.videosYoutube = this.baseModel.videosYoutube.map(x=>{
-          if(!x.includes("https://www.youtube.com/watch?v=")) return "";
-          return x.replace("https://www.youtube.com/watch?v=","");
-        });
-      return this.band;
+        default: return this.baseModel;
      }
    }
 
@@ -84,7 +58,5 @@ export class CreationServiceHttp extends CreationService{
       case EntityType.Musician: return this.http.post(`${ConfigurationProvider.apiUrl}musician/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
       case EntityType.Band: return this.http.post(`${ConfigurationProvider.apiUrl}band/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
     }
-    
   }
-
 }

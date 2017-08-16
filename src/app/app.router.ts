@@ -6,7 +6,6 @@ import { RegistrationComponent } from "./main/login/registration/registration.co
 import { SettingsComponent } from "./main/settings/settings.component";
 import { MusicianComponent } from "./main/musician/musician.component";
 import { CreationComponent } from './main/creation/creation.component';
-import { SuccessComponent } from './main/creation/success/success.component';
 import { MapCreationComponent } from './main/creation/map-creation/map-creation.component';
 import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
 import { CanActivateCreation } from "./main/creation/can-activate-creation";
@@ -47,7 +46,6 @@ const appRoutes: Routes = [
               { path: "rehearsal/:id", component: RehearsalComponent },
               { path: "avatar", component: AvatarComponent },
               { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
-              { path: "success", component: SuccessComponent },
               { path: "checkmap", component: MapCreationComponent },
               { path: "search", component: SearchComponent },
               { path: "favorites", component: FavouritesComponent }

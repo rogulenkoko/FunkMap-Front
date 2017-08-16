@@ -1,12 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from "@angular/router";
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
 import { InstrumentType, Musician, MusicStyle, Sex } from "../musician/models";
 import { DateSelectProvider } from "app/tools/date/date-select-provider.service";
 import { MusicianTypesProvider } from "../musician/musician-types-provider";
-import { EntityType } from "../map/models";
+import { EntityType, Marker } from "../map/models";
 import { CreationService } from "./creation.service";
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 import { CropperSettings, ImageCropperComponent } from "ng2-img-cropper";
+import { EntityItem } from "app/tools/select";
+import { TranslateService } from "@ngx-translate/core";
+import { MapCreationService } from "app/main/map/map-creation.service";
+import { UserService } from "app/main/user/user.service";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'app-creation',
@@ -16,29 +21,69 @@ import { CropperSettings, ImageCropperComponent } from "ng2-img-cropper";
 
 export class CreationComponent implements OnInit {
 
-  @ViewChild('cropper') cropper:ImageCropperComponent;
+  @ViewChild('cropper') cropper: ImageCropperComponent;
 
   private data: any;
   private cropperSettings: CropperSettings;
-  private isSaved: boolean = false;
+  private isImageSaved: boolean = false;
+  private isComplete: boolean;
+
+  private entities: Array<EntityItem>;
+
+  private subscription: Subscription;
 
   constructor(private creationService: CreationService,
-              private router: Router,
-              private entityTypeProvider: EntityTypeProvider) {
-    
-    this.creationService.selectedEntity = this.entityTypeProvider.entities.keys()[0];
+    private router: Router,
+    private route: ActivatedRoute,
+    private entityTypeProvider: EntityTypeProvider,
+    private translateService: TranslateService,
+    private mapCreationService: MapCreationService,
+    private userService: UserService) {
+
+    this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
+
+    this.creationService.selectedEntity = this.creationService.selectedEntity ? this.creationService.selectedEntity : this.entityTypeProvider.entities.keys()[0];
     this.setCropperOptions();
     this.data = {};
-   }
-
-  ngOnInit(){
   }
 
-  save(){
+  ngOnInit() {
+    this.subscription = this.mapCreationService.onComplete.subscribe(marker => this.setCoordinates(marker));
+    this.route.params.subscribe(params => {
+      if (params['isComplete']) {
+        this.save();
+      }
+    })
+  }
+
+  private save() {
+    this.isComplete = true;
+    this.creationService.save().subscribe(response => {
+      if (response.success) {
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 3000);
+      }
+    });
+
+  }
+
+  private setCoordinates(marker: Marker) {
+    this.subscription.unsubscribe();
+    this.creationService.baseModel.latitude = marker.lat;
+    this.creationService.baseModel.longitude = marker.lng;
+    this.router.navigate(['/create', { isComplete: true }]);
+  }
+
+  toMapCreation() {
+    this.mapCreationService.marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
+    if (this.creationService.selectedEntity == EntityType.Musician) {
+      this.mapCreationService.marker.instrument = this.creationService.musician.instrument;
+    }
     this.router.navigate(['/checkmap']);
   }
 
-  private setCropperOptions(){
+  private setCropperOptions() {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.width = 100;
     this.cropperSettings.height = 100;
@@ -50,18 +95,18 @@ export class CreationComponent implements OnInit {
     this.cropperSettings.noFileInput = true;
   }
 
-  private saveImage(){
-    this.creationService.baseModel.avatar = this.data.image.replace("data:image/jpeg;base64,","");
-    this.isSaved = true;
+  private saveImage() {
+    this.creationService.baseModel.avatar = this.data.image.replace("data:image/jpeg;base64,", "");
+    this.isImageSaved = true;
   }
 
-  private cancelImage(){
+  private cancelImage() {
     this.cropper.reset();
-    this.isSaved = false;
+    this.isImageSaved = false;
   }
 
   fileChangeListener($event) {
-    this.isSaved = false;
+    this.isImageSaved = false;
     var image: any = new Image();
     var file: File = $event.target.files[0];
     var myReader: FileReader = new FileReader();

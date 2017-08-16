@@ -7,6 +7,7 @@ import { CreationService } from "../creation.service";
 import { Router, Params, ActivatedRoute } from "@angular/router";
 import { CreationResponse } from "../creation";
 import { UserService } from "app/main/user/user.service";
+import { MapCreationService } from "app/main/map/map-creation.service";
 
 @Component({
   selector: 'app-map-creation',
@@ -18,7 +19,7 @@ export class MapCreationComponent implements OnInit {
   private isNotToSave: boolean;
 
   constructor(private mapProvider: MapProvider,
-    private creationService: CreationService,
+    private mapCreationService: MapCreationService,
     private iconProvider: IconProvider,
     private markerFactory: MarkerFactory,
     private router: Router,
@@ -30,40 +31,18 @@ export class MapCreationComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params["save"]) {
         this.isNotToSave = false;
-        this.save();
+        //this.save();
       }
     });
   }
 
   useCurrentPosition() {
-    this.creationService.baseModel.latitude = this.userService.latitude;
-    this.creationService.baseModel.longitude = this.userService.longitude;
-    this.save();
+    this.mapCreationService.onComplete.emit(this.mapCreationService.marker);
   }
 
   useCustomPosition() {
-    var marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
-    if (this.creationService.selectedEntity == EntityType.Musician) {
-      marker.instrument = this.creationService.musician.instrument;
-    }
-    console.log(marker);
-    this.creationService.onSelectPosition.emit(marker);
+    this.mapCreationService.onSelectPosition.emit(this.mapCreationService.marker);
     this.router.navigate(['/']);
 
-  }
-
-  save() {
-    if (!this.creationService.baseModel) {
-      return;
-    }
-    this.creationService.save().subscribe(response => this.onSaved(response))
-  }
-
-  private onSaved(response: CreationResponse) {
-    if (response.success) {
-      this.router.navigate(["/success"]);
-    } else {
-      alert("Ошибка сохранения");
-    }
   }
 }

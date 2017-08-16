@@ -110,6 +110,7 @@ export class MusicianInfoComponent implements OnInit {
 
   cancel() {
     this.refreshMusician(this.musician.login);
+    this.newMusician = Object.create(this.musician);
   }
 
   private selectInstrument(instrument: InstrumentType) {
