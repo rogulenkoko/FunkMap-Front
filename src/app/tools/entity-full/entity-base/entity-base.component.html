@@ -7,36 +7,51 @@
     <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
   </div>
 
-  <div *ngIf="entity.avatar" class="image-container">
-    <img src="data:image/png;base64,{{entity.avatar}}" />
+  <div class="image-container-wrapper">
+    <div *ngIf="entity.avatar" class="image-container">
+      <img src="data:image/png;base64,{{entity.avatar}}" />
+    </div>
+
+    <div *ngIf="!entity.avatar" class="image-container no-image d-flex align-items-center justify-content-center">
+      <img src="/assets/images/no-name.svg" />
+    </div>
   </div>
 
-  <div *ngIf="!entity.avatar" class="image-container no-image d-flex align-items-center justify-content-center">
-    <img src="/assets/images/no-name.svg" />
-  </div>
-
-  <div class="name-container">
-    {{entity.name}}
-  </div>
-  <ng-template *ngIf="underNameTemplate" [ngTemplateOutlet]="underNameTemplate"></ng-template>
-
-  <!-- <div class="edit-buttons-container">
-    <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
-    <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
-    <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
-  </div> -->
 
 
-  <!-- <div *ngIf="userService.user" class="buttons-container d-flex flex-column">
-    <button *ngIf="!isUsers" class="btn btn-success">{{'Send_Message' | translate}}</button>
-    <button *ngIf="isUsers" class="btn btn-success">{{'Edit' | translate}}</button>
-    <button *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
-    <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
-  </div> -->
+  <ng-container *ngIf="!isEditMode">
+
+    <div class="name-container">
+      {{entity.name}}
+    </div>
+    <ng-template *ngIf="underNameTemplate" [ngTemplateOutlet]="underNameTemplate"></ng-template>
 
 
-  <div class="nets-container">
-    <social [vkLink]="entity.vkLink" [facebookLink]="entity.facebookLink" [youTubeLink]="entity.youTubeLink" [soundCloudLink]="entity.soundCloudLink"></social>
-  </div>
+    <div *ngIf="userService.user" class="buttons-container d-flex flex-column">
+      <button *ngIf="!isUsers" class="btn btn-success">{{'Send_Message' | translate}}</button>
+      <button *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
+      <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
+    </div>
+
+
+    <div class="nets-container">
+      <social [vkLink]="entity.vkLink" [facebookLink]="entity.facebookLink" [youTubeLink]="entity.youTubeLink" [soundCloudLink]="entity.soundCloudLink"></social>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="isEditMode">
+    <div class="edit-container">
+      <div *ngFor="let item of items" class="d-flex flex-column">
+        <div class="d-flex flex-row property-container align-items-baseline">
+          <span class="property-title">{{item.propertyTitle | translate}}:</span>
+          <ng-template [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+
 
 </div>

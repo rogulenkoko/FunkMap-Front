@@ -1,5 +1,6 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/base.scss";
 
 .musician-info-container{
     width: 505px;
@@ -11,42 +12,4 @@
     border-radius: 5px; 
     margin-left: 8px;
     height: 550px;
-    
-    .info-title-container{
-        font-size: 16px;
-        color: #7a7a7b;
-        margin-bottom: 40px;
-    }
-
-    .property-container{
-        margin-bottom: 15px;
-    }
-
-    .property-title{
-        width: 160px;
-        font-size: 13px;
-        color: $dark-title-color;
-    }
-
-    .property-value{
-        font-size: 13px;
-        width: 300px;
-    }
-
-    .edit-buttons-container{
-        span{
-            font-size: 13px;
-            cursor: pointer;
-            color: $dark-title-color;
-        }
-
-        span:hover{
-            color: $dark-orange-hard;
-        }
-
-        .save-button{
-            color: $dark-orange-hard;
-            margin-left: 25px;
-        }
-    }
 }

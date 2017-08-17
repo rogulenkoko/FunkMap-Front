@@ -3,6 +3,7 @@
 @import "src/assets/styles/forms.scss";
 @import "src/assets/styles/layout.scss";
 @import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
 
 
 .entity-base-container{
@@ -11,7 +12,7 @@
     height: 550px;
     background-color: $dark-card-background;
     padding-top: 24px;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
     border-radius: 5px; 
 
     .edit-buttons-container{
@@ -19,6 +20,10 @@
         width: 100%;
         margin-bottom: 20px;
         padding-right: 24px;
+    }
+
+    .image-container-wrapper{
+        margin-bottom: 20px;
     }
 
     .image-container{
@@ -73,21 +78,24 @@
         margin-top: 25px; 
     }
 
-    .edit-buttons-container{
-        span{
-            font-size: 13px;
-            cursor: pointer;
-            color: $dark-title-color;
+
+    .edit-container{
+        width: 100%;
+        padding: 25px;
+
+        .property-title{
+            width: 100px;
         }
 
-        span:hover{
-            color: $dark-orange-hard;
+        .property-value{
+            width: 180px;
         }
 
-        .save-button{
-            color: $dark-orange-hard;
-            margin-left: 25px;
+         div:first-child{
+            margin-bottom: 15px;
         }
     }
+
+   
 }
 

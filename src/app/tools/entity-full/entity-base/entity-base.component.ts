@@ -5,6 +5,7 @@ import { UserService } from "app/main/user/user.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { EditableCard } from "app/tools/entity-full/editable-card";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 
 @Component({
   selector: 'entity-base',
@@ -17,6 +18,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   private isFavorite: boolean;
 
   @Input() underNameTemplate: any;
+
+  @Input() items: Array<InfoItem>;
 
   constructor(userService: UserService,
               userDataService: UserDataService,
