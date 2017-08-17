@@ -2,14 +2,28 @@
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/base.scss";
 
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 .musician-info-container{
     width: 505px;
     background-color: $dark-card-background;
     padding-top: 45px;
-    padding-bottom: 30px;
+   // padding-bottom: 30px;
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 5px; 
     margin-left: 8px;
     height: 550px;
+}
+
+.property-title{
+    margin-bottom: 5px;
+}
+
+.all-properties-contaiiner{
+    height: 400px;
+    overflow-y: auto;
 }

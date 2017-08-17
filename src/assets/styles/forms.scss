@@ -12,12 +12,14 @@ input[type=checkbox] + label:before{
   margin-right:5px; 
   display:inline-block;
   vertical-align: baseline;
-  content: url("/assets/images/radio.png");
+  content: url("/assets/images/checked_empty.svg");
   cursor: pointer;
+  width: 16px;
 }
 input[type=radio]:checked + label:before,
 input[type=checkbox]:checked + label:before{
-   content: url("/assets/images/radio-active.png");
+   content: url("/assets/images/checked.svg");
+   width: 16px;
 }
 
 input[type=radio] + label:before{

@@ -43,7 +43,7 @@
   <ng-container *ngIf="isEditMode">
     <div class="edit-container">
       <div *ngFor="let item of items" class="d-flex flex-column">
-        <div class="d-flex flex-row property-container align-items-baseline">
+        <div class="d-flex flex-column property-container align-items-baseline">
           <span class="property-title">{{item.propertyTitle | translate}}:</span>
           <ng-template [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
         </div>

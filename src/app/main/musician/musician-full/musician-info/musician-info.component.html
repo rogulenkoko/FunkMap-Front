@@ -24,7 +24,10 @@
 
 
 <ng-template #descriptionEditTemplate>
-    <textarea [(ngModel)]="newMusician.description" class="form-control secondary"></textarea>
+    <div>
+        <textarea [(ngModel)]="newMusician.description" class="form-control secondary"></textarea>
+    </div>
+   
 </ng-template>
 
 <ng-template #dateEditTemplate>
