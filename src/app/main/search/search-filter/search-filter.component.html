@@ -1,7 +1,7 @@
 <div class="filter-main-container d-flex flex-column">
   <div class="d-flex flex-row align-items-baseline filter-container">
     <label class="filter-label">{{'Entity' | translate}}:</label>
-    <p-dropdown [options]="entities" [placeholder]="'All'" [(ngModel)]="searchFilterService.selectedEntity" (onChange)="onChanged()"></p-dropdown>
+    <p-dropdown [options]="entities" [placeholder]="allTitle" [(ngModel)]="searchFilterService.selectedEntity" (onChange)="onChanged()"></p-dropdown>
   </div>
 
   <div *ngIf="searchFilterService.selectedEntity == 1 || searchFilterService.selectedEntity  == 3" class="separator"></div>
@@ -10,7 +10,7 @@
     <div class="d-flex flex-row align-items-center filter-container">
       <label class="filter-label">{{'Styles' | translate}}:</label>
       <div>
-        <p-multiSelect [options]="styles" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false" (onChange)="onChanged()"></p-multiSelect>
+        <p-multiSelect [options]="styles" [defaultLabel]="allTitle"  [(ngModel)]="searchFilterService.selectedStyles" [filter]="false" (onChange)="onChanged()"></p-multiSelect>
       </div>
     </div>
     <div class="separator-mini"></div>
@@ -22,7 +22,7 @@
       <label class="filter-label">{{'Instruments' | translate}}:</label>
 
       <div>
-        <p-multiSelect [options]="instruments" [(ngModel)]="searchFilterService.selectedInstruments" [filter]="false" [scrollHeight]="'120px'"
+        <p-multiSelect [options]="instruments" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedInstruments" [filter]="false" [scrollHeight]="'120px'"
           (onChange)="onChanged()"></p-multiSelect>
       </div>
     </div>
@@ -35,7 +35,7 @@
       <label class="filter-label">{{'Musician_Expirience' | translate}}:</label>
 
       <div>
-         <p-multiSelect [options]="expiriences" [(ngModel)]="searchFilterService.selectedExpiriences" [filter]="false" [scrollHeight]="'120px'"
+         <p-multiSelect [defaultLabel]="allTitle" [options]="expiriences" [(ngModel)]="searchFilterService.selectedExpiriences" [filter]="false" [scrollHeight]="'120px'"
           (onChange)="onChanged()"></p-multiSelect>
       </div>
      

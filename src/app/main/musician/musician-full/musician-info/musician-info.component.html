@@ -39,6 +39,6 @@
 </ng-template>
 
 <ng-template #stylesEditTemplate>
-        <p-multiSelect [options]="styles" [(ngModel)]="newMusician.styles" [filter]="false"></p-multiSelect>
+        <p-multiSelect [defaultLabel]="allTitle" [options]="styles" [(ngModel)]="newMusician.styles" [filter]="false"></p-multiSelect>
     
 </ng-template>

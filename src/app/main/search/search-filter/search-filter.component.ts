@@ -26,6 +26,7 @@ export class SearchFilterComponent implements OnInit {
   private entities: Array<EntityItem>;
   private expiriences: Array<ExpirienceItem>;
 
+  private allTitle: string;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
     private searchFilterService: SearchFilterService,
@@ -35,6 +36,8 @@ export class SearchFilterComponent implements OnInit {
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
     this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
+
+    this.translateService.get("All").subscribe(value=> this.allTitle = value);
   }
 
   ngOnInit() {

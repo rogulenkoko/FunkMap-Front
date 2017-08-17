@@ -7,7 +7,6 @@ import { SettingsComponent } from "./main/settings/settings.component";
 import { MusicianComponent } from "./main/musician/musician.component";
 import { CreationComponent } from './main/creation/creation.component';
 import { MapCreationComponent } from './main/creation/map-creation/map-creation.component';
-import { MusicianCreationComponent } from './main/creation/musician-creation/musician-creation.component';
 import { CanActivateCreation } from "./main/creation/can-activate-creation";
 import { BandComponent } from './main/band/band.component';
 import { AvatarComponent } from './main/avatar/avatar.component';
