@@ -5,7 +5,6 @@
     <musician-map *ngIf="editService.baseModel"></musician-map>
    </div>
    <div *ngIf="editService.baseModel && editService.baseModel.videosYoutube && editService.baseModel.videosYoutube.length > 0" class="d-flex justify-content-center row-container">
-    <musician-video [musician]="editService.baseModel" style="margin-right:9px"></musician-video>
     <musician-video [musician]="editService.baseModel"></musician-video>
   </div>
 </div> 

@@ -71,9 +71,14 @@ export class MusicianInfoComponent implements OnInit {
     var stylesItem = new InfoItem();
     stylesItem.propertyTitle = "Musician_Styles";
     var stylesValue: string = "";
-    this.musician.styles.forEach(style => {
-      stylesValue += `${this.musicianTypesProvider.musicStyles.getValue(style)} `;
+    
+
+    this.translateService.get(this.musician.styles.map(style => this.musicianTypesProvider.musicStyles.getValue(style))).subscribe(translated=>{
+      this.musician.styles.forEach(style => {
+        stylesValue += `${translated[this.musicianTypesProvider.musicStyles.getValue(style)]} `;
+      });
     });
+
     stylesItem.propertyValue = stylesValue;
     stylesItem.propertyEditTemplate = this.stylesEditTemplate;
 

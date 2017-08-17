@@ -7,12 +7,17 @@ export class MapCreationService {
   public marker: Marker;
 
   public onSelectPosition: EventEmitter<Marker>;
+  public onCancel: EventEmitter<any>;
 
   public onComplete: EventEmitter<Marker>;
+
+
+  public backRoute: string;
 
   constructor() { 
      this.onSelectPosition = new EventEmitter<Marker>();
      this.onComplete = new EventEmitter<Marker>();
+     this.onCancel = new EventEmitter();
   }
 
 }

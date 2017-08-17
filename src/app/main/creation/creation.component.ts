@@ -7,11 +7,12 @@ import { EntityType, Marker } from "../map/models";
 import { CreationService } from "./creation.service";
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 import { CropperSettings, ImageCropperComponent } from "ng2-img-cropper";
-import { EntityItem } from "app/tools/select";
+import { EntityItem, InstrumentsItem } from "app/tools/select";
 import { TranslateService } from "@ngx-translate/core";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { UserService } from "app/main/user/user.service";
 import { Subscription } from "rxjs/Subscription";
+import { RouteBuilder } from "app/tools/route-builder";
 
 @Component({
   selector: 'app-creation',
@@ -29,20 +30,23 @@ export class CreationComponent implements OnInit {
   private isComplete: boolean;
 
   private entities: Array<EntityItem>;
+  private instruments: Array<InstrumentsItem>
 
   private subscription: Subscription;
 
   constructor(private creationService: CreationService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private entityTypeProvider: EntityTypeProvider,
-    private translateService: TranslateService,
-    private mapCreationService: MapCreationService,
-    private userService: UserService) {
+              private router: Router,
+              private route: ActivatedRoute,
+              private entityTypeProvider: EntityTypeProvider,
+              private translateService: TranslateService,
+              private mapCreationService: MapCreationService,
+              private userService: UserService,
+              private musicianTypesProvider: MusicianTypesProvider) {
 
     this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
-
+    this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.creationService.selectedEntity = this.creationService.selectedEntity ? this.creationService.selectedEntity : this.entityTypeProvider.entities.keys()[0];
+    this.creationService.instrument = this.creationService.instrument ? this.creationService.instrument : this.musicianTypesProvider.instruments.keys()[0];
     this.setCropperOptions();
     this.data = {};
   }
@@ -61,7 +65,12 @@ export class CreationComponent implements OnInit {
     this.creationService.save().subscribe(response => {
       if (response.success) {
         setTimeout(() => {
-          this.router.navigate(['/']);
+          var route = RouteBuilder.buildRoute(this.creationService.selectedEntity, this.creationService.baseModel.login);
+          if(!route){
+            this.router.navigate(['/']);
+            return;
+          }
+          this.router.navigate([route]);
         }, 3000);
       }
     });
@@ -72,14 +81,16 @@ export class CreationComponent implements OnInit {
     this.subscription.unsubscribe();
     this.creationService.baseModel.latitude = marker.lat;
     this.creationService.baseModel.longitude = marker.lng;
+    
     this.router.navigate(['/create', { isComplete: true }]);
   }
 
   toMapCreation() {
     this.mapCreationService.marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
     if (this.creationService.selectedEntity == EntityType.Musician) {
-      this.mapCreationService.marker.instrument = this.creationService.musician.instrument;
+      this.mapCreationService.marker.instrument = this.creationService.instrument;
     }
+    this.mapCreationService.backRoute = "/create";
     this.router.navigate(['/checkmap']);
   }
 
@@ -117,6 +128,11 @@ export class CreationComponent implements OnInit {
     };
 
     myReader.readAsDataURL(file);
+  }
+
+  private cancel(){
+    this.mapCreationService.onCancel.emit();
+    this.router.navigate(['/'])
   }
 }
 

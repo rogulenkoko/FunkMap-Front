@@ -18,7 +18,7 @@ export abstract class CreationService {
   public musician: Musician;
   public band: Band;
 
-  
+  public instrument: InstrumentType;
 
   abstract save():Observable<CreationResponse>;
 

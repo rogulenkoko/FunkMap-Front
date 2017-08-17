@@ -1,6 +1,6 @@
 <modal  [title]="''" [widthPerCent]="'35%'" [canClose]="false" [minWidth]="'500px'">
     <div>
-       <div (click)="goBack()" class="back-arrow-icon-container d-flex justify-content-center align-items-center"><div class="icon icon-middle back-arrow-icon"></div></div>
+       <div [routerLink]="[mapCreationService.backRoute]" class="back-arrow-icon-container d-flex justify-content-center align-items-center"><div class="icon icon-middle back-arrow-icon"></div></div>
        <span class="title">{{'Creation_MapQustion' | translate}}?</span>
     </div>
  

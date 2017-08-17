@@ -1,24 +1,36 @@
-<modal *ngIf="!isComplete" [title]="'Creation_Title'" [widthPerCent]="'64%'" [height]="'80%'">
+<modal *ngIf="!isComplete" [title]="'Creation_Title'" [widthPerCent]="'30%'" [height]="'60%'">
   <div class="main-creation-container">
-    <div id="creation-container" class="creation-container d-flex flex-row">
-
-      <div class="left-container">
-
+    <div id="creation-container" class="creation-container d-flex flex-column">
         <div class="d-flex flex-row align-items-baseline social-nets">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
           <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
         </div>
         <br>
-        <div class="d-flex flex-row align-items-baseline social-nets">
+        <div class="d-flex flex-row align-items-baseline">
           <label class="property-title">{{'Creation_Login' | translate}}:</label>
-          <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login" />
+          <div class="property-value">
+            <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login" />
+          </div>
         </div>
-        <br>
-        <musician-creation *ngIf="creationService.selectedEntity.type == 1"></musician-creation>
-        <band-creation *ngIf="creationService.selectedEntity.type == 3"></band-creation>
-      </div>
 
-      <div class="right-container">
+        <br>
+        <div class="d-flex flex-row align-items-baseline">
+          <label class="property-title">{{'Musician_Name' | translate}}:</label>
+          <div class="property-value">
+            <input class="form-control secondary" [(ngModel)]="creationService.baseModel.name" />
+          </div>
+        </div>
+
+        <br>
+
+        <div *ngIf="creationService.selectedEntity == 1" class="d-flex flex-row align-items-baseline social-nets">
+          <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
+          <p-dropdown [options]="instruments" [(ngModel)]="creationService.instrument" ></p-dropdown>
+        </div>
+
+       
+
+      <!-- <div class="right-container">
 
         <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
           <img-cropper *ngIf="!isSaved" #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
@@ -47,10 +59,10 @@
         <br>
 
         
-      </div>
+      </div> -->
     </div>
     <div class="buttons-container d-flex flex-row justify-content-end align-items-end ">
-      <button routerLink="/" class="btn btn-secondary">{{'Cancel' | translate}}</button>
+      <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
       <button (click)="toMapCreation()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
     </div>
   </div>

@@ -26,6 +26,7 @@ $select-width: 180px;
   background-color: rgba(0,0,0,0) !important;
   font-size: 14px;
   margin: 0 !important;
+  color: black;
 }
 
 .ui-state-default{
@@ -40,14 +41,12 @@ $select-width: 180px;
    width: 18px !important;
 }
 
-// .ui-chkbox-box.ui-state-default{
-//   content: url("/assets/images/checked_empty.svg") !important;
-// }
+.ui-chkbox-box.ui-state-default{
+  content: url("/assets/images/checked_empty.svg") !important;
+}
 
 .ui-chkbox-box.ui-state-active {
-  span{
-    color: #ee9829;
-  }
+  content: url("/assets/images/checked.svg") !important;
 }
 
 

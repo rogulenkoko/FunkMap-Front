@@ -26,7 +26,7 @@ export class MusicianServiceStub extends MusicianService {
    }
 
    private getModel(){
-     var musician = new Musician("tomson", "Мик Томсон");
+     var musician = new Musician("test", "Мик Томсон");
      musician.styles = [MusicStyle.Funk, MusicStyle.Rock];
      musician.instrument = InstrumentType.Drums;
      musician.birthDate = new Date();
@@ -38,6 +38,10 @@ export class MusicianServiceStub extends MusicianService {
      musician.birthDate = new Date();
      musician.age = 23;
      musician.videosYoutube = ["kCsrmTxEZhE", "sRStoXuNDII"];
+     musician.facebookLink = "asd";
+     musician.vkLink = "aaa";
+     musician.soundCloudLink = "aaaa";
+     musician.youTubeLink = "zz";
      musician.description = `Мик Томсон (род. 3 ноября 1973 ) - американский музыкант. Он известен как один из трех гитаристов Slipknot`;
      return musician;
    }

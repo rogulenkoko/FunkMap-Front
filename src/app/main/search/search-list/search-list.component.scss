@@ -26,14 +26,6 @@
     width: 100%;
 }
 
-:host-context(.light) .search-sub-item{
-    border-bottom: 1px solid $light-sub-main;
-}
-
-
-:host-context(.dark) .search-sub-item{
-    border-bottom: 1px solid $dark-item-hover;
-}
 
 
 

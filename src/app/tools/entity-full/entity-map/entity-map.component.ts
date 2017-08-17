@@ -13,6 +13,7 @@ import { Subscription } from "rxjs/Subscription";
 import { MusicianService } from "app/main/musician/musician.service";
 import { Musician } from "app/main/musician/models";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { RouteBuilder } from "app/tools/route-builder";
 
 @Component({
   selector: 'entity-map',
@@ -95,32 +96,25 @@ export class EntityMapComponent extends EditableCard implements OnInit {
 
   private saveLocation() {
     this.isEditMode = false;
-    this.router.navigate([this.getCurrentBaseRoute()]);
+    this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
   }
 
   private cancelChanges() {
     this.initMap(this.marker);
     this.newMarker = undefined;
-    this.router.navigate([this.getCurrentBaseRoute()]);
+    this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
   }
 
   private onLocationChosen(marker: Marker) {
     this.subscription.unsubscribe();
 
-    this.router.navigate([this.getCurrentBaseRoute(), { isComplete: true }]);
-  }
-
-  private getCurrentBaseRoute(): string {
-    var route: string = "";
-    switch (this.marker.entityType) {
-      case EntityType.Musician: route = "musicianPage";
-    }
-    return `/${route}/${this.marker.login}`;
+    this.router.navigate([RouteBuilder.buildRoute(marker.entityType, marker.login), { isComplete: true }]);
   }
 
   private toMapCreation() {
     this.subscription = this.mapCreationService.onComplete.subscribe((marker) => this.onLocationChosen(marker));
     this.mapCreationService.marker = this.marker;
+    this.mapCreationService.backRoute = RouteBuilder.buildRoute(this.marker.entityType, this.marker.login);
     this.router.navigate(['/checkmap']);
   }
 

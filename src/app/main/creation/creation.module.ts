@@ -5,19 +5,15 @@ import { ToolsModule } from "app/tools/tools.module";
 import { CreationComponent } from "./creation.component";
 import { CreationService, CreationServiceHttp } from "./creation.service";
 import { CreationServiceStub } from "./creation.service.stub";
-import { MusicianCreationComponent } from "./musician-creation/musician-creation.component";
 import { MapCreationComponent } from './map-creation/map-creation.component';
 
 import { CanActivateCreation } from "./can-activate-creation";
 import {ImageCropperModule} from 'ng2-img-cropper';
-import { BandCreationComponent } from './band-creation/band-creation.component';
 
 @NgModule({
   declarations: [
     CreationComponent,
-    MusicianCreationComponent,
     MapCreationComponent,
-    BandCreationComponent
   ],
   imports: [
     CoreModule,
@@ -26,7 +22,6 @@ import { BandCreationComponent } from './band-creation/band-creation.component';
   ], 
   exports:[
       CreationComponent,
-      MusicianCreationComponent
             ],
   providers: [
       {

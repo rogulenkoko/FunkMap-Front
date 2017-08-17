@@ -44,6 +44,7 @@ export class MapComponent implements OnInit {
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 
     this.mapFilter.onItemsFiltered.subscribe(logins => this.getSpecific(logins));
+    this.mapCreationService.onCancel.subscribe(() => this.map.off("click"));
   }
 
   ngOnInit() {

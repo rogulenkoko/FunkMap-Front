@@ -12,6 +12,7 @@
 .sex-container{
     width: 100%;
     height: 20px;
+    padding-top: 5px;
 }
 .sex-radio{
     width: 40%;
@@ -30,15 +31,15 @@ textarea{
 }
 
 .days{
-    width: 20%;
+    width: 30px;
 }
 
 .years{
-    width: 30%;
+    width: 60px;
 }
 
 .months{
-    width: 50%;
+    width: 105px;
 }
 
 /deep/ .ui-multiselect-label-container, /deep/ .ui-multiselect-panel, /deep/ .ui-dropdown-panel, /deep/ .ui-dropdown{
@@ -54,4 +55,5 @@ textarea{
 textarea{
     height: 120px !important;
     width: 310px;
+    resize: none
 }

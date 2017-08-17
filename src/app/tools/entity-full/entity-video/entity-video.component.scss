@@ -1,6 +1,7 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
 
 
 ::-webkit-scrollbar {
@@ -10,9 +11,11 @@
 .entity-video-container{
     background-color: $dark-card-background;
     padding:45px;
+    padding-bottom: 0px;
     border-radius: 5px; 
-    width: 555px;
+    width: 1120px;
     height: 548px;
+    margin-bottom: 35px;
 
 
     .title-container{
@@ -30,5 +33,12 @@
     .video-container{
         height: 420px;
         overflow-y: auto;
+        :first-child{
+            margin-left: 0;
+        }
+
+        youtube-player{
+            margin-left: 45px;
+        }
     }
 }
