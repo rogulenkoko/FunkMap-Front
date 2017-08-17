@@ -58,18 +58,16 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   }
 
   private onParamsLoaded(params) {
-    let mainMarker = this.marker;
-    if (params['lat'] && params['lng']) {
+    if (params['isComplete']) {
 
-      this.newMarker = new Marker(this.marker.login, Number(params['lat']), Number(params['lng']), this.marker.entityType);
+      this.newMarker = new Marker(this.marker.login, this.mapCreationService.marker.lat, this.mapCreationService.marker.lng, this.marker.entityType);
       if (this.newMarker.entityType == EntityType.Musician) {
         this.newMarker.instrument = this.marker.instrument;
       }
-      mainMarker = this.newMarker;
-      this.initMap(mainMarker);
+      this.initMap(this.newMarker);
 
-      this.editService.baseModel.latitude = mainMarker.lat;
-      this.editService.baseModel.longitude = mainMarker.lng;
+      this.editService.baseModel.latitude = this.newMarker.lat;
+      this.editService.baseModel.longitude = this.newMarker.lng;
 
       this.isEditMode = true;
     }
@@ -84,7 +82,12 @@ export class EntityMapComponent extends EditableCard implements OnInit {
     this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
     this.map.addLayer(this.baseLayer);
 
-    this.initMarkersLayer(mainMarker);
+    this.markersLayer = L.layerGroup([]);
+    this.map.addLayer(this.markersLayer);
+    var marker = this.markerFactory.getMarker(mainMarker);
+
+    this.markersLayer.addLayer(marker);
+
     this.getAddress(mainMarker.lat, mainMarker.lng);
   }
 
@@ -101,10 +104,10 @@ export class EntityMapComponent extends EditableCard implements OnInit {
     this.router.navigate([this.getCurrentBaseRoute()]);
   }
 
-  private setCoordinates(marker: Marker) {
+  private onLocationChosen(marker: Marker) {
     this.subscription.unsubscribe();
 
-    this.router.navigate([this.getCurrentBaseRoute(), { lat: marker.lat, lng: marker.lng }]);
+    this.router.navigate([this.getCurrentBaseRoute(), { isComplete: true }]);
   }
 
   private getCurrentBaseRoute(): string {
@@ -116,17 +119,9 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   }
 
   private toMapCreation() {
-    this.subscription = this.mapCreationService.onComplete.subscribe((marker) => this.setCoordinates(marker));
+    this.subscription = this.mapCreationService.onComplete.subscribe((marker) => this.onLocationChosen(marker));
     this.mapCreationService.marker = this.marker;
     this.router.navigate(['/checkmap']);
-  }
-
-  private initMarkersLayer(mainMarker: Marker) {
-    this.markersLayer = L.layerGroup([]);
-    this.map.addLayer(this.markersLayer);
-    var marker = this.markerFactory.getMarker(mainMarker);
-
-    this.markersLayer.addLayer(marker);
   }
 
   private buildMapOptions(map: Map): any {
