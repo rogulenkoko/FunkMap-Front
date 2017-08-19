@@ -6,15 +6,13 @@
 .filter-main-container{
     padding: 12px 25px;
     .filter-container{
-        width: 100%;
-        
         .filter-label{
             font-size: 13px;
-            width: 220px !important;
+            width: 120px !important;
         }
 
-        .filter-control{
-            border: 1px solid black;
+        .filter-value{
+            width: 170px;
         }
     }
 
@@ -49,7 +47,3 @@
     background-color: $dark-item-hover;
 }
 
-
-/deep/ .ui-multiselect-label-container, /deep/ .ui-multiselect-panel, /deep/ .ui-dropdown-panel, /deep/ .ui-dropdown{
-    width: 180px !important;
-}

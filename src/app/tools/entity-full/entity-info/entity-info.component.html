@@ -14,8 +14,8 @@
       <div class="d-flex  property-container align-items-baseline" [class.flex-column]="isEditMode" [class.flex-row]="!isEditMode">
         <span class="property-title">{{item.propertyTitle | translate}}:</span>
         <span *ngIf="!item.propertyTemplate && !isEditMode" class="property-value">{{item.propertyValue | translate}}</span>
-        <ng-template *ngIf="item.propertyTemplate && !isEditMode" [ngTemplateOutlet]="item.propertyTemplate"></ng-template>
-        <ng-template *ngIf="item.propertyEditTemplate && isEditMode" [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
+        <div *ngIf="item.propertyTemplate && !isEditMode" class="property-value"><ng-template  [ngTemplateOutlet]="item.propertyTemplate"></ng-template></div> 
+        <div *ngIf="item.propertyEditTemplate && isEditMode" class="property-value"><ng-template  [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template></div>
       </div>
     </div>
   </div>

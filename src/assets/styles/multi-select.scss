@@ -3,7 +3,7 @@
 
 
 
-$select-width: 180px;
+$select-width: 100%;
 
 .ui-multiselect-header{
   display: none;
@@ -96,4 +96,8 @@ $select-width: 180px;
 
 .ui-dropdown-items, .ui-multiselect-list {
   padding: 0 !important;
+}
+
+.ui-multiselect{
+  width: $select-width !important;
 }

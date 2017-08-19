@@ -3,7 +3,10 @@
     <div id="creation-container" class="creation-container d-flex flex-column">
         <div class="d-flex flex-row align-items-baseline social-nets">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
-          <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
+          <div class="property-value">
+             <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
+          </div>
+         
         </div>
         <br>
         <div class="d-flex flex-row align-items-baseline">
@@ -25,7 +28,9 @@
 
         <div *ngIf="creationService.selectedEntity == 1" class="d-flex flex-row align-items-baseline social-nets">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
-          <p-dropdown [options]="instruments" [(ngModel)]="creationService.instrument" ></p-dropdown>
+          <div class="property-value">
+            <p-dropdown [options]="instruments" [(ngModel)]="creationService.instrument" ></p-dropdown>
+          </div>
         </div>
 
        

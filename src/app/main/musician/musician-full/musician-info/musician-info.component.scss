@@ -42,10 +42,6 @@ textarea{
     width: 105px;
 }
 
-/deep/ .ui-multiselect-label-container, /deep/ .ui-multiselect-panel, /deep/ .ui-dropdown-panel, /deep/ .ui-dropdown{
-    width: 310px !important;
-}
-
 .month-dropdown{
     /deep/ .ui-multiselect-label-container, /deep/ .ui-multiselect-panel, /deep/ .ui-dropdown-panel, /deep/ .ui-dropdown{
         width: 180px !important;
