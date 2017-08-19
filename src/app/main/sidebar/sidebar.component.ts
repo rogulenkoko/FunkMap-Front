@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "../user/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { SignalrService } from "app/tools/signalr/signalr.service";
+import { MessengerService } from "app/main/messenger/messenger.service";
 
 @Component({
   selector: 'sidebar',
@@ -15,9 +16,13 @@ export class SidebarComponent implements OnInit {
   private topItems: Array<SidebarItem>;
   private bottomItems: Array<SidebarItem>;
 
+  private newMessagesCount: number;
+
+
   constructor(private signalrService:SignalrService,
               private userService: UserService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private messengerService: MessengerService) {
 
   }
 
@@ -50,7 +55,18 @@ export class SidebarComponent implements OnInit {
     this.bottomItems = [
       settingsItem,
       logoutItem
-    ]
+    ];
+
+    this.getNewMessagesCount()
+
+    this.userService.onUserChanged.subscribe(()=> this.getNewMessagesCount());
+  }
+
+  private getNewMessagesCount(){
+    if(!this.userService.user) return;
+    this.messengerService.getNewMessagesCount().subscribe(count=>{
+      this.newMessagesCount = count;
+    });
   }
 
   onItemClick(item: SidebarItem) {

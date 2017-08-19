@@ -30,5 +30,5 @@
 </div>
 
 <ng-template #messageCountTemplate>
-  <span class="message-circle">4</span>
+  <span *ngIf="newMessagesCount" class="message-circle">{{newMessagesCount}}</span>
 </ng-template>

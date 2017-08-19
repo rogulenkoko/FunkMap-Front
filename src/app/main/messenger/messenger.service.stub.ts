@@ -31,4 +31,8 @@ export class MessengerServiceStub extends MessengerService {
   getOnlineUsersLogins(): Observable<string[]> {
     return Observable.of(["test","rogulenkoko"]);
   }
+
+  getNewMessagesCount():Observable<number>{
+    return Observable.of(1);
+  }
 }

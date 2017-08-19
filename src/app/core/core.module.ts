@@ -71,5 +71,6 @@ export function createSignalRConfig() {
   var config = new SignalRConfiguration();
   config.hubName = "messenger";
   config.url = ConfigurationProvider.apiUrl.replace("/api/", "");
+  config.qs = {};
   return config;
 }

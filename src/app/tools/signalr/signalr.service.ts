@@ -23,7 +23,7 @@ export class SignalrServiceReal extends SignalrService {
   constructor(private signalR: SignalR,
               private userService: UserService) {
       super();
-      
+      console.log(signalR);
       this.updateSignaRConnection();
       this.userService.onUserChanged.subscribe(()=>this.updateSignaRConnection());
   }
@@ -31,7 +31,7 @@ export class SignalrServiceReal extends SignalrService {
 
    private updateSignaRConnection() {
     if (this.userService.user) {
-      (<any>this.signalR)._configuration.qs = { login: this.userService.user.login };
+      (<any>this.signalR)._configuration.qs['login'] = this.userService.user.login;
       this.signalR.connect().then(connection => {
         this.connection = connection;
         this.onConnectionStart.emit();
