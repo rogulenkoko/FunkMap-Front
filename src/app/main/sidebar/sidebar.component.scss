@@ -48,13 +48,9 @@
 }
 
 .message-circle{
-    display: block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    color: white;
-    font-size: 10px;
-    text-align: center;
+    min-height: 16px;
+    min-width: 16px;
+    font-size: 10px !important;
     margin-left: 12px;
     
 }

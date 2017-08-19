@@ -33,6 +33,6 @@ export class MessengerServiceStub extends MessengerService {
   }
 
   getNewMessagesCount():Observable<number>{
-    return Observable.of(1);
+    return Observable.of(22);
   }
 }
