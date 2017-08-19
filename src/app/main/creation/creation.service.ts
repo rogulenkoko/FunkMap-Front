@@ -57,6 +57,9 @@ export class CreationServiceHttp extends CreationService{
     switch (this.selectedEntity){
       case EntityType.Musician: return this.http.post(`${ConfigurationProvider.apiUrl}musician/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
       case EntityType.Band: return this.http.post(`${ConfigurationProvider.apiUrl}band/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
+      case EntityType.Shop: return this.http.post(`${ConfigurationProvider.apiUrl}shop/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
+      case EntityType.RehearsalPoint: return this.http.post(`${ConfigurationProvider.apiUrl}rehearsal/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
+      case EntityType.Studio: return this.http.post(`${ConfigurationProvider.apiUrl}studio/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
     }
   }
 }
