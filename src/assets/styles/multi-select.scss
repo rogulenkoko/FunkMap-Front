@@ -92,6 +92,7 @@ $select-width: 100%;
 .ui-dropdown{
   width: $select-width !important;
   border-bottom: 1px solid $dark-control-border !important;
+  
 }
 
 .ui-dropdown-items, .ui-multiselect-list {
@@ -100,4 +101,8 @@ $select-width: 100%;
 
 .ui-multiselect{
   width: $select-width !important;
+
+
 }
+
+

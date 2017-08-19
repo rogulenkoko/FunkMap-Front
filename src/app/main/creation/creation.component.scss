@@ -15,10 +15,14 @@
     .creation-container{
         font-size: 13px;
         height: 75%;
-        overflow: auto;
         margin-top: 30px;
      
     }
+
+ .creation-container > div{
+     width: 100%;
+ }
+
     .buttons-container{
         height: 15%;
 
@@ -33,12 +37,12 @@
 
 
 .property-title{
-    width: 160px;
+    width: 40%;
     color: $app-grey;
 }
 
 .property-value{
-    width: 250px !important;
+    width: 60% !important;
     color: $app-grey;
 }
 
