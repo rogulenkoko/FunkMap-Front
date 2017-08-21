@@ -5,6 +5,8 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
+import { RouteBuilder } from "app/tools/route-builder";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'entity-side',
@@ -27,7 +29,8 @@ export class EntitySideComponent implements OnInit {
   constructor(private typesProvider: MusicianTypesProvider,
     private favouritesService: FavouritesService,
     private userService: UserService,
-    private userDataService: UserDataService) { }
+    private userDataService: UserDataService,
+    private router: Router) { }
 
   ngOnInit() {
     this.checkIsFavorite();
@@ -58,5 +61,12 @@ export class EntitySideComponent implements OnInit {
         this.isFavorite = !this.isFavorite;
       }
     })
+  }
+
+  private navigateToPage(login: string){
+    console.log(login);
+    console.log(this.item.entityType);
+    var route = RouteBuilder.buildRoute(this.item.entityType, login);
+    this.router.navigate([route]);
   }
 }

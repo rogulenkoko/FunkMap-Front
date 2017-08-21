@@ -1,9 +1,10 @@
 import { BaseModel } from "app/core";
+import { EntityType } from "app/main/map/models";
 
 export class Musician extends BaseModel{
 
-    constructor(login?:string, name?:string){
-        super(login, name);
+    constructor(login?:string, name?:string, entytyType?: EntityType){
+        super(login, name, entytyType);
         this.sex = Sex.Male;
         this.styles = [];
     }
@@ -20,7 +21,7 @@ export class Musician extends BaseModel{
     public instrument: InstrumentType;
 
     public static ToMusician(data: any): Musician{
-        var result = new Musician(data.Login, data.Name);
+        var result = new Musician(data.Login, data.Name, EntityType.Musician);
         result.birthDate = new Date(data.BirthDate);
         result.description = data.Description;
         result.expirience = data.Expirience;

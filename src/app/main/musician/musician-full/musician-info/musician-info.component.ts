@@ -40,7 +40,6 @@ export class MusicianInfoComponent implements OnInit {
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
               private musicianService: MusicianService,
-              private iconProvider: IconProvider,
               private dateProvider: DateSelectProvider,
               private translateService: TranslateService,
               private editService: EditService) {
@@ -50,7 +49,7 @@ export class MusicianInfoComponent implements OnInit {
    
     this.musician = this.editService.baseModel as Musician;
 
-    this.translateService.get("All").subscribe(value=> this.allTitle = value);
+    this.translateService.get("Choose").subscribe(value=> this.allTitle = value);
   }
 
   ngOnInit() {
@@ -78,8 +77,9 @@ export class MusicianInfoComponent implements OnInit {
     
     this.translateService.get(this.musician.styles.map(style => this.musicianTypesProvider.musicStyles.getValue(style))).subscribe(translated=>{
       this.musician.styles.forEach(style => {
-        stylesItem.propertyValue += `${translated[this.musicianTypesProvider.musicStyles.getValue(style)]} `;
+        stylesValue += `${translated[this.musicianTypesProvider.musicStyles.getValue(style)]} `;
       });
+      stylesItem.propertyValue = stylesValue;
     });
 
     stylesItem.propertyValue = stylesValue;

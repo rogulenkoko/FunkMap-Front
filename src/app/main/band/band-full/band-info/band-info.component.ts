@@ -1,6 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Band } from "app/main/band/models";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { StylesItem } from "app/tools/select";
+import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
+import { TranslateService } from "@ngx-translate/core";
+import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
+import { BandService } from "app/main/band/band.service";
 
 @Component({
   selector: 'band-info',
@@ -10,11 +15,90 @@ import { EditService } from "app/tools/entity-full/edit.service";
 export class BandInfoComponent implements OnInit {
 
   private band: Band;
+  private newBand: Band;
 
-  constructor(private editService: EditService) { }
+  private styles: Array<StylesItem>;
+  // private instruments: Array<InstrumentsItem>;
+
+  // @ViewChild("instrumentEditTemplate") instrumentEditTemplate: any;
+  @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
+  @ViewChild("stylesEditTemplate") stylesEditTemplate: any;
+
+  private infoItems: Array<InfoItem>;
+
+  private allTitle: string;
+
+
+  constructor(private editService: EditService,
+              private translateService: TranslateService,
+              private musicianTypesProvider: MusicianTypesProvider,
+              private bandService: BandService) {
+    this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
+     this.translateService.get("Choose").subscribe(value=> this.allTitle = value);
+  }
 
   ngOnInit() {
-     this.band = this.editService.baseModel as Band;
+    this.band = this.editService.baseModel as Band;
+    this.updateInfoItems();
+  }
+
+  private updateInfoItems() {
+    this.newBand = Object.create(this.band);
+
+    var stylesItem = new InfoItem();
+    stylesItem.propertyTitle = "Musician_Styles";
+    var stylesValue: string = "";
+    console.log(this.band);
+    if (this.band.styles && this.band.styles.length > 0) {
+      this.translateService.get(this.band.styles.map(style => this.musicianTypesProvider.musicStyles.getValue(style))).subscribe(translated => {
+        this.band.styles.forEach(style => {
+          stylesValue += `${translated[this.musicianTypesProvider.musicStyles.getValue(style)]} `;
+        });
+         stylesItem.propertyValue = stylesValue;
+      });
+    }
+
+
+    stylesItem.propertyValue = stylesValue;
+    stylesItem.propertyEditTemplate = this.stylesEditTemplate;
+
+
+    // var instrumentItem = new InfoItem();
+    // instrumentItem.propertyTitle = "Musician_Instrument";
+    // instrumentItem.propertyValue = this.musicianTypesProvider.instruments.getValue(this.musician.instrument);
+    // instrumentItem.propertyEditTemplate = this.instrumentEditTemplate;
+
+    var descriptionItem = new InfoItem();
+    descriptionItem.propertyTitle = "Musician_Description";
+    descriptionItem.propertyValue = this.band.description;
+    descriptionItem.propertyEditTemplate = this.descriptionEditTemplate;
+
+    this.infoItems = [
+      stylesItem,
+      descriptionItem
+    ]
+  }
+
+  private refreshMusician(login: string) {
+    this.bandService.getBand(login).subscribe(band => {
+      this.band = band;
+      this.updateInfoItems();
+      this.editService.baseModel = band;
+      this.editService.onSaved.emit();
+    })
+  }
+
+  save() {
+    this.newBand.login = this.band.login;
+    console.log(this.newBand);
+    this.bandService.updateBand(this.newBand).subscribe(x => {
+      this.refreshMusician(this.band.login);
+    })
+  }
+
+  cancel() {
+    this.refreshMusician(this.band.login);
+    this.newBand = Object.create(this.band);
   }
 
 }

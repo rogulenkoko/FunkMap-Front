@@ -13,6 +13,7 @@ export class BandVideoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.band);
   }
 
 }

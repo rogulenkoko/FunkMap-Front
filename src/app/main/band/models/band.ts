@@ -1,9 +1,10 @@
 import { InstrumentType, MusicStyle } from "../../musician/models"
 import { BaseModel } from "app/core";
+import { EntityType } from "app/main/map/models";
 
 export class Band extends BaseModel{
-    constructor(login?:string, name?:string){
-        super(login, name);
+    constructor(login?:string, name?:string, entytyType?: EntityType){
+        super(login, name, entytyType);
         this.styles = [];
     }
 
@@ -14,7 +15,7 @@ export class Band extends BaseModel{
     public styles: Array<MusicStyle>;
 
     public static ToBand(data: any): Band{
-        var result = new Band(data.Login, data.Name);
+        var result = new Band(data.Login, data.Name, EntityType.Band);
         result.desiredInstruments = data.DesiredInstruments;
         result.showPrice = data.ShowPrice;
         result.musicians = data.Musicians;
@@ -25,6 +26,12 @@ export class Band extends BaseModel{
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
 
+        result.latitude = data.Latitude;
+        result.longitude = data.Longitude;
+        result.avatar = data.Avatar;
+        result.styles = data.Styles;
+
+        result.description = data.Description;
         return result;
     }
 }

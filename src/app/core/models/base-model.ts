@@ -1,7 +1,9 @@
 
 
+import { EntityType } from "app/main/map/models";
+
 export class BaseModel {
-    constructor(public login?:string, public name?:string){
+    constructor(public login?:string, public name?:string, public entityType?: EntityType){
         this.videosYoutube = [];
     }
     public userLogin: string;

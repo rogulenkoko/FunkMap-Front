@@ -1,3 +1,17 @@
-<p>
-  band-info works!
-</p>
+<entity-info [items]="infoItems" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
+
+<!-- <ng-template #instrumentEditTemplate>
+    <p-dropdown [options]="instruments" [(ngModel)]="newBand.instrument" ></p-dropdown>
+</ng-template> -->
+
+<ng-template #descriptionEditTemplate>
+    <div>
+        <textarea [(ngModel)]="newBand.description" class="form-control secondary"></textarea>
+    </div>
+   
+</ng-template>
+
+<ng-template #stylesEditTemplate>
+        <p-multiSelect [defaultLabel]="allTitle" [options]="styles" [(ngModel)]="newBand.styles" [filter]="false"></p-multiSelect>
+    
+</ng-template>

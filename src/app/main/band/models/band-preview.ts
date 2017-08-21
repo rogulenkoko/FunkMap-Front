@@ -1,9 +1,10 @@
 import { InstrumentType, MusicStyle } from "../../musician/models"
 import { BaseModel } from "app/core";
+import { EntityType } from "app/main/map/models";
 
 export class BandPreview extends BaseModel{
-    constructor(login:string, name:string){
-        super(login, name);
+    constructor(login:string, name:string, entityType?: EntityType) {
+        super(login, name, entityType);
     }
 
     public styles: Array<MusicStyle>;
@@ -12,7 +13,7 @@ export class BandPreview extends BaseModel{
     public description: string;
 
     public static ToBandPreview(data: any): BandPreview{
-        var result = new BandPreview(data.Login, data.Name);
+        var result = new BandPreview(data.Login, data.Name, EntityType.Band);
         result.desiredInstruments = data.DesiredInstruments;
         result.musicians = data.Musicians;
         result.styles = data.Styles;

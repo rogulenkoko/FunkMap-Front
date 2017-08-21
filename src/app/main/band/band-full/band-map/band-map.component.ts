@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EditService } from "app/tools/entity-full/edit.service";
+import { EntityMapComponent } from "app/tools/entity-full/entity-map/entity-map.component";
+import { Band } from "app/main/band/models";
+import { Marker, EntityType } from "app/main/map/models";
+import { MapCreationService } from "app/main/map/map-creation.service";
+import { IconProvider } from "app/main/map/icon-provider.service";
+import { BandService } from "app/main/band/band.service";
 
 @Component({
   selector: 'band-map',
@@ -8,9 +14,47 @@ import { EditService } from "app/tools/entity-full/edit.service";
 })
 export class BandMapComponent implements OnInit {
 
-  constructor(private editService: EditService) { }
+  @ViewChild('entityMap') entityMap: EntityMapComponent;
+
+  private band: Band;
+  private marker: Marker;
+
+  constructor(private mapCreationService: MapCreationService,
+              private iconProvider: IconProvider,
+              private bandService: BandService,
+              private editService: EditService) { 
+    this.band = this.editService.baseModel as Band;
+    //this.editService.onSaved.subscribe(()=> this.updateMap());
+  }
 
   ngOnInit() {
+    
+    this.marker = this.buildMarker();
+    console.log(this.marker);
+  }
+
+  private buildMarker():Marker{
+    var marker = new Marker(this.band.login, this.band.latitude, this.band.longitude, EntityType.Band);
+    marker.iconUrl = this.iconProvider.getIcon(marker);
+    return marker;
+  }
+
+  private updateMap(){
+    
+    // this.band = this.editService.baseModel as Band;
+    // if(this.marker.instrument == this.band.instrument) return;
+    // var marker = this.buildMarker();
+    // this.entityMap.initMap(marker);
+  }
+
+  private onBaseSaved(){
+    var band = new Band();
+    band.login = this.editService.baseModel.login;
+    band.latitude = this.editService.baseModel.latitude;
+    band.longitude = this.editService.baseModel.longitude;
+    this.bandService.updateBand(band).subscribe(response => {
+      
+    });
   }
 
 }
