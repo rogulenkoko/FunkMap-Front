@@ -13,7 +13,7 @@ export class DatexPipe implements PipeTransform {
   }
 
   transform(value: any, format: string): any {
-    moment.lang(this.translateService.language.value);
+    moment.lang(this.translateService.language);
     if (!value) {
       return null;
     }

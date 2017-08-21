@@ -4,7 +4,7 @@ import { TranslateService } from "@ngx-translate/core";
 @Injectable()
 export class LanguageService {
 
-  public language: Language;
+  public language: string;
 
   public availableLanguages: Array<Language>;
 
@@ -16,19 +16,19 @@ export class LanguageService {
 
     try {
       var savedLanguage = JSON.parse(localStorage.getItem("language")) as Language;
-      this.language = savedLanguage ? this.availableLanguages.find(x=>x.value == savedLanguage.value) : this.availableLanguages[0];
+      this.language = savedLanguage ? this.availableLanguages.find(x=>x.value == savedLanguage.value).value : this.availableLanguages[0].value;
     } catch (ex) {
-      this.language = this.availableLanguages[0];
+      this.language = this.availableLanguages[0].value;
     }
 
     
     this.translate.addLangs(this.availableLanguages.map(x=>x.value));
 
-    this.translate.setDefaultLang(this.language.value);
+    this.translate.setDefaultLang(this.language);
   }
 
   public changeLanguage(){
-    this.translate.use(this.language.value);
+    this.translate.use(this.language);
     localStorage.setItem("language", JSON.stringify(this.language));
   }
 

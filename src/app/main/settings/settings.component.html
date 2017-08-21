@@ -2,27 +2,23 @@
   <div class="main-settings-container">
     <div>
       <label>{{'Settings_MapType' | translate}}</label>
-      <select class="form-control" [(ngModel)]="mapProvider.selectedMap" (ngModelChange)="mapProvider.updateMap()">
-    <option *ngFor="let map of mapProvider.maps" [ngValue]="map" >{{map.title}}</option>
-  </select>
+       <p-dropdown [options]="maps" [(ngModel)]="mapProvider.selectedMap" (onChange)="mapProvider.updateMap()"></p-dropdown>
     </div>
 
     <br>
 
     <div>
       <label>{{'Settings_Language' | translate}}</label>
-      <select class="form-control" [(ngModel)]="languageService.language" (ngModelChange)="languageService.changeLanguage()">
-        <option *ngFor="let language of languageService.availableLanguages" [ngValue]="language" >{{language.title | translate}}</option>
-      </select>
+      <p-dropdown [options]="languages" [(ngModel)]="languageService.language" (onChange)="languageService.changeLanguage(); updateLanguages();"></p-dropdown>
     </div>
 
-    <br>
+    <!-- <br>
 
     <div>
       <label>{{'Theme' | translate}}</label>
       <select class="form-control" [(ngModel)]="themeService.selectedTheme" (ngModelChange)="themeService.changeTheme()">
         <option *ngFor="let theme of themeService.themes" [ngValue]="theme" >{{theme.title | translate}}</option>
       </select>
-    </div>
+    </div> -->
   </div>
 </side>
