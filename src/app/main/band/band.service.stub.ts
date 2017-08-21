@@ -5,6 +5,7 @@ import { BandPreview } from "./models";
 import { InstrumentType, Musician, MusicStyle } from "../musician/models"
 import { BaseResponse } from "app/tools";
 import { Band } from "app/main/band/models/band";
+import { EntityType } from "app/main/map/models";
 
 @Injectable()
 export class BandServiceStub extends BandService {
@@ -14,7 +15,7 @@ export class BandServiceStub extends BandService {
    }
 
    getBandPreview(id: string): Observable<BandPreview>{
-     var band = new BandPreview("test","The Beatles");
+     var band = new BandPreview("test","The Beatles", EntityType.Band);
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
 
     band.userLogin = "test";
@@ -33,7 +34,7 @@ export class BandServiceStub extends BandService {
    }
 
    getBand(login: string): Observable<Band>{
-     var band = new Band("test","The Beatles");
+     var band = new Band("test","The Beatles", EntityType.Band);
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
 
     band.userLogin = "test";

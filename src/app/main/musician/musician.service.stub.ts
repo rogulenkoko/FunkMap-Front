@@ -3,6 +3,7 @@ import { MusicianService } from "./musician.service";
 import { Observable } from "rxjs/Observable";
 import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./models";
 import { BaseResponse } from "app/tools";
+import { EntityType } from "app/main/map/models";
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -26,7 +27,7 @@ export class MusicianServiceStub extends MusicianService {
    }
 
    private getModel(){
-     var musician = new Musician("test", "Мик Томсон");
+     var musician = new Musician("test", "Мик Томсон", EntityType.Musician);
      musician.styles = [MusicStyle.Funk, MusicStyle.Rock];
      musician.instrument = InstrumentType.Drums;
      musician.birthDate = new Date();
