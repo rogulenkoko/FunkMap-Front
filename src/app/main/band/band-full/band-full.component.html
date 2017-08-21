@@ -1,0 +1,10 @@
+ <div class="band-full-container">
+   <div class="d-flex justify-content-center row-container">
+    <band-base *ngIf="editService.baseModel"></band-base>
+    <band-info *ngIf="editService.baseModel"></band-info>
+    <band-map *ngIf="editService.baseModel"></band-map>
+   </div>
+   <div *ngIf="editService.baseModel && editService.baseModel.videosYoutube && editService.baseModel.videosYoutube.length > 0" class="d-flex justify-content-center row-container">
+    <band-video [band]="editService.baseModel"></band-video>
+  </div>
+</div> 

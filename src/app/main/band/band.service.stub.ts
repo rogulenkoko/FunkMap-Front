@@ -3,6 +3,8 @@ import { BandService } from "./band.service";
 import { Observable } from "rxjs/Observable";
 import { BandPreview } from "./models";
 import { InstrumentType, Musician } from "../musician/models"
+import { BaseResponse } from "app/tools";
+import { Band } from "app/main/band/models/band";
 
 @Injectable()
 export class BandServiceStub extends BandService {
@@ -11,14 +13,39 @@ export class BandServiceStub extends BandService {
     super();
    }
 
-   getBand(id: string): Observable<BandPreview>{
-     var band = new BandPreview("beatles","The Beatles");
+   getBandPreview(id: string): Observable<BandPreview>{
+     var band = new BandPreview("test","The Beatles");
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
+
+    band.userLogin = "test";
+    band.soundCloudLink = "aaaa";
+    band.youTubeLink = "xxx";
+
      band.musicians = [
        "test",
        "rogulenkoko"
      ];
      return Observable.of(band);
    }
+
+   updateBand(band:Band): Observable<BaseResponse>{
+     return Observable.of(new BaseResponse(true));
+   }
+
+   getBand(login: string): Observable<Band>{
+     var band = new Band("test","The Beatles");
+     band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
+
+    band.userLogin = "test";
+    band.soundCloudLink = "aaaa";
+    band.youTubeLink = "xxx";
+
+     band.musicians = [
+       "test",
+       "rogulenkoko"
+     ];
+     return Observable.of(band);
+   }
+
 
 }

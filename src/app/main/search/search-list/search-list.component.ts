@@ -6,6 +6,7 @@ import { MapFilter } from "app/main/map/map-filter.service";
 import { Marker, EntityType } from "app/main/map/models";
 import { UserDataService } from "app/main/user/user-data.service";
 import { Router } from "@angular/router";
+import { RouteBuilder } from "app/tools/route-builder";
 
 @Component({
   selector: 'search-list',
@@ -59,12 +60,8 @@ ngOnInit() {
   }
   
   private navigate(login: string, type: EntityType){
-    var route: string = "";
-    switch (type){
-      case EntityType.Musician: route = "musicianPage";
-    }
-
-    this.router.navigate([`/${route}/${login}`]);
+    var route = RouteBuilder.buildRoute(type, login);
+    this.router.navigate([route]);
   }
 
 }

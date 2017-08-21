@@ -7,6 +7,10 @@ export class RouteBuilder {
         switch (entityType) {
         case EntityType.Musician: route = "musicianPage";
             break;
+
+        case EntityType.Band: route = "bandPage";
+            break;
+
         default: return "";
         }
         return `/${route}/${login}`;

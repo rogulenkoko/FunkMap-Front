@@ -14,11 +14,17 @@ export class Band extends BaseModel{
     public styles: Array<MusicStyle>;
 
     public static ToBand(data: any): Band{
-        var result = new Band(data.Id, data.Name);
+        var result = new Band(data.Login, data.Name);
         result.desiredInstruments = data.DesiredInstruments;
         result.showPrice = data.ShowPrice;
         result.musicians = data.Musicians;
         result.videoLinks = data.VideoLinks;
+
+        result.vkLink = data.VkLink;
+        result.youTubeLink = data.YoutubeLink;
+        result.facebookLink = data.FacebookLink;
+        result.soundCloudLink = data.SoundCloudLink;
+
         return result;
     }
 }

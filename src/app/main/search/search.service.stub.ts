@@ -40,7 +40,14 @@ export class SearchServiceStub extends SearchService{
      s2.instrument = InstrumentType.Drums;
      s2.isFavourite = true;
      s2.expirience = ExpirienceType.Begginer;
-     return [s1,s2];
+
+     var s3 = new SearchItem();
+     s3.login = "rogul2";
+     s3.title = "The Beatles";
+     s3.type = EntityType.Band;
+     s3.isFavourite = true;
+
+     return [s1,s2, s3];
   }
 
 }

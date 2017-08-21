@@ -20,6 +20,7 @@ import { MusicianFullComponent } from "app/main/musician/musician-full/musician-
 import { MessengerComponent } from "app/main/messenger/messenger.component";
 import { StartComponent } from "app/start/start.component";
 import { MainWrapperComponent } from "app/main-wrapper/main-wrapper.component";
+import { BandFullComponent } from "app/main/band/band-full/band-full.component";
 
 const appRoutes: Routes = [
   {
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
           },
           { path: "musicianPage", component: MusicianFullComponent },
           { path: "musicianPage/:id", component: MusicianFullComponent },
-
+          { path: "bandPage", component: BandFullComponent },
+          { path: "bandPage/:id", component: BandFullComponent },
           { path: "messenger", component: MessengerComponent },
         ]
       },
