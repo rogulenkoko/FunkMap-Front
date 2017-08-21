@@ -5,7 +5,7 @@
   <div class="info-title-container d-flex justify-content-between">
     <div class="title-container">
       <span>{{'Video' | translate}}</span>
-      <span class="video-count">{{entity.videosYoutube.length}}</span>
+      <span class="video-count">{{entity.videosYoutube ? entity.videosYoutube.length : 0}}</span>
     </div>
     <div class="edit-buttons-container">
       <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
@@ -22,7 +22,6 @@
        <div class="no-video-container d-flex align-items-center justify-content-center">
         <span>{{'NoVideo' | translate}}</span>
        </div>
-      
      </ng-container>
   </div>
 </div>

@@ -21,6 +21,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
   }
 
   ngOnInit() {
+    
      this.checkIsUserEntity(this.entity.login);
   }
 
