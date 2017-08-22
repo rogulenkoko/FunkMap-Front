@@ -42,7 +42,7 @@ export class IconProvider {
   }
 
   private getShopIcon(): string {
-    return "assets/images/markers/shop.png";
+    return "assets/images/shop-start.svg";
   }
 
   private getBandIcon(): string {
@@ -50,11 +50,11 @@ export class IconProvider {
   }
 
   private getRehearsalPointIcon(): string {
-    return "assets/images/markers/rehearsal.png";
+    return "assets/images/rehearsal-start.svg";
   }
 
   private getStudioIcon(): string {
-    return "assets/images/markers/studio.png";
+    return "assets/images/studio-start.svg";
   }
 
 }

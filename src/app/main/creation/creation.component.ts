@@ -22,9 +22,6 @@ import { RouteBuilder } from "app/tools/route-builder";
 
 export class CreationComponent implements OnInit {
 
-  @ViewChild('cropper') cropper: ImageCropperComponent;
-
-  private data: any;
   private cropperSettings: CropperSettings;
   private isImageSaved: boolean = false;
   private isComplete: boolean;
@@ -34,21 +31,23 @@ export class CreationComponent implements OnInit {
 
   private subscription: Subscription;
 
+  private isNameValid: boolean = true;
+  private isLoginValid: boolean = true;
+  private isLoginExist: boolean = false;
+
   constructor(private creationService: CreationService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private entityTypeProvider: EntityTypeProvider,
-              private translateService: TranslateService,
-              private mapCreationService: MapCreationService,
-              private userService: UserService,
-              private musicianTypesProvider: MusicianTypesProvider) {
+    private router: Router,
+    private route: ActivatedRoute,
+    private entityTypeProvider: EntityTypeProvider,
+    private translateService: TranslateService,
+    private mapCreationService: MapCreationService,
+    private userService: UserService,
+    private musicianTypesProvider: MusicianTypesProvider) {
 
     this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.creationService.selectedEntity = this.creationService.selectedEntity ? this.creationService.selectedEntity : this.entityTypeProvider.entities.keys()[0];
     this.creationService.instrument = this.creationService.instrument ? this.creationService.instrument : this.musicianTypesProvider.instruments.keys()[0];
-    this.setCropperOptions();
-    this.data = {};
   }
 
   ngOnInit() {
@@ -66,7 +65,7 @@ export class CreationComponent implements OnInit {
       if (response.success) {
         setTimeout(() => {
           var route = RouteBuilder.buildRoute(this.creationService.selectedEntity, this.creationService.baseModel.login);
-          if(!route){
+          if (!route) {
             this.router.navigate(['/']);
             return;
           }
@@ -81,8 +80,28 @@ export class CreationComponent implements OnInit {
     this.subscription.unsubscribe();
     this.creationService.baseModel.latitude = marker.lat;
     this.creationService.baseModel.longitude = marker.lng;
-    
+
     this.router.navigate(['/create', { isComplete: true }]);
+  }
+
+  private validate() {
+    if (!this.creationService.baseModel.name) {
+      this.isNameValid = false;
+      setTimeout(() => this.isNameValid = true, 3000);
+      return;
+    }
+
+    if (!this.creationService.baseModel.login) {
+      this.isLoginValid = false;
+      setTimeout(() => this.isLoginValid = true, 3000);
+      return;
+    }
+
+    this.creationService.checkLogin(this.creationService.baseModel.login).subscribe(isExist=>{
+      this.isLoginExist = isExist;
+      setTimeout(() => this.isLoginExist = false, 3000);
+      if(!isExist) this.toMapCreation();
+    })
   }
 
   toMapCreation() {
@@ -94,43 +113,7 @@ export class CreationComponent implements OnInit {
     this.router.navigate(['/checkmap']);
   }
 
-  private setCropperOptions() {
-    this.cropperSettings = new CropperSettings();
-    this.cropperSettings.width = 100;
-    this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 300;
-    this.cropperSettings.croppedHeight = 300;
-    this.cropperSettings.canvasWidth = 200;
-    this.cropperSettings.canvasHeight = 200;
-    this.cropperSettings.rounded = true;
-    this.cropperSettings.noFileInput = true;
-  }
-
-  private saveImage() {
-    this.creationService.baseModel.avatar = this.data.image.replace("data:image/jpeg;base64,", "");
-    this.isImageSaved = true;
-  }
-
-  private cancelImage() {
-    this.cropper.reset();
-    this.isImageSaved = false;
-  }
-
-  fileChangeListener($event) {
-    this.isImageSaved = false;
-    var image: any = new Image();
-    var file: File = $event.target.files[0];
-    var myReader: FileReader = new FileReader();
-    var that = this;
-    myReader.onloadend = function (loadEvent: any) {
-      image.src = loadEvent.target.result;
-      that.cropper.setImage(image);
-    };
-
-    myReader.readAsDataURL(file);
-  }
-
-  private cancel(){
+  private cancel() {
     this.mapCreationService.onCancel.emit();
     this.router.navigate(['/'])
   }

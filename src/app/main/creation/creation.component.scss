@@ -15,22 +15,31 @@
     .creation-container{
         font-size: 13px;
         height: 75%;
-        margin-top: 30px;
+        margin-top: 20px;
+        width: 310px;
      
     }
 
  .creation-container > div{
      width: 100%;
+     margin-bottom: 35px;
  }
 
     .buttons-container{
-        height: 15%;
-
+        height: 25%;
         .btn{
-            width: 170px;
+            width: 110px;
             height: 38px;
             border-radius: 20px; 
+            font-size: 13px;
         }
+
+        .btn-secondary{
+            background-color: rgba(0, 0,0,0);
+            border: none;
+            color: $dark-title-color;
+        }
+        
     }
 }
 
@@ -42,23 +51,8 @@
 }
 
 .property-value{
-    width: 60% !important;
+    width: 100% !important;
     color: $app-grey;
-}
-
-.img-buttons{
-    width: 200px;
-    div{
-        width: 48%;
-        height: 40px !important;
-        .btn, label{
-            width: 100%;
-        }
-
-        .btn{
-            border-radius: 20px;
-        }
-    }
 }
 
 .success-container{
@@ -71,3 +65,5 @@
     height: 25px;
     width: 25px
 }
+
+

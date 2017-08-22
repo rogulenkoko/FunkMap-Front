@@ -9,6 +9,10 @@ $select-width: 100%;
   display: none;
 }
 
+p-dropdown{
+  width: $select-width;
+}
+
 .ui-multiselect-label-container{
   width: $select-width;
   height: 30px;

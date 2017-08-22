@@ -19,4 +19,8 @@ export class CreationServiceStub extends CreationService {
     return Observable.of(response);
   }
 
+  checkLogin(login: string): Observable<boolean>{
+    return Observable.of(false);
+  }
+
 }

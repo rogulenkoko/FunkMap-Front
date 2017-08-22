@@ -2,17 +2,20 @@
     border: none !important;
     background: rgba(0, 0, 0, 0) !important;
 }
+
+$icon-width:40px;
+
 .icon-image-container, .creation-marker-container{
-    width: 50px;
+    width: $icon-width;
     img{
-        width: 50px;
+        width: $icon-width;
     }
 }
 
 .cluster-icon-container{
     background: url("/assets/images/cluster.png") no-repeat;
-    width: 50px;
-    height: 50px;
+    width: $icon-width + 10px;
+    height: $icon-width + 10px;
     color: black;
     display: flex;
     align-items: center;

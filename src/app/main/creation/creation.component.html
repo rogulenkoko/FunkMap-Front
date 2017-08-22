@@ -1,74 +1,48 @@
-<modal *ngIf="!isComplete" [title]="'Creation_Title'" [widthPerCent]="'30%'" [height]="'55%'">
-  <div class="main-creation-container">
-    <div id="creation-container" class="creation-container d-flex flex-column align-items-center ">
-        <div class="d-flex flex-row align-items-baseline social-nets">
+<modal *ngIf="!isComplete" [title]="'Creation_Title'" [minWidth]="'440px'" [widthPerCent]="'25%'" [height]="'530px'">
+  <div class="main-creation-container d-flex flex-column align-items-center justify-content-center">
+    <div id="creation-container" class="creation-container d-flex flex-column ">
+        <div class="d-flex flex-column align-items-baseline">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
-          <div class="property-value">
+          <!-- <div class="property-value"> -->
              <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
-          </div>
+          <!-- </div> -->
          
         </div>
         <br>
         <div class="d-flex flex-row align-items-baseline">
-          <label class="property-title">{{'Creation_Login' | translate}}:</label>
           <div class="property-value">
-            <input class="form-control secondary" [(ngModel)]="creationService.baseModel.login" />
+            <input placeholder="{{'Creation_Login' | translate}}"
+                  class="form-control secondary" 
+                  [class.error-form-control]="isLoginExist || !isLoginValid" 
+                  [(ngModel)]="creationService.baseModel.login" />
+            <span class="error-label" *ngIf="isLoginExist">Логин уже существует</span>
+            <span class="error-label" *ngIf="!isLoginValid && !isLoginExist">Логин не должен быть пустым</span>
           </div>
         </div>
 
         <br>
         <div class="d-flex flex-row align-items-baseline">
-          <label class="property-title">{{'Musician_Name' | translate}}:</label>
           <div class="property-value">
-            <input class="form-control secondary" [(ngModel)]="creationService.baseModel.name" />
+            <input placeholder="{{'Musician_Name' | translate}}"
+                   class="form-control secondary"
+                   [class.error-form-control]="!isNameValid" 
+                   [(ngModel)]="creationService.baseModel.name" />
+            <span class="error-label" *ngIf="!isNameValid">Имя не должно быть пустым</span>
           </div>
         </div>
 
         <br>
 
-        <div *ngIf="creationService.selectedEntity == 1" class="d-flex flex-row align-items-baseline social-nets">
+        <div *ngIf="creationService.selectedEntity == 1" class="d-flex flex-column align-items-baseline social-nets">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
           <div class="property-value">
             <p-dropdown [options]="instruments" [(ngModel)]="creationService.instrument" ></p-dropdown>
           </div>
         </div>
-
-       
-
-      <!-- <div class="right-container">
-
-        <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-          <img-cropper *ngIf="!isSaved" #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-          <img *ngIf="data.image && isSaved" src="{{data.image}}"/>
-          <div class="d-flex flex-row align-items-center justify-content-center img-buttons">
-            <div *ngIf="data.image && !isSaved" class="d-flex flex-row align-items-center justify-content-between" style="width:100%;">
-              <button (click)="cancelImage()" class="btn btn-secondary mr-2">{{'Login_Cancel' | translate}}</button>
-              <button (click)="saveImage()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
-            </div>
-            <div *ngIf="!data.image || isSaved">
-              <label class="btn btn-success btn-file">
-              {{'Avatar_BrowsePhoto' | translate}} <input type="file"  (change)="fileChangeListener($event)" hidden>
-            </label>
-            </div>
-
-          </div>
-
-        </div>
-        <br>
-
-        <div class="d-flex flex-row align-items-center">
-          <label class="property-title">{{'VideoLink' | translate}}:</label>
-          <input placeholder="{{'Youtube_Link' | translate}}" [(ngModel)]="creationService.baseModel.videosYoutube[0]" class="form-control secondary" />
-        </div>
-
-        <br>
-
-        
-      </div> -->
     </div>
-    <div class="buttons-container d-flex flex-row justify-content-end align-items-end ">
+    <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
       <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
-      <button (click)="toMapCreation()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
+      <button (click)="validate()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
     </div>
   </div>
 </modal>

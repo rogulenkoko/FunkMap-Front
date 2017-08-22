@@ -56,6 +56,8 @@ input::-webkit-inner-spin-button {
     background-color: rgba(0,0,0,0) !important;
 }
 
+
+
 :host-context(.light) .form-control{
   border-color: $light-label !important;
 }
@@ -70,6 +72,10 @@ input::-webkit-inner-spin-button {
 
 :host-context(.dark) .form-control:focus, :host-context(.dark) .btn:focus{
   border-color: $dark-orange-light !important;
+}
+
+:host-context(.dark) .error-form-control, :host-context(.light) .error-form-control{
+  border-color: $app-red !important;
 }
 
 .form-control::-webkit-input-placeholder{
@@ -118,5 +124,14 @@ input::-webkit-inner-spin-button {
         color: $dark-orange-light;
         border: 1px solid $dark-orange-light;
 }
+
+.error-label{
+    color: $app-red;
+    font-size: 11px;
+}
+
+
+
+
 
 

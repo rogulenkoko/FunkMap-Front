@@ -22,6 +22,8 @@ export abstract class CreationService {
 
   abstract save():Observable<CreationResponse>;
 
+  abstract checkLogin(login: string): Observable<boolean>;
+
   constructor() {
     this.baseModel = new BaseModel();
     this.musician = new Musician();
@@ -61,5 +63,9 @@ export class CreationServiceHttp extends CreationService{
       case EntityType.RehearsalPoint: return this.http.post(`${ConfigurationProvider.apiUrl}rehearsal/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
       case EntityType.Studio: return this.http.post(`${ConfigurationProvider.apiUrl}studio/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
     }
+  }
+
+  checkLogin(login: string): Observable<boolean>{
+    return this.http.get(`${ConfigurationProvider.apiUrl}base/checkLogin/${login}`).map(x=> x.json());
   }
 }
