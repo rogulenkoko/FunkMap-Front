@@ -1,3 +1,17 @@
-<p>
-  studio-info works!
-</p>
+<entity-info [items]="infoItems" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
+
+<ng-template #webSiteValueTemplate>
+    <a href="{{studio.webSite}}">{{studio.webSite}}</a>
+</ng-template>
+
+
+<ng-template #descriptionEditTemplate>
+    <div>
+        <textarea [(ngModel)]="newStudio.description" class="form-control secondary"></textarea>
+    </div>
+</ng-template>
+
+
+<ng-template #webSiteEditTemplate>
+    <input [(ngModel)]="newStudio.webSite" class="form-control secondary"/>
+</ng-template>
