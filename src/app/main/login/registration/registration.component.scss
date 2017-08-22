@@ -2,21 +2,20 @@
 @import "src/assets/styles/forms.scss";
 
 .registration-container{
-    height: 250px;
-    padding: 0 14%;
+    height: 210px;
     color: $app-grey;
     font-size: 14px;
     margin-top: 50px;
+    width: 300px;
+}
 
-    .error-label{
-        color: red;
-        font-size: 12px;
-        float: right;
-    }
+.registration-container > div{
+    width: 100%;
+    margin-bottom: 25px;
+}
 
-    .error-control{
-        border-bottom: 1px solid red;
-    }
+.email-container > div{
+     height: 50px;
 }
 
 .registration-buttons-container{
@@ -28,29 +27,18 @@
 }
 
 .circle{
-    width: 35px;
-    height: 35px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-}
-
-:host-context(.light) .circle{
-    border: 1px solid $app-green;
-    color: $app-green;
-}
-
-:host-context(.dark) .circle{
-    border: 1px solid $dark-orange;
-    color: $dark-orange;
+    background-color: $dark-title-color;
 }
 
 :host-context(.light) .circle-selected{
      background-color: $app-green;
-     color: white;
 }
 
 :host-context(.dark) .circle-selected{
     background-color: $dark-orange;
-    color: white;
 }
 
 .circle-center{

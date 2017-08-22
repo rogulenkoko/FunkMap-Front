@@ -17,6 +17,8 @@ export class RegistrationComponent implements OnInit {
   private password: string = "1";
   private passwordRepeat: string = "1";
 
+  private isWrongCreds: boolean = false;
+
   private email: string;
   private code: string;
 
@@ -29,13 +31,19 @@ export class RegistrationComponent implements OnInit {
   private isCodeWrong: boolean;
 
   constructor(private loginService: LoginService,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   moveNext() {
-    if (!this.login || !this.password || !this.passwordRepeat) return;
+    if (!this.login || !this.password || !this.passwordRepeat) {
+      this.isWrongCreds = true;
+      setTimeout(() => {
+        this.isWrongCreds = false;
+      }, 3000);
+      return;
+    }
 
     if (this.password != this.passwordRepeat) {
       this.passwordsAreNotMacthing = true;
@@ -91,6 +99,9 @@ export class RegistrationComponent implements OnInit {
         this.isCodeSent = true;
       } else {
         this.isCodeSent = false;
+        setTimeout(() => {
+          this.isEmailSent = false;
+        }, 3000)
       }
     })
   }
