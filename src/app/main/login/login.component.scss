@@ -1,22 +1,18 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/forms.scss";
 
+$container-width:310px;
+
 .login-container{
-    padding: 14%;
-    padding-top: 0;
     color: $app-grey;
     font-size: 14px;
     margin-top: 50px; 
+    width: $container-width;
+}
 
-    .error-label{
-        color: red;
-        font-size: 12px;
-        float: right;
-    }
-
-    .error-control{
-        border-bottom: 1px solid red;
-    }
+.login-container > div{
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .login-buttons-container{

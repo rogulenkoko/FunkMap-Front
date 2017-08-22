@@ -114,16 +114,30 @@ input::-webkit-inner-spin-button {
     color: white;
 }
 
+.btn-secondary{
+    background-color: rgba(0, 0,0,0);
+    border: none;
+    color: $dark-title-color;
+    font-size: 13px;
+}
+
+.btn-success{
+    width: 130px !important;
+    height: 38px;
+    border-radius: 20px; 
+    font-size: 13px;
+}
+
 :host-context(.dark) .btn-success{
         color: white;
         background-color: $dark-orange-light;
         border: 1px solid $dark-orange-light;
 }
 
-:host-context(.dark) .btn-secondary{
-        color: $dark-orange-light;
-        border: 1px solid $dark-orange-light;
-}
+// :host-context(.dark) .btn-secondary{
+//         color: $dark-orange-light;
+//         border: 1px solid $dark-orange-light;
+// }
 
 .error-label{
     color: $app-red;

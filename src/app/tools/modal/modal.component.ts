@@ -8,9 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   @Input() title: string;
-  @Input() widthPerCent: string = "30.5%";
   @Input() minWidth: string;
   @Input() height: string;
+  @Input() width: string;
 
   @Input() canClose: boolean = true;
   @Input() backgroundEnabled: boolean = true;

@@ -1,24 +1,20 @@
-<modal [title]="'Login_Entrance'" [minWidth]="'500px'">
-  <div class="login-container d-flex flex-column">
-    <div class="login">
-      <div>
-        <div class="d-flex justify-content-between align-items-baseline">
-          <label class="property-title">{{'Login_Login' | translate}}</label>
-          <input class="form-control" [(ngModel)]="login" [class.error-control]="wrongCreds" />
-        </div>
+<modal [title]="'Login_Entrance'" [width]="'430px'" [height]="'350px'">
+  <div class="d-flex align-itens-center justify-content-center">
+    <div class="login-container d-flex flex-column">
+      <div class="">
+        <input placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="wrongCreds"
+        />
         <label *ngIf="wrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</label>
-        <div *ngIf="!wrongCreds" class="spacer"> </div>
+      </div>
+      <div class="password d-flex justify-content-between align-items-baseline">
+        <input placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds"
+        />
+      </div>
+      <div class="d-flex flex-row justify-content-between login-buttons-container">
+        <button class="btn btn-secondary">{{'Login_ForgotPassword' | translate}}</button>
+        <button (click)="logIn()" class="btn btn-success">{{'Login_ToLogIn' | translate}}</button>
       </div>
     </div>
-    <br>
-    <div class="password d-flex justify-content-between align-items-baseline">
-      <label class="property-title">{{'Login_Password' | translate}}</label>
-      <input type="password" [(ngModel)]="password" class="form-control" [class.error-control]="wrongCreds" />
-    </div>
-    <br><br>
-    <div class="d-flex flex-row justify-content-between login-buttons-container">
-      <button class="btn btn-secondary">{{'Login_ForgotPassword' | translate}}</button>
-      <button (click)="logIn()" class="btn btn-success">{{'Login_ToLogIn' | translate}}</button>
-    </div>
   </div>
+
 </modal>
