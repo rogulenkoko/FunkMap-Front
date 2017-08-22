@@ -1,0 +1,17 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+
+.sub-info-container{
+    font-size: 13px;
+    color: #b6bec5;
+    margin-bottom: 46px;
+}
+
+.nets-container{
+    width: 100%;
+    input{
+        margin-bottom: 10px;
+    }
+}

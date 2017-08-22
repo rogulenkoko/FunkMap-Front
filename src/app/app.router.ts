@@ -21,6 +21,7 @@ import { MessengerComponent } from "app/main/messenger/messenger.component";
 import { StartComponent } from "app/start/start.component";
 import { MainWrapperComponent } from "app/main-wrapper/main-wrapper.component";
 import { BandFullComponent } from "app/main/band/band-full/band-full.component";
+import { ShopFullComponent } from "app/main/shop/shop-full/shop-full.component";
 
 const appRoutes: Routes = [
   {
@@ -55,6 +56,8 @@ const appRoutes: Routes = [
           { path: "musicianPage/:id", component: MusicianFullComponent },
           { path: "bandPage", component: BandFullComponent },
           { path: "bandPage/:id", component: BandFullComponent },
+          { path: "shopPage", component: ShopFullComponent },
+          { path: "shopPage/:id", component: ShopFullComponent },
           { path: "messenger", component: MessengerComponent },
         ]
       },

@@ -24,8 +24,6 @@ export class EditableCard {
     protected checkIsUserEntity(login: string) {
         if (!this.userService.user) return;
         this.userDataService.getUserEntitiesLogins().subscribe(logins => {
-            console.log(logins);
-            console.log(login);
             this.isUsers = logins.find(x => x == login) ? true : false;
         });
     }

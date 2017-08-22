@@ -7,13 +7,17 @@ import { ShopService, ShopServiceHttp } from "app/main/shop/shop.service";
 import { environment } from "environments/environment";
 import { ShopServiceStub } from "app/main/shop/shop.service.stub";
 import { SearchShopComponent } from './search-shop/search-shop.component';
+import { ShopFullComponent } from './shop-full/shop-full.component';
+import { ShopBaseComponent } from './shop-full/shop-base/shop-base.component';
+import { ShopInfoComponent } from './shop-full/shop-info/shop-info.component';
+import { ShopMapComponent } from './shop-full/shop-map/shop-map.component';
 
 @NgModule({
   imports: [
     CoreModule,
     ToolsModule
   ],
-  declarations: [ShopComponent, SearchShopComponent],
+  declarations: [ShopComponent, SearchShopComponent, ShopFullComponent, ShopBaseComponent, ShopInfoComponent, ShopMapComponent],
   exports: [ShopComponent, SearchShopComponent],
   providers: [
     {

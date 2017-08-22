@@ -1,0 +1,10 @@
+ <div class="shop-full-container">
+   <div class="d-flex justify-content-center row-container">
+    <shop-base *ngIf="editService.baseModel"></shop-base>
+    <shop-info *ngIf="editService.baseModel"></shop-info>
+    <shop-map *ngIf="editService.baseModel"></shop-map>
+   </div>
+   <div *ngIf="editService.baseModel" class="d-flex justify-content-center row-container">
+    <!-- <shop-video [shop]="editService.baseModel"></shop-video> -->
+  </div>
+</div> 

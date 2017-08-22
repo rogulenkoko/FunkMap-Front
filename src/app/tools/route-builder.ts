@@ -11,6 +11,9 @@ export class RouteBuilder {
         case EntityType.Band: route = "bandPage";
             break;
 
+        case EntityType.Shop: route = "shopPage";
+            break;
+            
         default: return "";
         }
         return `/${route}/${login}`;
