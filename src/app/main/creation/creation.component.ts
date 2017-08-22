@@ -62,10 +62,7 @@ export class CreationComponent implements OnInit {
     this.creationService.save().subscribe(response => {
       if (response.success) {
         var route = RouteBuilder.buildRoute(this.creationService.selectedEntity, this.creationService.baseModel.login);
-        if (!route) {
-          this.router.navigate(['/']);
-          return;
-        }
+        this.router.navigate([route]);
       }
     });
 
