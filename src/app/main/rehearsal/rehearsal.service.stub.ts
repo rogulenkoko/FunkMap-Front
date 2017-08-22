@@ -21,7 +21,10 @@ export class RehearsalServiceStub extends RehearsalService {
     var r = new Rehearsal("1", "Реп точка", EntityType.RehearsalPoint);
     r.vkLink = "asd";
     r.youTubeLink = "asd";
-    r.login = "test";
+    r.login = "test1";
+    r.latitude = 10;
+    r.longitude = 30;
+    r.description = "Описание реп точки";
     return Observable.of(r);
   }
 
