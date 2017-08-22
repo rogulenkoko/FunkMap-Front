@@ -48,7 +48,6 @@ export class BandInfoComponent implements OnInit {
     var stylesItem = new InfoItem();
     stylesItem.propertyTitle = "Musician_Styles";
     var stylesValue: string = "";
-    console.log(this.band);
     if (this.band.styles && this.band.styles.length > 0) {
       this.translateService.get(this.band.styles.map(style => this.musicianTypesProvider.musicStyles.getValue(style))).subscribe(translated => {
         this.band.styles.forEach(style => {
@@ -79,7 +78,7 @@ export class BandInfoComponent implements OnInit {
     ]
   }
 
-  private refreshMusician(login: string) {
+  private refreshBand(login: string) {
     this.bandService.getBand(login).subscribe(band => {
       this.band = band;
       this.updateInfoItems();
@@ -90,14 +89,13 @@ export class BandInfoComponent implements OnInit {
 
   save() {
     this.newBand.login = this.band.login;
-    console.log(this.newBand);
     this.bandService.updateBand(this.newBand).subscribe(x => {
-      this.refreshMusician(this.band.login);
+      this.refreshBand(this.band.login);
     })
   }
 
   cancel() {
-    this.refreshMusician(this.band.login);
+    this.refreshBand(this.band.login);
     this.newBand = Object.create(this.band);
   }
 

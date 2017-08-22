@@ -1,3 +1,17 @@
-<p>
-  shop-info works!
-</p>
+<entity-info [items]="infoItems" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
+
+<ng-template #webSiteValueTemplate>
+    <a href="{{shop.webSite}}">{{shop.webSite}}</a>
+</ng-template>
+
+
+<ng-template #descriptionEditTemplate>
+    <div>
+        <textarea [(ngModel)]="newShop.description" class="form-control secondary"></textarea>
+    </div>
+</ng-template>
+
+
+<ng-template #webSiteEditTemplate>
+    <input [(ngModel)]="newShop.webSite" class="form-control secondary"/>
+</ng-template>

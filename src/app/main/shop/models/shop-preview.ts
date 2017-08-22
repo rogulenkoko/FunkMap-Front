@@ -21,7 +21,7 @@ export class Shop extends BaseModel {
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;
-
+        result.soundCloudLink = data.SoundCloudLink;
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
 
@@ -48,6 +48,7 @@ export class ShopPreview extends BaseModel {
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;
+        result.soundCloudLink = data.SoundCloudLink;
         return result;
     }
 }

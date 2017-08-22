@@ -1,0 +1,14 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+
+
+.radio-label{
+    font-size: 13px;
+}
+
+textarea{
+    height: 120px !important;
+    width: 310px;
+    resize: none
+}
