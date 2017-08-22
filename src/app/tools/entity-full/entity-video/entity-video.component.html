@@ -18,7 +18,7 @@
     <ng-container *ngIf="entity.videosYoutube && entity.videosYoutube.length > 0">
       <youtube-player *ngFor="let link of entity.videosYoutube" [playerId]="link" [width]="490" [height]="315" [videoId]="link"></youtube-player>
     </ng-container>
-     <ng-container>
+     <ng-container *ngIf="!entity.videosYoutube || entity.videosYoutube.length == 0">
        <div class="no-video-container d-flex align-items-center justify-content-center">
         <span>{{'NoVideo' | translate}}</span>
        </div>
