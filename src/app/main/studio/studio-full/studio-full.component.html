@@ -1,0 +1,10 @@
+ <div class="studio-full-container">
+   <div class="d-flex justify-content-center row-container">
+    <studio-base *ngIf="editService.baseModel"></studio-base>
+    <studio-info *ngIf="editService.baseModel"></studio-info>
+    <studio-map *ngIf="editService.baseModel"></studio-map>
+   </div>
+   <div *ngIf="editService.baseModel" class="d-flex justify-content-center row-container">
+    <!-- <studio-video [studio]="editService.baseModel"></studio-video> -->
+  </div>
+</div> 

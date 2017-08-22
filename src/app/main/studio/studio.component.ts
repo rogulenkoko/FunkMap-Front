@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudioService } from "app/main/studio/studio.service";
-import { StudioPreview } from "app/main/studio/models/studio-preview";
+import { StudioPreview, Studio } from "app/main/studio/models/studio-preview";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class StudioComponent implements OnInit {
 
-  private studio: StudioPreview;
+  private studio: Studio;
 
   constructor(private studioService: StudioService,
               private route: ActivatedRoute) { }

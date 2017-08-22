@@ -1,0 +1,24 @@
+<entity-base [entity]="studio" [underNameTemplate]="underNameTemplate" [items]="infoItems" (onSaved)="save()"></entity-base>
+
+<ng-template #underNameTemplate>
+  <div class="sub-info-container">
+    <!-- {{musicianTypesProvider.styles.getValue(shop.instrument) | translate}}, {{musician.age}} {{'Musician_Years' | translate}} -->
+  </div>
+</ng-template>
+
+<ng-template #nameEditTemplate>
+  <input placeholder="{{'Musician_Name' | translate}}" [(ngModel)]="newStudio.name" class="form-control secondary" />
+</ng-template>
+
+
+<ng-template #netsEditTemplate>
+
+  <div class="d-flex flex-column nets-container">
+    <input placeholder="YouTube" [(ngModel)]="newStudio.youTubeLink" class="form-control secondary" />
+    <input placeholder="Vk" [(ngModel)]="newStudio.vkLink" class="form-control secondary" />
+    <input placeholder="Facebook" [(ngModel)]="newStudio.facebookLink" class="form-control secondary" />
+    <input placeholder="SoundCloud" [(ngModel)]="newStudio.soundCloudLink" class="form-control secondary" />
+  </div>
+
+
+</ng-template>

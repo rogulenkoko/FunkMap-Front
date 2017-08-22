@@ -53,7 +53,12 @@ export class SearchServiceStub extends SearchService{
      s4.type = EntityType.Shop;
      s4.isFavourite = true;
 
-     return [s1,s2, s3, s4];
+     var s5 = new SearchItem();
+     s5.login = "rogul2";
+     s5.title = "Studio";
+     s5.type = EntityType.Studio;
+
+     return [s1,s2, s3, s4, s5];
   }
 
 }

@@ -16,6 +16,10 @@ export class ShopServiceStub extends ShopService {
     var s = new Shop("test", "Shop", EntityType.Shop);
     s.facebookLink = "asd";
     s.soundCloudLink = "aaa";
+    s.latitude = 60;
+    s.longitude = 30;
+    s.webSite = "https://vmgitlab01.scout-gps.ru:1443/scout/fuel_cards/pipelines";
+    s.description = "Суперклевый магазин!"
     return Observable.of(s);
   }
 

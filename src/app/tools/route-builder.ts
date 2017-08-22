@@ -13,6 +13,9 @@ export class RouteBuilder {
 
         case EntityType.Shop: route = "shopPage";
             break;
+
+        case EntityType.Studio: route = "studioPage";
+            break;
             
         default: return "";
         }

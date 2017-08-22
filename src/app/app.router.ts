@@ -22,6 +22,7 @@ import { StartComponent } from "app/start/start.component";
 import { MainWrapperComponent } from "app/main-wrapper/main-wrapper.component";
 import { BandFullComponent } from "app/main/band/band-full/band-full.component";
 import { ShopFullComponent } from "app/main/shop/shop-full/shop-full.component";
+import { StudioFullComponent } from "app/main/studio/studio-full/studio-full.component";
 
 const appRoutes: Routes = [
   {
@@ -58,6 +59,8 @@ const appRoutes: Routes = [
           { path: "bandPage/:id", component: BandFullComponent },
           { path: "shopPage", component: ShopFullComponent },
           { path: "shopPage/:id", component: ShopFullComponent },
+          { path: "studioPage/", component: StudioFullComponent },
+          { path: "studioPage/:id", component: StudioFullComponent },
           { path: "messenger", component: MessengerComponent },
         ]
       },
