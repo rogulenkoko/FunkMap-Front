@@ -40,10 +40,10 @@ export class MusicianMapComponent implements OnInit {
   }
 
   private updateMap(){
-    
     this.musician = this.editService.baseModel as Musician;
     if(this.marker.instrument == this.musician.instrument) return;
     var marker = this.buildMarker();
+    this.entityMap.marker = marker;
     this.entityMap.initMap(marker);
   }
 

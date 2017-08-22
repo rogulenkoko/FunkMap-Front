@@ -23,6 +23,7 @@ import { MainWrapperComponent } from "app/main-wrapper/main-wrapper.component";
 import { BandFullComponent } from "app/main/band/band-full/band-full.component";
 import { ShopFullComponent } from "app/main/shop/shop-full/shop-full.component";
 import { StudioFullComponent } from "app/main/studio/studio-full/studio-full.component";
+import { RehearsalFullComponent } from "app/main/rehearsal/rehearsal-full/rehearsal-full.component";
 
 const appRoutes: Routes = [
   {
@@ -61,6 +62,8 @@ const appRoutes: Routes = [
           { path: "shopPage/:id", component: ShopFullComponent },
           { path: "studioPage/", component: StudioFullComponent },
           { path: "studioPage/:id", component: StudioFullComponent },
+          { path: "rehearsalPage", component: RehearsalFullComponent },
+          { path: "rehearsalPage/:id", component: RehearsalFullComponent },
           { path: "messenger", component: MessengerComponent },
         ]
       },

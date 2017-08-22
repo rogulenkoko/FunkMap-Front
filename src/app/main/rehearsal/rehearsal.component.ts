@@ -22,7 +22,7 @@ export class RehearsalComponent implements OnInit {
   }
 
   private updateRehearsal(login: string){
-    this.rehearsalService.getRehearsal(login).subscribe(rehearsal=>{
+    this.rehearsalService.getRehearsalPreview(login).subscribe(rehearsal=>{
       this.rehearsal = rehearsal;
     })
   }

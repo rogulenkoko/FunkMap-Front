@@ -1,0 +1,10 @@
+ <div class="rehearsal-full-container">
+   <div class="d-flex justify-content-center row-container">
+    <rehearsal-base *ngIf="editService.baseModel"></rehearsal-base>
+    <rehearsal-info *ngIf="editService.baseModel"></rehearsal-info>
+    <rehearsal-map *ngIf="editService.baseModel"></rehearsal-map>
+   </div>
+   <div *ngIf="editService.baseModel" class="d-flex justify-content-center row-container">
+    <!-- <rehearsal-video [rehearsal]="editService.baseModel"></rehearsal-video> -->
+  </div>
+</div> 

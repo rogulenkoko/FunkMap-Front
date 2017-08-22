@@ -1,0 +1,8 @@
+<entity-info [items]="infoItems" (onCanceled)="cancel()" (onSaved)="save()"></entity-info>
+
+
+<ng-template #descriptionEditTemplate>
+    <div>
+        <textarea [(ngModel)]="newRehearsal.description" class="form-control secondary"></textarea>
+    </div>
+</ng-template>

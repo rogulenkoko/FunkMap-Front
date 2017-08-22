@@ -16,6 +16,9 @@ export class RouteBuilder {
 
         case EntityType.Studio: route = "studioPage";
             break;
+
+        case EntityType.RehearsalPoint: route = "rehearsalPage";
+            break;
             
         default: return "";
         }
