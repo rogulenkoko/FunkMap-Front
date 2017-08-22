@@ -15,8 +15,8 @@ export class LanguageService {
 
 
     try {
-      var savedLanguage = JSON.parse(localStorage.getItem("language")) as Language;
-      this.language = savedLanguage ? this.availableLanguages.find(x=>x.value == savedLanguage.value).value : this.availableLanguages[0].value;
+      var savedLanguage = localStorage.getItem("language");
+      this.language = savedLanguage ? savedLanguage : this.availableLanguages[0].value;
     } catch (ex) {
       this.language = this.availableLanguages[0].value;
     }
@@ -29,7 +29,7 @@ export class LanguageService {
 
   public changeLanguage(){
     this.translate.use(this.language);
-    localStorage.setItem("language", JSON.stringify(this.language));
+    localStorage.setItem("language", this.language);
   }
 
 }

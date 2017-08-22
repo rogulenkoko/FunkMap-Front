@@ -55,6 +55,9 @@
     "Login_SendCode":"Отправить код",
     "Login_Email":"Ваш email",
     "Login_Code":"Код подтверждения",
+    "Login_CodeSent":"Код отправлен",
+    "Login_CodeNotSent":"Код не отправлен",
+    "Login_WrongCode":"Неверный код",
 
     "Settings":"Настройки",
     "Settings_Language":"Язык",
@@ -86,6 +89,8 @@
     "Creation_Point":"Указать",
     "Creation_UseCurrent":"Использовать текущее",
     "Creation_MapQustion":"Вы хотите использовать текущее местоположение или указать вручную",
+    "Creation_LoginIsNotEmpty":"Логин не должен быть пустым",
+    "Creation_NameIsNotEmpty":"Имя не должно быть пустым",
 
     "VideoLink":"Видео (ссылка)",
 

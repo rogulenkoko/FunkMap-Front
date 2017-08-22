@@ -11,7 +11,7 @@
               <div class="d-flex flex-column">
                 <input placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="existingLogin || isWrongCreds" />
                 <div *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}</div>
-                <div *ngIf="isWrongCreds" class="error-label">{{'Неверные логин или пароль' | translate}}</div>
+                <div *ngIf="isWrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</div>
               </div>
             <div class="d-flex flex-column">
               <input placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds" />
@@ -31,8 +31,8 @@
             <div class="d-flex flex-row justify-content-between align-items-end email-container">
               <div class="email">
                 <input placeholder="{{'Login_Email' | translate}}" [(ngModel)]="email" class="form-control" [class.error-form-control]="wrongCreds" />
-                <label *ngIf="isEmailSent && isCodeSent" class="is-sent">Код отправлен</label>
-                <label *ngIf="isEmailSent && !isCodeSent" class="error-label">Код не отправлен</label>
+                <label *ngIf="isEmailSent && isCodeSent" class="is-sent">{{'Login_CodeSent' | translate}}</label>
+                <label *ngIf="isEmailSent && !isCodeSent" class="error-label">{{'Login_CodeNotSent' | translate}}</label>
               </div>
               <div class="code">
                 <button (click)="sendCode()" class="btn btn-secondary code-btn">{{'Login_SendCode' | translate}}</button>
@@ -40,7 +40,7 @@
             </div>
             <div class="d-flex flex-column">
                 <input placeholder="{{'Login_Code' | translate}}" [(ngModel)]="code" class="form-control" [class.error-form-control]="isCodeWrong" />
-                <label class="error-label" *ngIf="isCodeWrong">Неверный код</label>
+                <label class="error-label" *ngIf="isCodeWrong">{{'Login_WrongCode' | translate}}</label>
             </div>
           </ng-container>
 
@@ -55,7 +55,7 @@
       <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
       <button *ngIf="currentStep == 2" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
       <button *ngIf="currentStep != 3" [class.disabled]="(!isCodeSent || !code) && currentStep == 2" (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
-      <button *ngIf="currentStep == 3" routerLink="/" class="btn btn-success">{{'Закрыть' | translate}}</button>
+      <!-- <button *ngIf="currentStep == 3" routerLink="/" class="btn btn-success">{{'Закрыть' | translate}}</button> -->
     </div>
   </div>
 </modal>

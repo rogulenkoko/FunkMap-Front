@@ -7,6 +7,12 @@
     width: 5px;
 }
 
+.creation-container > div{
+    width: 100%;
+    margin-bottom: 45px;
+    //border: 1px solid black;
+}
+
 .main-creation-container{
     width: 100%;
     padding: 2.5% 5%;
@@ -17,13 +23,12 @@
         height: 75%;
         margin-top: 20px;
         width: 310px;
-     
-    }
 
- .creation-container > div{
-     width: 100%;
-     margin-bottom: 35px;
- }
+        .text-field{
+            min-height: 50px;
+            margin-bottom: 15px;
+        }
+    }
 
     .buttons-container{
         height: 25%;

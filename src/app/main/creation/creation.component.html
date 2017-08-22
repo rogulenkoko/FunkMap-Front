@@ -3,38 +3,27 @@
     <div id="creation-container" class="creation-container d-flex flex-column ">
         <div class="d-flex flex-column align-items-baseline">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
-          <!-- <div class="property-value"> -->
-             <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
-          <!-- </div> -->
-         
+          <p-dropdown [options]="entities" [(ngModel)]="creationService.selectedEntity"></p-dropdown>
         </div>
-        <br>
-        <div class="d-flex flex-row align-items-baseline">
-          <div class="property-value">
+        <div class="d-flex flex-column text-field">
             <input placeholder="{{'Creation_Login' | translate}}"
                   class="form-control secondary" 
                   [class.error-form-control]="isLoginExist || !isLoginValid" 
                   [(ngModel)]="creationService.baseModel.login" />
-            <span class="error-label" *ngIf="isLoginExist">Логин уже существует</span>
-            <span class="error-label" *ngIf="!isLoginValid && !isLoginExist">Логин не должен быть пустым</span>
-          </div>
+            <span class="error-label" *ngIf="isLoginExist">{{'Login_LoginExist' | translate}}</span>
+            <span class="error-label" *ngIf="!isLoginValid && !isLoginExist">{{'Creation_LoginIsNotEmpty' | translate}}</span>
         </div>
-
-        <br>
-        <div class="d-flex flex-row align-items-baseline">
+        <div class="d-flex flex-row align-items-baseline text-field">
           <div class="property-value">
             <input placeholder="{{'Musician_Name' | translate}}"
                    class="form-control secondary"
                    [class.error-form-control]="!isNameValid" 
                    [(ngModel)]="creationService.baseModel.name" />
-            <span class="error-label" *ngIf="!isNameValid">Имя не должно быть пустым</span>
+            <span class="error-label" *ngIf="!isNameValid">{{'Creation_NameIsNotEmpty' | translate}}</span>
           </div>
         </div>
-
-        <br>
-
         <div *ngIf="creationService.selectedEntity == 1" class="d-flex flex-column align-items-baseline social-nets">
-          <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
+          <label class="property-title">{{'Musician_Instrument' | translate}}:</label>
           <div class="property-value">
             <p-dropdown [options]="instruments" [(ngModel)]="creationService.instrument" ></p-dropdown>
           </div>
@@ -43,15 +32,6 @@
     <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
       <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
       <button (click)="validate()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
-    </div>
-  </div>
-</modal>
-
-<modal *ngIf="isComplete" [backgroundEnabled]="false" [canClose]="false" [width]="'1%'">
-  <div class="success-container d-flex flex-row align-items-center justify-content-center">
-    <div class="d-flex flex-row">
-      <span class="mr-3">Сущность успешно создана</span>
-      <div class="icon success-icon"></div>
     </div>
   </div>
 </modal>

@@ -24,7 +24,6 @@ export class CreationComponent implements OnInit {
 
   private cropperSettings: CropperSettings;
   private isImageSaved: boolean = false;
-  private isComplete: boolean;
 
   private entities: Array<EntityItem>;
   private instruments: Array<InstrumentsItem>
@@ -60,17 +59,13 @@ export class CreationComponent implements OnInit {
   }
 
   private save() {
-    this.isComplete = true;
     this.creationService.save().subscribe(response => {
       if (response.success) {
-        setTimeout(() => {
-          var route = RouteBuilder.buildRoute(this.creationService.selectedEntity, this.creationService.baseModel.login);
-          if (!route) {
-            this.router.navigate(['/']);
-            return;
-          }
-          this.router.navigate([route]);
-        }, 3000);
+        var route = RouteBuilder.buildRoute(this.creationService.selectedEntity, this.creationService.baseModel.login);
+        if (!route) {
+          this.router.navigate(['/']);
+          return;
+        }
       }
     });
 
@@ -85,11 +80,6 @@ export class CreationComponent implements OnInit {
   }
 
   private validate() {
-    if (!this.creationService.baseModel.name) {
-      this.isNameValid = false;
-      setTimeout(() => this.isNameValid = true, 3000);
-      return;
-    }
 
     if (!this.creationService.baseModel.login) {
       this.isLoginValid = false;
@@ -97,10 +87,16 @@ export class CreationComponent implements OnInit {
       return;
     }
 
-    this.creationService.checkLogin(this.creationService.baseModel.login).subscribe(isExist=>{
+    if (!this.creationService.baseModel.name) {
+      this.isNameValid = false;
+      setTimeout(() => this.isNameValid = true, 3000);
+      return;
+    }
+
+    this.creationService.checkLogin(this.creationService.baseModel.login).subscribe(isExist => {
       this.isLoginExist = isExist;
       setTimeout(() => this.isLoginExist = false, 3000);
-      if(!isExist) this.toMapCreation();
+      if (!isExist) this.toMapCreation();
     })
   }
 

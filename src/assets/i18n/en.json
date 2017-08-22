@@ -55,6 +55,9 @@
     "Login_SendCode":"Send code",
     "Login_Email":"Your email",
     "Login_Code":"Confirmation code",
+     "Login_CodeSent":"Code have sent",
+    "Login_CodeNotSent":"Code haven't sent",
+     "Login_WrongCode":"Wrong code",
 
     "Settings":"Settings",
     "Settings_Language":"Language",
@@ -89,7 +92,8 @@
     "Creation_Point":"Specify it manually",
     "Creation_UseCurrent":"Use the current",
     "Creation_MapQustion":"Do you want to use the current location or specify it manually",
-   
+    "Creation_LoginIsNotEmpty":"Login can not be empty",
+    "Creation_NameIsNotEmpty":"Name can not be empty",
     "VideoLink":"Video (link)",
 
     "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon",
