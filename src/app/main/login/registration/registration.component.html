@@ -1,5 +1,5 @@
 <modal [title]="'Login_SignUp'" [width]="'470px'" [height]="'440px'">
-  <div>
+  <div class="d-flex flex-column align-items-center justify-content-between">
     <div class="d-flex flex-row circle-container justify-content-center">
       <div [class.circle-selected]="currentStep == 1" class="circle d-flex align-items-center justify-content-center"></div>
       <div [class.circle-selected]="currentStep == 2" class="circle d-flex align-items-center justify-content-center circle-center"></div>
@@ -51,7 +51,7 @@
           </ng-container>
         </div>
     </div>
-    <div class="d-flex flex-row registration-buttons-container" [class.justify-content-center]="currentStep == 3" [class.justify-content-between]="currentStep != 3">
+    <div class="d-flex flex-row align-items-center justify-content-between registration-buttons-container">
       <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
       <button *ngIf="currentStep == 2" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
       <button *ngIf="currentStep != 3" [class.disabled]="(!isCodeSent || !code) && currentStep == 2" (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
