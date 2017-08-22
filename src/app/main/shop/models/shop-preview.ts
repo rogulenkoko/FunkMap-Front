@@ -5,7 +5,7 @@ import { EntityType } from "app/main/map/models";
 
 export class Shop extends BaseModel {
 
-    constructor(login:string, name:string, entityType: EntityType){
+    constructor(login?:string, name?:string, entityType?: EntityType){
         super(login, name, entityType);
     }
 
@@ -21,6 +21,10 @@ export class Shop extends BaseModel {
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;
+
+        result.latitude = data.Latitude;
+        result.longitude = data.Longitude;
+
         return result;
     }
 }
