@@ -64,7 +64,7 @@ export class CreationComponent implements OnInit {
         var route = RouteBuilder.buildRoute(this.creationService.selectedEntity, this.creationService.baseModel.login);
         this.router.navigate([route]);
       }
-    });
+    }); 
 
   }
 
