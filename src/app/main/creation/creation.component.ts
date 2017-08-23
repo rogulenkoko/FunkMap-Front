@@ -56,7 +56,7 @@ export class CreationComponent implements OnInit {
         this.save();
       }
     })
-  } 
+  }
 
   private save() {
     this.creationService.save().subscribe(response => {
