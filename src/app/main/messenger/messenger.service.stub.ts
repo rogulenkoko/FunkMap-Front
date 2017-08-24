@@ -24,15 +24,20 @@ export class MessengerServiceStub extends MessengerService {
     return Observable.of([message]);
   }
   getDialogs(request: DialogsRequest): Observable<Dialog[]> {
-    var dialog = new Dialog("1","test");
-    return Observable.of([dialog]);
+    var dialog = new Dialog("1","Константинопольский Кирилл");
+    var message = new Message("qwe","1","Привет, хотел бы пригласить тебя туда сюда")
+    dialog.lastMessage = message;
+
+    var dialog2 = new Dialog("2","Роналдо Гриб");
+    dialog2.isOnline = true;
+    return Observable.of([dialog, dialog2]);
   }
 
   getOnlineUsersLogins(): Observable<string[]> {
     return Observable.of(["test","rogulenkoko"]);
   }
 
-  getNewMessagesCount():Observable<number>{
+  getDialogsWithNewMessagesCount():Observable<number>{
     return Observable.of(22);
   }
 }

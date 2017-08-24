@@ -26,7 +26,7 @@ export abstract class MessengerService {
 
   abstract getOnlineUsersLogins():Observable<Array<string>>;
 
-  abstract getNewMessagesCount():Observable<number>;
+  abstract getDialogsWithNewMessagesCount():Observable<number>;
 
   private onMessageRecievedEvent: BroadcastEventListener<Message>;
   public onMessageRecieved: Observable<Message>;
@@ -74,8 +74,8 @@ export class MessengerServiceHub extends MessengerService {
     return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getOnlineUsers`).map(x=> x.json());
   }
 
-  getNewMessagesCount():Observable<number>{
-    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getNewMessagesCount`).map(x=> x.json());
+  getDialogsWithNewMessagesCount():Observable<number>{
+    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogsWithNewMessagesCount`).map(x=> x.json());
   }
 
 }

@@ -1,0 +1,94 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/icons.scss";
+
+$dialog-name-color: #6f6e72;
+$dialog-background: #e4eaf0;
+
+.dialog-container{
+    border: 1px solid black;
+    width: 350px;
+    height: 82px;
+    cursor: pointer;
+    padding: 12px 24px;
+
+    .image-container{
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        outline: none;
+        
+        img{
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .no-image{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        
+            img{
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        :host-context(.light) .no-image{
+            background-color: $light-sub-main; 
+        }
+
+        :host-context(.dark) .no-image{
+            background-color: $dark-sub-main;
+        }
+
+        .online-circle{
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            margin-top: -50px;
+            margin-left: 50px;
+            border: 2px solid white;
+            background-color: #28e06d;
+        }
+    }
+
+    .middle-container{
+        width: 184px;
+        font-size: 13px;
+        height: 90%;
+        .dialog-name, .last-message{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .dialog-name{
+            color: $dialog-name-color; 
+            height: 50%;   
+        }
+
+        .last-message{
+            color: $dark-title-color;
+            height: 50%;   
+        }
+    }
+}
+
+
+
+
+
+.dialog-container:hover{
+    background-color: $dialog-background;
+
+     .image-container{
+        .online-circle{
+            border: 2px solid $dialog-background !important;
+        }
+     }
+     
+}

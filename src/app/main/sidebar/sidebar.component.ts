@@ -64,7 +64,7 @@ export class SidebarComponent implements OnInit {
 
   private getNewMessagesCount(){
     if(!this.userService.user) return;
-    this.messengerService.getNewMessagesCount().subscribe(count=>{
+    this.messengerService.getDialogsWithNewMessagesCount().subscribe(count=>{
       this.newMessagesCount = count;
     });
   }

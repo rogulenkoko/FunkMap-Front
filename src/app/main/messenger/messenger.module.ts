@@ -10,13 +10,14 @@ import { DialogsComponent } from './dialogs/dialogs.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DialogService } from "app/main/messenger/dialog.service";
 import { MessageCreateComponent } from './message-create/message-create.component';
+import { DialogComponent } from './dialogs/dialog/dialog.component';
 
 @NgModule({
   imports: [
     CoreModule,
     ToolsModule
   ],
-  declarations: [MessengerComponent, DialogsComponent, MessagesComponent, MessageCreateComponent],
+  declarations: [MessengerComponent, DialogsComponent, MessagesComponent, MessageCreateComponent, DialogComponent],
   exports: [MessengerComponent],
   providers: [
      {

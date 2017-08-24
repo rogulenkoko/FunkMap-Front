@@ -1,9 +1,13 @@
-export class Dialog{
+import { Message } from "app/main/messenger/models";
+
+export class Dialog {
     constructor(public dialogId: string, public name: string, public avatar?: string){
 
     }
 
     public isOnline: boolean;
+
+    public lastMessage: Message;
 
     public static ToDialog(data: any): Dialog{
         return new Dialog(data.DialogId, data.Name, data.Avatar);

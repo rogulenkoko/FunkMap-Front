@@ -1,4 +1,3 @@
-
-<div *ngFor="let dialog of dialogs" (click)="setDialog(dialog)" [class.online]="dialog.isOnline">
-  {{dialog.name}}
+<div class="dialogs-container">
+    <dialog-item *ngFor="let dialog of dialogs" (click)="setDialog(dialog)" [dialog]="dialog"></dialog-item>
 </div>
