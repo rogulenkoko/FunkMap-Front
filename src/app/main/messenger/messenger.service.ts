@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { SignalrService } from "app/tools/signalr/signalr.service";
-import { Message, Dialog, DialogMessagesRequest, DialogsRequest } from "app/main/messenger/models";
+import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel } from "app/main/messenger/models";
 import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
@@ -15,6 +15,7 @@ export abstract class MessengerService {
   constructor(protected signalrService: SignalrService) {
     this.signalrService.onConnectionStart.subscribe(() => this.initializeEvents());
     if(this.signalrService.connection) this.initializeEvents();
+    this.onDialogOpened = new EventEmitter();
   }
 
 
@@ -26,7 +27,9 @@ export abstract class MessengerService {
 
   abstract getOnlineUsersLogins():Observable<Array<string>>;
 
-  abstract getDialogsWithNewMessagesCount():Observable<number>;
+  abstract getDialogsWithNewMessages():Observable<Array<Dialog>>;
+
+  abstract getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>;
 
   private onMessageRecievedEvent: BroadcastEventListener<Message>;
   public onMessageRecieved: Observable<Message>;
@@ -37,6 +40,8 @@ export abstract class MessengerService {
 
   private onUserConnectedEvent:  BroadcastEventListener<string>;
   public onUserConnected: Observable<string>;
+
+  public onDialogOpened: EventEmitter<any>;
 
   private initializeEvents() {
     this.onMessageRecievedEvent = this.signalrService.connection.listenFor("OnMessageSent");
@@ -74,8 +79,12 @@ export class MessengerServiceHub extends MessengerService {
     return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getOnlineUsers`).map(x=> x.json());
   }
 
-  getDialogsWithNewMessagesCount():Observable<number>{
-    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogsWithNewMessagesCount`).map(x=> x.json());
+  getDialogsWithNewMessages():Observable<Array<Dialog>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogsWithNewMessagesCount`).map(x=> Dialog.ToDialogs(x.json()));
+  }
+
+  getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>{
+    return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogsNewMessagesCount`, dialogIds).map(x => DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
   }
 
 }

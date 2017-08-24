@@ -5,12 +5,17 @@ export class Dialog {
 
     }
 
-    public isOnline: boolean;
+    public participants: Array<string>;
 
+    public isOnline: boolean;
     public lastMessage: Message;
+    public newMessagesCount: number;
 
     public static ToDialog(data: any): Dialog{
-        return new Dialog(data.DialogId, data.Name, data.Avatar);
+        var result =  new Dialog(data.DialogId, data.Name, data.Avatar);
+        if(data.LastMessage) result.lastMessage = new Message(data.LastMessage.Sender, data.LastMessage.DialogId, data.LastMessage.Text);
+        result.participants = data.Participants;
+        return result;
     }
 
     public static ToDialogs(data:any): Array<Dialog>{

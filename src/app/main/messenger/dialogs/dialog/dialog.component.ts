@@ -13,7 +13,7 @@ export class DialogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.dialog);
+    //console.log(this.dialog);
   }
 
 }

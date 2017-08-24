@@ -3,6 +3,7 @@ import { UserService } from "../user/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { SignalrService } from "app/tools/signalr/signalr.service";
 import { MessengerService } from "app/main/messenger/messenger.service";
+import { Dialog } from "app/main/messenger/models";
 
 @Component({
   selector: 'sidebar',
@@ -16,14 +17,15 @@ export class SidebarComponent implements OnInit {
   private topItems: Array<SidebarItem>;
   private bottomItems: Array<SidebarItem>;
 
-  private newMessagesCount: number;
+  private dialogsWithNewMessages: Array<Dialog>;
 
 
   constructor(private signalrService:SignalrService,
               private userService: UserService,
               private route: ActivatedRoute,
               private messengerService: MessengerService) {
-
+    this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
+    this.messengerService.onDialogOpened.subscribe(()=> this.getNewMessagesCount());
   }
 
   ngOnInit() {
@@ -64,8 +66,8 @@ export class SidebarComponent implements OnInit {
 
   private getNewMessagesCount(){
     if(!this.userService.user) return;
-    this.messengerService.getDialogsWithNewMessagesCount().subscribe(count=>{
-      this.newMessagesCount = count;
+    this.messengerService.getDialogsWithNewMessages().subscribe(dialogs=>{
+      this.dialogsWithNewMessages = dialogs;
     });
   }
 
@@ -84,6 +86,10 @@ export class SidebarComponent implements OnInit {
   logOut() {
     this.userService.user = undefined;
     this.userService.avatar = undefined;
+  }
+
+  private initializeSubscriptions(){
+    this.messengerService.onMessageRecieved.subscribe(()=> this.getNewMessagesCount());
   }
 
 }

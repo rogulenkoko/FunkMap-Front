@@ -30,5 +30,5 @@
 </div>
 
 <ng-template #messageCountTemplate>
-  <span *ngIf="newMessagesCount" class="badge badge-pill message-circle">{{newMessagesCount}}</span>
+  <span *ngIf="dialogsWithNewMessages && dialogsWithNewMessages.length > 0" class="badge badge-pill message-circle">{{dialogsWithNewMessages.length}}</span>
 </ng-template>

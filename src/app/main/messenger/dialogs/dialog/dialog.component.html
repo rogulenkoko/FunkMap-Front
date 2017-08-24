@@ -11,4 +11,9 @@
     <div *ngIf="dialog.lastMessage" class="last-message">{{dialog.lastMessage.text}}</div>
   </div>
 
+  <div class="right-container d-flex flex-column align-items-end">
+    <div class="last-message-date">15:45</div>
+    <div class="message-circle-container d-flex align-items-start"><span *ngIf="dialog.newMessagesCount > 0" class="badge badge-pill message-circle">{{dialog.newMessagesCount}}</span></div>
+  </div>
+
 </div>

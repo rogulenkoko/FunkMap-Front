@@ -6,11 +6,11 @@ $dialog-name-color: #6f6e72;
 $dialog-background: #e4eaf0;
 
 .dialog-container{
-    border: 1px solid black;
     width: 350px;
     height: 82px;
     cursor: pointer;
     padding: 12px 24px;
+    border: 1px solid black;
 
     .image-container{
         width: 60px;
@@ -76,11 +76,38 @@ $dialog-background: #e4eaf0;
             height: 50%;   
         }
     }
+
+    .right-container{
+        width: 45px;
+        height: 90%;
+
+        .last-message-date{
+            font-size: 13px;
+            color: $dark-title-color;
+            height: 50%;  
+        }
+
+        .message-circle-container{
+            height: 50%;  
+            .message-circle{
+                min-height: 16px;
+                min-width: 16px;
+                font-size: 10px !important;
+                margin-top: 2px;
+            }
+        }
+        
+
+        :host-context(.light) .message-circle{
+            background-color: $app-red;
+        }
+
+        :host-context(.dark) .message-circle{
+            background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+
+        }
+    }
 }
-
-
-
-
 
 .dialog-container:hover{
     background-color: $dialog-background;
