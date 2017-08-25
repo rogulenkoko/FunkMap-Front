@@ -69,16 +69,25 @@
 }
 
 .search-item-content-container{
-    max-width: 95%;
+    width: 95%;
 }
 
 .search-item-content{
-    overflow: hidden;
+    width: 100%;
+}
+
+.entity-info-container{
+    width: 75%;
+}
+
+.favourite-container{
+    width: 5%;
 }
 
 .send-message-label{
     margin-left: 70px;
     cursor: pointer;
+    outline: none;
 }
 
 :host-context(.light) .send-message-label, :host-context(.light) .selected-favorite, :host-context(.light) .title:hover{

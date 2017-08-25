@@ -7,7 +7,7 @@
           <div *ngIf="!item.image" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
           <img *ngIf="item.image" src="data:image/png;base64,{{item.image}}" />
         </div>
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column entity-info-container">
           <div class="title" (click)="navigate(item.login, item.type)">
             {{item.title}}
           </div>
@@ -19,10 +19,9 @@
         </div>
       </div>
       <div [routerLink]="['/messenger/' + item.userLogin]" *ngIf="userService.user && !checkIfUserEntity(item.login) && item.userLogin" class="send-message-label">{{'Send_Message' | translate}}</div>
-      <div *ngIf="userService.user && checkIfUserEntity(item.login)" class="send-message-label">{{'Edit' | translate}}</div>
     </div>
 
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row favourite-container justify-content-center">
       <span *ngIf="userService.user && !checkIfUserEntity(item.login)" (click)="changeFavourite(item.login)" class="icon star-icon" [class.selected-favorite]="item.isFavourite"></span>
     </div>
   </div>

@@ -1,7 +1,11 @@
 .property-value{
-    white-space: nowrap ;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+    white-space: nowrap;
 }
 .property-title{
     color: #b4b5bb;
     margin-right: 5px;
+    width: 20%;
 }
