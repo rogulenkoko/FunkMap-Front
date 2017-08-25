@@ -37,6 +37,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   private refreshMessages(dialog: Dialog) {
+    if(!this.dialogService.dialog) return;
     let request = new DialogMessagesRequest(this.dialogService.dialog.dialogId, 0, 20)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
@@ -45,10 +46,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   private onMessageRecieved(message: Message){
-    console.log(this.dialogService.dialog.dialogId);
-    console.log(message.dialogId);
 
-    if(this.dialogService.dialog.dialogId != message.dialogId) return;
+    if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
     this.messages.push(message);
   }
 

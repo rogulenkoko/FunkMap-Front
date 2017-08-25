@@ -65,6 +65,7 @@ const appRoutes: Routes = [
           { path: "rehearsalPage", component: RehearsalFullComponent },
           { path: "rehearsalPage/:id", component: RehearsalFullComponent },
           { path: "messenger", component: MessengerComponent },
+          { path: "messenger/:login", component: MessengerComponent },
         ]
       },
       { path: "start", component: StartComponent }

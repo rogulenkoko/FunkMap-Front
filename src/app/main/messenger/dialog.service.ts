@@ -7,11 +7,15 @@ export class DialogService {
   public dialog: Dialog;
   public onDialogChanged: EventEmitter<Dialog>;
 
+  public onDialogsLoaded: EventEmitter<any>;
+
   constructor() {
     this.onDialogChanged = new EventEmitter<Dialog>();
+    this.onDialogsLoaded = new EventEmitter();
   }
 
   public setDialog(dialog: Dialog){
+    console.log(dialog);
     this.dialog = dialog;
     this.onDialogChanged.emit(dialog);
   }

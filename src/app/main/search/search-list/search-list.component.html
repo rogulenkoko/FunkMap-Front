@@ -17,10 +17,8 @@
           <search-rehearsal *ngIf="item.type == 4" [item]="item"></search-rehearsal>
           <search-studio *ngIf="item.type == 5" [item]="item"></search-studio>
         </div>
-        
-
       </div>
-      <div *ngIf="userService.user && !checkIfUserEntity(item.login)" class="send-message-label">{{'Send_Message' | translate}}</div>
+      <div [routerLink]="['/messenger/' + item.userLogin]" *ngIf="userService.user && !checkIfUserEntity(item.login) && item.userLogin" class="send-message-label">{{'Send_Message' | translate}}</div>
       <div *ngIf="userService.user && checkIfUserEntity(item.login)" class="send-message-label">{{'Edit' | translate}}</div>
     </div>
 

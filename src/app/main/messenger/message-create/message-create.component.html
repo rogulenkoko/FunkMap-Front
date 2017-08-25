@@ -1,2 +1,5 @@
-<textarea [(ngModel)]="text"></textarea>
-<button (click)="sendMessage()">Отправить</button>
+
+<div *ngIf="dialogService.dialog || isNewDialog">
+    <textarea [(ngModel)]="text"></textarea>
+    <button (click)="sendMessage()">Отправить</button>
+</div>

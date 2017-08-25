@@ -23,7 +23,6 @@ export class SignalrServiceReal extends SignalrService {
   constructor(private signalR: SignalR,
               private userService: UserService) {
       super();
-      console.log(signalR);
       this.updateSignaRConnection();
       this.userService.onUserChanged.subscribe(()=>this.updateSignaRConnection());
   }

@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { SignalrService } from "app/tools/signalr/signalr.service";
-import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel } from "app/main/messenger/models";
+import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel, DialogCreateResponse } from "app/main/messenger/models";
 import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
@@ -17,10 +17,12 @@ export abstract class MessengerService {
     if(this.signalrService.connection) this.initializeEvents();
     this.onDialogOpened = new EventEmitter();
     this.onMessagesLoaded = new EventEmitter();
+    this.onDialogCreated = new EventEmitter<string>();
   }
 
 
   abstract sendMessage(message: Message): Observable<BaseResponse>;
+  abstract createDialog(dialog: Dialog): Observable<DialogCreateResponse>;
 
   abstract setOpenedDialog(dialogId: string): Observable<BaseResponse>;
 
@@ -46,6 +48,7 @@ export abstract class MessengerService {
 
   public onDialogOpened: EventEmitter<any>;
   public onMessagesLoaded: EventEmitter<any>;
+  public onDialogCreated: EventEmitter<string>;
 
   private initializeEvents() {
     this.onMessageRecievedEvent = this.signalrService.connection.listenFor("OnMessageSent");
@@ -73,6 +76,10 @@ export class MessengerServiceHub extends MessengerService {
     return Observable.fromPromise(this.signalrService.connection.invoke("sendMessage", message));
   }
 
+  createDialog(dialog: Dialog): Observable<DialogCreateResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl}messenger/createDialog`, dialog).map(x=> DialogCreateResponse.ToDialogCreateResponse(x.json()));
+  }
+
   setOpenedDialog(dialogId: string): Observable<BaseResponse>{
     return Observable.fromPromise(this.signalrService.connection.invoke("setOpenedDialog", dialogId));
   }
@@ -89,7 +96,6 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   getDialogsWithNewMessages():Observable<Array<Dialog>>{
-    console.log("aaa");
     return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogsWithNewMessagesCount`).map(x=> Dialog.ToDialogs(x.json()));
   }
 

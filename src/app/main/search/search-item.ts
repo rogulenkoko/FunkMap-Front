@@ -4,6 +4,7 @@ import { InstrumentType, ExpirienceType, MusicStyle } from "app/main/musician/mo
 
 export class SearchItem {
     public login: string;
+    public userLogin: string;
     public title: string;
     public image: string;
     public type: EntityType;
@@ -25,6 +26,7 @@ export class SearchItem {
     public static ToSearchItem(data: any): SearchItem{
         var result = new SearchItem();
         result.login = data.Login;
+        result.userLogin = data.UserLogin;
         result.title = data.Title;
         result.image = data.Avatar;
         result.instrument = data.Instrument;

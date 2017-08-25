@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SignalrService } from "app/tools/signalr/signalr.service";
-import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel } from "app/main/messenger/models";
+import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel, DialogCreateResponse } from "app/main/messenger/models";
 import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
@@ -53,5 +53,9 @@ export class MessengerServiceStub extends MessengerService {
 
   getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>{
     return Observable.of([new DialogsNewMessagesCountModel("1", 2)]);
+  }
+
+  createDialog(dialog: Dialog): Observable<DialogCreateResponse>{
+    return Observable.of(new DialogCreateResponse(true, "2"));
   }
 }
