@@ -15,10 +15,10 @@ export class LoginServiceStub extends LoginService {
 
   login(login: string, password: string): Observable<AuthResponse> {
     if (login == "test" && password == "test") {
-      var response = new AuthResponse("token", "rogulenkoko");
+      var response = new AuthResponse("token", "test");
       return Observable.of(response);
     }
-    return Observable.of(new AuthResponse("token", "rogulenkoko"));
+    return Observable.of(new AuthResponse("token", "test"));
   }
 
   prolongate(refreshToken: string): Observable<AuthResponse>{

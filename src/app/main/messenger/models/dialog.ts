@@ -15,7 +15,9 @@ export class Dialog {
 
     public static ToDialog(data: any): Dialog{
         var result =  new Dialog(data.DialogId, data.Name, data.Avatar);
-        if(data.LastMessage) result.lastMessage = new Message(data.LastMessage.Sender, data.LastMessage.DialogId, data.LastMessage.Text, data.LastMessage.DateTimeUtc);
+        if(data.LastMessage){
+            result.lastMessage = Message.ToMessage(data.LastMessage);
+        } 
         result.participants = data.Participants;
         return result;
     }

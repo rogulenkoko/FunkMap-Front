@@ -40,7 +40,9 @@ export class Message{
     public timeString: string;
 
     public static ToMessage(data: any): Message{
-        return new Message(data.Sender, data.DialogId, data.Text, new Date(data.DateTimeUtc));
+        var result = new Message(data.Sender, data.DialogId, data.Text, new Date(data.DateTimeUtc));
+        result.isNew = data.IsNew;
+        return result;
     }
 
     public static ToMessages(data: any): Array<Message>{

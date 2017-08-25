@@ -51,9 +51,19 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messages.push(message);
   }
 
+  private onDialogRead(dialogId: string){
+    this.messages.forEach(message => {
+      message.isNew = false;
+    });
+  }
+
   private initializeSubscriptions(){
     this.messengerService.onMessageRecieved.subscribe(message=>{
       this.onMessageRecieved(message);
+    });
+
+    this.messengerService.onDialogRead.subscribe(dialogId=>{
+      this.onDialogRead(dialogId);
     });
   }
 

@@ -13,7 +13,10 @@
 
   <div class="right-container d-flex flex-column align-items-end">
     <div *ngIf="dialog.lastMessage" class="last-message-date">{{dialog.lastMessage.dateString}}</div>
-    <div class="message-circle-container d-flex align-items-start"><span *ngIf="dialog.newMessagesCount > 0" class="badge badge-pill message-circle">{{dialog.newMessagesCount}}</span></div>
+    <div class="message-circle-container d-flex align-items-start">
+      <span *ngIf="dialog.lastMessage && dialog.lastMessage.sender != userService.user.login && dialog.newMessagesCount > 0" class="badge badge-pill message-circle">{{dialog.newMessagesCount}}</span>
+      <span *ngIf="dialog.lastMessage && dialog.lastMessage.sender == userService.user.login && dialog.lastMessage.isNew" class="new-circle"></span>
+    </div>
   </div>
 
 </div>

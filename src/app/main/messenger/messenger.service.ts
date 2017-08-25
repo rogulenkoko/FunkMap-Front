@@ -46,6 +46,9 @@ export abstract class MessengerService {
   private onUserConnectedEvent:  BroadcastEventListener<string>;
   public onUserConnected: Observable<string>;
 
+  private onDialogReadEvent: BroadcastEventListener<string>;
+  public onDialogRead: Observable<string>;
+
   public onDialogOpened: EventEmitter<any>;
   public onMessagesLoaded: EventEmitter<any>;
   public onDialogCreated: EventEmitter<string>;
@@ -59,6 +62,9 @@ export abstract class MessengerService {
 
     this.onUserConnectedEvent = this.signalrService.connection.listenFor("onUserConnected");
     this.onUserConnected = this.onUserConnectedEvent.map(x=> x);
+
+    this.onDialogReadEvent = this.signalrService.connection.listenFor("onDialogRead");
+    this.onDialogRead = this.onDialogReadEvent.map(x=> x);
   }
 
 }

@@ -53,8 +53,8 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.messengerService.getDialogs(request).subscribe(dialogs => {
       this.dialogs = dialogs;
 
-      this.setDialog(this.dialogs[0]);//убрать
-      
+      //this.setDialog(this.dialogs[0]);//убрать
+
       if (dialogId) {
         this.dialogService.setDialog(this.dialogs.find(x => x.dialogId == dialogId));
         this.dialogService.onDialogsLoaded.emit();
