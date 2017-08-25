@@ -1,7 +1,7 @@
 import { Message } from "app/main/messenger/models";
 
 export class Dialog {
-    constructor(public dialogId: string, public name: string, public avatar?: string){
+    constructor(public dialogId: string, public name?: string, public avatar?: string){
 
     }
 

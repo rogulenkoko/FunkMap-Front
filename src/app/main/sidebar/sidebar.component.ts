@@ -1,16 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { UserService } from "../user/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { SignalrService } from "app/tools/signalr/signalr.service";
 import { MessengerService } from "app/main/messenger/messenger.service";
-import { Dialog } from "app/main/messenger/models";
+import { Dialog, Message } from "app/main/messenger/models";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
 
   @ViewChild("messageCountTemplate") messageCountTemplate;
 
@@ -19,13 +20,16 @@ export class SidebarComponent implements OnInit {
 
   private dialogsWithNewMessages: Array<Dialog>;
 
+  private subscription: Subscription;
 
-  constructor(private signalrService:SignalrService,
+  constructor(private signalrService: SignalrService,
               private userService: UserService,
               private route: ActivatedRoute,
               private messengerService: MessengerService) {
+    this.subscription = new Subscription();
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
-    this.messengerService.onDialogOpened.subscribe(()=> this.getNewMessagesCount());
+    this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(()=> this.getNewMessagesCount()));
+    
   }
 
   ngOnInit() {
@@ -61,14 +65,22 @@ export class SidebarComponent implements OnInit {
 
     this.getNewMessagesCount()
 
-    this.userService.onUserChanged.subscribe(()=> this.getNewMessagesCount());
+    this.userService.onUserChanged.subscribe(() => this.getNewMessagesCount());
   }
 
-  private getNewMessagesCount(){
-    if(!this.userService.user) return;
-    this.messengerService.getDialogsWithNewMessages().subscribe(dialogs=>{
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+
+  private getNewMessagesCount() {
+    if (!this.userService.user) return;
+    this.messengerService.getDialogsWithNewMessages().subscribe(dialogs => {
       this.dialogsWithNewMessages = dialogs;
     });
+  }
+
+  private updateNewMessagesCount(message: Message) {
+    this.getNewMessagesCount();
   }
 
   onItemClick(item: SidebarItem) {
@@ -88,8 +100,8 @@ export class SidebarComponent implements OnInit {
     this.userService.avatar = undefined;
   }
 
-  private initializeSubscriptions(){
-    this.messengerService.onMessageRecieved.subscribe(()=> this.getNewMessagesCount());
+  private initializeSubscriptions() {
+    this.messengerService.onMessageRecieved.subscribe((message) => this.updateNewMessagesCount(message));
   }
 
 }

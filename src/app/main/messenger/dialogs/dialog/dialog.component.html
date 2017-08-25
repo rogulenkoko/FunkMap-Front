@@ -1,4 +1,4 @@
-<div *ngIf="dialog" class="dialog-container d-flex flex-row align-items-center">
+<div *ngIf="dialog" class="dialog-container d-flex flex-row align-items-center" [class.selected-dialog]="dialogService.dialog && dialogService.dialog.dialogId == dialog.dialogId">
 
   <div class="image-container">
    <div *ngIf="!dialog.image" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
@@ -12,7 +12,7 @@
   </div>
 
   <div class="right-container d-flex flex-column align-items-end">
-    <div class="last-message-date">15:45</div>
+    <div *ngIf="dialog.lastMessage" class="last-message-date">{{dialog.lastMessage.dateString}}</div>
     <div class="message-circle-container d-flex align-items-start"><span *ngIf="dialog.newMessagesCount > 0" class="badge badge-pill message-circle">{{dialog.newMessagesCount}}</span></div>
   </div>
 

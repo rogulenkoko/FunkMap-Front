@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
+import * as moment from "moment";
 
 @Injectable()
 export class LanguageService {
@@ -20,6 +21,7 @@ export class LanguageService {
     } catch (ex) {
       this.language = this.availableLanguages[0].value;
     }
+    moment.lang(this.language);
 
     
     this.translate.addLangs(this.availableLanguages.map(x=>x.value));
@@ -30,6 +32,7 @@ export class LanguageService {
   public changeLanguage(){
     this.translate.use(this.language);
     localStorage.setItem("language", this.language);
+    moment.lang(this.language);
   }
 
 }

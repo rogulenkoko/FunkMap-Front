@@ -16,10 +16,13 @@ export abstract class MessengerService {
     this.signalrService.onConnectionStart.subscribe(() => this.initializeEvents());
     if(this.signalrService.connection) this.initializeEvents();
     this.onDialogOpened = new EventEmitter();
+    this.onMessagesLoaded = new EventEmitter();
   }
 
 
   abstract sendMessage(message: Message): Observable<BaseResponse>;
+
+  abstract setOpenedDialog(dialogId: string): Observable<BaseResponse>;
 
   abstract getDialogMessages(request: DialogMessagesRequest): Observable<Array<Message>>;
 
@@ -42,6 +45,7 @@ export abstract class MessengerService {
   public onUserConnected: Observable<string>;
 
   public onDialogOpened: EventEmitter<any>;
+  public onMessagesLoaded: EventEmitter<any>;
 
   private initializeEvents() {
     this.onMessageRecievedEvent = this.signalrService.connection.listenFor("OnMessageSent");
@@ -68,6 +72,11 @@ export class MessengerServiceHub extends MessengerService {
   sendMessage(message: Message): Observable<BaseResponse> {
     return Observable.fromPromise(this.signalrService.connection.invoke("sendMessage", message));
   }
+
+  setOpenedDialog(dialogId: string): Observable<BaseResponse>{
+    return Observable.fromPromise(this.signalrService.connection.invoke("setOpenedDialog", dialogId));
+  }
+
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
     return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogMessages`, request).map(x=> Message.ToMessages(x.json()));
   }
@@ -80,6 +89,7 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   getDialogsWithNewMessages():Observable<Array<Dialog>>{
+    console.log("aaa");
     return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogsWithNewMessagesCount`).map(x=> Dialog.ToDialogs(x.json()));
   }
 

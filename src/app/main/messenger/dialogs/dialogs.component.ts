@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessengerService } from "app/main/messenger/messenger.service";
 import { Dialog, DialogsRequest } from "app/main/messenger/models";
 import { DialogService } from "app/main/messenger/dialog.service";
 import { SignalrService } from "app/tools/signalr/signalr.service";
 import { UserService } from "app/main/user/user.service";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'dialogs',
   templateUrl: './dialogs.component.html',
   styleUrls: ['./dialogs.component.scss']
 })
-export class DialogsComponent implements OnInit {
+export class DialogsComponent implements OnInit, OnDestroy {
 
   private dialogs: Array<Dialog> = [];
 
   private onlineUsers: Array<String> = [];
 
+  private subscription: Subscription;
 
   constructor(private messengerService: MessengerService,
               private dialogService: DialogService,
@@ -23,14 +25,20 @@ export class DialogsComponent implements OnInit {
               private userService: UserService) {
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
     if(this.signalrService.connection) this.initializeSubscriptions();
-
-   
-
+    this.subscription = new Subscription();
+    this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(()=> this.updateDialogsNewMessagesCount()));
   }
 
   ngOnInit() {
     this.refreshDialogs();
     this.getOnlineUsers();
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+    this.messengerService.setOpenedDialog(null).subscribe(x=>{
+
+    });
   }
 
   private refreshDialogs() {
@@ -44,8 +52,9 @@ export class DialogsComponent implements OnInit {
 
   private setDialog(dialog: Dialog) {
     this.dialogService.setDialog(dialog);
-    this.messengerService.onDialogOpened.emit();
-    
+    this.messengerService.setOpenedDialog(dialog.dialogId).subscribe(response=>{
+      if(response.success) this.messengerService.onDialogOpened.emit();
+    })
   }
 
   private getOnlineUsers() {
@@ -88,6 +97,8 @@ export class DialogsComponent implements OnInit {
       }
     });
 
-     this.messengerService.onMessageRecieved.subscribe(()=> this.refreshDialogs());
+     this.messengerService.onMessageRecieved.subscribe((message)=> {
+        this.refreshDialogs();
+     })
   }
 }

@@ -1,7 +1,38 @@
-export class Message{
-    constructor(public sender: string, public dialogId: string, public text:string, public data?: Date){
+import * as moment from "moment";
 
+export class Message{
+    constructor(public sender: string, public dialogId: string, public text:string, public date?: Date){
+        this.setDate(date);
     }
+
+    public setDate(date: Date){
+        if(!date || date.getFullYear() < 2000){
+            this.dateString = "";
+            return;
+        }
+        var start = moment(date);
+        var end = moment(new Date());
+        var daysDifference = Math.abs(start.diff(end, "days"));
+
+        var daysFromWeekStart = end.diff(moment().startOf('week'), "days");
+        if(daysDifference == 0){
+            this.dateString = start.format("HH:mm")
+        }
+
+        if(daysDifference > 0 && daysDifference <= daysFromWeekStart){
+            this.dateString = start.format("ddd").toString();
+        }
+
+        if(daysDifference > daysFromWeekStart && daysDifference < 365){
+            this.dateString = start.format("DD.MM").toString();
+        }
+
+        if(daysDifference > 365){
+            this.dateString = start.format("DD.MM.YY").toString();
+        }
+    }
+
+    public dateString: any;
 
     public static ToMessage(data: any): Message{
         return new Message(data.Sender, data.DialogId, data.Text, new Date(data.DateTimeUtc));

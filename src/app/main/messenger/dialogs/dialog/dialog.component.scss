@@ -10,7 +10,7 @@ $dialog-background: #e4eaf0;
     height: 82px;
     cursor: pointer;
     padding: 12px 24px;
-    border: 1px solid black;
+    //border: 1px solid black;
 
     .image-container{
         width: 60px;
@@ -109,7 +109,7 @@ $dialog-background: #e4eaf0;
     }
 }
 
-.dialog-container:hover{
+.dialog-container:hover, .selected-dialog{
     background-color: $dialog-background;
 
      .image-container{
@@ -117,5 +117,4 @@ $dialog-background: #e4eaf0;
             border: 2px solid $dialog-background !important;
         }
      }
-     
 }
