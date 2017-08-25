@@ -10,6 +10,10 @@ $foreign-message-color: #6e6f72;
 
 $image-width: 36px;
 
+.main-message-wrapper{
+    margin-bottom: 12px;
+}
+
 .main-message-container{
     padding: 0px 24px;
     display: inline-block;
@@ -68,10 +72,19 @@ $image-width: 36px;
         position: relative;
         right: 0;
         display: block;
-        text-align: right;
         font-size: 11px;
-        padding: 8px 24px;
+        padding: 8px 0px;
         color: $dark-title-color;
+
+        .new-circle-container{
+            width: 24px;
+            .new-circle{
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background-color: #8e999f;
+            }
+        }
     }
 }
 

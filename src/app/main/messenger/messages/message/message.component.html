@@ -5,10 +5,13 @@
       <div *ngIf="!message.avatar" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
       <img *ngIf="message.avatar" src="data:image/png;base64,{{message.avatar}}" />
     </div>
-    <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">
-      {{message.text}}
+    <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">{{message.text}}</div>
+  </div>
+  <div class="date-container d-flex justify-content-end">
+    <div>{{message.timeString}}</div>
+    <div class="new-circle-container d-flex align-items-center justify-content-center">
+      <div *ngIf="userService.user.login == message.sender && message.isNew" class="new-circle"></div>
     </div>
   </div>
-  <div class="date-container">{{message.timeString}}</div>
 </div>
 </div>

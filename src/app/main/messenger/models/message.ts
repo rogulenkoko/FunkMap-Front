@@ -5,6 +5,8 @@ export class Message{
         this.setDate(date);
     }
 
+    public isNew: boolean;
+
     public setDate(date: Date){
         if(!date){
             this.dateString = "";
