@@ -9,6 +9,15 @@
 
 textarea{
     height: 120px !important;
-    width: 310px;
+    width: 300px;
     resize: none
+}
+
+.website-link{
+    display: block;
+    color: $dark-orange-light;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
 }

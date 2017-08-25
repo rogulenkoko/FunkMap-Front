@@ -38,12 +38,6 @@ export class StudioInfoComponent implements OnInit {
 
   private updateInfoItems() {
     this.newStudio = Object.create(this.studio);
-
-
-    var webSiteInfoItem = new InfoItem();
-    webSiteInfoItem.propertyTitle = "Website";
-    webSiteInfoItem.propertyTemplate = this.webSiteValueTemplate;
-    webSiteInfoItem.propertyEditTemplate = this.webSiteEditTemplate;
     
     var descriptionItem = new InfoItem();
     descriptionItem.propertyTitle = "Musician_Description";
@@ -51,7 +45,6 @@ export class StudioInfoComponent implements OnInit {
     descriptionItem.propertyEditTemplate = this.descriptionEditTemplate;
 
     this.infoItems = [
-      webSiteInfoItem,
       descriptionItem
     ]
   }
