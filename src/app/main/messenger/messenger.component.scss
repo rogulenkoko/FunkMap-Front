@@ -1,5 +1,17 @@
 @import "src/assets/styles/layout.scss";
 
+$dialog-background: #f4f6fa;
+
 .main-messenger-container{
     margin-left: $sidebar-global-size;
+
+    .messages-container{
+        width: 100%;
+        background-color: #f4f6fa;
+    }
+
+    .dialogs-container{
+        width: 350px;
+        background-color: #f4f6fa;
+    }
 }

@@ -1,0 +1,87 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/icons.scss";
+
+$user-message-background-color: #353b47;
+$foreign-message-background-color: #e4eaf0;
+
+$user-message-color: #a1a8b8;
+$foreign-message-color: #6e6f72;
+
+$image-width: 36px;
+
+.main-message-container{
+    padding: 0px 24px;
+    display: inline-block;
+    .message-container{
+        .message-content{
+            max-width: 520px;
+            border-radius: 18px;
+            padding: 8px 24px;
+            font-size: 13px;
+        }
+
+        .user-message-content{
+            color: $user-message-color;
+            background-color: $user-message-background-color;
+        }
+
+        .foreign-message-content{
+            color: $foreign-message-color;
+            background-color: $foreign-message-background-color;
+        }
+        
+        .image-container{
+            width: $image-width;
+            height: $image-width;
+            margin-right: 24px;
+            outline: none;
+            
+            img{
+                border-radius: 50%;
+                width: $image-width;
+                height: $image-width;
+            }
+
+            .no-image{
+                width: $image-width;
+                height: $image-width;
+                border-radius: 50%;
+            
+                img{
+                    width: $image-width - 15px;
+                    height: $image-width - 15px;
+                }
+            }
+
+            :host-context(.light) .no-image{
+                background-color: $light-sub-main; 
+            }
+
+            :host-context(.dark) .no-image{
+                background-color: $dark-sub-main;
+            }
+        }
+    }
+
+    .date-container{
+        position: relative;
+        right: 0;
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        padding: 8px 24px;
+        color: $dark-title-color;
+    }
+}
+
+.user-main-message-container{
+    //float: right;
+}
+
+.foreign-main-message-container{
+
+}
+
+
+

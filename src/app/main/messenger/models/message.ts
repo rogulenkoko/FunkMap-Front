@@ -30,9 +30,12 @@ export class Message{
         if(daysDifference > 365){
             this.dateString = start.format("DD.MM.YY").toString();
         }
+
+        this.timeString = start.format("HH:mm").toString();
     }
 
-    public dateString: any;
+    public dateString: string;
+    public timeString: string;
 
     public static ToMessage(data: any): Message{
         return new Message(data.Sender, data.DialogId, data.Text, new Date(data.DateTimeUtc));

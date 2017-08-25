@@ -25,8 +25,9 @@ export class MessengerServiceStub extends MessengerService {
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
-    var message = new Message("test","1","Привет, как дела");
-    return Observable.of([message]);
+    var message = new Message("test1","1","Привет, клево играешь на гитаре", new Date(2017,7,24,9,24,30));
+    var message2 = new Message("test","1","Спасибо большое, чувак, я вот пишу тебе большой текст, а знаешь для чего? не знаешь? а для того, чтобы посмотреть как будет отображаться сообщение когда будет оч оч много текста", new Date(2017,3,24,12,12,30));
+    return Observable.of([message, message2]);
   }
   getDialogs(request: DialogsRequest): Observable<Dialog[]> {
     var dialog = new Dialog("1","Константинопольский Кирилл");

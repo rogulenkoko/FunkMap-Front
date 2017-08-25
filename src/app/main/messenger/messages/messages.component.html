@@ -1,6 +1,4 @@
 <div *ngIf="dialogService.dialog" class="main-messages-container">
-  <div *ngFor="let message of messages" [class.message-right]="userService.user.login == message.sender">
-    {{message.text}}
-  </div>
+  <message *ngFor="let message of messages" [message]="message"></message>
 </div>
 
