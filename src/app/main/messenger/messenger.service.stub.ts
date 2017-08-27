@@ -30,7 +30,7 @@ export class MessengerServiceStub extends MessengerService {
     message2.isNew = true;
     return Observable.of([message, message2]);
   }
-  getDialogs(request: DialogsRequest): Observable<Dialog[]> {
+  getDialogs(): Observable<Dialog[]> {
     var dialog = new Dialog("1","Константинопольский Кирилл");
     var message = new Message("qwe","1","Привет, хотел бы пригласить тебя туда сюда");
     message.setDate(new Date(2017,3,24,12,12,30)); 

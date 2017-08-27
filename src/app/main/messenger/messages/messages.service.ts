@@ -8,8 +8,6 @@ export class MessagesService {
 
   constructor() {
     this.usersAvatars = new Dictionary<string, string>();
-    this.usersAvatars.setValue("test", "asd");
-    this.usersAvatars.setValue("test", "asdaaa");
    }
 
 }

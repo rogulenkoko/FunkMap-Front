@@ -15,10 +15,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class DialogsComponent implements OnInit, OnDestroy {
 
   private dialogs: Array<Dialog> = [];
+  private allDialogs: Array<Dialog> = [];
 
   private onlineUsers: Array<String> = [];
 
   private subscription: Subscription;
+
+  private searchTest: string;
 
   constructor(private messengerService: MessengerService,
               private dialogService: DialogService,
@@ -49,12 +52,9 @@ export class DialogsComponent implements OnInit, OnDestroy {
   }
 
   private refreshDialogs(dialogId?: string) {
-    var request = new DialogsRequest(0, 10);
-    this.messengerService.getDialogs(request).subscribe(dialogs => {
-      this.dialogs = dialogs;
-
-      //this.setDialog(this.dialogs[0]);//убрать
-
+    this.messengerService.getDialogs().subscribe(dialogs => {
+      this.allDialogs = dialogs;
+      this.filterDialogs();
       if (dialogId) {
         this.dialogService.setDialog(this.dialogs.find(x => x.dialogId == dialogId));
         this.dialogService.onDialogsLoaded.emit();
@@ -85,6 +85,14 @@ export class DialogsComponent implements OnInit, OnDestroy {
       this.onlineUsers = logins;
 
     })
+  }
+
+  private filterDialogs(){
+    if(!this.searchTest){
+      this.dialogs = this.allDialogs;
+      return;
+    } 
+    this.dialogs = this.allDialogs.filter(x=>x.name.toLocaleLowerCase().startsWith(this.searchTest.toLocaleLowerCase()));
   }
 
   private updateOnlineUsers() {
@@ -127,7 +135,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=>{
       var dialog = this.dialogs.find(x=>x.dialogId == dialogId);
       if(!dialog) return;
-      if(dialog.lastMessage) dialog.lastMessage.isNew = false;
+      if(dialog.lastMessage && dialog.lastMessage.sender == this.userService.user.login) dialog.lastMessage.isNew = false;
     }))
   }
 }

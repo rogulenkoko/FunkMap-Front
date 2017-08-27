@@ -28,7 +28,7 @@ export abstract class MessengerService {
 
   abstract getDialogMessages(request: DialogMessagesRequest): Observable<Array<Message>>;
 
-  abstract getDialogs(request: DialogsRequest): Observable<Array<Dialog>>;
+  abstract getDialogs(): Observable<Array<Dialog>>;
 
   abstract getOnlineUsersLogins():Observable<Array<string>>;
 
@@ -91,11 +91,10 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
-    console.log("getDialogMessages");
     return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogMessages`, request).map(x=> Message.ToMessages(x.json()));
   }
-  getDialogs(request: DialogsRequest): Observable<Array<Dialog>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogs`, request).map(x => Dialog.ToDialogs(x.json()));
+  getDialogs(): Observable<Array<Dialog>> {
+    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogs`).map(x => Dialog.ToDialogs(x.json()));
   }
 
   getOnlineUsersLogins(): Observable<string[]> {

@@ -1,6 +1,7 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
+@import "src/assets/styles/forms.scss";
 
 $dialog-name-color: #6f6e72;
 $dialog-background: #e4eaf0;
@@ -88,11 +89,16 @@ $dialog-background: #e4eaf0;
 
         .message-circle-container{
             height: 50%;  
+
+            span{
+                margin-top: -6px;
+            }
+
             .message-circle{
                 min-height: 16px;
                 min-width: 16px;
                 font-size: 10px !important;
-                margin-top: 2px;
+                
             }
         }
         
