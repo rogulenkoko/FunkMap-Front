@@ -91,6 +91,7 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
+    console.log("getDialogMessages");
     return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogMessages`, request).map(x=> Message.ToMessages(x.json()));
   }
   getDialogs(request: DialogsRequest): Observable<Array<Dialog>> {

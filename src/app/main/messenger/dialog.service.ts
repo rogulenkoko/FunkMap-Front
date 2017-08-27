@@ -16,6 +16,7 @@ export class DialogService {
 
   public setDialog(dialog: Dialog){
     console.log(dialog);
+    if(dialog && this.dialog && this.dialog.dialogId == dialog.dialogId) return;
     this.dialog = dialog;
     this.onDialogChanged.emit(dialog);
   }

@@ -121,8 +121,13 @@ export class DialogsComponent implements OnInit, OnDestroy {
     }));
 
     this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message) => {
-      console.log(this.dialogService.dialog);
       this.refreshDialogs(this.dialogService.dialog ? this.dialogService.dialog.dialogId : undefined);
     }));
+
+    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=>{
+      var dialog = this.dialogs.find(x=>x.dialogId == dialogId);
+      if(!dialog) return;
+      if(dialog.lastMessage) dialog.lastMessage.isNew = false;
+    }))
   }
 }

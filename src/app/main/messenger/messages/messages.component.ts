@@ -24,7 +24,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.subscription = new Subscription();
     
-    this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => this.refreshMessages(dialog)));
+    this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => {this.refreshMessages(dialog); console.log("изменился диалог")} ));
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
     if(this.signalrService.connection) this.initializeSubscriptions();
   }
@@ -46,7 +46,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   private onMessageRecieved(message: Message){
-
+    console.log(message, "asdasdas");
     if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
     this.messages.push(message);
   }
