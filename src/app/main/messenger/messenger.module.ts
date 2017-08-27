@@ -12,6 +12,7 @@ import { DialogService } from "app/main/messenger/dialog.service";
 import { MessageCreateComponent } from './message-create/message-create.component';
 import { DialogComponent } from './dialogs/dialog/dialog.component';
 import { MessageComponent } from './messages/message/message.component';
+import { MessagesService } from "app/main/messenger/messages/messages.service";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { MessageComponent } from './messages/message/message.component';
       provide: MessengerService,
       useClass: environment.production ? MessengerServiceHub : MessengerServiceStub
     },
-    DialogService
+    DialogService,
+    MessagesService
   ]
 })
 export class MessengerModule { }

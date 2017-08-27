@@ -5,6 +5,8 @@ import { MessengerService } from "app/main/messenger/messenger.service";
 import { UserService } from "app/main/user/user.service";
 import { SignalrService } from "app/tools/signalr/signalr.service";
 import { Subscription } from "rxjs/Subscription";
+import { UserDataService } from "app/main/user/user-data.service";
+import { MessagesService } from "app/main/messenger/messages/messages.service";
 
 @Component({
   selector: 'messages',
@@ -19,17 +21,20 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   constructor(private messengerService: MessengerService,
               private dialogService: DialogService,
+              private messagesService: MessagesService,
               private userService: UserService,
+              private userDataService: UserDataService,
               private signalrService: SignalrService) {
 
     this.subscription = new Subscription();
     
-    this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => {this.refreshMessages(dialog); console.log("изменился диалог")} ));
+    this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => { this.refreshMessages(dialog); this.getUsersAvatars()}));
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
     if(this.signalrService.connection) this.initializeSubscriptions();
   }
 
   ngOnInit() {
+    this.getUsersAvatars();
   }
 
   ngOnDestroy(){
@@ -45,8 +50,21 @@ export class MessagesComponent implements OnInit, OnDestroy {
     });
   }
 
+  private getUsersAvatars(){
+    if(!this.dialogService.dialog) return;
+    var logins = this.dialogService.dialog.participants.filter(x=>x != this.userService.user.login && !this.messagesService.usersAvatars.containsKey(x));
+    if(logins.length == 0) return;
+    this.userDataService.getImages(logins).subscribe(responses=>{
+      responses.forEach(response => {
+        this.messagesService.usersAvatars.setValue(response.login, response.image);
+      });
+      this.messages.forEach(message=>{
+        message.avatar = this.messagesService.usersAvatars.getValue(message.sender);
+      });
+    })  
+  }
+
   private onMessageRecieved(message: Message){
-    console.log(message, "asdasdas");
     if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
     this.messages.push(message);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from "app/main/messenger/models";
 import { UserService } from "app/main/user/user.service";
+import { MessagesService } from "app/main/messenger/messages/messages.service";
 
 @Component({
   selector: 'message',
@@ -11,9 +12,13 @@ export class MessageComponent implements OnInit {
 
   @Input() message: Message;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private messagesService: MessagesService) { }
 
   ngOnInit() {
+    if(this.messagesService.usersAvatars.containsKey(this.message.sender)){
+      this.message.avatar = this.messagesService.usersAvatars.getValue(this.message.sender);
+    }
   }
 
 }

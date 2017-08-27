@@ -38,6 +38,7 @@ export class Message{
 
     public dateString: string;
     public timeString: string;
+    public avatar: string;
 
     public static ToMessage(data: any): Message{
         var result = new Message(data.Sender, data.DialogId, data.Text, new Date(data.DateTimeUtc));

@@ -7,6 +7,7 @@ import { BaseResponse } from "app/tools/models/base-response";
 import { SaveImageRequest } from "./save-image-request";
 import { HttpClient } from "app/core/http/http-client.service";
 import { SearchItem } from "app/main/search/search-item";
+import { UserAvatarResponse } from "app/main/user/user-avatar-response";
 
 
 @Injectable()
@@ -15,6 +16,7 @@ export abstract class UserDataService {
   constructor() { }
 
   abstract getImage(login: string): Observable<string>;
+  abstract getImages(logins: Array<string>): Observable<Array<UserAvatarResponse>>;
 
   abstract saveImage(request: SaveImageRequest): Observable<BaseResponse>;
 
@@ -33,6 +35,10 @@ export class UserDataServiceHttp extends UserDataService {
 
   getImage(login: string): Observable<string> {
     return this.http.get(`${ConfigurationProvider.apiUrl}user/avatar/${login}`).map(x => x.json());
+  }
+
+  getImages(logins: Array<string>): Observable<Array<UserAvatarResponse>>{
+    return this.http.post(`${ConfigurationProvider.apiUrl}user/avatars`, logins).map(x => UserAvatarResponse.ToUserAvatarResponses(x.json()));
   }
 
   saveImage(request: SaveImageRequest): Observable<BaseResponse> {
