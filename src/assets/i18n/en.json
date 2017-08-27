@@ -125,5 +125,9 @@
     "Start_Title1": "Gather your music band and become a rock star.",
     "Start_Title2": "Service for finding musicians, shops, rehearsal points and recording studios",
     "Start_Help1" : "To get additional features of the service, you need",
-    "Start_Help_Or":"or"
+    "Start_Help_Or":"or",
+
+    "Address_Tooltip":"If the value is empty, the address of the coordinates of your mark will be displayed",
+
+    "WriteMessage":"Write a message..."
 }

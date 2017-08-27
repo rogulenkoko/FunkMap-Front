@@ -14,6 +14,7 @@ import { Subscription } from "rxjs/Subscription";
 export class MessageCreateComponent implements OnInit, OnDestroy {
 
   private text: string;
+  private a : string = "asd";
   private isNewDialog: boolean;
   private reciever: string;
 

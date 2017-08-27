@@ -1,5 +1,6 @@
 
-<div *ngIf="dialogService.dialog || isNewDialog">
-    <textarea [(ngModel)]="text"></textarea>
+<div class="message-create-main-container" *ngIf="dialogService.dialog || isNewDialog">
+    <div placeholder="asd" class="message-input" (input)="text = $event.target.innerText" contenteditable="true"></div>
+
     <button (click)="sendMessage()">Отправить</button>
 </div>

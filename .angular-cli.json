@@ -26,6 +26,7 @@
         "assets/styles/leaflet.scss",
         "assets/styles/forms.scss",
         "assets/styles/multi-select.scss",
+        "assets/styles/tooltip.scss",
         "../node_modules/leaflet/dist/leaflet.css",
       
         "../node_modules/primeng/resources/primeng.min.css",

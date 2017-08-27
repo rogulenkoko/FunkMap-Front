@@ -31,6 +31,9 @@ export class SignalrServiceReal extends SignalrService {
    private updateSignaRConnection() {
     if (this.userService.user) {
       (<any>this.signalR)._configuration.qs['login'] = this.userService.user.login;
+
+      
+
       this.signalR.connect().then(connection => {
         this.connection = connection;
         this.onConnectionStart.emit();

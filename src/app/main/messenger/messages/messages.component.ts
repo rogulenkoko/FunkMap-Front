@@ -51,7 +51,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   private getUsersAvatars(){
-    if(!this.dialogService.dialog) return;
+    if(!this.dialogService.dialog || !this.dialogService.dialog.participants) return;
     var logins = this.dialogService.dialog.participants.filter(x=>x != this.userService.user.login && !this.messagesService.usersAvatars.containsKey(x));
     if(logins.length == 0) return;
     this.userDataService.getImages(logins).subscribe(responses=>{

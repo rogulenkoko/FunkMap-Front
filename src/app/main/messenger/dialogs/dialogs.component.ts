@@ -54,6 +54,9 @@ export class DialogsComponent implements OnInit, OnDestroy {
   private refreshDialogs(dialogId?: string) {
     this.messengerService.getDialogs().subscribe(dialogs => {
       this.allDialogs = dialogs;
+
+      this.dialogService.setDialog(dialogs[0]);//удалить
+
       this.filterDialogs();
       if (dialogId) {
         this.dialogService.setDialog(this.dialogs.find(x => x.dialogId == dialogId));
@@ -88,10 +91,11 @@ export class DialogsComponent implements OnInit, OnDestroy {
   }
 
   private filterDialogs(){
-    if(!this.searchTest){
+
+    if(!this.allDialogs || !this.searchTest){
       this.dialogs = this.allDialogs;
       return;
-    } 
+    }  
     this.dialogs = this.allDialogs.filter(x=>x.name.toLocaleLowerCase().startsWith(this.searchTest.toLocaleLowerCase()));
   }
 

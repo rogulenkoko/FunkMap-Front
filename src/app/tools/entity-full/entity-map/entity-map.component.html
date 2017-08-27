@@ -16,7 +16,10 @@
     </div>
 
     <div *ngIf="isEditMode" class="d-flex address-container property-container flex-column">
-      <span class="property-title">{{'Address' | translate}}:</span>
+      <div>
+        <span class="property-title">{{'Address' | translate}}</span>
+        <i pTooltip="{{'Address_Tooltip' | translate}}" tooltipPosition="top" class="fa fa-question-circle ml-1"></i>
+      </div>
       <input placeholder="{{'Address' | translate}}" [(ngModel)]="mapCreationService.address" class="form-control secondary" />
     </div>
   </div>
