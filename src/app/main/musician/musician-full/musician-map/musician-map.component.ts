@@ -28,7 +28,7 @@ export class MusicianMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.mapCreationService.address = this.musician.address;
     this.marker = this.buildMarker();
   }
 
@@ -52,6 +52,8 @@ export class MusicianMapComponent implements OnInit {
     musician.login = this.editService.baseModel.login;
     musician.latitude = this.editService.baseModel.latitude;
     musician.longitude = this.editService.baseModel.longitude;
+    musician.address = this.mapCreationService.address;
+
     this.musicianService.updateMusician(musician).subscribe(response => {
       
     });

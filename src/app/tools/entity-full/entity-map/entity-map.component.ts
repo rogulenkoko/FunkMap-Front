@@ -60,7 +60,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
 
   private onParamsLoaded(params) {
     if (params['isComplete']) {
-
+      if(!this.mapCreationService.marker) return;
       this.newMarker = new Marker(this.marker.login, this.mapCreationService.marker.lat, this.mapCreationService.marker.lng, this.marker.entityType);
       if (this.newMarker.entityType == EntityType.Musician) {
         this.newMarker.instrument = this.marker.instrument;
@@ -76,6 +76,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   }
 
   public initMap(mainMarker: Marker) {
+    if(!mainMarker) return;
     if (this.map) this.map.remove();
     this.map = new L.Map('map-mini', { center: new L.LatLng(mainMarker.lat, mainMarker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
 
@@ -91,9 +92,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
 
     this.getAddress(mainMarker.lat, mainMarker.lng);
   }
-
-
-
+  
   private saveLocation() {
     this.isEditMode = false;
     this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
@@ -116,6 +115,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
     this.mapCreationService.marker = this.marker;
     this.mapCreationService.backRoute = RouteBuilder.buildRoute(this.marker.entityType, this.marker.login);
     this.router.navigate(['/checkmap']);
+  
   }
 
   private buildMapOptions(map: Map): any {

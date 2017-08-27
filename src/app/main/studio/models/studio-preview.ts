@@ -20,6 +20,7 @@ export class Studio extends BaseModel {
         result.soundCloudLink = data.SoundCloudLink;
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
+        result.address = data.Address;
         return result;
     }
 }

@@ -18,4 +18,6 @@ export class BaseModel {
     public youTubeLink: string;
     public facebookLink: string;
     public soundCloudLink: string;
+
+    public address: string;
 }

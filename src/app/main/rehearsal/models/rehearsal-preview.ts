@@ -22,6 +22,7 @@ export class Rehearsal extends BaseModel {
 
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
+        result.address = data.Address;
         return result;
     }
 }

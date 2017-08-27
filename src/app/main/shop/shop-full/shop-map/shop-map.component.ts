@@ -27,6 +27,7 @@ export class ShopMapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mapCreationService.address = this.shop.address;
     this.marker = this.buildMarker();
   }
 
@@ -37,11 +38,12 @@ export class ShopMapComponent implements OnInit {
   }
 
   private onBaseSaved(){
-    var band = new Shop();
-    band.login = this.editService.baseModel.login;
-    band.latitude = this.editService.baseModel.latitude;
-    band.longitude = this.editService.baseModel.longitude;
-    this.shopService.updateShop(band).subscribe(response => {
+    var shop = new Shop();
+    shop.login = this.editService.baseModel.login;
+    shop.latitude = this.editService.baseModel.latitude;
+    shop.longitude = this.editService.baseModel.longitude;
+    shop.address = this.mapCreationService.address;
+    this.shopService.updateShop(shop).subscribe(response => {
       
     });
   }

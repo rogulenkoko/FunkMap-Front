@@ -32,6 +32,7 @@ export class Band extends BaseModel{
         result.styles = data.Styles;
 
         result.description = data.Description;
+        result.address = data.Address;
         return result;
     }
 }

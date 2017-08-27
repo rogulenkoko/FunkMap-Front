@@ -9,9 +9,15 @@
         <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
       </div>
     </div>
-    <div class="address-container d-flex flex-row">
+    <div *ngIf="!isEditMode" class="address-container d-flex flex-row">
       <span class="icon icon-middle pin-icon mr-2"></span>
-      <span>{{address}}</span>
+      <span *ngIf="!mapCreationService.address">{{address}}</span>
+      <span *ngIf="mapCreationService.address">{{mapCreationService.address}}</span>
+    </div>
+
+    <div *ngIf="isEditMode" class="d-flex address-container property-container flex-column">
+      <span class="property-title">{{'Address' | translate}}:</span>
+      <input placeholder="{{'Address' | translate}}" [(ngModel)]="mapCreationService.address" class="form-control secondary" />
     </div>
   </div>
 </div>

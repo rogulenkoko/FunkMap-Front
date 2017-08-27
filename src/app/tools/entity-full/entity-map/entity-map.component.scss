@@ -3,6 +3,7 @@
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
 @import "src/assets/styles/base.scss";
+@import "src/assets/styles/forms.scss";
 
 .entity-map-container{
     width: 300px;
@@ -38,4 +39,8 @@
 
 .save-button{
     margin-left: 16px !important;
+}
+
+.property-title{
+    width: 60px;
 }

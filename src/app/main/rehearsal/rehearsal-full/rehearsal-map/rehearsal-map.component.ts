@@ -27,6 +27,7 @@ export class RehearsalMapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mapCreationService.address = this.rehearsal.address;
     this.marker = this.buildMarker();
   }
 
@@ -37,11 +38,12 @@ export class RehearsalMapComponent implements OnInit {
   }
 
   private onBaseSaved(){
-    var band = new Rehearsal();
-    band.login = this.editService.baseModel.login;
-    band.latitude = this.editService.baseModel.latitude;
-    band.longitude = this.editService.baseModel.longitude;
-    this.rehearsalService.updateRehearsal(band).subscribe(response => {
+    var rehearsal = new Rehearsal();
+    rehearsal.login = this.editService.baseModel.login;
+    rehearsal.latitude = this.editService.baseModel.latitude;
+    rehearsal.longitude = this.editService.baseModel.longitude;
+    rehearsal.address = this.mapCreationService.address;
+    this.rehearsalService.updateRehearsal(rehearsal).subscribe(response => {
       
     });
   }

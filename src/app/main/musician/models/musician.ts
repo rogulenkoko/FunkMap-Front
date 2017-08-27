@@ -38,6 +38,7 @@ export class Musician extends BaseModel{
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
         result.videosYoutube = data.VideosYoutube;
+        result.address = data.Address;
         return result;
     }
 }

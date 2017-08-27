@@ -28,9 +28,8 @@ export class BandMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.mapCreationService.address = this.band.address;
     this.marker = this.buildMarker();
-    console.log(this.marker);
   }
 
   private buildMarker():Marker{
@@ -52,6 +51,9 @@ export class BandMapComponent implements OnInit {
     band.login = this.editService.baseModel.login;
     band.latitude = this.editService.baseModel.latitude;
     band.longitude = this.editService.baseModel.longitude;
+    band.address = this.mapCreationService.address;
+
+
     this.bandService.updateBand(band).subscribe(response => {
       
     });

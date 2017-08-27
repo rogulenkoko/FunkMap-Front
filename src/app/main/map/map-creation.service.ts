@@ -5,6 +5,8 @@ import { Marker } from "app/main/map/models";
 export class MapCreationService {
 
   public marker: Marker;
+  public address: string;
+
 
   public onSelectPosition: EventEmitter<Marker>;
   public onCancel: EventEmitter<any>;

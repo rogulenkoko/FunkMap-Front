@@ -27,6 +27,7 @@ export class StudioMapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mapCreationService.address = this.studio.address;
     this.marker = this.buildMarker();
   }
 
@@ -37,11 +38,12 @@ export class StudioMapComponent implements OnInit {
   }
 
   private onBaseSaved(){
-    var band = new Studio();
-    band.login = this.editService.baseModel.login;
-    band.latitude = this.editService.baseModel.latitude;
-    band.longitude = this.editService.baseModel.longitude;
-    this.studioService.updateStudio(band).subscribe(response => {
+    var studio = new Studio();
+    studio.login = this.editService.baseModel.login;
+    studio.latitude = this.editService.baseModel.latitude;
+    studio.longitude = this.editService.baseModel.longitude;
+    studio.address = this.mapCreationService.address;
+    this.studioService.updateStudio(studio).subscribe(response => {
       
     });
   }
