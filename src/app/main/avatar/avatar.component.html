@@ -1,25 +1,18 @@
 <modal [title]="'Avatar_Title'" [width]="'550px'">
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-      <div class="add-delete-container d-flex flex-row justify-content-between">
-          <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
-            <!-- <ng-template let-file pTemplate="file">
-              <div class="d-flex align-items-center action-container">
-                <i class="icon-rubbish-bin"></i>
-                <span>{{'Avatar_LoadNew' | translate}}</span>
-              </div>
-          </ng-template>  --> 
-         
-       
-
-        <div class="d-flex align-items-center action-container">
-          <i class="icon-rubbish-bin"></i>
-          <span>{{'Avatar_Delete' | translate}}</span>
-        </div>
-        
+    <div *ngIf="!imageBase64" class="add-delete-container d-flex flex-row justify-content-between">
+      <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" mode="basic" name="demo[]" url="./upload.php" accept="image/*"
+        maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+      <div class="d-flex align-items-center action-container">
+        <i class="icon-rubbish-bin"></i>
+        <span>{{'Avatar_Delete' | translate}}</span>
       </div>
+    </div>
 
-        
-      
+    <img class="cropped-image" #croppie="croppie" [croppieOptions]="croppieOptions" (update)="handleUpdate($event)" />
+
+
+
 
 
     <!-- <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>

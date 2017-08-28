@@ -1,68 +1,69 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit  } from '@angular/core';
 import { Router } from "@angular/router";
-import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 import { UserDataService } from "../user/user-data.service";
 import { SaveImageRequest } from "../user/save-image-request";
 import { UserService } from "../user/user.service";
+
+import { CroppieOptions } from 'croppie';
+import { CroppieDirective } from 'angular-croppie-module';
 
 @Component({
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss']
 })
-export class AvatarComponent implements OnInit {
+export class AvatarComponent implements OnInit, AfterViewInit  {
 
+  private imageBase64: string = "asd";
 
-  @ViewChild('cropper') cropper:ImageCropperComponent;
+  private isImageLoaded: boolean;
 
-  data: any;
-  cropperSettings: CropperSettings;
+  private croppieOptions: CroppieOptions;
+
+  @ViewChild('croppie') croppie:CroppieDirective;
 
   constructor(private userDataService: UserDataService, 
               private userService: UserService,
               private router: Router) {
-
-    this.cropperSettings = new CropperSettings();
-    this.cropperSettings.width = 100;
-    this.cropperSettings.height = 100;
-    this.cropperSettings.croppedWidth = 300;
-    this.cropperSettings.croppedHeight = 300;
-    this.cropperSettings.canvasWidth = 300;
-    this.cropperSettings.canvasHeight = 300;
-    this.cropperSettings.rounded = true;
-    this.cropperSettings.noFileInput = true;
-
-    this.data = {};
+    this.croppieOptions = {
+      boundary: { width: 416, height: 280 },
+      viewport: { width: 200, height: 200, type: 'circle' },
+      showZoomer: false,
+      enableOrientation: false,
+      enforceBoundary: true
+    }
 
   }
 
   ngOnInit() {
-    this.userDataService.getImage(this.userService.user.login).subscribe(image=>{
-      
+    
+  }
+
+  ngAfterViewInit(){
+    
+    console.log(this.croppie);
+    this.croppie.croppie.bind({
+      useCanvas:false,
+      url:"https://pp.userapi.com/c836437/v836437592/409c2/OHfaablLDbo.jpg",
+
+    }).then(res=>{
+      this.isImageLoaded = true;
+      window.opener.postMessage(res, '*')
     })
   }
 
+  handleUpdate($event){
+    console.log($event);
+  }
+
   save(){
-    var request = new SaveImageRequest(this.userService.user.login, this.data.image.replace("data:image/jpeg;base64,",""));
+    var request = new SaveImageRequest(this.userService.user.login, "");
     this.userDataService.saveImage(request).subscribe(response=>{
       if(response.success){
         this.userService.onUserChanged.emit();
         this.router.navigate(["/"]);
       }
     })
-  }
-
-  fileChangeListener($event) {
-    var image: any = new Image();
-    var file: File = $event.target.files[0];
-    var myReader: FileReader = new FileReader();
-    var that = this;
-    myReader.onloadend = function (loadEvent: any) {
-      image.src = loadEvent.target.result;
-      that.cropper.setImage(image);
-    };
-
-    myReader.readAsDataURL(file);
   }
 
 }
