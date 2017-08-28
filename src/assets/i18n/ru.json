@@ -65,7 +65,7 @@
     "Language_En":"Английский",
     "Language_Ru":"Русский",
 
-    "Avatar_Title":"Аватар",
+    "Avatar_Title":"Редактирование фото",
     "Navbar_AvatarChange":"Сменить аватар",
     "Avatar_BrowsePhoto": "Выбрать",
     "Avatar_SavePhoto":"Сохранить",
@@ -133,5 +133,7 @@
     "Close":"Закрыть",
     "Create_Entity":"Создать объект",
     "Registration_Compete":"Регистрация завершена успешно",
-    "Regastration_Finish":"Теперь Вы можете создавать объекты и размещать их на карте"
+    "Regastration_Finish":"Теперь Вы можете создавать объекты и размещать их на карте",
+    "Avatar_Delete":"Удалить фото",
+    "Avatar_LoadNew":"Загрузить новое фото"
 }

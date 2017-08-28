@@ -16,8 +16,9 @@ import { SignalRConfiguration } from 'ng2-signalr';
 import { environment } from "environments/environment";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 import { MultiSelectModule, DropdownModule, TooltipModule } from 'primeng/primeng';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {InputTextareaModule} from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextareaModule } from 'primeng/primeng';
+import { FileUploadModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {InputTextareaModule} from 'primeng/primeng';
     DropdownModule,
     TooltipModule,
     InputTextareaModule,
-    BrowserAnimationsModule,
+    FileUploadModule,
+    BrowserAnimationsModule
   ],
   exports: [
     TranslateModule,
@@ -53,6 +55,7 @@ import {InputTextareaModule} from 'primeng/primeng';
     DropdownModule,
     TooltipModule,
     InputTextareaModule,
+    FileUploadModule,
     BrowserAnimationsModule
   ],
   providers: [

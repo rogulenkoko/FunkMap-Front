@@ -12,6 +12,7 @@ import { UserService } from "../user/user.service";
 })
 export class AvatarComponent implements OnInit {
 
+
   @ViewChild('cropper') cropper:ImageCropperComponent;
 
   data: any;

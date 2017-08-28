@@ -1,6 +1,28 @@
-<modal [title]="'Avatar_Title'">
+<modal [title]="'Avatar_Title'" [width]="'550px'">
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-    <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+      <div class="add-delete-container d-flex flex-row justify-content-between">
+          <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+            <!-- <ng-template let-file pTemplate="file">
+              <div class="d-flex align-items-center action-container">
+                <i class="icon-rubbish-bin"></i>
+                <span>{{'Avatar_LoadNew' | translate}}</span>
+              </div>
+          </ng-template>  --> 
+         
+       
+
+        <div class="d-flex align-items-center action-container">
+          <i class="icon-rubbish-bin"></i>
+          <span>{{'Avatar_Delete' | translate}}</span>
+        </div>
+        
+      </div>
+
+        
+      
+
+
+    <!-- <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
 
     <div class="d-flex flex-row align-items-center justify-content-between img-buttons">
       <div>
@@ -15,7 +37,7 @@
         <button (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
       </div>
       
-    </div>
+    </div> -->
 
   </div>
 </modal>

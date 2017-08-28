@@ -65,7 +65,7 @@
     "Language_En":"English",
     "Language_Ru":"Russian",
 
-    "Avatar_Title":"Avatar",
+    "Avatar_Title":"Editing photo",
     "Navbar_AvatarChange":"Change avatar",
     "Avatar_BrowsePhoto": "Browse",
     "Avatar_SavePhoto":"Save",
@@ -135,5 +135,8 @@
     "Close":"Close",
     "Create_Entity":"Create entity",
     "Registration_Compete":"Registration is complete",
-    "Regastration_Finish":"Now you can create entities and place them on the map"
+    "Regastration_Finish":"Now you can create entities and place them on the map",
+
+    "Avatar_Delete":"Delete photo",
+    "Avatar_LoadNew":"Load new photo"
 }

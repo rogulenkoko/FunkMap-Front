@@ -1,6 +1,74 @@
+@import "src/assets/styles/forms.scss";
+
+
+$inactive-color: #adb5bd;
+$active-color: #4d4d4d;
+
+
 .main-avatar-container{
-    margin: 10% 0;
+    margin: 44px 0;
+
+    .add-delete-container{
+        width: 415px;
+        .action-container{
+            cursor: pointer;
+             .icon-rubbish-bin{
+                font-size: 18px;
+                color: $inactive-color;
+                height: 24px;
+            }
+
+            span{
+                margin-left: 18px;
+                font-size: 16px;
+                color: $inactive-color;
+            }
+        }
+
+        .action-container:hover{
+            span{
+                color: $active-color;
+            }
+
+            .icon-rubbish-bin{
+                color: $dark-orange-light;
+            }
+        }
+       
+    }
 }
+
+
+p-fileupload{
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+/deep/ .ui-fileupload-choose{
+   span{
+    color: $inactive-color;
+   }  
+
+   .fa{
+    font-size: 18px;
+    margin-right: 6px !important;
+   }
+}
+
+/deep/ .ui-fileupload-choose:hover{
+     color: $active-color !important;
+
+
+    .ui-button-text .ui-clickablet, span{
+        color: $active-color !important;
+    }
+
+    span.fa{
+        color: $dark-orange-light !important;
+    }
+} 
+
 .img-buttons{
     width: 400px;
     div{
