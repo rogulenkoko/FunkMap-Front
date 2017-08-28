@@ -6,29 +6,32 @@ import { DialogService } from "app/main/messenger/dialog.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 
+declare var $;
+
 @Component({
   selector: 'message-create',
   templateUrl: './message-create.component.html',
   styleUrls: ['./message-create.component.scss']
 })
+
 export class MessageCreateComponent implements OnInit, OnDestroy {
 
   private text: string;
-  private a : string = "asd";
   private isNewDialog: boolean;
   private reciever: string;
 
   private subscription: Subscription;
 
   constructor(private messengerService: MessengerService,
-              private dialogService: DialogService,
-              private userService: UserService,
-              private route: ActivatedRoute) {
+    private dialogService: DialogService,
+    private userService: UserService,
+    private route: ActivatedRoute) {
     this.subscription = new Subscription();
   }
 
   ngOnInit() {
     this.subscription.add(this.dialogService.onDialogsLoaded.subscribe(() => this.initParams()));
+    this.changeTexareaBehaviour();
   }
 
   ngOnDestroy() {
@@ -43,9 +46,11 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   }
 
   private sendMessage() {
+    console.log("asdad");
     let message = new Message(this.userService.user.login, this.dialogService.dialog ? this.dialogService.dialog.dialogId : "", this.text);
+    this.text = "";
     if (this.isNewDialog) {
-      
+
       var dialog = new Dialog();
       dialog.participants = [this.userService.user.login, this.reciever];
 
@@ -64,8 +69,14 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
 
       });
     }
+  }
 
-
+  private changeTexareaBehaviour() {
+    $("textarea").keydown(function (e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+      }
+    });
   }
 
 }

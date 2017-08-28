@@ -17,6 +17,7 @@ import { environment } from "environments/environment";
 import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
 import { MultiSelectModule, DropdownModule, TooltipModule } from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {InputTextareaModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MultiSelectModule,
     DropdownModule,
     TooltipModule,
+    InputTextareaModule,
     BrowserAnimationsModule,
   ],
   exports: [
@@ -50,6 +52,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MultiSelectModule,
     DropdownModule,
     TooltipModule,
+    InputTextareaModule,
     BrowserAnimationsModule
   ],
   providers: [

@@ -5,7 +5,7 @@ import { EditService } from "app/tools/entity-full/edit.service";
 
 export class EditableCard {
     protected isEditVisible: boolean = false;
-    protected isEditMode: boolean = true;
+    protected isEditMode: boolean = false;
 
     @Output() onSaved: EventEmitter<any>;
     @Output() onCanceled: EventEmitter<any>;

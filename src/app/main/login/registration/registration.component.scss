@@ -11,7 +11,8 @@
 
 .registration-container > div{
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+    height: 50px;
 }
 
 .email-container > div{
@@ -23,10 +24,15 @@
 }
 
 .circle{
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
     background-color: $dark-title-color;
+}
+
+.circle-selected{
+    width: 6px;
+    height: 6px;
 }
 
 :host-context(.light) .circle-selected{
@@ -34,30 +40,22 @@
 }
 
 :host-context(.dark) .circle-selected{
-    background-color: $dark-orange;
+    background-color: $dark-orange-light;
 }
 
 .circle-center{
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 12px;
+    margin-right: 12px;
 }
 
 .circle-container{
-    margin-top: 40px;
+    margin-top: 18px;
 }
 
 .email-container{
     .email{
         width: 60%;
-        .is-sent{
-            color: $app-green;
-            font-size: 12px;
-        }
-
-        .is-not-sent{
-            color: red;
-            font-size: 12px;
-        }   
+        
     }
     .code{
         width: 38%;
@@ -80,7 +78,50 @@
     min-width: 140px;
 }
 
-.spacer{
-    height: 18px;
-    widows: 10px;
+.is-sent{
+    color: $app-green;
+    font-size: 12px;
+}
+
+.is-not-sent{
+    color: red;
+    font-size: 12px;
+}   
+
+.code-label{
+    height: 60%;
+    img{
+        margin-right: 12px;
+    }
+}
+
+.complete-label{
+    color: $dark-orange-light;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 36px;
+    margin-top: 54px;
+}
+
+.info-label{
+    font-size: 16px;
+    text-align: center;
+    color: #4d4d4d;
+    //width: 95%;
+}
+
+
+
+.buttons-container-third{
+    width: 300px;
+    .create-button{
+        width: 175px;
+        background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+        img{
+            width: 16px;
+            height: 16px;
+            margin-right: 12px;
+            margin-left: 6px;
+        }
+    }
 }

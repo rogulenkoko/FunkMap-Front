@@ -129,5 +129,11 @@
 
     "Address_Tooltip":"If the value is empty, the address of the coordinates of your mark will be displayed",
 
-    "WriteMessage":"Write a message..."
+    "WriteMessage":"Write a message...",
+    "Send":"Send",
+
+    "Close":"Close",
+    "Create_Entity":"Create entity",
+    "Registration_Compete":"Registration is complete",
+    "Regastration_Finish":"Now you can create entities and place them on the map"
 }

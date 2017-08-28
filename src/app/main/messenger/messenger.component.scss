@@ -4,11 +4,14 @@ $dialog-background: #f4f6fa;
 
 .main-messenger-container{
     margin-left: $sidebar-global-size;
+    border: 1px solid black;
+    height: 100%;
 
     .messages-container{
-        //width: 100%;
         width: 820px;
+        height: 100%;
         background-color: #f4f6fa;
+        border: 1px solid black;
     }
 
     .dialogs-container{
