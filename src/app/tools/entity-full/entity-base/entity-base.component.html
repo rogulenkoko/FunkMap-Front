@@ -7,13 +7,17 @@
     <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
   </div>
 
-  <div class="image-container-wrapper">
+  <div (mouseover)="changeAvatarEditVisible(1)" (mouseleave)="changeAvatarEditVisible(-1)" class="image-container-wrapper">
     <div *ngIf="entity.avatar" class="image-container">
       <img src="data:image/png;base64,{{entity.avatar}}" />
     </div>
 
     <div *ngIf="!entity.avatar" class="image-container no-image d-flex align-items-center justify-content-center">
       <img src="/assets/images/no-name.svg" />
+    </div>
+
+    <div  *ngIf="canEditPhoto" (click)="changeUserAvatar()" class="edit-circle-container d-flex align-items-center justify-content-center">
+      <i class="icon-edit"></i>
     </div>
   </div>
 
@@ -51,7 +55,5 @@
     </div>
 
   </ng-container>
-
-
 
 </div>

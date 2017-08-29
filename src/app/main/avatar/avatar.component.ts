@@ -8,7 +8,7 @@ import { CropperDirective } from "app/tools/cropper/cropper.directive";
 import { AvatarService } from "app/main/avatar/avatar.service";
 
 @Component({
-  selector: 'app-avatar',
+  selector: 'avatar-edit',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss']
 })

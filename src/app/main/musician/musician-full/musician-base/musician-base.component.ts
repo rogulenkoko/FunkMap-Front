@@ -74,4 +74,13 @@ export class MusicianBaseComponent implements OnInit {
         this.updateInfoItems();
       })
   }
+
+  private onAvatarLoaded(avatar: string){
+    console.log("asdaddasdad");
+    var musician = new Musician();
+    musician.avatar = avatar;
+    this.musicianService.updateMusician(musician).subscribe(response=>{
+
+    });
+  }
 }

@@ -23,6 +23,7 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
 }
 
 [class^="icon-"]:before,
@@ -36,7 +37,6 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: pointer;
 }
 
 .icon-youtube:before {
@@ -98,4 +98,7 @@
 }
 .icon-rubbish-bin:before {
   content: "\74";
+}
+.icon-edit:before {
+  content: "\75";
 }
