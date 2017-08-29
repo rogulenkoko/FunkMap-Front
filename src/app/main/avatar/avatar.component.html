@@ -1,18 +1,25 @@
 <modal [title]="'Avatar_Title'" [width]="'550px'">
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-     <div *ngIf="!isImageLoaded" class="add-delete-container d-flex flex-row justify-content-between">
+     <div *ngIf="!isImageLoaded && !wantsToDelete" class="add-delete-container d-flex flex-row justify-content-around">
       <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" auto="false" mode="basic" accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="onImagepload($event)"></p-fileUpload>
-      <div class="d-flex align-items-center action-container">
+      <div *ngIf="userService.avatar" (click)="checkWantsToDelete()" class="d-flex align-items-center action-container">
         <i class="icon-rubbish-bin"></i>
         <span>{{'Avatar_Delete' | translate}}</span>
       </div>
     </div> 
+
+    <div class="cropper-container">
+      <img *ngIf="imageBase64" id="avatar" cropper [elementId]="'avatar'" class="cropped-image" src="{{imageBase64}}"/>
+    </div>
     
-    <img *ngIf="imageBase64" id="avatar" cropper [elementId]="'avatar'" class="cropped-image" src="{{imageBase64}}"/>
-   
-    <div *ngIf="isImageLoaded" class="d-flex flex-row justify-content-between avatar-buttons-container">
-      <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
-      <button (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+    <span *ngIf="!isImageLoaded && wantsToDelete" class="confirmation-label">
+      {{'Avatar_DeleteConfirmation' | translate}}
+    </span>
+    <div *ngIf="isImageLoaded || wantsToDelete" class="d-flex flex-row justify-content-between avatar-buttons-container">
+      <button (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+      <button *ngIf="isImageLoaded && !wantsToDelete" (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+
+      <button *ngIf="!isImageLoaded && wantsToDelete" (click)="delete()" class="btn btn-success">{{'Avatar_Delete' | translate}}</button>
     </div>
 
   </div>

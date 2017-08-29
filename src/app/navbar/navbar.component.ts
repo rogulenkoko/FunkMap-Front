@@ -4,6 +4,10 @@ import { UserService } from "../main/user/user.service";
 import { UserDataService } from "../main/user/user-data.service";
 import { MapFilter } from "../main/map/map-filter.service";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
+import { SaveImageRequest } from "app/main/user/save-image-request";
+import { Router } from "@angular/router";
+import { AvatarService } from "app/main/avatar/avatar.service";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'navbar',
@@ -14,11 +18,16 @@ export class NavbarComponent implements OnInit {
 
   private isLogged: boolean = false;
 
+  private subscription: Subscription;
+
   constructor(private languageService: LanguageService,
-    private userService: UserService,
-    private mapFilter: MapFilter,
-    private userDataService: UserDataService,
-    private filterService: SearchFilterService, ) {
+              private userService: UserService,
+              private mapFilter: MapFilter,
+              private userDataService: UserDataService,
+              private filterService: SearchFilterService, 
+              private router: Router,
+              private avatarService: AvatarService) {
+    this.subscription = new Subscription();
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
   }
 
@@ -26,14 +35,28 @@ export class NavbarComponent implements OnInit {
     this.getAvatar();
   }
 
-
-
   private getAvatar() {
     if (this.userService.user) {
       this.userDataService.getImage(this.userService.user.login).subscribe(image => {
         this.userService.avatar = image ? `data:image/png;base64,${image}` : undefined;
       })
     }
+  }
+
+  private changeUserAvatar(){
+    this.subscription = this.avatarService.onImageUploaded.subscribe(avatar=> this.onAvatarSaved(avatar));
+    this.router.navigate(['/avatar']);
+  }
+
+  private onAvatarSaved(image: string){
+    var request = new SaveImageRequest(this.userService.user.login, image);
+    this.userDataService.saveImage(request).subscribe(response=>{
+      if(response.success){
+        this.getAvatar()
+        this.router.navigate(["/"]);
+      }
+      this.subscription.unsubscribe();
+    })
   }
 
 }

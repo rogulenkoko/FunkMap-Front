@@ -21,7 +21,6 @@ import { MusicianModule } from './main/musician/musician.module';
 import { UserModule } from "./main/user/user.module";
 import { CreationModule } from './main/creation/creation.module';
 import { BandModule } from './main/band/band.module';
-import { AvatarComponent } from './main/avatar/avatar.component';
 import { SearchModule } from "app/main/search/search.module";
 import { FavouritesModule } from "app/main/favourites/favourites.module";
 import { ShopModule } from "app/main/shop/shop.module";
@@ -30,6 +29,7 @@ import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
 import { MessengerModule } from "app/main/messenger/messenger.module";
 import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
+import { AvatarModule } from "app/main/avatar/avatar.module";
 
 
 
@@ -40,8 +40,6 @@ import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
     MainComponent,
 
     SidebarComponent,
-
-    AvatarComponent,
 
     StartComponent,
 
@@ -63,7 +61,8 @@ import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
     RehearsalModule,
     SearchModule,
     FavouritesModule,
-    MessengerModule
+    MessengerModule,
+    AvatarModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

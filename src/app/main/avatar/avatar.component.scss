@@ -46,17 +46,16 @@ $active-color: #4d4d4d;
         }
     }
 
-    .cropper-container{
-        border: 1px solid black;
-        padding: 66px;
-        img{
-            width: 418px;
-        }
+    .confirmation-label{
+        color: $active-color;
+        font-size: 16px;
     }
 
-    .cropped-image{
-        width: 418px !important;
-        margin-right: 20px;
+    .cropper-container{
+        padding: 0 60px;
+        img{
+            width: 100%;
+        }
     }
 }
 

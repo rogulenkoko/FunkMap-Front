@@ -5,6 +5,7 @@ import { SaveImageRequest } from "../user/save-image-request";
 import { UserService } from "../user/user.service";
 import { FileUpload } from "primeng/primeng";
 import { CropperDirective } from "app/tools/cropper/cropper.directive";
+import { AvatarService } from "app/main/avatar/avatar.service";
 
 @Component({
   selector: 'app-avatar',
@@ -14,19 +15,22 @@ import { CropperDirective } from "app/tools/cropper/cropper.directive";
 export class AvatarComponent implements OnInit, AfterViewInit  {
 
   private imageBase64: string = "";
-
   private isImageLoaded: boolean;
+  private wantsToDelete: boolean;
 
   @ViewChild(CropperDirective) cropper: CropperDirective;
 
   constructor(private userDataService: UserDataService, 
               private userService: UserService,
-              private router: Router) {
+              private router: Router,
+              private avatarService: AvatarService) {
 
   }
 
   ngOnInit() {
-    
+    if(!this.avatarService.onImageUploaded.observers || this.avatarService.onImageUploaded.observers.length == 0){
+      this.router.navigate(['/']);
+    }
   }
 
   ngAfterViewInit(){
@@ -55,19 +59,23 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
 
   save(){
     var avatar = this.cropper.getBase64().replace("data:image/png;base64,","");
-    var request = new SaveImageRequest(this.userService.user.login, avatar);
-    this.userDataService.saveImage(request).subscribe(response=>{
-      if(response.success){
-        this.userService.onUserChanged.emit();
-        this.router.navigate(["/"]);
-      }
-    })
+    this.avatarService.onImageUploaded.emit(avatar);
+    
+  }
+
+  delete(){
+    this.avatarService.onImageUploaded.emit("");
   }
 
   cancel(){
     this.isImageLoaded = false;
     this.imageBase64 = undefined;
-    this.cropper.remove();
+    this.wantsToDelete = false;
+    if(this.cropper) this.cropper.remove();
+  }
+
+  private checkWantsToDelete(){
+    this.wantsToDelete = true;
   }
 
 }

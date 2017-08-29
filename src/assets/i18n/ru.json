@@ -135,5 +135,6 @@
     "Registration_Compete":"Регистрация завершена успешно",
     "Regastration_Finish":"Теперь Вы можете создавать объекты и размещать их на карте",
     "Avatar_Delete":"Удалить фото",
-    "Avatar_LoadNew":"Загрузить новое фото"
+    "Avatar_LoadNew":"Загрузить новое фото",
+    "Avatar_DeleteConfirmation":"Вы действительно хотите удалить текущее фото?"
 }

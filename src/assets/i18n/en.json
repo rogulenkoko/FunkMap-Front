@@ -138,5 +138,7 @@
     "Regastration_Finish":"Now you can create entities and place them on the map",
 
     "Avatar_Delete":"Delete photo",
-    "Avatar_LoadNew":"Load new photo"
+    "Avatar_LoadNew":"Load new photo",
+    "Avatar_DeleteConfirmation":"Are you sure you want to delete the current photo?"
+
 }
