@@ -19,7 +19,7 @@ export class MusicianInfoComponent implements OnInit {
   private musician: Musician;
   private newMusician: Musician;
 
-   
+
 
   private styles: Array<StylesItem>;
   private instruments: Array<InstrumentsItem>;
@@ -39,25 +39,25 @@ export class MusicianInfoComponent implements OnInit {
   private allTitle: string;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
-              private musicianService: MusicianService,
-              private dateProvider: DateSelectProvider,
-              private translateService: TranslateService,
-              private editService: EditService) {
+    private musicianService: MusicianService,
+    private dateProvider: DateSelectProvider,
+    private translateService: TranslateService,
+    private editService: EditService) {
     this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
-   
+
     this.musician = this.editService.baseModel as Musician;
 
-    this.translateService.get("Choose").subscribe(value=> this.allTitle = value);
+    this.translateService.get("Choose").subscribe(value => this.allTitle = value);
   }
 
   ngOnInit() {
     this.updateInfoItems();
-    
+
   }
 
-  private updateInfoItems(){
+  private updateInfoItems() {
     this.newMusician = Object.create(this.musician);
     this.dateProvider.setDate(this.musician.birthDate);
 
@@ -74,13 +74,16 @@ export class MusicianInfoComponent implements OnInit {
     var stylesItem = new InfoItem();
     stylesItem.propertyTitle = "Musician_Styles";
     var stylesValue: string = "";
-    
-    this.translateService.get(this.musician.styles.map(style => this.musicianTypesProvider.musicStyles.getValue(style))).subscribe(translated=>{
-      this.musician.styles.forEach(style => {
-        stylesValue += `${translated[this.musicianTypesProvider.musicStyles.getValue(style)]} `;
+
+    if (this.musician.styles && this.musician.styles.length != 0) {
+      this.translateService.get(this.musician.styles.map(style => this.musicianTypesProvider.musicStyles.getValue(style))).subscribe(translated => {
+        this.musician.styles.forEach(style => {
+          stylesValue += `${translated[this.musicianTypesProvider.musicStyles.getValue(style)]} `;
+        });
+        stylesItem.propertyValue = stylesValue;
       });
-      stylesItem.propertyValue = stylesValue;
-    });
+    }
+
 
     stylesItem.propertyValue = stylesValue;
     stylesItem.propertyEditTemplate = this.stylesEditTemplate;

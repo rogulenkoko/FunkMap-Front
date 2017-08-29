@@ -23,6 +23,12 @@ export class DateSelectProvider {
    }
 
    public setDate(date: Date){
+     if(!date){
+       this.day = undefined;
+       this.month = 0;
+       this.year = undefined;
+       return;
+     }
      this.day = date.getDate();
      this.month = date.getMonth();
      this.year = date.getFullYear(); 

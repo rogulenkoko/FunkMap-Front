@@ -9,17 +9,17 @@
         <div class="registration-container">
           <ng-container *ngIf="currentStep == 1">
               <div class="d-flex flex-column">
-                <input placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="existingLogin || isWrongCreds" />
+                <input   placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="existingLogin || isWrongCreds" />
                 <div *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}</div>
                 <div *ngIf="isWrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</div>
               </div>
             <div class="d-flex flex-column">
-              <input placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds" />
+              <input   placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds" />
             </div>
             <!--  -->
             <div>
               <div class="d-flex flex-column">
-                <input placeholder="{{'Login_RepeatPassword' | translate}}" type="password" [(ngModel)]="passwordRepeat" class="form-control" [class.error-form-control]="passwordsAreNotMacthing"
+                <input autocomplete="new-password" placeholder="{{'Login_RepeatPassword' | translate}}" type="password" [(ngModel)]="passwordRepeat" class="form-control" [class.error-form-control]="passwordsAreNotMacthing"
                 />
                 <label *ngIf="passwordsAreNotMacthing" class="error-label">{{'Login_WrongPasswords' | translate}}</label>
               </div>
@@ -31,7 +31,7 @@
           <ng-container *ngIf="currentStep == 2">
             <div class="d-flex flex-row justify-content-between align-items-end email-container">
               <div class="email">
-                <input placeholder="{{'Login_Email' | translate}}" [(ngModel)]="email" class="form-control" [class.error-form-control]="wrongCreds" />
+                <input   placeholder="{{'Login_Email' | translate}}" [(ngModel)]="email" class="form-control" [class.error-form-control]="wrongCreds" />
                 
               </div>
               <div class="code">
@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="d-flex flex-column">
-                <input placeholder="{{'Login_Code' | translate}}" [(ngModel)]="code" class="form-control" [class.error-form-control]="isCodeWrong" />
+                <input   placeholder="{{'Login_Code' | translate}}" [(ngModel)]="code" class="form-control" [class.error-form-control]="isCodeWrong" />
                 <label class="error-label" *ngIf="isCodeWrong">{{'Login_WrongCode' | translate}}</label>
             </div>
           </ng-container>

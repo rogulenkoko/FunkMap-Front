@@ -12,9 +12,9 @@ import { User } from "../user/user";
 export class LoginComponent implements OnInit {
 
 
-  private login: string = "test";
-  private password: string = "1";
-
+  private login: string;
+  private password: string;
+  
   private wrongCreds: boolean = false;
 
   constructor(private loginService: LoginService,
@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-    
   }
 
   logIn() {

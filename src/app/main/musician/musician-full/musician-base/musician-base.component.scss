@@ -4,8 +4,11 @@
 @import "src/assets/styles/layout.scss";
 
 .sub-info-container{
-    font-size: 13px;
-    color: #b6bec5;
+    span{
+        font-size: 13px;
+        color: #b6bec5;
+    }
+   
     margin-bottom: 46px;
 }
 

@@ -3,6 +3,8 @@ import { LoginService } from "../login.service";
 import { Router } from "@angular/router";
 import { RegistrationModel, RegistrationRequest } from "./registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./confirmation-model";
+import { User } from "app/main/user/user";
+import { UserService } from "app/main/user/user.service";
 
 @Component({
   selector: 'app-registration',
@@ -13,9 +15,9 @@ export class RegistrationComponent implements OnInit {
 
   private currentStep = 1;
 
-  private login: string = "test";
-  private password: string = "1";
-  private passwordRepeat: string = "1";
+  private login: string;
+  private password: string;
+  private passwordRepeat: string;
 
   private isWrongCreds: boolean = false;
 
@@ -31,7 +33,8 @@ export class RegistrationComponent implements OnInit {
   private isCodeWrong: boolean;
 
   constructor(private loginService: LoginService,
-              private router: Router) { }
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -73,7 +76,7 @@ export class RegistrationComponent implements OnInit {
         var confirmationRequest = new ConfirmationRequest(this.login, this.code);
         this.loginService.confirm(confirmationRequest).subscribe(response => {
           if (response.success) {
-            this.currentStep++;
+            this.logIn();
           } else {
             this.isCodeWrong = true;
             setTimeout(() => {
@@ -104,6 +107,20 @@ export class RegistrationComponent implements OnInit {
         }, 3000)
       }
     })
+  }
+
+  logIn() {
+    this.loginService.login(this.login, this.password).subscribe(response => {
+      if (response.token) {
+        var user = new User();
+        user.login = response.login;
+        user.authData = response;
+        this.userService.user = user; 
+        this.currentStep++;
+      } else {
+        //todo
+      }
+    });
   }
 
   moveBack() {

@@ -22,7 +22,7 @@ export class Musician extends BaseModel{
 
     public static ToMusician(data: any): Musician{
         var result = new Musician(data.Login, data.Name, EntityType.Musician);
-        result.birthDate = new Date(data.BirthDate);
+        result.birthDate = data.BirthDate ? new Date(data.BirthDate) : undefined;
         result.description = data.Description;
         result.expirience = data.Expirience;
         result.sex = data.Sex;
