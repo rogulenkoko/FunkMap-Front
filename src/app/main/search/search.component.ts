@@ -47,6 +47,7 @@ export class SearchComponent implements OnInit {
 
   private refresh() {
     this.isLoaded = true;
+    this.items = [];
     this.searchService.getFiltered(0, this.portionCount).subscribe(response => {
       this.isLoaded = false;
       this.onItemsLoaded(response.items);
@@ -75,7 +76,8 @@ export class SearchComponent implements OnInit {
     this.isLoaded = true;
     this.searchService.getFiltered(this.items.length, this.items.length + this.portionCount).subscribe(response => {
       this.isLoaded = false;
-      this.items = this.items.concat(response.items);
+      this.items.push(...response.items)
+      //this.items = .concat();
       if (this.userService.user) this.getFavourites();
     });
   }
@@ -85,8 +87,8 @@ export class SearchComponent implements OnInit {
   }
 
   private clearFilter() {
-    this.filterService.clearFilter();
-    this.filterService.onFilterChanged.emit();
+    var isDone = this.filterService.clearFilter();
+    if(isDone) this.filterService.onFilterChanged.emit();
   }
 
   private onTextChanged(value: string) {
@@ -94,6 +96,10 @@ export class SearchComponent implements OnInit {
   }
 
   private onScrollDown(){
+    console.log("sadasd");
+    console.log("top", $('#search-container').scrollTop());
+    console.log("height", $('#search-container').height());
+    console.log("scrolheight", $('#search-container')[0].scrollHeight);
     if ($('#search-container').scrollTop() + $('#search-container').height() >= $('#search-container')[0].scrollHeight) {
         this.getMore();
       }

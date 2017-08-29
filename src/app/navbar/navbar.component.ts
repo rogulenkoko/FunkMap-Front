@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit {
               private avatarService: AvatarService) {
     this.subscription = new Subscription();
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
+    this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
   }
 
   ngOnInit() {
@@ -39,11 +40,13 @@ export class NavbarComponent implements OnInit {
     if (this.userService.user) {
       this.userDataService.getImage(this.userService.user.login).subscribe(image => {
         this.userService.avatar = image ? `data:image/png;base64,${image}` : undefined;
+        
       })
     }
   }
 
   private changeUserAvatar(){
+    this.avatarService.previousImage = this.userService.avatar;
     this.subscription = this.avatarService.onImageUploaded.subscribe(avatar=> this.onAvatarSaved(avatar));
     this.router.navigate(['/avatar']);
   }
@@ -55,8 +58,13 @@ export class NavbarComponent implements OnInit {
         this.getAvatar()
         this.router.navigate(["/"]);
       }
+      this.avatarService.previousImage = undefined;
       this.subscription.unsubscribe();
     })
+  }
+
+  private onAvatarClosed(){
+    if(this.subscription) this.subscription.unsubscribe();
   }
 
 }

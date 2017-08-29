@@ -2,7 +2,9 @@
 
 <ng-template #underNameTemplate>
   <div  class="sub-info-container">
-   <span *ngIf="musician.age">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}, {{musician.age}} {{'Musician_Years' | translate}}</span> 
+   <span *ngIf="musician.instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}</span>
+   <span *ngIf="musician.instrument && musician.age">,</span>
+   <span *ngIf="musician.age">{{musician.age}} {{'Musician_Years' | translate}}</span> 
   </div>
 </ng-template>
 

@@ -5,6 +5,8 @@
 @import "src/assets/styles/base.scss";
 @import "src/assets/styles/forms.scss";
 
+$active-color: #4d4d4d;
+
 .entity-map-container{
     width: 300px;
     height: 550px;
@@ -33,6 +35,14 @@
             margin-top: 10px;
             font-size: 13px;
             color: $dark-title-color;
+        }
+
+        .icon-info{
+             color: $dark-title-color;
+        }
+
+        .icon-info:hover{
+            color: $active-color;
         }
     }
 }

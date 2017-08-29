@@ -13,7 +13,7 @@
     </div>
 
     <div *ngIf="userService.user" class="buttons-container d-flex flex-column justify-content-center">
-      <button *ngIf="!isUsers" class="btn btn-success">{{'Send_Message' | translate}}</button>
+      <button *ngIf="!isUsers" [routerLink]="['/messenger/' + item.userLogin]" class="btn btn-success">{{'Send_Message' | translate}}</button>
       <button *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Add_Favorites' | translate}}</button>
       <button *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="btn btn-secondary">{{'Remove_Favorites' | translate}}</button>
     </div>

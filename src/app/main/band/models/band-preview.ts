@@ -20,8 +20,9 @@ export class BandPreview extends BaseModel{
         result.avatar = data.Avatar;
         result.description = data.Description;
         result.vkLink = data.VkLink;
-        result.youTubeLink = data.YouTubeLink;
+        result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
+        result.soundCloudLink = data.SoundCloudLink;
         return result;
     }
 }

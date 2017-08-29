@@ -2,6 +2,11 @@
     height: 80%
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 .main-messages-container{
     height: 100%;
+    overflow-y: auto;
 }

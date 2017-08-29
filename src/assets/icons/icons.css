@@ -23,7 +23,6 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: pointer;
 }
 
 [class^="icon-"]:before,
@@ -37,6 +36,7 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
 }
 
 .icon-youtube:before {
@@ -101,4 +101,16 @@
 }
 .icon-edit:before {
   content: "\75";
+}
+.icon-plus:before {
+  content: "\76";
+}
+
+.fa-plus:before{
+  font-family: "untitled-font-3" !important;
+  content: "\76" !important;
+}
+
+.icon-info:before {
+  content: "\77";
 }

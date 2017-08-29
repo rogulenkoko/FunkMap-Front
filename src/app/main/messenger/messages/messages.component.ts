@@ -8,6 +8,8 @@ import { Subscription } from "rxjs/Subscription";
 import { UserDataService } from "app/main/user/user-data.service";
 import { MessagesService } from "app/main/messenger/messages/messages.service";
 
+declare var $;
+
 @Component({
   selector: 'messages',
   templateUrl: './messages.component.html',
@@ -47,6 +49,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
       this.messengerService.onMessagesLoaded.emit();
+      this.scrollDown();
     });
   }
 
@@ -67,6 +70,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   private onMessageRecieved(message: Message){
     if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
     this.messages.push(message);
+    this.scrollDown();
   }
 
   private onDialogRead(dialogId: string){
@@ -83,6 +87,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messengerService.onDialogRead.subscribe(dialogId=>{
       this.onDialogRead(dialogId);
     });
+  }
+
+  private scrollDown(){
+    setTimeout(()=>{
+      $("#main-messages-container").scrollTop($("#main-messages-container")[0].scrollHeight);
+    }, 10);
   }
 
 }

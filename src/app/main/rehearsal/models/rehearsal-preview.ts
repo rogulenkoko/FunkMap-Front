@@ -15,7 +15,7 @@ export class Rehearsal extends BaseModel {
         result.description = data.Description;
         result.avatar = data.Avatar;
         result.vkLink = data.VkLink;
-        result.youTubeLink = data.YouTubeLink;
+        result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
 
         result.soundCloudLink = data.SoundCloudLink;
@@ -40,7 +40,7 @@ export class RehearsalPreview extends BaseModel {
         result.description = data.Description;
         result.avatar = data.Avatar;
         result.vkLink = data.VkLink;
-        result.youTubeLink = data.YouTubeLink;
+        result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         return result;
     }

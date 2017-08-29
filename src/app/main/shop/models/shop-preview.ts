@@ -19,7 +19,7 @@ export class Shop extends BaseModel {
         result.description = data.Description;
         result.avatar = data.Avatar;
         result.vkLink = data.VkLink;
-        result.youTubeLink = data.YouTubeLink;
+        result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
         result.latitude = data.Latitude;
@@ -46,7 +46,7 @@ export class ShopPreview extends BaseModel {
         result.description = data.Description;
         result.avatar = data.Avatar;
         result.vkLink = data.VkLink;
-        result.youTubeLink = data.YouTubeLink;
+        result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
         return result;

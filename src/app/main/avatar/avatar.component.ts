@@ -65,17 +65,24 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
 
   delete(){
     this.avatarService.onImageUploaded.emit("");
+    this.avatarService.previousImage = "";
   }
 
   cancel(){
     this.isImageLoaded = false;
     this.imageBase64 = undefined;
     this.wantsToDelete = false;
+    this.avatarService.previousImage = "";
     if(this.cropper) this.cropper.remove();
   }
 
   private checkWantsToDelete(){
     this.wantsToDelete = true;
+  }
+
+  private onClosed(){
+     this.avatarService.previousImage = "";
+     this.avatarService.onClosed.emit();
   }
 
 }

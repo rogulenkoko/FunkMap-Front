@@ -1,4 +1,4 @@
-<div *ngIf="dialogService.dialog" class="main-messages-container">
+<div id="main-messages-container" *ngIf="dialogService.dialog" class="main-messages-container">
   <message *ngFor="let message of messages" [message]="message"></message>
 </div>
 

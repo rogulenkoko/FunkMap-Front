@@ -6,7 +6,7 @@
 
 
 <ng-template #instrumentEditTemplate>
-    <p-dropdown [options]="instruments" [(ngModel)]="newMusician.instrument" ></p-dropdown>
+    <p-dropdown placeholder="{{'Choose' | translate}}" [options]="instruments" [(ngModel)]="newMusician.instrument" ></p-dropdown>
 </ng-template>
 
 <ng-template #sexEditTemplate>
@@ -19,7 +19,7 @@
 </ng-template>
 
 <ng-template #expirienceEditTeplate>
-    <p-dropdown [options]="expiriences" [(ngModel)]="newMusician.expirience"></p-dropdown>
+    <p-dropdown placeholder="{{'Choose' | translate}}" [options]="expiriences" [(ngModel)]="newMusician.expirience"></p-dropdown>
 </ng-template>
 
 

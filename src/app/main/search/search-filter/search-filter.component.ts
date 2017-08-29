@@ -45,6 +45,7 @@ export class SearchFilterComponent implements OnInit {
   }
 
   onChanged() {
+    this.searchFilterService.isFilterClear = false;
     this.searchFilterService.onFilterChanged.emit();
   }
 

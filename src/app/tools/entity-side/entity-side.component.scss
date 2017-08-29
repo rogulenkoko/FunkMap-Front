@@ -20,7 +20,7 @@
 
 .property-value{
     font-size: 14px;
-    max-width: 50%;
+    max-width: 100%;
     overflow: hidden;
 }
 
@@ -48,4 +48,9 @@
         width: 120px;
         height: 120px;
     }
+}
+
+.property-title{
+    font-size: 14px;
+    width: 120px;
 }

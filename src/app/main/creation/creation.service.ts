@@ -38,7 +38,7 @@ export abstract class CreationService {
         this.musician.longitude = this.baseModel.longitude;
         this.musician.name = this.baseModel.name;
         this.musician.avatar = this.baseModel.avatar;
-        
+        this.musician.instrument = this.instrument;
         return this.musician;
 
         default: return this.baseModel;

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'modal',
@@ -15,9 +16,18 @@ export class ModalComponent implements OnInit {
   @Input() canClose: boolean = true;
   @Input() backgroundEnabled: boolean = true;
 
-  constructor() { }
+  @Output() onClosed: EventEmitter<any>;
+
+  constructor(private router: Router) {
+    this.onClosed = new EventEmitter();
+   }
 
   ngOnInit() {
+  }
+
+  close(){
+    this.onClosed.emit();
+    this.router.navigate(['/']);
   }
 
 }

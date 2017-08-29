@@ -1,8 +1,8 @@
-<modal [title]="'Avatar_Title'" [width]="'550px'">
+<modal [title]="'Avatar_Title'" [width]="'550px'" (onClosed)="onClosed()">
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
      <div *ngIf="!isImageLoaded && !wantsToDelete" class="add-delete-container d-flex flex-row justify-content-around">
       <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" auto="false" mode="basic" accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="onImagepload($event)"></p-fileUpload>
-      <div *ngIf="userService.avatar" (click)="checkWantsToDelete()" class="d-flex align-items-center action-container">
+      <div *ngIf="avatarService.previousImage" (click)="checkWantsToDelete()" class="d-flex align-items-center action-container">
         <i class="icon-rubbish-bin"></i>
         <span>{{'Avatar_Delete' | translate}}</span>
       </div>

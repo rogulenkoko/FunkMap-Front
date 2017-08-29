@@ -41,9 +41,12 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
               private avatarBaseService: AvatarBaseService) {
     super(userService, userDataService, editService);
     this.onAvatarLoaded = new EventEmitter<string>();
+    this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
+    
   }
 
   ngOnInit() {
+    
     this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
   }
@@ -68,6 +71,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   }
 
   private changeUserAvatar(){
+    this.avatarService.previousImage = this.entity.avatar;
     this.avatarSubscription = this.avatarService.onImageUploaded.subscribe(avatar=> this.onAvatarSaved(avatar));
     this.isEditMode = false;
     this.router.navigate(['/avatar']);
@@ -75,6 +79,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   private onAvatarSaved(image: string){
       this.avatarSubscription.unsubscribe();
+      this.avatarService.previousImage = undefined;
       var request = new SaveImageRequest(this.entity.login, image);
       this.avatarBaseService.updateAvatar(request).subscribe(response=>{
         var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
@@ -86,6 +91,10 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
       if (!this.isUsers) return;
       if (choice > 0) this.canEditPhoto = true;
       else this.canEditPhoto = false;
+  }
+
+  private onAvatarClosed(){
+    if(this.avatarSubscription) this.avatarSubscription.unsubscribe();
   }
 
 }

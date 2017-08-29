@@ -8,18 +8,17 @@
 }
 
 .main-search-container{
-    max-height: 99%;
+    height: 100%;
     overflow-y: auto;
-    margin-top: 6px; 
 }
 
 .search-items-container{
-    position: relative;
-    
+     
 }
 
 .search-text-container{
     border-bottom: 1px solid #ececec;
+    padding-top: 6px; 
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 8px;
@@ -53,6 +52,7 @@
 
 .fa-spinner{
    margin-left: 45%;
+   position: absolute;
 }
 
 .filter-icon{

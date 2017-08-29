@@ -16,9 +16,7 @@ export class DateSelectProvider {
    }
 
    public buildDate(): Date{
-     console.log(this.year, this.month, this.day);
      var date = new Date(this.year,this.month,this.day);
-     console.log(date);
      return date;
    }
 

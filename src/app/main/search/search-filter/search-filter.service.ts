@@ -29,6 +29,8 @@ export class SearchFilterService {
 
   public searchChanged: Subject<string>;
 
+  public isFilterClear: boolean = true;
+
   constructor(private entityTypeProvider: EntityTypeProvider,
               private musicianTypesProvider: MusicianTypesProvider) {
     this.selectedStyles = [];
@@ -49,7 +51,10 @@ export class SearchFilterService {
   }
 
 
-  public clearFilter(){
+  public clearFilter(): boolean{
+    if(this.isFilterClear){
+      return false;
+    }
     this.selectedEntity = 0;
     this.selectedStyles = [];
     this.selectedExpiriences = [];
@@ -57,5 +62,7 @@ export class SearchFilterService {
     this.searchText = "";
     this.searchTextStub = "";
     this.fillDefaultValues();
+    this.isFilterClear = true;
+    return true;
   }
 }
