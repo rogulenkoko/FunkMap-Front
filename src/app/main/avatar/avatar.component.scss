@@ -37,8 +37,26 @@ $active-color: #4d4d4d;
        
     }
 
+    .avatar-buttons-container{
+        margin-top: 48px;
+        width: 250px;
+
+        .btn-success{
+            width: 110px;
+        }
+    }
+
+    .cropper-container{
+        border: 1px solid black;
+        padding: 66px;
+        img{
+            width: 418px;
+        }
+    }
+
     .cropped-image{
-        width: 418px;
+        width: 418px !important;
+        margin-right: 20px;
     }
 }
 

@@ -16,15 +16,27 @@ export class CropperDirective implements AfterContentInit {
   }
 
   ngAfterContentInit() {
+
+  }
+
+  public refresh() {
     $(`#${this.elementId}`).cropper({
-      aspectRatio: 1,
+      aspectRatio: 1/1,
       guides: false,
       zoomable: false,
       background: false,
       crop: function (e) {
         //console.log(e);
       }
-    })
+    });
+  }
+
+  public remove(){
+    $(`#${this.elementId}`).cropper("destroy");
+  }
+
+  public getBase64(): string{
+    return $(`#${this.elementId}`).cropper('getCroppedCanvas').toDataURL();
   }
 
 }

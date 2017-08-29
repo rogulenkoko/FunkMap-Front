@@ -1,15 +1,19 @@
 <modal [title]="'Avatar_Title'" [width]="'550px'">
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-    <!-- <div *ngIf="!imageBase64" class="add-delete-container d-flex flex-row justify-content-between">
-      <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" mode="basic" name="demo[]" url="./upload.php" accept="image/*"
-        maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+     <div *ngIf="!isImageLoaded" class="add-delete-container d-flex flex-row justify-content-between">
+      <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" auto="false" mode="basic" accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="onImagepload($event)"></p-fileUpload>
       <div class="d-flex align-items-center action-container">
         <i class="icon-rubbish-bin"></i>
         <span>{{'Avatar_Delete' | translate}}</span>
       </div>
-    </div> -->
-
-    <img id="avatar" cropper [elementId]="'avatar'" class="cropped-image" src="https://pp.userapi.com/c836437/v836437592/409c3/OLuRH9lNp0E.jpg"/>
+    </div> 
+    
+    <img *ngIf="imageBase64" id="avatar" cropper [elementId]="'avatar'" class="cropped-image" src="{{imageBase64}}"/>
+   
+    <div *ngIf="isImageLoaded" class="d-flex flex-row justify-content-between avatar-buttons-container">
+      <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
+      <button (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+    </div>
 
   </div>
 </modal>
