@@ -8,7 +8,6 @@ import { CreationServiceStub } from "./creation.service.stub";
 import { MapCreationComponent } from './map-creation/map-creation.component';
 
 import { CanActivateCreation } from "./can-activate-creation";
-import {ImageCropperModule} from 'ng2-img-cropper';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import {ImageCropperModule} from 'ng2-img-cropper';
   ],
   imports: [
     CoreModule,
-    ToolsModule,
-    ImageCropperModule
+    ToolsModule
   ], 
   exports:[
       CreationComponent,

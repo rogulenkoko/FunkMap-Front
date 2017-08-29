@@ -1,36 +1,15 @@
 <modal [title]="'Avatar_Title'" [width]="'550px'">
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-    <div *ngIf="!imageBase64" class="add-delete-container d-flex flex-row justify-content-between">
+    <!-- <div *ngIf="!imageBase64" class="add-delete-container d-flex flex-row justify-content-between">
       <p-fileUpload chooseLabel="{{'Avatar_LoadNew' | translate}}" mode="basic" name="demo[]" url="./upload.php" accept="image/*"
         maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
       <div class="d-flex align-items-center action-container">
         <i class="icon-rubbish-bin"></i>
         <span>{{'Avatar_Delete' | translate}}</span>
       </div>
-    </div>
-
-    <img class="cropped-image" #croppie="croppie" [croppieOptions]="croppieOptions" (update)="handleUpdate($event)" />
-
-
-
-
-
-    <!-- <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-
-    <div class="d-flex flex-row align-items-center justify-content-between img-buttons">
-      <div>
-        <button routerLink="/" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
-      </div>
-      <div *ngIf="!data.image">
-        <label class="btn btn-success btn-file">
-          {{'Avatar_BrowsePhoto' | translate}} <input type="file"  (change)="fileChangeListener($event)" hidden>
-        </label>
-      </div>
-      <div *ngIf="data.image">
-        <button (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
-      </div>
-      
     </div> -->
+
+    <img id="avatar" cropper [elementId]="'avatar'" class="cropped-image" src="https://pp.userapi.com/c836437/v836437592/409c3/OLuRH9lNp0E.jpg"/>
 
   </div>
 </modal>

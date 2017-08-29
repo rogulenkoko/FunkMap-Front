@@ -4,9 +4,6 @@ import { UserDataService } from "../user/user-data.service";
 import { SaveImageRequest } from "../user/save-image-request";
 import { UserService } from "../user/user.service";
 
-import { CroppieOptions } from 'croppie';
-import { CroppieDirective } from 'angular-croppie-module';
-
 @Component({
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
@@ -14,24 +11,13 @@ import { CroppieDirective } from 'angular-croppie-module';
 })
 export class AvatarComponent implements OnInit, AfterViewInit  {
 
-  private imageBase64: string = "asd";
+  private imageBase64: string = "";
 
   private isImageLoaded: boolean;
-
-  private croppieOptions: CroppieOptions;
-
-  @ViewChild('croppie') croppie:CroppieDirective;
 
   constructor(private userDataService: UserDataService, 
               private userService: UserService,
               private router: Router) {
-    this.croppieOptions = {
-      boundary: { width: 416, height: 280 },
-      viewport: { width: 200, height: 200, type: 'circle' },
-      showZoomer: false,
-      enableOrientation: false,
-      enforceBoundary: true
-    }
 
   }
 
@@ -41,15 +27,6 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
 
   ngAfterViewInit(){
     
-    console.log(this.croppie);
-    this.croppie.croppie.bind({
-      useCanvas:false,
-      url:"https://pp.userapi.com/c836437/v836437592/409c2/OHfaablLDbo.jpg",
-
-    }).then(res=>{
-      this.isImageLoaded = true;
-      window.opener.postMessage(res, '*')
-    })
   }
 
   handleUpdate($event){

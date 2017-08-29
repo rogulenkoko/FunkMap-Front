@@ -18,6 +18,7 @@ import { SocialComponent } from './social/social.component';
 import { SignalrService, SignalrServiceReal } from "app/tools/signalr/signalr.service";
 import { environment } from "environments/environment";
 import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
+import { CropperDirective } from './cropper/cropper.directive';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
     EntityInfoComponent,
     EntityVideoComponent,
     DatexPipe,
-    SocialComponent
+    SocialComponent,
+    CropperDirective
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
     EntityMapComponent,
     EntityVideoComponent,
     DatexPipe,
-    SocialComponent
+    SocialComponent,
+    CropperDirective
     ],
   providers: [
     DateSelectProvider,

@@ -6,7 +6,6 @@ import { MusicianTypesProvider } from "../musician/musician-types-provider";
 import { EntityType, Marker } from "../map/models";
 import { CreationService } from "./creation.service";
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
-import { CropperSettings, ImageCropperComponent } from "ng2-img-cropper";
 import { EntityItem, InstrumentsItem } from "app/tools/select";
 import { TranslateService } from "@ngx-translate/core";
 import { MapCreationService } from "app/main/map/map-creation.service";
@@ -22,9 +21,6 @@ import { RouteBuilder } from "app/tools/route-builder";
 
 export class CreationComponent implements OnInit {
 
-  private cropperSettings: CropperSettings;
-  private isImageSaved: boolean = false;
-
   private entities: Array<EntityItem>;
   private instruments: Array<InstrumentsItem>
 
@@ -35,13 +31,13 @@ export class CreationComponent implements OnInit {
   private isLoginExist: boolean = false;
 
   constructor(private creationService: CreationService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private entityTypeProvider: EntityTypeProvider,
-    private translateService: TranslateService,
-    private mapCreationService: MapCreationService,
-    private userService: UserService,
-    private musicianTypesProvider: MusicianTypesProvider) {
+              private router: Router,
+              private route: ActivatedRoute,
+              private entityTypeProvider: EntityTypeProvider,
+              private translateService: TranslateService,
+              private mapCreationService: MapCreationService,
+              private userService: UserService,
+              private musicianTypesProvider: MusicianTypesProvider) {
 
     this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));

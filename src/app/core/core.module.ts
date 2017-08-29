@@ -20,9 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextareaModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
 
-
-import { CroppieModule } from 'angular-croppie-module';
-
 @NgModule({
   declarations: [
   ],
@@ -45,8 +42,7 @@ import { CroppieModule } from 'angular-croppie-module';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
-    BrowserAnimationsModule,
-    CroppieModule
+    BrowserAnimationsModule
   ],
   exports: [
     TranslateModule,
@@ -60,8 +56,7 @@ import { CroppieModule } from 'angular-croppie-module';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
-    BrowserAnimationsModule,
-    CroppieModule
+    BrowserAnimationsModule
   ],
   providers: [
     LanguageService,
