@@ -21,7 +21,7 @@ export class LanguageService {
     } catch (ex) {
       this.language = this.availableLanguages[0].value;
     }
-    moment.lang(this.language);
+    moment.locale(this.language);
 
     
     this.translate.addLangs(this.availableLanguages.map(x=>x.value));

@@ -14,7 +14,7 @@ import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 import { SignalRModule } from 'ng2-signalr';
 import { SignalRConfiguration } from 'ng2-signalr';
 import { environment } from "environments/environment";
-import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { MultiSelectModule, DropdownModule, TooltipModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextareaModule } from 'primeng/primeng';
@@ -78,7 +78,7 @@ export function translateLoader(http: Http) {
 export function createSignalRConfig() {
   var config = new SignalRConfiguration();
   config.hubName = "messenger";
-  config.url = ConfigurationProvider.apiUrl.replace("/api/", "");
+  config.url = ConfigurationProvider.apiUrl(ServiceType.Messenger).replace("/api/", "");
   config.qs = {};
   return config;
 }

@@ -32,7 +32,7 @@ export class SignalrServiceReal extends SignalrService {
     if (this.userService.user) {
       (<any>this.signalR)._configuration.qs['login'] = this.userService.user.login;
 
-      
+      console.log((<any>this.signalR)._configuration);
 
       this.signalR.connect().then(connection => {
         this.connection = connection;

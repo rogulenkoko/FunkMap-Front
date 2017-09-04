@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { MapType, Marker, NearestRequest } from "./models";
 import { Http } from "@angular/http";
-import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { GoogleLocation } from "app/main/map/models/location";
 import { TranslateService } from "@ngx-translate/core";
 import { LanguageService } from "app/core";
@@ -41,15 +41,15 @@ export class MapServiceHttp extends MapService {
   }
 
   getAll(): Observable<Array<Marker>> {
-    return this.http.get(`${ConfigurationProvider.apiUrl}base/all`).map(x => Marker.ToMarkerArray(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/all`).map(x => Marker.ToMarkerArray(x.json()));
   }
 
   getNearest(request: NearestRequest): Observable<Array<Marker>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl}base/nearest`, request).map(x => Marker.ToMarkerArray(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/nearest`, request).map(x => Marker.ToMarkerArray(x.json()));
   }
 
   getSpecific(logins: Array<string>): Observable<Array<Marker>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl}base/specificmarkers`, logins).map(x => Marker.ToMarkerArray(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specificmarkers`, logins).map(x => Marker.ToMarkerArray(x.json()));
   }
 
 

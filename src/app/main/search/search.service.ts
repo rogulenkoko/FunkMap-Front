@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { NearestRequest, EntityType } from "app/main/map/models";
 import { SearchItem } from "app/main/search/search-item";
 import { HttpClient } from "app/core/http/http-client.service";
-import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { FullLocationRequest } from "app/main/search/search-location-request";
 import { MusicianService } from "app/main/musician/musician.service";
 import { BandService } from "app/main/band/band.service";
@@ -41,7 +41,7 @@ export class SearchServiceHttp extends SearchService {
   }
 
   getNearest(request: FullLocationRequest): Observable<Array<SearchItem>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl}base/fullnearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/fullnearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
   getFiltered(skip: number, take: number): Observable<SearchResponse> {
@@ -61,6 +61,6 @@ export class SearchServiceHttp extends SearchService {
       default:
         filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
     }
-    return this.http.post(`${ConfigurationProvider.apiUrl}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
 }

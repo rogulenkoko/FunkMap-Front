@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, URLSearchParams } from "@angular/http"
 import { AuthResponse } from "./login-response";
 import { Observable } from "rxjs/Observable";
-import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./registration/confirmation-model";
 import { HttpClient } from "app/core/http/http-client.service";
@@ -40,19 +40,19 @@ export class LoginServiceHttp extends LoginService {
      params.set("username", login);
      params.set("password", password);
      params.set("grant_type", "password");
-     return this.http.post(`${ConfigurationProvider.apiUrl}token`,params, options).map(x=>AuthResponse.ToLoginResponsne(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}token`,params, options).map(x=>AuthResponse.ToLoginResponsne(x.json()));
    }
 
    register(request: RegistrationRequest): Observable<RegistrationModel>{
-     return this.http.post(`${ConfigurationProvider.apiUrl}auth/register`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/register`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
    }
 
    sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>{
-     return this.http.post(`${ConfigurationProvider.apiUrl}auth/sendEmail`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/sendEmail`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
    }
 
    confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>{
-     return this.http.post(`${ConfigurationProvider.apiUrl}auth/confirm`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));;;
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/confirm`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));;;
    }
 
 }

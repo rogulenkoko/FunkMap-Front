@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
 import { HttpClient } from "app/core/http/http-client.service";
-import { ConfigurationProvider } from "app/core/configuration/configuration-provider";
+import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import 'rxjs/add/observable/fromPromise';
 import { Subscription } from "rxjs/Subscription";
 
@@ -83,7 +83,7 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   createDialog(dialog: Dialog): Observable<DialogCreateResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl}messenger/createDialog`, dialog).map(x=> DialogCreateResponse.ToDialogCreateResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x=> DialogCreateResponse.ToDialogCreateResponse(x.json()));
   }
 
   setOpenedDialog(dialogId: string): Observable<BaseResponse>{
@@ -91,22 +91,22 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
-    return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogMessages`, request).map(x=> Message.ToMessages(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogMessages`, request).map(x=> Message.ToMessages(x.json()));
   }
   getDialogs(): Observable<Array<Dialog>> {
-    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogs`).map(x => Dialog.ToDialogs(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogs`).map(x => Dialog.ToDialogs(x.json()));
   }
 
   getOnlineUsersLogins(): Observable<string[]> {
-    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getOnlineUsers`).map(x=> x.json());
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getOnlineUsers`).map(x=> x.json());
   }
 
   getDialogsWithNewMessages():Observable<Array<Dialog>>{
-    return this.http.get(`${ConfigurationProvider.apiUrl}messenger/getDialogsWithNewMessagesCount`).map(x=> Dialog.ToDialogs(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogsWithNewMessagesCount`).map(x=> Dialog.ToDialogs(x.json()));
   }
 
   getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>{
-    return this.http.post(`${ConfigurationProvider.apiUrl}messenger/getDialogsNewMessagesCount`, dialogIds).map(x => DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogsNewMessagesCount`, dialogIds).map(x => DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
   }
 
 }

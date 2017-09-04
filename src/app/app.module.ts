@@ -30,6 +30,8 @@ import { MessengerModule } from "app/main/messenger/messenger.module";
 import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 import { AvatarModule } from "app/main/avatar/avatar.module";
+import { VideoComponent } from './main/video/video.component';
+import { VideoModule } from "app/main/video/video.module";
 
 
 
@@ -43,7 +45,7 @@ import { AvatarModule } from "app/main/avatar/avatar.module";
 
     StartComponent,
 
-    MainWrapperComponent,
+    MainWrapperComponent
   ],
   imports: [
     CoreModule,
@@ -62,7 +64,8 @@ import { AvatarModule } from "app/main/avatar/avatar.module";
     SearchModule,
     FavouritesModule,
     MessengerModule,
-    AvatarModule
+    AvatarModule,
+    VideoModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

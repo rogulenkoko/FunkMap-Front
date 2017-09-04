@@ -18,17 +18,29 @@
     margin-bottom: 35px;
 
 
-    .title-container{
-        font-size: 16px;
-        color: #7a7a7b;
-        margin-bottom: 45px;
+    .info-title-container{
+         margin-bottom: 45px;
+        .title-container{
+            font-size: 16px;
+            color: #7a7a7b;
+            
+            .video-count{
+                color: $dark-title-color;
+                font-size: 13px;
+                margin-left: 10px;
+            }
+        }
 
-        .video-count{
-            color: $dark-title-color;
-            font-size: 13px;
-            margin-left: 10px;
+        .edit-buttons-container{
+            .icon-plus{
+                color: $dark-title-color;
+                font-size: 13px;
+                margin-right: 12px;
+                margin-top: 5px;
+            }
         }
     }
+    
 
     .video-container{
         height: 420px;
@@ -41,6 +53,8 @@
             margin-left: 45px;
         }
     }
+
+    
 }
 
 .no-video-container{

@@ -4,6 +4,7 @@ import { BaseResponse } from "app/tools";
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider } from "app/core";
+import { ServiceType } from "app/core/configuration/configuration-provider";
 
 @Injectable()
 export abstract class AvatarBaseService {
@@ -20,7 +21,7 @@ export class AvatarBaseServiceHttp extends AvatarBaseService {
    }
 
    updateAvatar(request: SaveImageRequest): Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl}base/changeAvatar`, request).map(x=> BaseResponse.ToBaseResponse(x.json()))
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/changeAvatar`, request).map(x=> BaseResponse.ToBaseResponse(x.json()))
    }
 
 }

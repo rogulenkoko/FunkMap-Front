@@ -94,7 +94,7 @@
     "Creation_MapQustion":"Do you want to use the current location or specify it manually",
     "Creation_LoginIsNotEmpty":"Login can not be empty",
     "Creation_NameIsNotEmpty":"Name can not be empty",
-    "VideoLink":"Video (link)",
+    "VideoLink":"Video link (YouTube)",
 
     "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon",
     "Search_NoItems":"Results not found",
@@ -139,6 +139,8 @@
 
     "Avatar_Delete":"Delete photo",
     "Avatar_LoadNew":"Load new photo",
-    "Avatar_DeleteConfirmation":"Are you sure you want to delete the current photo?"
+    "Avatar_DeleteConfirmation":"Are you sure you want to delete the current photo?",
+
+    "Video_Add":"Add new video"
 
 }
