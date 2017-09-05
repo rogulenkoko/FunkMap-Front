@@ -141,6 +141,8 @@
     "Avatar_LoadNew":"Load new photo",
     "Avatar_DeleteConfirmation":"Are you sure you want to delete the current photo?",
 
-    "Video_Add":"Add new video"
+    "Video_Add":"Add new video",
+    "Video_Title":"Title",
+    "Video_Preview":"Preview"
 
 }

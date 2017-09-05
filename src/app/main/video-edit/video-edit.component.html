@@ -1,0 +1,32 @@
+<modal [title]="'Video_Add'" [width]="'550px'" [height]="videoInfo ? 'auto' : '195px'" >
+  <div class="main-video-container">
+    <div class="video-input-container">
+      <input placeholder="{{'VideoLink' | translate}}" [(ngModel)]="videoLink" (ngModelChange)="onLinkChanged()" class="form-control secondary"
+        [class.error-form-control]="isLinkInvalid" />
+      <span *ngIf="isLinkInvalid" class="error-label">Невозможно распознать ссылку</span>
+    </div>
+
+    <div *ngIf="videoInfo" class="video-info-container">
+
+      <div class="d-flex flex-column property-container image-container">
+        <span class="property-title">{{'Video_Preview' | translate}}:</span>
+        <img src="{{videoInfo.previewImage}}"/>
+      </div>
+
+      <div class="d-flex flex-column property-container align-items-baseline">
+        <span class="property-title">{{'Video_Title' | translate}}:</span>
+        <input placeholder="{{'Video_Title' | translate}}" [(ngModel)]="videoInfo.name" class="form-control secondary" />
+      </div>
+
+      <div class="d-flex flex-column property-container align-items-baseline">
+        <span class="property-title">{{'Musician_Description' | translate}}:</span>
+        <textarea placeholder="{{'Video_Title' | translate}}" [(ngModel)]="videoInfo.description" class="form-control secondary"></textarea>
+      </div>
+
+      <div class="d-flex flex-row justify-content-center buttons-container">
+        <button (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+        <button (click)="save()" class="btn btn-success">{{'Save' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</modal>

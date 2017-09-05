@@ -7,9 +7,9 @@
       <span>{{'Video' | translate}}</span>
       <span class="video-count">{{entity.videosYoutube ? entity.videosYoutube.length : 0}}</span>
     </div>
-    <div class="edit-buttons-container d-flex align-items-center">
+    <div  [routerLink]="['/video']" class="edit-buttons-container d-flex align-items-center"  [routerLink]="['/video']">
       <i *ngIf="isEditVisible" class="icon-plus"></i>
-      <span *ngIf="isEditVisible" [routerLink]="['/video']">Добавить видео</span>
+      <span *ngIf="isEditVisible">Добавить видео</span>
     </div>
   </div>
 
