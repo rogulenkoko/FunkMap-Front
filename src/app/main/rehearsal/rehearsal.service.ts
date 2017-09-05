@@ -5,6 +5,7 @@ import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider } from "app/core";
 import { BaseResponse } from "app/tools";
 import { ServiceType } from "app/core/configuration/configuration-provider";
+import { EntityType } from "app/main/map/models";
 
 @Injectable()
 export abstract class RehearsalService {
@@ -32,7 +33,8 @@ export class RehearsalServiceHttp extends RehearsalService {
   }
 
   updateRehearsal(rehersal: Rehearsal): Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}rehearsal/edit`, rehersal).map(x=>BaseResponse.ToBaseResponse(x.json()));
+    rehersal.entityType = EntityType.RehearsalPoint;
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, rehersal).map(x=>BaseResponse.ToBaseResponse(x.json()));
   }
 
 }

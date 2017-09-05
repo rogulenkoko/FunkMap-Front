@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VideoApiService } from "app/main/video-edit/video-api.service";
 import { VideoEditService } from "app/main/video-edit/video-edit.service";
 import { VideoType, VideoInfo } from "app/main/video-edit/video-info";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-video-edit',
@@ -20,9 +21,13 @@ export class VideoEditComponent implements OnInit {
   private isLinkInvalid: boolean = false;
 
   constructor(private videoApiService: VideoApiService,
-              private videoEditService: VideoEditService) { }
+              private videoEditService: VideoEditService,
+              private router: Router) { }
 
   ngOnInit() {
+    if(!this.videoEditService.onVideoSaved.observers || this.videoEditService.onVideoSaved.observers.length == 0){
+      this.router.navigate(['/']);
+    }
     // this.videoLink = "https://vimeo.com/35700803";
     // this.onLinkChanged();
   }
@@ -49,6 +54,10 @@ export class VideoEditComponent implements OnInit {
     this.videoApiService.getVideoInfo(videoId, type).subscribe(info=>{
       this.videoInfo = info;
     })
+  }
+
+  private save(){
+    this.videoEditService.onVideoSaved.emit(this.videoInfo);
   }
 
   private getParameterByName(name: string, source: string) {

@@ -5,6 +5,7 @@ import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider } from "app/core";
 import { BaseResponse } from "app/tools";
 import { ServiceType } from "app/core/configuration/configuration-provider";
+import { EntityType } from "app/main/map/models";
 
 @Injectable()
 export abstract class ShopService {
@@ -26,15 +27,16 @@ export class ShopServiceHttp extends ShopService {
   }
 
   getShopPreview(login: string): Observable<ShopPreview> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/get/${login}`).map(x=>ShopPreview.ToShopPreview(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/get/${login}`).map(x => ShopPreview.ToShopPreview(x.json()));
   }
 
-   getShop(login: string): Observable<Shop>{
-      return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/getFull/${login}`).map(x=>Shop.ToShop(x.json()));
-   }
+  getShop(login: string): Observable<Shop> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/getFull/${login}`).map(x => Shop.ToShop(x.json()));
+  }
 
-   updateShop(shop: Shop): Observable<BaseResponse>{
-      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/edit`, shop).map(x=>BaseResponse.ToBaseResponse(x.json()));
-   }
+  updateShop(shop: Shop): Observable<BaseResponse> {
+    shop.entityType = EntityType.Shop;
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, shop).map(x => BaseResponse.ToBaseResponse(x.json()));
+  }
 
 }

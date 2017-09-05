@@ -80,7 +80,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   private onAvatarSaved(image: string){
       this.avatarSubscription.unsubscribe();
       this.avatarService.previousImage = undefined;
-      var request = new SaveImageRequest(this.entity.login, image);
+      var request = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
+      request.avatar = image;
       this.avatarBaseService.updateAvatar(request).subscribe(response=>{
         var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
         this.router.navigate([route]);

@@ -6,6 +6,7 @@ import { ConfigurationProvider, ServiceType } from "app/core/configuration/confi
 import { SearchItem } from "app/main/search/search-item";
 import { BaseResponse } from "app/tools";
 import { HttpClient } from "app/core/http/http-client.service";
+import { EntityType } from "app/main/map/models";
 
 @Injectable()
 export abstract class MusicianService {
@@ -29,15 +30,16 @@ export class MusicianServiceHttp extends MusicianService {
 
 
    getMusicianPreview(id: string): Observable<MusicianPreview>{
-     return this.http.get(ConfigurationProvider.apiUrl(ServiceType.Funkmap) + "musician/get/" + id).map(x=>MusicianPreview.ToMusicianPreview(x.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/get/${id}`).map(x=>MusicianPreview.ToMusicianPreview(x.json()));
    }
 
    getMusician(id: string): Observable<Musician>{
-     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/getFull/` + id).map(x=>Musician.ToMusician(x.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/getFull/${id}`).map(x=>Musician.ToMusician(x.json()));
    }
 
    updateMusician(musician: Musician):Observable<BaseResponse>{
-     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/edit`, musician).map(x=> BaseResponse.ToBaseResponse(x.json()));
+     musician.entityType = EntityType.Musician;
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, musician).map(x=> BaseResponse.ToBaseResponse(x.json()));
    }
 
 }

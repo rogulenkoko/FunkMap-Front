@@ -5,6 +5,7 @@ import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider } from "app/core";
 import { BaseResponse } from "app/tools";
 import { ServiceType } from "app/core/configuration/configuration-provider";
+import { EntityType } from "app/main/map/models";
 
 @Injectable()
 export abstract class StudioService {
@@ -33,7 +34,8 @@ export class StudioServiceHttp extends StudioService {
   }
 
   updateStudio(studio: Studio): Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}studio/edit`, studio).map(x => BaseResponse.ToBaseResponse(x.json()));
+    studio.entityType = EntityType.Studio;
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, studio).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
 }
