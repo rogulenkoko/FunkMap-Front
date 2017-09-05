@@ -7,20 +7,20 @@ import { ConfigurationProvider, BaseModel } from "app/core";
 import { ServiceType } from "app/core/configuration/configuration-provider";
 
 @Injectable()
-export abstract class AvatarBaseService {
+export abstract class BaseEditService {
 
   abstract updateAvatar(request: BaseModel): Observable<BaseResponse>;
 
 }
 
 @Injectable()
-export class AvatarBaseServiceHttp extends AvatarBaseService {
+export class BaseEditServiceHttp extends BaseEditService {
 
   constructor(private http: HttpClient) {
     super();
    }
 
-   updateAvatar(request: BaseModel): Observable<BaseResponse>{
+  updateAvatar(request: BaseModel): Observable<BaseResponse>{
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/update`, request).map(x=> BaseResponse.ToBaseResponse(x.json()))
    }
 

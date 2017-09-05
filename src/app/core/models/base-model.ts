@@ -1,13 +1,14 @@
 
 
 import { EntityType } from "app/main/map/models";
+import { VideoInfo } from "app/main/video-edit/video-info";
 
 export class BaseModel {
     constructor(public login?:string, public name?:string, public entityType?: EntityType){
-        this.videosYoutube = [];
+        this.videoInfos = [];
     }
     public userLogin: string;
-    public videosYoutube: Array<string>;
+    public videoInfos: Array<VideoInfo>;
     public latitude: number;
     public longitude: number;
 

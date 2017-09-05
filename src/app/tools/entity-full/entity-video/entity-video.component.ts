@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { VideoInfo } from "app/main/video-edit/video-info";
 import { RouteBuilder } from "app/tools/route-builder";
+import { BaseEditService } from "app/tools/entity-full/base-edit.service";
 
 @Component({
   selector: 'entity-video',
@@ -25,27 +26,36 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
               userDataService: UserDataService,
               editService: EditService,
               private videoEditService: VideoEditService,
+              private editBaseService: BaseEditService,
               private router: Router) {
     super(userService, userDataService, editService);
     this.subscription = new Subscription();
   }
 
   ngOnInit() {
-     this.checkIsUserEntity(this.entity.login);
-     this.isEditVisible = true;
+    this.checkIsUserEntity(this.entity.login);
+    this.isEditVisible = true;
   }
 
-  private editVideo(){
-    this.subscription.add(this.videoEditService.onVideoSaved.subscribe(info=>this.saveVideo(info)));
-    
+  private editVideo() {
+    this.subscription.add(this.videoEditService.onVideoSaved.subscribe(info => this.saveVideo(info)));
+
     this.router.navigate(['/video']);
   }
 
-  private saveVideo(info: VideoInfo){
-    console.log(info);
-    var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
-    this.router.navigate([route]);
+  private saveVideo(info: VideoInfo) {
     this.subscription.unsubscribe();
+    var request = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
+    if(!this.entity.videoInfos){
+      this.entity.videoInfos = [];
+    }
+    this.entity.videoInfos.push(info);
+    request.videoInfos = this.entity.videoInfos;
+    this.editBaseService.updateAvatar(request).subscribe(response => {
+      if (response.success) {
+        var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
+        this.router.navigate([route]);
+      }
+    });
   }
-
 }

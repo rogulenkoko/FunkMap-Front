@@ -1,5 +1,6 @@
 import { BaseModel } from "app/core";
 import { EntityType } from "app/main/map/models";
+import { VideoInfo } from "app/main/video-edit/video-info";
 
 export class Musician extends BaseModel{
 
@@ -37,7 +38,7 @@ export class Musician extends BaseModel{
         result.age = data.Age;
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
-        result.videosYoutube = data.VideosYoutube;
+        result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);
         result.address = data.Address;
         return result;
     }

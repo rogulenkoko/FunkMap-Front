@@ -19,8 +19,8 @@ import { SignalrService, SignalrServiceReal } from "app/tools/signalr/signalr.se
 import { environment } from "environments/environment";
 import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
 import { CropperDirective } from './cropper/cropper.directive';
-import { AvatarBaseServiceStub } from "app/main/avatar/avatar-base.service.stub";
-import { AvatarBaseService, AvatarBaseServiceHttp } from "app/main/avatar/avatar-base.service";
+import { BaseEditService, BaseEditServiceHttp } from "app/tools/entity-full/base-edit.service";
+import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stub";
 
 
 @NgModule({
@@ -66,9 +66,10 @@ import { AvatarBaseService, AvatarBaseServiceHttp } from "app/main/avatar/avatar
       useClass: environment.production ? SignalrServiceReal : SignalrServiceStub
     },
     {
-      provide: AvatarBaseService,
-      useClass: environment.production ? AvatarBaseServiceHttp : AvatarBaseServiceStub
+      provide: BaseEditService,
+      useClass: environment.production ? BaseEditServiceHttp : BaseEditServiceStub
     }
+    
   ]
 })
 export class ToolsModule { }

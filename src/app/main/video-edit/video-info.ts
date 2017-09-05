@@ -1,45 +1,59 @@
-export class VideoInfo{
-  public id: string;
-  public name: string;
-  public description: string;
-  public type: VideoType;
+export class VideoInfo {
 
+    constructor(public id: string, public type: VideoType) {
 
-  //только на фронте
-  public previewImage: string;
-
-
-  public static ConvertYoutube(data: any): VideoInfo{
-    var result = new VideoInfo();
-    if(!data || !data.items || data.items.length < 1){
-      return result;
     }
-    var item = data.items[0];
-    result.id = item.id;
-    result.name = item.snippet.title;
-    result.description = item.snippet.description;
-    result.previewImage = item.snippet.thumbnails.medium.url;
-    result.type = VideoType.Youtube;
-    return result;
-  }
+    public name: string;
+    public description: string;
 
-  public static ConvertVimeo(data: any): VideoInfo{
-    var result = new VideoInfo();
-    if(!data || data.length < 1){
-      return result;
+
+
+    //только на фронте
+    public previewImage: string;
+
+    public static ToVideoInfos(data: any): Array<VideoInfo>{
+        var result = new Array<VideoInfo>();
+        if(!data) return result;
+        data.forEach(video => {
+            var info = new VideoInfo(video.Id, video.Type);
+            info.description = video.Description;
+            info.name = video.Name;
+            result.push(info);
+            
+        });
+        return result;
     }
-    var item = data[0];
-    result.id = item.id;
-    result.name = item.title;
-    result.description = item.description;
-    result.previewImage = item.thumbnail_medium;
-    return result;
-  }
+
+    public static ConvertYoutube(data: any): VideoInfo {
+        
+        if (!data || !data.items || data.items.length < 1) {
+            return null;
+        }
+        var item = data.items[0];
+        var result = new VideoInfo(item.id, VideoType.Youtube);
+        result.name = item.snippet.title;
+        result.description = item.snippet.description;
+        result.previewImage = item.snippet.thumbnails.medium.url;
+        return result;
+    }
+
+    public static ConvertVimeo(data: any): VideoInfo {
+        
+        if (!data || data.length < 1) {
+            return null;
+        }
+        var item = data[0];
+        var result = new VideoInfo(item.id, VideoType.Vimeo);
+        result.name = item.title;
+        result.description = item.description;
+        result.previewImage = item.thumbnail_medium;
+        return result;
+    }
 }
 
 
 
-export enum VideoType{
-  Youtube = 1,
-  Vimeo = 2
+export enum VideoType {
+    Youtube = 1,
+    Vimeo = 2
 }

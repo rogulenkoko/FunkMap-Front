@@ -10,8 +10,8 @@ import { Router } from "@angular/router";
 import { AvatarService } from "app/main/avatar/avatar.service";
 import { Subscription } from "rxjs/Subscription";
 import { RouteBuilder } from "app/tools/route-builder";
-import { AvatarBaseService } from "app/main/avatar/avatar-base.service";
 import { SaveImageRequest } from "app/main/user/save-image-request";
+import { BaseEditService } from "app/tools/entity-full/base-edit.service";
 
 @Component({
   selector: 'entity-base',
@@ -38,7 +38,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
               private favouritesService: FavouritesService,
               private router: Router,
               private avatarService: AvatarService,
-              private avatarBaseService: AvatarBaseService) {
+              private avatarBaseService: BaseEditService) {
     super(userService, userDataService, editService);
     this.onAvatarLoaded = new EventEmitter<string>();
     this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());

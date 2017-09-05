@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./models";
 import { BaseResponse } from "app/tools";
 import { EntityType } from "app/main/map/models";
+import { VideoInfo, VideoType } from "app/main/video-edit/video-info";
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -38,7 +39,7 @@ export class MusicianServiceStub extends MusicianService {
      musician.longitude = 40;
      musician.birthDate = new Date();
      musician.age = 23;
-     musician.videosYoutube = ["kCsrmTxEZhE", "sRStoXuNDII"];
+     musician.videoInfos = [new VideoInfo("kCsrmTxEZhE", VideoType.Youtube), new VideoInfo("sRStoXuNDII", VideoType.Youtube)];
      musician.facebookLink = "asd";
      musician.vkLink = "aaa";
      musician.soundCloudLink = "aaaa";

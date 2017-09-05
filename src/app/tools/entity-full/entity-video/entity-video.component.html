@@ -1,11 +1,11 @@
 <div class="entity-video-container"
-  *ngIf="isUsers || (entity.videosYoutube && entity.videosYoutube.length > 0)">
+  *ngIf="isUsers || (entity.videoInfos && entity.videoInfos.length > 0)">
 
 
   <div class="info-title-container d-flex justify-content-between">
     <div class="title-container">
       <span>{{'Video' | translate}}</span>
-      <span class="video-count">{{entity.videosYoutube ? entity.videosYoutube.length : 0}}</span>
+      <span class="video-count">{{entity.videoInfos ? entity.videoInfos.length : 0}}</span>
     </div>
     <div class="edit-buttons-container d-flex align-items-center" (click)="editVideo()">
       <i *ngIf="isEditVisible" class="icon-plus"></i>
@@ -14,10 +14,13 @@
   </div>
 
   <div class="video-container">
-    <ng-container *ngIf="entity.videosYoutube && entity.videosYoutube.length > 0">
-      <youtube-player *ngFor="let link of entity.videosYoutube" [playerId]="link" [width]="490" [height]="315" [videoId]="link"></youtube-player>
+    <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
+      <ng-container *ngFor="let info of entity.videoInfos">
+        <youtube-player *ngIf="info.type == 1"  [playerId]="info.id" [width]="490" [height]="315" [videoId]="info.id"></youtube-player>
+      </ng-container>
+      
     </ng-container>
-     <ng-container *ngIf="!entity.videosYoutube || entity.videosYoutube.length == 0">
+     <ng-container *ngIf="!entity.videoInfos || entity.videoInfos.length == 0">
        <div class="no-video-container d-flex align-items-center justify-content-center">
         <span>{{'NoVideo' | translate}}</span>
        </div>

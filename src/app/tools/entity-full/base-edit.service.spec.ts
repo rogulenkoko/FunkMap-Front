@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { BaseEditService } from "app/main/avatar/base-edit.service";
 
-import { AvatarBaseService } from './avatar-base.service';
 
 describe('AvatarBaseService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AvatarBaseService]
+      providers: [BaseEditService]
     });
   });
 
-  it('should ...', inject([AvatarBaseService], (service: AvatarBaseService) => {
+  it('should ...', inject([BaseEditService], (service: BaseEditService) => {
     expect(service).toBeTruthy();
   }));
 });
