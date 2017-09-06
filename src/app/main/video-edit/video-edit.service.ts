@@ -10,9 +10,11 @@ import { ServiceType } from "app/core/configuration/configuration-provider";
 export class VideoEditService {
 
   public onVideoSaved: EventEmitter<VideoInfo>= new EventEmitter<VideoInfo>();
+  public onClosed: EventEmitter<any>;
 
   constructor() {
     this.onVideoSaved = new EventEmitter<VideoInfo>();
+    this.onClosed = new EventEmitter();
   }
 
 }

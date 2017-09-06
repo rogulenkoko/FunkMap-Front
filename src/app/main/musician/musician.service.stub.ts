@@ -39,7 +39,7 @@ export class MusicianServiceStub extends MusicianService {
      musician.longitude = 40;
      musician.birthDate = new Date();
      musician.age = 23;
-     musician.videoInfos = [new VideoInfo("kCsrmTxEZhE", VideoType.Youtube), new VideoInfo("sRStoXuNDII", VideoType.Youtube)];
+     musician.videoInfos = [new VideoInfo("kCsrmTxEZhE", VideoType.Youtube), new VideoInfo("59777392", VideoType.Vimeo), new VideoInfo("59777392", VideoType.Vimeo)];
      musician.facebookLink = "asd";
      musician.vkLink = "aaa";
      musician.soundCloudLink = "aaaa";

@@ -65,4 +65,8 @@ export class VideoEditComponent implements OnInit {
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
   }
 
+  private onClosed(){
+    this.videoInfo = undefined;
+  }
+
 }

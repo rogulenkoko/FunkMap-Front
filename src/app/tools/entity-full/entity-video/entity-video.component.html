@@ -16,7 +16,8 @@
   <div class="video-container">
     <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
       <ng-container *ngFor="let info of entity.videoInfos">
-        <youtube-player *ngIf="info.type == 1"  [playerId]="info.id" [width]="490" [height]="315" [videoId]="info.id"></youtube-player>
+         <youtube-player *ngIf="info.type == 1"  [playerId]="info.id" [width]="490" [height]="315" [videoId]="info.id"></youtube-player> 
+        <vimeo-player *ngIf="info.type == 2" [videoId]="info.id" [width]="490" [height]="315"></vimeo-player>
       </ng-container>
       
     </ng-container>

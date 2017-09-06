@@ -1,4 +1,4 @@
-<modal [title]="'Video_Add'" [width]="'550px'" [height]="videoInfo ? 'auto' : '195px'" >
+<modal [title]="'Video_Add'" [width]="'550px'" [height]="videoInfo ? 'auto' : '195px'" (onClosed)="onClosed()">
   <div class="main-video-container">
     <div class="video-input-container">
       <input placeholder="{{'VideoLink' | translate}}" [(ngModel)]="videoLink" (ngModelChange)="onLinkChanged()" class="form-control secondary"

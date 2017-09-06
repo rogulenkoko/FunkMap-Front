@@ -21,6 +21,7 @@ import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
 import { CropperDirective } from './cropper/cropper.directive';
 import { BaseEditService, BaseEditServiceHttp } from "app/tools/entity-full/base-edit.service";
 import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stub";
+import { VimeoPlayerComponent } from './vimeo-player/vimeo-player.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stu
     EntityVideoComponent,
     DatexPipe,
     SocialComponent,
-    CropperDirective
+    CropperDirective,
+    VimeoPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stu
     EntityVideoComponent,
     DatexPipe,
     SocialComponent,
-    CropperDirective
+    CropperDirective,
+    VimeoPlayerComponent
     ],
   providers: [
     DateSelectProvider,

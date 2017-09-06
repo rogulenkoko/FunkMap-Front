@@ -30,6 +30,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
               private router: Router) {
     super(userService, userDataService, editService);
     this.subscription = new Subscription();
+    this.videoEditService.onClosed.subscribe(()=> this.onVideoEditClosed());
   }
 
   ngOnInit() {
@@ -57,5 +58,9 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
         this.router.navigate([route]);
       }
     });
+  }
+
+  private onVideoEditClosed(){
+    if(this.subscription) this.subscription.unsubscribe();
   }
 }

@@ -53,12 +53,13 @@
 
     .video-container{
         height: 420px;
-        overflow-y: auto;
-        :first-child{
+        overflow-y: auto; 
+        
+        :nth-child(2n+1){
             margin-left: 0;
         }
 
-        youtube-player{
+        youtube-player, vimeo-player{
             margin-left: 45px;
         }
     }
