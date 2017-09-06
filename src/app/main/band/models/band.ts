@@ -1,6 +1,7 @@
 import { InstrumentType, MusicStyle } from "../../musician/models"
 import { BaseModel } from "app/core";
 import { EntityType } from "app/main/map/models";
+import { VideoInfo } from "app/main/video-edit/video-info";
 
 export class Band extends BaseModel{
     constructor(login?:string, name?:string, entytyType?: EntityType){
@@ -33,6 +34,7 @@ export class Band extends BaseModel{
 
         result.description = data.Description;
         result.address = data.Address;
+        result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);
         return result;
     }
 }

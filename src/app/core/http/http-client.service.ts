@@ -61,8 +61,8 @@ export class HttpClient {
 
   private handleError(error: any): Observable<any> {
     if(error.status == 401){
-      this.userService.user = undefined;
-      this.router.navigate(['/login']);
+      // this.userService.user = undefined;
+      // this.router.navigate(['/login']);
     }
     return Observable.of(error);
   }

@@ -143,6 +143,7 @@
 
     "Video_Add":"Add new video",
     "Video_Title":"Title",
-    "Video_Preview":"Preview"
+    "Video_Preview":"Preview",
+    "Video_InvalidLink":"Invalid link"
 
 }

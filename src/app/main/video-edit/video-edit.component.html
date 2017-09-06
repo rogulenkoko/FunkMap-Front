@@ -3,7 +3,7 @@
     <div class="video-input-container">
       <input placeholder="{{'VideoLink' | translate}}" [(ngModel)]="videoLink" (ngModelChange)="onLinkChanged()" class="form-control secondary"
         [class.error-form-control]="isLinkInvalid" />
-      <span *ngIf="isLinkInvalid" class="error-label">Невозможно распознать ссылку</span>
+      <span *ngIf="isLinkInvalid" class="error-label">{{'Video_InvalidLink' | translate}}</span>
     </div>
 
     <div *ngIf="videoInfo" class="video-info-container">
@@ -20,7 +20,7 @@
 
       <div class="d-flex flex-column property-container align-items-baseline">
         <span class="property-title">{{'Musician_Description' | translate}}:</span>
-        <textarea placeholder="{{'Video_Title' | translate}}" [(ngModel)]="videoInfo.description" class="form-control secondary"></textarea>
+        <textarea placeholder="{{'Musician_Description' | translate}}" [(ngModel)]="videoInfo.description" class="form-control secondary"></textarea>
       </div>
 
       <div class="d-flex flex-row justify-content-center buttons-container">

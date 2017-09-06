@@ -96,10 +96,10 @@ export class SearchComponent implements OnInit {
   }
 
   private onScrollDown(){
-    console.log("sadasd");
-    console.log("top", $('#search-container').scrollTop());
-    console.log("height", $('#search-container').height());
-    console.log("scrolheight", $('#search-container')[0].scrollHeight);
+    // console.log("sadasd");
+    // console.log("top", $('#search-container').scrollTop());
+    // console.log("height", $('#search-container').height());
+    // console.log("scrolheight", $('#search-container')[0].scrollHeight);
     if ($('#search-container').scrollTop() + $('#search-container').height() >= $('#search-container')[0].scrollHeight) {
         this.getMore();
       }
