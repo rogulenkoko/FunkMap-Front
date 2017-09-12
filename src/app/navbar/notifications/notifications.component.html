@@ -1,0 +1,8 @@
+<span>Уведомления</span>
+
+<div *ngFor="let notification of notifications">
+  <div class="d-flex flex-row">
+      <avatar-circle [image]="" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+      <band-invite-notification [notification]="notification"></band-invite-notification>
+  </div>
+</div>

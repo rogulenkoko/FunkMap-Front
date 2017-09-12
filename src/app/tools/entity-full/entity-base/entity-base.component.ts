@@ -5,13 +5,14 @@ import { UserService } from "app/main/user/user.service";
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { EditableCard } from "app/tools/entity-full/editable-card";
 import { EditService } from "app/tools/entity-full/edit.service";
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { Router } from "@angular/router";
 import { AvatarService } from "app/main/avatar/avatar.service";
 import { Subscription } from "rxjs/Subscription";
 import { RouteBuilder } from "app/tools/route-builder";
 import { SaveImageRequest } from "app/main/user/save-image-request";
 import { BaseEditService } from "app/tools/entity-full/base-edit.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
+import { ActionItem } from 'app/tools/entity-full/action-item';
 
 @Component({
   selector: 'entity-base',
@@ -26,6 +27,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   @Input() underNameTemplate: any;
 
   @Input() items: Array<InfoItem>;
+
+  @Input() actionItems: Array<ActionItem>;
 
   @Output() onAvatarLoaded: EventEmitter<string>;
 
@@ -49,6 +52,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     
     this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
+    console.log(this.actionItems)
   }
 
   private checkIsFavorite() {

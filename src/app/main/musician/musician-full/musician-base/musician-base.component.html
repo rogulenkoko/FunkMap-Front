@@ -1,4 +1,4 @@
-<entity-base [entity]="musician" [underNameTemplate]="underNameTemplate" [items]="infoItems" (onSaved)="save()"></entity-base>
+<entity-base [entity]="musician" [underNameTemplate]="underNameTemplate" [items]="infoItems" [actionItems]="actionItems" (onSaved)="save()"></entity-base>
 
 <ng-template #underNameTemplate>
   <div  class="sub-info-container">
@@ -23,4 +23,8 @@
   </div>
 
 
+</ng-template>
+
+<ng-template #inviteToBandActionTemplate>
+    <a (click)="inviteToBand()" class="dropdown-item">{{'InviteToBand' | translate}}</a>
 </ng-template>

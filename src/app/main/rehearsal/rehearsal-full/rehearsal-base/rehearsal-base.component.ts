@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Rehearsal } from "app/main/rehearsal/models/rehearsal-preview";
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { RehearsalService } from "app/main/rehearsal/rehearsal.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'rehearsal-base',

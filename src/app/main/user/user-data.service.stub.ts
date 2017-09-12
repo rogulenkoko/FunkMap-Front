@@ -6,6 +6,7 @@ import { SaveImageRequest } from "./save-image-request";
 import { SearchItem } from "app/main/search/search-item";
 import { EntityType } from "app/main/map/models";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
+import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
 
 @Injectable()
 export class UserDataServiceStub extends UserDataService {
@@ -36,5 +37,9 @@ export class UserDataServiceStub extends UserDataService {
 
   getUserEntitiesLogins(): Observable<Array<string>> {
     return Observable.of(["test", "rogulenkoko"]);
+  }
+
+  getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>{
+    return Observable.of([]);
   }
 }

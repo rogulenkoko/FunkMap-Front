@@ -7,6 +7,7 @@ import { SearchItem } from "app/main/search/search-item";
 import { BaseResponse } from "app/tools";
 import { HttpClient } from "app/core/http/http-client.service";
 import { EntityType } from "app/main/map/models";
+import { BandInviteMusicianRequest } from 'app/main/musician/models/band-invite-musician-request';
 
 @Injectable()
 export abstract class MusicianService {
@@ -18,6 +19,8 @@ export abstract class MusicianService {
   abstract getMusician(id: string): Observable<Musician>;
 
   abstract updateMusician(musician: Musician):Observable<BaseResponse>;
+
+  abstract inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>;
 
 }
 
@@ -41,5 +44,10 @@ export class MusicianServiceHttp extends MusicianService {
      musician.entityType = EntityType.Musician;
      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, musician).map(x=> BaseResponse.ToBaseResponse(x.json()));
    }
+
+   inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>{
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/invite`, request).map(x=> BaseResponse.ToBaseResponse(x.json()));;
+   }
+
 
 }

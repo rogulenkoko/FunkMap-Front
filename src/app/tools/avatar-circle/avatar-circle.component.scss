@@ -1,0 +1,26 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+
+.image-container{
+    border-radius: 50%;
+    img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.no-image{
+    img{
+        width: 120px;
+        height: 120px;
+    }
+}
+
+:host-context(.light) .no-image{
+    background-color: $light-sub-main; 
+}
+
+:host-context(.dark) .no-image{
+    background-color: $dark-sub-main;
+}

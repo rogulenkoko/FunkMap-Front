@@ -8,6 +8,7 @@ import { SaveImageRequest } from "./save-image-request";
 import { HttpClient } from "app/core/http/http-client.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
+import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
 
 
 @Injectable()
@@ -23,6 +24,7 @@ export abstract class UserDataService {
   abstract getUserEntities(): Observable<Array<SearchItem>>;
 
   abstract getUserEntitiesLogins(): Observable<Array<string>>;
+  abstract getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>;
 
 }
 
@@ -50,6 +52,10 @@ export class UserDataServiceHttp extends UserDataService {
       var logins = x.json();
       return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
     });
+  }
+
+  getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/userscount`).map(x=> UserEntitiesCountInfo.ToUserEntitiesCounts(x.json()));
   }
 
   getUserEntitiesLogins(): Observable<Array<string>>{

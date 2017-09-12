@@ -52,35 +52,6 @@
     text-decoration: none;
 }
 
-.image{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%; 
-    img{
-        border-radius: 50%;
-        width: 100%;
-        height: 100%;
-    }
-    
-}
-
-.no-image{
-    
-    img{
-        width: 20px;
-        height: 20px;
-    }
-}
-
-:host-context(.light) .no-image{
-    background-color: $light-sub-main; 
-}
-
-:host-context(.dark) .no-image{
-    background-color: $dark-sub-main;
-}
-
-
 
 .dropdown{
     cursor: pointer;
@@ -129,4 +100,11 @@ li{
 :host-context(.dark) .notification-count{
     border: 2px solid $dark-main;
     background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+}
+
+.notifications-container{
+    width: 455px;
+    margin-top: 40px;
+    right: -20px;
+    max-height: 300px;
 }

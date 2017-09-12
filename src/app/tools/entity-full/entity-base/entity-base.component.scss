@@ -48,34 +48,6 @@
         }
     }
 
-    .image-container{
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        img{
-            border-radius: 50%;
-            width: 180px;
-            height: 180px;
-        }
-
-         
-    }
-
-    .no-image{
-        img{
-            width: 120px;
-            height: 120px;
-        }
-    }
-
-    :host-context(.light) .no-image{
-        background-color: $light-sub-main; 
-    }
-
-    :host-context(.dark) .no-image{
-        background-color: $dark-sub-main;
-    }
-
     .name-container{
         font-size: 20px;
         color: $dark-font-color;

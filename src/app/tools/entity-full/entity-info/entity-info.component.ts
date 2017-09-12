@@ -4,6 +4,7 @@ import { UserDataService } from "app/main/user/user-data.service";
 import { BaseModel } from "app/core";
 import { EditableCard } from "app/tools/entity-full/editable-card";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'entity-info',
@@ -27,10 +28,4 @@ export class EntityInfoComponent extends EditableCard implements OnInit {
   }
 }
 
-export class InfoItem{
-  public propertyTitle: string;
-  public propertyValue: string;
-  public propertyTemplate: any;
 
-  public propertyEditTemplate: any;
-}

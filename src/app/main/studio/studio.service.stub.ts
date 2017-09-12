@@ -18,7 +18,7 @@ export class StudioServiceStub extends StudioService {
   }
 
   getStudio(login: string): Observable<Studio> {
-    var s = new Studio("test", "Студия", EntityType.Studio);
+    var s = new Studio("test1", "Студия", EntityType.Studio);
     s.latitude = 45;
     s.longitude = 55;
     

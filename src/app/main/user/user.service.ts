@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http } from "@angular/http";
 import { User } from "./user";
+import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
 
 
 @Injectable()
@@ -13,6 +14,8 @@ export class UserService {
 
   public latitude: number;
   public longitude: number;
+
+  public entitiesCountInfo: Array<UserEntitiesCountInfo>;
 
   public set user(user: User) {
     this._user = user;

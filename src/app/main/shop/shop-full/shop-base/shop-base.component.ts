@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShopService } from "app/main/shop/shop.service";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { Shop } from "app/main/shop/models";
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'shop-base',

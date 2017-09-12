@@ -5,6 +5,6 @@
 
 export const environment = {
   local: false,
-  production: true,
+  production: false,
   monolith: true
 };

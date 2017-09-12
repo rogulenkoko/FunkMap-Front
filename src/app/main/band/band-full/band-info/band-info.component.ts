@@ -2,10 +2,10 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Band } from "app/main/band/models";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { StylesItem } from "app/tools/select";
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { TranslateService } from "@ngx-translate/core";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { BandService } from "app/main/band/band.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'band-info',
@@ -18,9 +18,7 @@ export class BandInfoComponent implements OnInit {
   private newBand: Band;
 
   private styles: Array<StylesItem>;
-  // private instruments: Array<InstrumentsItem>;
 
-  // @ViewChild("instrumentEditTemplate") instrumentEditTemplate: any;
   @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
   @ViewChild("stylesEditTemplate") stylesEditTemplate: any;
 
@@ -60,12 +58,6 @@ export class BandInfoComponent implements OnInit {
 
     stylesItem.propertyValue = stylesValue;
     stylesItem.propertyEditTemplate = this.stylesEditTemplate;
-
-
-    // var instrumentItem = new InfoItem();
-    // instrumentItem.propertyTitle = "Musician_Instrument";
-    // instrumentItem.propertyValue = this.musicianTypesProvider.instruments.getValue(this.musician.instrument);
-    // instrumentItem.propertyEditTemplate = this.instrumentEditTemplate;
 
     var descriptionItem = new InfoItem();
     descriptionItem.propertyTitle = "Musician_Description";

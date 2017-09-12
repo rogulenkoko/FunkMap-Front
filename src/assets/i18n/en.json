@@ -144,6 +144,10 @@
     "Video_Add":"Add new video",
     "Video_Title":"Title",
     "Video_Preview":"Preview",
-    "Video_InvalidLink":"Invalid link"
+    "Video_InvalidLink":"Invalid link",
+
+    "Notifications":"Notifications",
+
+    "InviteToBand":"Invite to band"
 
 }

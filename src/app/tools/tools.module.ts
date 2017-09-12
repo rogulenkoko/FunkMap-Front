@@ -22,6 +22,7 @@ import { CropperDirective } from './cropper/cropper.directive';
 import { BaseEditService, BaseEditServiceHttp } from "app/tools/entity-full/base-edit.service";
 import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stub";
 import { VimeoPlayerComponent } from './vimeo-player/vimeo-player.component';
+import { AvatarCircleComponent } from './avatar-circle/avatar-circle.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { VimeoPlayerComponent } from './vimeo-player/vimeo-player.component';
     DatexPipe,
     SocialComponent,
     CropperDirective,
-    VimeoPlayerComponent
+    VimeoPlayerComponent,
+    AvatarCircleComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { VimeoPlayerComponent } from './vimeo-player/vimeo-player.component';
     DatexPipe,
     SocialComponent,
     CropperDirective,
-    VimeoPlayerComponent
+    VimeoPlayerComponent,
+    AvatarCircleComponent
     ],
   providers: [
     DateSelectProvider,

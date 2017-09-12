@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { Studio } from "app/main/studio/models/studio-preview";
 import { StudioService } from "app/main/studio/studio.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'studio-base',

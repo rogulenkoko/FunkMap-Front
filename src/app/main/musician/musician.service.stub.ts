@@ -5,6 +5,7 @@ import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./mo
 import { BaseResponse } from "app/tools";
 import { EntityType } from "app/main/map/models";
 import { VideoInfo, VideoType } from "app/main/video-edit/video-info";
+import { BandInviteMusicianRequest } from 'app/main/musician/models/band-invite-musician-request';
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -28,7 +29,7 @@ export class MusicianServiceStub extends MusicianService {
    }
 
    private getModel(){
-     var musician = new Musician("test", "Мик Томсон", EntityType.Musician);
+     var musician = new Musician("test1", "Мик Томсон", EntityType.Musician);
      musician.styles = [MusicStyle.Funk, MusicStyle.Rock];
      musician.instrument = InstrumentType.Drums;
      musician.birthDate = new Date();
@@ -47,6 +48,10 @@ export class MusicianServiceStub extends MusicianService {
      musician.description = `Мик Томсон (род. 3 ноября 1973 ) - американский музыкант. Он известен как один из трех гитаристов Slipknot`;
      return musician;
    }
+
+   inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
+  }
 
 
 }

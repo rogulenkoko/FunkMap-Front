@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Band } from "app/main/band/models";
 import { EditService } from "app/tools/entity-full/edit.service";
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { BandService } from "app/main/band/band.service";
+import { ActionItem } from 'app/tools/entity-full/action-item';
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'band-base',
@@ -41,7 +42,7 @@ export class BandBaseComponent implements OnInit {
     this.infoItems = [
       nameInfoItem,
       netsInfoItem
-    ]
+    ];
   }
 
   private save(){

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { TranslateService } from "@ngx-translate/core";
 import { Shop } from "app/main/shop/models";
 import { ShopService } from "app/main/shop/shop.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'shop-info',

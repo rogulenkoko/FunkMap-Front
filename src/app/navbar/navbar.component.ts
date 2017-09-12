@@ -20,6 +20,8 @@ export class NavbarComponent implements OnInit {
 
   private subscription: Subscription;
 
+  private isNotificationsVisible: boolean;
+
   constructor(private languageService: LanguageService,
               private userService: UserService,
               private mapFilter: MapFilter,

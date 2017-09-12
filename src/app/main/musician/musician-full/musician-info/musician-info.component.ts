@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Musician, InstrumentType } from "app/main/musician/models";
-import { InfoItem } from "app/tools/entity-full/entity-info/entity-info.component";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { MusicianService } from "app/main/musician/musician.service";
 import { IconProvider } from "app/main/map/icon-provider.service";
@@ -8,6 +7,7 @@ import { DateSelectProvider } from "app/tools";
 import { StylesItem, InstrumentsItem, ExpirienceItem } from "app/tools/select";
 import { TranslateService } from "@ngx-translate/core";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { InfoItem } from 'app/tools/entity-full/info-item';
 
 @Component({
   selector: 'musician-info',

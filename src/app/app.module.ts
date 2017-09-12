@@ -32,13 +32,13 @@ import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 import { AvatarModule } from "app/main/avatar/avatar.module";
 import { VideoEditComponent } from './main/video-edit/video-edit.component';
 import { VideoModule } from "app/main/video-edit/video.module";
+import { NavbarModule } from "app/navbar/navbar.module";
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent, 
     MainComponent,
 
     SidebarComponent,
@@ -65,7 +65,8 @@ import { VideoModule } from "app/main/video-edit/video.module";
     FavouritesModule,
     MessengerModule,
     AvatarModule,
-    VideoModule
+    VideoModule,
+    NavbarModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

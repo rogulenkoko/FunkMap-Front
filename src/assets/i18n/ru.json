@@ -141,5 +141,9 @@
     "Video_Add":"Добавить новую видеозапись",
     "Video_Title":"Название",
     "Video_Preview":"Превью",
-    "Video_InvalidLink":"Невозможно распознать ссылку"
+    "Video_InvalidLink":"Невозможно распознать ссылку",
+
+    "Notifications":"Уведомления",
+
+    "InviteToBand":"Пригласить в группу"
 }
