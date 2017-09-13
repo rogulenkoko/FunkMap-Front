@@ -4,5 +4,8 @@
   <div class="d-flex flex-row">
       <avatar-circle [image]="" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
       <band-invite-notification [notification]="notification"></band-invite-notification>
+      <span>{{notification.date | dateNotification}}</span>
+      <span (click)="sendResponse(1, notification.id)">Да</span>
+      <span (click)="sendResponse(-1, notification.id)">Нет</span>
   </div>
 </div>

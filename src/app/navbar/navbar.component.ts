@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Language, LanguageService } from "../core/language/language.service";
 import { UserService } from "../main/user/user.service";
 import { UserDataService } from "../main/user/user-data.service";
@@ -8,6 +8,8 @@ import { SaveImageRequest } from "app/main/user/save-image-request";
 import { Router } from "@angular/router";
 import { AvatarService } from "app/main/avatar/avatar.service";
 import { Subscription } from "rxjs/Subscription";
+import { NotificationsComponent } from 'app/navbar/notifications/notifications.component';
+import { NotificationService } from 'app/navbar/notifications/notification.service';
 
 @Component({
   selector: 'navbar',
@@ -16,11 +18,13 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class NavbarComponent implements OnInit {
 
+  @ViewChild(NotificationsComponent) notificationsComponent: NotificationsComponent;
+
   private isLogged: boolean = false;
 
   private subscription: Subscription;
 
-  private isNotificationsVisible: boolean;
+  private newNotificationsCount: number;
 
   constructor(private languageService: LanguageService,
               private userService: UserService,
@@ -28,7 +32,8 @@ export class NavbarComponent implements OnInit {
               private userDataService: UserDataService,
               private filterService: SearchFilterService, 
               private router: Router,
-              private avatarService: AvatarService) {
+              private avatarService: AvatarService,
+              private notificationService: NotificationService) {
     this.subscription = new Subscription();
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
     this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
@@ -36,12 +41,13 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.getAvatar();
+    this.getNotificationsCount();
   }
 
   private getAvatar() {
     if (this.userService.user) {
       this.userDataService.getImage(this.userService.user.login).subscribe(image => {
-        this.userService.avatar = image ? `data:image/png;base64,${image}` : undefined;
+        this.userService.avatar = image;
         
       })
     }
@@ -67,6 +73,16 @@ export class NavbarComponent implements OnInit {
 
   private onAvatarClosed(){
     if(this.subscription) this.subscription.unsubscribe();
+  }
+
+  private changeNotificationsVisibility(){
+    this.notificationsComponent.refreshNotification();
+  }
+
+  private getNotificationsCount(){
+    this.notificationService.getNewNotificationsCount().subscribe(count=>{
+      this.newNotificationsCount = count;
+    });
   }
 
 }

@@ -32,15 +32,13 @@ export class MessengerServiceStub extends MessengerService {
   }
   getDialogs(): Observable<Dialog[]> {
     var dialog = new Dialog("1","Константинопольский Кирилл");
-    var message = new Message("qwe","1","Привет, хотел бы пригласить тебя туда сюда");
-    message.setDate(new Date(2017,3,24,12,12,30)); 
+    var message = new Message("qwe","1","Привет, хотел бы пригласить тебя туда сюда", new Date(2017,3,24,12,12,30));
    
     dialog.lastMessage = message;
     
 
     var dialog2 = new Dialog("2","Роналдо Гриб");
-    var message2 = new Message("test","1","Как дела?");
-    message2.setDate(new Date(2017,7,24,12,12,30));
+    var message2 = new Message("test","1","Как дела?", new Date(2017,7,24,12,12,30));
     message2.isNew = true;
     dialog2.lastMessage = message2;
     dialog2.isOnline = true;
