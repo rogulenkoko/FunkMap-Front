@@ -80,8 +80,5 @@ export function translateLoader(http: Http) {
 
 export function createSignalRConfig() {
   var config = new SignalRConfiguration();
-  config.hubName = "messenger";
-  config.url = ConfigurationProvider.apiUrl(ServiceType.Messenger).replace("/api/", "");
-  config.qs = {};
   return config;
 }
