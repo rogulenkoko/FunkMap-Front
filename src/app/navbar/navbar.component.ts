@@ -11,6 +11,7 @@ import { Subscription } from "rxjs/Subscription";
 import { NotificationsComponent } from 'app/navbar/notifications/notifications.component';
 import { NotificationService } from 'app/navbar/notifications/notification.service';
 import { NotificationsInfoService } from 'app/navbar/notifications/notifications-info.service';
+import { SignalrService } from 'app/tools/signalr/signalr.service';
 
 @Component({
   selector: 'navbar',
@@ -33,11 +34,17 @@ export class NavbarComponent implements OnInit {
               private router: Router,
               private avatarService: AvatarService,
               private notificationService: NotificationService,
-              private notificationsInfoService: NotificationsInfoService) {
+              private notificationsInfoService: NotificationsInfoService,
+              private signalrService: SignalrService) {
     this.subscription = new Subscription();
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
+
+    if(this.userService.user) this.getNotificationsCount();
     this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
+    
     this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
+
+    this.signalrService.onNotificationConnectionStart.subscribe(() => this.initializeSubscriptions());
   }
 
   ngOnInit() {
@@ -82,8 +89,17 @@ export class NavbarComponent implements OnInit {
 
   private getNotificationsCount(){
     this.notificationService.getNewNotificationsCount().subscribe(count=>{
+      console.log(count);
       this.notificationsInfoService.newNotificationsCount = count;
     });
+  }
+
+  private initializeSubscriptions(){
+    console.log("зарегало")
+    this.notificationService.onNotificationRecieved.subscribe(notification=>{
+      console.log(notification);
+      this.notificationsInfoService.newNotificationsCount ++;
+    }); 
   }
 
 }

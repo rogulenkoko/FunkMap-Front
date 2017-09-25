@@ -5,6 +5,8 @@ import { NotificationResponse } from 'app/navbar/notifications/models/notificati
 import { Dictionary } from 'typescript-collections';
 import { UserDataService } from 'app/main/user/user-data.service';
 import { NotificationsInfoService } from 'app/navbar/notifications/notifications-info.service';
+import { Subscription } from 'rxjs/Subscription';
+import { SignalrService } from 'app/tools/signalr/signalr.service';
 
 @Component({
   selector: 'notifications',
@@ -17,10 +19,16 @@ export class NotificationsComponent implements OnInit {
 
   private notifications: Array<FunkmapNotification>;
 
+  private subscription: Subscription;
+
   constructor(private notificationService: NotificationService,
             private userDataService: UserDataService,
-            private notificationsInfoService: NotificationsInfoService) {
+            private notificationsInfoService: NotificationsInfoService,
+            private signalrService: SignalrService) {
     this.userAvatars = new Dictionary<string,string>();
+
+    this.subscription = new Subscription();
+    this.signalrService.onNotificationConnectionStart.subscribe(() => this.initializeSubscriptions());
    }
 
   ngOnInit() {
@@ -65,6 +73,14 @@ export class NotificationsComponent implements OnInit {
         var notification = this.notifications.find(x=>x.id == id);
         notification.isConfirmed = true;
       }
+    });
+  }
+
+  private initializeSubscriptions(){
+    this.notificationService.onNotificationRecieved.subscribe(notification=>{
+      this.notifications.push(notification);
+      this.getAvatars();
+
     });
   }
 
