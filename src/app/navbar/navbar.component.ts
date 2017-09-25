@@ -10,6 +10,7 @@ import { AvatarService } from "app/main/avatar/avatar.service";
 import { Subscription } from "rxjs/Subscription";
 import { NotificationsComponent } from 'app/navbar/notifications/notifications.component';
 import { NotificationService } from 'app/navbar/notifications/notification.service';
+import { NotificationsInfoService } from 'app/navbar/notifications/notifications-info.service';
 
 @Component({
   selector: 'navbar',
@@ -24,8 +25,6 @@ export class NavbarComponent implements OnInit {
 
   private subscription: Subscription;
 
-  private newNotificationsCount: number;
-
   constructor(private languageService: LanguageService,
               private userService: UserService,
               private mapFilter: MapFilter,
@@ -33,7 +32,8 @@ export class NavbarComponent implements OnInit {
               private filterService: SearchFilterService, 
               private router: Router,
               private avatarService: AvatarService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private notificationsInfoService: NotificationsInfoService) {
     this.subscription = new Subscription();
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
     this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
@@ -82,8 +82,7 @@ export class NavbarComponent implements OnInit {
 
   private getNotificationsCount(){
     this.notificationService.getNewNotificationsCount().subscribe(count=>{
-      console.log(count);
-      this.newNotificationsCount = count;
+      this.notificationsInfoService.newNotificationsCount = count;
     });
   }
 

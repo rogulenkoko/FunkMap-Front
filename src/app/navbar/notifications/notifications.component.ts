@@ -4,6 +4,7 @@ import { FunkmapNotification } from 'app/navbar/notifications/models/notificatio
 import { NotificationResponse } from 'app/navbar/notifications/models/notification-response';
 import { Dictionary } from 'typescript-collections';
 import { UserDataService } from 'app/main/user/user-data.service';
+import { NotificationsInfoService } from 'app/navbar/notifications/notifications-info.service';
 
 @Component({
   selector: 'notifications',
@@ -17,7 +18,8 @@ export class NotificationsComponent implements OnInit {
   private notifications: Array<FunkmapNotification>;
 
   constructor(private notificationService: NotificationService,
-            private userDataService: UserDataService) {
+            private userDataService: UserDataService,
+            private notificationsInfoService: NotificationsInfoService) {
     this.userAvatars = new Dictionary<string,string>();
    }
 
@@ -29,7 +31,7 @@ export class NotificationsComponent implements OnInit {
     this.notificationService.getNotifications().subscribe(notifications=>{
       this.notifications = notifications;
       this.getAvatars();
-      
+      this.notificationsInfoService.newNotificationsCount = 0;
     });
   }
 
@@ -59,7 +61,10 @@ export class NotificationsComponent implements OnInit {
   private sendResponse(response: number, id: string){
     var notificationResponse = new NotificationResponse(response > 0, id);
     this.notificationService.sendNotificationResponse(notificationResponse).subscribe(resp=>{
-      
+      if(resp.success){
+        var notification = this.notifications.find(x=>x.id == id);
+        notification.isConfirmed = true;
+      }
     });
   }
 

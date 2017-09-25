@@ -7,7 +7,7 @@
     <ul class="navbar-nav d-flex align-items-center">
       <li *ngIf="userService.user" (click)="changeNotificationsVisibility()" class="nav-item d-flex flex-row align-items-center mr-4 dropdown">
         <div class="icon icon-middle notification-icon" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
-        <div *ngIf="newNotificationsCount" class="notification-count">{{newNotificationsCount}}</div>
+        <div *ngIf="notificationsInfoService.newNotificationsCount" class="notification-count">{{notificationsInfoService.newNotificationsCount}}</div>
         <div onClick="event.stopPropagation();" class="dropdown-menu dropdown-menu-right notifications-container" aria-labelledby="navbarDropdownMenuLink">
           <notifications ></notifications>
         </div>

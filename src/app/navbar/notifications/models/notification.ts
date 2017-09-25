@@ -6,6 +6,8 @@ export class FunkmapNotification{
     public notificationType: NotificationType;
     public isRead: boolean;
     public userAvatar: string;
+
+    public isConfirmed: boolean;
 }
 
 export enum NotificationType{

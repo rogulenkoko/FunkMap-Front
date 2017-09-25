@@ -7,6 +7,7 @@ import { NotificationServiceStub } from "app/navbar/notifications/notification.s
 import { NavbarComponent } from "app/navbar/navbar.component";
 import { NotificationsComponent } from "app/navbar/notifications/notifications.component";
 import { BandInviteNotificationComponent } from './notifications/band-invite-notification/band-invite-notification.component';
+import { NotificationsInfoService } from "app/navbar/notifications/notifications-info.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BandInviteNotificationComponent } from './notifications/band-invite-not
     {
       provide: NotificationService,
       useClass: environment.production ? NotificationServiceHttp : NotificationServiceStub
-    }
+    },
+    NotificationsInfoService
   ]
 })
 export class NavbarModule { }
