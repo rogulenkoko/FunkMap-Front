@@ -19,6 +19,7 @@ import { MultiSelectModule, DropdownModule, TooltipModule } from 'primeng/primen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextareaModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FileUploadModule } from 'primeng/primeng';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DialogModule
   ],
   exports: [
     TranslateModule,
@@ -56,7 +58,8 @@ import { FileUploadModule } from 'primeng/primeng';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DialogModule
   ],
   providers: [
     LanguageService,

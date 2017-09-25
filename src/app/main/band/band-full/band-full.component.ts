@@ -11,6 +11,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class BandFullComponent implements OnInit {
 
+ 
+
   constructor(private editService: EditService,
               private bandService: BandService,
               private route: ActivatedRoute) { }

@@ -37,6 +37,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getUsersAvatars();
+    
   }
 
   ngOnDestroy(){

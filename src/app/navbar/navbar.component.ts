@@ -36,12 +36,13 @@ export class NavbarComponent implements OnInit {
               private notificationService: NotificationService) {
     this.subscription = new Subscription();
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
+    this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
     this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
   }
 
   ngOnInit() {
     this.getAvatar();
-    this.getNotificationsCount();
+    
   }
 
   private getAvatar() {
@@ -81,6 +82,7 @@ export class NavbarComponent implements OnInit {
 
   private getNotificationsCount(){
     this.notificationService.getNewNotificationsCount().subscribe(count=>{
+      console.log(count);
       this.newNotificationsCount = count;
     });
   }

@@ -8,7 +8,7 @@ import { EditService } from "app/tools/entity-full/edit.service";
 import { MusicianService } from "app/main/musician/musician.service";
 import { InfoItem } from 'app/tools/entity-full/info-item';
 import { ActionItem } from 'app/tools/entity-full/action-item';
-import { BandInviteMusicianRequest } from 'app/main/musician/models/band-invite-musician-request';
+import { BandInviteMusicianRequest, BandInviteInfoRequest, BandInviteInfo } from 'app/main/musician/models/band-invite-musician-request';
 import { EntityType } from 'app/main/map/models';
 
 @Component({
@@ -25,6 +25,9 @@ export class MusicianBaseComponent implements OnInit {
   private actionItems: Array<ActionItem>;
 
   private hasBand: boolean;
+  private isGroupsModalVisible: boolean = false;
+  private inviteInfo: BandInviteInfo;
+  private bandForInvite: string;
 
   @ViewChild('nameEditTemplate') nameEditTemplate;
   @ViewChild('netsEditTemplate') netsEditTemplate;
@@ -97,19 +100,27 @@ export class MusicianBaseComponent implements OnInit {
   }
 
   private inviteToBand() {
-    var bandCountInfo = this.userService.entitiesCountInfo.find(x => x.entityType == EntityType.Band);
-    if(bandCountInfo.logins.length > 1){
-      //todo выбор конкретной группы
-    } else if(bandCountInfo.logins.length == 1) {
-      var request = new BandInviteMusicianRequest(bandCountInfo.logins[0], this.musician.login);
-      this.musicianService.inviteToBand(request).subscribe(response=>{
-
+    var infoRequest = new BandInviteInfoRequest(this.musician.login);
+      this.musicianService.getInviteBandInfo(infoRequest).subscribe(info=>{
+        this.inviteInfo = info;
+        if(this.inviteInfo.availableBands && this.inviteInfo.availableBands.length > 0) this.bandForInvite = this.inviteInfo.availableBands[0].login;
+        this.isGroupsModalVisible = true;
       });
-    }
-    
+  }
+
+  private sendInvite(){
+    var request = new BandInviteMusicianRequest(this.bandForInvite, this.musician.login);
+    this.musicianService.inviteToBand(request).subscribe(response=>{
+      if(response.success) this.isGroupsModalVisible = false;
+    });
+  }
+
+  private cancelInvite(){
+    this.isGroupsModalVisible = false;
   }
 
   private checkHasBand() {
+    
     this.userDataService.getUserEntitiesCountInfo().subscribe(countInfo => {
       var bandCountInfo = countInfo.find(x => x.entityType == EntityType.Band);
       this.hasBand = bandCountInfo && bandCountInfo.count > 0;

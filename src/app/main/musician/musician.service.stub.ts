@@ -5,7 +5,8 @@ import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./mo
 import { BaseResponse } from "app/tools";
 import { EntityType } from "app/main/map/models";
 import { VideoInfo, VideoType } from "app/main/video-edit/video-info";
-import { BandInviteMusicianRequest } from 'app/main/musician/models/band-invite-musician-request';
+import { BandInviteMusicianRequest, BandInviteInfo, BandInviteInfoRequest } from 'app/main/musician/models/band-invite-musician-request';
+import { BandPreview } from 'app/main/band/models';
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -51,6 +52,15 @@ export class MusicianServiceStub extends MusicianService {
 
    inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>{
     return Observable.of(new BaseResponse(true));
+  }
+
+
+  getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>{
+    var info = new BandInviteInfo();
+    var band = new BandPreview("test", "test", EntityType.Band);
+
+    info.availableBands = [band];
+    return Observable.of(info);
   }
 
 

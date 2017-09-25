@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'app/navbar/notifications/notification.service';
 import { FunkmapNotification } from 'app/navbar/notifications/models/notification';
 import { NotificationResponse } from 'app/navbar/notifications/models/notification-response';
+import { Dictionary } from 'typescript-collections';
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'notifications',
@@ -10,17 +12,47 @@ import { NotificationResponse } from 'app/navbar/notifications/models/notificati
 })
 export class NotificationsComponent implements OnInit {
 
+  private userAvatars: Dictionary<string, string>;
+
   private notifications: Array<FunkmapNotification>;
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService,
+            private userDataService: UserDataService) {
+    this.userAvatars = new Dictionary<string,string>();
+   }
 
   ngOnInit() {
-    
+    this.refreshAvatars();
   }
 
   public refreshNotification(){
     this.notificationService.getNotifications().subscribe(notifications=>{
       this.notifications = notifications;
+      this.getAvatars();
+      
+    });
+  }
+
+  private refreshAvatars(){
+    if(!this.notifications) return;
+    this.notifications.forEach(notification => {
+      notification.userAvatar = this.userAvatars.getValue(notification.userLogin);
+    });
+  }
+
+  private getAvatars(){
+    var logins = this.notifications.map(x=>x.userLogin);
+    var newLogins = logins.filter(x=> !this.userAvatars.keys().find(login=> login == x)).filter(x=> x != null);
+    if(!newLogins || newLogins.length == 0){
+      this.refreshAvatars();
+      return;
+    };
+    this.userDataService.getImages(newLogins).subscribe(avatars=>{
+      if(!avatars) return;
+      avatars.forEach(element => {
+        this.userAvatars.setValue(element.login, element.image);
+      });
+      this.refreshAvatars();
     });
   }
 

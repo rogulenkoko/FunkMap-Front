@@ -28,3 +28,22 @@
 <ng-template #inviteToBandActionTemplate>
     <a (click)="inviteToBand()" class="dropdown-item">{{'InviteToBand' | translate}}</a>
 </ng-template>
+
+
+<p-dialog header="Title" [(visible)]="isGroupsModalVisible">
+
+    <div *ngIf="inviteInfo && inviteInfo.availableBands && inviteInfo.availableBands.length > 0" class="d-flex flex-row sex-container">
+        <div class="mr-4 d-flex align-items-center" *ngFor="let band of inviteInfo.availableBands">
+            <input type="radio" name="reportType" id="reportType{{band.login}}" [(ngModel)]="bandForInvite" [value]="band.login">
+            <label class="radio-label" for="reportType{{band.login}}">{{band.name}}</label>
+        </div>
+        <div class="buttons-container">
+            <button (click)="sendInvite()" class="btn btn-success">Пригласить</button>
+            <button (click)="cancelInvite()" class="btn btn-secondary">Отмена</button>
+        </div>
+       
+
+    </div>
+
+  <div *ngIf="!inviteInfo || !inviteInfo.availableBands || inviteInfo.availableBands.length == 0">Нет доступных групп для приглашения</div>
+</p-dialog>

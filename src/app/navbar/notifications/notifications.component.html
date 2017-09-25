@@ -2,7 +2,7 @@
 
 <div *ngFor="let notification of notifications">
   <div class="d-flex flex-row">
-      <avatar-circle [image]="" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+      <avatar-circle [image]="notification.userAvatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
       <band-invite-notification [notification]="notification"></band-invite-notification>
       <span>{{notification.date | dateNotification}}</span>
       <span (click)="sendResponse(1, notification.id)">Да</span>
