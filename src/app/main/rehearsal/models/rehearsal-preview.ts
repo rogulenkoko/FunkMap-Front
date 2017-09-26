@@ -23,6 +23,7 @@ export class Rehearsal extends BaseModel {
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
         result.address = data.Address;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }
@@ -42,6 +43,7 @@ export class RehearsalPreview extends BaseModel {
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }

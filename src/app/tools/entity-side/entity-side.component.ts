@@ -35,6 +35,7 @@ export class EntitySideComponent implements OnInit {
   ngOnInit() {
     this.checkIsFavorite();
     this.checkIsUserEntity();
+    console.log(this.item);
   }
 
   private checkIsUserEntity() {
@@ -64,8 +65,6 @@ export class EntitySideComponent implements OnInit {
   }
 
   private navigateToPage(login: string){
-    console.log(login);
-    console.log(this.item.entityType);
     var route = RouteBuilder.buildRoute(this.item.entityType, login);
     this.router.navigate([route]);
   }

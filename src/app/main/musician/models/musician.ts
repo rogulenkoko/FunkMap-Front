@@ -40,6 +40,7 @@ export class Musician extends BaseModel{
         result.longitude = data.Longitude;
         result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);
         result.address = data.Address;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }

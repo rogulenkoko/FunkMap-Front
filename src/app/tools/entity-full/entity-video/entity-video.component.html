@@ -7,8 +7,8 @@
       <span class="video-count">{{entity.videoInfos ? entity.videoInfos.length : 0}}</span>
     </div>
     <div class="edit-buttons-container d-flex align-items-center" (click)="editVideo()">
-      <i *ngIf="isEditVisible" class="icon-plus"></i>
-      <span *ngIf="isEditVisible">{{'Video_Add' | translate}}</span>
+      <i *ngIf="isEditVisible && isUsers" class="icon-plus"></i>
+      <span *ngIf="isEditVisible && isUsers">{{'Video_Add' | translate}}</span>
     </div>
   </div>
 
@@ -27,7 +27,7 @@
     <ng-container *ngIf="!entity.videoInfos || entity.videoInfos.length == 0">
       <div class="no-video-container d-flex flex-column align-items-center justify-content-center">
         <span>{{'NoVideo' | translate}}</span>
-        <span (click)="editVideo()" class="add-video-label">{{'Video_Add' | translate}}</span>
+        <span *ngIf="isUsers" (click)="editVideo()" class="add-video-label">{{'Video_Add' | translate}}</span>
 
       </div>
     </ng-container>

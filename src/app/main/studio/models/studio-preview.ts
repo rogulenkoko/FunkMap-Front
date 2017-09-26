@@ -21,6 +21,7 @@ export class Studio extends BaseModel {
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
         result.address = data.Address;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }
@@ -41,6 +42,7 @@ export class StudioPreview extends BaseModel {
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
+        result.userLogin = data.UserLogin;
         
         return result;
     }

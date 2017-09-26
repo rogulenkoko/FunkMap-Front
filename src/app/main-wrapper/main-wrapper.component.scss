@@ -1,0 +1,7 @@
+@import "src/assets/styles/layout.scss";
+
+.main-content{
+    width: calc(100% - 190px);
+    margin-left: 190px;
+    height: 100%;
+}

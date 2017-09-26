@@ -35,6 +35,7 @@ export class Band extends BaseModel{
         result.description = data.Description;
         result.address = data.Address;
         result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);
+        result.userLogin = data.UserLogin;
         return result;
     }
 }

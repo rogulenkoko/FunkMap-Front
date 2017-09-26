@@ -25,6 +25,7 @@ export class Shop extends BaseModel {
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
         result.address = data.Address;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }
@@ -49,6 +50,7 @@ export class ShopPreview extends BaseModel {
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }

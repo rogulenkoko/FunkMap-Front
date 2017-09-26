@@ -25,6 +25,7 @@ export class MusicianPreview extends BaseModel{
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }

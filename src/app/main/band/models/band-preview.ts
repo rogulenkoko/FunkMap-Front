@@ -23,6 +23,7 @@ export class BandPreview extends BaseModel{
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
+        result.userLogin = data.UserLogin;
         return result;
     }
 }
