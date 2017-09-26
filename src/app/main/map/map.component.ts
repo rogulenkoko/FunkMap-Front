@@ -172,8 +172,9 @@ export class MapComponent implements OnInit {
   }
 
   private selectMarker(point: Marker) {
-    var markerBounds = L.latLngBounds([[point.lat, point.lng]]).pad(20);
+    var markerBounds = L.latLngBounds([[point.lat, point.lng]]);
     this.map.fitBounds(markerBounds);
+    this.map.zoomOut(4)
   }
 
 

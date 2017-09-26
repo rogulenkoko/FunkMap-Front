@@ -52,7 +52,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
     }
     this.entity.videoInfos.push(info);
     request.videoInfos = this.entity.videoInfos;
-    this.editBaseService.updateAvatar(request).subscribe(response => {
+    this.editBaseService.update(request).subscribe(response => {
       if (response.success) {
         var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
         this.router.navigate([route]);

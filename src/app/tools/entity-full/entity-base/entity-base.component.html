@@ -15,6 +15,7 @@
         <a *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Add_Favorites' | translate}}</a>
         <a *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Remove_Favorites' | translate}}</a>
         <ng-template *ngFor="let actionItem of actionItems"  [ngTemplateOutlet]="actionItem.template"></ng-template>
+        <a *ngIf="isUsers" class="dropdown-item" (click)="deleteEntity()"> {{'Delete' | translate}} </a>
       </div>
     </div>
 

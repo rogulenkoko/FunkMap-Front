@@ -13,7 +13,7 @@ export class BaseEditServiceStub extends BaseEditService {
     super();
    }
 
-   updateAvatar(request: BaseModel): Observable<BaseResponse>{
+   update(request: BaseModel): Observable<BaseResponse>{
     return Observable.of(new BaseResponse(true))
    }
 

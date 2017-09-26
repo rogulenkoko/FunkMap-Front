@@ -9,7 +9,9 @@ import { ServiceType } from "app/core/configuration/configuration-provider";
 @Injectable()
 export abstract class BaseEditService {
 
-  abstract updateAvatar(request: BaseModel): Observable<BaseResponse>;
+  abstract update(request: BaseModel): Observable<BaseResponse>;
+
+  abstract delete(login: string): Observable<BaseResponse>;
 
 }
 
@@ -20,8 +22,14 @@ export class BaseEditServiceHttp extends BaseEditService {
     super();
    }
 
-  updateAvatar(request: BaseModel): Observable<BaseResponse>{
+  update(request: BaseModel): Observable<BaseResponse>{
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/update`, request).map(x=> BaseResponse.ToBaseResponse(x.json()))
    }
+
+   delete(login: string): Observable<BaseResponse>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/delete${login}`).map(x=> BaseResponse.ToBaseResponse(x.json()))
+   }
+
+   
 
 }

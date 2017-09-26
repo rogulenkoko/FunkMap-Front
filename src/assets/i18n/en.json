@@ -148,6 +148,7 @@
 
     "Notifications":"Notifications",
 
-    "InviteToBand":"Invite to band"
+    "InviteToBand":"Invite to band",
+    "Delete": "Delete"
 
 }

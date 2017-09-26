@@ -41,7 +41,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
               private favouritesService: FavouritesService,
               private router: Router,
               private avatarService: AvatarService,
-              private avatarBaseService: BaseEditService) {
+              private baseEditService: BaseEditService) {
     super(userService, userDataService, editService);
     this.onAvatarLoaded = new EventEmitter<string>();
     this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
@@ -52,8 +52,9 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     
     this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
-    console.log(this.actionItems)
   }
+
+  
 
   private checkIsFavorite() {
     if(!this.userService.user) return;
@@ -86,7 +87,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
       this.avatarService.previousImage = undefined;
       var request = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
       request.avatar = image;
-      this.avatarBaseService.updateAvatar(request).subscribe(response=>{
+      this.baseEditService.update(request).subscribe(response=>{
         var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
         this.router.navigate([route]);
       });
@@ -100,6 +101,12 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   private onAvatarClosed(){
     if(this.avatarSubscription) this.avatarSubscription.unsubscribe();
+  }
+
+  private deleteEntity(){
+    this.baseEditService.delete(this.entity.login).subscribe(resp=>{
+      if(resp.success) this.router.navigate(['/']);
+    });;
   }
 
 }
