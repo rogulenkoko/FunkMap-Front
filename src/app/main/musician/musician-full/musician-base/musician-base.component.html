@@ -30,7 +30,7 @@
 </ng-template>
 
 
-<p-dialog header="Title" [(visible)]="isGroupsModalVisible">
+<p-dialog header="Title" [(visible)]="isGroupsModalVisible" [width]="550">
 
     <div *ngIf="inviteInfo && inviteInfo.availableBands && inviteInfo.availableBands.length > 0" class="d-flex flex-row sex-container">
         <div class="mr-4 d-flex align-items-center" *ngFor="let band of inviteInfo.availableBands">

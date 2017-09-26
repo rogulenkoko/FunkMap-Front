@@ -25,7 +25,7 @@ export class MusicianBaseComponent implements OnInit {
   private actionItems: Array<ActionItem>;
 
   private hasBand: boolean;
-  private isGroupsModalVisible: boolean = false;
+  private isGroupsModalVisible: boolean = true;
   private inviteInfo: BandInviteInfo;
   private bandForInvite: string;
 
