@@ -17,4 +17,8 @@ export class BaseEditServiceStub extends BaseEditService {
     return Observable.of(new BaseResponse(true))
    }
 
+   delete(login: string): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
+   }
+
 }

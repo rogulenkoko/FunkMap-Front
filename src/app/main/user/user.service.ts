@@ -10,7 +10,7 @@ export class UserService {
   private funkMapUserKey: string = "funkmap_user";
 
   private _user: User;
-  public avatar: string;
+ 
 
   public latitude: number;
   public longitude: number;

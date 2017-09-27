@@ -7,7 +7,11 @@
     </div>
     <div class="d-flex">
         <div class="content-load-container">
-            <i class="icon-image"></i>
+            <!-- <i class="icon-image"></i> -->
+            <p-fileUpload chooseLabel="" auto="false" mode="basic" accept="image/*" maxFileSize="1000000" multiple="multiple" customUpload="true" (uploadHandler)="onImagepload($event)">
+                
+            
+            </p-fileUpload>
             <i class="icon-file"></i>
         </div>
         <textarea onkeydown="if(event.keyCode == 13) return false;" id="text-input" placeholder="{{'WriteMessage' | translate}}" rows="0" cols="100" [(ngModel)]="text" pInputTextarea autoResize="false"></textarea>

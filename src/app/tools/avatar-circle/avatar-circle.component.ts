@@ -11,6 +11,8 @@ export class AvatarCircleComponent implements OnInit {
   @Input() size: string;
   @Input() iconSize: string;
 
+  @Input() isOnline: boolean;
+
   constructor() { }
 
   ngOnInit() {

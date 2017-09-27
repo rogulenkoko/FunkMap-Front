@@ -7,6 +7,7 @@ import { SearchItem } from "app/main/search/search-item";
 import { EntityType } from "app/main/map/models";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
 import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
+import { UserResponse } from 'app/main/user/user';
 
 @Injectable()
 export class UserDataServiceStub extends UserDataService {
@@ -41,5 +42,11 @@ export class UserDataServiceStub extends UserDataService {
 
   getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>{
     return Observable.of([]);
+  }
+
+  getUser(login: string):Observable<UserResponse>{
+    var response = new UserResponse();
+    response.isExist = false;
+    return Observable.of(response);
   }
 }

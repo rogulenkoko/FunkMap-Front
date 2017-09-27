@@ -20,16 +20,16 @@ export class BaseEditServiceHttp extends BaseEditService {
 
   constructor(private http: HttpClient) {
     super();
-   }
+  }
 
-  update(request: BaseModel): Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/update`, request).map(x=> BaseResponse.ToBaseResponse(x.json()))
-   }
+  update(request: BaseModel): Observable<BaseResponse> {
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/update`, request).map(x => BaseResponse.ToBaseResponse(x.json()))
+  }
 
-   delete(login: string): Observable<BaseResponse>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/delete${login}`).map(x=> BaseResponse.ToBaseResponse(x.json()))
-   }
+  delete(login: string): Observable<BaseResponse> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/delete${login}`).map(x => BaseResponse.ToBaseResponse(x.json()))
+  }
 
-   
+
 
 }

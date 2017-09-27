@@ -9,6 +9,7 @@ import { HttpClient } from "app/core/http/http-client.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
 import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
+import { User, UserResponse } from 'app/main/user/user';
 
 
 @Injectable()
@@ -25,6 +26,8 @@ export abstract class UserDataService {
 
   abstract getUserEntitiesLogins(): Observable<Array<string>>;
   abstract getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>;
+
+  abstract getUser(login: string):Observable<UserResponse>;
 
 }
 
@@ -61,5 +64,10 @@ export class UserDataServiceHttp extends UserDataService {
   getUserEntitiesLogins(): Observable<Array<string>>{
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/users`).map(x=>x.json());
   }
+
+  getUser(login: string):Observable<UserResponse>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/user/${login}`).map(x=>UserResponse.ToUserResponse(x.json()));
+  }
+  
 
 }

@@ -10,8 +10,12 @@ export class BandInviteNotification extends FunkmapNotification{
         var result = new BandInviteNotification();
         result.id = data.Id;
         result.notificationType = NotificationType.BandInvite;
-        result.bandLogin = data.InnerNotification.BandLogin;
-        result.bandName = data.InnerNotification.BandName;
+
+        if(data.InnerNotification){
+            result.bandLogin = data.InnerNotification.BandLogin;
+            result.bandName = data.InnerNotification.BandName;
+        }
+        
         result.date = new Date(data.Date);
         result.isRead = data.IsRead;
         result.userLogin = data.SenderLogin;

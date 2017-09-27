@@ -1,9 +1,6 @@
 <div *ngIf="dialog" class="dialog-container d-flex flex-row align-items-center" [class.selected-dialog]="dialogService.dialog && dialogService.dialog.dialogId == dialog.dialogId">
-  <div class="image-container">
-    <div *ngIf="!dialog.avatar" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
-    <img *ngIf="dialog.avatar" src="data:image/png;base64,{{dialog.avatar}}" />
-    <div class="online-circle" *ngIf="dialog.isOnline"></div>
-  </div>
+
+  <avatar-circle [image]="dialog.avatar" [size]="'60px'" [iconSize]="'35px'" [isOnline]="dialog.isOnline"></avatar-circle>
 
   <div class="middle-container d-flex flex-column">
     <div class="dialog-name">{{dialog.name}}</div>

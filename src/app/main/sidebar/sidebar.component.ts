@@ -97,7 +97,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   logOut() {
     this.userService.user = undefined;
-    this.userService.avatar = undefined;
   }
 
   private initializeSubscriptions() {

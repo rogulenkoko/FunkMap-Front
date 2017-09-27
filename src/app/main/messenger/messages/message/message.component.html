@@ -1,10 +1,9 @@
 <div class="d-flex main-message-wrapper" [class.justify-content-start]="userService.user.login != message.sender" [class.justify-content-end]="userService.user.login == message.sender">
   <div class="main-message-container">
   <div class="message-container d-flex flex-row">
-    <div *ngIf="message.sender != userService.user.login" class="image-container">
-      <div *ngIf="!message.avatar" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
-      <img *ngIf="message.avatar" src="data:image/png;base64,{{message.avatar}}" />
-    </div>
+
+    <avatar-circle  *ngIf="message.sender != userService.user.login" [image]="message.avatar" [size]="'36px'" [iconSize]="'21px'"></avatar-circle>
+
     <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">{{message.text}}</div>
   </div>
   <div class="date-container d-flex justify-content-end">

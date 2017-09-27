@@ -11,49 +11,6 @@
     cursor: pointer;
     padding: 12px 24px;
 
-    .image-container{
-        width: 60px;
-        height: 60px;
-        margin-right: 10px;
-        outline: none;
-        
-        img{
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-        }
-
-        .no-image{
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        
-            img{
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        :host-context(.light) .no-image{
-            background-color: $light-sub-main; 
-        }
-
-        :host-context(.dark) .no-image{
-            background-color: $dark-sub-main;
-        }
-
-        .online-circle{
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            position: absolute;
-            margin-top: -50px;
-            margin-left: 50px;
-            border: 2px solid white;
-            background-color: #28e06d;
-        }
-    }
-
     .middle-container{
         width: 184px;
         font-size: 13px;

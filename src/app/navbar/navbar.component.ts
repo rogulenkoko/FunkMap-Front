@@ -55,14 +55,14 @@ export class NavbarComponent implements OnInit {
   private getAvatar() {
     if (this.userService.user) {
       this.userDataService.getImage(this.userService.user.login).subscribe(image => {
-        this.userService.avatar = image;
+        this.userService.user.avatar = image;
         
       })
     }
   }
 
   private changeUserAvatar(){
-    this.avatarService.previousImage = this.userService.avatar;
+    this.avatarService.previousImage = this.userService.user.avatar;
     this.subscription = this.avatarService.onImageUploaded.subscribe(avatar=> this.onAvatarSaved(avatar));
     this.router.navigate(['/avatar']);
   }
@@ -89,15 +89,12 @@ export class NavbarComponent implements OnInit {
 
   private getNotificationsCount(){
     this.notificationService.getNewNotificationsCount().subscribe(count=>{
-      console.log(count);
       this.notificationsInfoService.newNotificationsCount = count;
     });
   }
 
   private initializeSubscriptions(){
-    console.log("зарегало")
     this.notificationService.onNotificationRecieved.subscribe(notification=>{
-      console.log(notification);
       this.notificationsInfoService.newNotificationsCount ++;
     }); 
   }

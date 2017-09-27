@@ -57,3 +57,50 @@
      outline: none;
      box-shadow: none;
 }
+
+
+
+$inactive-color: #adb5bd;
+$active-color: #4d4d4d;
+
+
+p-fileupload{
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+/deep/ .ui-fileupload-choose{
+   span{
+    color: $inactive-color;
+   }  
+
+   .fa{
+    font-size: 18px;
+    margin-left: -10px !important;
+   }
+}
+
+/deep/ .ui-fileupload-choose:hover{
+     color: $active-color !important;
+
+
+    .ui-button-text .ui-clickablet, span{
+        color: $active-color !important;
+    }
+
+    span.fa{
+        color: $dark-orange-light !important;
+    }
+} 
+
+.img-buttons{
+    width: 400px;
+    div{
+        width: 48%;
+        height: 40px !important;
+        .btn, label{
+            width: 100%;
+        }
+    }
+}

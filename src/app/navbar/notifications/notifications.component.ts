@@ -17,7 +17,7 @@ export class NotificationsComponent implements OnInit {
 
   private userAvatars: Dictionary<string, string>;
 
-  private notifications: Array<FunkmapNotification>;
+  private notifications: Array<FunkmapNotification> = [];
 
   private subscription: Subscription;
 

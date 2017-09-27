@@ -5,3 +5,5 @@
 <div *ngIf="!image" class="image-container no-image d-flex align-items-center justify-content-center"  [style.width]="size" [style.height]="size">
   <img src="/assets/images/no-name.svg" [style.width]="iconSize" [style.height]="iconSize" />
 </div>
+
+<div class="online-circle" *ngIf="isOnline"></div>

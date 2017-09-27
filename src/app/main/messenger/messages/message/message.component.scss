@@ -34,38 +34,6 @@ $image-width: 36px;
             color: $foreign-message-color;
             background-color: $foreign-message-background-color;
         }
-        
-        .image-container{
-            width: $image-width;
-            height: $image-width;
-            margin-right: 24px;
-            outline: none;
-            
-            img{
-                border-radius: 50%;
-                width: $image-width;
-                height: $image-width;
-            }
-
-            .no-image{
-                width: $image-width;
-                height: $image-width;
-                border-radius: 50%;
-            
-                img{
-                    width: $image-width - 15px;
-                    height: $image-width - 15px;
-                }
-            }
-
-            :host-context(.light) .no-image{
-                background-color: $light-sub-main; 
-            }
-
-            :host-context(.dark) .no-image{
-                background-color: $dark-sub-main;
-            }
-        }
     }
 
     .date-container{
