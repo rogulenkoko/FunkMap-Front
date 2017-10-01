@@ -9,6 +9,7 @@ import { MapFilter } from "./map-filter.service";
 import { CreationService } from "../creation/creation.service";
 import { UserService } from "app/main/user/user.service";
 import { MapCreationService } from "app/main/map/map-creation.service";
+import { ConfigurationProvider } from 'app/core';
 
 @Component({
   selector: 'map',
@@ -26,8 +27,6 @@ export class MapComponent implements OnInit {
 
   private markers: Array<Marker>;
 
-  private nearestRadius = 1;
-
   constructor(private mapProvider: MapProvider,
               private markerFactory: MarkerFactory,
               private mapService: MapService,
@@ -38,7 +37,7 @@ export class MapComponent implements OnInit {
               private mapCreationService: MapCreationService) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapFilter.onSearchAll.subscribe(() => {
-      this.getAll();
+      this.getNearest();
     })
     this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
@@ -48,7 +47,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false, zoomControl: false });
+    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false });//, zoomControl: false
     this.initMap();
     this.initMarkersLayer();
   }
@@ -84,24 +83,24 @@ export class MapComponent implements OnInit {
     this.userService.latitude = lat;
     this.userService.longitude = lng;
     this.map.setView(new L.LatLng(lat, lng), this.map.getZoom());
-    this.getAll();
+    this.getNearest();
   }
 
-  private getAll() {
-    this.mapService.getAll().subscribe(markers => {
-      this.markers = markers;
-
-      this.refreshMarkers();
-    });
-  }
-
-  // private getNearest() {
-  //   var request = new NearestRequest(this.userService.latitude, this.userService.longitude, this.nearestRadius);
-  //   this.mapService.getNearest(request).subscribe(markers => {
+  // private getAll() {
+  //   this.mapService.getAll().subscribe(markers => {
   //     this.markers = markers;
+
   //     this.refreshMarkers();
   //   });
   // }
+
+  private getNearest() {
+    var request = new NearestRequest(this.userService.latitude, this.userService.longitude, ConfigurationProvider.entitiesLimit);
+    this.mapService.getNearest(request).subscribe(markers => {
+      this.markers = markers;
+      this.refreshMarkers();
+    });
+  }
 
   private getSpecific(logins: Array<string>) {
     this.mapService.getSpecific(logins).subscribe(markers => {

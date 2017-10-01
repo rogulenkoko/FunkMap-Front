@@ -14,6 +14,7 @@ import { UserService } from 'app/main/user/user.service';
 export class DialogBarComponent implements OnInit {
 
   private isAddToDialogMode: boolean;
+  private isNewDialog: boolean;
   private dialogName: string;
 
   private search: string;
@@ -30,24 +31,34 @@ export class DialogBarComponent implements OnInit {
 
   private addToDialog() {
     this.isAddToDialogMode = true;
+    this.isNewDialog = this.dialogService.dialog.participants.length <= 2;
   }
 
 
-  private createDialog(){
-    if(this.addedUsers.length == 0){
+  private finish() {
+    if (this.addedUsers.length == 0) {
       this.isAddToDialogMode = false;
       return;
     }
     var dialog = new Dialog();
-    dialog.name = this.dialogName;
-    dialog.participants = this.addedUsers.map(x=>x.login).concat(this.dialogService.dialog.participants);
+    dialog.participants = this.addedUsers.map(x => x.login).concat(this.dialogService.dialog.participants);
 
-    this.messengerService.createDialog(dialog).subscribe(response=>{
-      if(response.isSuccess){
-        this.messengerService.onDialogCreated.emit(response.dialogId);
+    if (this.isNewDialog) {
+      dialog.name = this.dialogName;
+      this.messengerService.createDialog(dialog).subscribe(response => {
+        if (response.isSuccess) {
+          this.messengerService.onDialogCreated.emit(response.dialogId);
+          this.isAddToDialogMode = false;
+        }
+      })
+    } else {
+      dialog.dialogId = this.dialogService.dialog.dialogId;
+      this.messengerService.updateDialog(dialog).subscribe(response=>{
         this.isAddToDialogMode = false;
-      }
-    })
+      })
+    }
+
+
   }
 
 
@@ -74,7 +85,7 @@ export class DialogBarComponent implements OnInit {
   }
 
   private removeUser(user: User) {
-    if(this.addedUsers.find(x => x.login == user.login)){
+    if (this.addedUsers.find(x => x.login == user.login)) {
       this.addedUsers.splice(this.addedUsers.findIndex(x => x.login == user.login), 1);
     }
   }

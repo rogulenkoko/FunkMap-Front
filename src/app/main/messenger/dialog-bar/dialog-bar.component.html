@@ -7,7 +7,7 @@
 
 <p-dialog header="Добавить собеседника" [(visible)]="isAddToDialogMode" [width]="550">
 
-  <div>
+  <div *ngIf="isNewDialog">
     Название диалога
     <input [(ngModel)]="dialogName" />
   </div>
@@ -33,6 +33,7 @@
     {{newUser.login}}
   </span>
 
-  <button (click)="createDialog()">Создать диалог</button>
+  <button *ngIf="isNewDialog" (click)="finish()">Создать диалог</button>
+  <button *ngIf="!isNewDialog" (click)="finish()">Добавить</button>
 
 </p-dialog>

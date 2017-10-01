@@ -5,14 +5,16 @@ export class ConfigurationProvider{
 
         if(environment.monolith) return environment.local ? "http://localhost:9000/api/" :  "http://95.213.239.58:14080/api/"; 
 
-        switch (type){
+        switch (type){ 
             case ServiceType.Auth:
             return environment.local ? "http://localhost:9001/api/" : "";
 
             case ServiceType.Messenger:
             return environment.local ? "" : "";
         }
-    } 
+    }
+    
+    public static entitiesLimit: number = 1000;
 
 }
 

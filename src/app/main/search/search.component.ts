@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from "app/main/search/search.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserService } from "app/main/user/user.service";
@@ -9,6 +9,7 @@ import { FullLocationRequest } from "app/main/search/search-location-request";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 import 'rxjs/add/operator/distinctUntilChanged';
 import { MapFilter } from "app/main/map/map-filter.service";
+import { Subscription } from 'rxjs/Subscription';
 
 declare var $;
 
@@ -17,7 +18,7 @@ declare var $;
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   private items: Array<SearchItem>;
   private allItemsCount: number;
@@ -25,22 +26,29 @@ export class SearchComponent implements OnInit {
 
   private isLoaded: boolean = false;
 
+  private subscription: Subscription;
+
   constructor(private searchService: SearchService,
     private userService: UserService,
     private favouritesService: FavouritesService,
     private filterService: SearchFilterService,
     private mapFilter: MapFilter) {
     this.items = [];
-    this.filterService.onFilterChanged.subscribe(() => this.refresh());
-    this.filterService.searchChanged.debounceTime(200).subscribe((value) => {
+    this.subscription = new Subscription();
+    this.subscription.add(this.filterService.onFilterChanged.subscribe(() => this.refresh()));
+    this.subscription.add(this.filterService.searchChanged.debounceTime(200).subscribe((value) => {
       this.filterService.searchText = value;
       this.refresh();
-    });
+    }));
   }
 
   ngOnInit() {
     this.refresh();
     $('#search-container').on("scroll", ()=> this.onScrollDown());
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   
@@ -68,7 +76,7 @@ export class SearchComponent implements OnInit {
           item.isFavourite = true;
         }
       });
-    })
+    });
   }
 
   private getMore() {

@@ -23,6 +23,7 @@ export abstract class MessengerService {
 
   abstract sendMessage(message: Message): Observable<BaseResponse>;
   abstract createDialog(dialog: Dialog): Observable<DialogCreateResponse>;
+  abstract updateDialog(dialog: Dialog): Observable<BaseResponse>;
 
   abstract setOpenedDialog(dialogId: string): Observable<BaseResponse>;
 
@@ -85,6 +86,11 @@ export class MessengerServiceHub extends MessengerService {
   createDialog(dialog: Dialog): Observable<DialogCreateResponse>{
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x=> DialogCreateResponse.ToDialogCreateResponse(x.json()));
   }
+
+  updateDialog(dialog: Dialog): Observable<BaseResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/updateDialog`, dialog).map(x=> BaseResponse.ToBaseResponse(x.json()));
+  }
+  
 
   setOpenedDialog(dialogId: string): Observable<BaseResponse>{
     return Observable.fromPromise(this.signalrService.connection.invoke("setOpenedDialog", dialogId));

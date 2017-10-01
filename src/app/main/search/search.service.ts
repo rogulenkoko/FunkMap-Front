@@ -15,6 +15,7 @@ import { MusicianFilter } from "app/main/musician/models";
 import { BaseFilter } from "app/main/search/search-filter/base-filter";
 import { BandFilter } from "app/main/band/models/band-filter";
 import { SearchResponse } from "app/main/search/search-response";
+import { UserService } from 'app/main/user/user.service';
 
 @Injectable()
 export abstract class SearchService {
@@ -36,7 +37,8 @@ export class SearchServiceHttp extends SearchService {
               private shopService: ShopService,
               private rehearsalService: RehearsalService,
               private studioService: StudioService,
-              private searchFilterService: SearchFilterService) {
+              private searchFilterService: SearchFilterService,
+              private userService: UserService) {
     super();
   }
 
@@ -61,6 +63,10 @@ export class SearchServiceHttp extends SearchService {
       default:
         filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
     }
+
+    filter.longitude = this.userService.longitude;
+    filter.latitude = this.userService.latitude;
+    filter.limit = ConfigurationProvider.entitiesLimit;
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
 }
