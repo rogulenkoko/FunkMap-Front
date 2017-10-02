@@ -16,7 +16,7 @@
     <div class="search-items-container">
       <search-list *ngIf="items" [items]="items"></search-list>
       
-      <div *ngIf="!items || items.length == 0" class="no-items-message-container d-flex flex-row justify-content-center">
+      <div *ngIf="!items || items.length == 0 && !isLoaded" class="no-items-message-container d-flex flex-row justify-content-center">
         {{'Search_NoItems' | translate}}
       </div>
     </div>

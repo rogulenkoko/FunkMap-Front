@@ -1,0 +1,7 @@
+<div class="participants-container">
+  <div *ngFor="let musician of musicians">
+    <avatar-circle [image]="musician.avatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+    <a [routerLink]="['/musicianPage/' + musician.login]">{{musician.name}}</a> @{{musician.login}}
+    {{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}
+  </div>
+</div>

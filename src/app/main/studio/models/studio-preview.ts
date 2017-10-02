@@ -22,6 +22,7 @@ export class Studio extends BaseModel {
         result.longitude = data.Longitude;
         result.address = data.Address;
         result.userLogin = data.UserLogin;
+        result.isActive = data.IsActive;
         return result;
     }
 }
@@ -43,7 +44,7 @@ export class StudioPreview extends BaseModel {
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
         result.userLogin = data.UserLogin;
-        
+        result.isActive = data.IsActive;
         return result;
     }
 }

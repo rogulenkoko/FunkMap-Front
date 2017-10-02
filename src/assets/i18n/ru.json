@@ -146,5 +146,6 @@
     "Notifications":"Уведомления",
 
     "InviteToBand":"Пригласить в группу",
-    "Delete": "Удалить"
+    "Delete": "Удалить",
+    "Entity_Activity":"Активность профиля"
 }

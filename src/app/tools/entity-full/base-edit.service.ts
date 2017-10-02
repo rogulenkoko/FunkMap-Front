@@ -29,7 +29,4 @@ export class BaseEditServiceHttp extends BaseEditService {
   delete(login: string): Observable<BaseResponse> {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/delete${login}`).map(x => BaseResponse.ToBaseResponse(x.json()))
   }
-
-
-
 }

@@ -24,6 +24,7 @@ export class Rehearsal extends BaseModel {
         result.longitude = data.Longitude;
         result.address = data.Address;
         result.userLogin = data.UserLogin;
+        result.isActive = data.IsActive;
         return result;
     }
 }
@@ -44,6 +45,7 @@ export class RehearsalPreview extends BaseModel {
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.userLogin = data.UserLogin;
+        result.isActive = data.IsActive;
         return result;
     }
 }

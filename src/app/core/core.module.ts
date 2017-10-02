@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextareaModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
+import {InputSwitchModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DialogModule } from 'primeng/primeng';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
+    InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule
   ],
@@ -58,6 +60,7 @@ import { DialogModule } from 'primeng/primeng';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
+    InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule
   ],

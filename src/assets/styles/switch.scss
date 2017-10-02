@@ -1,0 +1,39 @@
+.ui-inputswitch-on[style]{
+    background: white !important;
+}
+
+.ui-inputswitch{
+    width: 30px !important;
+    border-radius: 10px !important;
+    height: 10px !important;
+    background: #ee9117 !important;
+    overflow: visible !important;
+}
+
+.ui-inputswitch-checked{
+    
+    background: gray !important;
+}
+
+.ui-inputswitch-off, .ui-inputswitch-on{
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    background: white !important;
+    z-index: 20 !important;
+    margin-top: -3px !important;
+}
+
+.ui-inputswitch-on{
+    display: none !important; 
+    background: white !important;
+}
+
+.ui-inputswitch-checked .ui-inputswitch-on{
+    display: block !important;
+}
+
+.ui-inputswitch-checked .ui-inputswitch-off{
+    display: none !important;
+}
+

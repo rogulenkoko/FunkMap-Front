@@ -3,12 +3,12 @@ import { InstrumentType, Musician, MusicStyle, Sex } from "../musician/models";
 import { EntityType } from "../map/models";
 import { Http } from "@angular/http"
 import { Observable } from "rxjs/Observable";
-import { CreationResponse } from "./creation";
 import { UserService } from "../user/user.service";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { HttpClient } from "app/core/http/http-client.service";
 import { BaseModel } from "app/core";
 import { Band } from "app/main/band/models";
+import { BaseResponse } from 'app/tools';
 
 @Injectable()
 export abstract class CreationService {
@@ -20,7 +20,7 @@ export abstract class CreationService {
 
   public instrument: InstrumentType;
 
-  abstract save():Observable<CreationResponse>;
+  abstract save():Observable<BaseResponse>;
 
   abstract checkLogin(login: string): Observable<boolean>;
 
@@ -30,7 +30,7 @@ export abstract class CreationService {
    }
 
 
-   buildEntity(): any{
+   buildEntity(): BaseModel{
      switch(this.selectedEntity){
        case EntityType.Musician:
         this.musician.login = this.baseModel.login;
@@ -54,15 +54,10 @@ export class CreationServiceHttp extends CreationService{
     super();
   }
 
-  save():Observable<CreationResponse>{
+  save():Observable<BaseResponse>{
     var entity = this.buildEntity();
-    switch (this.selectedEntity){
-      case EntityType.Musician: return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
-      case EntityType.Band: return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
-      case EntityType.Shop: return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
-      case EntityType.RehearsalPoint: return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}rehearsal/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
-      case EntityType.Studio: return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}studio/save`,entity).map(x=>CreationResponse.ToCreationResponse(x.json()));
-    }
+    entity.entityType = this.selectedEntity;
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/save`,entity).map(x=>BaseResponse.ToBaseResponse(x.json()));
   }
 
   checkLogin(login: string): Observable<boolean>{

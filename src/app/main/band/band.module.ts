@@ -11,6 +11,7 @@ import { BandBaseComponent } from './band-full/band-base/band-base.component';
 import { BandInfoComponent } from './band-full/band-info/band-info.component';
 import { BandMapComponent } from './band-full/band-map/band-map.component';
 import { BandVideoComponent } from './band-full/band-video/band-video.component';
+import { BandParticipantsComponent } from './band-full/band-participants/band-participants.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BandVideoComponent } from './band-full/band-video/band-video.component'
       BandBaseComponent,
       BandInfoComponent,
       BandMapComponent,
-      BandVideoComponent
+      BandVideoComponent,
+      BandParticipantsComponent
   ],
   imports: [
     CoreModule,

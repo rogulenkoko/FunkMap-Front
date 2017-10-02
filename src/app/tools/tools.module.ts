@@ -24,6 +24,7 @@ import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stu
 import { VimeoPlayerComponent } from './vimeo-player/vimeo-player.component';
 import { AvatarCircleComponent } from './avatar-circle/avatar-circle.component';
 import { DateNotificationPipe } from './date-notification.pipe';
+import { EntityActiveComponent } from './entity-full/entity-active/entity-active.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { DateNotificationPipe } from './date-notification.pipe';
     CropperDirective,
     VimeoPlayerComponent,
     AvatarCircleComponent,
-    DateNotificationPipe
+    DateNotificationPipe,
+    EntityActiveComponent
   ],
   imports: [
     BrowserModule,

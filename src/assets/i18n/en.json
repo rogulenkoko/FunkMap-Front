@@ -149,6 +149,7 @@
     "Notifications":"Notifications",
 
     "InviteToBand":"Invite to band",
-    "Delete": "Delete"
+    "Delete": "Delete",
+    "Entity_Activity":"Profile activity"
 
 }

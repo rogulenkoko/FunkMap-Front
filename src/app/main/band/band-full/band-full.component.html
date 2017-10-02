@@ -1,7 +1,10 @@
  <div class="band-full-container">
    <div class="d-flex justify-content-center row-container">
     <band-base *ngIf="editService.baseModel"></band-base>
-    <band-info *ngIf="editService.baseModel"></band-info>
+    <div class="d-flex flex-column">
+      <band-info *ngIf="editService.baseModel"></band-info>
+      <band-participants *ngIf="editService.baseModel" [band]="editService.baseModel"></band-participants>
+    </div>
     <band-map *ngIf="editService.baseModel"></band-map>
    </div>
    <div *ngIf="editService.baseModel" class="d-flex justify-content-center row-container">

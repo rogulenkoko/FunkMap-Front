@@ -3,8 +3,8 @@ import { InstrumentType, Musician, MusicStyle, Sex } from "../musician/models";
 import { EntityType } from "../map/models";
 import { CreationService } from "./creation.service";
 import { Observable } from "rxjs/Observable";
-import { CreationResponse } from "./creation";
 import { UserService } from "../user/user.service";
+import { BaseResponse } from 'app/tools';
 
 @Injectable()
 export class CreationServiceStub extends CreationService {
@@ -13,9 +13,9 @@ export class CreationServiceStub extends CreationService {
     super();
    }
 
-   save():Observable<CreationResponse>{
+   save():Observable<BaseResponse>{
     var entity = this.buildEntity();
-    var response = new CreationResponse(true);
+    var response = new BaseResponse(true);
     return Observable.of(response);
   }
 

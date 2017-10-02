@@ -41,6 +41,7 @@ export class Musician extends BaseModel{
         result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);
         result.address = data.Address;
         result.userLogin = data.UserLogin;
+        result.isActive = data.IsActive;
         return result;
     }
 }

@@ -6,7 +6,6 @@ import { IconProvider } from "../../map/icon-provider.service";
 import { MarkerFactory } from "../../map/marker-factory.service";
 import { CreationService } from "../creation.service";
 import { Router, Params, ActivatedRoute } from "@angular/router";
-import { CreationResponse } from "../creation";
 import { UserService } from "app/main/user/user.service";
 import { MapCreationService } from "app/main/map/map-creation.service";
 

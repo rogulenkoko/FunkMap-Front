@@ -21,4 +21,6 @@ export class BaseModel {
     public soundCloudLink: string;
 
     public address: string;
+
+    public isActive: boolean;
 }

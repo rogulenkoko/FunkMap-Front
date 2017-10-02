@@ -1,4 +1,5 @@
-<div class="musician-info-container d-flex flex-column" (mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
+<div class="entity-info-container d-flex flex-column" [style.width]="width" [style.height]="height"
+  (mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
   <div class="info-title-container d-flex justify-content-between">
     <span>{{'Information' | translate}}</span>
 
