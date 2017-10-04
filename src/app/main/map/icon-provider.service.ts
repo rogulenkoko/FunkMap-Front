@@ -25,7 +25,8 @@ export class IconProvider {
 
     switch (point.entityType) {
       case EntityType.Musician:
-        return this.getMusicianIconWithInstrument(point.instrument);
+        return this.getMusicianIcon();
+        //return this.getMusicianIconWithInstrument(point.instrument);
       case EntityType.Shop:
         return this.getShopIcon();
       case EntityType.Band:
