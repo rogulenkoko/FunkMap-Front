@@ -1,12 +1,26 @@
-<span>Уведомления</span>
+<div class="notifications-main-container">
+  <span class="notifications-title">{{'Notifications' | translate}}</span>
+  <div class="notifications-container">
+    <div *ngFor="let notification of notifications">
+      <div class="d-flex flex-row">
+        <div class="notification-content d-flex flex-column">
+          <div class="d-flex flex-row">
+            <avatar-circle [ngClass]="'notifications-avatar'" [image]="notification.userAvatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+            <band-invite-notification [notification]="notification"></band-invite-notification>
+          </div>
 
-<div *ngFor="let notification of notifications">
-  <div class="d-flex flex-row">
-      <avatar-circle [image]="notification.userAvatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
-      <band-invite-notification [notification]="notification"></band-invite-notification>
-      <span>{{notification.date | dateNotification}}</span>
-      <span *ngIf="!notification.isConfirmed" (click)="sendResponse(1, notification.id)">Да</span>
-      <span *ngIf="!notification.isConfirmed" (click)="sendResponse(-1, notification.id)">Нет</span>
-      <span *ngIf="notification.isConfirmed">Отправлено</span>
+          <p class="notification-date">{{notification.date | dateNotification}}</p>
+        </div>
+
+        <div class="actions-cotainer">
+            <span *ngIf="!notification.isConfirmed" (click)="sendResponse(-1, notification.id)" class="fa fa-times"></span>
+            <span *ngIf="!notification.isConfirmed" (click)="sendResponse(1, notification.id)" class="fa fa-check"></span>
+            <span *ngIf="notification.isConfirmed" class="action-label">{{'Notifications_IsSent' | translate}}</span>
+        </div>
+        
+
+      </div>
+    </div>
   </div>
+
 </div>

@@ -147,5 +147,8 @@
 
     "InviteToBand":"Пригласить в группу",
     "Delete": "Удалить",
-    "Entity_Activity":"Активность профиля"
+    "Entity_Activity":"Активность профиля",
+
+    "BandInviteNotification":"приглашает вас в группу",
+    "Notifications_IsSent":"Отправлено"
 }

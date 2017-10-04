@@ -150,6 +150,11 @@
 
     "InviteToBand":"Invite to band",
     "Delete": "Delete",
-    "Entity_Activity":"Profile activity"
+    "Entity_Activity":"Profile activity",
+
+    "BandInviteNotification":"invites you to band",
+    "Notifications_IsSent":"Sent"
+    
+    
 
 }

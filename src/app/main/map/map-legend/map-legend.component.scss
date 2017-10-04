@@ -16,7 +16,7 @@
             margin-bottom: 10px;
     
             .item-label{
-                color: #adb5bd;
+                color: $inactive-color;
                 font-size: 13px;
             }
         
@@ -31,12 +31,12 @@
     .legend-title-container{
         cursor: pointer;
         .legend-title{
-            color: #adb5bd;
+            color: $inactive-color;
             font-size: 13px;
         }
 
         .icon-dd-arrow{
-            color: #adb5bd;
+            color: $inactive-color;
             font-size: 10px;
         }
     }

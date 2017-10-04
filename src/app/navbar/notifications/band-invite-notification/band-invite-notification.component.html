@@ -1,2 +1,4 @@
 
-{{notification.userLogin}} приглашает вас в группу <a [routerLink]="['/bandPage/' + notification.bandLogin]">{{notification.bandName}}</a>
+<span class="important-text">{{notification.userLogin}}</span> 
+<span>{{'BandInviteNotification' | translate}}</span>
+<a [routerLink]="['/bandPage/' + notification.bandLogin]" class="important-text">{{notification.bandName}}</a>
