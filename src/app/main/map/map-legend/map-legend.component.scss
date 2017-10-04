@@ -1,0 +1,44 @@
+@import "src/assets/styles/dark-colors.scss"; 
+
+
+.legend-container{
+    width: 266px;
+    //height: 272px;
+    background-color: #eff2f8;
+    padding: 25px;
+
+    .legend-items-container{
+
+        height: 200px;
+
+        .legend-item{
+            
+            margin-bottom: 10px;
+    
+            .item-label{
+                color: #adb5bd;
+                font-size: 13px;
+            }
+        
+            img{
+                width: 15px;
+                margin-right: 25px;
+            }
+        }
+    }
+    
+
+    .legend-title-container{
+        cursor: pointer;
+        .legend-title{
+            color: #adb5bd;
+            font-size: 13px;
+        }
+
+        .icon-dd-arrow{
+            color: #adb5bd;
+            font-size: 10px;
+        }
+    }
+    
+}

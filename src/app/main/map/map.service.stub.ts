@@ -27,8 +27,9 @@ export class MapServiceStub extends MapService {
 
     var b1 = new Marker("beatles", 50.5, 30.5, EntityType.Band);
     var b2 = new Marker("rchp", 53.951014, 30.2708, EntityType.Band);
+    var r1 = new Marker("rehearsal", 60.016649, 30.286341, EntityType.Shop);
 
-    this.allMarkers = [m1, m2, b2, m3, m4, b1];
+    this.allMarkers = [r1];
   }
 
   getAll(): Observable<Array<Marker>> {
@@ -37,11 +38,11 @@ export class MapServiceStub extends MapService {
   }
 
   getNearest(request: NearestRequest): Observable<Array<Marker>> {
-    return Observable.of(this.allMarkers.slice(0, 5));
+    return Observable.of(this.allMarkers);
   }
 
   getSpecific(logins: Array<string>): Observable<Array<Marker>> {
-    return Observable.of(this.allMarkers.slice(0, 5));
+    return Observable.of(this.allMarkers);
   }
 
 }

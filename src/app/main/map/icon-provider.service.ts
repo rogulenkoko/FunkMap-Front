@@ -25,7 +25,7 @@ export class IconProvider {
 
     switch (point.entityType) {
       case EntityType.Musician:
-        return this.getMusicianIcon(point.instrument);
+        return this.getMusicianIconWithInstrument(point.instrument);
       case EntityType.Shop:
         return this.getShopIcon();
       case EntityType.Band:
@@ -37,12 +37,31 @@ export class IconProvider {
     }
   }
 
-  private getMusicianIcon(type: InstrumentType): string {
+  public getIconByType(type: EntityType): string {
+        switch (type) {
+          case EntityType.Musician:
+            return this.getMusicianIcon();
+          case EntityType.Shop:
+            return this.getShopIcon();
+          case EntityType.Band:
+            return this.getBandIcon();
+          case EntityType.RehearsalPoint:
+            return this.getRehearsalPointIcon();
+          case EntityType.Studio:
+            return this.getStudioIcon();
+        }
+      }
+
+  private getMusicianIconWithInstrument(type: InstrumentType): string {
     return this.icons.getValue(type);
   }
 
+  private getMusicianIcon(): string {
+    return "assets/images/markers/musician.png"
+  }
+
   private getShopIcon(): string {
-    return "assets/images/shop-start.svg";
+    return "assets/images/markers/shop.png"; 
   }
 
   private getBandIcon(): string {
@@ -50,11 +69,11 @@ export class IconProvider {
   }
 
   private getRehearsalPointIcon(): string {
-    return "assets/images/rehearsal-start.svg";
+    return "assets/images/markers/rehearsal.png"; 
   }
 
   private getStudioIcon(): string {
-    return "assets/images/studio-start.svg";
+    return "assets/images/markers/studio.png";
   }
 
 }

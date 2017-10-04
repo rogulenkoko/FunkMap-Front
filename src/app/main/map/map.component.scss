@@ -27,3 +27,10 @@
 :host-context(.dark) .add-circle{
     background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
 }
+
+.map-legend-container{
+    position: absolute;
+    bottom: 7%;
+    right: 3.5%;
+    z-index: 1001;
+}

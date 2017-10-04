@@ -1,0 +1,15 @@
+<div class="legend-container d-flex flex-column">
+
+    <div *ngIf="legendItemsVisible" class="legend-items-container">
+        <div class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+            <img src="{{iconProvider.getIconByType(key)}}"/>
+            <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
+        </div>
+    </div>
+
+    <div (click)="showLegendItems()" class="d-flex align-items-center justify-content-between legend-title-container">
+        <span class="legend-title">Легенда</span>
+        <span class="icon-dd-arrow"></span>
+    </div>
+
+</div>

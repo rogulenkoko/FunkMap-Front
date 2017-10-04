@@ -5,35 +5,4 @@
 </div>
 
 
-<p-dialog header="Добавить собеседника" [(visible)]="isAddToDialogMode" [width]="550">
-
-  <div *ngIf="isNewDialog">
-    Название диалога
-    <input [(ngModel)]="dialogName" />
-  </div>
-
-  <div>
-      Добавленные пользователи
-      <span *ngFor="let user of addedUsers" (click)="removeUser(user)">
-          <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-          {{user.login}}
-        </span>
-    </div>
-
-  <div>
-    Поиск
-    <input [(ngModel)]="search" (ngModelChange)="searchUser()" />
-  </div>
-    
-  
-
-  <span *ngIf="!newUser">Нет такого пользователя</span>
-  <span *ngIf="newUser" (click)="addUser(newUser)">
-    <avatar-circle [image]="newUser.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-    {{newUser.login}}
-  </span>
-
-  <button *ngIf="isNewDialog" (click)="finish()">Создать диалог</button>
-  <button *ngIf="!isNewDialog" (click)="finish()">Добавить</button>
-
-</p-dialog>
+<dialog-invite [(visible)]="isAddToDialogMode"></dialog-invite>

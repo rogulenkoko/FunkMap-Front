@@ -15,16 +15,20 @@ import { MapServiceStub } from "./map.service.stub";
 import { IconProvider } from "./icon-provider.service";
 import { MapFilter } from "./map-filter.service";
 import { MapCreationService } from "app/main/map/map-creation.service";
+import { MapLegendComponent } from './map-legend/map-legend.component';
+import { CoreModule } from "app/core/core.module";
 
 @NgModule({
   declarations: [
-    MapComponent
+    MapComponent,
+    MapLegendComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    ToolsModule
+    ToolsModule,
+    CoreModule
   ],
   exports:[MapComponent],
   providers: [

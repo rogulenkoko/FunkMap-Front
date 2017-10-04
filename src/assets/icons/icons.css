@@ -36,7 +36,6 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: pointer;
 }
 
 .icon-youtube:before {
@@ -105,12 +104,24 @@
 .icon-plus:before {
   content: "\76";
 }
-
-.fa-plus:before{
-  font-family: "untitled-font-3" !important;
-  content: "\76" !important;
-}
-
 .icon-info:before {
   content: "\77";
+}
+.icon-pin:before {
+  content: "\78";
+}
+.icon-music-band:before {
+  content: "\79";
+}
+.icon-music-store:before {
+  content: "\7a";
+}
+.icon-musician:before {
+  content: "\41";
+}
+.icon-recording-studio:before {
+  content: "\42";
+}
+.icon-rehearsal-point:before {
+  content: "\43";
 }
