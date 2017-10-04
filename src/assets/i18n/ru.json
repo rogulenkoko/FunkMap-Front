@@ -150,5 +150,7 @@
     "Entity_Activity":"Активность профиля",
 
     "BandInviteNotification":"приглашает вас в группу",
-    "Notifications_IsSent":"Отправлено"
+    "Notifications_IsSent":"Отправлено",
+
+    "Legend":"Легенда"
 }

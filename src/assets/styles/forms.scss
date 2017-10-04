@@ -144,6 +144,18 @@ input::-webkit-inner-spin-button {
     font-size: 11px;
 }
 
+.dropdown-item{
+  padding: 10px 20px;
+  background: rgba(0,0,0,0);
+  color: $active-color !important;
+  cursor: pointer;
+  font-size: 13px !important;
+}
+
+.dropdown-item:hover{
+  color: $dark-orange-light !important;
+}
+
 
 
 
