@@ -157,5 +157,8 @@
     "Band_Participants":"Состав группы",
 
     "Dialogs_Empty":"Выберете диалог для начала общения",
-    "Dialogs_AddParticipant":"Добавить собеседников"
+    "Dialogs_AddParticipant":"Добавить собеседников",
+
+    "ChooseBand":"Выберете группу",
+    "Invite":"Пригласить"
 }

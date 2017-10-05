@@ -160,6 +160,9 @@
     "Band_Participants":"Band members",
 
     "Dialogs_Empty":"Select dialog to start messaging",
-    "Dialogs_AddParticipant":"Add participants"
+    "Dialogs_AddParticipant":"Add participants",
+    "ChooseBand":"Select band",
+    "Invite":"Invite"
+    
 
 }

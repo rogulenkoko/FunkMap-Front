@@ -18,3 +18,24 @@
         margin-bottom: 10px;
     }
 }
+
+
+.invite-bands-container{
+    height: 290px;
+    .invite-band{
+        width: 70%;
+    }   
+}
+
+.buttons-container{
+    margin-top: 10px;
+    button:first-child{
+        margin-right: 30px;
+    }
+}
+
+.no-bands-container{
+    text-align: center;
+    font-size: 16px;
+    color: $dark-title-color;
+}
