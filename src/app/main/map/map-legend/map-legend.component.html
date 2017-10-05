@@ -9,7 +9,8 @@
 
     <div (click)="showLegendItems()" class="d-flex align-items-center justify-content-between legend-title-container">
         <span class="legend-title">{{'Legend' | translate}}</span>
-        <span class="icon-dd-arrow"></span>
+        <span *ngIf="legendItemsVisible" class="icon-dd-arrow"></span>
+        <span *ngIf="!legendItemsVisible" class="icon-dd-arrow-up"></span>
     </div>
 
 </div>

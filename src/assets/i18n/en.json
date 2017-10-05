@@ -162,7 +162,9 @@
     "Dialogs_Empty":"Select dialog to start messaging",
     "Dialogs_AddParticipant":"Add participants",
     "ChooseBand":"Select band",
-    "Invite":"Invite"
+    "Invite":"Invite",
+    "NoInviteBands": "There aren't bands for invite"
+    
     
 
 }

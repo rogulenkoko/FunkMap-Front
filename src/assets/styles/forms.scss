@@ -16,11 +16,18 @@ input[type=checkbox] + label:before{
   cursor: pointer;
   width: 16px;
 }
-input[type=radio]:checked + label:before,
+
 input[type=checkbox]:checked + label:before{
    content: url("/assets/images/checked.svg");
    width: 16px;
 }
+
+input[type=radio]:checked + label:before{
+  content: url("/assets/images/radio-active.png");
+  width: 16px;
+}
+
+
 
 input[type=radio] + label:before{
   border-radius:50%;

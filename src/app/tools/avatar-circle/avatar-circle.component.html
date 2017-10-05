@@ -5,9 +5,11 @@
   </div>
   
   <div *ngIf="!image" class="image-container no-image d-flex align-items-center justify-content-center"  [style.width]="size" [style.height]="size">
-    <img src="/assets/images/no-name.svg" [style.width]="iconSize" [style.height]="iconSize" />
+    <img *ngIf="!useLogo" src="/assets/images/no-name.svg" [style.width]="iconSize" [style.height]="iconSize" />
+
+    <span *ngIf="useLogo" class="icon-logo-symbol" [style.font-size]="iconSize" [style.height]="iconSize"></span>
   </div>
   
-  <div class="online-circle" [style.width]="onlineSize" [style.height]="onlineSize" *ngIf="isOnline"></div>
+  <div class="online-circle" [style.width]="onlineSize" *ngIf="isOnline"></div>
 </div>
 

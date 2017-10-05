@@ -108,7 +108,7 @@
 .icon-info:before {
   content: "\77";
 }
-.icon-pin:before {
+.icon-pin-1:before {
   content: "\78";
 }
 .icon-music-band:before {
@@ -125,4 +125,16 @@
 }
 .icon-rehearsal-point:before {
   content: "\43";
+}
+.icon-close:before {
+  content: "\44";
+}
+.icon-dd-points:before {
+  content: "\45";
+}
+.icon-logo-symbol:before {
+  content: "\46";
+}
+.icon-dd-arrow-up:before {
+  content: "\47";
 }

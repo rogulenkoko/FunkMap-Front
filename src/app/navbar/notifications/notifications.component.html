@@ -13,7 +13,7 @@
         </div>
 
         <div class="actions-cotainer">
-            <span *ngIf="!notification.isConfirmed" (click)="sendResponse(-1, notification.id)" class="fa fa-times"></span>
+            <span *ngIf="!notification.isConfirmed" (click)="sendResponse(-1, notification.id)" class="icon-close"></span>
             <span *ngIf="!notification.isConfirmed" (click)="sendResponse(1, notification.id)" class="fa fa-check"></span>
             <span *ngIf="notification.isConfirmed" class="action-label">{{'Notifications_IsSent' | translate}}</span>
         </div>

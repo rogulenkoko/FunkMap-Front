@@ -46,7 +46,7 @@
     <button (click)="sendInvite()" class="btn btn-success">{{'Invite' | translate}}</button>
 
   </div>
-  <div *ngIf="!inviteInfo || !inviteInfo.availableBands || inviteInfo.availableBands.length == 0" class="no-bands-container">Нет доступных групп для приглашения</div>
+  <div *ngIf="!inviteInfo || !inviteInfo.availableBands || inviteInfo.availableBands.length == 0" class="no-bands-container">{{'NoInviteBands' | translate}}</div>
 
 
 
