@@ -11,7 +11,6 @@
     width: 505px;
     background-color: $dark-card-background;
     padding-top: 45px;
-   // padding-bottom: 30px;
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 5px; 
@@ -22,6 +21,7 @@
 .property-title{
     margin-bottom: 5px;
     width: 120px;
+    color: $active-color;
 }
 
 .property-value{

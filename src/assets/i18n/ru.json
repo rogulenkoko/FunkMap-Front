@@ -151,6 +151,8 @@
 
     "BandInviteNotification":"приглашает вас в группу",
     "Notifications_IsSent":"Отправлено",
+    "Notifications_Empty":"Для вас нет уведомлений",
 
-    "Legend":"Легенда"
+    "Legend":"Легенда",
+    "Band_Participants":"Состав группы"
 }

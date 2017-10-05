@@ -154,7 +154,9 @@
 
     "BandInviteNotification":"invites you to band",
     "Notifications_IsSent":"Sent",
+    "Notifications_Empty":"There aren't notifications for you",
     
-    "Legend":"Legend"    
+    "Legend":"Legend",
+    "Band_Participants":"Band members"
 
 }

@@ -1,7 +1,14 @@
-<div class="participants-container">
-  <div *ngFor="let musician of musicians">
-    <avatar-circle [image]="musician.avatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
-    <a [routerLink]="['/musicianPage/' + musician.login]">{{musician.name}}</a> @{{musician.login}}
-    {{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}
+<div class="main-participants-container">
+
+  <span class="participants-title">{{'Band_Participants' | translate}}</span>
+
+  <div class="participants-container">
+      <div *ngFor="let musician of musicians" class="d-flex align-items-center participant">
+          <span class="participant-instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}:</span>
+          <avatar-circle [ngClass]="'participant-avatar'" [image]="musician.avatar" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
+          <a [routerLink]="['/musicianPage/' + musician.login]" class="participant-name">{{musician.name}}</a> 
+          
+        </div>
   </div>
+  
 </div>
