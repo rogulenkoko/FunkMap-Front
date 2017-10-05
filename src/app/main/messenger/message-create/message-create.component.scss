@@ -16,26 +16,17 @@
         max-width: 100%;
     }
 
-    .message-top-container{
-        height: 28px;
-        .line{
-            height: 1px;
-            width: 82%;
-            background: linear-gradient(to left, $button-gradient-yellow, $button-gradient-red);
-        }
-
-        .send-label{
-            color:$dark-orange-light;
-            font-size: 13px;
-            width: 18%;
-            text-align: center;
-            cursor: pointer;
-        }
+    .send-label{
+        color:$dark-orange-light;
+        font-size: 13px;
+        cursor: pointer;
+        margin-left: 60px;
     }
 
     .content-load-container{
         width: 72px;
         height: 20px;
+        margin-right: 25px;
         i{
             color: $dark-title-color;
         }
@@ -46,7 +37,7 @@
     }
 
     textarea{
-        width: 70%;
+        width: 100%;
         font-size: 13px;
         max-height: 200px;
         color: $dialog-name-color;
