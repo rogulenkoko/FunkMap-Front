@@ -5,6 +5,11 @@
   </div>
 </div>
 
+<div class="title-container d-flex flex-row justify-content-between">
+  <span>Сообщения</span>
+  <span class="icon-plus"></span>
+</div>
+
 <div class="dialogs-container">
     <dialog-item *ngFor="let dialog of dialogs" (click)="setDialog(dialog)" [dialog]="dialog"></dialog-item>
 </div>
