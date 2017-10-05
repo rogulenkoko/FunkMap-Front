@@ -1,4 +1,6 @@
-<div class="entity-map-container" (mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
+<div class="entity-map-container" 
+  [style.height]="height"
+(mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
   <div class="leaflet-map" id="map-mini"></div>
   <div class="map-info-container">
     <div class="info-title-container d-flex justify-content-between">

@@ -67,7 +67,8 @@ import { EntityActiveComponent } from './entity-full/entity-active/entity-active
     CropperDirective,
     VimeoPlayerComponent,
     AvatarCircleComponent,
-    DateNotificationPipe
+    DateNotificationPipe,
+    EntityActiveComponent
     ],
   providers: [
     DateSelectProvider,

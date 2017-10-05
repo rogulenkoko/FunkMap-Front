@@ -23,6 +23,7 @@ import { RouteBuilder } from "app/tools/route-builder";
 export class EntityMapComponent extends EditableCard implements OnInit {
 
   @Input() marker: Marker;
+  @Input() height: string;
 
   private newMarker: Marker;
 

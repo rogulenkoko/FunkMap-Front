@@ -1,0 +1,10 @@
+@import "src/assets/styles/dark-colors.scss";
+
+.active-container{
+    background-color: $dark-card-background;
+    padding: 20px 30px;
+    width: 300px;
+    color: $inactive-color;
+    font-size: 13px;
+    margin-top: 8px;
+}

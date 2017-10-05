@@ -1,66 +1,74 @@
-<div *ngIf="entity" class="entity-base-container d-flex flex-column align-items-center" (mouseover)="changeEditVisible(1)"
-  (mouseleave)="changeEditVisible(-1)">
-
-  <div class="edit-buttons-container d-flex justify-content-end">
-    <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
-    <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
-    <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
+<div class="main-entity-base-container d-flex flex-column">
 
 
-    <div class="nav-item dropdown ml-2">
-      <a *ngIf="!isUsers" class="fa fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+  <div *ngIf="entity" class="entity-base-container d-flex flex-column align-items-center" (mouseover)="changeEditVisible(1)"
+    (mouseleave)="changeEditVisible(-1)">
+
+    <div class="edit-buttons-container d-flex justify-content-end">
+      <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
+      <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
+      <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
+
+
+      <div class="nav-item dropdown ml-2">
+        <a *ngIf="!isUsers" class="fa fa-ellipsis-h" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             
       </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-        <a *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Add_Favorites' | translate}}</a>
-        <a *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Remove_Favorites' | translate}}</a>
-        <ng-template *ngFor="let actionItem of actionItems"  [ngTemplateOutlet]="actionItem.template"></ng-template>
-        <a *ngIf="isUsers" class="dropdown-item" (click)="deleteEntity()"> {{'Delete' | translate}} </a>
-      </div>
-    </div>
-
-
-  </div>
-
-  <div (mouseover)="changeAvatarEditVisible(1)" (mouseleave)="changeAvatarEditVisible(-1)" class="image-container-wrapper">
-    <avatar-circle [image]="entity.avatar" [size]="'180px'" [iconSize]="'120px'"></avatar-circle>
-
-    <div *ngIf="canEditPhoto" (click)="changeUserAvatar()" class="edit-circle-container d-flex align-items-center justify-content-center">
-      <i class="icon-edit"></i>
-    </div>
-  </div>
-
-
-
-  <ng-container *ngIf="!isEditMode">
-
-    <div class="name-container">
-      {{entity.name}}
-    </div>
-    <ng-template *ngIf="underNameTemplate" [ngTemplateOutlet]="underNameTemplate"></ng-template>
-
-
-    <div *ngIf="userService.user" class="buttons-container d-flex flex-column">
-      <button *ngIf="!isUsers" [routerLink]="['/messenger/' + entity.userLogin]" class="btn btn-success">{{'Send_Message' | translate}}</button>
-    </div>
-
-
-    <div class="nets-container">
-      <social [vkLink]="entity.vkLink" [facebookLink]="entity.facebookLink" [youTubeLink]="entity.youTubeLink" [soundCloudLink]="entity.soundCloudLink"></social>
-    </div>
-
-  </ng-container>
-
-  <ng-container *ngIf="isEditMode">
-    <div class="edit-container">
-      <div *ngFor="let item of items" class="d-flex flex-column">
-        <div class="d-flex flex-column property-container align-items-baseline">
-          <span class="property-title">{{item.propertyTitle | translate}}:</span>
-          <ng-template [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Add_Favorites' | translate}}</a>
+          <a *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Remove_Favorites' | translate}}</a>
+          <ng-template *ngFor="let actionItem of actionItems" [ngTemplateOutlet]="actionItem.template"></ng-template>
+          <a *ngIf="isUsers" class="dropdown-item" (click)="deleteEntity()"> {{'Delete' | translate}} </a>
         </div>
       </div>
+
+
     </div>
 
-  </ng-container>
+    <div (mouseover)="changeAvatarEditVisible(1)" (mouseleave)="changeAvatarEditVisible(-1)" class="image-container-wrapper">
+      <avatar-circle [image]="entity.avatar" [size]="'180px'" [iconSize]="'120px'"></avatar-circle>
+
+      <div *ngIf="canEditPhoto" (click)="changeUserAvatar()" class="edit-circle-container d-flex align-items-center justify-content-center">
+        <i class="icon-edit"></i>
+      </div>
+    </div>
+
+
+
+    <ng-container *ngIf="!isEditMode">
+
+      <div class="name-container">
+        {{entity.name}}
+      </div>
+      <ng-template *ngIf="underNameTemplate" [ngTemplateOutlet]="underNameTemplate"></ng-template>
+
+
+      <div *ngIf="userService.user" class="buttons-container d-flex flex-column">
+        <button *ngIf="!isUsers" [routerLink]="['/messenger/' + entity.userLogin]" class="btn btn-success">{{'Send_Message' | translate}}</button>
+      </div>
+
+
+      <div class="nets-container">
+        <social [vkLink]="entity.vkLink" [facebookLink]="entity.facebookLink" [youTubeLink]="entity.youTubeLink" [soundCloudLink]="entity.soundCloudLink"></social>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="isEditMode">
+      <div class="edit-container">
+        <div *ngFor="let item of items" class="d-flex flex-column">
+          <div class="d-flex flex-column property-container align-items-baseline">
+            <span class="property-title">{{item.propertyTitle | translate}}:</span>
+            <ng-template [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+  <entity-active *ngIf="entity" [entity]="entity"></entity-active>
 
 </div>
