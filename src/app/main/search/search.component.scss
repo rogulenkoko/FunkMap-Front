@@ -9,11 +9,12 @@
 
 .main-search-container{
     height: 100%;
-    overflow-y: auto;
+    
 }
 
 .search-items-container{
-     
+     overflow-y: auto;
+     flex: 2;
 }
 
 .search-text-container{

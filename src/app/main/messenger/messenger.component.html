@@ -1,10 +1,10 @@
-<div class="main-messenger-container d-flex flex-row justify-content-center align-items-center">
-    <div class="dialogs-container">
-        <dialogs></dialogs>
+<div class="main-messenger-container d-flex flex-row justify-content-center">
+    <div class="dialogs-container d-flex flex-column">
+        <dialogs [ngClass]="'d-flex flex-column'"></dialogs>
     </div>
     <div *ngIf="dialogService.dialog" class="d-flex flex-column messages-container">
         <dialog-bar></dialog-bar>
-        <messages></messages>
+        <messages [ngClass]="'messages'"></messages>
         <message-create></message-create>
     </div>
 

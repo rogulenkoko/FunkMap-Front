@@ -4,10 +4,10 @@
 @import "src/assets/styles/forms.scss";
 
 
-.dialogs-container{
+.dialogs{
     background-color: $dark-card-background;
-    height: 690px;
-    overflow-y: auto;
+    overflow: auto;
+    flex: 2;
 }
 
 .search-text-container{
@@ -23,8 +23,8 @@
 
 .title-container{
     padding: 6px 25px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 16px;
     color: $active-color;
 }

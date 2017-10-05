@@ -1,18 +1,25 @@
 @import "src/assets/styles/dark-colors.scss";
 
-$messenger-height: 91%;
+$messenger-height: 95%;
 
 .main-messenger-container{
     
     height: 100%;
+    padding-top: 20px;
 
     .messages-container{
-        width: 820px;
+        width: 720px;
         height: $messenger-height;
+
+        .messages{
+            display: flex;
+            flex: 2;
+        }
+
     }
 
     .messages-empty-container{
-        width: 820px;
+        width: 720px;
         height: $messenger-height;
         background-color: $dark-card-background;
         border-radius: 5px;
@@ -26,6 +33,7 @@ $messenger-height: 91%;
     .dialogs-container{
         width: 350px;
         height: $messenger-height;
+
         background-color: $dark-card-background;
         border-radius: 5px;
         margin-right: 8px; 

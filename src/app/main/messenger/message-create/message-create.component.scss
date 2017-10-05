@@ -7,7 +7,7 @@
 
 .message-create-main-container{
     flex-direction: column;
-    height: 165px;
+    height: 20%;
     margin-top: 8px;
     background-color: $dark-card-background;
     border-radius: 5px;
@@ -24,9 +24,9 @@
     }
 
     .content-load-container{
-        width: 72px;
+        width: 90px;
         height: 20px;
-        margin-right: 25px;
+        margin-right: 15px;
         i{
             color: $dark-title-color;
         }

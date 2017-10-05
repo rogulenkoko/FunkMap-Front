@@ -30,13 +30,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.subscription = new Subscription();
     
-    this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => { this.refreshMessages(dialog); this.getUsersAvatars()}));
+    this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => { this.refreshMessages(); this.getUsersAvatars()}));
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
     if(this.signalrService.connection) this.initializeSubscriptions();
   }
 
   ngOnInit() {
     this.getUsersAvatars();
+    this.refreshMessages();
     
   }
 
@@ -44,7 +45,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private refreshMessages(dialog: Dialog) {
+  private refreshMessages() {
     if(!this.dialogService.dialog) return;
     let request = new DialogMessagesRequest(this.dialogService.dialog.dialogId, 0, 20)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
