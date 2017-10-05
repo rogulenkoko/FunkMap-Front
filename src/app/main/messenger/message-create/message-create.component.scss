@@ -6,8 +6,12 @@
 
 
 .message-create-main-container{
-    height: 20%;
     flex-direction: column;
+    height: 165px;
+    margin-top: 8px;
+    background-color: $dark-card-background;
+    border-radius: 5px;
+    padding: 25px;
     .message-input{
         max-width: 100%;
     }

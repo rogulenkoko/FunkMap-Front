@@ -2,10 +2,14 @@
     <div class="dialogs-container">
         <dialogs></dialogs>
     </div>
-    <div class="messages-container d-flex flex-column">
+    <div *ngIf="dialogService.dialog" class="d-flex flex-column messages-container">
         <dialog-bar></dialog-bar>
         <messages></messages>
         <message-create></message-create>
+    </div>
+
+    <div *ngIf="!dialogService.dialog" class="d-flex messages-empty-container align-items-center justify-content-center">
+        <span class="empty">{{'Dialogs_Empty' | translate}}</span> 
     </div>
    
 </div>

@@ -2,7 +2,7 @@
   <div class="main-message-container">
   <div class="message-container d-flex flex-row">
 
-    <avatar-circle  *ngIf="message.sender != userService.user.login" [image]="message.avatar" [size]="'36px'" [iconSize]="'21px'"></avatar-circle>
+    <avatar-circle  *ngIf="message.sender != userService.user.login" [image]="message.avatar" [size]="'36px'" [iconSize]="'21px'"  [ngClass]="'message-avatar'"></avatar-circle>
 
     <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">{{message.text}}</div>
   </div>

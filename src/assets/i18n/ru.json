@@ -154,5 +154,8 @@
     "Notifications_Empty":"Для вас нет уведомлений",
 
     "Legend":"Легенда",
-    "Band_Participants":"Состав группы"
+    "Band_Participants":"Состав группы",
+
+    "Dialogs_Empty":"Выберете диалог для начала общения",
+    "Dialogs_AddParticipant":"Добавить собеседников"
 }

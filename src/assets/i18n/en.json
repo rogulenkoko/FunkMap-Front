@@ -157,6 +157,9 @@
     "Notifications_Empty":"There aren't notifications for you",
     
     "Legend":"Legend",
-    "Band_Participants":"Band members"
+    "Band_Participants":"Band members",
+
+    "Dialogs_Empty":"Select dialog to start messaging",
+    "Dialogs_AddParticipant":"Add participants"
 
 }

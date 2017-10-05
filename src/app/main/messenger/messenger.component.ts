@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessengerServiceHub, MessengerService } from "app/main/messenger/messenger.service";
 import { Dialog, DialogsRequest } from "app/main/messenger/models";
+import { DialogService } from 'app/main/messenger/dialog.service';
 
 @Component({
   selector: 'app-messenger',
@@ -9,10 +10,9 @@ import { Dialog, DialogsRequest } from "app/main/messenger/models";
 })
 export class MessengerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
-    
   }
 
   

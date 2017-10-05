@@ -10,6 +10,7 @@ export class AvatarCircleComponent implements OnInit {
   @Input() image: string;
   @Input() size: string;
   @Input() iconSize: string;
+  @Input() onlineSize: string;
 
   @Input() isOnline: boolean;
 

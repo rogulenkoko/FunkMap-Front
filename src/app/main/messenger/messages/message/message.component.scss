@@ -34,6 +34,10 @@ $image-width: 36px;
             color: $foreign-message-color;
             background-color: $foreign-message-background-color;
         }
+
+        .message-avatar{
+            margin-right: 20px;
+        }
     }
 
     .date-container{

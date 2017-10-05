@@ -1,5 +1,7 @@
+@import "src/assets/styles/dark-colors.scss";
+
 :host(messages){
-    height: 80%
+    height: 560px;
 }
 
 ::-webkit-scrollbar {
@@ -9,4 +11,6 @@
 .main-messages-container{
     height: 100%;
     overflow-y: auto;
+    border-radius: 0 0 5px 5px;
+    background: $dark-card-background;
 }

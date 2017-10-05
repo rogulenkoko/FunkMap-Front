@@ -1,9 +1,13 @@
-<div *ngIf="image" class="image-container" [style.width]="size" [style.height]="size">
-  <img src="data:image/png;base64,{{image}}"  [style.width]="size" [style.height]="size"/>
+
+<div class="avatar-circle-container">
+  <div *ngIf="image" class="image-container" [style.width]="size" [style.height]="size">
+    <img src="data:image/png;base64,{{image}}"  [style.width]="size" [style.height]="size"/>
+  </div>
+  
+  <div *ngIf="!image" class="image-container no-image d-flex align-items-center justify-content-center"  [style.width]="size" [style.height]="size">
+    <img src="/assets/images/no-name.svg" [style.width]="iconSize" [style.height]="iconSize" />
+  </div>
+  
+  <div class="online-circle" [style.width]="onlineSize" [style.height]="onlineSize" *ngIf="isOnline"></div>
 </div>
 
-<div *ngIf="!image" class="image-container no-image d-flex align-items-center justify-content-center"  [style.width]="size" [style.height]="size">
-  <img src="/assets/images/no-name.svg" [style.width]="iconSize" [style.height]="iconSize" />
-</div>
-
-<div class="online-circle" *ngIf="isOnline"></div>

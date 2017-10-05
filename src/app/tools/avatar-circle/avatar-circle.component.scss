@@ -30,8 +30,12 @@
     height: 12px;
     border-radius: 50%;
     position: absolute;
-    margin-top: -50px;
-    margin-left: 50px;
+    top: 5%;
+    right: 3%;
     border: 2px solid white;
     background-color: #28e06d;
+}
+
+.avatar-circle-container{
+    position: relative;
 }

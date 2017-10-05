@@ -84,9 +84,8 @@
 .dialog-container:hover, .selected-dialog{
     background-color: $dialog-background;
 
-     .image-container{
-        .online-circle{
-            border: 2px solid $dialog-background !important;
-        }
-     }
+   /deep/ .online-circle{
+        border: 2px solid $dialog-background !important;
+    }
+     
 }
