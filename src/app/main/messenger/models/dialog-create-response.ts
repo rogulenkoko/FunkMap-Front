@@ -1,9 +1,12 @@
-export class DialogCreateResponse{
-    constructor(public isSuccess: boolean, public dialogId: string){
+import { Dialog } from "app/main/messenger/models";
+
+export class DialogUpdateResponse {
+    constructor(public isSuccess: boolean, public dialog: Dialog){
 
     }
 
-    public static ToDialogCreateResponse(data: any): DialogCreateResponse{
-        return new DialogCreateResponse(data.Success, data.DialogId);
+    public static ToDialogCreateResponse(data: any): DialogUpdateResponse{
+        var dialog = Dialog.ToDialog(data.Dialog);
+        return new DialogUpdateResponse(data.Success, dialog);
     }
 }

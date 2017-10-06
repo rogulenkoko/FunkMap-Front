@@ -3,4 +3,4 @@ export { DialogMessagesRequest } from "./dialog-messages-request";
 export { DialogsRequest } from "./dialogs-request";
 export { Dialog } from "./dialog";
 export { DialogsNewMessagesCountModel } from "./dialog-new-messages-count";
-export { DialogCreateResponse } from "./dialog-create-response";
+export { DialogUpdateResponse } from "./dialog-create-response";

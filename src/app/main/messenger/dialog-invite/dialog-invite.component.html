@@ -1,32 +1,47 @@
-<p-dialog header="Добавить собеседника" [(visible)]="visible" [width]="550" [draggable]="false" [modal]="true">
-  
-    <div *ngIf="isNewDialog">
-      Название диалога
-      <input [(ngModel)]="dialogName" />
+<p-dialog header="{{'AddParticipant' | translate}}" [(visible)]="visible" [width]="550" [draggable]="false" [modal]="true"
+  (onHide)="onHide()" (onShow)="init()" *ngIf="isVisible">
+
+  <div class="main-invite-container">
+
+    <div *ngIf="isNewDialog && creationStep == 2" class="dialog-name-container">
+      <input [(ngModel)]="dialogName" class="form-control" placeholder="{{'EnterDialogName' | translate}}"/>
     </div>
-  
-    <div>
-        Добавленные пользователи
-        <span *ngFor="let user of addedUsers" (click)="removeUser(user)">
-            <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-            {{user.login}}
-          </span>
+
+    <div *ngIf="!isNewDialog || (isNewDialog && creationStep == 1)" class="invite-content-container">
+      <div>
+        <input [(ngModel)]="search" (ngModelChange)="searchUser()" class="form-control" placeholder="{{'EnterUserLogin' | translate}}"
+        />
       </div>
-  
-    <div>
-      Поиск
-      <input [(ngModel)]="search" (ngModelChange)="searchUser()" />
+
+      <!-- <span *ngIf="!newUser">Нет такого пользователя</span> -->
+      <div *ngIf="newUser" class="new-user-container d-flex align-items-center" (click)="addUser(newUser)">
+        <avatar-circle [image]="newUser.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
+        <span class="new-user-login">@{{newUser.login}}</span>
+      </div>
+
+      <div *ngIf="addedUsers && addedUsers.length > 0" class="added-users-container">
+        <div *ngFor="let user of addedUsers" class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
+            <span class="new-user-login">@{{user.login}}</span>
+          </div>
+          <i (click)="removeUser(user)" class="icon-close"></i>
+        </div>
+      </div>
+
     </div>
-      
-    
-  
-    <span *ngIf="!newUser">Нет такого пользователя</span>
-    <span *ngIf="newUser" (click)="addUser(newUser)">
-      <avatar-circle [image]="newUser.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-      {{newUser.login}}
-    </span>
-  
-    <button *ngIf="isNewDialog" (click)="finish()">Создать диалог</button>
-    <button *ngIf="!isNewDialog" (click)="finish()">Добавить</button>
-  
-  </p-dialog>
+
+    <div class="buttons-container d-flex align-items-center justify-content-center">
+      <button class="btn btn-secondary" (click)="cancel()">{{'Cancel' | translate}}</button>
+      <button class="btn btn-success" *ngIf="!isNewDialog" (click)="finish()">Добавить</button>
+
+      <button class="btn btn-success" *ngIf="isNewDialog && creationStep == 1" (click)="move()" [class.disabled]="!addedUsers || addedUsers.length == 0">Далее</button>
+      <button class="btn btn-success" *ngIf="isNewDialog && creationStep == 2" (click)="finish()" [class.disabled]="!dialogName">Создать диалог</button>
+    </div>
+
+
+  </div>
+
+
+
+</p-dialog>

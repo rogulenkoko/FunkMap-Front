@@ -64,9 +64,14 @@ $image-width: 36px;
     //float: right;
 }
 
-.foreign-main-message-container{
-
+.anonim-message-container{
+    padding: 6px 0;
+    .anonim-message-text{
+        font-size: 13px;
+        color: $dark-title-color;
+    }
 }
+
 
 
 

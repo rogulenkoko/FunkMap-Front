@@ -1,0 +1,52 @@
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+
+
+.main-invite-container{
+    padding: 0 60px;
+
+    .invite-content-container{
+        min-height: 100px;
+        position: relative;
+
+        .new-user-container{
+            width: 100%;
+            padding: 12px;
+            position: absolute;
+            background-color: #eff2f8;
+            cursor: pointer;
+           
+        }
+
+        .new-user-container:hover{
+            background-color: #e8eef4;
+        }
+
+        .added-users-container{
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .new-user-login{
+            margin-left: 10px;
+            color: $inactive-color;
+            font-size: 13px;
+        }
+
+        .icon-close{
+            color: $inactive-color;
+            font-size: 8px;
+        }
+    }
+
+    .dialog-name-container{
+     min-height: 100px;   
+    }
+
+    .btn-secondary{
+        margin-right: 35px;
+    }
+
+    
+}

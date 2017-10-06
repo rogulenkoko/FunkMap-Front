@@ -163,8 +163,11 @@
     "Dialogs_AddParticipant":"Add participants",
     "ChooseBand":"Select band",
     "Invite":"Invite",
-    "NoInviteBands": "There aren't bands for invite"
+    "NoInviteBands": "There aren't bands for invite",
+
+    "EnterUserLogin":"Enter user login",
+    "EnterDialogName":"Enter dialog name",
     
-    
+    "AddParticipant":"Add interlocutor"
 
 }

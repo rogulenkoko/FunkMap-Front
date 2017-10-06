@@ -46,7 +46,6 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   }
 
   private sendMessage() {
-    console.log("asdad");
     let message = new Message(this.userService.user.login, this.dialogService.dialog ? this.dialogService.dialog.dialogId : "", this.text);
     this.text = "";
     if (this.isNewDialog) {
@@ -58,8 +57,8 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
       this.reciever = "";
 
       this.messengerService.createDialog(dialog).subscribe(response => {
-        message.dialogId = response.dialogId;
-        this.messengerService.onDialogCreated.emit(response.dialogId);
+        message.dialogId = response.dialog.dialogId;
+        this.messengerService.onDialogCreated.emit(response.dialog.dialogId);
         this.messengerService.sendMessage(message).subscribe(response => {
 
         });

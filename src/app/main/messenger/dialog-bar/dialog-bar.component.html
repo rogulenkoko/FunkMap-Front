@@ -1,7 +1,7 @@
 <div *ngIf="dialogService.dialog" class="dialog-bar-container d-flex flex-row align-items-center justify-content-between">
 
   <div class="d-flex align-items-center">
-    <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline"
+    <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline" [useLogo]="dialogService.dialog.participants.length > 2"
       [ngClass]="'dialog-bar-avatar'" [onlineSize]="'9px'"></avatar-circle>
     <span class="dialog-bar-name">{{dialogService.dialog.name}}</span>
   </div>

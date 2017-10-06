@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { SignalrService } from "app/tools/signalr/signalr.service";
-import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel, DialogCreateResponse } from "app/main/messenger/models";
+import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel, DialogUpdateResponse } from "app/main/messenger/models";
 import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
@@ -22,8 +22,8 @@ export abstract class MessengerService {
 
 
   abstract sendMessage(message: Message): Observable<BaseResponse>;
-  abstract createDialog(dialog: Dialog): Observable<DialogCreateResponse>;
-  abstract updateDialog(dialog: Dialog): Observable<BaseResponse>;
+  abstract createDialog(dialog: Dialog): Observable<DialogUpdateResponse>;
+  abstract updateDialog(dialog: Dialog): Observable<DialogUpdateResponse>;
 
   abstract setOpenedDialog(dialogId: string): Observable<BaseResponse>;
 
@@ -83,12 +83,12 @@ export class MessengerServiceHub extends MessengerService {
     return Observable.fromPromise(this.signalrService.connection.invoke("sendMessage", message));
   }
 
-  createDialog(dialog: Dialog): Observable<DialogCreateResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x=> DialogCreateResponse.ToDialogCreateResponse(x.json()));
+  createDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x=> DialogUpdateResponse.ToDialogCreateResponse(x.json()));
   }
 
-  updateDialog(dialog: Dialog): Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/updateDialog`, dialog).map(x=> BaseResponse.ToBaseResponse(x.json()));
+  updateDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/updateDialog`, dialog).map(x=> DialogUpdateResponse.ToDialogCreateResponse(x.json()));
   }
   
 
