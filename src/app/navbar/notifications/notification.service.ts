@@ -30,7 +30,6 @@ export abstract class NotificationService {
   initializeEvents() {
     this.onNotificationRecievedEvent = this.signalrService.notificationConnection.listenFor("onNotificationRecieved");
     this.onNotificationRecieved = this.onNotificationRecievedEvent.map(x => {
-      console.log("Asd");
       return NotificationsFactory.BuildNotification((x));
     });
   }

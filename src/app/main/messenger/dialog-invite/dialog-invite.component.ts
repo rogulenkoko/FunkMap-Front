@@ -24,6 +24,8 @@ export class DialogInviteComponent implements OnInit {
 
   @Output() visibleChange: EventEmitter<boolean>;
 
+  @Input() creationMode: boolean;
+
   private search: string;
   private newUser: User;
 
@@ -33,6 +35,7 @@ export class DialogInviteComponent implements OnInit {
   private dialogName: string;
 
   private creationStep: number = 1;
+  private isError: boolean;
 
   constructor(private userDataService: UserDataService,
               private dialogService: DialogService,
@@ -45,7 +48,14 @@ export class DialogInviteComponent implements OnInit {
   }
 
   private init(){
-    this.isNewDialog = this.dialogService.dialog.participants.length <= 2;
+
+    if(this.creationMode){
+      this.isNewDialog = true;
+    } else {
+      this.isNewDialog = !this.dialogService.dialog || this.dialogService.dialog.participants.length <= 2;
+    }
+
+    
   }
 
   private searchUser() {
@@ -68,28 +78,45 @@ export class DialogInviteComponent implements OnInit {
       return;
     }
     var dialog = new Dialog();
-    dialog.participants = this.addedUsers.map(x => x.login).concat(this.dialogService.dialog.participants);
+
+    if(this.creationMode){
+      dialog.participants = this.addedUsers.map(x=>x.login);
+    } else {
+      dialog.participants = this.addedUsers.map(x => x.login).concat(this.dialogService.dialog.participants);
+    }
+    
 
     if (this.isNewDialog) {
       dialog.name = this.dialogName;
       this.messengerService.createDialog(dialog).subscribe(response => {
         if (response.isSuccess) {
           this.dialogService.setDialog(response.dialog);
-          console.log(response.dialog); 
+          this.messengerService.onDialogCreated.emit(response.dialog.dialogId);
           this.clear();
+        } else {
+          this.isError = true;
+          setTimeout(()=> this.isError = false, 3000);
         }
       })
     } else {
       dialog.dialogId = this.dialogService.dialog.dialogId;
       this.messengerService.updateDialog(dialog).subscribe(response=>{
-        this.dialogService.setDialog(response.dialog);       
-        console.log(response.dialog); 
+        this.dialogService.setDialog(response.dialog);
+        this.messengerService.onDialogCreated.emit();
         this.clear();
       })
     }
   }
 
   private addUser(user: User) {
+
+    if(this.creationMode){
+      this.newUser = undefined;
+      this.addedUsers.push(user);
+      this.search = "";
+      return;
+    }
+
     if (this.addedUsers.find(x => x.login == user.login) || this.dialogService.dialog.participants.find(x => x == user.login)) {
       return;
     }
@@ -105,7 +132,14 @@ export class DialogInviteComponent implements OnInit {
   }
 
   private move(){
+
+    if(this.creationMode && this.addedUsers && this.addedUsers.length == 1){
+      this.finish();
+      return;
+    }
+
     this.creationStep ++;
+    
   }
 
 

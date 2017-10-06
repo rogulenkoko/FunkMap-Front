@@ -46,7 +46,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   private refreshMessages() {
-    if(!this.dialogService.dialog) return;
+    if(!this.dialogService.dialog || !this.dialogService.dialog.dialogId) return;
     let request = new DialogMessagesRequest(this.dialogService.dialog.dialogId, 0, 20)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
@@ -56,7 +56,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   private getUsersAvatars(){
-    if(!this.dialogService.dialog || !this.dialogService.dialog.participants) return;
+    if(!this.dialogService.dialog || !this.dialogService.dialog.participants || !this.dialogService.dialog.dialogId) return;
     var logins = this.dialogService.dialog.participants.filter(x=>x != this.userService.user.login && !this.messagesService.usersAvatars.containsKey(x));
     if(logins.length == 0) return;
     this.userDataService.getImages(logins).subscribe(responses=>{

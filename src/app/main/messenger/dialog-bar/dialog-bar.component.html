@@ -16,4 +16,4 @@
 </div>
 
 
-<dialog-invite [(visible)]="isAddToDialogMode"></dialog-invite>
+<dialog-invite *ngIf="isAddToDialogMode" [(visible)]="isAddToDialogMode"></dialog-invite>

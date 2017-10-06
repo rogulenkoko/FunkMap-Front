@@ -168,6 +168,7 @@
     "EnterUserLogin":"Enter user login",
     "EnterDialogName":"Enter dialog name",
     
-    "AddParticipant":"Add interlocutor"
+    "AddParticipant":"Add interlocutor",
+    "DialogCreation":"Dialog creation"
 
 }

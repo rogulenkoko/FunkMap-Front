@@ -14,6 +14,7 @@ export class Dialog {
     public isNew: boolean;
 
     public static ToDialog(data: any): Dialog{
+        if(!data) return null;
         var result =  new Dialog(data.DialogId, data.Name, data.Avatar);
         if(data.LastMessage){
             result.lastMessage = Message.ToMessage(data.LastMessage);

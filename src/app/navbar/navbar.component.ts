@@ -99,4 +99,9 @@ export class NavbarComponent implements OnInit {
     }); 
   }
 
+  private logOut() {
+    this.userService.user = undefined;
+    this.router.navigate(["/"]);
+  }
+
 }

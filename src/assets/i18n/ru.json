@@ -165,5 +165,6 @@
 
     "EnterUserLogin":"Введите логин собеседеника",
     "EnterDialogName":"Введите название беседы",
-    "AddParticipant":"Добавить собеседника"
+    "AddParticipant":"Добавить собеседника",
+    "DialogCreation":"Создание беседы"
 }

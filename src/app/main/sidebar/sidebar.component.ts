@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { UserService } from "../user/user.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SignalrService } from "app/tools/signalr/signalr.service";
 import { MessengerService } from "app/main/messenger/messenger.service";
 import { Dialog, Message } from "app/main/messenger/models";
@@ -25,7 +25,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(private signalrService: SignalrService,
               private userService: UserService,
               private route: ActivatedRoute,
-              private messengerService: MessengerService) {
+              private messengerService: MessengerService,
+              private router: Router) {
     this.subscription = new Subscription();
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
     this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(()=> this.getNewMessagesCount()));
@@ -33,43 +34,52 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    var searchItem = new SidebarItem("search", "Search", "search-icon");
+    this.getNewMessagesCount();
 
-    var profileItem = new SidebarItem("profile", "Profile", "person-icon");
-    profileItem.visibleForLogged = true;
+    this.initItems();
 
-    var messagesItem = new SidebarItem("messenger", "Messages", "messenger-icon");
-    messagesItem.rightTemplate = this.messageCountTemplate;
-    messagesItem.visibleForLogged = true;
-
-    var logoutItem = new SidebarItem("", "Logout", "exit-icon");
-    logoutItem.clickEvent = () => this.logOut();
-    logoutItem.visibleForLogged = true;
-
-    var favouriteItem = new SidebarItem("favorites", "Favorites", "star-icon");
-    favouriteItem.visibleForLogged = true;
-
-    var settingsItem = new SidebarItem("settings", "Settings", "settings-icon");
-
-    this.topItems = [
-      searchItem,
-      profileItem,
-      messagesItem,
-      favouriteItem
-    ]
-
-    this.bottomItems = [
-      settingsItem,
-      logoutItem
-    ];
-
-    this.getNewMessagesCount()
+    this.onRouteChanged(this.router.url);
+    this.router.events.subscribe((value:any)=>{
+      this.onRouteChanged(value.url);
+    });
 
     this.userService.onUserChanged.subscribe(() => this.getNewMessagesCount());
   }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
+  }
+
+  private initItems(){
+    var searchItem = new SidebarItem("search", "Search", "search-icon");
+    
+        var profileItem = new SidebarItem("profile", "Profile", "person-icon");
+        profileItem.visibleForLogged = true;
+    
+        var messagesItem = new SidebarItem("messenger", "Messages", "messenger-icon");
+        messagesItem.rightTemplate = this.messageCountTemplate;
+        messagesItem.visibleForLogged = true;
+    
+        var logoutItem = new SidebarItem("", "Logout", "exit-icon");
+        logoutItem.clickEvent = () => this.logOut();
+        logoutItem.visibleForLogged = true;
+    
+        var favouriteItem = new SidebarItem("favorites", "Favorites", "star-icon");
+        favouriteItem.visibleForLogged = true;
+    
+        var settingsItem = new SidebarItem("settings", "Settings", "settings-icon");
+    
+        this.topItems = [
+          searchItem,
+          profileItem,
+          messagesItem,
+          favouriteItem
+        ]
+    
+        this.bottomItems = [
+          settingsItem,
+          logoutItem
+        ];
   }
 
   private getNewMessagesCount() {
@@ -101,6 +111,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   private initializeSubscriptions() {
     this.messengerService.onMessageRecieved.subscribe((message) => this.updateNewMessagesCount(message));
+  }
+
+  private onRouteChanged(url: string){
+    var item = this.topItems.concat(this.bottomItems).find(x=> x.route != "" && url.includes(x.route));
+    if(item){
+      this.onItemClick(item);
+    }
   }
 
 }

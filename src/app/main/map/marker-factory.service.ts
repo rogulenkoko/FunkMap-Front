@@ -40,11 +40,12 @@ export class MarkerFactory {
     var marker = L.marker(new L.LatLng(point.lat, point.lng),{
       icon: new L.DivIcon({
         html:`
-          <div class="creation-marker-container">
-            <div class="creation-icons-container d-flex flex-row">
-              <div id="cross" class="cross-container d-flex align-items-center justify-content-center"><img id="cross-img" src="assets/images/close-red.png"/></div>
-              <div id="apply" class="apply-container d-flex align-items-center justify-content-center"><img id="apply-img" src="assets/images/apply.png"/></div>
-            </div>
+        <div class="creation-icons-container d-flex flex-row">
+        <div id="cross" class="cross-container d-flex align-items-center justify-content-center"><img id="cross-img" src="assets/images/close-red.png"/></div>
+        <div id="apply" class="apply-container d-flex align-items-center justify-content-center"><img id="apply-img" src="assets/images/apply.png"/></div>
+      </div>
+          <div class="creation-marker-container d-flex align-items-center justify-content-center">
+            
             <img src="${point.iconUrl}"/>
           </div>
         `

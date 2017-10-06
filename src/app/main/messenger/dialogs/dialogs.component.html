@@ -7,9 +7,12 @@
 
 <div class="title-container d-flex flex-row justify-content-between">
   <span>{{'Messages' | translate}}</span>
-  <span class="icon-plus"></span>
+  <span (click)="toCreateDialogMode()" class="icon-plus"></span>
 </div>
 
 <div class="dialogs">
     <dialog-item *ngFor="let dialog of dialogs" (click)="setDialog(dialog)" [dialog]="dialog"></dialog-item>
 </div>
+
+
+<dialog-invite *ngIf="isCreateDialogMode" [(visible)]="isCreateDialogMode" [creationMode]="true"></dialog-invite>

@@ -19,16 +19,18 @@ export class DialogsComponent implements OnInit, OnDestroy {
 
   private onlineUsers: Array<String> = [];
 
+  private isCreateDialogMode: boolean;
+
   private subscription: Subscription;
 
   private searchTest: string;
 
   constructor(private messengerService: MessengerService,
-              private dialogService: DialogService,
-              private signalrService: SignalrService,
-              private userService: UserService,
-              private route: ActivatedRoute,
-              private router: Router) {
+    private dialogService: DialogService,
+    private signalrService: SignalrService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.subscription = new Subscription();
     this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
     if (this.signalrService.connection) this.initializeSubscriptions();
@@ -55,7 +57,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.messengerService.getDialogs().subscribe(dialogs => {
       this.allDialogs = dialogs;
 
-     //this.dialogService.setDialog(dialogs[0]);//удалить
+      //this.dialogService.setDialog(dialogs[0]);//удалить
 
       this.filterDialogs();
       if (dialogId) {
@@ -64,8 +66,20 @@ export class DialogsComponent implements OnInit, OnDestroy {
       } else {
         this.route.params.subscribe(params => {
           var login = params["login"];
+
           if (!login) return;
-          this.dialogService.setDialog(this.dialogs.find(x => JSON.stringify(x.participants.sort()) == JSON.stringify([login, this.userService.user.login].sort())));
+          var newDialog = new Dialog("", login);
+          newDialog.participants = [login, this.userService.user];
+          if (!this.dialogs || this.dialogs.length == 0){
+            this.dialogs = [newDialog];
+          };
+          var dialog = this.dialogs.find(x => JSON.stringify(x.participants.sort()) == JSON.stringify([login, this.userService.user.login].sort()));
+          if (!dialog){
+            this.dialogService.dialog = newDialog;
+            return; 
+          };
+
+          this.dialogService.setDialog(dialog);
           this.dialogService.onDialogsLoaded.emit();
         });
       }
@@ -90,13 +104,13 @@ export class DialogsComponent implements OnInit, OnDestroy {
     })
   }
 
-  private filterDialogs(){
+  private filterDialogs() {
 
-    if(!this.allDialogs || !this.searchTest){
+    if (!this.allDialogs || !this.searchTest) {
       this.dialogs = this.allDialogs;
       return;
-    }  
-    this.dialogs = this.allDialogs.filter(x=>x.name.toLocaleLowerCase().startsWith(this.searchTest.toLocaleLowerCase()));
+    }
+    this.dialogs = this.allDialogs.filter(x => x.name.toLocaleLowerCase().startsWith(this.searchTest.toLocaleLowerCase()));
   }
 
   private updateOnlineUsers() {
@@ -115,6 +129,10 @@ export class DialogsComponent implements OnInit, OnDestroy {
         dialog.newMessagesCount = models.find(x => x.dialogId == dialog.dialogId) ? models.find(x => x.dialogId == dialog.dialogId).newMessagesCount : 0;
       });
     });
+  }
+
+  private toCreateDialogMode(){
+    this.isCreateDialogMode = true;
   }
 
   private initializeSubscriptions() {
@@ -136,10 +154,10 @@ export class DialogsComponent implements OnInit, OnDestroy {
       this.refreshDialogs(this.dialogService.dialog ? this.dialogService.dialog.dialogId : undefined);
     }));
 
-    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=>{
-      var dialog = this.dialogs.find(x=>x.dialogId == dialogId);
-      if(!dialog) return;
-      if(dialog.lastMessage && dialog.lastMessage.sender == this.userService.user.login) dialog.lastMessage.isNew = false;
+    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId => {
+      var dialog = this.dialogs.find(x => x.dialogId == dialogId);
+      if (!dialog) return;
+      if (dialog.lastMessage && dialog.lastMessage.sender == this.userService.user.login) dialog.lastMessage.isNew = false;
     }))
   }
 }

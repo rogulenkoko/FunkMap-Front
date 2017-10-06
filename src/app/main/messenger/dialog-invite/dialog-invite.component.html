@@ -1,4 +1,4 @@
-<p-dialog header="{{'AddParticipant' | translate}}" [(visible)]="visible" [width]="550" [draggable]="false" [modal]="true"
+<p-dialog header="{{ (isNewDialog ?  'DialogCreation' : 'AddParticipant') | translate}}" [(visible)]="visible" [width]="550" [draggable]="false" [modal]="true"
   (onHide)="onHide()" (onShow)="init()" *ngIf="isVisible">
 
   <div class="main-invite-container">
@@ -8,16 +8,19 @@
     </div>
 
     <div *ngIf="!isNewDialog || (isNewDialog && creationStep == 1)" class="invite-content-container">
-      <div>
-        <input [(ngModel)]="search" (ngModelChange)="searchUser()" class="form-control" placeholder="{{'EnterUserLogin' | translate}}"
-        />
+      <div class="search-container">
+        <input [(ngModel)]="search" (ngModelChange)="searchUser()" class="form-control" placeholder="{{'EnterUserLogin' | translate}}" />
+        <span *ngIf="isError" class="error-label">Произошла ошибка</span>
+
+        <!-- <span *ngIf="!newUser">Нет такого пользователя</span> -->
+      <div *ngIf="newUser" class="new-user-container d-flex align-items-center" (click)="addUser(newUser)">
+          <avatar-circle [image]="newUser.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
+          <span class="new-user-login">@{{newUser.login}}</span>
+        </div>
+
       </div>
 
-      <!-- <span *ngIf="!newUser">Нет такого пользователя</span> -->
-      <div *ngIf="newUser" class="new-user-container d-flex align-items-center" (click)="addUser(newUser)">
-        <avatar-circle [image]="newUser.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-        <span class="new-user-login">@{{newUser.login}}</span>
-      </div>
+      
 
       <div *ngIf="addedUsers && addedUsers.length > 0" class="added-users-container">
         <div *ngFor="let user of addedUsers" class="d-flex align-items-center justify-content-between">

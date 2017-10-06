@@ -30,7 +30,8 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription.add(this.dialogService.onDialogsLoaded.subscribe(() => this.initParams()));
+    this.initParams();
+   // this.subscription.add(this.dialogService.onDialogsLoaded.subscribe(() => this.initParams()));
     this.changeTexareaBehaviour();
   }
 
@@ -40,14 +41,24 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
 
   private initParams() {
     this.route.params.subscribe(params => {
-      this.reciever = params["login"];
-      this.isNewDialog = this.reciever && !this.dialogService.dialog;
+      this.handleParrams(params);
     });
   }
 
+  private handleParrams(params: any){
+    this.reciever = params["login"];
+    if(!this.reciever) return;
+    this.isNewDialog = this.reciever && (!this.dialogService.dialog || this.dialogService.dialog.dialogId === "");
+    if(this.isNewDialog){
+      
+    }
+  }
+
   private sendMessage() {
+    if(!this.text) return;
     let message = new Message(this.userService.user.login, this.dialogService.dialog ? this.dialogService.dialog.dialogId : "", this.text);
     this.text = "";
+    console.log(this.isNewDialog);
     if (this.isNewDialog) {
 
       var dialog = new Dialog();

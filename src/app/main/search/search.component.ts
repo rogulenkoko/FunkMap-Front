@@ -110,7 +110,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     // console.log("scrolheight", $('#search-container')[0].scrollHeight);
     if ($('#search-container').scrollTop() + $('#search-container').height() >= $('#search-container')[0].scrollHeight) {
         this.getMore();
-        console.log("sadasdas");
       }
   }
 

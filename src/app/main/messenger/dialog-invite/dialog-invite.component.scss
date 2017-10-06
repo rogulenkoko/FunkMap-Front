@@ -15,6 +15,7 @@
             position: absolute;
             background-color: #eff2f8;
             cursor: pointer;
+            z-index: 10;
            
         }
 
@@ -28,6 +29,10 @@
             margin-bottom: 40px;
         }
 
+        .added-users-container > div{
+            margin-bottom: 10px;
+        }
+
         .new-user-login{
             margin-left: 10px;
             color: $inactive-color;
@@ -37,6 +42,10 @@
         .icon-close{
             color: $inactive-color;
             font-size: 8px;
+        }
+
+        .search-container{
+            height: 50px;
         }
     }
 
