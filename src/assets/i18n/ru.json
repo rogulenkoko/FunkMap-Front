@@ -170,5 +170,9 @@
 
     "ChangeDialogName":"Изменить название беседы",
     "ChangeDialogAvatar":"Изменить фотографию беседы",
-    "DialogParticipantsList": "Список участников"
+    "DialogParticipantsList": "Список участников",
+
+    "DeleteEntity": "Удалить объект",
+    "DeleteMessage": "Вы дейтсвительно хотите удалить",
+    "CancelImpossible": "Отменить это действие будет невозможно"
 }

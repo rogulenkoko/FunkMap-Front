@@ -35,6 +35,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   private avatarSubscription: Subscription;
   private canEditPhoto: boolean;
 
+  private isDeleteMode: boolean = true;
+
   constructor(userService: UserService,
               userDataService: UserDataService,
               editService: EditService,
@@ -107,6 +109,10 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     this.baseEditService.delete(this.entity.login).subscribe(resp=>{
       if(resp.success) this.router.navigate(['/']);
     });;
+  }
+
+  private changeDeleteMode(){
+    this.isDeleteMode = !this.isDeleteMode;
   }
 
 }

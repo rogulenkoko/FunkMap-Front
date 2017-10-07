@@ -5,25 +5,23 @@
   <div *ngIf="entity" class="entity-base-container d-flex flex-column align-items-center" (mouseover)="changeEditVisible(1)"
     (mouseleave)="changeEditVisible(-1)">
 
-    <div class="edit-buttons-container d-flex justify-content-end">
-      <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
-      <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
-      <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
-
+    <div class="edit-buttons-container d-flex justify-content-between align-items-center">
 
       <div class="nav-item dropdown ml-2">
-        <a *ngIf="!isUsers" class="icon-dd-points" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            
-      </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        <a class="icon-dd-points" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
           <a *ngIf="!isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Add_Favorites' | translate}}</a>
           <a *ngIf="isFavorite && !isUsers" (click)="addToFavorites()" class="dropdown-item">{{'Remove_Favorites' | translate}}</a>
           <ng-template *ngFor="let actionItem of actionItems" [ngTemplateOutlet]="actionItem.template"></ng-template>
-          <a *ngIf="isUsers" class="dropdown-item" (click)="deleteEntity()"> {{'Delete' | translate}} </a>
+          <a *ngIf="isUsers" class="dropdown-item" (click)="changeDeleteMode()"> {{'Delete' | translate}} </a>
         </div>
       </div>
 
-
+      <div class="d-flex">
+        <span *ngIf="isEditVisible && !isEditMode" (click)="changeEditMode(1)">{{'Edit' | translate}}</span>
+        <span *ngIf="isEditMode" (click)="cancel()">{{'Cancel' | translate}}</span>
+        <span *ngIf="isEditMode" (click)="save()" class="save-button">{{'Save' | translate}}</span>
+      </div>
     </div>
 
     <div (mouseover)="changeAvatarEditVisible(1)" (mouseleave)="changeAvatarEditVisible(-1)" class="image-container-wrapper">
@@ -72,3 +70,17 @@
   <entity-active *ngIf="entity" [entity]="entity"></entity-active>
 
 </div>
+
+<p-dialog header="{{ 'DeleteEntity' | translate}}" [(visible)]="isDeleteMode" [width]="465" [draggable]="false" [modal]="true" *ngIf="isDeleteMode">
+  <div class="delete-message-container">
+  <span class="delete-message">{{'DeleteMessage' | translate }}</span>
+  <span class="delete-message-name">{{entity.name}}?</span>
+  <p class="delete-message">{{'CancelImpossible' | translate }}</p>
+</div>
+
+<div class="buttons-container d-flex align-items-center justify-content-center">
+    <button class="btn btn-secondary" (click)="changeDeleteMode()">{{'Cancel' | translate}}</button>
+
+    <button class="btn btn-success"(click)="deleteEntity()">{{'Delete' | translate}}</button>
+  </div>
+</p-dialog>

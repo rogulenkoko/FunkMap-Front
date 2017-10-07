@@ -6,14 +6,13 @@
 }
 
 .main-search-container{
-    max-height: 96%;
+    //max-height: 97%;
     overflow-y: auto;
-    margin-top: 6px;
+    flex: 2;
 }
 
 .search-item{
     padding: 20px 0;
-    border-bottom: 1px solid #ececec;
     font-size: 13px;
     //cursor: pointer;
     min-height: 95px;

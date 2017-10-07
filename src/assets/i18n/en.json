@@ -173,6 +173,12 @@
 
     "ChangeDialogName":"Change dialog name",
     "ChangeDialogAvatar":"Change dialog image",
-    "DialogParticipantsList": "List of members"
+    "DialogParticipantsList": "List of members",
+    "DeleteEntity": "Delete entity",
+
+    "DeleteMessage": "Do you really want to delete",
+    "CancelImpossible": "Cancel this action will be impossible"
+    
+    
 
 }
