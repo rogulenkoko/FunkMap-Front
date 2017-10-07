@@ -166,5 +166,9 @@
     "EnterUserLogin":"Введите логин собеседеника",
     "EnterDialogName":"Введите название беседы",
     "AddParticipant":"Добавить собеседника",
-    "DialogCreation":"Создание беседы"
+    "DialogCreation":"Создание беседы",
+
+    "ChangeDialogName":"Изменить название беседы",
+    "ChangeDialogAvatar":"Изменить фотографию беседы",
+    "DialogParticipantsList": "Список участников"
 }

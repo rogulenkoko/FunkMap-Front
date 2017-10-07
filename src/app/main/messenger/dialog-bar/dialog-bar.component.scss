@@ -1,4 +1,5 @@
 @import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
 
 .dialog-bar-container{
     padding: 25px;
@@ -35,3 +36,17 @@
         margin-right: 15px;
     }
 }
+
+.dropdown{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    .icon-dd-points{
+        color: #c5cdd4 !important;
+        font-size: 22px;
+        margin-top: 6px;
+    }
+}
+

@@ -169,6 +169,10 @@
     "EnterDialogName":"Enter dialog name",
     
     "AddParticipant":"Add interlocutor",
-    "DialogCreation":"Dialog creation"
+    "DialogCreation":"Dialog creation",
+
+    "ChangeDialogName":"Change dialog name",
+    "ChangeDialogAvatar":"Change dialog image",
+    "DialogParticipantsList": "List of members"
 
 }
