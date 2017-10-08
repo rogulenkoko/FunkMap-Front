@@ -20,11 +20,12 @@
             text-overflow: ellipsis;
             width: 100%;
             white-space: nowrap;
+            
         }
 
         .dialog-name{
             color: $dialog-name-color; 
-            height: 50%;   
+            height: 50%; 
         }
 
         .last-message{

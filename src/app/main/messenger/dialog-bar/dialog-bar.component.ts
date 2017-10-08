@@ -13,16 +13,28 @@ import { UserService } from 'app/main/user/user.service';
 })
 export class DialogBarComponent implements OnInit {
 
+
+  private userLogin: string;
   private isAddToDialogMode: boolean = false;
-  
+
   constructor(private dialogService: DialogService,
-    private messengerService: MessengerService) { }
+    private messengerService: MessengerService,
+    private userService: UserService) {
+    this.dialogService.onDialogChanged.subscribe(() => this.updateDialogLogin())
+  }
 
   ngOnInit() {
+    this.updateDialogLogin();
+  }
+
+  private updateDialogLogin() {
+    if (this.userService.user.login && this.dialogService.dialog && this.dialogService.dialog.participants && this.dialogService.dialog.participants.length == 2) {
+      this.userLogin = this.dialogService.dialog.participants.filter(x => x != this.userService.user.login)[0];
+    }
   }
 
   private addToDialog() {
     this.isAddToDialogMode = true;
-    
+
   }
 }

@@ -14,6 +14,8 @@ export class DialogComponent implements OnInit {
 
   @Input() dialog: Dialog;
 
+ 
+
   constructor(private dialogService: DialogService,
     private userService: UserService,
     private userDataService: UserDataService,
@@ -23,7 +25,6 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
     if (this.userService.user.login && this.dialog.participants && this.dialog.participants.length == 2) {
       var login = this.dialog.participants.filter(x => x != this.userService.user.login)[0];
-
       if (this.messagesService.usersAvatars.containsKey(login)) {
         var user = this.messagesService.usersAvatars.getValue(login);
         this.dialog.avatar = user.avatar;

@@ -4,6 +4,7 @@
     <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline" [useLogo]="dialogService.dialog.participants.length > 2"
       [ngClass]="'dialog-bar-avatar'" [onlineSize]="'9px'"></avatar-circle>
     <span class="dialog-bar-name">{{dialogService.dialog.name}}</span>
+    <span *ngIf="userLogin " class="dialog-bar-login">@{{userLogin}}</span>
   
     <div class="nav-item dropdown">
         <a class="icon-dd-points" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
