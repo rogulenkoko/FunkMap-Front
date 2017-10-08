@@ -4,8 +4,8 @@ import { EntityType } from "app/main/map/models";
 import { VideoInfo } from "app/main/video-edit/video-info";
 
 export class Band extends BaseModel{
-    constructor(login?:string, name?:string, entytyType?: EntityType){
-        super(login, name, entytyType);
+    constructor(login?:string, name?:string){
+        super(login, name, EntityType.Band);
         this.styles = [];
     }
 
@@ -16,7 +16,7 @@ export class Band extends BaseModel{
     public styles: Array<MusicStyle>;
 
     public static ToBand(data: any): Band{
-        var result = new Band(data.Login, data.Name, EntityType.Band);
+        var result = new Band(data.Login, data.Name);
         result.desiredInstruments = data.DesiredInstruments;
         result.showPrice = data.ShowPrice;
         result.musicians = data.Musicians;

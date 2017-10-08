@@ -35,16 +35,15 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   private avatarSubscription: Subscription;
   private canEditPhoto: boolean;
 
-  private isDeleteMode: boolean = true;
+  private isDeleteMode: boolean = false;
 
   constructor(userService: UserService,
               userDataService: UserDataService,
-              editService: EditService,
               private favouritesService: FavouritesService,
               private router: Router,
               private avatarService: AvatarService,
               private baseEditService: BaseEditService) {
-    super(userService, userDataService, editService);
+    super(userService, userDataService);
     this.onAvatarLoaded = new EventEmitter<string>();
     this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
     

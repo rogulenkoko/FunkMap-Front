@@ -49,7 +49,7 @@
     "Cancel":"Отмена",
     "Login_Continue":"Далее",
     "Login_SignUp":"Регистрация",
-    "Login_WrongPasswords":"Пароль несовпадают",
+    "Login_WrongPasswords":"Пароли не совпадают",
     "Login_LoginExist":"Такой логин уже существует",
     "Login_Back":"Назад",
     "Login_SendCode":"Отправить код",
@@ -174,5 +174,7 @@
 
     "DeleteEntity": "Удалить объект",
     "DeleteMessage": "Вы дейтсвительно хотите удалить",
-    "CancelImpossible": "Отменить это действие будет невозможно"
+    "CancelImpossible": "Отменить это действие будет невозможно",
+    "Band_NoMembers":"В составе группы нет ни одного участника",
+    "User_NoEntities":"У вас нет ни одного объекта"
 }

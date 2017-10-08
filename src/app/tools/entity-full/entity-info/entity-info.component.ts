@@ -21,8 +21,8 @@ export class EntityInfoComponent extends EditableCard implements OnInit {
   
   constructor(userService: UserService,
               userDataService: UserDataService,
-             editService: EditService) {
-    super(userService, userDataService, editService);
+             private editService: EditService) {
+    super(userService, userDataService);
     this.entity = this.editService.baseModel;
   }
 

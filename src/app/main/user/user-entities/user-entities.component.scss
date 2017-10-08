@@ -1,3 +1,7 @@
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+
+
 .search-items-container{
     max-height: 96%;
     overflow-y: auto;
@@ -5,4 +9,21 @@
 
 ::-webkit-scrollbar {
     width: 0px;
+}
+
+.no-items-message-container{
+    color: $inactive-color;
+    font-size: 13px;
+}
+
+.create-button{
+    width: 175px;
+    margin-top: 20px;
+    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+    img{
+        width: 16px;
+        height: 16px;
+        margin-right: 12px;
+        margin-left: 6px;
+    }
 }

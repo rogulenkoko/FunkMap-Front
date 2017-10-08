@@ -177,7 +177,11 @@
     "DeleteEntity": "Delete entity",
 
     "DeleteMessage": "Do you really want to delete",
-    "CancelImpossible": "Cancel this action will be impossible"
+    "CancelImpossible": "Cancel this action will be impossible",
+    "Band_NoMembers":"There are no members in the group",
+    "User_NoEntities":"Youe haven't got any entity"
+    
+    
     
     
 

@@ -42,8 +42,8 @@ export class EntityMapComponent extends EditableCard implements OnInit {
               private route: ActivatedRoute,
               userService: UserService,
               userDataService: UserDataService,
-            editService: EditService) {
-    super(userService, userDataService, editService);
+              private editService: EditService) {
+    super(userService, userDataService);
     this.onEditModeEnabled.subscribe(() => this.toMapCreation());
     this.onSaved.subscribe(() => this.saveLocation());
     this.onCanceled.subscribe(() => this.cancelChanges());

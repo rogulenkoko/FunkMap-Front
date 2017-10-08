@@ -19,9 +19,8 @@ export class EntityActiveComponent extends EditableCard implements OnInit {
 
   constructor(private baseEditService: BaseEditService,
               userService: UserService,
-              userDataService: UserDataService,
-              editService: EditService) {
-    super(userService, userDataService, editService);
+              userDataService: UserDataService) {
+    super(userService, userDataService);
    }
 
   ngOnInit() {

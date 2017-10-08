@@ -14,8 +14,7 @@ export class EditableCard {
     protected isUsers: boolean = false;
 
     constructor(protected userService: UserService,
-                protected userDataService: UserDataService,
-                protected editService: EditService) {
+                protected userDataService: UserDataService) {
         this.onSaved = new EventEmitter();
         this.onCanceled = new EventEmitter();
         this.onEditModeEnabled = new EventEmitter();

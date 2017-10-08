@@ -47,6 +47,16 @@
             .participant-avatar{
                 margin-right: 10px;
             }
+
+            .icon-close{
+                color: $inactive-color;
+                font-size: 8px;
+            }
+        }
+
+        .no-members{
+            color: $inactive-color;
+            font-size: 13px;
         }
     }
 }

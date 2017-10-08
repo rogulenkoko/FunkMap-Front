@@ -34,7 +34,7 @@ export class BandServiceStub extends BandService {
    }
 
    getBand(login: string): Observable<Band>{
-     var band = new Band("test","The Beatles", EntityType.Band);
+     var band = new Band("test","The Beatles");
      band.desiredInstruments = [InstrumentType.Bass, InstrumentType.Drums];
 
     band.userLogin = "test";

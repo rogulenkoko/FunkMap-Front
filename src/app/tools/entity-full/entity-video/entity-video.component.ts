@@ -24,11 +24,10 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
 
   constructor(userService: UserService,
               userDataService: UserDataService,
-              editService: EditService,
               private videoEditService: VideoEditService,
               private editBaseService: BaseEditService,
               private router: Router) {
-    super(userService, userDataService, editService);
+    super(userService, userDataService);
     this.subscription = new Subscription();
     this.videoEditService.onClosed.subscribe(()=> this.onVideoEditClosed());
   }
