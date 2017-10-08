@@ -6,7 +6,6 @@ import { FavouritesService } from "app/main/favourites/favourites.service";
 import { EditableCard } from "app/tools/entity-full/editable-card";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { Router } from "@angular/router";
-import { AvatarService } from "app/main/avatar/avatar.service";
 import { Subscription } from "rxjs/Subscription";
 import { RouteBuilder } from "app/tools/route-builder";
 import { SaveImageRequest } from "app/main/user/save-image-request";
@@ -32,20 +31,18 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   @Output() onAvatarLoaded: EventEmitter<string>;
 
-  private avatarSubscription: Subscription;
   private canEditPhoto: boolean;
 
   private isDeleteMode: boolean = false;
+  private changeAvatarMode: boolean = false;
 
   constructor(userService: UserService,
               userDataService: UserDataService,
               private favouritesService: FavouritesService,
               private router: Router,
-              private avatarService: AvatarService,
               private baseEditService: BaseEditService) {
     super(userService, userDataService);
     this.onAvatarLoaded = new EventEmitter<string>();
-    this.avatarService.onClosed.subscribe(()=> this.onAvatarClosed());
     
   }
 
@@ -77,20 +74,16 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   }
 
   private changeUserAvatar(){
-    this.avatarService.previousImage = this.entity.avatar;
-    this.avatarSubscription = this.avatarService.onImageUploaded.subscribe(avatar=> this.onAvatarSaved(avatar));
-    this.isEditMode = false;
-    this.router.navigate(['/avatar']);
+    this.changeAvatarMode = true;
   }
 
   private onAvatarSaved(image: string){
-      this.avatarSubscription.unsubscribe();
-      this.avatarService.previousImage = undefined;
       var request = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
       request.avatar = image;
       this.baseEditService.update(request).subscribe(response=>{
-        var route = RouteBuilder.buildRoute(this.entity.entityType, this.entity.login);
-        this.router.navigate([route]);
+        if(response.success){
+          this.entity.avatar = image;
+        }
       });
   }
 
@@ -101,7 +94,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   }
 
   private onAvatarClosed(){
-    if(this.avatarSubscription) this.avatarSubscription.unsubscribe();
+    
   }
 
   private deleteEntity(){

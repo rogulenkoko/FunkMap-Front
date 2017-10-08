@@ -84,3 +84,8 @@
     <button class="btn btn-success"(click)="deleteEntity()">{{'Delete' | translate}}</button>
   </div>
 </p-dialog>
+
+<avatar-edit
+ [(visible)]="changeAvatarMode"
+ [previousPhoto]="entity.avatar"
+  (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>

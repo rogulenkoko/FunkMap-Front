@@ -27,6 +27,7 @@ import { DateNotificationPipe } from './date-notification.pipe';
 import { EntityActiveComponent } from './entity-full/entity-active/entity-active.component';
 import { VideoEditComponent } from 'app/tools/video-edit/video-edit.component';
 import { VideoModule } from 'app/tools/video-edit/video.module';
+import { AvatarComponent } from 'app/tools/avatar/avatar.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { VideoModule } from 'app/tools/video-edit/video.module';
     VimeoPlayerComponent,
     AvatarCircleComponent,
     DateNotificationPipe,
-    EntityActiveComponent
+    EntityActiveComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { VideoModule } from 'app/tools/video-edit/video.module';
     VimeoPlayerComponent,
     AvatarCircleComponent,
     DateNotificationPipe,
-    EntityActiveComponent
+    EntityActiveComponent,
+    AvatarComponent
     ],
   providers: [
     DateSelectProvider,

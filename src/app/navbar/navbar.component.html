@@ -40,3 +40,8 @@
     </ul>
   </div>
 </nav>
+
+<avatar-edit *ngIf="userService.user"
+[(visible)]="changeAvatarMode"
+[previousPhoto]="userService.user.avatar"
+ (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>

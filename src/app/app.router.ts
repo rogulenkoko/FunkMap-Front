@@ -9,7 +9,6 @@ import { CreationComponent } from './main/creation/creation.component';
 import { MapCreationComponent } from './main/creation/map-creation/map-creation.component';
 import { CanActivateCreation } from "./main/creation/can-activate-creation";
 import { BandComponent } from './main/band/band.component';
-import { AvatarComponent } from './main/avatar/avatar.component';
 import { SearchComponent } from './main/search/search.component';
 import { FavouritesComponent } from "app/main/favourites/favourites.component";
 import { ShopComponent } from "app/main/shop/shop.component";
@@ -24,7 +23,6 @@ import { BandFullComponent } from "app/main/band/band-full/band-full.component";
 import { ShopFullComponent } from "app/main/shop/shop-full/shop-full.component";
 import { StudioFullComponent } from "app/main/studio/studio-full/studio-full.component";
 import { RehearsalFullComponent } from "app/main/rehearsal/rehearsal-full/rehearsal-full.component";
-import { VideoEditComponent } from "app/main/video-edit/video-edit.component";
 
 const appRoutes: Routes = [
   {
@@ -48,7 +46,6 @@ const appRoutes: Routes = [
               { path: "studio/:id", component: StudioComponent },
               { path: "rehearsal", component: RehearsalComponent },
               { path: "rehearsal/:id", component: RehearsalComponent },
-              { path: "avatar", component: AvatarComponent },
               { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
               { path: "checkmap", component: MapCreationComponent },
               { path: "search", component: SearchComponent },

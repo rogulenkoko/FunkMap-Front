@@ -26,7 +26,8 @@
 }
 
 [class^="icon-"]:before,
-[class*=" icon-"]:before {
+[class*=" icon-"]:before,
+.fa-plus {
   font-family: "untitled-font-3" !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -102,7 +103,7 @@
 .icon-edit:before {
   content: "\75";
 }
-.icon-plus:before {
+.icon-plus:before, .fa-plus:before {
   content: "\76";
 }
 .icon-info:before {

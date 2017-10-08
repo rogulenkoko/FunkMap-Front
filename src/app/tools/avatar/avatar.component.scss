@@ -2,7 +2,7 @@
 @import "src/assets/styles/dark-colors.scss";
 
 .main-avatar-container{
-    margin: 44px 0;
+    margin-bottom: 30px;
 
     .add-delete-container{
         width: 415px;
@@ -48,10 +48,10 @@
     }
 
     .cropper-container{
-        padding: 0 60px;
+        padding: 0 0px;
         img{
             width: 100%;
-            max-height: 450px !important;
+            max-height: 350px !important;
         }
     }
 }

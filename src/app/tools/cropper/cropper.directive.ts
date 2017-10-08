@@ -16,7 +16,6 @@ export class CropperDirective implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-
   }
 
   public refresh() {
@@ -25,6 +24,7 @@ export class CropperDirective implements AfterContentInit {
       guides: false,
       zoomable: false,
       background: false,
+      scalable: false,
       crop: function (e) {
         //console.log(e);
       }

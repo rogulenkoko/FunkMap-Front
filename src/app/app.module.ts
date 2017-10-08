@@ -29,7 +29,6 @@ import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
 import { MessengerModule } from "app/main/messenger/messenger.module";
 import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
-import { AvatarModule } from "app/main/avatar/avatar.module";
 import { NavbarModule } from "app/navbar/navbar.module";
 
 
@@ -62,7 +61,6 @@ import { NavbarModule } from "app/navbar/navbar.module";
     SearchModule,
     FavouritesModule,
     MessengerModule,
-    AvatarModule,
     NavbarModule
   ],
   exports:[CoreModule, ToolsModule],
