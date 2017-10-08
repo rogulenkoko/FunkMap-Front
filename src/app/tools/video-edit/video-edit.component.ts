@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { VideoApiService } from "app/main/video-edit/video-api.service";
-import { VideoEditService } from "app/main/video-edit/video-edit.service";
-import { VideoType, VideoInfo } from "app/main/video-edit/video-info";
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+
 import { Router } from "@angular/router";
+import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
+import { VideoApiService } from 'app/tools/video-edit/video-api.service';
 
 @Component({
-  selector: 'app-video-edit',
+  selector: 'video-edit',
   templateUrl: './video-edit.component.html',
   styleUrls: ['./video-edit.component.scss']
 })
@@ -20,16 +20,30 @@ export class VideoEditComponent implements OnInit {
 
   private isLinkInvalid: boolean = false;
 
+
+  private _isAddVideoMode: boolean = true;
+  @Input() get isAddVideoMode(): boolean{
+    return this._isAddVideoMode;
+  }
+
+  set isAddVideoMode(value: boolean){
+    this._isAddVideoMode = value;
+  }
+
+  @Output() visibleChange: EventEmitter<boolean>;
+
+
+
+  @Output() onVideoSaved: EventEmitter<VideoInfo>;
+
   constructor(private videoApiService: VideoApiService,
-              private videoEditService: VideoEditService,
-              private router: Router) { }
+              private router: Router) {
+    this.onVideoSaved = new EventEmitter<VideoInfo>();
+    this.visibleChange = new EventEmitter<boolean>();
+  }
 
   ngOnInit() {
-    if(!this.videoEditService.onVideoSaved.observers || this.videoEditService.onVideoSaved.observers.length == 0){
-      this.router.navigate(['/']);
-    }
-    // this.videoLink = "https://vimeo.com/35700803";
-    // this.onLinkChanged();
+   
   }
 
   private onLinkChanged() {
@@ -40,7 +54,7 @@ export class VideoEditComponent implements OnInit {
       this.videoInfo = undefined;
       return;
     }
-
+   
     var type: VideoType;
     var videoId: string;
     if(this.videoLink.includes("youtube")){
@@ -52,12 +66,17 @@ export class VideoEditComponent implements OnInit {
       videoId = this.videoLink.split('/')[this.videoLink.split('/').length - 1];
     }
     this.videoApiService.getVideoInfo(videoId, type).subscribe(info=>{
-      this.videoInfo = info;
+      if(info) this.isAddVideoMode = false;
+      setTimeout(()=>{
+        this.videoInfo = info;
+        this.isAddVideoMode = true;
+      },10)
+      
     })
   }
 
   private save(){
-    this.videoEditService.onVideoSaved.emit(this.videoInfo);
+    this.onVideoSaved.emit(this.videoInfo);
   }
 
   private getParameterByName(name: string, source: string) {
@@ -67,6 +86,7 @@ export class VideoEditComponent implements OnInit {
 
   private onClosed(){
     this.videoInfo = undefined;
+    this.visibleChange.emit(this.isAddVideoMode);
   }
 
 }

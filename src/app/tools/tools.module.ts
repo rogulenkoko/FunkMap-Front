@@ -25,6 +25,8 @@ import { VimeoPlayerComponent } from './vimeo-player/vimeo-player.component';
 import { AvatarCircleComponent } from './avatar-circle/avatar-circle.component';
 import { DateNotificationPipe } from './date-notification.pipe';
 import { EntityActiveComponent } from './entity-full/entity-active/entity-active.component';
+import { VideoEditComponent } from 'app/tools/video-edit/video-edit.component';
+import { VideoModule } from 'app/tools/video-edit/video.module';
 
 
 @NgModule({
@@ -49,13 +51,15 @@ import { EntityActiveComponent } from './entity-full/entity-active/entity-active
     BrowserModule,
     FormsModule,
     RouterModule,
-    CoreModule
+    CoreModule,
+    VideoModule
   ],
   exports: [
     ModalComponent, 
     BrowserModule,
     FormsModule,
     RouterModule,
+    VideoModule,
     SideComponent,
     EntitySideComponent,
     EntityBaseComponent,

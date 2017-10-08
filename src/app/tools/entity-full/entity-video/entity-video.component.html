@@ -33,3 +33,5 @@
     </ng-container>
   </div>
 </div>
+
+<video-edit *ngIf="isAddVideoMode" [(isAddVideoMode)]="isAddVideoMode" (onVideoSaved)="saveVideo($event)"></video-edit>

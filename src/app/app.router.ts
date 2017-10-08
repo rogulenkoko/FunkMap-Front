@@ -49,7 +49,6 @@ const appRoutes: Routes = [
               { path: "rehearsal", component: RehearsalComponent },
               { path: "rehearsal/:id", component: RehearsalComponent },
               { path: "avatar", component: AvatarComponent },
-              { path: "video", component: VideoEditComponent },
               { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
               { path: "checkmap", component: MapCreationComponent },
               { path: "search", component: SearchComponent },

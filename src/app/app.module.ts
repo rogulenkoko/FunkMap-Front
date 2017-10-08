@@ -30,8 +30,6 @@ import { MessengerModule } from "app/main/messenger/messenger.module";
 import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 import { AvatarModule } from "app/main/avatar/avatar.module";
-import { VideoEditComponent } from './main/video-edit/video-edit.component';
-import { VideoModule } from "app/main/video-edit/video.module";
 import { NavbarModule } from "app/navbar/navbar.module";
 
 
@@ -65,7 +63,6 @@ import { NavbarModule } from "app/navbar/navbar.module";
     FavouritesModule,
     MessengerModule,
     AvatarModule,
-    VideoModule,
     NavbarModule
   ],
   exports:[CoreModule, ToolsModule],
