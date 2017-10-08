@@ -10,19 +10,21 @@ import { SearchItem } from "app/main/search/search-item";
 export class FavouritesComponent implements OnInit {
 
   private items: Array<SearchItem>;
-
+  private isLoading: boolean;
   constructor(private favouritesService: FavouritesService) { }
 
   ngOnInit() {
     this.refresh();
   }
 
-  private refresh(){
-      this.favouritesService.getFavourites().subscribe(items=>{
-        this.items = items;
-        this.items.forEach(item => {
-          item.isFavourite = true;
-        });
+  private refresh() {
+    this.isLoading = true;
+    this.favouritesService.getFavourites().subscribe(items => {
+      this.items = items;
+      this.isLoading = false;
+      this.items.forEach(item => {
+        item.isFavourite = true;
+      });
     });
   }
 

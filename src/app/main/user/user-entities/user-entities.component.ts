@@ -13,6 +13,8 @@ export class UserEntitiesComponent implements OnInit {
 
   private items: Array<SearchItem>;
 
+  private isLoading: boolean;
+
   constructor(private userDataService: UserDataService) { }
 
   ngOnInit() {
@@ -20,8 +22,10 @@ export class UserEntitiesComponent implements OnInit {
   }
 
   private refreshEntities(){
+    this.isLoading = true;
     this.userDataService.getUserEntities().subscribe(items=>{
       this.items = items;
+      this.isLoading = false;
     });
   }
 

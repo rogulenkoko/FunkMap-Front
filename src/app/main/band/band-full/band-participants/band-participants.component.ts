@@ -35,6 +35,7 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
   }
 
   private refreshMusicians(){
+    if(!this.band || !this.band.musicians) return;
     this.band.musicians.forEach(musicianLogin => {
       this.musicianService.getMusicianPreview(musicianLogin).subscribe(musician=> {
         this.musicians.push(musician);
