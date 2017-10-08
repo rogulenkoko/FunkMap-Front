@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   private currentStep = 1;
 
   private login: string;
+  private name: string;
   private password: string;
   private passwordRepeat: string;
 
@@ -58,7 +59,7 @@ export class RegistrationComponent implements OnInit {
 
     switch (this.currentStep) {
       case 1:
-        var request = new RegistrationRequest(this.login, this.password);
+        var request = new RegistrationRequest(this.login, this.password, this.name);
         this.loginService.register(request).subscribe(response => {
           if (!response.success) {
             this.existingLogin = true;

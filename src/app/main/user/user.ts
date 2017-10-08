@@ -11,6 +11,8 @@ export class User{
 
     public authData: AuthResponse;
 
+    public name: string;
+
 }
 
 export class UserResponse{
@@ -25,6 +27,7 @@ export class UserResponse{
             var user = new User();
             user.login = data.Login;
             user.avatar = data.Avatar;
+            user.name = data.Name;
             result.user = user;
         }
 

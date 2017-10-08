@@ -1,4 +1,4 @@
-<modal [title]="'Login_SignUp'" [width]="'470px'" [height]="'440px'">
+<modal [title]="'Login_SignUp'" [width]="'470px'" [height]="'500px'">
   <div class="d-flex flex-column align-items-center justify-content-between">
     <div class="d-flex flex-row circle-container justify-content-center">
       <div [class.circle-selected]="currentStep == 1" class="circle d-flex align-items-center justify-content-center"></div>
@@ -13,6 +13,11 @@
                 <div *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}</div>
                 <div *ngIf="isWrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</div>
               </div>
+
+              <div class="d-flex flex-column">
+                  <input   placeholder="{{'Musician_Name' | translate}}" class="form-control" [(ngModel)]="name" [class.error-form-control]="isWrongCreds" />
+                </div>
+
             <div class="d-flex flex-column">
               <input   placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds" />
             </div>

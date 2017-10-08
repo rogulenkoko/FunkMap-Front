@@ -15,6 +15,7 @@
         <!-- <span *ngIf="!newUser">Нет такого пользователя</span> -->
       <div *ngIf="newUser" class="new-user-container d-flex align-items-center" (click)="addUser(newUser)">
           <avatar-circle [image]="newUser.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
+          <span class="new-user-name">{{newUser.name}}</span>    
           <span class="new-user-login">@{{newUser.login}}</span>
         </div>
 
@@ -26,6 +27,7 @@
         <div *ngFor="let user of addedUsers" class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
             <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
+            <span class="new-user-name">{{user.name}}</span>            
             <span class="new-user-login">@{{user.login}}</span>
           </div>
           <i (click)="removeUser(user)" class="icon-close"></i>

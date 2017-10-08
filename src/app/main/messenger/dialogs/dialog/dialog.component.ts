@@ -25,12 +25,16 @@ export class DialogComponent implements OnInit {
       var login = this.dialog.participants.filter(x => x != this.userService.user.login)[0];
 
       if (this.messagesService.usersAvatars.containsKey(login)) {
-        this.dialog.avatar = this.messagesService.usersAvatars.getValue(login);
+        var user = this.messagesService.usersAvatars.getValue(login);
+        this.dialog.avatar = user.avatar;
+        this.dialog.name = user.name;
       }
       else {
-        this.userDataService.getImage(login).subscribe(image => {
-          this.dialog.avatar = image;
-          this.messagesService.usersAvatars.setValue(login, image);
+        this.userDataService.getUser(login).subscribe(response => {
+          if(!response.isExist) return;
+          this.dialog.avatar = response.user.avatar;
+          this.messagesService.usersAvatars.setValue(login, response.user);
+          this.dialog.name = response.user.name;
         })
       }
     }

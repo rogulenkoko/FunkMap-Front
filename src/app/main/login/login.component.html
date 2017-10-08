@@ -1,7 +1,7 @@
 <modal [title]="'Login_Entrance'" [width]="'430px'" [height]="'350px'">
   <div class="d-flex align-itens-center justify-content-center">
     <div class="login-container d-flex flex-column">
-      <div class="">
+      <div class="login-input-container">
         <input type="text" placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="wrongCreds"
         />
         <label *ngIf="wrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</label>

@@ -17,7 +17,9 @@ export class MessageComponent implements OnInit {
 
   ngOnInit() {
     if(this.messagesService.usersAvatars.containsKey(this.message.sender)){
-      this.message.avatar = this.messagesService.usersAvatars.getValue(this.message.sender);
+      var user = this.messagesService.usersAvatars.getValue(this.message.sender);
+      if(!user) return; //todo
+      this.message.avatar = user.avatar;
     }
   }
 
