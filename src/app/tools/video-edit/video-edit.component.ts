@@ -21,7 +21,7 @@ export class VideoEditComponent implements OnInit {
   private isLinkInvalid: boolean = false;
 
 
-  private _isAddVideoMode: boolean = true;
+  private _isAddVideoMode: boolean;
   @Input() get isAddVideoMode(): boolean{
     return this._isAddVideoMode;
   }
@@ -30,7 +30,7 @@ export class VideoEditComponent implements OnInit {
     this._isAddVideoMode = value;
   }
 
-  @Output() visibleChange: EventEmitter<boolean>;
+  @Output() isAddVideoModeChange: EventEmitter<boolean>;
 
 
 
@@ -39,7 +39,7 @@ export class VideoEditComponent implements OnInit {
   constructor(private videoApiService: VideoApiService,
               private router: Router) {
     this.onVideoSaved = new EventEmitter<VideoInfo>();
-    this.visibleChange = new EventEmitter<boolean>();
+    this.isAddVideoModeChange = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
@@ -77,6 +77,9 @@ export class VideoEditComponent implements OnInit {
 
   private save(){
     this.onVideoSaved.emit(this.videoInfo);
+    this.isAddVideoMode = false;
+    this.videoInfo = undefined;
+    this.isAddVideoModeChange.emit(this.isAddVideoMode);
   }
 
   private getParameterByName(name: string, source: string) {
@@ -86,7 +89,8 @@ export class VideoEditComponent implements OnInit {
 
   private onClosed(){
     this.videoInfo = undefined;
-    this.visibleChange.emit(this.isAddVideoMode);
+    this.isAddVideoMode = false;
+    this.isAddVideoModeChange.emit(this.isAddVideoMode);
   }
 
 }

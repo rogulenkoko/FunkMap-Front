@@ -4,8 +4,8 @@
     [width]="550"
     [draggable]="false" 
     [modal]="true"
-    [positionTop]="videoInfo ? 110 : undefined"
-    *ngIf="isAddVideoMode">
+    (onHide)="onClosed()"
+    [positionTop]="videoInfo ? 110 : undefined">
       <div class="main-video-container">
         <div class="video-input-container">
           <input placeholder="{{'VideoLink' | translate}}" [(ngModel)]="videoLink" (ngModelChange)="onLinkChanged()" class="form-control secondary"
@@ -34,7 +34,7 @@
         </div>
 
         <div class="d-flex flex-row justify-content-center buttons-container">
-            <button (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+            <button (click)="onClosed()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
             <button (click)="save()" [disabled]="!videoInfo" class="btn btn-success">{{'Save' | translate}}</button>
           </div>
       </div>

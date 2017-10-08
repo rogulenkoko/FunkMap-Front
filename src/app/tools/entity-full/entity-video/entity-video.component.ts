@@ -19,7 +19,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
 
-  private isAddVideoMode: boolean = true;
+  private isAddVideoMode: boolean = false;
 
   constructor(userService: UserService,
               userDataService: UserDataService,
@@ -34,7 +34,8 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
   }
 
   private editVideo() {
-
+    console.log(this.isAddVideoMode);
+    this.isAddVideoMode = false;
     this.isAddVideoMode = true;
   }
 
@@ -47,11 +48,12 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
     request.videoInfos = this.entity.videoInfos;
     this.editBaseService.update(request).subscribe(response => {
       if (response.success) {
-        this.isAddVideoMode = false;
+        console.log(this.isAddVideoMode);
       }
     });
   }
 
   private onVideoEditClosed(){
+    console.log(this.isAddVideoMode);
   }
 }
