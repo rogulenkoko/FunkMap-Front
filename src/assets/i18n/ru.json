@@ -72,7 +72,7 @@
     "Save":"Сохранить",
     "Search":"Поиск",
     "Search_Placeholder": "Поиск..",
-    "Profile":"Мой профиль",
+    "Profile":"Мои профили",
     "Messages":"Сообщения",
     "Favorites":"Избранное",
     "Logout":"Выход",
@@ -82,9 +82,9 @@
     "Studio":"Студия",
     "Band":"Группа",
 
-    "Creation_EntityType":"Тип сущности",
+    "Creation_EntityType":"Тип профиля",
     "Creation_Login":"Логин",
-    "Creation_Title":"Новая сущность",
+    "Creation_Title":"Новый профиль",
    
     "Creation_Point":"Указать",
     "Creation_UseCurrent":"Использовать текущее",
@@ -94,14 +94,14 @@
 
     "VideoLink":"Ссылка на видеозапись (YouTube)",
 
-    "Favourite_NoItems":"У вас нет избранных сущностей. Для того, чтобы добавить сущность в избранное нажмите на иконку",
+    "Favourite_NoItems":"У вас нет избранных профилей. Для того, чтобы добавить профиль в избранное нажмите на иконку",
 
     "Search_NoItems":"Результатов не найдено",
     "Clear_Filter": "Сбросить фильтр",
 
     "Styles":"Стили",
     "Instruments":"Инструменты",
-    "Entity":"Тип сущности",
+    "Entity":"Тип профиля",
     "LoadMore": "Загрузить еще",
     "Send_Message" : "Написать сообщение",
     "Add_Favorites":"Добавить в избранное",
@@ -131,9 +131,9 @@
     "WriteMessage":"Напишите сообщение...",
     "Send":"Отправить",
     "Close":"Закрыть",
-    "Create_Entity":"Создать объект",
+    "Create_Entity":"Создать профиль",
     "Registration_Compete":"Регистрация завершена успешно",
-    "Regastration_Finish":"Теперь Вы можете создавать объекты и размещать их на карте",
+    "Regastration_Finish":"Теперь Вы можете создавать профили и размещать их на карте",
     "Avatar_Delete":"Удалить фото",
     "Avatar_LoadNew":"Загрузить новое фото",
     "Avatar_DeleteConfirmation":"Вы действительно хотите удалить текущее фото?",
@@ -172,9 +172,9 @@
     "ChangeDialogAvatar":"Изменить фотографию беседы",
     "DialogParticipantsList": "Список участников",
 
-    "DeleteEntity": "Удалить объект",
+    "DeleteEntity": "Удалить профиль",
     "DeleteMessage": "Вы дейтсвительно хотите удалить",
     "CancelImpossible": "Отменить это действие будет невозможно",
     "Band_NoMembers":"В составе группы нет ни одного участника",
-    "User_NoEntities":"У вас нет ни одного объекта"
+    "User_NoEntities":"У вас нет ни одного профиля"
 }

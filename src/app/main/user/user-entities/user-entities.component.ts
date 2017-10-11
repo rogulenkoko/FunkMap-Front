@@ -25,7 +25,20 @@ export class UserEntitiesComponent implements OnInit {
     this.isLoading = true;
     this.userDataService.getUserEntities().subscribe(items=>{
       this.items = items;
+      this.getAvatars(items);
       this.isLoading = false;
+    });
+  }
+
+  private getAvatars(items: Array<SearchItem>) {
+    var ids = items.filter(x => x.imageId).map(x => x.imageId);
+    this.userDataService.getEntitiesImages(ids).subscribe(infos => {
+      items.forEach(item => {
+        var info = infos.find(x=>x.id == item.imageId);
+        if(info){
+          item.image = info.image;
+        }
+      });
     });
   }
 

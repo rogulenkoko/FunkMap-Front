@@ -1,13 +1,11 @@
 import { BaseModel } from "app/core";
 import { EntityType } from "app/main/map/models";
-import { VideoInfo } from "app/main/video-edit/video-info";
+import { VideoInfo } from "app/tools/video-edit/video-info";
 
 export class Musician extends BaseModel{
 
     constructor(login?:string, name?:string, entytyType?: EntityType){
         super(login, name, entytyType);
-        this.sex = Sex.Male;
-        this.styles = [];
     }
    
 
@@ -28,7 +26,10 @@ export class Musician extends BaseModel{
         result.expirience = data.Expirience;
         result.sex = data.Sex;
         result.styles = data.Styles;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+        
         result.years = data.Age;
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;

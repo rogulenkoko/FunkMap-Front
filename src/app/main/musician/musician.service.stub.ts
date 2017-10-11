@@ -4,9 +4,9 @@ import { Observable } from "rxjs/Observable";
 import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./models";
 import { BaseResponse } from "app/tools";
 import { EntityType } from "app/main/map/models";
-import { VideoInfo, VideoType } from "app/main/video-edit/video-info";
 import { BandInviteMusicianRequest, BandInviteInfo, BandInviteInfoRequest } from 'app/main/musician/models/band-invite-musician-request';
 import { BandPreview } from 'app/main/band/models';
+import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {

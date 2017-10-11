@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { Observable } from "rxjs/Observable";
-import { VideoInfo, VideoType } from "app/main/video-edit/video-info";
+import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
 
 @Injectable()
 export class VideoApiService {

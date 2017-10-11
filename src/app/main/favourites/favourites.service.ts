@@ -5,6 +5,7 @@ import { BaseResponse } from "app/tools";
 import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import 'rxjs/add/operator/switchMap';
+import { ImageInfo } from 'app/main/search/image-info';
 @Injectable()
 export abstract class FavouritesService {
 
@@ -39,5 +40,7 @@ export class FavouritesServiceHttp extends FavouritesService {
   setFavourite(login: string): Observable<BaseResponse> {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}favourites/setfavourite/${login}`).map(x=>BaseResponse.ToBaseResponse(x.json()));
   }
+
+  
 
 }

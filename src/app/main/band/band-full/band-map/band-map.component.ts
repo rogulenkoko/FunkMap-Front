@@ -47,7 +47,7 @@ export class BandMapComponent implements OnInit {
   }
 
   private onBaseSaved(){
-    var band = new Band();
+    var band = Object.create(this.editService.baseModel);
     band.login = this.editService.baseModel.login;
     band.latitude = this.editService.baseModel.latitude;
     band.longitude = this.editService.baseModel.longitude;

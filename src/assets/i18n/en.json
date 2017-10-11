@@ -85,8 +85,8 @@
     "Address":"Address",
     "Website":"Website",
 
-    "Creation_Title":"New entity",
-    "Creation_EntityType":"Entity type",
+    "Creation_Title":"New profile",
+    "Creation_EntityType":"Profile type",
     "Creation_Login":"Login",
 
     "Creation_Point":"Specify it manually",
@@ -96,12 +96,12 @@
     "Creation_NameIsNotEmpty":"Name can not be empty",
     "VideoLink":"Video link (YouTube)",
 
-    "Favourite_NoItems":"You don't have any favourite entities. To add an entity to your favorites, click on the icon",
+    "Favourite_NoItems":"You don't have any favourite profiles. To add an profile to your favorites, click on the icon",
     "Search_NoItems":"Results not found",
     "Clear_Filter": "Clear filter",
     "Styles":"Styles",
     "Instruments":"Instruments",
-    "Entity":"Entity type",
+    "Entity":"Profile type",
     "LoadMore": "Load more",
     "Send_Message" : "Send message",
     "Add_Favorites":"Add to favorites",
@@ -133,7 +133,7 @@
     "Send":"Send",
 
     "Close":"Close",
-    "Create_Entity":"Create entity",
+    "Create_Entity":"Create profile",
     "Registration_Compete":"Registration is complete",
     "Regastration_Finish":"Now you can create entities and place them on the map",
 
@@ -174,12 +174,12 @@
     "ChangeDialogName":"Change dialog name",
     "ChangeDialogAvatar":"Change dialog image",
     "DialogParticipantsList": "List of members",
-    "DeleteEntity": "Delete entity",
+    "DeleteEntity": "Delete profile",
 
     "DeleteMessage": "Do you really want to delete",
     "CancelImpossible": "Cancel this action will be impossible",
     "Band_NoMembers":"There are no members in the group",
-    "User_NoEntities":"Youe haven't got any entity"
+    "User_NoEntities":"Youe haven't got any profile"
     
     
     

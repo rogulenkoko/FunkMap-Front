@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { Musician } from "app/main/musician/models";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { FavouritesService } from "app/main/favourites/favourites.service";
@@ -10,13 +10,15 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 import { ActionItem } from 'app/tools/entity-full/action-item';
 import { BandInviteMusicianRequest, BandInviteInfoRequest, BandInviteInfo } from 'app/main/musician/models/band-invite-musician-request';
 import { EntityType } from 'app/main/map/models';
+import * as moment from "moment";
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'musician-base',
   templateUrl: './musician-base.component.html',
   styleUrls: ['./musician-base.component.scss']
 })
-export class MusicianBaseComponent implements OnInit {
+export class MusicianBaseComponent implements OnInit, OnDestroy {
 
   private musician: Musician;
   private newMusician: Musician;
@@ -29,6 +31,8 @@ export class MusicianBaseComponent implements OnInit {
   private inviteInfo: BandInviteInfo;
   private bandForInvite: string;
 
+  private subscription: Subscription;
+
   @ViewChild('nameEditTemplate') nameEditTemplate;
   @ViewChild('netsEditTemplate') netsEditTemplate;
   @ViewChild('inviteToBandActionTemplate') inviteToBandActionTemplate;
@@ -39,14 +43,19 @@ export class MusicianBaseComponent implements OnInit {
               private userService: UserService,
               private editService: EditService,
               private musicianService: MusicianService) {
+    this.subscription = new Subscription();
     this.musician = this.editService.baseModel as Musician;
 
-    this.editService.onSaved.subscribe(() => this.onChanged())
+    this.subscription.add(this.editService.onSaved.subscribe((musician) => this.onChanged(musician)));
   }
 
   ngOnInit() {
     this.updateInfoItems();
     this.checkHasBand();
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   private updateInfoItems() {
@@ -59,6 +68,8 @@ export class MusicianBaseComponent implements OnInit {
     var netsInfoItem = new InfoItem();
     netsInfoItem.propertyTitle = "Musician_SocialNets";
     netsInfoItem.propertyEditTemplate = this.netsEditTemplate;
+
+    this.musician.age = moment().diff(this.musician.birthDate, 'years');
 
     this.infoItems = [
       nameInfoItem,
@@ -74,21 +85,30 @@ export class MusicianBaseComponent implements OnInit {
 
   private save() {
     this.newMusician.login = this.musician.login;
+   
     this.musicianService.updateMusician(this.newMusician).subscribe(response => {
       this.refreshMusician();
+
+      this.musician = this.newMusician;
+      this.editService.baseModel = this.newMusician;
+      this.updateInfoItems();
     });
   }
 
-  private onChanged() {
-    this.musician = this.editService.baseModel as Musician;
+  private cancel(){
+    this.newMusician = Object.create(this.musician);
+    this.editService.baseModel = this.newMusician;
+    this.updateInfoItems();
+  }
+
+  private onChanged(musician: Musician) {
+    this.musician = musician;
     this.updateInfoItems();
   }
 
   private refreshMusician() {
-    this.musicianService.getMusician(this.musician.login).subscribe(musician => {
-      this.musician = musician;
-      this.updateInfoItems();
-    })
+    this.musician = this.newMusician;
+    this.updateInfoItems();
   }
 
   private onAvatarLoaded(avatar: string) {

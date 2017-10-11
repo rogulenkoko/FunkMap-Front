@@ -8,6 +8,7 @@ import { EntityType } from "app/main/map/models";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
 import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
 import { UserResponse } from 'app/main/user/user';
+import { ImageInfo } from 'app/main/search/image-info';
 
 @Injectable()
 export class UserDataServiceStub extends UserDataService {
@@ -48,5 +49,9 @@ export class UserDataServiceStub extends UserDataService {
     var response = new UserResponse();
     response.isExist = false;
     return Observable.of(response);
+  }
+
+  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>{
+    return Observable.of([]);
   }
 }

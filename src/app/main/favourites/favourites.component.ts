@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FavouritesService } from "app/main/favourites/favourites.service";
 import { SearchItem } from "app/main/search/search-item";
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'app-favourites',
@@ -11,7 +12,8 @@ export class FavouritesComponent implements OnInit {
 
   private items: Array<SearchItem>;
   private isLoading: boolean;
-  constructor(private favouritesService: FavouritesService) { }
+  constructor(private favouritesService: FavouritesService,
+              private userDataService: UserDataService) { }
 
   ngOnInit() {
     this.refresh();
@@ -21,9 +23,22 @@ export class FavouritesComponent implements OnInit {
     this.isLoading = true;
     this.favouritesService.getFavourites().subscribe(items => {
       this.items = items;
+      this.getAvatars(this.items);
       this.isLoading = false;
       this.items.forEach(item => {
         item.isFavourite = true;
+      });
+    });
+  }
+
+  private getAvatars(items: Array<SearchItem>) {
+    var ids = items.filter(x => x.imageId).map(x => x.imageId);
+    this.userDataService.getEntitiesImages(ids).subscribe(infos => {
+      items.forEach(item => {
+        var info = infos.find(x=>x.id == item.imageId);
+        if(info){
+          item.image = info.image;
+        }
       });
     });
   }

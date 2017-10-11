@@ -71,12 +71,9 @@ export class BandInfoComponent implements OnInit {
   }
 
   private refreshBand(login: string) {
-    this.bandService.getBand(login).subscribe(band => {
-      this.band = band;
+      this.band = this.newBand;
       this.updateInfoItems();
-      this.editService.baseModel = band;
-      this.editService.onSaved.emit();
-    })
+      this.editService.baseModel = this.newBand;
   }
 
   save() {

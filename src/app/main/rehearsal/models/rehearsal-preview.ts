@@ -13,7 +13,10 @@ export class Rehearsal extends BaseModel {
         var result = new Rehearsal(data.Login, data.Name, EntityType.RehearsalPoint);
         result.address = data.Address;
         result.description = data.Description;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
@@ -40,7 +43,10 @@ export class RehearsalPreview extends BaseModel {
         var result = new RehearsalPreview(data.Login, data.Name, EntityType.RehearsalPoint);
         result.address = data.Address;
         result.description = data.Description;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+        
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;

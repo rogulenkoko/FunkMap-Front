@@ -13,7 +13,10 @@ export class Studio extends BaseModel {
         var result = new Studio(data.Login, data.Name, EntityType.Studio);
         result.address = data.Address;
         result.description = data.Description;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
@@ -38,7 +41,10 @@ export class StudioPreview extends BaseModel {
         var result = new StudioPreview(data.Login, data.Name, EntityType.Studio);
         result.address = data.Address;
         result.description = data.Description;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+        
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;

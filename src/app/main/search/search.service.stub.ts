@@ -6,6 +6,7 @@ import { SearchItem } from "app/main/search/search-item";
 import { InstrumentType, ExpirienceType } from "app/main/musician/models";
 import { FullLocationRequest } from "app/main/search/search-location-request";
 import { SearchResponse } from "app/main/search/search-response";
+import { ImageInfo } from 'app/main/search/image-info';
 
 @Injectable()
 export class SearchServiceStub extends SearchService{
@@ -65,5 +66,4 @@ export class SearchServiceStub extends SearchService{
 
      return [s1,s2, s3, s4, s5, s6];
   }
-
 }

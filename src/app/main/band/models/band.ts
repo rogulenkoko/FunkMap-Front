@@ -1,7 +1,7 @@
 import { InstrumentType, MusicStyle } from "../../musician/models"
 import { BaseModel } from "app/core";
 import { EntityType } from "app/main/map/models";
-import { VideoInfo } from "app/main/video-edit/video-info";
+import { VideoInfo } from "app/tools/video-edit/video-info";
 
 export class Band extends BaseModel{
     constructor(login?:string, name?:string){
@@ -29,7 +29,10 @@ export class Band extends BaseModel{
 
         result.latitude = data.Latitude;
         result.longitude = data.Longitude;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+        
         result.styles = data.Styles;
 
         result.description = data.Description;

@@ -5,6 +5,7 @@ import { SearchItem } from "app/main/search/search-item";
 import { EntityType } from "app/main/map/models";
 import { InstrumentType } from "app/main/musician/models";
 import { BaseResponse } from "app/tools";
+import { ImageInfo } from 'app/main/search/image-info';
 
 @Injectable()
 export class FavouritesServiceStub extends FavouritesService {
@@ -35,5 +36,4 @@ export class FavouritesServiceStub extends FavouritesService {
   getFavouritesLogins(): Observable<Array<string>>{
     return this.getFavourites().map(x=>x.map(x=>x.login));
   }
-
 }

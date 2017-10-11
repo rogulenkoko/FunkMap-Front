@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider, BaseModel } from "app/core";
 import { ServiceType } from "app/core/configuration/configuration-provider";
+import { ImageInfo } from 'app/main/search/image-info';
 
 @Injectable()
 export abstract class BaseEditService {
@@ -12,6 +13,8 @@ export abstract class BaseEditService {
   abstract update(request: BaseModel): Observable<BaseResponse>;
 
   abstract delete(login: string): Observable<BaseResponse>;
+  
+  abstract getImages(ids: Array<string>): Observable<Array<ImageInfo>>;
 
 }
 
@@ -28,5 +31,9 @@ export class BaseEditServiceHttp extends BaseEditService {
 
   delete(login: string): Observable<BaseResponse> {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/delete/${login}`).map(x => BaseResponse.ToBaseResponse(x.json()))
+  }
+
+  getImages(ids: Array<string>): Observable<Array<ImageInfo>>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/images`, ids).map(x => ImageInfo.ToImageInfos(x.json()));
   }
 }

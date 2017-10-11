@@ -32,7 +32,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private favouritesService: FavouritesService,
     private filterService: SearchFilterService,
-    private mapFilter: MapFilter) {
+    private mapFilter: MapFilter,
+    private userDataService: UserDataService) {
     this.items = [];
     this.subscription = new Subscription();
     this.subscription.add(this.filterService.onFilterChanged.subscribe(() => this.refresh()));
@@ -44,14 +45,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.refresh();
-    $('#search-container').on("scroll", ()=> this.onScrollDown());
+    $('#search-container').on("scroll", () => this.onScrollDown());
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  
+
 
   private refresh() {
     this.isLoaded = true;
@@ -59,6 +60,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchService.getFiltered(0, this.portionCount).subscribe(response => {
       this.isLoaded = false;
       this.onItemsLoaded(response.items);
+      this.getAvatars(response.items);
       this.mapFilter.onItemsFiltered.emit(response.allLogins);
       this.allItemsCount = response.allCount;
     });
@@ -80,13 +82,25 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   private getMore() {
-    if(this.items.length == this.allItemsCount) return;
+    if (this.items.length == this.allItemsCount) return;
     this.isLoaded = true;
     this.searchService.getFiltered(this.items.length, this.items.length + this.portionCount).subscribe(response => {
       this.isLoaded = false;
-      this.items.push(...response.items)
-      //this.items = .concat();
+      this.items.push(...response.items);
+      this.getAvatars(response.items);
       if (this.userService.user) this.getFavourites();
+    });
+  }
+
+  private getAvatars(items: Array<SearchItem>) {
+    var ids = items.filter(x => x.imageId).map(x => x.imageId);
+    this.userDataService.getEntitiesImages(ids).subscribe(infos => {
+      items.forEach(item => {
+        var info = infos.find(x=>x.id == item.imageId);
+        if(info){
+          item.image = info.image;
+        }
+      });
     });
   }
 
@@ -96,21 +110,21 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private clearFilter() {
     var isDone = this.filterService.clearFilter();
-    if(isDone) this.filterService.onFilterChanged.emit();
+    if (isDone) this.filterService.onFilterChanged.emit();
   }
 
   private onTextChanged(value: string) {
     this.filterService.searchChanged.next(value);
   }
 
-  private onScrollDown(){
+  private onScrollDown() {
     // console.log("sadasd");
     // console.log("top", $('#search-container').scrollTop());
     // console.log("height", $('#search-container').height());
     // console.log("scrolheight", $('#search-container')[0].scrollHeight);
     if ($('#search-container').scrollTop() + $('#search-container').height() >= $('#search-container')[0].scrollHeight) {
-        this.getMore();
-      }
+      this.getMore();
+    }
   }
 
 }

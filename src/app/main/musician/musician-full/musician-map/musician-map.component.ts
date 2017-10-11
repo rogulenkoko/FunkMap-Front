@@ -24,7 +24,7 @@ export class MusicianMapComponent implements OnInit {
               private musicianService: MusicianService,
               private editService: EditService) { 
     this.musician = this.editService.baseModel as Musician;
-    this.editService.onSaved.subscribe(()=> this.updateMap());
+    //this.editService.onSaved.subscribe(()=> this.updateMap());
   }
 
   ngOnInit() {
@@ -39,16 +39,17 @@ export class MusicianMapComponent implements OnInit {
     return marker;
   }
 
-  private updateMap(){
-    this.musician = this.editService.baseModel as Musician;
-    if(this.marker.instrument == this.musician.instrument) return;
-    var marker = this.buildMarker();
-    this.entityMap.marker = marker;
-    this.entityMap.initMap(marker);
-  }
+  //нужно если у одного типа профиля будет несколько видов маркеров
+  // private updateMap(){
+  //   this.musician = this.editService.baseModel as Musician;
+  //   if(this.marker.instrument == this.musician.instrument) return;
+  //   var marker = this.buildMarker();
+  //   this.entityMap.marker = marker;
+  //   this.entityMap.initMap(marker);
+  // }
 
   private onBaseSaved(){
-    var musician = new Musician();
+    var musician = Object.create(this.editService.baseModel);
     musician.login = this.editService.baseModel.login;
     musician.latitude = this.editService.baseModel.latitude;
     musician.longitude = this.editService.baseModel.longitude;

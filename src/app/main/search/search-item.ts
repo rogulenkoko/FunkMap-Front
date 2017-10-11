@@ -7,6 +7,7 @@ export class SearchItem {
     public userLogin: string;
     public title: string;
     public image: string;
+    public imageId: string;
     public type: EntityType;
     public latitude: number;
     public longitude: number;
@@ -28,7 +29,7 @@ export class SearchItem {
         result.login = data.Login;
         result.userLogin = data.UserLogin;
         result.title = data.Title;
-        result.image = data.Avatar;
+        result.imageId = data.AvatarId;
         result.instrument = data.Instrument;
         result.type = data.Type;
         result.latitude = data.Latitude;

@@ -53,10 +53,8 @@ export class BandBaseComponent implements OnInit {
   }
 
   private refreshBand(){
-    this.bandService.getBand(this.band.login).subscribe(band=>{
-      this.band = band;
-      this.updateInfoItems();
-    })
+    this.band = this.newBand;
+    this.updateInfoItems();
   }
 
 }

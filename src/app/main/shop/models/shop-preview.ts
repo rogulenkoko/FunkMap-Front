@@ -17,7 +17,10 @@ export class Shop extends BaseModel {
         result.webSite = data.WebSite;
         result.address = data.Address;
         result.description = data.Description;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
@@ -27,7 +30,6 @@ export class Shop extends BaseModel {
         result.address = data.Address;
         result.userLogin = data.UserLogin;
         result.isActive = data.IsActive;
-        console.log(data);
         return result;
     }
 }
@@ -47,7 +49,10 @@ export class ShopPreview extends BaseModel {
         result.webSite = data.WebSite;
         result.address = data.Address;
         result.description = data.Description;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+        
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;

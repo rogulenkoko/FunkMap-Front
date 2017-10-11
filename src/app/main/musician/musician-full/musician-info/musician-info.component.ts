@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { Musician, InstrumentType } from "app/main/musician/models";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { MusicianService } from "app/main/musician/musician.service";
@@ -8,13 +8,14 @@ import { StylesItem, InstrumentsItem, ExpirienceItem } from "app/tools/select";
 import { TranslateService } from "@ngx-translate/core";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { InfoItem } from 'app/tools/entity-full/info-item';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'musician-info',
   templateUrl: './musician-info.component.html',
   styleUrls: ['./musician-info.component.scss']
 })
-export class MusicianInfoComponent implements OnInit {
+export class MusicianInfoComponent implements OnInit, OnDestroy {
 
   private musician: Musician;
   private newMusician: Musician;
@@ -38,11 +39,14 @@ export class MusicianInfoComponent implements OnInit {
 
   private allTitle: string;
 
+  private subscription: Subscription;
+
   constructor(private musicianTypesProvider: MusicianTypesProvider,
     private musicianService: MusicianService,
     private dateProvider: DateSelectProvider,
     private translateService: TranslateService,
     private editService: EditService) {
+    this.subscription = new Subscription();
     this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
@@ -50,11 +54,16 @@ export class MusicianInfoComponent implements OnInit {
     this.musician = this.editService.baseModel as Musician;
 
     this.translateService.get("Choose").subscribe(value => this.allTitle = value);
+    this.subscription.add(this.editService.onSaved.subscribe((musician) => this.onChanged(musician)));
   }
 
   ngOnInit() {
     this.updateInfoItems();
 
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   private updateInfoItems() {
@@ -114,30 +123,30 @@ export class MusicianInfoComponent implements OnInit {
     ]
   }
 
-  private refreshMusician(login: string) {
-    this.musicianService.getMusician(login).subscribe(musician => {
-      this.musician = musician;
-      this.updateInfoItems();
-      this.editService.baseModel = musician;
-      this.editService.onSaved.emit();
-    })
-  }
-
   save() {
     this.newMusician.login = this.musician.login;
     this.newMusician.birthDate = this.dateProvider.buildDate();
     this.musicianService.updateMusician(this.newMusician).subscribe(x => {
-      this.refreshMusician(this.musician.login);
+      this.musician = this.newMusician;
+      this.editService.baseModel = this.newMusician;
+      this.updateInfoItems();
     })
   }
 
   cancel() {
-    this.refreshMusician(this.musician.login);
     this.newMusician = Object.create(this.musician);
+    this.editService.baseModel = this.newMusician;
+    this.updateInfoItems();
   }
 
   private selectInstrument(instrument: InstrumentType) {
     this.newMusician.instrument = instrument;
+  }
+
+  private onChanged(musician: Musician) {
+    this.musician = musician;
+    this.newMusician = Object.create(this.musician);
+    this.updateInfoItems();
   }
 
 }

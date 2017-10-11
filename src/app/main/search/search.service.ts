@@ -16,6 +16,7 @@ import { BaseFilter } from "app/main/search/search-filter/base-filter";
 import { BandFilter } from "app/main/band/models/band-filter";
 import { SearchResponse } from "app/main/search/search-response";
 import { UserService } from 'app/main/user/user.service';
+import { ImageInfo } from 'app/main/search/image-info';
 
 @Injectable()
 export abstract class SearchService {

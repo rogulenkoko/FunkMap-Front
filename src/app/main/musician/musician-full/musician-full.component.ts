@@ -3,6 +3,7 @@ import { Musician } from "app/main/musician/models";
 import { MusicianService } from "app/main/musician/musician.service";
 import { ActivatedRoute } from "@angular/router";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { BaseEditService } from 'app/tools/entity-full/base-edit.service';
 
 @Component({
   selector: 'app-musician-full',
@@ -26,6 +27,9 @@ export class MusicianFullComponent implements OnInit {
   }
 
   private refreshMusician(login: string) {
+    if(this.editService.baseModel && this.editService.baseModel.login == login){
+      return;
+    }
     this.musicianService.getMusician(login).subscribe(musician => {
       this.editService.baseModel = musician;
     })

@@ -25,6 +25,10 @@ export class BandFullComponent implements OnInit {
   }
 
   private refreshBand(login: string) {
+    console.log(this.editService.baseModel);
+    if(this.editService.baseModel && this.editService.baseModel.login == login){
+      return;
+    }
     this.bandService.getBand(login).subscribe(band => {
       this.editService.baseModel = band;
     })

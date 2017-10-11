@@ -34,7 +34,6 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
   }
 
   private editVideo() {
-    console.log(this.isAddVideoMode);
     this.isAddVideoMode = false;
     this.isAddVideoMode = true;
   }
@@ -48,12 +47,12 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
     request.videoInfos = this.entity.videoInfos;
     this.editBaseService.update(request).subscribe(response => {
       if (response.success) {
-        console.log(this.isAddVideoMode);
+
       }
     });
   }
 
   private onVideoEditClosed(){
-    console.log(this.isAddVideoMode);
+    
   }
 }

@@ -50,6 +50,11 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     
     this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
+    this.baseEditService.getImages([this.entity.avatarId]).subscribe(infos=>{
+      if(infos && infos.length == 1){
+        this.entity.avatar = infos[0].image;
+      }
+    });
   }
 
   
