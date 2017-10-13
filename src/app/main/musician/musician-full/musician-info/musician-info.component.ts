@@ -9,6 +9,9 @@ import { TranslateService } from "@ngx-translate/core";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { InfoItem } from 'app/tools/entity-full/info-item';
 import { Subscription } from 'rxjs/Subscription';
+import { SearchItem } from 'app/main/search/search-item';
+import { SearchService } from 'app/main/search/search.service';
+import { BaseService } from 'app/tools/base.service';
 
 @Component({
   selector: 'musician-info',
@@ -27,6 +30,7 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   private expiriences: Array<ExpirienceItem>;
 
   @ViewChild("dateTemplate") dateTemplate: any;
+  @ViewChild("bandsTemplate") bandsTemplate: any;
 
   @ViewChild("instrumentEditTemplate") instrumentEditTemplate: any;
   @ViewChild("sexEditTemplate") sexEditTemplate: any;
@@ -41,11 +45,14 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
+  private bands: Array<SearchItem>;
+
   constructor(private musicianTypesProvider: MusicianTypesProvider,
-    private musicianService: MusicianService,
-    private dateProvider: DateSelectProvider,
-    private translateService: TranslateService,
-    private editService: EditService) {
+              private musicianService: MusicianService,
+              private dateProvider: DateSelectProvider,
+              private translateService: TranslateService,
+              private editService: EditService,
+              private baseService: BaseService) {
     this.subscription = new Subscription();
     this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
@@ -59,6 +66,7 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateInfoItems();
+    this.updateBands();
 
   }
 
@@ -113,14 +121,37 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
     descriptionItem.propertyValue = this.musician.description;
     descriptionItem.propertyEditTemplate = this.descriptionEditTemplate;
 
+    var bandsItem = new InfoItem();
+    bandsItem.propertyTitle = "Musician_Bands";
+    bandsItem.propertyTemplate = this.bandsTemplate;
+
+
     this.infoItems = [
       birthDateItem,
       sexItem,
       instrumentItem,
       expirienceItem,
       stylesItem,
+      bandsItem,
       descriptionItem
     ]
+  }
+
+  private updateBands(){
+    if(!this.musician && !this.musician.bandLogins) return;
+    this.baseService.getSpecific(this.musician.bandLogins).subscribe(bands=>{
+      this.bands = bands;
+      var avatarIds = this.bands.map(x=>x.imageId);
+      if(!avatarIds || avatarIds.length == 0) return;
+      this.baseService.getEntitiesImages(avatarIds).subscribe(infos=>{
+        this.bands.forEach(item => {
+          var info = infos.find(x=>x.id == item.imageId);
+          if(info){
+            item.image = info.image;
+          }
+        });
+      });
+    });
   }
 
   save() {

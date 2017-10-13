@@ -24,7 +24,6 @@ export class BandMapComponent implements OnInit {
               private bandService: BandService,
               private editService: EditService) { 
     this.band = this.editService.baseModel as Band;
-    //this.editService.onSaved.subscribe(()=> this.updateMap());
   }
 
   ngOnInit() {
@@ -36,14 +35,6 @@ export class BandMapComponent implements OnInit {
     var marker = new Marker(this.band.login, this.band.latitude, this.band.longitude, EntityType.Band);
     marker.iconUrl = this.iconProvider.getIcon(marker);
     return marker;
-  }
-
-  private updateMap(){
-    
-    // this.band = this.editService.baseModel as Band;
-    // if(this.marker.instrument == this.band.instrument) return;
-    // var marker = this.buildMarker();
-    // this.entityMap.initMap(marker);
   }
 
   private onBaseSaved(){

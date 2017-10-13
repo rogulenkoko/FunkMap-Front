@@ -5,8 +5,30 @@
 </ng-template>
 
 
+<ng-template #bandsTemplate>
+    <div *ngIf="bands" class="d-flex flex-column">
+        <!-- <div *ngFor="let band of bands">
+            {{bandLogin}}
+        </div> -->
+
+        <div *ngFor="let band of bands" class="d-flex align-items-center justify-content-between band">
+            <div class="d-flex align-items-center">
+                <avatar-circle [ngClass]="'band-avatar'" [image]="band.image" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
+                <a [routerLink]="['/bandPage/' + band.login]" class="band-name">{{band.title}}</a>
+            </div>
+            <i *ngIf="isUsers" (click)="removeMusician(musician)" class="icon-close"></i>
+
+        </div>
+
+    </div>
+
+
+
+</ng-template>
+
+
 <ng-template #instrumentEditTemplate>
-    <p-dropdown placeholder="{{'Choose' | translate}}" [options]="instruments" [(ngModel)]="newMusician.instrument" ></p-dropdown>
+    <p-dropdown placeholder="{{'Choose' | translate}}" [options]="instruments" [(ngModel)]="newMusician.instrument"></p-dropdown>
 </ng-template>
 
 <ng-template #sexEditTemplate>
@@ -27,7 +49,7 @@
     <div>
         <textarea [(ngModel)]="newMusician.description" class="form-control secondary"></textarea>
     </div>
-   
+
 </ng-template>
 
 <ng-template #dateEditTemplate>
@@ -39,6 +61,6 @@
 </ng-template>
 
 <ng-template #stylesEditTemplate>
-        <p-multiSelect [defaultLabel]="allTitle" [options]="styles" [(ngModel)]="newMusician.styles" [filter]="false"></p-multiSelect>
-    
+    <p-multiSelect [defaultLabel]="allTitle" [options]="styles" [(ngModel)]="newMusician.styles" [filter]="false"></p-multiSelect>
+
 </ng-template>

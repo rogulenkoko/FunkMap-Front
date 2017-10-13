@@ -50,8 +50,4 @@ export class UserDataServiceStub extends UserDataService {
     response.isExist = false;
     return Observable.of(response);
   }
-
-  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>{
-    return Observable.of([]);
-  }
 }

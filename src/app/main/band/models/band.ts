@@ -6,7 +6,6 @@ import { VideoInfo } from "app/tools/video-edit/video-info";
 export class Band extends BaseModel{
     constructor(login?:string, name?:string){
         super(login, name, EntityType.Band);
-        this.styles = [];
     }
 
     public showPrice: number;

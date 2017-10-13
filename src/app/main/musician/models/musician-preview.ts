@@ -20,7 +20,10 @@ export class MusicianPreview extends BaseModel{
         result.description = data.Description;
         result.expirience = data.Expirience;
         result.styles = data.Styles;
-        result.avatar = data.Avatar;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+        
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YouTubeLink;
         result.facebookLink = data.FacebookLink;

@@ -6,6 +6,7 @@ import { InstrumentType, Musician, MusicStyle } from "../musician/models"
 import { BaseResponse } from "app/tools";
 import { Band } from "app/main/band/models/band";
 import { EntityType } from "app/main/map/models";
+import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
 @Injectable()
 export class BandServiceStub extends BandService {
@@ -50,6 +51,10 @@ export class BandServiceStub extends BandService {
        "rogulenkoko"
      ];
      return Observable.of(band);
+   }
+
+   removeMusician(request: LeaveBandRequest):Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
    }
 
 

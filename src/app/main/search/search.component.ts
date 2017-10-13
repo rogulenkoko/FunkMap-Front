@@ -10,6 +10,7 @@ import { SearchFilterService } from "app/main/search/search-filter/search-filter
 import 'rxjs/add/operator/distinctUntilChanged';
 import { MapFilter } from "app/main/map/map-filter.service";
 import { Subscription } from 'rxjs/Subscription';
+import { BaseService } from 'app/tools/base.service';
 
 declare var $;
 
@@ -33,7 +34,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private favouritesService: FavouritesService,
     private filterService: SearchFilterService,
     private mapFilter: MapFilter,
-    private userDataService: UserDataService) {
+    private baseService: BaseService) {
     this.items = [];
     this.subscription = new Subscription();
     this.subscription.add(this.filterService.onFilterChanged.subscribe(() => this.refresh()));
@@ -94,7 +95,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private getAvatars(items: Array<SearchItem>) {
     var ids = items.filter(x => x.imageId).map(x => x.imageId);
-    this.userDataService.getEntitiesImages(ids).subscribe(infos => {
+    this.baseService.getEntitiesImages(ids).subscribe(infos => {
       items.forEach(item => {
         var info = infos.find(x=>x.id == item.imageId);
         if(info){

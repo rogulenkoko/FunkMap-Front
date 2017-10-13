@@ -8,6 +8,9 @@ import { EditService } from 'app/tools/entity-full/edit.service';
 import { UserDataService } from 'app/main/user/user-data.service';
 import { UserService } from 'app/main/user/user.service';
 import { BaseEditService } from 'app/tools/entity-full/base-edit.service';
+import { BandService } from 'app/main/band/band.service';
+import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
+import { BaseService } from 'app/tools/base.service';
 
 @Component({
   selector: 'band-participants',
@@ -22,10 +25,10 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
 
   constructor(private musicianService: MusicianService,
               private musicianTypesProvider: MusicianTypesProvider,
-              private baseEditService: BaseEditService,
+              private bandService: BandService,
+              private baseService: BaseService,
               userService: UserService,
-              userDataService: UserDataService,
-              editService: EditService) {
+              userDataService: UserDataService) {
     super(userService, userDataService);
   }
 
@@ -39,16 +42,22 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
     this.band.musicians.forEach(musicianLogin => {
       this.musicianService.getMusicianPreview(musicianLogin).subscribe(musician=> {
         this.musicians.push(musician);
+        this.baseService.getEntitiesImages([musician.avatarMiniId]).subscribe(info=>{
+          if(info && info.length == 1){
+            musician.avatar = info[0].image;
+          }
+        })
       });
     });
   }
 
   private removeMusician(musician: Musician){
-    var band = new Band(this.band.login);
-    band.musicians = this.band.musicians.filter(x=>x != musician.login);
-    this.baseEditService.update(band).subscribe(response=>{
+
+    var request = new LeaveBandRequest(this.band.login, musician.login);
+
+    this.bandService.removeMusician(request).subscribe(response=>{
       if(response.success){
-        this.band.musicians = band.musicians;
+        this.band.musicians = this.band.musicians.filter(x=>x != musician.login);
         this.musicians = [];
         this.refreshMusicians();
       }

@@ -18,6 +18,7 @@ export class Musician extends BaseModel{
     public years: number;
     public expirience: ExpirienceType;
     public instrument: InstrumentType;
+    public bandLogins: Array<string>;
 
     public static ToMusician(data: any): Musician{
         var result = new Musician(data.Login, data.Name, EntityType.Musician);
@@ -30,6 +31,8 @@ export class Musician extends BaseModel{
         result.avatarId = data.AvatarId;
         result.avatarMiniId = data.AvatarMiniId;
         
+
+        result.bandLogins = data.BandLogins;
         result.years = data.Age;
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;

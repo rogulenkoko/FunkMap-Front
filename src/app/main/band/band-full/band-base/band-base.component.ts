@@ -54,6 +54,7 @@ export class BandBaseComponent implements OnInit {
 
   private refreshBand(){
     this.band = this.newBand;
+    this.editService.baseModel = this.newBand;
     this.updateInfoItems();
   }
 

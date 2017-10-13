@@ -6,7 +6,8 @@ import { FavouritesService } from "app/main/favourites/favourites.service";
 import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { RouteBuilder } from "app/tools/route-builder";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { BaseService } from 'app/tools/base.service';
 
 @Component({
   selector: 'entity-side',
@@ -15,7 +16,16 @@ import { Router } from "@angular/router";
 })
 export class EntitySideComponent implements OnInit {
 
-  @Input() item: BaseModel;
+  private _item: BaseModel;
+
+  @Input() get item(): BaseModel{
+    return this._item;
+  }
+
+  set item(value: BaseModel){
+    this._item = value;
+    this.updateAvatar();
+  }
 
   @Input() styles: Array<MusicStyle>;
   @Input() description: string;
@@ -30,12 +40,22 @@ export class EntitySideComponent implements OnInit {
     private favouritesService: FavouritesService,
     private userService: UserService,
     private userDataService: UserDataService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private baseService: BaseService) { }
 
   ngOnInit() {
     this.checkIsFavorite();
     this.checkIsUserEntity();
-    console.log(this.item);
+    
+  }
+
+  private updateAvatar(){
+    this.baseService.getEntitiesImages([this.item.avatarId]).subscribe(infos=>{
+      if(infos && infos.length == 1){
+        this.item.avatar = infos[0].image;
+      }
+    });
   }
 
   private checkIsUserEntity() {

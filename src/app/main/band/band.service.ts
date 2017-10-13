@@ -5,6 +5,7 @@ import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { BaseResponse } from "app/tools";
 import { EntityType } from "app/main/map/models";
+import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
 @Injectable()
 export abstract class BandService {
@@ -16,6 +17,8 @@ export abstract class BandService {
   abstract getBand(login: string): Observable<Band>;
 
   abstract updateBand(band:Band): Observable<BaseResponse>;
+
+  abstract removeMusician(request: LeaveBandRequest):Observable<BaseResponse>;
 
 }
 
@@ -37,6 +40,10 @@ export class BandServiceHttp extends BandService {
    updateBand(band:Band): Observable<BaseResponse>{
      band.entityType = EntityType.Band;
      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, band).map(res=>BaseResponse.ToBaseResponse(res.json()));
+   }
+
+   removeMusician(request: LeaveBandRequest):Observable<BaseResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/removeMusician`, request).map(res=>BaseResponse.ToBaseResponse(res.json()));
    }
 
 }

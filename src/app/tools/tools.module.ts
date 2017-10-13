@@ -28,6 +28,8 @@ import { EntityActiveComponent } from './entity-full/entity-active/entity-active
 import { VideoEditComponent } from 'app/tools/video-edit/video-edit.component';
 import { VideoModule } from 'app/tools/video-edit/video.module';
 import { AvatarComponent } from 'app/tools/avatar/avatar.component';
+import { BaseServiceHttp, BaseService } from 'app/tools/base.service';
+import { BaseServiceStub } from 'app/tools/base.service.stub';
 
 
 @NgModule({
@@ -87,6 +89,10 @@ import { AvatarComponent } from 'app/tools/avatar/avatar.component';
     {
       provide: BaseEditService,
       useClass: environment.production ? BaseEditServiceHttp : BaseEditServiceStub
+    },
+    {
+      provide: BaseService,
+      useClass: environment.production ? BaseServiceHttp : BaseServiceStub
     }
     
   ]

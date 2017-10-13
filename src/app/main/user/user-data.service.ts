@@ -29,9 +29,6 @@ export abstract class UserDataService {
   abstract getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>;
 
   abstract getUser(login: string):Observable<UserResponse>;
-
-  abstract getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>;
-
 }
 
 @Injectable()
@@ -70,10 +67,6 @@ export class UserDataServiceHttp extends UserDataService {
 
   getUser(login: string):Observable<UserResponse>{
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/user/${login}`).map(x=>UserResponse.ToUserResponse(x.json()));
-  }
-  
-  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/images`, ids).map(x => ImageInfo.ToImageInfos(x.json()));
   }
 
 }

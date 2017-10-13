@@ -12,6 +12,7 @@ import { SaveImageRequest } from "app/main/user/save-image-request";
 import { BaseEditService } from "app/tools/entity-full/base-edit.service";
 import { InfoItem } from 'app/tools/entity-full/info-item';
 import { ActionItem } from 'app/tools/entity-full/action-item';
+import { BaseService } from 'app/tools/base.service';
 
 @Component({
   selector: 'entity-base',
@@ -40,7 +41,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
               userDataService: UserDataService,
               private favouritesService: FavouritesService,
               private router: Router,
-              private baseEditService: BaseEditService) {
+              private baseEditService: BaseEditService,
+              private baseService: BaseService) {
     super(userService, userDataService);
     this.onAvatarLoaded = new EventEmitter<string>();
     
@@ -50,7 +52,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     
     this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
-    this.baseEditService.getImages([this.entity.avatarId]).subscribe(infos=>{
+    this.baseService.getEntitiesImages([this.entity.avatarId]).subscribe(infos=>{
       if(infos && infos.length == 1){
         this.entity.avatar = infos[0].image;
       }

@@ -29,7 +29,7 @@ export class FavouritesServiceHttp extends FavouritesService {
   getFavourites(): Observable<Array<SearchItem>> {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}favourites/logins`).switchMap(x=>{
       var logins = x.json();
-      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
+      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
     });
   }
 

@@ -3,6 +3,7 @@ import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { SearchItem } from "app/main/search/search-item";
 import { FavouritesService } from "app/main/favourites/favourites.service";
+import { BaseService } from 'app/tools/base.service';
 
 @Component({
   selector: 'app-user-entities',
@@ -15,7 +16,8 @@ export class UserEntitiesComponent implements OnInit {
 
   private isLoading: boolean;
 
-  constructor(private userDataService: UserDataService) { }
+  constructor(private userDataService: UserDataService,
+              private baseService: BaseService) { }
 
   ngOnInit() {
     this.refreshEntities();
@@ -32,7 +34,7 @@ export class UserEntitiesComponent implements OnInit {
 
   private getAvatars(items: Array<SearchItem>) {
     var ids = items.filter(x => x.imageId).map(x => x.imageId);
-    this.userDataService.getEntitiesImages(ids).subscribe(infos => {
+    this.baseService.getEntitiesImages(ids).subscribe(infos => {
       items.forEach(item => {
         var info = infos.find(x=>x.id == item.imageId);
         if(info){
