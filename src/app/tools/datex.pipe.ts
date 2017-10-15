@@ -12,7 +12,10 @@ export class DatexPipe implements PipeTransform {
 
   }
 
-  transform(value: any, format: string): any {
+  transform(value: Date, format: string): any {
+    if(!(value instanceof Date && value.getTime() === value.getTime())){
+      return null;
+    }
     moment.lang(this.translateService.language);
     if (!value) {
       return null;

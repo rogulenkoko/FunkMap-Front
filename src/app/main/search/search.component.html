@@ -12,11 +12,10 @@
       <span *ngIf="filterService.isFilterEnabled" (click)="clearFilter()" class="filter-text">{{'Clear_Filter' | translate}}</span>
     </div>
     <search-filter *ngIf="filterService.isFilterEnabled"></search-filter>
-
-    <div id="search-container" class="search-items-container">
+    <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" id="search-container" class="search-items-container">
       <search-list *ngIf="items" [items]="items"></search-list>
       
-      <div *ngIf="!items || items.length == 0 && !isLoaded" class="no-items-message-container d-flex flex-row justify-content-center">
+      <div  *ngIf="!items || items.length == 0 && !isLoaded" class="no-items-message-container d-flex flex-row justify-content-center">
         {{'Search_NoItems' | translate}}
       </div>
     </div>

@@ -13,6 +13,13 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class EntityInfoComponent extends EditableCard implements OnInit {
 
+  public scrollbarOptions = { 
+    axis: 'y', 
+    theme: 'minimal-dark',
+    scrollInertia: 500
+  };
+
+
   private entity: BaseModel;
 
   @Input() items: Array<InfoItem>;

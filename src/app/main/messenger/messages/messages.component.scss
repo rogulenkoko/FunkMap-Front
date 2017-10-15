@@ -4,14 +4,9 @@
     height: 560px;
 }
 
-::-webkit-scrollbar {
-    width: 0px;
-}
-
 .outer{
     border-radius: 0 0 5px 5px;
     background: $dark-card-background;
-    overflow: auto;
     flex:2;
     
 }

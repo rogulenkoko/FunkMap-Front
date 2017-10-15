@@ -6,8 +6,9 @@
 
 .dialogs{
     background-color: $dark-card-background;
-    overflow: auto;
     flex: 2;
+    position: relative;
+    height: 1px;
 }
 
 .search-text-container{
@@ -23,9 +24,10 @@
 
 .title-container{
     padding: 12px 25px;
-    margin-bottom: 10px;
     font-size: 16px;
     color: $active-color;
+    height: 50px;
+    display: block;
 }
 
 
@@ -34,8 +36,4 @@
 }
 .icon-plus:hover{
     color: $dark-orange;
-}
-
-::-webkit-scrollbar {
-    width: 0px;
 }

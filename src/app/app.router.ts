@@ -23,6 +23,7 @@ import { BandFullComponent } from "app/main/band/band-full/band-full.component";
 import { ShopFullComponent } from "app/main/shop/shop-full/shop-full.component";
 import { StudioFullComponent } from "app/main/studio/studio-full/studio-full.component";
 import { RehearsalFullComponent } from "app/main/rehearsal/rehearsal-full/rehearsal-full.component";
+import { CanActivateSearch } from "app/tools/can-activate-search";
 
 const appRoutes: Routes = [
   {
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
       {
         path: "", component: MainWrapperComponent, children: [
           {
-            path: "", component: MainComponent, children: [
+            path: "", component: MainComponent, canActivate: [CanActivateSearch], children: [
               { path: "login", component: LoginComponent },
               { path: "signup", component: RegistrationComponent },
               { path: "settings", component: SettingsComponent },

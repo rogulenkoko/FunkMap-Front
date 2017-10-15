@@ -10,10 +10,10 @@
     </div>
   </div>
 
-  <div class="all-properties-contaiiner">
+  <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="all-properties-contaiiner">
     <div *ngFor="let item of items" class="d-flex flex-column">
       <div class="d-flex  property-container align-items-baseline" [class.flex-column]="isEditMode" [class.flex-row]="!isEditMode">
-        <span class="property-title">{{item.propertyTitle | translate}}:</span>
+        <span *ngIf="!isEditMode || (isEditMode && item.propertyEditTemplate)" class="property-title">{{item.propertyTitle | translate}}:</span>
         <span *ngIf="!item.propertyTemplate && !isEditMode" class="property-value">{{item.propertyValue | translate}}</span>
         <div *ngIf="item.propertyTemplate && !isEditMode" class="property-value"><ng-template  [ngTemplateOutlet]="item.propertyTemplate"></ng-template></div> 
         <div *ngIf="item.propertyEditTemplate && isEditMode" class="property-value"><ng-template  [ngTemplateOutlet]="item.propertyEditTemplate"></ng-template></div>

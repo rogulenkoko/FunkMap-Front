@@ -36,9 +36,6 @@ export class MapComponent implements OnInit {
               private userService: UserService,
               private mapCreationService: MapCreationService) {
     this.mapProvider.onMapChange.subscribe(() => this.updateMap());
-    this.mapFilter.onSearchAll.subscribe(() => {
-      this.getNearest();
-    })
     this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 
@@ -68,31 +65,9 @@ export class MapComponent implements OnInit {
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
-    if (document.location.protocol == "https:") {
-      var location = navigator.geolocation.getCurrentPosition((position) => {
-        this.setCoordinates(position.coords.latitude, position.coords.longitude);
-      });
-    } else {
-      this.mapService.getLocation().subscribe(location=>{
-        this.setCoordinates(location.lat, location.lng);
-      });
-    }
-  }
-
-  private setCoordinates(lat: number, lng: number) {
-    this.userService.latitude = lat;
-    this.userService.longitude = lng;
-    this.map.setView(new L.LatLng(lat, lng), this.map.getZoom());
+    this.map.setView(new L.LatLng(this.userService.latitude, this.userService.longitude), this.map.getZoom());
     this.getNearest();
   }
-
-  // private getAll() {
-  //   this.mapService.getAll().subscribe(markers => {
-  //     this.markers = markers;
-
-  //     this.refreshMarkers();
-  //   });
-  // }
 
   private getNearest() {
     var request = new NearestRequest(this.userService.latitude, this.userService.longitude, ConfigurationProvider.entitiesLimit);

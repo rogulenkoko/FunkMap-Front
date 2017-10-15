@@ -21,6 +21,7 @@ import { InputTextareaModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import {InputSwitchModule} from 'primeng/primeng';
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {InputSwitchModule} from 'primeng/primeng';
     FileUploadModule,
     InputSwitchModule,
     BrowserAnimationsModule,
-    DialogModule
+    DialogModule,
+    MalihuScrollbarModule
   ],
   exports: [
     TranslateModule,
@@ -62,7 +64,8 @@ import {InputSwitchModule} from 'primeng/primeng';
     FileUploadModule,
     InputSwitchModule,
     BrowserAnimationsModule,
-    DialogModule
+    DialogModule,
+    MalihuScrollbarModule
   ],
   providers: [
     LanguageService,

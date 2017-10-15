@@ -14,6 +14,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class DialogsComponent implements OnInit, OnDestroy {
 
+  public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
+
   private dialogs: Array<Dialog> = [];
   private allDialogs: Array<Dialog> = [];
 

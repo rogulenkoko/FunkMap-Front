@@ -30,6 +30,7 @@ import { VideoModule } from 'app/tools/video-edit/video.module';
 import { AvatarComponent } from 'app/tools/avatar/avatar.component';
 import { BaseServiceHttp, BaseService } from 'app/tools/base.service';
 import { BaseServiceStub } from 'app/tools/base.service.stub';
+import { CanActivateSearch } from 'app/tools/can-activate-search';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { BaseServiceStub } from 'app/tools/base.service.stub';
     {
       provide: BaseService,
       useClass: environment.production ? BaseServiceHttp : BaseServiceStub
-    }
+    },
+    CanActivateSearch
     
   ]
 })

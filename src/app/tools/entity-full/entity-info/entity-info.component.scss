@@ -15,7 +15,7 @@
     padding-right: 40px;
     border-radius: 5px; 
     margin-left: 8px;
-    height: 618px; 
+    height: 100%;
 }
 
 .property-title{
@@ -29,8 +29,9 @@
 }
 
 .all-properties-contaiiner{
-    height: 400px;
-    overflow-y: auto;
+    height: 1px;
+    flex: 2;
+    //overflow-y: auto;
 }
 
 .info-title-container{

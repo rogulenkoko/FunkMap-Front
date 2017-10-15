@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { SearchService } from "app/main/search/search.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserService } from "app/main/user/user.service";
@@ -21,6 +21,8 @@ declare var $;
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
+  public scrollbarOptions;
+
   private items: Array<SearchItem>;
   private allItemsCount: number;
   private portionCount: number = 10;
@@ -42,17 +44,25 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.filterService.searchText = value;
       this.refresh();
     }));
+
+    var that = this;
+    this.scrollbarOptions = { 
+      axis: 'y', 
+      theme: 'minimal-dark',
+      scrollInertia: 500,
+      callbacks: {
+        onTotalScroll: ()=> that.getMore()
+      },
+      advanced:{ updateOnContentResize: true } };
   }
 
   ngOnInit() {
     this.refresh();
-    $('#search-container').on("scroll", () => this.onScrollDown());
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 
 
   private refresh() {
@@ -85,7 +95,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   private getMore() {
     if (this.items.length == this.allItemsCount) return;
     this.isLoaded = true;
-    this.searchService.getFiltered(this.items.length, this.items.length + this.portionCount).subscribe(response => {
+    this.searchService.getFiltered(this.items.length, this.portionCount).subscribe(response => {
       this.isLoaded = false;
       this.items.push(...response.items);
       this.getAvatars(response.items);
@@ -116,16 +126,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private onTextChanged(value: string) {
     this.filterService.searchChanged.next(value);
-  }
-
-  private onScrollDown() {
-    // console.log("sadasd");
-    // console.log("top", $('#search-container').scrollTop());
-    // console.log("height", $('#search-container').height());
-    // console.log("scrolheight", $('#search-container')[0].scrollHeight);
-    if ($('#search-container').scrollTop() + $('#search-container').height() >= $('#search-container')[0].scrollHeight) {
-      this.getMore();
-    }
   }
 
 }

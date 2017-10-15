@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { DialogService } from "app/main/messenger/dialog.service";
 import { Dialog, DialogMessagesRequest, Message } from "app/main/messenger/models";
 import { MessengerService } from "app/main/messenger/messenger.service";
@@ -7,6 +7,7 @@ import { SignalrService } from "app/tools/signalr/signalr.service";
 import { Subscription } from "rxjs/Subscription";
 import { UserDataService } from "app/main/user/user-data.service";
 import { MessagesService } from "app/main/messenger/messages/messages.service";
+import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
 declare var $;
 
@@ -15,7 +16,7 @@ declare var $;
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
-export class MessagesComponent implements OnInit, OnDestroy {
+export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private messages: Array<Message> = [];
 
@@ -26,7 +27,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
               private messagesService: MessagesService,
               private userService: UserService,
               private userDataService: UserDataService,
-              private signalrService: SignalrService) {
+              private signalrService: SignalrService,
+              private scrollbarService: MalihuScrollbarService) {
 
     this.subscription = new Subscription();
     
@@ -41,6 +43,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
     
   }
 
+  ngAfterViewInit(){
+    this.scrollbarService.initScrollbar('#main-messages-container', { axis: 'y', theme: 'minimal-dark' });
+  }
+
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
@@ -51,7 +57,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
       this.messengerService.onMessagesLoaded.emit();
-      this.scrollDown();
+      this.scrollbarService.scrollTo('#main-messages-container',100000,{scrollInertia:0});
     });
   }
 
@@ -64,7 +70,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   private onMessageRecieved(message: Message){
     if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
     this.messages.push(message);
-    this.scrollDown();
+    this.scrollbarService.scrollTo('#main-messages-container',100000,{scrollInertia:0});
   }
 
   private onDialogRead(dialogId: string){
@@ -81,12 +87,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messengerService.onDialogRead.subscribe(dialogId=>{
       this.onDialogRead(dialogId);
     });
-  }
-
-  private scrollDown(){
-    setTimeout(()=>{
-      $("#main-messages-container").scrollTop($("#main-messages-container")[0].scrollHeight);
-    }, 10);
   }
 
 }

@@ -3,9 +3,9 @@
 @import "src/assets/styles/icons.scss";
 @import "src/assets/styles/forms.scss";
 
-::-webkit-scrollbar {
-    width: 0px;
-}
+// ::-webkit-scrollbar {
+//     width: 0px;
+// }
 
 .main-search-container{
     height: 100%;
@@ -13,9 +13,9 @@
 }
 
 .search-items-container{
-     overflow-y: auto;
      flex: 2;
      position: relative;
+     height: 1px;//почему-то с таким скрол отрабатывает
 }
 
 .search-text-container{
