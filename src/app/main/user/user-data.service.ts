@@ -11,6 +11,7 @@ import { UserAvatarResponse } from "app/main/user/user-avatar-response";
 import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
 import { User, UserResponse } from 'app/main/user/user';
 import { ImageInfo } from 'app/main/search/image-info';
+import 'rxjs/add/operator/switchMap';
 
 
 @Injectable()

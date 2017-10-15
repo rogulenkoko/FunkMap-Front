@@ -5,6 +5,8 @@ import { SearchItem } from 'app/main/search/search-item';
 import { ConfigurationProvider } from 'app/core';
 import { ServiceType } from 'app/core/configuration/configuration-provider';
 import { ImageInfo } from 'app/main/search/image-info';
+import { BaseResponse } from 'app/tools';
+import { FavoriteRequest } from 'app/tools/favourite-request';
 
 @Injectable()
 export abstract class BaseService {
@@ -12,6 +14,12 @@ export abstract class BaseService {
   abstract getSpecific(logins: Array<string>): Observable<Array<SearchItem>>;
 
   abstract getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>;
+
+  abstract getFavourites(): Observable<Array<SearchItem>>;
+
+  abstract getFavouritesLogins(): Observable<Array<string>>;
+
+  abstract setFavourite(login: string, isFavourite: boolean): Observable<BaseResponse>;
 
 }
 
@@ -26,7 +34,20 @@ export class BaseServiceHttp extends BaseService {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`, logins).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
-  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>{
+  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>> {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/images`, ids).map(x => ImageInfo.ToImageInfos(x.json()));
+  }
+
+  getFavouritesLogins(): Observable<Array<string>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/favoritesLogins`).map(x => x.json());
+  }
+
+  getFavourites(): Observable<Array<SearchItem>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/favorites`).map(x =>SearchItem.ToSearchItems(x.json()));
+  }
+
+  setFavourite(login: string, isFavourite: boolean): Observable<BaseResponse>{
+    var request = new FavoriteRequest(login, isFavourite);
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/updateFavorite`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 }

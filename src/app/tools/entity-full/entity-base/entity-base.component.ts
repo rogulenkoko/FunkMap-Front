@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BaseModel } from "app/core";
 import { UserDataService } from "app/main/user/user-data.service";
 import { UserService } from "app/main/user/user.service";
-import { FavouritesService } from "app/main/favourites/favourites.service";
 import { EditableCard } from "app/tools/entity-full/editable-card";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { Router } from "@angular/router";
@@ -39,7 +38,6 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   constructor(userService: UserService,
               userDataService: UserDataService,
-              private favouritesService: FavouritesService,
               private router: Router,
               private baseEditService: BaseEditService,
               private baseService: BaseService) {
@@ -63,7 +61,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   private checkIsFavorite() {
     if(!this.userService.user) return;
-    this.favouritesService.getFavouritesLogins().subscribe(favorites => {
+    this.baseService.getFavouritesLogins().subscribe(favorites => {
       if (favorites.find(x => x == this.entity.login)) {
         this.isFavorite = true;
       } else {
@@ -73,9 +71,10 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   }
 
   private addToFavorites() {
-    this.favouritesService.setFavourite(this.entity.login).subscribe(response => {
+    this.isFavorite = !this.isFavorite;
+    this.baseService.setFavourite(this.entity.login,  this.isFavorite).subscribe(response => {
       if (response.success) {
-        this.isFavorite = !this.isFavorite;
+
       }
     })
   }

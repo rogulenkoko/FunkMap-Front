@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BaseModel } from "app/core";
 import { MusicStyle, ExpirienceType } from "app/main/musician/models";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
-import { FavouritesService } from "app/main/favourites/favourites.service";
 import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { RouteBuilder } from "app/tools/route-builder";
@@ -37,7 +36,6 @@ export class EntitySideComponent implements OnInit {
   private isUsers: boolean;
 
   constructor(private typesProvider: MusicianTypesProvider,
-    private favouritesService: FavouritesService,
     private userService: UserService,
     private userDataService: UserDataService,
     private router: Router,
@@ -67,7 +65,7 @@ export class EntitySideComponent implements OnInit {
 
   private checkIsFavorite() {
     if(!this.userService.user) return;
-    this.favouritesService.getFavouritesLogins().subscribe(favorites => {
+    this.baseService.getFavouritesLogins().subscribe(favorites => {
       if (favorites.find(x => x == this.item.login)) {
         this.isFavorite = true;
       } else {
@@ -77,9 +75,10 @@ export class EntitySideComponent implements OnInit {
   }
 
   private addToFavorites() {
-    this.favouritesService.setFavourite(this.item.login).subscribe(response => {
+    this.isFavorite = !this.isFavorite;
+    this.baseService.setFavourite(this.item.login, this.isFavorite).subscribe(response => {
       if (response.success) {
-        this.isFavorite = !this.isFavorite;
+        
       }
     })
   }

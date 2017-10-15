@@ -4,7 +4,6 @@ import { SearchItem } from "app/main/search/search-item";
 import { UserService } from "app/main/user/user.service";
 import { NearestRequest } from "app/main/map/models";
 import { UserDataService } from "app/main/user/user-data.service";
-import { FavouritesService } from "app/main/favourites/favourites.service";
 import { FullLocationRequest } from "app/main/search/search-location-request";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -33,7 +32,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(private searchService: SearchService,
     private userService: UserService,
-    private favouritesService: FavouritesService,
     private filterService: SearchFilterService,
     private mapFilter: MapFilter,
     private baseService: BaseService) {
@@ -83,9 +81,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   private getFavourites() {
-    this.favouritesService.getFavourites().subscribe(favourites => {
+    this.baseService.getFavouritesLogins().subscribe(favourites => {
       this.items.forEach(item => {
-        if (favourites.find(x => x.login == item.login)) {
+        if (favourites.find(x => x == item.login)) {
           item.isFavourite = true;
         }
       });

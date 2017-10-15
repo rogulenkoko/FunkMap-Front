@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { Musician } from "app/main/musician/models";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
-import { FavouritesService } from "app/main/favourites/favourites.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { UserService } from "app/main/user/user.service";
 import { EditService } from "app/tools/entity-full/edit.service";
@@ -12,6 +11,7 @@ import { BandInviteMusicianRequest, BandInviteInfoRequest, BandInviteInfo } from
 import { EntityType } from 'app/main/map/models';
 import * as moment from "moment";
 import { Subscription } from 'rxjs/Subscription';
+import { BaseService } from 'app/tools/base.service';
 
 @Component({
   selector: 'musician-base',
@@ -38,7 +38,7 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
   @ViewChild('inviteToBandActionTemplate') inviteToBandActionTemplate;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
-              private favouritesService: FavouritesService,
+              private baseService: BaseService,
               private userDataService: UserDataService,
               private userService: UserService,
               private editService: EditService,

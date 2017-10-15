@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FavouritesService } from "app/main/favourites/favourites.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserDataService } from 'app/main/user/user-data.service';
 import { BaseService } from 'app/tools/base.service';
@@ -15,8 +14,7 @@ export class FavouritesComponent implements OnInit {
 
   private items: Array<SearchItem>;
   private isLoading: boolean;
-  constructor(private favouritesService: FavouritesService,
-              private baseService: BaseService) { }
+  constructor(private baseService: BaseService) { }
 
   ngOnInit() {
     this.refresh();
@@ -24,7 +22,7 @@ export class FavouritesComponent implements OnInit {
 
   private refresh() {
     this.isLoading = true;
-    this.favouritesService.getFavourites().subscribe(items => {
+    this.baseService.getFavourites().subscribe(items => {
       this.items = items;
       this.getAvatars(this.items);
       this.isLoading = false;
@@ -49,7 +47,7 @@ export class FavouritesComponent implements OnInit {
   private changeFavourite(login: string) {
     var selected = this.items.find(x => x.login == login);
     selected.isFavourite = !selected.isFavourite;
-    this.favouritesService.setFavourite(selected.login).subscribe(x => {
+    this.baseService.setFavourite(selected.login, selected.isFavourite).subscribe(x => {
       if (!x.success) {
         selected.isFavourite = false;
       }
