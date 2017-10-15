@@ -3,10 +3,13 @@
   <div class="d-flex align-items-center">
     <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline" [useLogo]="dialogService.dialog.participants.length > 2"
       [ngClass]="'dialog-bar-avatar'" [onlineSize]="'9px'"></avatar-circle>
-    <span class="dialog-bar-name">{{dialogService.dialog.name}}</span>
-    <span *ngIf="userLogin " class="dialog-bar-login">@{{userLogin}}</span>
+      <div class="d-flex flex-column">
+        <span class="dialog-bar-name">{{dialogService.dialog.name}}</span>
+        <span *ngIf="userLogin " class="dialog-bar-login">@{{userLogin}}</span>
+      </div>
+    
   
-    <div class="nav-item dropdown">
+    <div *ngIf="dialogService.dialog.participants && dialogService.dialog.participants.length > 2" class="nav-item dropdown">
         <a class="icon-dd-points" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">

@@ -34,7 +34,7 @@
 <p-dialog header="{{'ChooseBand' | translate}}" [(visible)]="isGroupsModalVisible" [width]="390" [height]="300" [draggable]="false"
   [modal]="true">
 
-  <div *ngIf="bands" class="filter-value">
+  <div *ngIf="inviteInfo && inviteInfo.availableBands && inviteInfo.availableBands.length > 0" class="filter-value">
     <p-dropdown [options]="bands" [placeholder]="allTitle" [(ngModel)]="bandForInvite"></p-dropdown>
   </div>
 
@@ -44,7 +44,4 @@
 
   </div>
   <div *ngIf="!inviteInfo || !inviteInfo.availableBands || inviteInfo.availableBands.length == 0" class="no-bands-container">{{'NoInviteBands' | translate}}</div>
-
-
-
 </p-dialog>

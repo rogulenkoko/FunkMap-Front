@@ -7,6 +7,8 @@ import { EntityType } from "app/main/map/models";
 import { BandInviteMusicianRequest, BandInviteInfo, BandInviteInfoRequest } from 'app/main/musician/models/band-invite-musician-request';
 import { BandPreview } from 'app/main/band/models';
 import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
+import { InviteBandResponse } from 'app/main/musician/invite-band-response';
+import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -50,8 +52,8 @@ export class MusicianServiceStub extends MusicianService {
      return musician;
    }
 
-   inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>{
-    return Observable.of(new BaseResponse(true));
+   inviteToBand(request: BandInviteMusicianRequest): Observable<InviteBandResponse>{
+    return Observable.of(new InviteBandResponse(true, true));
   }
 
 
@@ -63,6 +65,10 @@ export class MusicianServiceStub extends MusicianService {
     info.availableBands = [band, band1];
     return Observable.of(info);
   }
+
+  leaveBand(request: LeaveBandRequest): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true))
+   }
 
 
 }

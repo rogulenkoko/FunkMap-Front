@@ -71,7 +71,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
 
           if (!login) return;
           var newDialog = new Dialog("", login);
-          newDialog.participants = [login, this.userService.user];
+          newDialog.participants = [login, this.userService.user.login];
           if (!this.dialogs || this.dialogs.length == 0){
             this.dialogs = [newDialog];
           };

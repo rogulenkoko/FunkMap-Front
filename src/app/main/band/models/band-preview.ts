@@ -17,8 +17,11 @@ export class BandPreview extends BaseModel{
         result.desiredInstruments = data.DesiredInstruments;
         result.musicians = data.Musicians;
         result.styles = data.Styles;
-        result.avatar = data.Avatar;
         result.description = data.Description;
+
+        result.avatarId = data.AvatarId;
+        result.avatarMiniId = data.AvatarMiniId;
+
         result.vkLink = data.VkLink;
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;

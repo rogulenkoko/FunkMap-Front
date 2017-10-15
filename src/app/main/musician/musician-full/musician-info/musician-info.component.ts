@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { SearchItem } from 'app/main/search/search-item';
 import { SearchService } from 'app/main/search/search.service';
 import { BaseService } from 'app/tools/base.service';
+import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
 @Component({
   selector: 'musician-info',
@@ -46,6 +47,9 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   private bands: Array<SearchItem>;
+  private isUsers: boolean;
+
+  private hoveredBandLogin: string;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
               private musicianService: MusicianService,
@@ -67,10 +71,11 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateInfoItems();
     this.updateBands();
+    this.isUsers = this.editService.isUsers;
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
@@ -137,16 +142,16 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
     ]
   }
 
-  private updateBands(){
-    if(!this.musician && !this.musician.bandLogins) return;
-    this.baseService.getSpecific(this.musician.bandLogins).subscribe(bands=>{
+  private updateBands() {
+    if (!this.musician && !this.musician.bandLogins) return;
+    this.baseService.getSpecific(this.musician.bandLogins).subscribe(bands => {
       this.bands = bands;
-      var avatarIds = this.bands.map(x=>x.imageId);
-      if(!avatarIds || avatarIds.length == 0) return;
-      this.baseService.getEntitiesImages(avatarIds).subscribe(infos=>{
+      var avatarIds = this.bands.map(x => x.imageId);
+      if (!avatarIds || avatarIds.length == 0) return;
+      this.baseService.getEntitiesImages(avatarIds).subscribe(infos => {
         this.bands.forEach(item => {
-          var info = infos.find(x=>x.id == item.imageId);
-          if(info){
+          var info = infos.find(x => x.id == item.imageId);
+          if (info) {
             item.image = info.image;
           }
         });
@@ -178,6 +183,20 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
     this.musician = musician;
     this.newMusician = Object.create(this.musician);
     this.updateInfoItems();
+    this.updateBands();
+  }
+
+  private leaveBand(bandLogin: string) {
+    var request = new LeaveBandRequest(bandLogin, this.musician.login);
+    this.musicianService.leaveBand(request).subscribe(response => {
+      if (!response.success) return;
+      this.musician.bandLogins = this.musician.bandLogins.filter(x => x != bandLogin);
+      this.updateBands();
+    });
+  }
+
+  private overBand(login: string){
+    this.hoveredBandLogin = login;
   }
 
 }

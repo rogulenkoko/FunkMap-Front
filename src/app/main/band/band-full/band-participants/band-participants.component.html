@@ -3,13 +3,13 @@
   <span class="participants-title">{{'Band_Participants' | translate}}</span>
 
   <div class="participants-container">
-      <div *ngFor="let musician of musicians" class="d-flex align-items-center justify-content-between participant">
+      <div *ngFor="let musician of musicians" class="d-flex align-items-center justify-content-between participant" (mouseover)="overMusician(musician.login)" (mouseleave)="overMusician('')">
         <div class="d-flex align-items-center">
             <span class="participant-instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}:</span>
             <avatar-circle [ngClass]="'participant-avatar'" [image]="musician.avatar" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
             <a [routerLink]="['/musicianPage/' + musician.login]" class="participant-name">{{musician.name}}</a> 
         </div>
-        <i *ngIf="isUsers" (click)="removeMusician(musician)" class="icon-close"></i>
+        <i *ngIf="isUsers && hoveredMusician == musician.login" (click)="removeMusician(musician)" class="icon-close"></i>
           
         </div>
         <span class="no-members" *ngIf="!band.musicians || band.musicians.length == 0">{{'Band_NoMembers' | translate}}</span>

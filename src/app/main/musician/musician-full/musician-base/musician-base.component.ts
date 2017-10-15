@@ -136,6 +136,11 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
     var request = new BandInviteMusicianRequest(this.bandForInvite, this.musician.login);
     this.musicianService.inviteToBand(request).subscribe(response=>{
       if(response.success) this.isGroupsModalVisible = false;
+      if(response.isOwner){
+        if(!this.musician.bandLogins) this.musician.bandLogins = [];
+        this.musician.bandLogins.push(this.bandForInvite);
+        this.editService.baseModel = this.musician;
+      }
     });
   }
 

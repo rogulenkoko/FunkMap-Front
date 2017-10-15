@@ -8,6 +8,8 @@ import { BaseResponse } from "app/tools";
 import { HttpClient } from "app/core/http/http-client.service";
 import { EntityType } from "app/main/map/models";
 import { BandInviteMusicianRequest, BandInviteInfoRequest, BandInviteInfo } from 'app/main/musician/models/band-invite-musician-request';
+import { InviteBandResponse } from 'app/main/musician/invite-band-response';
+import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
 @Injectable()
 export abstract class MusicianService {
@@ -20,9 +22,11 @@ export abstract class MusicianService {
 
   abstract updateMusician(musician: Musician):Observable<BaseResponse>;
 
-  abstract inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>;
+  abstract inviteToBand(request: BandInviteMusicianRequest): Observable<InviteBandResponse>;
 
   abstract getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>;
+
+  abstract leaveBand(request: LeaveBandRequest): Observable<BaseResponse>;
 
 }
 
@@ -47,13 +51,16 @@ export class MusicianServiceHttp extends MusicianService {
      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, musician).map(x=> BaseResponse.ToBaseResponse(x.json()));
    }
 
-   inviteToBand(request: BandInviteMusicianRequest): Observable<BaseResponse>{
-     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/invite`, request).map(x=> BaseResponse.ToBaseResponse(x.json()));;
+   inviteToBand(request: BandInviteMusicianRequest): Observable<InviteBandResponse>{
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/invite`, request).map(x=> InviteBandResponse.ToInviteBandResponse(x.json()));;
    }
 
    getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>{
      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/getInviteInfo`, request).map(x=> BandInviteInfo.ToBandInviteInfo(x.json()));
    }
 
+   leaveBand(request: LeaveBandRequest): Observable<BaseResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/leaveBand`, request).map(x=> BaseResponse.ToBaseResponse(x.json()));
+   }
 
 }

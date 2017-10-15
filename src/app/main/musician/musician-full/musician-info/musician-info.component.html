@@ -7,16 +7,12 @@
 
 <ng-template #bandsTemplate>
     <div *ngIf="bands" class="d-flex flex-column">
-        <!-- <div *ngFor="let band of bands">
-            {{bandLogin}}
-        </div> -->
-
-        <div *ngFor="let band of bands" class="d-flex align-items-center justify-content-between band">
+        <div *ngFor="let band of bands" class="d-flex align-items-center justify-content-between band" (mouseover)="overBand(band.login)" (mouseleave)="overBand('')">
             <div class="d-flex align-items-center">
                 <avatar-circle [ngClass]="'band-avatar'" [image]="band.image" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
                 <a [routerLink]="['/bandPage/' + band.login]" class="band-name">{{band.title}}</a>
             </div>
-            <i *ngIf="isUsers" (click)="removeMusician(musician)" class="icon-close"></i>
+            <i *ngIf="isUsers && hoveredBandLogin == band.login" (click)="leaveBand(band.login)" class="icon-close"></i>
 
         </div>
 

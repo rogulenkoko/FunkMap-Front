@@ -22,6 +22,7 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
   @Input() band: Band;
   private musicians: Array<MusicianPreview> = [];
   
+  private hoveredMusician: string;
 
   constructor(private musicianService: MusicianService,
               private musicianTypesProvider: MusicianTypesProvider,
@@ -61,6 +62,10 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
         this.refreshMusicians();
       }
     });
+  }
+
+  private overMusician(login: string){
+    this.hoveredMusician = login;
   }
 
 }
