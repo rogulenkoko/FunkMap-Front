@@ -26,7 +26,7 @@ export class CropperDirective implements AfterContentInit {
       background: false,
       scalable: false,
       crop: function (e) {
-        //console.log(e);
+        
       }
     });
   }

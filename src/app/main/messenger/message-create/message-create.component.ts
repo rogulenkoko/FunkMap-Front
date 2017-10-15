@@ -58,7 +58,6 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
     if(!this.text) return;
     let message = new Message(this.userService.user.login, this.dialogService.dialog ? this.dialogService.dialog.dialogId : "", this.text);
     this.text = "";
-    console.log(this.isNewDialog);
     if (this.isNewDialog) {
 
       var dialog = new Dialog();

@@ -24,7 +24,6 @@ export class ShopComponent implements OnInit {
   private updateShop(login: string){
     this.shopService.getShop(login).subscribe(shop=>{
       this.shop = shop;
-      console.log(shop);
     })
   }
 

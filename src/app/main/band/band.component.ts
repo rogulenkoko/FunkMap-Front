@@ -35,7 +35,6 @@ export class BandComponent implements OnInit {
     this.lastBandLogin = login;
     if(this.band && login == this.band.login) return;
     this.bandService.getBandPreview(login).subscribe(band=>{
-      console.log(band);
       this.band = band;
     })
   }

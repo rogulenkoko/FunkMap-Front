@@ -4,7 +4,6 @@ export class ImageInfo {
     }
 
     public static ToImageInfos(data: any): Array<ImageInfo> {
-        console.log(data);
         var result = new Array<ImageInfo>();
         if (data) {
             data.forEach(item => {
