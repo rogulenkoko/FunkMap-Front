@@ -59,6 +59,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private changeUserAvatar(){
+    this.router.navigate(["/"]);
     this.changeAvatarMode = true;
   }
 

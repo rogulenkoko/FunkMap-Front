@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 
 import { Router } from "@angular/router";
 import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
 import { VideoApiService } from 'app/tools/video-edit/video-api.service';
+import { Dialog } from 'primeng/primeng';
 
 @Component({
   selector: 'video-edit',
@@ -20,6 +21,7 @@ export class VideoEditComponent implements OnInit {
 
   private isLinkInvalid: boolean = false;
 
+  @ViewChild("videoEditModal") videoEditModal: Dialog;
 
   private _isAddVideoMode: boolean;
   @Input() get isAddVideoMode(): boolean{
@@ -66,10 +68,9 @@ export class VideoEditComponent implements OnInit {
       videoId = this.videoLink.split('/')[this.videoLink.split('/').length - 1];
     }
     this.videoApiService.getVideoInfo(videoId, type).subscribe(info=>{
-      if(info) this.isAddVideoMode = false;
       setTimeout(()=>{
         this.videoInfo = info;
-        this.isAddVideoMode = true;
+        this.videoEditModal.show();
       },10)
       
     })
