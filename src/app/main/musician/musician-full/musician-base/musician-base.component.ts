@@ -12,6 +12,7 @@ import { EntityType } from 'app/main/map/models';
 import * as moment from "moment";
 import { Subscription } from 'rxjs/Subscription';
 import { BaseService } from 'app/tools/base.service';
+import { TranslateSelectItem } from 'app/tools/select';
 
 @Component({
   selector: 'musician-base',
@@ -30,6 +31,8 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
   private isGroupsModalVisible: boolean = false;
   private inviteInfo: BandInviteInfo;
   private bandForInvite: string;
+
+  private bands: Array<TranslateSelectItem>;
 
   private subscription: Subscription;
 
@@ -124,6 +127,7 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
       this.musicianService.getInviteBandInfo(infoRequest).subscribe(info=>{
         this.inviteInfo = info;
         if(this.inviteInfo.availableBands && this.inviteInfo.availableBands.length > 0) this.bandForInvite = this.inviteInfo.availableBands[0].login;
+        this.bands = this.inviteInfo.availableBands.map(x=> new TranslateSelectItem(x.login, x.name));
         this.isGroupsModalVisible = true;
       });
   }

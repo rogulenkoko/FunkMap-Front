@@ -31,16 +31,13 @@
 </ng-template>
 
 
-<p-dialog header="{{'ChooseBand' | translate}}" [(visible)]="isGroupsModalVisible" [width]="390" [height]="430" [draggable]="false"
+<p-dialog header="{{'ChooseBand' | translate}}" [(visible)]="isGroupsModalVisible" [width]="390" [height]="300" [draggable]="false"
   [modal]="true">
 
-  <div *ngIf="inviteInfo && inviteInfo.availableBands && inviteInfo.availableBands.length > 0" class="d-flex flex-column invite-bands-container align-items-center">
-    <div class="mr-4 d-flex align-items-center" *ngFor="let band of inviteInfo.availableBands" class="invite-band">
-      <input type="radio" name="reportType" id="reportType{{band.login}}" [(ngModel)]="bandForInvite" [value]="band.login">
-      <label class="radio-label" for="reportType{{band.login}}">{{band.name}}</label>
-    </div>
-
+  <div *ngIf="bands" class="filter-value">
+    <p-dropdown [options]="bands" [placeholder]="allTitle" [(ngModel)]="bandForInvite"></p-dropdown>
   </div>
+
   <div *ngIf="inviteInfo && inviteInfo.availableBands && inviteInfo.availableBands.length > 0" class="buttons-container d-flex justify-content-center">
     <button (click)="cancelInvite()" class="btn btn-secondary">{{ 'Cancel' | translate }}</button>
     <button (click)="sendInvite()" class="btn btn-success">{{'Invite' | translate}}</button>

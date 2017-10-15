@@ -58,8 +58,9 @@ export class MusicianServiceStub extends MusicianService {
   getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>{
     var info = new BandInviteInfo();
     var band = new BandPreview("test", "test", EntityType.Band);
+    var band1 = new BandPreview("test1", "test1", EntityType.Band);
 
-    info.availableBands = [band];
+    info.availableBands = [band, band1];
     return Observable.of(info);
   }
 
