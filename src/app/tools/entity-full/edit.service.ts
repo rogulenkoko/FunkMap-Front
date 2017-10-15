@@ -13,7 +13,6 @@ export class EditService {
 
   public set baseModel(value: BaseModel){
     this._baseModel = value;
-    console.log("засетил");
     this.onSaved.emit(value);
   }
 

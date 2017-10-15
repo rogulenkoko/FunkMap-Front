@@ -26,15 +26,13 @@ export class EntityInfoComponent extends EditableCard implements OnInit {
   @Input() width: string;
   @Input() height: string;
   
-  constructor(userService: UserService,
-              userDataService: UserDataService,
-             private editService: EditService) {
-    super(userService, userDataService);
+  constructor(private editService: EditService) {
+    super();
     this.entity = this.editService.baseModel;
   }
 
   ngOnInit() {
-    this.checkIsUserEntity(this.entity.login);
+    
   }
 }
 

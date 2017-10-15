@@ -40,10 +40,8 @@ export class EntityMapComponent extends EditableCard implements OnInit {
               private mapService: MapService,
               private router: Router,
               private route: ActivatedRoute,
-              userService: UserService,
-              userDataService: UserDataService,
               private editService: EditService) {
-    super(userService, userDataService);
+    super();
     this.onEditModeEnabled.subscribe(() => this.toMapCreation());
     this.onSaved.subscribe(() => this.saveLocation());
     this.onCanceled.subscribe(() => this.cancelChanges());
@@ -55,8 +53,6 @@ export class EntityMapComponent extends EditableCard implements OnInit {
     this.route.params.subscribe(params => {
       this.onParamsLoaded(params);
     });
-
-    this.checkIsUserEntity(this.marker.login);
   }
 
   private onParamsLoaded(params) {

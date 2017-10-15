@@ -11,27 +11,19 @@ export class EditableCard {
     @Output() onCanceled: EventEmitter<any>;
     protected onEditModeEnabled: EventEmitter<any>;
 
-    protected isUsers: boolean = false;
+    @Input() isUsers: boolean = false;
 
-    constructor(protected userService: UserService,
-                protected userDataService: UserDataService) {
+    constructor() {
         this.onSaved = new EventEmitter();
         this.onCanceled = new EventEmitter();
         this.onEditModeEnabled = new EventEmitter();
     }
-
-    protected checkIsUserEntity(login: string) {
-        if (!this.userService.user) return;
-        this.userDataService.getUserEntitiesLogins().subscribe(logins => {
-            this.isUsers = logins.find(x => x == login) ? true : false;
-        });
-    }
-
+    
     protected changeEditMode(choice: number) {
-        if (choice > 0){
+        if (choice > 0) {
             this.onEditModeEnabled.emit();
             this.isEditMode = true;
-        } 
+        }
         else this.isEditMode = false;
     }
 
@@ -49,5 +41,21 @@ export class EditableCard {
     protected cancel() {
         this.isEditMode = false;
         this.onCanceled.emit();
+    }
+}
+
+export class EditableCardContainer {
+    constructor(protected userService: UserService,
+                protected userDataService: UserDataService) {
+
+    }
+
+    protected isUsers: boolean = false;
+
+    protected checkIsUserEntity(login: string) {
+        if (!this.userService.user) return;
+        this.userDataService.getUserEntitiesLogins().subscribe(logins => {
+            this.isUsers = logins.find(x => x == login) ? true : false;
+        });
     }
 }

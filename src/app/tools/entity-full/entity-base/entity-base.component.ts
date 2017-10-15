@@ -36,19 +36,17 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   private isDeleteMode: boolean = false;
   private changeAvatarMode: boolean = false;
 
-  constructor(userService: UserService,
-              userDataService: UserDataService,
+  constructor(private userService: UserService,
               private router: Router,
               private baseEditService: BaseEditService,
               private baseService: BaseService) {
-    super(userService, userDataService);
+    super();
     this.onAvatarLoaded = new EventEmitter<string>();
     
   }
 
   ngOnInit() {
     
-    this.checkIsUserEntity(this.entity.login);
     this.checkIsFavorite();
     this.baseService.getEntitiesImages([this.entity.avatarId]).subscribe(infos=>{
       if(infos && infos.length == 1){

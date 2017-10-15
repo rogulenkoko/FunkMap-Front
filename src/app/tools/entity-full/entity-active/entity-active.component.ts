@@ -17,15 +17,12 @@ export class EntityActiveComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
 
-  constructor(private baseEditService: BaseEditService,
-              userService: UserService,
-              userDataService: UserDataService) {
-    super(userService, userDataService);
+  constructor(private baseEditService: BaseEditService) {
+    super();
    }
 
   ngOnInit() {
     this.isNotActive = !this.entity.isActive;
-    this.checkIsUserEntity(this.entity.login);
   }
 
   changeActivity(activity: boolean){
