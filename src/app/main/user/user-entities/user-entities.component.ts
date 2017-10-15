@@ -12,6 +12,8 @@ import { BaseService } from 'app/tools/base.service';
 })
 export class UserEntitiesComponent implements OnInit {
 
+  public scrollbarOptions = { axis: 'y', theme: 'minimal-dark',  scrollInertia: 500 };
+
   private items: Array<SearchItem>;
 
   private isLoading: boolean;

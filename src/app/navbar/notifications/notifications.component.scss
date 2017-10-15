@@ -10,8 +10,8 @@
 
     .notifications-container{
         margin-top: 20px;
-        overflow-y: auto;
         max-height: 220px;
+        padding-right: 20px;
         .notifications-avatar{
             margin-right: 10px;
         }
@@ -28,7 +28,7 @@
 
         .actions-cotainer{
             width: 70px;
-            margin-left: 25px;
+            margin-left: 15px;
             text-align: right;
 
             .icon-close{
@@ -59,8 +59,4 @@
             font-size: 13px;
         }
     }
-}
-
-::-webkit-scrollbar {
-    width: 0px;
 }

@@ -3,12 +3,8 @@
 
 
 .search-items-container{
-    max-height: 96%;
-    overflow-y: auto;
-}
-
-::-webkit-scrollbar {
-    width: 0px;
+    height: 1px;
+    flex: 2;
 }
 
 .no-items-message-container{

@@ -1,5 +1,5 @@
 <side [title]="'Profile'">
-  <div class="search-items-container">
+  <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="search-items-container">
     <search-list [items]="items"></search-list>
     <div *ngIf="(!items || items.length == 0) && !isLoading" class="no-items-message-container d-flex flex-column justify-content-center align-items-center">
       {{'User_NoEntities' | translate}}

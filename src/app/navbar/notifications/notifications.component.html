@@ -1,6 +1,6 @@
 <div class="notifications-main-container">
   <span class="notifications-title">{{'Notifications' | translate}}</span>
-  <div class="notifications-container">
+  <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="notifications-container">
     <div *ngFor="let notification of notifications">
       <div class="d-flex flex-row">
         <div class="notification-content d-flex flex-column">
@@ -17,8 +17,6 @@
             <span *ngIf="!notification.isConfirmed" (click)="sendResponse(1, notification.id)" class="fa fa-check"></span>
             <span *ngIf="notification.isConfirmed" class="action-label">{{'Notifications_IsSent' | translate}}</span>
         </div>
-        
-
       </div>
     </div>
 

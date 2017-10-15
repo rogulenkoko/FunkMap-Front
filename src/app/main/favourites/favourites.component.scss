@@ -2,14 +2,9 @@
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/icons.scss";
 
-::-webkit-scrollbar {
-    width: 0px;
-}
-
 .main-search-container{
-    //max-height: 97%;
-    overflow-y: auto;
     flex: 2;
+    height: 1px;
 }
 
 .search-item{

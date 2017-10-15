@@ -77,9 +77,7 @@ export class VideoEditComponent implements OnInit {
 
   private save(){
     this.onVideoSaved.emit(this.videoInfo);
-    this.isAddVideoMode = false;
-    this.videoInfo = undefined;
-    this.isAddVideoModeChange.emit(this.isAddVideoMode);
+    this.clear();
   }
 
   private getParameterByName(name: string, source: string) {
@@ -88,9 +86,14 @@ export class VideoEditComponent implements OnInit {
   }
 
   private onClosed(){
+    this.clear();
+  }
+
+  private clear(){
     this.videoInfo = undefined;
     this.isAddVideoMode = false;
     this.isAddVideoModeChange.emit(this.isAddVideoMode);
+    this.videoLink = "";
   }
 
 }

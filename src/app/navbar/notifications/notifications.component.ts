@@ -15,6 +15,8 @@ import { SignalrService } from 'app/tools/signalr/signalr.service';
 })
 export class NotificationsComponent implements OnInit {
 
+  public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
+
   private userAvatars: Dictionary<string, string>;
 
   private notifications: Array<FunkmapNotification> = [];
