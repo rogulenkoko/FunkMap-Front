@@ -4,6 +4,9 @@ import { MusicianService } from "app/main/musician/musician.service";
 import { ActivatedRoute } from "@angular/router";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { BaseEditService } from 'app/tools/entity-full/base-edit.service';
+import { EditableCardContainer } from 'app/tools/entity-full/editable-card';
+import { UserService } from 'app/main/user/user.service';
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'app-musician-full',
@@ -11,11 +14,14 @@ import { BaseEditService } from 'app/tools/entity-full/base-edit.service';
   styleUrls: ['./musician-full.component.scss'],
   providers: [EditService]
 })
-export class MusicianFullComponent implements OnInit {
+export class MusicianFullComponent extends EditableCardContainer implements OnInit {
 
   constructor(private musicianService: MusicianService,
     private route: ActivatedRoute,
-    private editService: EditService) {
+    private editService: EditService,
+    userService: UserService,
+    userDataService: UserDataService) {
+      super(userService, userDataService);
   }
 
   ngOnInit() {
@@ -30,9 +36,15 @@ export class MusicianFullComponent implements OnInit {
     if(this.editService.baseModel && this.editService.baseModel.login == login){
       return;
     }
-    this.musicianService.getMusician(login).subscribe(musician => {
-      this.editService.baseModel = musician;
-    })
+
+    this.checkIsUserEntity(login).subscribe(isUsers=>{
+      this.editService.isUsers = isUsers;
+      this.musicianService.getMusician(login).subscribe(musician => {
+        this.editService.baseModel = musician;
+      });
+    });
+    
+    
   }
 
 }

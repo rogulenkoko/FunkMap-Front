@@ -22,12 +22,14 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
   private isAddVideoMode: boolean = false;
 
   constructor(private editBaseService: BaseEditService,
-              private router: Router) {
+              private router: Router,
+            private editService: EditService) {
     super();
   }
 
   ngOnInit() {
     this.isEditVisible = true;
+    this.isUsers = this.editService.isUsers;
   }
 
   private editVideo() {

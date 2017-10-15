@@ -32,7 +32,7 @@ export class EntityInfoComponent extends EditableCard implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.isUsers = this.editService.isUsers;
   }
 }
 

@@ -5,6 +5,8 @@ import { Musician } from 'app/main/musician/models';
 @Injectable()
 export class EditService {
 
+  public isUsers: boolean = false;
+
   private _baseModel: BaseModel;
 
   public get baseModel(): BaseModel{

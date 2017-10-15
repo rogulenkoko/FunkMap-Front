@@ -26,11 +26,13 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
   constructor(private musicianService: MusicianService,
               private musicianTypesProvider: MusicianTypesProvider,
               private bandService: BandService,
-              private baseService: BaseService) {
+              private baseService: BaseService,
+              private editService: EditService) {
     super();
   }
 
   ngOnInit() {
+    this.isUsers = this.editService.isUsers;
     this.refreshMusicians();
   }
 

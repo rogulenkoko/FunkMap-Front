@@ -1,8 +1,3 @@
-
-<div #messagesContainer id="main-messages-container" class="outer">
-    <div *ngIf="dialogService.dialog" class="main-messages-container d-flex flex-column justify-content-end">
-        <message *ngFor="let message of messages" [ngClass]="'message-component'" [message]="message"></message>
-      </div>
+<div id="main-messages-container" *ngIf="dialogService.dialog" class="main-messages-container d-flex flex-column justify-content-end">
+    <message *ngFor="let message of messages" [ngClass]="'message-component'" [message]="message"></message>
 </div>
-
-

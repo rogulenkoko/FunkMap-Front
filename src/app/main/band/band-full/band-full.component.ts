@@ -16,9 +16,9 @@ export class BandFullComponent extends EditableCardContainer implements OnInit {
 
  
 
-  constructor(private editService: EditService,
-              private bandService: BandService,
+  constructor(private bandService: BandService,
               private route: ActivatedRoute,
+              private editService: EditService,
               userService: UserService,
               userDataService: UserDataService) {
     super(userService, userDataService);
@@ -32,13 +32,20 @@ export class BandFullComponent extends EditableCardContainer implements OnInit {
   }
 
   private refreshBand(login: string) {
-    this.checkIsUserEntity(login);
     if(this.editService.baseModel && this.editService.baseModel.login == login){
       return;
     }
-    this.bandService.getBand(login).subscribe(band => {
-      this.editService.baseModel = band;
-    })
+
+    this.checkIsUserEntity(login).subscribe(isUsers=>{
+      this.editService.isUsers = this.isUsers;
+
+      this.bandService.getBand(login).subscribe(band => {
+        this.editService.baseModel = band;
+      })
+      
+    });
+   
+    
   }
 
 }

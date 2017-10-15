@@ -4,15 +4,9 @@
     height: 560px;
 }
 
-.outer{
-    border-radius: 0 0 5px 5px;
-    background: $dark-card-background;
-    flex:2;
-    
-}
-
 .main-messages-container{
     padding-top: 20px; 
-    .message-component{
-    }
+    flex:2;
+    border-radius: 0 0 5px 5px;
+    background: $dark-card-background;
 }

@@ -49,6 +49,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   }
 
   ngOnInit() {
+    this.isUsers = this.editService.isUsers;
     this.initMap(this.marker);
     this.route.params.subscribe(params => {
       this.onParamsLoaded(params);

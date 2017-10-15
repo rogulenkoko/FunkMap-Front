@@ -2,6 +2,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UserService } from "app/main/user/user.service";
 import { UserDataService } from "app/main/user/user-data.service";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 
 export class EditableCard {
     protected isEditVisible: boolean = false;
@@ -11,7 +13,7 @@ export class EditableCard {
     @Output() onCanceled: EventEmitter<any>;
     protected onEditModeEnabled: EventEmitter<any>;
 
-    @Input() isUsers: boolean = false;
+    protected isUsers: boolean = false;
 
     constructor() {
         this.onSaved = new EventEmitter();
@@ -52,10 +54,11 @@ export class EditableCardContainer {
 
     protected isUsers: boolean = false;
 
-    protected checkIsUserEntity(login: string) {
+    protected checkIsUserEntity(login: string) : Observable<boolean> {
         if (!this.userService.user) return;
-        this.userDataService.getUserEntitiesLogins().subscribe(logins => {
+        return Observable.create((observer: Observer<boolean>)=> this.userDataService.getUserEntitiesLogins().subscribe(logins => {
             this.isUsers = logins.find(x => x == login) ? true : false;
-        });
+            observer.next(this.isUsers);
+        }));
     }
 }
