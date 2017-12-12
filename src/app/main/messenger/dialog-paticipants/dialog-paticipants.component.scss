@@ -1,0 +1,32 @@
+@import "src/assets/styles/dark-colors.scss";
+
+
+.users-container{
+
+    padding: 0 60px;
+
+    .user-container{
+        margin-bottom: 12px;
+    
+        .new-user-name{
+            margin-left: 10px;
+            color: $active-color;
+            font-size: 14px;
+        }
+        
+        .new-user-login{
+            margin-left: 10px;
+            color: $inactive-color;
+            font-size: 13px;
+        }
+        
+        .icon-close{
+            color: $inactive-color;
+            font-size: 8px;
+        }
+    
+    }
+}
+
+
+
