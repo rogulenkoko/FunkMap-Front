@@ -30,11 +30,11 @@ export class BandServiceHttp extends BandService {
    }
 
    getBandPreview(id: string): Observable<BandPreview>{
-     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/get/${id}`).map(res=>BandPreview.ToBandPreview(res.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/get/${id}`).map(res=>BandPreview.ToBandPreview(res.json()));
    }
 
    getBand(login: string): Observable<Band>{
-     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/getFull/${login}`).map(x=>Band.ToBand(x.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getFull/${login}`).map(x=>Band.ToBand(x.json()));
    }
 
    updateBand(band:Band): Observable<BaseResponse>{

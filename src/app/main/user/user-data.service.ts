@@ -20,7 +20,6 @@ export abstract class UserDataService {
   constructor() { }
 
   abstract getImage(login: string): Observable<string>;
-  abstract getImages(logins: Array<string>): Observable<Array<UserAvatarResponse>>;
 
   abstract saveImage(request: SaveImageRequest): Observable<BaseResponse>;
 
@@ -41,10 +40,6 @@ export class UserDataServiceHttp extends UserDataService {
 
   getImage(login: string): Observable<string> {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/avatar/${login}`).map(x => x.json());
-  }
-
-  getImages(logins: Array<string>): Observable<Array<UserAvatarResponse>>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/avatars`, logins).map(x => UserAvatarResponse.ToUserAvatarResponses(x.json()));
   }
 
   saveImage(request: SaveImageRequest): Observable<BaseResponse> {

@@ -25,11 +25,11 @@ export class RehearsalServiceHttp extends RehearsalService {
   }
 
   getRehearsalPreview(login: string): Observable<RehearsalPreview> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}rehearsal/get/${login}`).map(x=>RehearsalPreview.ToRehearsalPreview(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/get/${login}`).map(x=>RehearsalPreview.ToRehearsalPreview(x.json()));
   }
 
   getRehearsal(login: string): Observable<Rehearsal>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}rehearsal/getFull/${login}`).map(x=>Rehearsal.ToRehearsal(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getFull/${login}`).map(x=>Rehearsal.ToRehearsal(x.json()));
   }
 
   updateRehearsal(rehersal: Rehearsal): Observable<BaseResponse>{

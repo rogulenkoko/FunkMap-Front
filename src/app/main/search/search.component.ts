@@ -102,15 +102,16 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   private getAvatars(items: Array<SearchItem>) {
-    var ids = items.filter(x => x.imageId).map(x => x.imageId);
-    this.baseService.getEntitiesImages(ids).subscribe(infos => {
-      items.forEach(item => {
-        var info = infos.find(x=>x.id == item.imageId);
-        if(info){
-          item.image = info.image;
-        }
+
+    if(!items || items.length == 0) return;
+    items.forEach(item => {
+      this.baseService.getEntityImage(item.imageId).subscribe(avatar => {
+        item.image = avatar;
       });
     });
+
+    var ids = items.filter(x => x.imageId).map(x => x.imageId);
+   
   }
 
   private enableFilter() {

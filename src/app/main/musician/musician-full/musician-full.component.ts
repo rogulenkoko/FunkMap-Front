@@ -36,7 +36,6 @@ export class MusicianFullComponent extends EditableCardContainer implements OnIn
     if(this.editService.baseModel && this.editService.baseModel.login == login){
       return;
     }
-    console.log(this.checkIsUserEntity);
     this.checkIsUserEntity(login).subscribe(isUsers=>{
       this.editService.isUsers = isUsers;
       this.musicianService.getMusician(login).subscribe(musician => {

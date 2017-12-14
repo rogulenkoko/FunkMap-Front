@@ -26,11 +26,11 @@ export class StudioServiceHttp extends StudioService {
   }
 
   getStudioPreview(login: string): Observable<StudioPreview> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}studio/get/${login}`).map(x => StudioPreview.ToStudioPreview(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/get/${login}`).map(x => StudioPreview.ToStudioPreview(x.json()));
   }
 
   getStudio(login: string): Observable<Studio> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}studio/getFull/${login}`).map(x => Studio.ToStudio(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getFull/${login}`).map(x => Studio.ToStudio(x.json()));
   }
 
   updateStudio(studio: Studio): Observable<BaseResponse>{

@@ -34,15 +34,15 @@ export class UserEntitiesComponent implements OnInit {
   }
 
   private getAvatars(items: Array<SearchItem>) {
-    var ids = items.filter(x => x.imageId).map(x => x.imageId);
-    this.baseService.getEntitiesImages(ids).subscribe(infos => {
-      items.forEach(item => {
-        var info = infos.find(x=>x.id == item.imageId);
-        if(info){
-          item.image = info.image;
-        }
+    if(!items) return;
+    items.forEach(items => {
+      this.baseService.getEntityImage(items.imageId).subscribe(avatar => {
+        items.image = avatar;
       });
     });
+
+
+   
   }
 
 }

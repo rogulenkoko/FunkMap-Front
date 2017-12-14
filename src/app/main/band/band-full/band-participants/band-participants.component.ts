@@ -42,10 +42,8 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
     this.band.musicians.forEach(musicianLogin => {
       this.musicianService.getMusicianPreview(musicianLogin).subscribe(musician=> {
         this.musicians.push(musician);
-        this.baseService.getEntitiesImages([musician.avatarMiniId]).subscribe(info=>{
-          if(info && info.length == 1){
-            musician.avatar = info[0].image;
-          }
+        this.baseService.getEntityImage(musician.avatarMiniId).subscribe(avatar=>{
+          musician.avatar = avatar;
         })
       });
     });

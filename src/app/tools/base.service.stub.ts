@@ -19,8 +19,8 @@ export class BaseServiceStub extends BaseService {
     return Observable.of([]);
   }
 
-  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>{
-    return Observable.of([]);
+  getEntityImage(ids: string): Observable<string>{
+    return Observable.of(null);
   }
 
   getFavourites(): Observable<Array<SearchItem>>{

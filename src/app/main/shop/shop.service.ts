@@ -27,11 +27,11 @@ export class ShopServiceHttp extends ShopService {
   }
 
   getShopPreview(login: string): Observable<ShopPreview> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/get/${login}`).map(x => ShopPreview.ToShopPreview(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/get/${login}`).map(x => ShopPreview.ToShopPreview(x.json()));
   }
 
   getShop(login: string): Observable<Shop> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}shop/getFull/${login}`).map(x => Shop.ToShop(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getFull/${login}`).map(x => Shop.ToShop(x.json()));
   }
 
   updateShop(shop: Shop): Observable<BaseResponse> {

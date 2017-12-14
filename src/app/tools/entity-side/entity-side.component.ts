@@ -49,10 +49,8 @@ export class EntitySideComponent implements OnInit {
   }
 
   private updateAvatar(){
-    this.baseService.getEntitiesImages([this.item.avatarId]).subscribe(infos=>{
-      if(infos && infos.length == 1){
-        this.item.avatar = infos[0].image;
-      }
+    this.baseService.getEntityImage(this.item.avatarId).subscribe(avatar=>{
+      this.item.avatar = avatar;
     });
   }
 

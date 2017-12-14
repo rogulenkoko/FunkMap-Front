@@ -49,10 +49,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
     this.checkIsFavorite();
-    this.baseService.getEntitiesImages([this.entity.avatarId]).subscribe(infos=>{
-      if(infos && infos.length == 1){
-        this.entity.avatar = infos[0].image;
-      }
+    this.baseService.getEntityImage(this.entity.avatarId).subscribe(avatar=>{
+      this.entity.avatar = avatar;
     });
   }
 

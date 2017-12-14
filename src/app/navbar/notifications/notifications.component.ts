@@ -59,12 +59,11 @@ export class NotificationsComponent implements OnInit {
       this.refreshAvatars();
       return;
     };
-    this.userDataService.getImages(newLogins).subscribe(avatars=>{
-      if(!avatars) return;
-      avatars.forEach(element => {
-        this.userAvatars.setValue(element.login, element.image);
-      });
-      this.refreshAvatars();
+
+    newLogins.forEach(login=>{
+      this.userDataService.getImage(login).subscribe(avatar=>{
+        this.userAvatars.setValue(login, avatar);
+      })
     });
   }
 

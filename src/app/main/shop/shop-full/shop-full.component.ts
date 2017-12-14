@@ -31,7 +31,7 @@ export class ShopFullComponent extends EditableCardContainer implements OnInit {
 
   private refreshBand(login: string) {
     this.checkIsUserEntity(login).subscribe(isUsers=>{
-      this.isUsers = isUsers;
+      this.editService.isUsers = isUsers;
       this.shopService.getShop(login).subscribe(shop => {
         this.editService.baseModel = shop;
       });

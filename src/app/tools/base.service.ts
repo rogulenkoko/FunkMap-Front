@@ -13,7 +13,7 @@ export abstract class BaseService {
 
   abstract getSpecific(logins: Array<string>): Observable<Array<SearchItem>>;
 
-  abstract getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>>;
+  abstract getEntityImage(id: string): Observable<string>;
 
   abstract getFavourites(): Observable<Array<SearchItem>>;
 
@@ -34,8 +34,9 @@ export class BaseServiceHttp extends BaseService {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`, logins).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
-  getEntitiesImages(ids: Array<string>): Observable<Array<ImageInfo>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/images`, ids).map(x => ImageInfo.ToImageInfos(x.json()));
+  getEntityImage(id: string): Observable<string> {
+    console.log(id);
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getimage?id=${id}`,null).map(x => x.json());
   }
 
   getFavouritesLogins(): Observable<Array<string>>{

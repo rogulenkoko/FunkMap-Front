@@ -21,10 +21,6 @@ export class UserDataServiceStub extends UserDataService {
     return Observable.of(null);
   }
 
-  getImages(logins: Array<string>): Observable<Array<UserAvatarResponse>> {
-    return Observable.of([new UserAvatarResponse("test", null)]);
-  }
-
   saveImage(request: SaveImageRequest): Observable<BaseResponse> {
     return Observable.of(new BaseResponse(true));
   }
