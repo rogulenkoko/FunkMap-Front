@@ -77,6 +77,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private getNotificationsCount(){
+    if(!this.userService.user) return;
     this.notificationService.getNewNotificationsCount().subscribe(count=>{
       this.notificationsInfoService.newNotificationsCount = count;
     });

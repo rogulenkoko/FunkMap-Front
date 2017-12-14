@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
               private messengerService: MessengerService,
               private router: Router) {
     this.subscription = new Subscription();
-    this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
+    this.initializeSubscriptions();
     this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(()=> this.getNewMessagesCount()));
     
   }
@@ -110,7 +110,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   private initializeSubscriptions() {
-    this.messengerService.onMessageRecieved.subscribe((message) => this.updateNewMessagesCount(message));
+    this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message) => this.updateNewMessagesCount(message)));
   }
 
   private onRouteChanged(url: string){

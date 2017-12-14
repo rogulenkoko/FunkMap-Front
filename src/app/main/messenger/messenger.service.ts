@@ -8,16 +8,23 @@ import { HttpClient } from "app/core/http/http-client.service";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import 'rxjs/add/observable/fromPromise';
 import { Subscription } from "rxjs/Subscription";
+import { ISignalRConnection } from 'ng2-signalr/src/services/connection/i.signalr.connection';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export abstract class MessengerService {
 
   constructor(protected signalrService: SignalrService) {
-    this.signalrService.onConnectionStart.subscribe(() => this.initializeEvents());
-    if(this.signalrService.connection) this.initializeEvents();
     this.onDialogOpened = new EventEmitter();
     this.onMessagesLoaded = new EventEmitter();
     this.onDialogCreated = new EventEmitter<string>();
+
+    this._onMessageRecieved = new Subject<Message>();
+    this._onUserDisconnected = new Subject<string>();
+    this._onUserConnected = new Subject<string>();
+    this._onDialogRead = new Subject<string>();
+
+    this.signalrService.connection.subscribe(connection=>this.subscribeEvents(connection));
   }
 
 
@@ -37,35 +44,37 @@ export abstract class MessengerService {
 
   abstract getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>;
 
-  private onMessageRecievedEvent: BroadcastEventListener<Message>;
-  public onMessageRecieved: Observable<Message>;
+  private _onMessageRecieved: Subject<Message>;
+  public get onMessageRecieved(): Observable<Message>{
+    return this._onMessageRecieved;
+  };
 
+  private _onUserDisconnected: Subject<string>;
+  public get onUserDisconnected(): Observable<string>{
+    return this._onUserDisconnected;
+  };
 
-  private onUserDisconnectedEvent:  BroadcastEventListener<string>;
-  public onUserDisconnected: Observable<string>;
+  private _onUserConnected: Subject<string>;
+  public get onUserConnected(): Observable<string>{
+    return this._onUserConnected;
+  };
 
-  private onUserConnectedEvent:  BroadcastEventListener<string>;
-  public onUserConnected: Observable<string>;
-
-  private onDialogReadEvent: BroadcastEventListener<string>;
-  public onDialogRead: Observable<string>;
+  private _onDialogRead: Subject<string>;
+  public get onDialogRead(): Observable<string>{
+    return this._onDialogRead;
+  };
 
   public onDialogOpened: EventEmitter<any>;
   public onMessagesLoaded: EventEmitter<any>;
   public onDialogCreated: EventEmitter<string>;
 
-  private initializeEvents() {
-    this.onMessageRecievedEvent = this.signalrService.connection.listenFor("OnMessageSent");
-    this.onMessageRecieved = this.onMessageRecievedEvent.map(x=> Message.ToMessage(x));
-
-    this.onUserDisconnectedEvent = this.signalrService.connection.listenFor("onUserDisconnected");
-    this.onUserDisconnected = this.onUserDisconnectedEvent.map(x=> x);
-
-    this.onUserConnectedEvent = this.signalrService.connection.listenFor("onUserConnected");
-    this.onUserConnected = this.onUserConnectedEvent.map(x=> x);
-
-    this.onDialogReadEvent = this.signalrService.connection.listenFor("onDialogRead");
-    this.onDialogRead = this.onDialogReadEvent.map(x=> x);
+  private subscribeEvents(connection: ISignalRConnection){
+    if(!connection) return;
+    console.log("подписался заново")
+    connection.listenFor("OnMessageSent").subscribe(message=>this._onMessageRecieved.next(Message.ToMessage(message)));
+    connection.listenFor("onUserDisconnected").subscribe((message:string)=>this._onUserDisconnected.next(message));
+    connection.listenFor("onUserConnected").subscribe((message:string)=>this._onUserConnected.next(message));
+    connection.listenFor("onDialogRead").subscribe((message:string)=>this._onDialogRead.next(message));
   }
 
 }
@@ -80,7 +89,7 @@ export class MessengerServiceHub extends MessengerService {
   }
 
   sendMessage(message: Message): Observable<BaseResponse> {
-    return Observable.fromPromise(this.signalrService.connection.invoke("sendMessage", message));
+    return this.signalrService.connection.switchMap(connection=>{console.log(1,connection);return Observable.fromPromise(connection.invoke("sendMessage", message))}).map(x=>BaseResponse.ToBaseResponse(x));
   }
 
   createDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
@@ -93,7 +102,7 @@ export class MessengerServiceHub extends MessengerService {
   
 
   setOpenedDialog(dialogId: string): Observable<BaseResponse>{
-    return Observable.fromPromise(this.signalrService.connection.invoke("setOpenedDialog", dialogId));
+    return this.signalrService.connection.switchMap(connection=> Observable.fromPromise(connection.invoke("setOpenedDialog", dialogId))).map(x=>BaseResponse.ToBaseResponse(x));
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {

@@ -5,6 +5,7 @@ export class BaseResponse{
     }
 
     public static ToBaseResponse(data: any):BaseResponse{
+        console.log(data);
         return new BaseResponse(data.Success);
     }
 }

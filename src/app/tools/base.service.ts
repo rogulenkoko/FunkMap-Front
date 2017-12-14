@@ -35,7 +35,6 @@ export class BaseServiceHttp extends BaseService {
   }
 
   getEntityImage(id: string): Observable<string> {
-    console.log(id);
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getimage?id=${id}`,null).map(x => x.json());
   }
 

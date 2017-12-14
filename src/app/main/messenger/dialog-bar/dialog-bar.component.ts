@@ -28,6 +28,7 @@ export class DialogBarComponent implements OnInit {
   }
 
   private updateDialogLogin() {
+    if(!this.userService.user) return;
     if (this.userService.user.login && this.dialogService.dialog && this.dialogService.dialog.participants && this.dialogService.dialog.participants.length == 2) {
       this.userLogin = this.dialogService.dialog.participants.filter(x => x != this.userService.user.login)[0];
     }

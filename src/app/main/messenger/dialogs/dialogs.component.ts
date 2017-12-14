@@ -34,8 +34,9 @@ export class DialogsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router) {
     this.subscription = new Subscription();
-    this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
-    if (this.signalrService.connection) this.initializeSubscriptions();
+
+    this.initializeSubscriptions();
+    
     this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(() => this.updateDialogsNewMessagesCount()));
     this.subscription.add(this.messengerService.onDialogCreated.subscribe((dialogId) => this.refreshDialogs(dialogId)));
     this.subscription.add(this.dialogService.onDialogChanged.subscribe((dialog: Dialog) => {

@@ -33,14 +33,12 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription = new Subscription();
     
     this.subscription.add(this.dialogService.onDialogChanged.subscribe(dialog => { this.refreshMessages(); this.getUsersAvatars()}));
-    this.signalrService.onConnectionStart.subscribe(() => this.initializeSubscriptions());
-    if(this.signalrService.connection) this.initializeSubscriptions();
   }
 
   ngOnInit() {
     this.getUsersAvatars();
     this.refreshMessages();
-    
+    this.initializeSubscriptions();
   }
 
   ngAfterViewInit(){
@@ -80,13 +78,14 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private initializeSubscriptions(){
-    this.messengerService.onMessageRecieved.subscribe(message=>{
+    this.subscription.add(this.messengerService.onMessageRecieved.subscribe(message=>{
+      console.log(message);
       this.onMessageRecieved(message);
-    });
+    }));
 
-    this.messengerService.onDialogRead.subscribe(dialogId=>{
+    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=>{
       this.onDialogRead(dialogId);
-    });
+    }));
   }
 
 }
