@@ -23,7 +23,6 @@ export class EntitySideComponent implements OnInit {
 
   set item(value: BaseModel){
     this._item = value;
-    this.updateAvatar();
   }
 
   @Input() styles: Array<MusicStyle>;
@@ -46,12 +45,6 @@ export class EntitySideComponent implements OnInit {
     this.checkIsFavorite();
     this.checkIsUserEntity();
     
-  }
-
-  private updateAvatar(){
-    this.baseService.getEntityImage(this.item.avatarId).subscribe(avatar=>{
-      this.item.avatar = avatar;
-    });
   }
 
   private checkIsUserEntity() {

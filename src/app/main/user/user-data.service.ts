@@ -21,7 +21,7 @@ export abstract class UserDataService {
 
   abstract getImage(login: string): Observable<string>;
 
-  abstract saveImage(request: SaveImageRequest): Observable<BaseResponse>;
+  abstract saveImage(request: SaveImageRequest): Observable<UpdateImageResponse>;
 
   abstract getUserEntities(): Observable<Array<SearchItem>>;
 
@@ -42,8 +42,8 @@ export class UserDataServiceHttp extends UserDataService {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/avatar/${login}`).map(x => x.json());
   }
 
-  saveImage(request: SaveImageRequest): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/saveAvatar`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
+  saveImage(request: SaveImageRequest): Observable<UpdateImageResponse> {
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/saveAvatar`, request).map(x => UpdateImageResponse.ToUpdateImageResponse(x.json()));
   }
 
   getUserEntities(): Observable<Array<SearchItem>>{
@@ -65,4 +65,15 @@ export class UserDataServiceHttp extends UserDataService {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/user/${login}`).map(x=>UserResponse.ToUserResponse(x.json()));
   }
 
+}
+
+
+export class UpdateImageResponse extends BaseResponse{
+  constructor(success: boolean, public path: string){
+    super(success);
+  }
+
+  static ToUpdateImageResponse(data: any): UpdateImageResponse{
+    return new UpdateImageResponse(data.Success, data.AvatarPath);
+  }
 }

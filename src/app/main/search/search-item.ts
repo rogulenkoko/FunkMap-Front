@@ -42,7 +42,6 @@ export class SearchItem {
     }
     public static ToSearchItems(data: any): Array<SearchItem>{
         var result = Array<SearchItem>();
-        console.log(data);
         if(!data) return result;
         if(data){
             data.forEach(item => {

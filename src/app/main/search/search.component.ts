@@ -10,6 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { MapFilter } from "app/main/map/map-filter.service";
 import { Subscription } from 'rxjs/Subscription';
 import { BaseService } from 'app/tools/base.service';
+import { environment } from 'environments/environment';
 
 declare var $;
 
@@ -69,7 +70,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchService.getFiltered(0, this.portionCount).subscribe(response => {
       this.isLoaded = false;
       this.onItemsLoaded(response.items);
-      this.getAvatars(response.items);
       this.mapFilter.onItemsFiltered.emit(response.allLogins);
       this.allItemsCount = response.allCount;
     });
@@ -96,22 +96,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchService.getFiltered(this.items.length, this.portionCount).subscribe(response => {
       this.isLoaded = false;
       this.items.push(...response.items);
-      this.getAvatars(response.items);
       if (this.userService.user) this.getFavourites();
     });
   }
 
-  private getAvatars(items: Array<SearchItem>) {
 
-    if(!items || items.length == 0) return;
-    items.forEach(item => {
-      this.baseService.getEntityImage(item.imageId).subscribe(avatar => {
-        item.image = avatar;
-      });
-    });
-
-    var ids = items.filter(x => x.imageId).map(x => x.imageId);
-   
+  private test(){
+    console.log("test");
   }
 
   private enableFilter() {

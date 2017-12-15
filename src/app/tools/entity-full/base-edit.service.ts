@@ -16,6 +16,8 @@ export abstract class BaseEditService {
   
   abstract getImages(ids: Array<string>): Observable<Array<ImageInfo>>;
 
+  abstract updateAvatar(login: string, image: string): Observable<BaseResponse>;
+
 }
 
 @Injectable()
@@ -27,6 +29,10 @@ export class BaseEditServiceHttp extends BaseEditService {
 
   update(request: BaseModel): Observable<BaseResponse> {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/update`, request).map(x => BaseResponse.ToBaseResponse(x.json()))
+  }
+
+  updateAvatar(login: string, image: string): Observable<BaseResponse> {
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/updateavatar`,{Login: login, Photo: image}).map(x => BaseResponse.ToBaseResponse(x.json()))
   }
 
   delete(login: string): Observable<BaseResponse> {

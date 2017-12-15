@@ -8,7 +8,7 @@ import { EntityType } from "app/main/map/models";
 import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
 @Injectable()
-export abstract class BandService {
+export abstract class BandService { 
 
   constructor() { }
 

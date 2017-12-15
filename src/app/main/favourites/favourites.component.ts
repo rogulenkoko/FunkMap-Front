@@ -24,27 +24,11 @@ export class FavouritesComponent implements OnInit {
     this.isLoading = true;
     this.baseService.getFavourites().subscribe(items => {
       this.items = items;
-      this.getAvatars(this.items);
       this.isLoading = false;
       this.items.forEach(item => {
         item.isFavourite = true;
       });
     });
-  }
-
-  private getAvatars(items: Array<SearchItem>) {
-    if(!items || items.length == 0) return;
-
-    items.forEach(item => {
-
-      this.baseService.getEntityImage(item.imageId).subscribe(avatar => {
-        item.image = avatar;
-      });
-    });
-
-
-    var ids = items.filter(x => x.imageId).map(x => x.imageId);
-   
   }
 
   private changeFavourite(login: string) {

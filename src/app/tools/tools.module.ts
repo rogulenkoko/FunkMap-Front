@@ -17,7 +17,6 @@ import { DatexPipe } from './datex.pipe';
 import { SocialComponent } from './social/social.component';
 import { SignalrService, SignalrServiceReal } from "app/tools/signalr/signalr.service";
 import { environment } from "environments/environment";
-import { SignalrServiceStub } from "app/tools/signalr/signalr.service.stub";
 import { CropperDirective } from './cropper/cropper.directive';
 import { BaseEditService, BaseEditServiceHttp } from "app/tools/entity-full/base-edit.service";
 import { BaseEditServiceStub } from "app/tools/entity-full/base-edit.service.stub";

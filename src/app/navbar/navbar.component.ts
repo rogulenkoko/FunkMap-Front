@@ -36,7 +36,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
               private router: Router,
               private notificationService: NotificationService,
               private notificationsInfoService: NotificationsInfoService) {
-    this.userService.onUserChanged.subscribe(() => this.getAvatar());
     
     if(this.userService.user) this.getNotificationsCount();
     this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
@@ -46,21 +45,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getAvatar();
+    console.log(this.userService.user);
     
   }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
-  }
-
-  private getAvatar() {
-    if (this.userService.user) {
-      this.userDataService.getImage(this.userService.user.login).subscribe(image => {
-        this.userService.user.avatar = image;
-        
-      })
-    }
   }
 
   private changeUserAvatar(){
@@ -72,7 +62,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     var request = new SaveImageRequest(this.userService.user.login, image);
     this.userDataService.saveImage(request).subscribe(response=>{
       if(response.success){
-        this.userService.user.avatar = image;
+        this.userService.user.avatar = response.path;
+        this.userService.user = this.userService.user;
       }
     })
   }

@@ -16,7 +16,6 @@ export class NotificationsFactory {
 
     public static BuildNotification(data: any): FunkmapNotification{
         var type = data.NotificationType as NotificationType;
-        console.log(data);
         switch(type){
             case NotificationType.BandInvite:
                 return BandInviteNotification.ToBandInviteNotification(data);

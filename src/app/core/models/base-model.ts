@@ -16,7 +16,7 @@ export class BaseModel {
 
     public avatar: string;//байты
     public avatarId: string;//байты
-    public avatarMiniId: string;//байты
+    public avatarMiniId: string;
     public vkLink: string;
     public youTubeLink: string;
     public facebookLink: string;

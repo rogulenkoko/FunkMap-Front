@@ -10,20 +10,25 @@ import { ImageInfo } from 'app/main/search/image-info';
 @Injectable()
 export class BaseEditServiceStub extends BaseEditService {
 
+
   constructor() {
     super();
-   }
+  }
 
-   update(request: BaseModel): Observable<BaseResponse>{
+  update(request: BaseModel): Observable<BaseResponse> {
     return Observable.of(new BaseResponse(true))
-   }
+  }
 
-   delete(login: string): Observable<BaseResponse>{
+  delete(login: string): Observable<BaseResponse> {
     return Observable.of(new BaseResponse(true));
-   }
+  }
 
-   getImages(ids: Array<string>): Observable<Array<ImageInfo>>{
+  getImages(ids: Array<string>): Observable<Array<ImageInfo>> {
     return Observable.of([]);
+  }
+
+  updateAvatar(login: string, image: string): Observable<BaseResponse> {
+    return Observable.of(new BaseResponse(true))
   }
 
 }

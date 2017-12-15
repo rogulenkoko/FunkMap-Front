@@ -49,9 +49,6 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
     this.checkIsFavorite();
-    this.baseService.getEntityImage(this.entity.avatarId).subscribe(avatar=>{
-      this.entity.avatar = avatar;
-    });
   }
 
   
@@ -81,11 +78,9 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   }
 
   private onAvatarSaved(image: string){
-      var request = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
-      request.avatar = image;
-      this.baseEditService.update(request).subscribe(response=>{
+      this.baseEditService.updateAvatar(this.entity.login, image).subscribe(response=>{
         if(response.success){
-          this.entity.avatar = image;
+          this.entity.avatarId = image ? `data:image/png;base64,${image}` : image;
         }
       });
   }

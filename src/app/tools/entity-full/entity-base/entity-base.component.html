@@ -25,7 +25,7 @@
     </div>
 
     <div (mouseover)="changeAvatarEditVisible(1)" (mouseleave)="changeAvatarEditVisible(-1)" class="image-container-wrapper">
-      <avatar-circle [image]="entity.avatar" [size]="'180px'" [iconSize]="'120px'"></avatar-circle>
+      <avatar-circle [image]="entity.avatarId" [size]="'180px'" [iconSize]="'120px'"></avatar-circle>
 
       <div *ngIf="canEditPhoto" (click)="changeUserAvatar()" class="edit-circle-container d-flex align-items-center justify-content-center">
         <i class="icon-edit"></i>
@@ -87,5 +87,5 @@
 
 <avatar-edit
  [(visible)]="changeAvatarMode"
- [previousPhoto]="entity.avatar"
+ [previousPhoto]="entity.avatarId"
   (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>

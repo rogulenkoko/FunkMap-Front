@@ -4,8 +4,8 @@
     <div class="search-item-content-container">
       <div class="d-flex flex-row search-item-content">
         <div class="image-container"  (click)="navigate(item.login, item.type)">
-          <div *ngIf="!item.image" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
-          <img *ngIf="item.image" src="data:image/png;base64,{{item.image}}" />
+          <div *ngIf="!item.imageId" class="no-image d-flex align-items-center justify-content-center"><img src="/assets/images/no-name.svg"></div>
+          <img *ngIf="item.imageId" src="{{item.imageId}}" />
         </div>
         <div class="d-flex flex-column entity-info-container">
           <div class="title" (click)="navigate(item.login, item.type)">

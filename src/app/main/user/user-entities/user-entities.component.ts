@@ -28,21 +28,8 @@ export class UserEntitiesComponent implements OnInit {
     this.isLoading = true;
     this.userDataService.getUserEntities().subscribe(items=>{
       this.items = items;
-      this.getAvatars(items);
       this.isLoading = false;
     });
-  }
-
-  private getAvatars(items: Array<SearchItem>) {
-    if(!items) return;
-    items.forEach(items => {
-      this.baseService.getEntityImage(items.imageId).subscribe(avatar => {
-        items.image = avatar;
-      });
-    });
-
-
-   
   }
 
 }

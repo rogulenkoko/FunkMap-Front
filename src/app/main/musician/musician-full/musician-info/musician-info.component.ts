@@ -143,18 +143,9 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   }
 
   private updateBands() {
-    if (!this.musician || !this.musician.bandLogins || this.musician.bandLogins.length ==0 ) return;
+    if (!this.musician || !this.musician.bandLogins || this.musician.bandLogins.length == 0 ) return;
     this.baseService.getSpecific(this.musician.bandLogins).subscribe(bands => {
       this.bands = bands;
-      if (!this.bands || this.bands.length == 0) return;
-
-      this.bands.forEach(band => {
-        this.baseService.getEntityImage(band.imageId).subscribe(image => {
-          band.image = image;
-        });
-      });
-
-      
     });
   }
 
