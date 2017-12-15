@@ -16,8 +16,6 @@ export class NotificationsComponent implements OnInit {
 
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
-  private userAvatars: Dictionary<string, string>;
-
   private notifications: Array<FunkmapNotification> = [];
 
   private subscription: Subscription;
@@ -25,43 +23,19 @@ export class NotificationsComponent implements OnInit {
   constructor(private notificationService: NotificationService,
             private userDataService: UserDataService,
             private notificationsInfoService: NotificationsInfoService) {
-    this.userAvatars = new Dictionary<string,string>();
 
     this.subscription = new Subscription();
     this.initializeSubscriptions();
    }
 
   ngOnInit() {
-    this.refreshAvatars();
   }
 
   public refreshNotification(){
     this.notificationService.getNotifications().subscribe(notifications=>{
       this.notifications = notifications;
-      this.getAvatars();
+      this.getUsers();
       this.notificationsInfoService.newNotificationsCount = 0;
-    });
-  }
-
-  private refreshAvatars(){
-    if(!this.notifications) return;
-    this.notifications.forEach(notification => {
-      notification.userAvatar = this.userAvatars.getValue(notification.userLogin);
-    });
-  }
-
-  private getAvatars(){
-    var logins = this.notifications.map(x=>x.userLogin);
-    var newLogins = logins.filter(x=> !this.userAvatars.keys().find(login=> login == x)).filter(x=> x != null);
-    if(!newLogins || newLogins.length == 0){
-      this.refreshAvatars();
-      return;
-    };
-
-    newLogins.forEach(login=>{
-      this.userDataService.getImage(login).subscribe(avatar=>{
-        this.userAvatars.setValue(login, avatar);
-      })
     });
   }
 
@@ -75,10 +49,23 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
+  private getUsers(){
+    if(!this.notifications && this.notifications.length == 0) return;
+    var distinctUsers = this.notifications.filter((value, index, self)=> self.indexOf(value) == index).map(x=>x.userLogin);
+    distinctUsers.forEach(user => {
+      this.userDataService.getUser(user).subscribe(userInfo=>{
+
+        if(!userInfo.isExist) return;
+
+        var notifications = this.notifications.filter(x=>x.userLogin == user);
+        notifications.forEach(x=> x.userAvatar = userInfo.user.avatar);
+      });
+    });
+  }
+
   private initializeSubscriptions(){
     this.subscription.add(this.notificationService.onNotificationRecieved.subscribe(notification=>{
       this.notifications.push(notification);
-      this.getAvatars();
 
     }));
   }
