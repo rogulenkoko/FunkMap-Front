@@ -4,7 +4,7 @@ import { BandInviteNotification } from 'app/navbar/notifications/models/band-inv
 @Component({
   selector: 'band-invite-notification',
   templateUrl: './band-invite-notification.component.html',
-  styleUrls: ['./band-invite-notification.component.scss']
+  styleUrls: ['./band-invite-notification.component.scss','../notifications.component.scss']
 })
 export class BandInviteNotificationComponent implements OnInit {
 

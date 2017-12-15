@@ -6,13 +6,17 @@
         <div class="notification-content d-flex flex-column">
           <div class="d-flex flex-row">
             <avatar-circle [ngClass]="'notifications-avatar'" [image]="notification.userAvatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
-            <band-invite-notification [notification]="notification"></band-invite-notification>
+            <ng-container [ngSwitch]="notification.notificationType">
+              <band-invite-notification *ngSwitchCase="1" [notification]="notification"></band-invite-notification>
+              <band-invite-confirmation-notification *ngSwitchCase="2" [notification]="notification"></band-invite-confirmation-notification>
+            </ng-container>
+            
           </div>
 
           <p class="notification-date">{{notification.date | dateNotification}}</p>
         </div>
 
-        <div class="actions-cotainer">
+        <div *ngIf="notification.needAnswer"  class="actions-cotainer">
             <span *ngIf="!notification.isConfirmed" (click)="sendResponse(-1, notification.id)" class="icon-close"></span>
             <span *ngIf="!notification.isConfirmed" (click)="sendResponse(1, notification.id)" class="fa fa-check"></span>
             <span *ngIf="notification.isConfirmed" class="action-label">{{'Notifications_IsSent' | translate}}</span>

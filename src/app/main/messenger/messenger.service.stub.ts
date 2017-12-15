@@ -5,15 +5,15 @@ import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
 import { MessengerService } from "app/main/messenger/messenger.service";
+import { MessengerHubService } from 'app/main/messenger/messenger-hub.service';
 
 
 @Injectable()
 export class MessengerServiceStub extends MessengerService {
   
 
-  constructor(signalrService: SignalrService) {
+  constructor(protected signalrService: MessengerHubService) {
     super(signalrService);
-
   }
 
   sendMessage(message: Message): Observable<BaseResponse> {

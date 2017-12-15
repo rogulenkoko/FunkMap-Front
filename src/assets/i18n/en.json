@@ -154,6 +154,9 @@
     "Entity_Activity":"Profile activity",
 
     "BandInviteNotification":"invites you to band",
+    "BandInvitePositiveConfirmationNotification": "confirmed an invitation to band",
+    "BandInviteNegativeConfirmationNotification": "declined an invitation to band",
+
     "Notifications_IsSent":"Sent",
     "Notifications_Empty":"There aren't notifications for you",
     

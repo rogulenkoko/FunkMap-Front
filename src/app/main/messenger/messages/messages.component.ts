@@ -27,7 +27,6 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
               private messagesService: MessagesService,
               private userService: UserService,
               private userDataService: UserDataService,
-              private signalrService: SignalrService,
               private scrollbarService: MalihuScrollbarService) {
 
     this.subscription = new Subscription();

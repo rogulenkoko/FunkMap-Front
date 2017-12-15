@@ -1,49 +1,22 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { SignalrService } from 'app/tools/signalr/signalr.service';
 import { SignalR, SignalRConnection, ISignalRConnection, IConnectionOptions, SignalRConfiguration } from "ng2-signalr";
-import { UserService } from "app/main/user/user.service";
 import { ConfigurationProvider } from 'app/core';
-import { ServiceType } from 'app/core/configuration/configuration-provider';
+import { UserService } from 'app/main/user/user.service';
 import { Observable } from 'rxjs/Observable';
-import { ConnectionStatus } from 'ng2-signalr/src/services/connection/connection.status';
-
+import { ServiceType } from 'app/core/configuration/configuration-provider';
 
 @Injectable()
-export abstract class SignalrService {
-
-  protected _connection: ISignalRConnection;
-
-  public get connection(): Observable<ISignalRConnection> {
-    return this.checkConnectionStatus(this._connection, this.configuration);
-  }
-
+export abstract class MessengerHubService extends SignalrService {
 
   constructor() {
-  }
-
-  protected checkConnectionStatus(connection: ISignalRConnection, config: SignalRConfiguration): Observable<ISignalRConnection> {
-    
-    if (!connection) return this.createHubConnection(config);
-    var jConnection = (<any>connection)._jConnection;
-    switch (jConnection.state) {
-     //{connecting: 0, connected: 1, reconnecting: 2, disconnected: 4}
-      case 1: return Observable.of(connection);
-      case 0: return Observable.of(connection);//todo
-      case 4: return this.createHubConnection(config); //disconnected
-      case 2: return Observable.of(null);
-      default: return Observable.of(null);
-    }
-  }
-
-  abstract createHubConnection(config: SignalRConfiguration): Observable<ISignalRConnection>;
-
-  abstract get configuration(): SignalRConfiguration;
-
-
+    super();
+   }
 
 }
 
 @Injectable()
-export class SignalrServiceReal extends SignalrService {
+export class MessengerHubServiceReal extends MessengerHubService  {
 
   get configuration(): SignalRConfiguration {
     var connectionOptions = new SignalRConfiguration();
@@ -83,8 +56,5 @@ export class SignalrServiceReal extends SignalrService {
       console.log(error);
       return Observable.of(null);
     });
-
-
   }
-
 }

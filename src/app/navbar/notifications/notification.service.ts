@@ -8,18 +8,23 @@ import { NotificationsFactory } from 'app/navbar/notifications/notifications-fac
 import { NotificationResponse } from 'app/navbar/notifications/models/notification-response';
 import { BaseResponse } from 'app/tools';
 import { SignalrService } from 'app/tools/signalr/signalr.service';
-import { BroadcastEventListener } from 'ng2-signalr';
+import { BroadcastEventListener, ISignalRConnection } from 'ng2-signalr';
+import { NotificationHubService } from 'app/navbar/notifications/notification-hub.service';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export abstract class NotificationService {
 
-  constructor(protected signalrService: SignalrService) {
-    this.signalrService.onNotificationConnectionStart.subscribe(() => this.initializeEvents());
-    if (this.signalrService.notificationConnection) this.initializeEvents();
+  constructor(protected signalrService: NotificationHubService) {
+    this._onNotificationRecieved = new Subject<FunkmapNotification>(); 
+    this.signalrService.connection.subscribe(connection=>this.subscribeEvents(connection));
   }
 
-  private onNotificationRecievedEvent: BroadcastEventListener<string>;
-  public onNotificationRecieved: Observable<FunkmapNotification>;
+  private _onNotificationRecieved: Subject<FunkmapNotification>;
+  
+  public get onNotificationRecieved(): Observable<FunkmapNotification>{
+    return this._onNotificationRecieved;
+  }
 
   abstract getNotifications(): Observable<Array<FunkmapNotification>>;
 
@@ -27,11 +32,10 @@ export abstract class NotificationService {
 
   abstract getNewNotificationsCount(): Observable<number>;
 
-  initializeEvents() {
-    this.onNotificationRecievedEvent = this.signalrService.notificationConnection.listenFor("onNotificationRecieved");
-    this.onNotificationRecieved = this.onNotificationRecievedEvent.map(x => {
-      return NotificationsFactory.BuildNotification((x));
-    });
+  private subscribeEvents(connection: ISignalRConnection){
+    if(!connection) return;
+
+    connection.listenFor("onNotificationRecieved").subscribe(message=>this._onNotificationRecieved.next(NotificationsFactory.BuildNotification(message)));
   }
 
 }
@@ -39,8 +43,9 @@ export abstract class NotificationService {
 @Injectable()
 export class NotificationServiceHttp extends NotificationService {
 
-  constructor(private http: HttpClient, signalrService: SignalrService) {
+  constructor(private http: HttpClient, signalrService: NotificationHubService) {
     super(signalrService);
+    
   }
 
   getNotifications(): Observable<Array<FunkmapNotification>> {

@@ -1,4 +1,4 @@
-<div *ngIf="message.sender" class="d-flex main-message-wrapper" [class.justify-content-start]="userService.user.login != message.sender" [class.justify-content-end]="userService.user.login == message.sender">
+<div *ngIf="message.sender && userService.user" class="d-flex main-message-wrapper" [class.justify-content-start]="userService.user.login != message.sender" [class.justify-content-end]="userService.user.login == message.sender">
   <div class="main-message-container">
   <div class="message-container d-flex flex-row">
 

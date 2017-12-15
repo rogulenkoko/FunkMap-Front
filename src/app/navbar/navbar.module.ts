@@ -8,12 +8,16 @@ import { NavbarComponent } from "app/navbar/navbar.component";
 import { NotificationsComponent } from "app/navbar/notifications/notifications.component";
 import { BandInviteNotificationComponent } from './notifications/band-invite-notification/band-invite-notification.component';
 import { NotificationsInfoService } from "app/navbar/notifications/notifications-info.service";
+import { NotificationHubServiceReal, NotificationHubService } from "app/navbar/notifications/notification-hub.service";
+import { NotificationHubServiceStub } from "app/navbar/notifications/notification-hub.service.stub";
+import { BandInviteConfirmationNotificationComponent } from './notifications/band-invite-confirmation-notification/band-invite-confirmation-notification.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     NotificationsComponent,
-    BandInviteNotificationComponent
+    BandInviteNotificationComponent,
+    BandInviteConfirmationNotificationComponent
   ],
   imports: [
     CoreModule,
@@ -24,6 +28,10 @@ import { NotificationsInfoService } from "app/navbar/notifications/notifications
     {
       provide: NotificationService,
       useClass: environment.production ? NotificationServiceHttp : NotificationServiceStub
+    },
+    {
+      provide: NotificationHubService,
+      useClass: environment.production ? NotificationHubServiceReal : NotificationHubServiceStub
     },
     NotificationsInfoService
   ]

@@ -6,7 +6,6 @@ import { Dictionary } from 'typescript-collections';
 import { UserDataService } from 'app/main/user/user-data.service';
 import { NotificationsInfoService } from 'app/navbar/notifications/notifications-info.service';
 import { Subscription } from 'rxjs/Subscription';
-import { SignalrService } from 'app/tools/signalr/signalr.service';
 
 @Component({
   selector: 'notifications',
@@ -25,12 +24,11 @@ export class NotificationsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService,
             private userDataService: UserDataService,
-            private notificationsInfoService: NotificationsInfoService,
-            private signalrService: SignalrService) {
+            private notificationsInfoService: NotificationsInfoService) {
     this.userAvatars = new Dictionary<string,string>();
 
     this.subscription = new Subscription();
-    this.signalrService.onNotificationConnectionStart.subscribe(() => this.initializeSubscriptions());
+    this.initializeSubscriptions();
    }
 
   ngOnInit() {
@@ -78,11 +76,11 @@ export class NotificationsComponent implements OnInit {
   }
 
   private initializeSubscriptions(){
-    this.notificationService.onNotificationRecieved.subscribe(notification=>{
+    this.subscription.add(this.notificationService.onNotificationRecieved.subscribe(notification=>{
       this.notifications.push(notification);
       this.getAvatars();
 
-    });
+    }));
   }
 
 }

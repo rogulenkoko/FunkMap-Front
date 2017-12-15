@@ -151,6 +151,10 @@
     "Entity_Activity":"Активность профиля",
 
     "BandInviteNotification":"приглашает вас в группу",
+    "BandInvitePositiveConfirmationNotification": "подтвердил приглашение в группу",
+    "BandInviteNegativeConfirmationNotification": "отклонил приглашение в группу",
+
+
     "Notifications_IsSent":"Отправлено",
     "Notifications_Empty":"Для вас нет уведомлений",
 

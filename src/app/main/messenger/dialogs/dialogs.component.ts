@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessengerService } from "app/main/messenger/messenger.service";
 import { Dialog, DialogsRequest } from "app/main/messenger/models";
 import { DialogService } from "app/main/messenger/dialog.service";
-import { SignalrService } from "app/tools/signalr/signalr.service";
 import { UserService } from "app/main/user/user.service";
 import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -29,7 +28,6 @@ export class DialogsComponent implements OnInit, OnDestroy {
 
   constructor(private messengerService: MessengerService,
     private dialogService: DialogService,
-    private signalrService: SignalrService,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router) {

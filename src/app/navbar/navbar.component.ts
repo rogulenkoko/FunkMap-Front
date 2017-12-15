@@ -11,19 +11,21 @@ import { NotificationsComponent } from 'app/navbar/notifications/notifications.c
 import { NotificationService } from 'app/navbar/notifications/notification.service';
 import { NotificationsInfoService } from 'app/navbar/notifications/notifications-info.service';
 import { SignalrService } from 'app/tools/signalr/signalr.service';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   @ViewChild(NotificationsComponent) notificationsComponent: NotificationsComponent;
 
   private isLogged: boolean = false;
 
   private changeAvatarMode: boolean = false;
+  private subscription: Subscription;
   
 
   constructor(private languageService: LanguageService,
@@ -33,20 +35,23 @@ export class NavbarComponent implements OnInit {
               private filterService: SearchFilterService, 
               private router: Router,
               private notificationService: NotificationService,
-              private notificationsInfoService: NotificationsInfoService,
-              private signalrService: SignalrService) {
+              private notificationsInfoService: NotificationsInfoService) {
     this.userService.onUserChanged.subscribe(() => this.getAvatar());
-
+    
     if(this.userService.user) this.getNotificationsCount();
     this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
     
-
-    this.signalrService.onNotificationConnectionStart.subscribe(() => this.initializeSubscriptions());
+    this.subscription = new Subscription();
+    this.initializeSubscriptions();
   }
 
   ngOnInit() {
     this.getAvatar();
     
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   private getAvatar() {
@@ -84,9 +89,9 @@ export class NavbarComponent implements OnInit {
   }
 
   private initializeSubscriptions(){
-    this.notificationService.onNotificationRecieved.subscribe(notification=>{
+    this.subscription.add(this.notificationService.onNotificationRecieved.subscribe(notification=>{
       this.notificationsInfoService.newNotificationsCount ++;
-    }); 
+    })); 
   }
 
   private logOut() {

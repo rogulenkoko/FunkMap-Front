@@ -22,8 +22,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private signalrService: SignalrService,
-              private userService: UserService,
+  constructor(private userService: UserService,
               private route: ActivatedRoute,
               private messengerService: MessengerService,
               private router: Router) {

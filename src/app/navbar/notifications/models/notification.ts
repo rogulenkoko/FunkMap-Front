@@ -6,10 +6,12 @@ export class FunkmapNotification{
     public notificationType: NotificationType;
     public isRead: boolean;
     public userAvatar: string;
-
+    public needAnswer: boolean;
+    
     public isConfirmed: boolean;
 }
 
 export enum NotificationType{
-    BandInvite = 1
+    BandInvite = 1,
+    BandInviteConfirmation = 2
 }

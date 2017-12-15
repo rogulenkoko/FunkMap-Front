@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessengerServiceHub, MessengerService } from "app/main/messenger/messenger.service";
+import { MessengerServiceHttp, MessengerService } from "app/main/messenger/messenger.service";
 import { Dialog, DialogsRequest } from "app/main/messenger/models";
 import { DialogService } from 'app/main/messenger/dialog.service';
 

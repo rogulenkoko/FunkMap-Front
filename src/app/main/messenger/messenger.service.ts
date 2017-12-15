@@ -10,11 +10,12 @@ import 'rxjs/add/observable/fromPromise';
 import { Subscription } from "rxjs/Subscription";
 import { ISignalRConnection } from 'ng2-signalr/src/services/connection/i.signalr.connection';
 import { Subject } from 'rxjs/Subject';
+import { MessengerHubService } from 'app/main/messenger/messenger-hub.service';
 
 @Injectable()
 export abstract class MessengerService {
 
-  constructor(protected signalrService: SignalrService) {
+  constructor(protected signalrService: MessengerHubService) {
     this.onDialogOpened = new EventEmitter();
     this.onMessagesLoaded = new EventEmitter();
     this.onDialogCreated = new EventEmitter<string>();
@@ -70,7 +71,6 @@ export abstract class MessengerService {
 
   private subscribeEvents(connection: ISignalRConnection){
     if(!connection) return;
-    console.log("подписался заново")
     connection.listenFor("OnMessageSent").subscribe(message=>this._onMessageRecieved.next(Message.ToMessage(message)));
     connection.listenFor("onUserDisconnected").subscribe((message:string)=>this._onUserDisconnected.next(message));
     connection.listenFor("onUserConnected").subscribe((message:string)=>this._onUserConnected.next(message));
@@ -80,10 +80,10 @@ export abstract class MessengerService {
 }
 
 @Injectable()
-export class MessengerServiceHub extends MessengerService {
+export class MessengerServiceHttp extends MessengerService {
   
 
-  constructor(signalrService: SignalrService, private http: HttpClient) {
+  constructor(signalrService: MessengerHubService, private http: HttpClient) {
     super(signalrService);
 
   }

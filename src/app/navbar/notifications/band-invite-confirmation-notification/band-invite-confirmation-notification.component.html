@@ -1,0 +1,5 @@
+
+<span class="important-text">{{notification.userLogin}}</span> 
+<span *ngIf="notification.answer">{{'BandInvitePositiveConfirmationNotification' | translate}}</span>
+<span *ngIf="!notification.answer">{{'BandInviteNegativeConfirmationNotification' | translate}}</span>
+<a [routerLink]="['/bandPage/' + notification.bandLogin]" class="important-text">{{notification.bandName}}</a>

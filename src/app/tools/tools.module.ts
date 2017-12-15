@@ -84,10 +84,6 @@ import { CanActivateSearch } from 'app/tools/can-activate-search';
     DateSelectProvider,
     EntityTypeProvider,
     {
-      provide: SignalrService,
-      useClass: environment.production ? SignalrServiceReal : SignalrServiceStub
-    },
-    {
       provide: BaseEditService,
       useClass: environment.production ? BaseEditServiceHttp : BaseEditServiceStub
     },
