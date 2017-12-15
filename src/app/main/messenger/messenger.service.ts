@@ -25,7 +25,11 @@ export abstract class MessengerService {
     this._onUserConnected = new Subject<string>();
     this._onDialogRead = new Subject<string>();
 
+    //инициализация конекшена
     this.signalrService.connection.subscribe(connection=>this.subscribeEvents(connection));
+
+    //для обновления конекшена
+    this.signalrService.connectionUpdated.subscribe(connection=>this.subscribeEvents(connection));
   }
 
 

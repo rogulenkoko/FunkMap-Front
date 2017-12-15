@@ -16,13 +16,18 @@ import { Subject } from 'rxjs/Subject';
 export abstract class NotificationService {
 
   constructor(protected signalrService: NotificationHubService) {
-    this._onNotificationRecieved = new Subject<FunkmapNotification>(); 
-    this.signalrService.connection.subscribe(connection=>this.subscribeEvents(connection));
+    this._onNotificationRecieved = new Subject<FunkmapNotification>();
+
+    //инициализация конекшена
+    this.signalrService.connection.subscribe(connection => this.subscribeEvents(connection));
+
+    //для обновления конекшена
+    this.signalrService.connectionUpdated.subscribe(connection => this.subscribeEvents(connection));
   }
 
   private _onNotificationRecieved: Subject<FunkmapNotification>;
-  
-  public get onNotificationRecieved(): Observable<FunkmapNotification>{
+
+  public get onNotificationRecieved(): Observable<FunkmapNotification> {
     return this._onNotificationRecieved;
   }
 
@@ -32,10 +37,10 @@ export abstract class NotificationService {
 
   abstract getNewNotificationsCount(): Observable<number>;
 
-  private subscribeEvents(connection: ISignalRConnection){
-    if(!connection) return;
+  private subscribeEvents(connection: ISignalRConnection) {
+    if (!connection) return;
 
-    connection.listenFor("onNotificationRecieved").subscribe(message=>this._onNotificationRecieved.next(NotificationsFactory.BuildNotification(message)));
+    connection.listenFor("onNotificationRecieved").subscribe(message => this._onNotificationRecieved.next(NotificationsFactory.BuildNotification(message)));
   }
 
 }
@@ -45,7 +50,7 @@ export class NotificationServiceHttp extends NotificationService {
 
   constructor(private http: HttpClient, signalrService: NotificationHubService) {
     super(signalrService);
-    
+
   }
 
   getNotifications(): Observable<Array<FunkmapNotification>> {

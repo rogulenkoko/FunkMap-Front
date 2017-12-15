@@ -1,4 +1,4 @@
-<div *ngIf="dialog" class="dialog-container d-flex flex-row align-items-center" [class.selected-dialog]="dialogService.dialog && dialogService.dialog.dialogId == dialog.dialogId">
+<div *ngIf="dialog && userService.user" class="dialog-container d-flex flex-row align-items-center" [class.selected-dialog]="dialogService.dialog && dialogService.dialog.dialogId == dialog.dialogId">
 
   <avatar-circle [ngClass]="'dialog-avatar'" [image]="dialog.avatar" [size]="'60px'" [iconSize]="'30px'" [useLogo]="dialog.participants.length > 2" [isOnline]="dialog.isOnline"></avatar-circle>
 

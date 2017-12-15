@@ -78,7 +78,6 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private initializeSubscriptions(){
     this.subscription.add(this.messengerService.onMessageRecieved.subscribe(message=>{
-      console.log(message);
       this.onMessageRecieved(message);
     }));
 

@@ -3,7 +3,7 @@ export class ConfigurationProvider{
 
     public static apiUrl(type: ServiceType): string{
 
-        if(environment.monolith) return environment.local ? "http://localhost:9000/api/" :  "http://funkmapweb.azurewebsites.net/api/"; 
+        if(environment.monolith) return environment.local ? "http://localhost:49447/api/" :  "http://funkmapweb.azurewebsites.net/api/"; 
 
         switch (type){ 
             case ServiceType.Auth:

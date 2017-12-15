@@ -15,7 +15,7 @@ import { EntityInfoComponent } from './entity-full/entity-info/entity-info.compo
 import { EntityVideoComponent } from './entity-full/entity-video/entity-video.component';
 import { DatexPipe } from './datex.pipe';
 import { SocialComponent } from './social/social.component';
-import { SignalrService, SignalrServiceReal } from "app/tools/signalr/signalr.service";
+import { SignalrService } from "app/tools/signalr/signalr.service";
 import { environment } from "environments/environment";
 import { CropperDirective } from './cropper/cropper.directive';
 import { BaseEditService, BaseEditServiceHttp } from "app/tools/entity-full/base-edit.service";

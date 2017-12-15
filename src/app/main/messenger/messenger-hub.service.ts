@@ -45,6 +45,9 @@ export class MessengerHubServiceReal extends MessengerHubService  {
       this._connection = undefined;
     }
     this._connection = this.signalR.createConnection(config);
+
+    this.connectionUpdated.next(this._connection);
+
     return Observable.fromPromise(this._connection.start()).switchMap(connection => {
       this._connection.errors.subscribe(errors => {
         this._connection.stop();

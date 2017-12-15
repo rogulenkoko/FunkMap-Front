@@ -45,7 +45,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.userService.user);
     
   }
 

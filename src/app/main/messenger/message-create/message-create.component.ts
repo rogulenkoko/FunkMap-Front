@@ -31,7 +31,6 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initParams();
-   // this.subscription.add(this.dialogService.onDialogsLoaded.subscribe(() => this.initParams()));
     this.changeTexareaBehaviour();
   }
 
