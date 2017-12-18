@@ -4,8 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  local: false,
-  production: true,
-  monolith: true,
-  useBlob: true
+  local: true,
+  production: false,
+  monolith: true
 };

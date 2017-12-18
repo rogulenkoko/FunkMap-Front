@@ -39,13 +39,14 @@ export class MessengerServiceStub extends MessengerService {
     var message = new Message("qwe","1","Привет, хотел бы пригласить тебя туда сюда", new Date(2017,3,24,12,12,30));
    
     dialog.lastMessage = message;
-    
+    dialog.participants = []
 
     var dialog2 = new Dialog("2","Роналдо Гриб");
     var message2 = new Message("test","1","Как дела?", new Date(2017,7,24,12,12,30));
     message2.isNew = true;
     dialog2.lastMessage = message2;
     dialog2.isOnline = true;
+    dialog2.participants = [];
     return Observable.of([dialog, dialog2]);
   }
 

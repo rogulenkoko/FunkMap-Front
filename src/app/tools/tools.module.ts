@@ -30,6 +30,7 @@ import { AvatarComponent } from 'app/tools/avatar/avatar.component';
 import { BaseServiceHttp, BaseService } from 'app/tools/base.service';
 import { BaseServiceStub } from 'app/tools/base.service.stub';
 import { CanActivateSearch } from 'app/tools/can-activate-search';
+import { EntitySoundComponent } from './entity-full/entity-sound/entity-sound.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CanActivateSearch } from 'app/tools/can-activate-search';
     AvatarCircleComponent,
     DateNotificationPipe,
     EntityActiveComponent,
-    AvatarComponent
+    AvatarComponent,
+    EntitySoundComponent
   ],
   imports: [
     BrowserModule,

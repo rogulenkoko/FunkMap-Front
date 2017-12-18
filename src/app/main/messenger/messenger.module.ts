@@ -12,7 +12,6 @@ import { DialogService } from "app/main/messenger/dialog.service";
 import { MessageCreateComponent } from './message-create/message-create.component';
 import { DialogComponent } from './dialogs/dialog/dialog.component';
 import { MessageComponent } from './messages/message/message.component';
-import { MessagesService } from "app/main/messenger/messages/messages.service";
 import { DialogBarComponent } from './dialog-bar/dialog-bar.component';
 import { DialogInviteComponent } from './dialog-invite/dialog-invite.component';
 import { MessengerHubServiceReal, MessengerHubService } from 'app/main/messenger/messenger-hub.service';
@@ -34,8 +33,7 @@ import { MessengerHubServiceStub } from 'app/main/messenger/messenger-hub.servic
       provide: MessengerHubService,
       useClass: environment.production ? MessengerHubServiceReal : MessengerHubServiceStub
     },
-    DialogService,
-    MessagesService
+    DialogService
   ]
 })
 export class MessengerModule { }
