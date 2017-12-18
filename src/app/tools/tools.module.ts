@@ -31,6 +31,8 @@ import { BaseServiceHttp, BaseService } from 'app/tools/base.service';
 import { BaseServiceStub } from 'app/tools/base.service.stub';
 import { CanActivateSearch } from 'app/tools/can-activate-search';
 import { EntitySoundComponent } from './entity-full/entity-sound/entity-sound.component';
+import { SoundcloudSearchComponent } from './soundcloud/soundcloud-search/soundcloud-search.component';
+import { SoundcloudModule } from 'app/tools/soundcloud/soundcloud.module';
 
 
 @NgModule({
@@ -51,14 +53,16 @@ import { EntitySoundComponent } from './entity-full/entity-sound/entity-sound.co
     DateNotificationPipe,
     EntityActiveComponent,
     AvatarComponent,
-    EntitySoundComponent
+    EntitySoundComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
     CoreModule,
-    VideoModule
+    VideoModule,
+    SoundcloudModule
   ],
   exports: [
     ModalComponent, 
@@ -66,6 +70,7 @@ import { EntitySoundComponent } from './entity-full/entity-sound/entity-sound.co
     FormsModule,
     RouterModule,
     VideoModule,
+    SoundcloudModule,
     SideComponent,
     EntitySideComponent,
     EntityBaseComponent,
@@ -79,7 +84,9 @@ import { EntitySoundComponent } from './entity-full/entity-sound/entity-sound.co
     AvatarCircleComponent,
     DateNotificationPipe,
     EntityActiveComponent,
-    AvatarComponent
+    AvatarComponent,
+    EntitySoundComponent,
+    SoundcloudSearchComponent
     ],
   providers: [
     DateSelectProvider,

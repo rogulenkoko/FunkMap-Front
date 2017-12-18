@@ -1,0 +1,22 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
+@import "src/assets/styles/forms.scss";
+
+
+.entity-sound-container{
+    width: 300px;
+    height: 548px;
+    background-color: $dark-card-background;
+    border-radius: 5px; 
+
+    .nav-item{
+        width: 50%;
+        border-radius: 0; 
+        .nav-link{
+            width: 100%;
+        }
+    }
+}
+

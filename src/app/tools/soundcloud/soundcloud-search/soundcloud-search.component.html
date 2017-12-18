@@ -1,0 +1,15 @@
+<div class="soundcloud-search-sontainer" (keyup.enter)="refreshTracks()">
+  <div class="d-flex flex-row search-input-container">
+      <input [(ngModel)]="search" placeholder="Найти трек.." class="form-control"/>
+      <div (click)="refreshTracks()"> <span class="icon icon-middle search-icon mr-2"></span></div>
+  </div>
+  
+  <ng-container *ngIf="tracks">
+    <div *ngFor="let track of tracks" class="soundcloud-track d-flex flex-row">
+      <iframe width="90%" height="100%" scrolling="no" frameborder="no" [src]="track.frameUrl | safe">
+      </iframe>
+      <span *ngIf="!track.isAdded" (click)="addToPlaylist(track.id)" class="icon-plus"></span>
+    </div>
+  </ng-container>
+
+</div>
