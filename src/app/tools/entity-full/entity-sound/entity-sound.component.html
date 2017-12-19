@@ -8,5 +8,6 @@
         </li>
     </ul>
 
-    <soundcloud-search *ngIf="selectedTab == 1" (onAddedToPlaylist)="onAddedToPlaylist($event)" [trackIds]="trackIds"></soundcloud-search>
+    <soundcloud-search [ngClass]="selectedTab == 1 ? '' : 'hidden'"></soundcloud-search>
+    <soundcloud-playlist [ngClass]="selectedTab == 2 ? '' : 'hidden'"></soundcloud-playlist>
 </div>
