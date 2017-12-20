@@ -13,10 +13,10 @@
     padding:45px;
     padding-bottom: 0px;
     border-radius: 5px; 
-    width: 1120px;
-    height: 548px;
+    width: 808px;
+    height: 480px;
     margin-bottom: 35px;
-
+    margin-left: 8px;
 
     .info-title-container{
          margin-bottom: 45px;
@@ -52,20 +52,20 @@
     
 
     .video-container{
-        height: 420px;
+        height: 250px;
         overflow-y: auto; 
-        
-        .specific-video-container:nth-child(2n+1) {
-            margin-left: 0;
+
+        .specific-video-container:nth-child(2n) {
+            margin-left: 12px;
         }
 
         .specific-video-container{
-            width: 490px;
-            margin-left: 45px;
-            margin-bottom: 35px;
+            width: 350px;
+            height: 200px;
             span{
                 font-size: 13px;
             }
+
         }
     }
 

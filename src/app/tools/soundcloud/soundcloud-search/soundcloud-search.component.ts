@@ -14,7 +14,7 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
 
   private tracks: Array<Track>;
 
-  private search: string = "rakei";
+  private search: string;
 
   private subscription: Subscription;
 

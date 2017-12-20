@@ -15,4 +15,11 @@ export class SoundcloudService {
       .map(x=>Track.toTracks(x.json().collection));
   }
 
+  public getTrack(id: number): Observable<Track>{
+    return this.http.get(`${ConfigurationProvider.soundcloudApi}tracks/${id}?client_id=${ConfigurationProvider.soundcloudKey}`)
+    .map(x=>Track.toTrack(x.json()));
+  }
+
+
+
 }

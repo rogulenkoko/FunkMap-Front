@@ -29,5 +29,24 @@
         width: 30px;
         background-color: $dark-orange-light;
     }
+
+    .empty{
+        width: 100%;
+        color: $inactive-color !important;
+        font-size: 13px;
+        text-align: center;
+    }
     
+}
+
+.icon-plus{
+    color: #999999;
+}
+
+.icon-close{
+    display: none;
+}
+
+.soundcloud-track:hover > .icon-close{
+    display: block;
 }

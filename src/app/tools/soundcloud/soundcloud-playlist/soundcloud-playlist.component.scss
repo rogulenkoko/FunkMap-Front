@@ -1,9 +1,37 @@
-.soundcloud-track{
-    width: 100%;
-    height: 20px;
-    margin-top: 12px;
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
 
-    iframe{
-        margin-right: 6px;
+.soundcloud-playlist-container{
+
+    width: 100%;
+    padding: 12px; 
+
+    .soundcloud-track{
+        width: 100%;
+        height: 20px;
+        margin-top: 12px;
+    
+        iframe{
+            margin-right: 6px;
+        }
     }
+}
+
+.icon-close{
+    display: none;
+}
+
+.soundcloud-track:hover > .icon-close{
+    display: block;
+}
+
+.empty{
+    width: 100%;
+    margin-top: 20px;
+    color: $inactive-color !important;
+    font-size: 13px;
+    text-align: center;
 }

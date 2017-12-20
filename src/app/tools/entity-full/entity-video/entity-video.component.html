@@ -15,9 +15,14 @@
   <div class="video-container d-flex flex-wrap">
     <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
       <ng-container *ngFor="let info of entity.videoInfos">
-        <div class="d-flex flex-column specific-video-container">
-          <youtube-player *ngIf="info.type == 1" [playerId]="info.id" [width]="490" [height]="315" [videoId]="info.id"></youtube-player>
-          <vimeo-player *ngIf="info.type == 2" [videoId]="info.id" [width]="490" [height]="315"></vimeo-player>
+        <div class="d-flex flex-row specific-video-container">
+          <div *ngIf="info.type == 1">
+              <youtube-player  [playerId]="info.id" [width]="350" [height]="200" [videoId]="info.id"></youtube-player>
+          </div>
+          <div *ngIf="info.type == 2">
+              <vimeo-player [videoId]="info.id" [width]="360" [height]="200"></vimeo-player> 
+          </div>
+          
           <span>{{info.name}}</span>
         </div>
 

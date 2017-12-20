@@ -183,9 +183,14 @@
     "DeleteMessage": "Do you really want to delete",
     "CancelImpossible": "Cancel this action will be impossible",
     "Band_NoMembers":"There are no members in the group",
-    "User_NoEntities":"Youe haven't got any profile"
+    "User_NoEntities":"Youe haven't got any profile",
     
     
+    "Sound_Search":"Search",
+    "Sound_SearchPlaceholder":"Search track..",
+    "Sound_Playlist": "Playlist",
+    "Sound_TracksNotFound": "Tracks not found",
+    "Sound_PlaylistEmpty": "There're no tracks in playlist"
     
     
 

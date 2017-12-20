@@ -15,6 +15,7 @@ export class NotificationServiceStub extends NotificationService {
     bandInvite.bandName = "The Beatles";
     bandInvite.date = new Date();
     bandInvite.userLogin = "rogulenkoko";
+    bandInvite.notificationType = 1;
 
     return Observable.of([bandInvite]);
   }

@@ -7,17 +7,33 @@
 
 .entity-sound-container{
     width: 300px;
-    height: 548px;
+    height: 480px;
     background-color: $dark-card-background;
     border-radius: 5px; 
 
+    
     .nav-item{
         width: 50%;
         border-radius: 0; 
+        border: none !important;
+        cursor: pointer;
+
         .nav-link{
             width: 100%;
+            color: $active-color !important;
+            border: none !important;
+            background-color: white ;
+            font-size: 16px;
         }
     }
+}
+
+.nav-tabs{
+    border: none;
+}
+
+.active{
+    background-color: $dark-card-background !important;
 }
 
 .hidden{

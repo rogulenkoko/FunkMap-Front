@@ -46,6 +46,8 @@ export class Musician extends BaseModel{
         result.address = data.Address;
         result.userLogin = data.UserLogin;
         result.isActive = data.IsActive;
+        result.soundCloudTrackIds = data.SoundCloudTrackIds;
+
         return result;
     }
 }

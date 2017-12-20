@@ -6,12 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { SoundcloudService } from 'app/tools/soundcloud/soundcloud.service';
 import { SafeUrlPipe } from './safe-url.pipe';
 import { SoundcloudPlaylistComponent } from './soundcloud-playlist/soundcloud-playlist.component';
+import { CoreModule } from 'app/core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   declarations: [SoundcloudSearchComponent, SafeUrlPipe, SoundcloudPlaylistComponent],
   exports: [SoundcloudSearchComponent, SoundcloudPlaylistComponent],

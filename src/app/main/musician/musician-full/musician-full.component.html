@@ -1,11 +1,13 @@
 <div class="musician-full-container">
-  <entity-sound></entity-sound>
+
   <div class="d-flex justify-content-center row-container">
     <musician-base *ngIf="editService.baseModel"></musician-base>
     <musician-info *ngIf="editService.baseModel"></musician-info>
     <musician-map *ngIf="editService.baseModel"></musician-map>
   </div>
   <div *ngIf="editService.baseModel" class="d-flex justify-content-center row-container">
+    <entity-sound [entity]="editService.baseModel"></entity-sound>
     <musician-video [musician]="editService.baseModel"></musician-video>
+
   </div>
 </div>

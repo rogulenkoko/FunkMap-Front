@@ -1,10 +1,10 @@
-<div class="entity-sound-container">
+<div *ngIf="entity" class="entity-sound-container">
     <ul class="nav nav-tabs d-flex">
-        <li class="nav-item" (click)="selectTab(1)">
-            <a class="nav-link" [class.active]="selectedTab == 1">Поиск</a>
+        <li *ngIf="isUsers" class="nav-item" (click)="selectTab(1)">
+            <a class="nav-link" [class.active]="selectedTab == 1">{{'Sound_Search' | translate}}</a>
         </li>
         <li class="nav-item" (click)="selectTab(2)">
-            <a class="nav-link" [class.active]="selectedTab == 2">Плейлист</a>
+            <a class="nav-link" [class.active]="selectedTab == 2">{{'Sound_Playlist' | translate}}</a>
         </li>
     </ul>
 

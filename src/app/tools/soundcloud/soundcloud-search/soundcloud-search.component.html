@@ -1,6 +1,6 @@
 <div class="soundcloud-search-sontainer" (keyup.enter)="refreshTracks()">
   <div class="d-flex flex-row search-input-container">
-      <input [(ngModel)]="search" placeholder="Найти трек.." class="form-control"/>
+      <input [(ngModel)]="search" placeholder="{{'Sound_SearchPlaceholder' | translate}}" class="form-control"/>
       <div (click)="refreshTracks()"> <span class="icon icon-middle search-icon mr-2"></span></div>
   </div>
   
@@ -9,8 +9,12 @@
       <iframe width="90%" height="100%" scrolling="no" frameborder="no" [src]="track.frameUrl | safe">
       </iframe>
       <span *ngIf="!track.isAdded" (click)="addToPlaylist(track)" class="icon-plus"></span>
-      <span *ngIf="track.isAdded" (click)="removeFromPlaylist(track)">-</span>
+      <span *ngIf="track.isAdded" (click)="removeFromPlaylist(track)" class="icon icon-close"></span>
     </div>
   </ng-container>
+
+  <div *ngIf="!tracks || tracks.length == 0" class="empty">
+    <span>{{'Sound_TracksNotFound' | translate}}</span>
+  </div>
 
 </div>

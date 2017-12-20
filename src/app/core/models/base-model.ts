@@ -22,6 +22,8 @@ export class BaseModel {
     public facebookLink: string;
     public soundCloudLink: string;
 
+    public soundCloudTrackIds: Array<number>;
+
     public address: string;
 
     public isActive: boolean;
