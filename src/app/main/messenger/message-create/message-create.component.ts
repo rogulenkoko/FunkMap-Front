@@ -66,11 +66,15 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
       this.reciever = "";
 
       this.messengerService.createDialog(dialog).subscribe(response => {
-        message.dialogId = response.dialog.dialogId;
-        this.messengerService.onDialogCreated.emit(response.dialog.dialogId);
-        this.messengerService.sendMessage(message).subscribe(response => {
+        
+        var subscription = this.messengerService.onDialogCreated.subscribe(dialog=>{
+          message.dialogId = dialog.dialogId;
+          subscription.unsubscribe();
+          this.messengerService.sendMessage(message).subscribe(response => {
 
-        });
+          });
+        })
+        
       });
     } else {
       this.messengerService.sendMessage(message).subscribe(response => {

@@ -16,13 +16,14 @@ import { DialogBarComponent } from './dialog-bar/dialog-bar.component';
 import { DialogInviteComponent } from './dialog-invite/dialog-invite.component';
 import { MessengerHubServiceReal, MessengerHubService } from 'app/main/messenger/messenger-hub.service';
 import { MessengerHubServiceStub } from 'app/main/messenger/messenger-hub.service.stub';
+import { DialogPaticipantsComponent } from 'app/main/messenger/dialog-paticipants/dialog-paticipants.component';
 
 @NgModule({
   imports: [
     CoreModule,
     ToolsModule
   ],
-  declarations: [MessengerComponent, DialogsComponent, MessagesComponent, MessageCreateComponent, DialogComponent, MessageComponent, DialogBarComponent, DialogInviteComponent],
+  declarations: [MessengerComponent, DialogsComponent, MessagesComponent, MessageCreateComponent, DialogComponent, MessageComponent, DialogBarComponent, DialogInviteComponent, DialogPaticipantsComponent],
   exports: [MessengerComponent],
   providers: [
      {

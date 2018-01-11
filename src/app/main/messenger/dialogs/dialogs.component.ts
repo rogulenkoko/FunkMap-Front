@@ -36,7 +36,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.initializeSubscriptions();
     
     this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(() => this.updateDialogsNewMessagesCount()));
-    this.subscription.add(this.messengerService.onDialogCreated.subscribe((dialogId) => this.refreshDialogs(dialogId)));
+    this.subscription.add(this.messengerService.onDialogCreated.subscribe((dialog) => this.refreshDialogs(dialog.dialogId)));
     this.subscription.add(this.dialogService.onDialogChanged.subscribe((dialog: Dialog) => {
       this.messengerService.setOpenedDialog(dialog ? dialog.dialogId : undefined).subscribe(x => {
 

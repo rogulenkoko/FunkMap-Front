@@ -16,6 +16,7 @@ export class DialogBarComponent implements OnInit {
 
   private userLogin: string;
   private isAddToDialogMode: boolean = false;
+  private isVisibleParticipantsList: boolean = false;
 
   constructor(private dialogService: DialogService,
     private messengerService: MessengerService,
@@ -36,6 +37,9 @@ export class DialogBarComponent implements OnInit {
 
   private addToDialog() {
     this.isAddToDialogMode = true;
+  }
 
+  private showList(){
+    this.isVisibleParticipantsList = true;
   }
 }

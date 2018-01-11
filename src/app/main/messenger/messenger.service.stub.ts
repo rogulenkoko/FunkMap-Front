@@ -6,6 +6,8 @@ import { BaseResponse } from "app/tools";
 import { BroadcastEventListener } from "ng2-signalr";
 import { MessengerService } from "app/main/messenger/messenger.service";
 import { MessengerHubService } from 'app/main/messenger/messenger-hub.service';
+import { LeaveDialogRequest } from 'app/main/messenger/models/leave-dialog-request';
+import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
 
 
 @Injectable()
@@ -25,7 +27,7 @@ export class MessengerServiceStub extends MessengerService {
   }
 
   updateDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
-    return Observable.of(new DialogUpdateResponse(true, new Dialog("2")));
+    return Observable.of(new DialogUpdateResponse(true));
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
@@ -63,6 +65,14 @@ export class MessengerServiceStub extends MessengerService {
   }
 
   createDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
-    return Observable.of(new DialogUpdateResponse(true, new Dialog("2")));
+    return Observable.of(new DialogUpdateResponse(true));
+  }
+
+  leaveDialog(request: LeaveDialogRequest): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
+  }
+
+  inviteParticipants(request: InviteParticipantsRequest): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
   }
 }

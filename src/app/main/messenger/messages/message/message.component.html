@@ -1,4 +1,4 @@
-<div *ngIf="message.sender && userService.user" class="d-flex main-message-wrapper" [class.justify-content-start]="userService.user.login != message.sender" [class.justify-content-end]="userService.user.login == message.sender">
+<div *ngIf="message.sender && userService.user && message.sender != adminLogin" class="d-flex main-message-wrapper" [class.justify-content-start]="userService.user.login != message.sender" [class.justify-content-end]="userService.user.login == message.sender">
   <div class="main-message-container">
   <div class="message-container d-flex flex-row">
 
@@ -15,6 +15,6 @@
 </div>
 </div>
 
-<div *ngIf="!message.sender" class="d-flex anonim-message-container align-items-center justify-content-center">
+<div *ngIf="message.sender == adminLogin" class="d-flex anonim-message-container align-items-center justify-content-center">
   <span class="anonim-message-text">{{message.text}}</span>
 </div>

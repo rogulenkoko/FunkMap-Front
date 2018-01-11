@@ -65,14 +65,11 @@ export class DialogPaticipantsComponent implements OnInit {
 
   private removeUser(login: string){
     var request = new LeaveDialogRequest(this.dialogService.dialog.dialogId, login);
-    // this.messengerService.leaveDialog(request).subscribe(response=>{
-    //   if(response.success){
-    //     // this.users = this.users.filter(x=>x.login != login);
-
-    //     this.dialogService.setDialog(response.dialog);
-    //     this.messengerService.onDialogCreated.emit();
-    //   }
-    // }); 
+    this.messengerService.leaveDialog(request).subscribe(response=>{
+      if(response.success){
+        this.users = this.users.filter(x=>x.login != login);
+      }
+    }); 
   }
 
   private onHide() {

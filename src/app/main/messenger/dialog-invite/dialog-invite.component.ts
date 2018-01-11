@@ -4,6 +4,7 @@ import { UserDataService } from 'app/main/user/user-data.service';
 import { Dialog } from 'app/main/messenger/models';
 import { DialogService } from 'app/main/messenger/dialog.service';
 import { MessengerService } from 'app/main/messenger/messenger.service';
+import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
 
 @Component({
   selector: 'dialog-invite',
@@ -90,8 +91,13 @@ export class DialogInviteComponent implements OnInit {
       dialog.name = this.dialogName;
       this.messengerService.createDialog(dialog).subscribe(response => {
         if (response.isSuccess) {
-          this.dialogService.setDialog(response.dialog);
-          this.messengerService.onDialogCreated.emit(response.dialog.dialogId);
+         
+          var subscription = this.messengerService.onDialogCreated.subscribe(dialog=>{
+            this.dialogService.setDialog(dialog);
+            subscription.unsubscribe(); 
+          });
+          
+
           this.clear();
         } else {
           this.isError = true;
@@ -99,10 +105,15 @@ export class DialogInviteComponent implements OnInit {
         }
       })
     } else {
-      dialog.dialogId = this.dialogService.dialog.dialogId;
-      this.messengerService.updateDialog(dialog).subscribe(response=>{
-        this.dialogService.setDialog(response.dialog);
-        this.messengerService.onDialogCreated.emit();
+      var request = new InviteParticipantsRequest(this.dialogService.dialog.dialogId, dialog.participants);
+
+      this.messengerService.inviteParticipants(request).subscribe(response=>{
+
+        var subscription = this.messengerService.onDialogCreated.subscribe(dialog=>{
+          this.dialogService.setDialog(dialog);
+          subscription.unsubscribe(); 
+        });
+
         this.clear();
       })
     }

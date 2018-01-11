@@ -11,6 +11,8 @@ export class Dialog {
     public lastMessage: Message;
     public newMessagesCount: number;
 
+    public creator: string
+
     public isNew: boolean;
 
     public static ToDialog(data: any): Dialog{
@@ -20,6 +22,7 @@ export class Dialog {
             result.lastMessage = Message.ToMessage(data.LastMessage);
         } 
         result.participants = data.Participants;
+        result.creator = data.CreatorLogin;
         return result;
     }
 

@@ -1,12 +1,11 @@
 import { Dialog } from "app/main/messenger/models";
 
 export class DialogUpdateResponse {
-    constructor(public isSuccess: boolean, public dialog: Dialog){
+    constructor(public isSuccess: boolean){
 
     }
 
     public static ToDialogCreateResponse(data: any): DialogUpdateResponse{
-        var dialog = Dialog.ToDialog(data.Dialog);
-        return new DialogUpdateResponse(data.Success, dialog);
+        return new DialogUpdateResponse(data.Success);
     }
 }
