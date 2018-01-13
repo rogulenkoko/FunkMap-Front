@@ -188,5 +188,7 @@
     "Sound_SearchPlaceholder":"Найти трек..",
     "Sound_Playlist": "Плейлист",
     "Sound_TracksNotFound": "Треки не найдены",
-    "Sound_PlaylistEmpty": "Нет треков в плейлисте"
+    "Sound_PlaylistEmpty": "Нет треков в плейлисте",
+
+    "Dialog_ParticipantsList": "Список участников беседы"
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, NgZone } from '@angular/core';
 import { DialogService } from "app/main/messenger/dialog.service";
 import { Dialog, DialogMessagesRequest, Message } from "app/main/messenger/models";
 import { MessengerService } from "app/main/messenger/messenger.service";
@@ -22,12 +22,18 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private subscription: Subscription;
 
+  private messagesPackCount = 20;
+  private messagesContainerId = '#main-messages-container';
+
+  private scrollbarOptions: MCustomScrollbar.CustomScrollbarOptions;
+
   constructor(private messengerService: MessengerService,
               private dialogService: DialogService,
               private userService: UserService,
               private userDataService: UserDataService,
               private scrollbarService: MalihuScrollbarService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+            private ngZone: NgZone) {
 
     this.subscription = new Subscription();
   }
@@ -39,7 +45,8 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    this.scrollbarService.initScrollbar('#main-messages-container', { axis: 'y', theme: 'minimal-dark' });
+
+    this.initScroll();
   }
 
   ngOnDestroy(){
@@ -65,26 +72,51 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private refreshMessages(dialogId: string) {
-    let request = new DialogMessagesRequest(dialogId, 0, 20)
+    let request = new DialogMessagesRequest(dialogId, 0, this.messagesPackCount)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
-      this.scrollbarService.scrollTo('#main-messages-container',100000,{scrollInertia:0});
+     
+      this.scrollbarService.scrollTo(this.messagesContainerId,100000,{scrollInertia:0});
+    });
+  }
+
+  private getMoreMessages(){
+    var dialogId = this.dialogService.dialog.dialogId;
+    let request = new DialogMessagesRequest(dialogId, this.messages.length, this.messagesPackCount);
+
+    this.messengerService.getDialogMessages(request).subscribe(messages=>{
+      this.ngZone.run(()=>{
+        this.messages = messages.concat(this.messages);
+      })
+      
     });
   }
 
   private onMessageRecieved(message: Message){
-    console.log(message);
-    console.log(this.dialogService.dialog);
     if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
-    console.log("запушил")
     this.messages.push(message);
-    console.log(this.messages);
-    this.scrollbarService.scrollTo('#main-messages-container',100000,{scrollInertia:0});
+    this.scrollbarService.scrollTo(this.messagesContainerId,100000,{scrollInertia:0});
   }
 
   private onDialogRead(dialogId: string){
     this.messages.forEach(message => {
       message.isNew = false;
     });
+  }
+
+  private initScroll(){
+    var that = this;
+    this.scrollbarOptions = <MCustomScrollbar.CustomScrollbarOptions>{ 
+      axis: 'y', 
+      theme: 'minimal-dark',
+      scrollInertia: 500,
+      callbacks: {
+        onTotalScrollBackOffset: 500,
+        onTotalScrollBack: ()=> that.getMoreMessages()
+      },
+      advanced:{ updateOnContentResize: true, updateOnSelectorChange: this.messagesContainerId } 
+    };
+
+    this.scrollbarService.initScrollbar(this.messagesContainerId, this.scrollbarOptions); 
   }
 }
