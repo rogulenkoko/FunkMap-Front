@@ -52,16 +52,13 @@ export class MessengerServiceStub extends MessengerService {
     return Observable.of([dialog, dialog2]);
   }
 
+
   getOnlineUsersLogins(): Observable<string[]> {
     return Observable.of(["test","rogulenkoko"]);
   }
 
-  getDialogsWithNewMessages():Observable<Array<Dialog>>{
-    return Observable.of([new Dialog("1","test")]);
-  }
-
-  getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>{
-    return Observable.of([new DialogsNewMessagesCountModel("1", 2)]);
+  getDialogsWithNewMessagesCount():Observable<Array<DialogsNewMessagesCountModel>>{
+    return Observable.of([new DialogsNewMessagesCountModel("test", 2)]);
   }
 
   createDialog(dialog: Dialog): Observable<DialogUpdateResponse>{

@@ -18,11 +18,10 @@ import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-part
 export abstract class MessengerService {
 
   constructor(protected signalrService: MessengerHubService) {
-    this.onDialogOpened = new EventEmitter();
-    this.onMessagesLoaded = new EventEmitter();
 
     this._onMessageRecieved = new Subject<Message>();
     this._onDialogCreated = new Subject<Dialog>();
+    this._onDialogUpdated = new Subject<Dialog>();
     this._onUserDisconnected = new Subject<string>();
     this._onUserConnected = new Subject<string>();
     this._onDialogRead = new Subject<string>();
@@ -49,9 +48,7 @@ export abstract class MessengerService {
 
   abstract getOnlineUsersLogins():Observable<Array<string>>;
 
-  abstract getDialogsWithNewMessages():Observable<Array<Dialog>>;
-
-  abstract getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>;
+  abstract getDialogsWithNewMessagesCount():Observable<Array<DialogsNewMessagesCountModel>>;
 
   abstract leaveDialog(dialogIds: LeaveDialogRequest): Observable<BaseResponse>;
 
@@ -65,6 +62,11 @@ export abstract class MessengerService {
   private _onDialogCreated: Subject<Dialog>;
   public get onDialogCreated(): Observable<Dialog>{
     return this._onDialogCreated;
+  }
+
+  private _onDialogUpdated: Subject<Dialog>;
+  public get onDialogUpdated(): Observable<Dialog>{
+    return this._onDialogUpdated;
   }
 
   private _onUserDisconnected: Subject<string>;
@@ -82,13 +84,11 @@ export abstract class MessengerService {
     return this._onDialogRead;
   };
 
-  public onDialogOpened: EventEmitter<any>;
-  public onMessagesLoaded: EventEmitter<any>;
-
   private subscribeEvents(connection: ISignalRConnection){
     if(!connection) return;
     connection.listenFor("OnMessageSent").subscribe(message=>this._onMessageRecieved.next(Message.ToMessage(message)));
     connection.listenFor("OnDialogCreated").subscribe(message=>this._onDialogCreated.next(Dialog.ToDialog(message)));
+    connection.listenFor("OnDialogUpdated").subscribe(message=>this._onDialogUpdated.next(Dialog.ToDialog(message)));
     connection.listenFor("onUserDisconnected").subscribe((message:string)=>this._onUserDisconnected.next(message));
     connection.listenFor("onUserConnected").subscribe((message:string)=>this._onUserConnected.next(message));
     connection.listenFor("onDialogRead").subscribe((message:string)=>this._onDialogRead.next(message));
@@ -136,12 +136,8 @@ export class MessengerServiceHttp extends MessengerService {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getOnlineUsers`).map(x=> x.json());
   }
 
-  getDialogsWithNewMessages():Observable<Array<Dialog>>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogsWithNewMessagesCount`).map(x=> Dialog.ToDialogs(x.json()));
-  }
-
-  getDialogsWithNewMessagesCount(dialogIds: Array<string>): Observable<Array<DialogsNewMessagesCountModel>>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogsNewMessagesCount`, dialogIds).map(x => DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
+  getDialogsWithNewMessagesCount():Observable<Array<DialogsNewMessagesCountModel>>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogsWithNewMessagesCount`).map(x=> DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
   }
 
   leaveDialog(request: LeaveDialogRequest): Observable<BaseResponse>{

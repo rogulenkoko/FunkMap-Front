@@ -34,14 +34,8 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.subscription = new Subscription();
 
     this.initializeSubscriptions();
-    
-    this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(() => this.updateDialogsNewMessagesCount()));
-    this.subscription.add(this.messengerService.onDialogCreated.subscribe((dialog) => this.refreshDialogs(dialog.dialogId)));
-    this.subscription.add(this.dialogService.onDialogChanged.subscribe((dialog: Dialog) => {
-      this.messengerService.setOpenedDialog(dialog ? dialog.dialogId : undefined).subscribe(x => {
 
-      });
-    }));
+
   }
 
   ngOnInit() {
@@ -58,51 +52,26 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.messengerService.getDialogs().subscribe(dialogs => {
       this.allDialogs = dialogs;
 
-     // this.dialogService.setDialog(dialogs[0]);//удалить
+      // this.dialogService.setDialog(dialogs[0]);//удалить
 
       this.filterDialogs();
-      if (dialogId) {
-        this.dialogService.setDialog(this.dialogs.find(x => x.dialogId == dialogId));
-        this.dialogService.onDialogsLoaded.emit();
-      } else {
-        this.route.params.subscribe(params => {
-          var login = params["login"];
 
-          if (!login) return;
-          var newDialog = new Dialog("", login);
-          newDialog.participants = [login, this.userService.user.login];
-          if (!this.dialogs || this.dialogs.length == 0){
-            this.dialogs = [newDialog];
-          };
-          var dialog = this.dialogs.find(x => JSON.stringify(x.participants.sort()) == JSON.stringify([login, this.userService.user.login].sort()));
-          if (!dialog){
-            this.dialogService.dialog = newDialog;
-            return; 
-          };
-
-          this.dialogService.setDialog(dialog);
-          this.dialogService.onDialogsLoaded.emit();
-        });
-      }
+      //todo механизм начала диалога когда тыкнул создать диалог вне месенджера
 
       this.updateOnlineUsers();
-      this.updateDialogsNewMessagesCount();
     });
   }
 
   private setDialog(dialog: Dialog) {
     this.dialogService.setDialog(dialog);
     this.messengerService.setOpenedDialog(dialog.dialogId).subscribe(response => {
-      if (response.success) this.messengerService.onDialogOpened.emit();
+      if (!response.success) alert("set dialog error");
     });
-    this.router.navigate(['/messenger']);
+    //this.router.navigate(['/messenger']);
   }
 
   private getOnlineUsers() {
-    this.messengerService.getOnlineUsersLogins().subscribe(logins => {
-      this.onlineUsers = logins;
-
-    })
+    this.messengerService.getOnlineUsersLogins().subscribe(logins => this.onlineUsers = logins);
   }
 
   private filterDialogs() {
@@ -112,27 +81,29 @@ export class DialogsComponent implements OnInit, OnDestroy {
       return;
     }
     this.dialogs = this.allDialogs.filter(x => x.name.toLocaleLowerCase().startsWith(this.searchTest.toLocaleLowerCase()));
+
+    this.dialogs.sort((x, y) => {
+
+      if (!x.lastMessage || !x.lastMessage) return -1;
+
+      if (x.lastMessage.date < y.lastMessage.date) return -1;
+      return 1;
+    });
   }
 
   private updateOnlineUsers() {
     this.dialogs.forEach(dialog => {
-      if (dialog.participants && dialog.participants.length == 2) {
-        var anotherUserLogin = dialog.participants.find(x => x != this.userService.user.login);
-        if (this.onlineUsers.find(x => x == anotherUserLogin)) dialog.isOnline = true;
-        else dialog.isOnline = false;
-      }
+      if (!dialog.participants || dialog.participants.length != 2) return;
+
+      var anotherUserLogin = dialog.participants.find(x => x != this.userService.user.login);
+
+      if (this.onlineUsers.find(x => x == anotherUserLogin)) dialog.isOnline = true;
+      else dialog.isOnline = false;
+
     })
   }
 
-  private updateDialogsNewMessagesCount() {
-    this.messengerService.getDialogsWithNewMessagesCount(this.dialogs.map(x => x.dialogId)).subscribe(models => {
-      this.dialogs.forEach(dialog => {
-        dialog.newMessagesCount = models.find(x => x.dialogId == dialog.dialogId) ? models.find(x => x.dialogId == dialog.dialogId).newMessagesCount : 0;
-      });
-    });
-  }
-
-  private toCreateDialogMode(){
+  private toCreateDialogMode() {
     this.isCreateDialogMode = true;
   }
 
@@ -152,13 +123,19 @@ export class DialogsComponent implements OnInit, OnDestroy {
     }));
 
     this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message) => {
-      this.refreshDialogs(this.dialogService.dialog ? this.dialogService.dialog.dialogId : undefined);
+      //todo
+      //this.refreshDialogs(this.dialogService.dialog ? this.dialogService.dialog.dialogId : undefined);
     }));
 
-    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId => {
-      var dialog = this.dialogs.find(x => x.dialogId == dialogId);
-      if (!dialog) return;
-      if (dialog.lastMessage && dialog.lastMessage.sender == this.userService.user.login) dialog.lastMessage.isNew = false;
+    this.subscription.add(this.messengerService.onDialogUpdated.subscribe(dialog => {
+      var index = this.dialogs.findIndex(x => x.dialogId == dialog.dialogId);
+      this.dialogs[index] = dialog;
+
+      if (dialog.lastMessage && dialog.lastMessage.sender == this.userService.user.login) {
+        dialog.lastMessage.isNew = false;
+      }
+
+     
     }))
   }
 }

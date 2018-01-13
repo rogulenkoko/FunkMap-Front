@@ -3,8 +3,9 @@ import { UserService } from "../user/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SignalrService } from "app/tools/signalr/signalr.service";
 import { MessengerService } from "app/main/messenger/messenger.service";
-import { Dialog, Message } from "app/main/messenger/models";
+import { Dialog, Message, DialogsNewMessagesCountModel } from "app/main/messenger/models";
 import { Subscription } from "rxjs/Subscription";
+import { SidebarItem } from 'app/main/sidebar/sidebar-item';
 
 @Component({
   selector: 'sidebar',
@@ -18,7 +19,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   private topItems: Array<SidebarItem>;
   private bottomItems: Array<SidebarItem>;
 
-  private dialogsWithNewMessages: Array<Dialog>;
+  private dialogsCountModels: Array<DialogsNewMessagesCountModel>;
 
   private subscription: Subscription;
 
@@ -27,8 +28,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
               private messengerService: MessengerService,
               private router: Router) {
     this.subscription = new Subscription();
-    this.initializeSubscriptions();
-    this.subscription.add(this.messengerService.onMessagesLoaded.subscribe(()=> this.getNewMessagesCount()));
+    this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message)=> this.onMessageRecieved(message)));
+    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=> this.onDialogRead(dialogId)));
     
   }
 
@@ -38,9 +39,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.initItems();
 
     this.onRouteChanged(this.router.url);
-    this.router.events.subscribe((value:any)=>{
-      this.onRouteChanged(value.url);
-    });
+    this.router.events.subscribe((value:any) => this.onRouteChanged(value.url));
 
     this.userService.onUserChanged.subscribe(() => this.getNewMessagesCount());
   }
@@ -81,18 +80,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         ];
   }
 
-  private getNewMessagesCount() {
-    if (!this.userService.user) return;
-    this.messengerService.getDialogsWithNewMessages().subscribe(dialogs => {
-      this.dialogsWithNewMessages = dialogs;
-    });
-  }
-
-  private updateNewMessagesCount(message: Message) {
-    this.getNewMessagesCount();
-  }
-
-  onItemClick(item: SidebarItem) {
+  private onItemClick(item: SidebarItem) {
     if (item.clickEvent) {
       item.clickEvent();
     }
@@ -104,12 +92,34 @@ export class SidebarComponent implements OnInit, OnDestroy {
     item.isSelected = !item.isSelected;
   }
 
-  logOut() {
-    this.userService.user = undefined;
+  private getNewMessagesCount() {
+    if (!this.userService.user) return;
+
+    this.messengerService.getDialogsWithNewMessagesCount().subscribe(dialogsCountModels => {
+      this.dialogsCountModels = dialogsCountModels;
+    });
   }
 
-  private initializeSubscriptions() {
-    this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message) => this.updateNewMessagesCount(message)));
+  private onMessageRecieved(message: Message) {
+
+    if(message.sender == this.userService.user.login) return;
+
+    var updatedDialogCountModel = this.dialogsCountModels.find(x=>x.dialogId == message.dialogId);
+    if(updatedDialogCountModel){
+      updatedDialogCountModel.newMessagesCount ++;
+    } else {
+      var newDialogCountModel = new DialogsNewMessagesCountModel(message.dialogId, 1);
+      this.dialogsCountModels.push(newDialogCountModel);
+    }
+  }
+
+  private onDialogRead(dialogId: string){
+    this.dialogsCountModels = this.dialogsCountModels.filter(x=>x.dialogId != dialogId);
+  }
+
+
+  logOut() {
+    this.userService.user = undefined;
   }
 
   private onRouteChanged(url: string){
@@ -121,14 +131,4 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
 }
 
-export class SidebarItem {
-  constructor(public route: string, public title, public iconClass) {
 
-  }
-
-  public clickEvent?: () => void;
-  public rightTemplate?: any;
-  public visibleForLogged: boolean;
-
-  public isSelected: boolean;
-}
