@@ -9,8 +9,6 @@ import { UserService } from "app/main/user/user.service";
 })
 export class MessageComponent implements OnInit {
 
-  private adminLogin = "Funkmap";
-
   @Input() message: Message;
 
   constructor(private userService: UserService) { }

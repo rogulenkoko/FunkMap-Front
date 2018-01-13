@@ -6,6 +6,7 @@ import { DialogService } from 'app/main/messenger/dialog.service';
 import { MessengerService } from 'app/main/messenger/messenger.service';
 import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
 import { Subscription } from 'rxjs/Subscription';
+import { DialogType } from 'app/main/messenger/models/dialog';
 
 @Component({
   selector: 'dialog-invite',
@@ -57,7 +58,7 @@ export class DialogInviteComponent implements OnInit, OnDestroy {
     if(this.creationMode){
       this.isNewDialog = true;
     } else {
-      this.isNewDialog = !this.dialogService.dialog || this.dialogService.dialog.participants.length <= 2;
+      this.isNewDialog = !this.dialogService.dialog || this.dialogService.dialog.dialogType == DialogType.Base;
     }
 
     

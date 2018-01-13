@@ -1,7 +1,7 @@
 <div *ngIf="dialogService.dialog" class="dialog-bar-container d-flex flex-row align-items-center justify-content-between">
 
   <div class="d-flex align-items-center">
-    <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline" [useLogo]="dialogService.dialog.participants.length > 2"
+    <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline" [useLogo]="dialogService.dialog.dialogType == 2"
       [ngClass]="'dialog-bar-avatar'" [onlineSize]="'9px'"></avatar-circle>
       <div class="d-flex flex-column">
         <span class="dialog-bar-name">{{dialogService.dialog.name}}</span>
@@ -9,7 +9,7 @@
       </div>
     
   
-    <div *ngIf="dialogService.dialog.participants && dialogService.dialog.participants.length > 2" class="nav-item dropdown">
+    <div *ngIf="dialogService.dialog.dialogType" class="nav-item dropdown">
         <a class="icon-dd-points" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">

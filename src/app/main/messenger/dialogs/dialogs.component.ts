@@ -179,6 +179,10 @@ export class DialogsComponent implements OnInit, OnDestroy {
       this.dialogs[index] = dialog;
     }
 
+    if(this.dialogService.dialog && this.dialogService.dialog.dialogId == dialog.dialogId){
+      this.dialogService.setDialog(dialog);
+    }
+
     this.updateOnlineUsers();
     this.filterDialogs();
 

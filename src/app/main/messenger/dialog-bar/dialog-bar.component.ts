@@ -5,6 +5,7 @@ import { User } from 'app/main/user/user';
 import { MessengerService } from 'app/main/messenger/messenger.service';
 import { Dialog } from 'app/main/messenger/models';
 import { UserService } from 'app/main/user/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'dialog-bar',
@@ -20,17 +21,27 @@ export class DialogBarComponent implements OnInit {
 
   constructor(private dialogService: DialogService,
     private messengerService: MessengerService,
-    private userService: UserService) {
-    this.dialogService.onDialogChanged.subscribe(() => this.updateDialogLogin())
+    private userService: UserService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.updateDialogLogin();
+
+    this.route.params.subscribe(params => this.onRoute(params));
+  }
+
+  private onRoute(params: any){
+    var dialogId = params["dialogId"] as string;
+    if(dialogId){
+      this.userLogin = undefined;
+      this.updateDialogLogin();
+    }
   }
 
   private updateDialogLogin() {
     if(!this.userService.user) return;
-    if (this.userService.user.login && this.dialogService.dialog && this.dialogService.dialog.participants && this.dialogService.dialog.participants.length == 2) {
+    if (this.userService.user.login && this.dialogService.dialog && this.dialogService.dialog.participants && this.dialogService.dialog.dialogType == 1) {
       this.userLogin = this.dialogService.dialog.participants.filter(x => x != this.userService.user.login)[0];
     }
   }

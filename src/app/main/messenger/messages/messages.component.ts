@@ -73,8 +73,12 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private onMessageRecieved(message: Message){
+    console.log(message);
+    console.log(this.dialogService.dialog);
     if(!this.dialogService.dialog || this.dialogService.dialog.dialogId != message.dialogId) return;
+    console.log("запушил")
     this.messages.push(message);
+    console.log(this.messages);
     this.scrollbarService.scrollTo('#main-messages-container',100000,{scrollInertia:0});
   }
 
