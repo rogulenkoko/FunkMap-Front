@@ -8,6 +8,7 @@ import { MessengerService } from "app/main/messenger/messenger.service";
 import { MessengerHubService } from 'app/main/messenger/messenger-hub.service';
 import { LeaveDialogRequest } from 'app/main/messenger/models/leave-dialog-request';
 import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
+import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
 
 
 @Injectable()
@@ -61,7 +62,7 @@ export class MessengerServiceStub extends MessengerService {
     return Observable.of([new DialogsNewMessagesCountModel("test", 2)]);
   }
 
-  createDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
+  createDialog(dialog: CreateDialogRequest): Observable<DialogUpdateResponse>{
     return Observable.of(new DialogUpdateResponse(true));
   }
 

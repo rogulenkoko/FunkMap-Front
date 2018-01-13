@@ -7,6 +7,7 @@ import { SignalrService } from "app/tools/signalr/signalr.service";
 import { Subscription } from "rxjs/Subscription";
 import { UserDataService } from "app/main/user/user-data.service";
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
+import { ActivatedRoute } from '@angular/router';
 
 declare var $;
 
@@ -25,14 +26,16 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
               private dialogService: DialogService,
               private userService: UserService,
               private userDataService: UserDataService,
-              private scrollbarService: MalihuScrollbarService) {
+              private scrollbarService: MalihuScrollbarService,
+              private route: ActivatedRoute) {
 
     this.subscription = new Subscription();
   }
 
   ngOnInit() {
-    this.refreshMessages();
     this.initializeSubscriptions();
+
+    this.route.params.subscribe(params => this.onRoute(params));
   }
 
   ngAfterViewInit(){
@@ -43,9 +46,26 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.unsubscribe();
   }
 
-  private refreshMessages() {
-    if(!this.dialogService.dialog || !this.dialogService.dialog.dialogId) return;
-    let request = new DialogMessagesRequest(this.dialogService.dialog.dialogId, 0, 20)
+  private initializeSubscriptions(){
+    this.subscription.add(this.messengerService.onMessageRecieved.subscribe(message=>{
+      this.onMessageRecieved(message);
+    }));
+
+    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialog=>{
+      if(dialog.userWhoRead == this.userService.user.login) return;
+      this.onDialogRead(dialog.dialogId);
+    }));
+  }
+
+  private onRoute(params: any){
+    var dialogId = params["dialogId"] as string;
+    if(dialogId){
+      this.refreshMessages(dialogId);
+    }
+  }
+
+  private refreshMessages(dialogId: string) {
+    let request = new DialogMessagesRequest(dialogId, 0, 20)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
       this.scrollbarService.scrollTo('#main-messages-container',100000,{scrollInertia:0});
@@ -63,15 +83,4 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
       message.isNew = false;
     });
   }
-
-  private initializeSubscriptions(){
-    this.subscription.add(this.messengerService.onMessageRecieved.subscribe(message=>{
-      this.onMessageRecieved(message);
-    }));
-
-    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=>{
-      this.onDialogRead(dialogId);
-    }));
-  }
-
 }

@@ -18,7 +18,7 @@
           <search-studio *ngIf="item.type == 5" [item]="item"></search-studio>
         </div>
       </div>
-      <div [routerLink]="['/messenger/' + item.userLogin]" *ngIf="userService.user && !checkIfUserEntity(item.login) && item.userLogin" class="send-message-label">{{'Send_Message' | translate}}</div>
+      <div [routerLink]="['/messenger', {user:item.userLogin}]" *ngIf="userService.user && !checkIfUserEntity(item.login) && item.userLogin" class="send-message-label">{{'Send_Message' | translate}}</div>
     </div>
 
     <div class="d-flex flex-row favourite-container justify-content-center">

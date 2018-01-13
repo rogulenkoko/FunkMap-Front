@@ -12,7 +12,8 @@
 </div>
 
 <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="dialogs">
-    <dialog-item *ngFor="let dialog of dialogs" (click)="setDialog(dialog)" [dialog]="dialog"></dialog-item>
+    <dialog-item *ngFor="let dialog of dialogs" (click)="navigateDialog(dialog)" [dialog]="dialog"></dialog-item>
+    <div *ngIf="!dialogs || dialogs.length == 0" class="no-dialogs">{{'Dialogs_NoDialogs' | translate}}</div>
 </div>
 
 

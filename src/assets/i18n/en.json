@@ -164,6 +164,8 @@
     "Band_Participants":"Band members",
 
     "Dialogs_Empty":"Select dialog to start messaging",
+    "Dialogs_NoDialogs": "You have not dialogs yet",
+
     "Dialogs_AddParticipant":"Add participants",
     "ChooseBand":"Select band",
     "Invite":"Invite",

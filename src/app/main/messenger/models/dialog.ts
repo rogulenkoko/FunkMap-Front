@@ -6,6 +6,8 @@ export class Dialog {
     }
 
     public participants: Array<string>;
+    public dialogType: DialogType;
+
 
     public isOnline: boolean;
     public lastMessage: Message;
@@ -23,6 +25,8 @@ export class Dialog {
         } 
         result.participants = data.Participants;
         result.creator = data.CreatorLogin;
+        result.newMessagesCount = data.NewMessagesCount;
+        result.dialogType = data.DialogType;
         return result;
     }
 
@@ -34,4 +38,17 @@ export class Dialog {
         });
         return result;
     }
+}
+
+export enum DialogType
+{
+    /// <summary>
+    /// Два собеседника
+    /// </summary>
+    Base = 1,
+
+    /// <summary>
+    /// Больше двух собеседников
+    /// </summary>
+    Conversation = 2
 }

@@ -6,6 +6,7 @@ import { MessengerService } from "app/main/messenger/messenger.service";
 import { Dialog, Message, DialogsNewMessagesCountModel } from "app/main/messenger/models";
 import { Subscription } from "rxjs/Subscription";
 import { SidebarItem } from 'app/main/sidebar/sidebar-item';
+import { DialogReadModel } from 'app/main/messenger/models/dialog-read-model';
 
 @Component({
   selector: 'sidebar',
@@ -29,7 +30,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
               private router: Router) {
     this.subscription = new Subscription();
     this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message)=> this.onMessageRecieved(message)));
-    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogId=> this.onDialogRead(dialogId)));
+    this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogRead=> this.onDialogRead(dialogRead)));
     
   }
 
@@ -107,14 +108,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
     var updatedDialogCountModel = this.dialogsCountModels.find(x=>x.dialogId == message.dialogId);
     if(updatedDialogCountModel){
       updatedDialogCountModel.newMessagesCount ++;
-    } else {
+    } else if(message.isNew) {
       var newDialogCountModel = new DialogsNewMessagesCountModel(message.dialogId, 1);
       this.dialogsCountModels.push(newDialogCountModel);
     }
   }
 
-  private onDialogRead(dialogId: string){
-    this.dialogsCountModels = this.dialogsCountModels.filter(x=>x.dialogId != dialogId);
+  private onDialogRead(dialogRead: DialogReadModel){
+    if(dialogRead.userWhoRead != this.userService.user.login) return;
+    this.dialogsCountModels = this.dialogsCountModels.filter(x=>x.dialogId != dialogRead.dialogId);
   }
 
 

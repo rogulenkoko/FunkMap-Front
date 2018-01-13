@@ -1,17 +1,18 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { User } from 'app/main/user/user';
 import { UserDataService } from 'app/main/user/user-data.service';
 import { Dialog } from 'app/main/messenger/models';
 import { DialogService } from 'app/main/messenger/dialog.service';
 import { MessengerService } from 'app/main/messenger/messenger.service';
 import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'dialog-invite',
   templateUrl: './dialog-invite.component.html',
   styleUrls: ['./dialog-invite.component.scss']
 })
-export class DialogInviteComponent implements OnInit {
+export class DialogInviteComponent implements OnInit, OnDestroy {
 
   private isVisible: boolean;
 
@@ -46,6 +47,9 @@ export class DialogInviteComponent implements OnInit {
 
   ngOnInit() {
     this.init();
+  }
+
+  ngOnDestroy(){
   }
 
   private init(){
@@ -91,13 +95,6 @@ export class DialogInviteComponent implements OnInit {
       dialog.name = this.dialogName;
       this.messengerService.createDialog(dialog).subscribe(response => {
         if (response.isSuccess) {
-         
-          var subscription = this.messengerService.onDialogCreated.subscribe(dialog=>{
-            this.dialogService.setDialog(dialog);
-            subscription.unsubscribe(); 
-          });
-          
-
           this.clear();
         } else {
           this.isError = true;
@@ -107,15 +104,7 @@ export class DialogInviteComponent implements OnInit {
     } else {
       var request = new InviteParticipantsRequest(this.dialogService.dialog.dialogId, dialog.participants);
 
-      this.messengerService.inviteParticipants(request).subscribe(response=>{
-
-        var subscription = this.messengerService.onDialogCreated.subscribe(dialog=>{
-          this.dialogService.setDialog(dialog);
-          subscription.unsubscribe(); 
-        });
-
-        this.clear();
-      })
+      this.messengerService.inviteParticipants(request).subscribe(response=>this.clear());
     }
   }
 
