@@ -6,11 +6,13 @@ import { NgModule } from '@angular/core';
 import { RegistrationComponent } from "./registration/registration.component";
 import { CoreModule } from "app/core/core.module";
 import { ToolsModule } from "app/tools/tools.module";
+import { RestorePasswordComponent } from './restore-password/restore-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    RestorePasswordComponent
   ],
   imports: [
     CoreModule,

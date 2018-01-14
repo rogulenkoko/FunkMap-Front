@@ -5,6 +5,8 @@ import { Observable } from "rxjs/Observable";
 import { User } from "../user/user";
 import { RegistrationRequest, RegistrationModel } from "./registration/registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./registration/confirmation-model";
+import { BaseResponse } from 'app/tools/models/base-response';
+import { ConfirmRestoreRequest } from 'app/main/login/restore-password/confirm-restore-request';
 
 @Injectable()
 export class LoginServiceStub extends LoginService {
@@ -48,5 +50,16 @@ export class LoginServiceStub extends LoginService {
      }
      return Observable.of(response);
    }
+
+   askRestoreCode(loginOrEmail: string): Observable<BaseResponse>{
+
+    if(loginOrEmail != "qwe") return Observable.of(new BaseResponse(false));
+
+    return Observable.of(new BaseResponse(true));
+  }
+
+  confirmRestore(request: ConfirmRestoreRequest): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
+  }
 
 }

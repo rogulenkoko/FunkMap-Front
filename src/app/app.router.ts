@@ -24,6 +24,7 @@ import { ShopFullComponent } from "app/main/shop/shop-full/shop-full.component";
 import { StudioFullComponent } from "app/main/studio/studio-full/studio-full.component";
 import { RehearsalFullComponent } from "app/main/rehearsal/rehearsal-full/rehearsal-full.component";
 import { CanActivateSearch } from "app/tools/can-activate-search";
+import { RestorePasswordComponent } from "app/main/login/restore-password/restore-password.component";
 
 const appRoutes: Routes = [
   {
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
           {
             path: "", component: MainComponent, canActivate: [CanActivateSearch], children: [
               { path: "login", component: LoginComponent },
+              { path: "restore", component: RestorePasswordComponent },
               { path: "signup", component: RegistrationComponent },
               { path: "settings", component: SettingsComponent },
               { path: "profile", component: UserEntitiesComponent },
