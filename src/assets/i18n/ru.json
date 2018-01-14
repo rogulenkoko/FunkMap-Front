@@ -159,5 +159,11 @@
     "Sound_Playlist": "Плейлист",
     "Sound_TracksNotFound": "Треки не найдены",
     "Sound_PlaylistEmpty": "Нет треков в плейлисте",
-    "Dialog_ParticipantsList": "Список участников беседы"
+    "Dialog_ParticipantsList": "Список участников беседы",
+
+    "About": "О нас",
+    "About_Rogulenko": "Рогуленко Кирилл",
+    "About_Grigorjev": "Григорьев Виталий",
+    "About_Developer": "Разработчик",
+    "About_Designer": "Дизайнер"
 }

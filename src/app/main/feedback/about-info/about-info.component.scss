@@ -1,0 +1,53 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
+
+.about-info-container{
+    
+    width: 730px;
+    height: 670px;
+    background-color: $dark-card-background;
+    padding: 60px;
+    border-radius: 5px; 
+    color: $active-color; 
+
+    .info-title-container{
+        .info-title{
+            font-size: 20px;
+            
+        }
+
+        margin-bottom: 32px;
+    }
+
+    .info-container{
+        font-size: 13px;
+        height: 350px;
+    }
+
+    .creators{
+        height: 200px;
+
+        .creator{
+            img{
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+            }
+
+            .creator-info{
+                padding: 12px 6px;
+                .creator-role{
+                    color: $inactive-color;
+                    font-size: 12px; 
+                }
+            }
+        }
+
+    }
+
+    
+}

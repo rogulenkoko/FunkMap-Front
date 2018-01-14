@@ -1,0 +1,22 @@
+<div class="about-info-container d-flex flex-column">
+
+    <div class="info-title-container d-flex justify-content-between">
+        <span class="info-title">{{'About' | translate}}</span>
+    </div>
+
+    <div class="info-container">
+        {{'Start_Title1' | translate}}
+        {{'Start_Title2' | translate}} ...
+    </div>
+
+    <div class="creators d-flex justify-content-between">
+        <div class="creator d-flex" *ngFor="let creator of creators">
+            <img src="{{creator.image}}"/>
+            <div class="creator-info d-flex flex-column">
+                <span>{{creator.name | translate}}</span>
+                <span class="creator-role">{{creator.role | translate}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -162,5 +162,12 @@
     "Sound_Playlist": "Playlist",
     "Sound_TracksNotFound": "Tracks not found",
     "Sound_PlaylistEmpty": "There're no tracks in playlist",
-    "Dialog_ParticipantsList": "Dialog participants"
+    "Dialog_ParticipantsList": "Dialog participants",
+
+    "About": "About us",
+
+    "About_Rogulenko": "Rogulenko Kirill",
+    "About_Grigorjev": "Grigorjev Vitaly",
+    "About_Developer": "Developer",
+    "About_Designer": "Designer"
 }

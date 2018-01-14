@@ -30,6 +30,7 @@ import { MessengerModule } from "app/main/messenger/messenger.module";
 import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 import { NavbarModule } from "app/navbar/navbar.module";
+import { FeedbackModule } from "app/main/feedback/feedback.module";
 
 
 
@@ -61,7 +62,8 @@ import { NavbarModule } from "app/navbar/navbar.module";
     SearchModule,
     FavouritesModule,
     MessengerModule,
-    NavbarModule
+    NavbarModule,
+    FeedbackModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [
