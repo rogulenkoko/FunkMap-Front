@@ -5,8 +5,10 @@
     <div *ngFor="let user of users" class="d-flex align-items-center justify-content-between user-container">
       <div class="d-flex align-items-center">
         <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-        <span class="new-user-name">{{user.name}}</span>
-        <span class="new-user-login">@{{user.login}}</span>
+        <div class="d-flex flex-column">
+          <span class="new-user-name">{{user.name}}</span>
+          <span class="new-user-login">@{{user.login}}</span>
+        </div>
       </div>
       <i *ngIf="userIsCreator && (userService.user && userService.user.login != user.login) " (click)="removeUser(user.login)" class="icon-close"></i>
     </div>

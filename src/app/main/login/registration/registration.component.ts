@@ -59,8 +59,7 @@ export class RegistrationComponent implements OnInit {
 
     switch (this.currentStep) {
       case 1:
-        var request = new RegistrationRequest(this.login, this.password, this.name);
-        this.loginService.register(request).subscribe(response => {
+        this.loginService.validate(this.login).subscribe(response => {
           if (!response.success) {
             this.existingLogin = true;
             setTimeout(() => {
@@ -74,7 +73,7 @@ export class RegistrationComponent implements OnInit {
 
       case 2:
         if (!this.isCodeSent || !this.code) return;
-        var confirmationRequest = new ConfirmationRequest(this.login, this.code);
+        var confirmationRequest = new ConfirmationRequest(this.login, this.email, this.code);
         this.loginService.confirm(confirmationRequest).subscribe(response => {
           if (response.success) {
             this.logIn();
@@ -95,8 +94,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   sendCode() {
-    var request = new RegistrationRequest(this.login);
-    request.email = this.email
+    var request = new RegistrationRequest(this.login, this.email, this.password, this.name);
     this.loginService.sendEmail(request).subscribe(response => {
       this.isEmailSent = true;
       if (response.success) {

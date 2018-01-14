@@ -16,7 +16,7 @@ export abstract class LoginService {
 
   //abstract prolongate(refreshToken: string): Observable<LoginResponse>;
 
-  abstract register(request: RegistrationRequest): Observable<RegistrationModel>;
+  abstract validate(login: string): Observable<RegistrationModel>;
 
   abstract sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>;
 
@@ -43,8 +43,8 @@ export class LoginServiceHttp extends LoginService {
      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}token`,params, options).map(x=>AuthResponse.ToLoginResponsne(x.json()));
    }
 
-   register(request: RegistrationRequest): Observable<RegistrationModel>{
-     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/register`,request).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
+   validate(login: string): Observable<RegistrationModel>{
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/validate/${login}`).map(x=>RegistrationModel.ToRegistrationModel(x.json()));
    }
 
    sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>{

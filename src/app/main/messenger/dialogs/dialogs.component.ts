@@ -49,7 +49,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.setDialog(undefined);
-    this.messengerService.updateCachedDialogs(this.userService.user.login, this.allDialogs);
+    if(this.userService.user) this.messengerService.updateCachedDialogs(this.userService.user.login, this.allDialogs);
   }
 
   private initializeSubscriptions() {

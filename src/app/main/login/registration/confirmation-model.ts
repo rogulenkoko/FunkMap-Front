@@ -1,5 +1,5 @@
 export class ConfirmationRequest{
-    constructor(public login: string, public code: string){
+    constructor(public login: string, public email: string, public code: string){
 
     }
 }
