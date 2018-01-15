@@ -1,0 +1,27 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
+
+.contacts-container{
+    
+    width: 350px;
+    height: 670px;
+    background-color: $dark-card-background;
+    padding: 50px;
+    border-radius: 5px; 
+    color: $active-color; 
+    font-size: 14px;
+    font-weight: bold;
+
+    .contact{
+        i{
+            font-size: 20px;
+            margin-right: 20px;
+        }   
+        margin-bottom: 6px;
+    }
+
+}
