@@ -1,7 +1,7 @@
 
 export class FeedbackItem{
 
-    constructor(public type: FeedbackType){}
+    constructor(public type: FeedbackType, public message: string){}
 
 
 }

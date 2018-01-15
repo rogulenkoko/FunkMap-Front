@@ -172,5 +172,8 @@
     "About_Feature":"Предложение",
     "About_Another":"Другое",
     "About_FeedbackType":"Тип сообщения",
-    "About_FeedbackMessage":"Сообщение.."
+    "About_FeedbackMessage":"Сообщение..",
+    "About_FeedbackComplete":"Спасибо Вам за обратную свзяь!",
+    "About_FeedbackError":"Произошла ошибка :("
+    
 }

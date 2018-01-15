@@ -5,6 +5,9 @@ import { AboutInfoComponent } from './about-info/about-info.component';
 import { CoreModule } from 'app/core/core.module';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { environment } from 'environments/environment';
+import { FeedbackService, FeedbackServiceHttp } from 'app/main/about/feedback.service';
+import { FeedbackServiceStub } from 'app/main/about/feedback.service.stub';
 
 @NgModule({
   imports: [
@@ -12,6 +15,12 @@ import { FeedbackComponent } from './feedback/feedback.component';
     CoreModule
   ],
   declarations: [AboutComponent, AboutInfoComponent, ContactsComponent, FeedbackComponent],
-  exports: [AboutComponent]
+  exports: [AboutComponent],
+  providers: [
+    {
+      provide: FeedbackService,
+      useClass: environment.production ? FeedbackServiceHttp : FeedbackServiceStub
+    },
+  ]
 })
 export class AboutModule { }

@@ -176,6 +176,9 @@
     "About_Feature":"Feature offer",
     "About_Another":"Other",
     "About_FeedbackType":"Feedback type",
-    "About_FeedbackMessage":"Message.."
+    "About_FeedbackMessage":"Message..",
+
+    "About_FeedbackComplete":"Thank you for feedback!",
+    "About_FeedbackError":"Error occurred :("
 
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { FeedbackType } from 'app/main/about/feedback/feedback-item';
+import { FeedbackType, FeedbackItem } from 'app/main/about/feedback/feedback-item';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateSelectItem } from 'app/tools/select';
+import { FeedbackService } from 'app/main/about/feedback.service';
 
 @Component({
   selector: 'feedback',
@@ -16,8 +17,11 @@ export class FeedbackComponent implements OnInit {
   private feedbackType: FeedbackType = FeedbackType.Bug;
   private message: string;
 
+  private feedbackWasSent: boolean;
+  private feedbackWasSentSuccessful: boolean;
 
-  constructor(private translateService: TranslateService) {
+  constructor(private translateService: TranslateService,
+              private feedbackService: FeedbackService) {
     this.feedbackTypes = [
       new FeedbackTypeItem(FeedbackType.Bug, this.translateService.get("About_Bug")),
       new FeedbackTypeItem(FeedbackType.Feature, this.translateService.get("About_Feature")),
@@ -26,6 +30,28 @@ export class FeedbackComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  private send(){
+    var feedback = new FeedbackItem(this.feedbackType, this.message);
+
+    
+    this.feedbackService.sendFeedback(feedback).subscribe(response=>{
+      this.feedbackWasSent = true;
+      this.feedbackWasSentSuccessful = response.success;
+
+      if(response.success){
+        this.clear();
+      }
+
+      setTimeout(()=> this.feedbackWasSent = false, 5000);
+
+    });
+  }
+
+  private clear(){
+    this.feedbackType = FeedbackType.Bug;
+    this.message = "";
   }
 
 }
