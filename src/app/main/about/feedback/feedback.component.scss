@@ -1,0 +1,45 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+@import "src/assets/styles/layout.scss";
+@import "src/assets/styles/icons.scss";
+@import "src/assets/styles/base.scss";
+
+.feedback-container{
+    
+    width: 350px;
+    height: 470px;
+    background-color: $dark-card-background;
+    padding: 55px;
+    border-radius: 5px; 
+    color: $active-color; 
+    margin-bottom: 8px;
+
+
+    .feedback-title{
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .property-title{
+        margin-bottom: 6px;
+    }
+
+    textarea{
+        height: 120px !important;
+        resize: none;
+        border-bottom: 1px solid #dddfe1 !important;
+    }
+
+    textarea::-webkit-input-placeholder{
+        color: $inactive-color; 
+        font-size: 13px;
+    }
+
+    .create-button{
+        width: 175px;
+        margin-top: 20px;
+        background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+        text-align: center;
+    }
+}

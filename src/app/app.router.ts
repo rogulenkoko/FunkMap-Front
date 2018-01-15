@@ -25,7 +25,7 @@ import { StudioFullComponent } from "app/main/studio/studio-full/studio-full.com
 import { RehearsalFullComponent } from "app/main/rehearsal/rehearsal-full/rehearsal-full.component";
 import { CanActivateSearch } from "app/tools/can-activate-search";
 import { RestorePasswordComponent } from "app/main/login/restore-password/restore-password.component";
-import { FeedbackComponent } from "app/main/feedback/feedback.component";
+import { AboutComponent } from "app/main/about/about.component";
 
 const appRoutes: Routes = [
   {
@@ -68,7 +68,7 @@ const appRoutes: Routes = [
           { path: "rehearsalPage/:id", component: RehearsalFullComponent },
           { path: "messenger", component: MessengerComponent },
           { path: "messenger/:login", component: MessengerComponent },
-          { path: "about", component: FeedbackComponent },
+          { path: "about", component: AboutComponent },
         ]
       },
       { path: "start", component: StartComponent }

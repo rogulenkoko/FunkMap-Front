@@ -11,8 +11,8 @@ export class AboutInfoComponent implements OnInit {
 
   constructor() { 
     this.creators = [
-      new Creator("About_Rogulenko", "About_Developer", "/assets/images/rogulenko.jpeg"),
-      new Creator("About_Grigorjev", "About_Designer","/assets/images/grigorjev.jpg"),
+      new Creator("About_Rogulenko", "About_Developer", "/assets/images/rogulenko.jpeg", "https://vk.com/id30724049"),
+      new Creator("About_Grigorjev", "About_Designer","/assets/images/grigorjev.jpg", "https://vk.com/true_kbn"),
     ]
   }
 
@@ -22,5 +22,5 @@ export class AboutInfoComponent implements OnInit {
 }
 
 export class Creator{
-  constructor(public name: string, public role: string, public image: string){}
+  constructor(public name: string, public role: string, public image: string, public link: string){}
 }

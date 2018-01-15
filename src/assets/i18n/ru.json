@@ -165,5 +165,12 @@
     "About_Rogulenko": "Рогуленко Кирилл",
     "About_Grigorjev": "Григорьев Виталий",
     "About_Developer": "Разработчик",
-    "About_Designer": "Дизайнер"
+    "About_Designer": "Дизайнер",
+
+    "About_Feedback": "Обратная связь",
+    "About_Bug":"Баг",
+    "About_Feature":"Предложение",
+    "About_Another":"Другое",
+    "About_FeedbackType":"Тип сообщения",
+    "About_FeedbackMessage":"Сообщение.."
 }

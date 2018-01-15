@@ -30,7 +30,7 @@ import { MessengerModule } from "app/main/messenger/messenger.module";
 import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 import { NavbarModule } from "app/navbar/navbar.module";
-import { FeedbackModule } from "app/main/feedback/feedback.module";
+import { AboutModule } from "app/main/about/about.module";
 
 
 
@@ -63,7 +63,7 @@ import { FeedbackModule } from "app/main/feedback/feedback.module";
     FavouritesModule,
     MessengerModule,
     NavbarModule,
-    FeedbackModule
+    AboutModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

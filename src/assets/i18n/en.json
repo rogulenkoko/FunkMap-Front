@@ -169,5 +169,13 @@
     "About_Rogulenko": "Rogulenko Kirill",
     "About_Grigorjev": "Grigorjev Vitaly",
     "About_Developer": "Developer",
-    "About_Designer": "Designer"
+    "About_Designer": "Designer",
+
+    "About_Feedback": "Feedback",
+    "About_Bug":"Bug",
+    "About_Feature":"Feature offer",
+    "About_Another":"Other",
+    "About_FeedbackType":"Feedback type",
+    "About_FeedbackMessage":"Message.."
+
 }
