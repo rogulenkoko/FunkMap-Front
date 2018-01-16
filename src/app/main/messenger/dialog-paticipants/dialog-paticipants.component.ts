@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { DialogService } from 'app/main/messenger/dialog.service';
 import { UserDataService } from 'app/main/user/user-data.service';
-import { User } from 'app/main/user/user';
+import { User, UserResponse } from 'app/main/user/user';
 import { Dialog } from 'primeng/primeng';
 import { UserService } from 'app/main/user/user.service';
 import { MessengerService } from 'app/main/messenger/messenger.service';
@@ -35,9 +35,9 @@ export class DialogPaticipantsComponent implements OnInit {
   private users: Array<User>;
 
   constructor(private dialogService: DialogService,
-              private userDataService: UserDataService,
-              private userService: UserService,
-              private messengerService: MessengerService) {
+    private userDataService: UserDataService,
+    private userService: UserService,
+    private messengerService: MessengerService) {
     this.visibleChange = new EventEmitter<boolean>();
     this.dialogService.dialog.name
   }
@@ -48,28 +48,30 @@ export class DialogPaticipantsComponent implements OnInit {
 
   private refreshUsers() {
     this.users = [];
+
+    if (!this.dialogComponent) return;
+
     var userLogins = this.dialogService.dialog.participants;
-    userLogins.forEach(userLogin => {
-      this.userDataService.getUser(userLogin).subscribe(user => {
-        if (user.isExist) this.users.push(user.user);
-        if (userLogin == userLogins[userLogins.length - 1]){
-          this.dialogComponent.show();
-          this.users.sort((x,y)=>{
-            if(x.login == this.userService.user.login) return -1;
-            return 1;
-          });
-        } 
-      });
-    });
+    userLogins.forEach(userLogin => this.userDataService.getUser(userLogin).subscribe(user => this.onUserRecieved(user, userLogin, userLogins)));
   }
 
-  private removeUser(login: string){
+
+  private onUserRecieved(user: UserResponse, userLogin: string, userLogins: Array<string>) {
+    if (user.isExist) this.users.push(user.user);
+
+    if (userLogin == userLogins[userLogins.length - 1]) {
+      this.dialogComponent.show();
+      this.users.sort((x, y) => x.login == this.userService.user.login ? -1 : 1);
+    }
+  }
+
+  private removeUser(login: string) {
     var request = new LeaveDialogRequest(this.dialogService.dialog.dialogId, login);
-    this.messengerService.leaveDialog(request).subscribe(response=>{
-      if(response.success){
-        this.users = this.users.filter(x=>x.login != login);
+    this.messengerService.leaveDialog(request).subscribe(response => {
+      if (response.success) {
+        this.users = this.users.filter(x => x.login != login);
       }
-    }); 
+    });
   }
 
   private onHide() {

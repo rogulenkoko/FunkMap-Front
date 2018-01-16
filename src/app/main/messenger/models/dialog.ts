@@ -2,7 +2,7 @@ import { Message } from "app/main/messenger/models";
 
 export class Dialog {
     constructor(public dialogId?: string, public name?: string, public avatar?: string){
-
+        this.dialogType = DialogType.Base;
     }
 
     public participants: Array<string>;

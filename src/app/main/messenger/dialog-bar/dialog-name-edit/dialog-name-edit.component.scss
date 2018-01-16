@@ -1,0 +1,17 @@
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/forms.scss";
+
+
+.dialog-name-container{
+    width: 100%;
+
+    .input-container{
+        width: 100%;
+        padding: 0 40px;
+        margin-bottom: 20px;
+    }
+
+    .btn-secondary{
+        margin-right: 20px;
+    }
+}

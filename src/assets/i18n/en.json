@@ -165,7 +165,10 @@
     "Dialog_ParticipantsList": "Dialog participants",
 
     "About": "About us",
-
+    "About_Info1": "Bandmap is an evolving service for fast and convenient communication between musicians and music lovers around the world.",
+    "About_Info2": "With Bandmap service, musicians can band together, find places for rehearsals, record music studios, as well as find music stores where they can get everything they need for rehearsals. The service will be useful to people who are not musicians. They can find out about the nearest concerts of performers, agree on the organization of concerts and much more.",
+    "About_Info3": "At the moment Bandmap team consists of two people. If you think you can help us, we will be glad to receive your e-mail!",
+    "About_Info4": "P.S. If you find a bug in the service's work or want to offer a new feature for the service, then please inform us about it in the block «Feedback»",
     "About_Rogulenko": "Rogulenko Kirill",
     "About_Grigorjev": "Grigorjev Vitaly",
     "About_Developer": "Developer",
@@ -179,6 +182,13 @@
     "About_FeedbackMessage":"Message..",
 
     "About_FeedbackComplete":"Thank you for feedback!",
-    "About_FeedbackError":"Error occurred :("
+    "About_FeedbackError":"Error occurred :(",
+
+    "Messenger_ChangeDialogName":"Change name",
+    "Messenger_AddParticipant":"Add",
+    "Messenger_Continue":"Continue",
+    "Message_CreateDialog":"Create a conversation",
+    "Messenger_DialogName":"New conversation name"
+
 
 }

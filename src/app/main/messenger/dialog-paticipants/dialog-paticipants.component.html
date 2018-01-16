@@ -1,5 +1,5 @@
 <p-dialog #dialogComponent header="{{ 'Dialog_ParticipantsList' | translate:{name:dialogService.dialog.name} }}" [(visible)]="visible"
-  [width]="550" [draggable]="false" [modal]="true" (onHide)="onHide()" *ngIf="isVisible">
+  [width]="550" [draggable]="false" [modal]="true" (onHide)="onHide()">
 
   <div class="users-container">
     <div *ngFor="let user of users" class="d-flex align-items-center justify-content-between user-container">

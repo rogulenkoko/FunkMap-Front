@@ -88,7 +88,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     this.messengerService.getDialogs().subscribe(dialogs => {
       this.allDialogs = dialogs;
 
-      // this.dialogService.setDialog(dialogs[0]);//удалить
+      //this.dialogService.setDialog(dialogs[0]);//удалить
 
       this.filterDialogs();
       this.updateOnlineUsers();

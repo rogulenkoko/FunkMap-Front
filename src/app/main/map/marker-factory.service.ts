@@ -12,11 +12,11 @@ export class MarkerFactory {
 
   public getMarker(point: Marker): L.Marker {
     point.iconUrl = this.iconProvider.getIcon(point);
-   
-    var marker = L.marker(new L.LatLng(point.lat, point.lng),<any>{
+
+    var marker = L.marker(new L.LatLng(point.lat, point.lng), <any>{
       login: point.login,
       icon: new L.DivIcon({
-        html:`
+        html: `
           <div class="main-icon-image-container">
             <div class="icon-image-container d-flex align-items-center justify-content-center">
               <img src="${point.iconUrl}"/>
@@ -37,11 +37,11 @@ export class MarkerFactory {
     return marker;
   }
 
-  public getCreationMarker(point: Marker): L.Marker{
+  public getCreationMarker(point: Marker): L.Marker {
     point.iconUrl = this.iconProvider.getIcon(point);
-    var marker = L.marker(new L.LatLng(point.lat, point.lng),{
+    var marker = L.marker(new L.LatLng(point.lat, point.lng), {
       icon: new L.DivIcon({
-        html:`
+        html: `
         <div class="main-creation-marker-container">
             <div class="creation-icons-container d-flex flex-row">
               <div id="cross" class="cross-container d-flex align-items-center justify-content-center"><img id="cross-img" src="assets/images/close-red.png"/></div>
@@ -61,6 +61,8 @@ export class MarkerFactory {
   public getMarkerCluster(point: Array<Marker>): L.LayerGroup {
 
     var cluster = L.markerClusterGroup({
+      animate: true,
+      animateAddingMarkers: true,
       polygonOptions: {
         opacity: 0
       },

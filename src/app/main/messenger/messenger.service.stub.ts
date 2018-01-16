@@ -9,6 +9,7 @@ import { MessengerHubService } from 'app/main/messenger/messenger-hub.service';
 import { LeaveDialogRequest } from 'app/main/messenger/models/leave-dialog-request';
 import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
 import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
+import { DialogType } from 'app/main/messenger/models/dialog';
 
 
 @Injectable()
@@ -50,7 +51,15 @@ export class MessengerServiceStub extends MessengerService {
     dialog2.lastMessage = message2;
     dialog2.isOnline = true;
     dialog2.participants = [];
-    return Observable.of([dialog, dialog2]);
+
+    var dialog3 = new Dialog("3", "Маздаседы");
+    dialog3.dialogType = DialogType.Conversation;
+    dialog3.participants = ["rogulenkoko", "test", "qwe"];
+
+    var message3 = new Message("test","1","Как дела?", new Date(2017,7,24,12,12,30));
+    dialog3.lastMessage = message3;
+
+    return Observable.of([dialog, dialog2, dialog3]);
   }
 
 

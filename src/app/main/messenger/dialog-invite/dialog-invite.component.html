@@ -38,10 +38,10 @@
 
     <div class="buttons-container d-flex align-items-center justify-content-center">
       <button class="btn btn-secondary" (click)="cancel()">{{'Cancel' | translate}}</button>
-      <button class="btn btn-success" *ngIf="!isNewDialog" (click)="finish()">Добавить</button>
+      <button class="btn btn-success" *ngIf="!isNewDialog" (click)="finish()">{{'Messenger_AddParticipant' | translate}}</button>
 
-      <button class="btn btn-success" *ngIf="isNewDialog && creationStep == 1" (click)="move()" [class.disabled]="!addedUsers || addedUsers.length == 0">Далее</button>
-      <button class="btn btn-success" *ngIf="isNewDialog && creationStep == 2" (click)="finish()" [class.disabled]="!dialogName">Создать диалог</button>
+      <button class="btn btn-success" *ngIf="isNewDialog && creationStep == 1" (click)="move()" [class.disabled]="!addedUsers || addedUsers.length == 0">{{'Messenger_Continue' | translate}}</button>
+      <button class="btn btn-success" *ngIf="isNewDialog && creationStep == 2" (click)="finish()" [class.disabled]="!dialogName">{{'Message_CreateDialog' | translate}}</button>
     </div>
 
 

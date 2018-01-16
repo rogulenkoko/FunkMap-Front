@@ -33,9 +33,9 @@ export class FeedbackComponent implements OnInit {
   }
 
   private send(){
-    var feedback = new FeedbackItem(this.feedbackType, this.message);
-
+    if(!this.message) return;
     
+    var feedback = new FeedbackItem(this.feedbackType, this.message);
     this.feedbackService.sendFeedback(feedback).subscribe(response=>{
       this.feedbackWasSent = true;
       this.feedbackWasSentSuccessful = response.success;
