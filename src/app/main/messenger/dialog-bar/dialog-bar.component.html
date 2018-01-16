@@ -27,11 +27,9 @@
       <span>{{'Dialogs_AddParticipant' | translate}}</span>
     </div>
   </div>
-
-
-  <dialog-invite *ngIf="isAddToDialogMode" [(visible)]="isAddToDialogMode"></dialog-invite>
-  <dialog-paticipants *ngIf="isVisibleParticipantsList" [(visible)]="isVisibleParticipantsList" [userIsCreator]="userService.user.login == dialogService.dialog.creator"></dialog-paticipants>
-  <dialog-name-edit *ngIf="isEditNameMode" [(visible)]="isEditNameMode"></dialog-name-edit>
-  <avatar-edit *ngIf="isChangeAvatarMode" [(visible)]="isChangeAvatarMode" [previousPhoto]="dialogService.dialog.avatar" (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>
- 
 </div>
+
+<dialog-invite *ngIf="isAddToDialogMode" [(visible)]="isAddToDialogMode"></dialog-invite>
+<dialog-paticipants *ngIf="isVisibleParticipantsList" [(visible)]="isVisibleParticipantsList" [userIsCreator]="userService.user.login == dialogService.dialog.creator"></dialog-paticipants>
+<dialog-name-edit *ngIf="isEditNameMode" [(visible)]="isEditNameMode"></dialog-name-edit>
+<avatar-edit *ngIf="isChangeAvatarMode" [(visible)]="isChangeAvatarMode" [previousPhoto]="dialogService.dialog.avatar" (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>
