@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DialogService } from 'app/main/messenger/dialog.service';
 import { MessengerService } from 'app/main/messenger/messenger.service';
 import { Dialog } from 'app/main/messenger/models';
+import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
 
 @Component({
   selector: 'dialog-name-edit',
@@ -39,7 +40,7 @@ export class DialogNameEditComponent implements OnInit {
 
     if(!this.name) return;
 
-    var dialog = new Dialog(this.dialogService.dialog.dialogId, this.name);
+    var dialog = new DialogUpdateRequest(this.dialogService.dialog.dialogId, this.name);
     this.messengerService.updateDialog(dialog).subscribe(response=>{
       if(response.isSuccess) this.cancel();
     });

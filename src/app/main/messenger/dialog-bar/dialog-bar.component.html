@@ -14,7 +14,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
         <a (click)="changeName()" class="dropdown-item">{{'ChangeDialogName' | translate}}</a>
-        <a class="dropdown-item">{{'ChangeDialogAvatar' | translate}}</a>
+        <a (click)="changeAvatar()" class="dropdown-item">{{'ChangeDialogAvatar' | translate}}</a>
         <a (click)="showList()" class="dropdown-item"> {{'DialogParticipantsList' | translate}} </a>
       </div>
     </div>
@@ -32,6 +32,6 @@
   <dialog-invite *ngIf="isAddToDialogMode" [(visible)]="isAddToDialogMode"></dialog-invite>
   <dialog-paticipants *ngIf="isVisibleParticipantsList" [(visible)]="isVisibleParticipantsList" [userIsCreator]="userService.user.login == dialogService.dialog.creator"></dialog-paticipants>
   <dialog-name-edit *ngIf="isEditNameMode" [(visible)]="isEditNameMode"></dialog-name-edit>
-
-
+  <avatar-edit *ngIf="isChangeAvatarMode" [(visible)]="isChangeAvatarMode" [previousPhoto]="dialogService.dialog.avatar" (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>
+ 
 </div>

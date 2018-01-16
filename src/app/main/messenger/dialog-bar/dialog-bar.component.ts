@@ -6,6 +6,7 @@ import { MessengerService } from 'app/main/messenger/messenger.service';
 import { Dialog } from 'app/main/messenger/models';
 import { UserService } from 'app/main/user/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
 
 @Component({
   selector: 'dialog-bar',
@@ -19,6 +20,7 @@ export class DialogBarComponent implements OnInit {
   private isAddToDialogMode: boolean = false;
   private isVisibleParticipantsList: boolean = false;
   private isEditNameMode: boolean = false;
+  private isChangeAvatarMode: boolean = false;
 
   constructor(private dialogService: DialogService,
     private messengerService: MessengerService,
@@ -47,6 +49,13 @@ export class DialogBarComponent implements OnInit {
     }
   }
 
+  private onAvatarSaved(bytes: string){
+    var dialog = new DialogUpdateRequest(this.dialogService.dialog.dialogId, this.dialogService.dialog.name, bytes);
+    this.messengerService.updateDialog(dialog).subscribe(response=>{
+      if(response.isSuccess) this.isChangeAvatarMode = false;
+    });
+  }
+
   private addToDialog() {
     this.isAddToDialogMode = true;
   }
@@ -57,5 +66,9 @@ export class DialogBarComponent implements OnInit {
 
   private changeName(){
     this.isEditNameMode = true;
+  }
+
+  private changeAvatar(){
+    this.isChangeAvatarMode = true;
   }
 }

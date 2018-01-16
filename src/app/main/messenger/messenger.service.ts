@@ -17,6 +17,7 @@ import { DialogReadModel } from 'app/main/messenger/models/dialog-read-model';
 import { locale } from 'moment';
 import { useAnimation } from '@angular/core/src/animation/dsl';
 import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
+import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
 
 @Injectable()
 export abstract class MessengerService {
@@ -40,7 +41,7 @@ export abstract class MessengerService {
 
   abstract sendMessage(message: Message): Observable<BaseResponse>;
   abstract createDialog(dialog: CreateDialogRequest): Observable<DialogUpdateResponse>;
-  abstract updateDialog(dialog: Dialog): Observable<DialogUpdateResponse>;
+  abstract updateDialog(dialog: DialogUpdateRequest): Observable<DialogUpdateResponse>;
 
   abstract inviteParticipants(request: InviteParticipantsRequest): Observable<BaseResponse>;
 
@@ -129,7 +130,7 @@ export class MessengerServiceHttp extends MessengerService {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));
   }
 
-  updateDialog(dialog: Dialog): Observable<DialogUpdateResponse> {
+  updateDialog(dialog: DialogUpdateRequest): Observable<DialogUpdateResponse> {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/updateDialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));
   }
 

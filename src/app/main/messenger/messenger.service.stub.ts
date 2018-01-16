@@ -10,6 +10,7 @@ import { LeaveDialogRequest } from 'app/main/messenger/models/leave-dialog-reque
 import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-participants-request';
 import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
 import { DialogType } from 'app/main/messenger/models/dialog';
+import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
 
 
 @Injectable()
@@ -28,7 +29,7 @@ export class MessengerServiceStub extends MessengerService {
      return Observable.of(new BaseResponse(true));
   }
 
-  updateDialog(dialog: Dialog): Observable<DialogUpdateResponse>{
+  updateDialog(dialog: DialogUpdateRequest): Observable<DialogUpdateResponse>{
     return Observable.of(new DialogUpdateResponse(true));
   }
 
