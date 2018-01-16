@@ -55,7 +55,11 @@ export class Musician extends BaseModel{
 export enum MusicStyle{
     HipHop = 1,
     Rock = 2,
-    Funk = 3
+    Funk = 3,
+    Metal = 4,
+    Jazz = 5,
+    Pop = 6,
+    Electronic = 7
 }
 
 export enum Sex{
@@ -69,7 +73,8 @@ export enum InstrumentType{
     Vocal = 3,
     Brass = 4,
     Guitar = 5,
-    Keyboard = 6
+    Keyboard = 6,
+    Dj = 7
 }
 
 export enum ExpirienceType{

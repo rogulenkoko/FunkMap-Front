@@ -24,6 +24,10 @@ export class MusicianTypesProvider {
          this.musicStyles.setValue(MusicStyle.Funk, "Funk");
          this.musicStyles.setValue(MusicStyle.HipHop, "HipHop");
          this.musicStyles.setValue(MusicStyle.Rock, "Rock");
+         this.musicStyles.setValue(MusicStyle.Metal, "Metal");
+         this.musicStyles.setValue(MusicStyle.Electronic, "Electronic");
+         this.musicStyles.setValue(MusicStyle.Pop, "Pop");
+         this.musicStyles.setValue(MusicStyle.Jazz, "Jazz");
      }
 
      private initSexTypes(){
@@ -40,6 +44,7 @@ export class MusicianTypesProvider {
         this.instruments.setValue(InstrumentType.Brass, "Brass");
         this.instruments.setValue(InstrumentType.Keyboard, "Keyboard");
         this.instruments.setValue(InstrumentType.Guitar, "Guitar");
+        this.instruments.setValue(InstrumentType.Dj, "Dj");
      }
 
      private initExpirience(){
