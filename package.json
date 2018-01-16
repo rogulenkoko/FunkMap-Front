@@ -34,6 +34,7 @@
     "leaflet-plugins": "^3.0.0",
     "leaflet.markercluster": "^1.2.0",
     "moment": "^2.18.1",
+    "ng2-responsive": "^0.8.4",
     "ng2-signalr": "^2.1.0",
     "ng2-youtube-player-mini": "^2.2.4",
     "ngx-malihu-scrollbar": "^1.2.2",

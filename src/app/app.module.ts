@@ -31,6 +31,8 @@ import { StartComponent } from './start/start.component';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 import { NavbarModule } from "app/navbar/navbar.module";
 import { AboutModule } from "app/main/about/about.module";
+import { ResponsiveModule } from 'ng2-responsive';
+import { MobileStubComponent } from './main/mobile-stub/mobile-stub.component'
 
 
 
@@ -38,12 +40,10 @@ import { AboutModule } from "app/main/about/about.module";
   declarations: [
     AppComponent,
     MainComponent,
-
     SidebarComponent,
-
     StartComponent,
-
-    MainWrapperComponent
+    MainWrapperComponent,
+    MobileStubComponent
   ],
   imports: [
     CoreModule,
@@ -63,7 +63,8 @@ import { AboutModule } from "app/main/about/about.module";
     FavouritesModule,
     MessengerModule,
     NavbarModule,
-    AboutModule
+    AboutModule,
+    ResponsiveModule
   ],
   exports:[CoreModule, ToolsModule],
   providers: [

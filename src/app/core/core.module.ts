@@ -22,6 +22,7 @@ import { FileUploadModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import {InputSwitchModule} from 'primeng/primeng';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { ResponsiveModule } from 'ng2-responsive'
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
     InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule,
-    MalihuScrollbarModule
+    MalihuScrollbarModule,
+    ResponsiveModule
   ],
   exports: [
     TranslateModule,
@@ -65,7 +67,8 @@ import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
     InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule,
-    MalihuScrollbarModule
+    MalihuScrollbarModule,
+    ResponsiveModule
   ],
   providers: [
     LanguageService,

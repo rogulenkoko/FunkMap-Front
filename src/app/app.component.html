@@ -1,4 +1,14 @@
-<navbar></navbar>
-<div class="main-content">
-    <router-outlet></router-outlet>
-</div>
+<ng-container *isDesktop>
+    <navbar></navbar>
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
+</ng-container>
+
+<ng-container *isTablet>
+    <mobile-stub></mobile-stub>
+</ng-container>
+
+<ng-container *isMobile>
+    <mobile-stub></mobile-stub>
+</ng-container>
