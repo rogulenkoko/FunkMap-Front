@@ -24,6 +24,17 @@
             color: $inactive-color;
             font-size: 8px;
         }
+
+        .user-link{
+            color: $inactive-color;
+            font-size: 13px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .user-link:hover{
+            color: $dark-orange-light;
+        }
     
     }
 }

@@ -184,7 +184,8 @@
     "Messenger_AddParticipant":"Добавить",
     "Messenger_Continue":"Далее",
     "Message_CreateDialog":"Создать беседу",
-    "Messenger_DialogName":"Новое имя беседы"
+    "Messenger_DialogName":"Новое имя беседы",
+    "Messenger_Send":"Написать"
 
     
 }

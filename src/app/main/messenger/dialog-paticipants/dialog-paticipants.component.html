@@ -10,7 +10,11 @@
           <span class="new-user-login">@{{user.login}}</span>
         </div>
       </div>
-      <i *ngIf="userIsCreator && (userService.user && userService.user.login != user.login) " (click)="removeUser(user.login)" class="icon-close"></i>
+      <div>
+          <a *ngIf="userService.user.login != user.login" class="user-link" (click)="sendMessage(user.login)">{{'Messenger_Send' | translate}}</a>
+          <i *ngIf="userIsCreator && (userService.user && userService.user.login != user.login) " (click)="removeUser(user.login)" class="icon-close"></i>
+      </div>
+      
     </div>
   </div>
 </p-dialog>

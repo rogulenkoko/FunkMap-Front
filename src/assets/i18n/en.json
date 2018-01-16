@@ -188,7 +188,8 @@
     "Messenger_AddParticipant":"Add",
     "Messenger_Continue":"Continue",
     "Message_CreateDialog":"Create a conversation",
-    "Messenger_DialogName":"New conversation name"
+    "Messenger_DialogName":"New conversation name",
+    "Messenger_Send":"Send message"
 
 
 }

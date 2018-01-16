@@ -6,6 +6,7 @@ import { Dialog } from 'primeng/primeng';
 import { UserService } from 'app/main/user/user.service';
 import { MessengerService } from 'app/main/messenger/messenger.service';
 import { LeaveDialogRequest } from 'app/main/messenger/models/leave-dialog-request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dialog-paticipants',
@@ -35,9 +36,10 @@ export class DialogPaticipantsComponent implements OnInit {
   private users: Array<User>;
 
   constructor(private dialogService: DialogService,
-    private userDataService: UserDataService,
-    private userService: UserService,
-    private messengerService: MessengerService) {
+              private userDataService: UserDataService,
+              private userService: UserService,
+              private messengerService: MessengerService,
+              private router: Router) {
     this.visibleChange = new EventEmitter<boolean>();
     this.dialogService.dialog.name
   }
@@ -72,6 +74,11 @@ export class DialogPaticipantsComponent implements OnInit {
         this.users = this.users.filter(x => x.login != login);
       }
     });
+  }
+
+  private sendMessage(user: string){
+    this.isVisible = false;
+    this.router.navigate(['messenger',{user: user}]);
   }
 
   private onHide() {

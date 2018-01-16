@@ -50,6 +50,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       theme: 'minimal-dark',
       scrollInertia: 500,
       callbacks: {
+        onTotalScrollOffset: 500,
         onTotalScroll: ()=> that.getMore()
       },
       advanced:{ updateOnContentResize: true } };
