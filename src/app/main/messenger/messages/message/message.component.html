@@ -4,7 +4,24 @@
 
     <avatar-circle  *ngIf="message.sender != userService.user.login" [image]="message.avatar" [size]="'36px'" [iconSize]="'21px'"  [ngClass]="'message-avatar'"></avatar-circle>
 
-    <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">{{message.text}}</div>
+    <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">
+      <span>{{message.text}}</span>
+      <div *ngIf="images" class="images-container" >
+        <a *ngFor="let image of images" href="{{image.dataUrl}}" [style.width]="image.width*200/image.height + 'px'" [style.flex-grow]="image.width*200/image.height">
+            <i [style.padding-bottom]="image.height/image.width*100 + '%'"></i>
+          <img src="{{image.dataUrl}}"/>
+        </a>
+      </div>
+      <div *ngIf="files" class="files-container">
+          <a *ngFor="let file of files" class="d-flex file-content align-items-center" href="{{file.dataUrl}}">
+              <span class="icon-file"></span>
+              <div class="d-flex flex-column">
+                <span>{{file.name}}</span>
+                <span>{{file.size | size}}</span>
+              </div>
+            </a>
+        </div>
+    </div>
   </div>
   <div class="date-container d-flex justify-content-end">
     <div>{{message.date | dateNotification}}</div>

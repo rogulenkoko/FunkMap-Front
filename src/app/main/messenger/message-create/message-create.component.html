@@ -2,11 +2,43 @@
 <div (keyup.enter)="sendMessage()" class="d-flex flex-column message-create-main-container" *ngIf="dialogService.dialog || isNewDialog">
     <div class="d-flex">
         <div class="content-load-container">
-            <i class="icon-image"></i>
-            <!-- <p-fileUpload chooseLabel="" auto="false" mode="basic" accept="image/*" maxFileSize="1000000" multiple="multiple" customUpload="true" (uploadHandler)="onImagepload($event)"> </p-fileUpload> -->
-            <i class="icon-file"></i>
+            <upload [id]="'message-image'"
+                    [icon]="'icon-image'"
+                    [width]="'20px'" 
+                    [fileType]="1" 
+                    (onUploadedStart)="onUploadedStart($event)"
+                    (onUploadedFinished)="onUploadedFinished($event)"></upload>
+           
+            <upload [id]="'message-file'" 
+                    [icon]="'icon-file'"
+                    [width]="'20px'" 
+                    [fileType]="0" 
+                    (onUploadedStart)="onUploadedStart($event)"
+                    (onUploadedFinished)="onUploadedFinished($event)"></upload>
         </div>
-        <textarea onkeydown="if(event.keyCode == 13) return false;" id="text-input" placeholder="{{'WriteMessage' | translate}}" rows="0" cols="100" [(ngModel)]="text" pInputTextarea autoResize="false"></textarea>
+
+        <div class="message-content-container d-flex flex-column">
+            <textarea onkeydown="if(event.keyCode == 13) return false;" id="text-input" placeholder="{{'WriteMessage' | translate}}" rows="0" cols="100" [(ngModel)]="text" pInputTextarea autoResize="false"></textarea>
+            
+            <div class="d-flex flex-row flex-wrap">
+                <div class="d-flex uploaded-image" *ngFor="let image of images">
+                    <img *ngIf="image.data" src="data:image/png;base64,{{image.data}}"/>
+                    <div><span (click)="removeContentItem(image)" class="fa fa-fw fa-close"></span></div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-row uploaded-file" *ngFor="let file of files">
+                    <span class="icon-file"></span>
+                    <span>{{file.name}}</span>
+                    <span>{{file.size | size}}</span>
+                    <div><i (click)="removeContentItem(file)" class="fa fa-fw fa-close"></i></div>
+                </div>
+            </div>
+            
+        </div>
+
+       
         <span (click)="sendMessage()"  class="send-label">{{'Send' | translate}}</span>
     </div>
    

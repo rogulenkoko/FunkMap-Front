@@ -33,6 +33,8 @@ import { CanActivateSearch } from 'app/tools/can-activate-search';
 import { EntitySoundComponent } from './entity-full/entity-sound/entity-sound.component';
 import { SoundcloudSearchComponent } from './soundcloud/soundcloud-search/soundcloud-search.component';
 import { SoundcloudModule } from 'app/tools/soundcloud/soundcloud.module';
+import { UploadComponent } from './upload/upload.component';
+import { SizePipe } from './size.pipe';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { SoundcloudModule } from 'app/tools/soundcloud/soundcloud.module';
     EntityActiveComponent,
     AvatarComponent,
     EntitySoundComponent,
+    UploadComponent,
+    SizePipe
     
   ],
   imports: [
@@ -86,7 +90,9 @@ import { SoundcloudModule } from 'app/tools/soundcloud/soundcloud.module';
     EntityActiveComponent,
     AvatarComponent,
     EntitySoundComponent,
-    SoundcloudSearchComponent
+    SoundcloudSearchComponent,
+    UploadComponent,
+    SizePipe
     ],
   providers: [
     DateSelectProvider,

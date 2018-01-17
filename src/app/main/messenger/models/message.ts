@@ -1,4 +1,5 @@
 import * as moment from "moment";
+import { FileType } from "app/tools/upload/upload.component";
 
 export class Message {
     constructor(public sender: string, public dialogId: string, public text: string, public date?: Date) {
@@ -11,10 +12,12 @@ export class Message {
 
     public messageType: MessageType;
 
+    public content: Array<Content>;
+
     public static ToMessage(data: any): Message {
         var result = new Message(data.Sender, data.DialogId, data.Text, new Date(data.DateTimeUtc));
         result.isNew = data.IsNew;
-        
+        result.content = Content.ToContents(data.Content);
         result.messageType = data.MessageType;
         return result;
     }
@@ -29,6 +32,57 @@ export class Message {
     }
 
 
+}
+
+export abstract class Content {
+    constructor(public contentType: FileType, public name: string, public size: number) {
+
+    }
+
+    public data: string;
+    public dataUrl: string;
+
+    static ToContents(data: any): Array<Content> {
+        var result = new Array<Content>();
+        if (!data) return result;
+
+        data.forEach(element => {
+            var type = element.ContentType;
+            switch (type) {
+                case FileType.Image:
+                    var item = new ImageContent(element.Name, element.Size);
+                    item.dataUrl = element.DataUrl;
+                    result.push(item);
+                    break;
+
+                case FileType.Other:
+                    var fileItem = new FileContent(element.Name, element.Size);
+                    fileItem.dataUrl = element.DataUrl;
+                    result.push(fileItem);
+                    break;
+            }
+
+
+        });
+        return result;
+    }
+}
+
+export class ImageContent extends Content {
+    constructor(name: string, size: number, data?: string) {
+        super(FileType.Image, name, size);
+        this.data = data;
+    }
+
+    public width: number;
+    public height: number;
+}
+
+export class FileContent extends Content {
+    constructor(name: string, size: number, data?: string) {
+        super(FileType.Other, name, size);
+        this.data = data;
+    }
 }
 
 export enum MessageType {

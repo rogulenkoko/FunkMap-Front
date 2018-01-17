@@ -36,14 +36,49 @@
         }
     }
 
-    textarea{
-        width: 100%;
-        font-size: 13px;
-        max-height: 200px;
-        color: $dialog-name-color;
-        border-style: none; 
-        border-color: Transparent; 
-        resize: none;
+   
+
+    .message-content-container{
+
+        textarea{
+            width: 100%;
+            font-size: 13px;
+            max-height: 200px;
+            color: $dialog-name-color;
+            border-style: none; 
+            border-color: Transparent; 
+            resize: none;
+            
+        }
+
+        .uploaded-image{
+            padding: 6px;
+            margin: 6px;
+            img{
+                margin-right: 6px;
+                height: 60px;
+                border-radius: 5px;
+            }
+            .fa-close{
+                top: -7px;
+            }
+            
+        }
+
+        .uploaded-file{
+            margin: 6px;
+            span, div{
+                height: 15px;
+                margin-right: 6px;
+                font-size: 13px;
+                color: $inactive-color;
+                max-width: 200px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+            }
+        }
     }
 }
 
@@ -92,4 +127,10 @@ p-fileupload{
             width: 100%;
         }
     }
+}
+
+.fa-close{
+    width: 9px;
+    position: relative;
+
 }

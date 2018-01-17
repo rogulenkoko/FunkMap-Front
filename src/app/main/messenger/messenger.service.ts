@@ -123,7 +123,7 @@ export class MessengerServiceHttp extends MessengerService {
   }
 
   sendMessage(message: Message): Observable<BaseResponse> {
-    return this.signalrService.connection.switchMap(connection => { console.log(1, connection); return Observable.fromPromise(connection.invoke("sendMessage", message)) }).map(x => BaseResponse.ToBaseResponse(x));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/sendMessage`, message).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
   createDialog(dialog: CreateDialogRequest): Observable<DialogUpdateResponse> {

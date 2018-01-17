@@ -23,6 +23,35 @@ $image-width: 36px;
             border-radius: 18px;
             padding: 8px 24px;
             font-size: 13px;
+
+            .file-content{
+                color: $user-message-color;
+                cursor: pointer;
+                text-decoration: none;
+                span{
+                    max-width: 300px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                .icon-file{
+                    font-size: 20px;
+                    margin-right: 8px;
+                }
+            }
+            
+            .images-container{
+                a{
+                    cursor: pointer;
+                    text-decoration: none;
+                }   
+                
+                img{
+                    height: 84px;
+                    margin: 12px 0;
+                }
+            }
+
         }
 
         .user-message-content{
@@ -58,10 +87,6 @@ $image-width: 36px;
             }
         }
     }
-}
-
-.user-main-message-container{
-    //float: right;
 }
 
 .anonim-message-container{
