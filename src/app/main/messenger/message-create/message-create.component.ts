@@ -65,7 +65,7 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   private sendMessage() {
 
     var content = this.files.concat(this.images);
-    if (content.find(x => x.isLoaded)) return;
+    if (content.find(x => !x.isLoaded)) return;
     if (!this.text && (!content || content.length == 0)) return;
     let message = new Message(this.userService.user.login, this.dialogService.dialog.dialogId, this.text);
     message.content = content;
