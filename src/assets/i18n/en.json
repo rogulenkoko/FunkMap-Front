@@ -72,6 +72,8 @@
     "Save": "Save",
     "Search": "Search",
     "Search_Placeholder": "Search..",
+    "Search_Result":"Search results",
+    "Search_ResultCount":"{{count}} profiles found",
     "Profile": "My profile",
     "Messages": "Messages",
     "Favorites": "Favorites",

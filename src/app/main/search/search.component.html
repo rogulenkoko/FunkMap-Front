@@ -7,19 +7,19 @@
       </div>
     </div>
     
-    <div class="filter-line d-flex justify-content-between">
-      <span (click)="enableFilter()" class="icon icon-middle filter-icon mr-2" [class.selected-filter]="filterService.isFilterEnabled"></span>
-      <span *ngIf="filterService.isFilterEnabled" (click)="clearFilter()" class="filter-text">{{'Clear_Filter' | translate}}</span>
+    <div class="result-line d-flex flex-column justify-content-between">
+      <span class="result-title">{{'Search_Result' | translate}}</span>
+      <span *ngIf="!isLoading" class="count-title">{{'Search_ResultCount' | translate:{count:allItemsCount} }}</span>
     </div>
-    <search-filter *ngIf="filterService.isFilterEnabled"></search-filter>
+    <!-- <search-filter *ngIf="filterService.isFilterEnabled"></search-filter> -->
     <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" id="search-container" class="search-items-container">
       <search-list *ngIf="items" [items]="items"></search-list>
       
-      <div  *ngIf="!items || items.length == 0 && !isLoaded" class="no-items-message-container d-flex flex-row justify-content-center">
+      <div  *ngIf="!items || items.length == 0 && !isLoading" class="no-items-message-container d-flex flex-row justify-content-center">
         {{'Search_NoItems' | translate}}
       </div>
     </div>
-     <!-- <i *ngIf="isLoaded" class="fa fa-spinner fa-spin fa-2x mt-2"></i> -->
+     <!-- <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x mt-2"></i> -->
   </div>
  
 </side>

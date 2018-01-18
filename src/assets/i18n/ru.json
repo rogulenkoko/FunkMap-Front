@@ -72,6 +72,8 @@
     "Save": "Сохранить",
     "Search": "Поиск",
     "Search_Placeholder": "Поиск..",
+    "Search_Result":"Результат поиска",
+    "Search_ResultCount":"Найдено {{count}} профилей",
     "Profile": "Мои профили",
     "Messages": "Сообщения",
     "Favorites": "Избранное",

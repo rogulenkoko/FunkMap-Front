@@ -28,7 +28,8 @@ import { SearchFilterService } from "app/main/search/search-filter/search-filter
   ],
   exports: [
     SearchComponent,
-    SearchListComponent
+    SearchListComponent,
+    SearchFilterComponent
   ],
   declarations: [SearchComponent, SearchListComponent, SearchFilterComponent],
   providers: [

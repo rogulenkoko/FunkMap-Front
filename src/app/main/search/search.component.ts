@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   private allItemsCount: number;
   private portionCount: number = 10;
 
-  private isLoaded: boolean = false;
+  private isLoading: boolean = false;
 
   private subscription: Subscription;
 
@@ -66,10 +66,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 
   private refresh() {
-    this.isLoaded = true;
+    this.isLoading = true;
     this.items = [];
     this.searchService.getFiltered(0, this.portionCount).subscribe(response => {
-      this.isLoaded = false;
+      this.isLoading = false;
       this.onItemsLoaded(response.items);
       this.mapFilter.onItemsFiltered.emit(response.allLogins);
       this.allItemsCount = response.allCount;
@@ -93,9 +93,9 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private getMore() {
     if (this.items.length == this.allItemsCount) return;
-    this.isLoaded = true;
+    this.isLoading = true;
     this.searchService.getFiltered(this.items.length, this.portionCount).subscribe(response => {
-      this.isLoaded = false;
+      this.isLoading = false;
       this.items.push(...response.items);
       if (this.userService.user) this.getFavourites();
     });

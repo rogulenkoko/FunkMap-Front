@@ -17,6 +17,7 @@ import { MapFilter } from "./map-filter.service";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { MapLegendComponent } from './map-legend/map-legend.component';
 import { CoreModule } from "app/core/core.module";
+import { SearchModule } from "app/main/search/search.module";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CoreModule } from "app/core/core.module";
     FormsModule,
     HttpModule,
     ToolsModule,
-    CoreModule
+    CoreModule,
+    SearchModule
   ],
   exports:[MapComponent],
   providers: [
