@@ -1,8 +1,13 @@
 <div class="contacts-container d-flex flex-column">
 
-  <div class="contact d-flex alig-items-center" *ngFor="let contact of contacts">
+  <a class="contact d-flex alig-items-center" *ngFor="let contact of contacts">
     <i [ngClass]="contact.icon"></i>
     <span>{{contact.info}}</span>
-  </div>
+  </a>
+
+  <a class="contact d-flex alig-items-center" *ngFor="let contact of linkContacts" [href]="contact.link" target="_blank">
+    <i [ngClass]="contact.icon"></i>
+    <span>{{contact.info}}</span>
+  </a>
 
 </div> 

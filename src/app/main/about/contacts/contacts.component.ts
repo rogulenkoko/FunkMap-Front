@@ -8,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class ContactsComponent implements OnInit {
 
   private contacts: Array<Contact>;
+  private linkContacts: Array<Contact>;
 
   constructor() {
     this.contacts = [
       new Contact("icon-phone", "+7 (969) 702-55-46"),
-      new Contact("icon-mail", "bandmap@mail.ru"),
-      new Contact("icon-vk-1", "vk.com/bandmapofficial")
+      new Contact("icon-mail", "bandmap@mail.ru")
+     
     ];
+
+    this.linkContacts = [
+      new Contact("icon-vk-1", "vk.com/bandmapofficial", "https://vk.com/bandmapofficial")
+    ]
    }
 
   ngOnInit() {
@@ -23,5 +28,5 @@ export class ContactsComponent implements OnInit {
 }
 
 export class Contact{
-  constructor(public icon: string, public info: string){}
+  constructor(public icon: string, public info: string, public link?: string){}
 }

@@ -21,8 +21,12 @@ body{
     height: 75px !important;
 }
 
-i, span{
+i, span, a{
     outline: none;
+}
+
+a{
+    text-decoration: none !important;
 }
 
 canvas{

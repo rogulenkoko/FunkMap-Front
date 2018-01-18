@@ -4,7 +4,7 @@
     <div *ngFor="let track of tracks" class="soundcloud-track d-flex flex-row">
       <iframe width="90%" height="100%" scrolling="no" frameborder="no" [src]="getPlayerFrameUrl(track.id) | safe">
       </iframe>
-      <span *ngIf="track.isAdded" (click)="removeFromPlaylist(track)" class="icon icon-close"></span>
+      <span *ngIf="track.isAdded" (click)="removeFromPlaylist(track)" class="icon-close"></span>
     </div>
   </ng-container>
   <div *ngIf="!tracks || tracks.length == 0" class="empty">
