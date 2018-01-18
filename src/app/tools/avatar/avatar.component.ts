@@ -5,7 +5,6 @@ import { CropperDirective } from "app/tools/cropper/cropper.directive";
 import { UserDataService } from 'app/main/user/user-data.service';
 import { UserService } from 'app/main/user/user.service';
 import { Dialog } from 'primeng/primeng';
-import { FileUploadFinishedEvent } from 'app/tools/upload/upload.component';
 
 @Component({
   selector: 'avatar-edit',
@@ -53,18 +52,23 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
   handleUpdate($event){
   }
 
-  private onImagepload(images: Array<FileUploadFinishedEvent>){
-    if(!images || images.length == 0) return;
-    var file = images[0];
+  private onImagepload(obj: any){
+    if(!obj || !obj.files || obj.files.length == 0) return;
+    var file = obj.files[0];
+    var fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
     var that = this;
-    this.dialog.positionTop = 110;
-    this.dialog.show();
-    this.imageBase64 = `data:image/png;base64,${file.bytes}`;
-    this.isImageLoaded = true;
-     
+   
+    fileReader.onloadend = ()=>{
+      this.dialog.positionTop = 110;
+      this.dialog.show();
+      this.imageBase64 = fileReader.result;
+      this.isImageLoaded = true;
       setTimeout(function() {
-        that.cropper.refresh();  
+        that.cropper.refresh();   
       }, 0);
+      
+    }
   }
 
   save(){

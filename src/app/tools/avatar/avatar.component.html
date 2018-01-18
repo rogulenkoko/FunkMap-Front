@@ -1,47 +1,41 @@
+
 <!-- <modal [title]="'Avatar_Title'" [width]="'550px'" (onClosed)="onClosed()"> -->
 
-    <p-dialog header="{{ 'Avatar_Title' | translate}}" 
-    #dialog
-    [(visible)]="visible" 
-    [width]="550"
-    [draggable]="false" 
-    [modal]="true"
-    [positionTop]="imageBase64 ? 110 : undefined"
-    (onHide)="onClosed()">
+  <p-dialog header="{{ 'Avatar_Title' | translate}}" 
+  #dialog
+  [(visible)]="visible" 
+  [width]="550"
+  [draggable]="false" 
+  [modal]="true"
+  [positionTop]="imageBase64 ? 110 : undefined"
+  (onHide)="onClosed()">
 
-  <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
-     <div *ngIf="!isImageLoaded && !wantsToDelete" class="add-delete-container d-flex flex-row justify-content-around">
-        <upload [id]="'message-image'"
-        [icon]="'icon-plus'"
-        [label]="'Avatar_LoadNew'"
-        [width]="'200px'"
-        [useTooltip]="false"
-        [maxFileCount]="1"
-        [fileType]="1" 
-        (onUploadedFinished)="onImagepload($event)"></upload>
-      <div *ngIf="previousPhoto" (click)="checkWantsToDelete()" class="d-flex align-items-center action-container">
-        <i class="icon-rubbish-bin"></i>
-        <span>{{'Avatar_Delete' | translate}}</span>
-      </div>
-    </div> 
-
-    <div>
-        <div class="cropper-container">
-            <img *ngIf="imageBase64 && isImageLoaded" id="avatar"  [elementId]="'avatar'" cropper class="cropped-image" src="{{imageBase64}}"/>
-          </div>
+<div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
+   <div *ngIf="!isImageLoaded && !wantsToDelete" class="add-delete-container d-flex flex-row justify-content-around">
+    <p-fileUpload #fileInput  chooseLabel="{{'Avatar_LoadNew' | translate}}" auto="false" mode="basic" accept="image/*" customUpload="true" (uploadHandler)="onImagepload($event)"></p-fileUpload>
+    <div *ngIf="previousPhoto" (click)="checkWantsToDelete()" class="d-flex align-items-center action-container">
+      <i class="icon-rubbish-bin"></i>
+      <span>{{'Avatar_Delete' | translate}}</span>
     </div>
-   
-    
-    <span *ngIf="!isImageLoaded && wantsToDelete" class="confirmation-label">
-      {{'Avatar_DeleteConfirmation' | translate}}
-    </span>
-    <div *ngIf="isImageLoaded || wantsToDelete" class="d-flex flex-row justify-content-between avatar-buttons-container">
-      <button (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
-      <button *ngIf="isImageLoaded && !wantsToDelete" (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+  </div> 
 
-      <button *ngIf="!isImageLoaded && wantsToDelete" (click)="delete()" class="btn btn-success">{{'Avatar_Delete' | translate}}</button>
-    </div>
-
+  <div>
+      <div class="cropper-container">
+          <img *ngIf="imageBase64 && isImageLoaded" id="avatar"  [elementId]="'avatar'" cropper class="cropped-image" src="{{imageBase64}}"/>
+        </div>
   </div>
+ 
+  
+  <span *ngIf="!isImageLoaded && wantsToDelete" class="confirmation-label">
+    {{'Avatar_DeleteConfirmation' | translate}}
+  </span>
+  <div *ngIf="isImageLoaded || wantsToDelete" class="d-flex flex-row justify-content-between avatar-buttons-container">
+    <button (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
+    <button *ngIf="isImageLoaded && !wantsToDelete" (click)="save()" class="btn btn-success">{{'Avatar_SavePhoto' | translate}}</button>
+
+    <button *ngIf="!isImageLoaded && wantsToDelete" (click)="delete()" class="btn btn-success">{{'Avatar_Delete' | translate}}</button>
+  </div>
+
+</div>
 </p-dialog>
 <!-- </modal> -->
