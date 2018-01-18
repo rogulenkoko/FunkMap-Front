@@ -14,3 +14,15 @@ export class UserEntitiesCountInfo {
         return result;
     }
 }
+
+export class UserEntitiesCountResponse{
+    public counts: Array<UserEntitiesCountInfo>;
+    public totalCount: number;
+
+    static ToUserEntitiesCountResponse(data: any): UserEntitiesCountResponse{
+        var result = new UserEntitiesCountResponse();
+        result.totalCount = data.TotalCount;
+        result.counts = UserEntitiesCountInfo.ToUserEntitiesCounts(data.Counts);
+        return result;
+    }
+}

@@ -8,7 +8,7 @@ import { SaveImageRequest } from "./save-image-request";
 import { HttpClient } from "app/core/http/http-client.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
-import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
+import { UserEntitiesCountInfo, UserEntitiesCountResponse } from 'app/main/user/user-entities-count';
 import { User, UserResponse } from 'app/main/user/user';
 import { ImageInfo } from 'app/main/search/image-info';
 import 'rxjs/add/operator/switchMap';
@@ -26,7 +26,7 @@ export abstract class UserDataService {
   abstract getUserEntities(): Observable<Array<SearchItem>>;
 
   abstract getUserEntitiesLogins(): Observable<Array<string>>;
-  abstract getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>;
+  abstract getUserEntitiesCountInfo():Observable<UserEntitiesCountResponse>;
 
   abstract getUser(login: string):Observable<UserResponse>;
 }
@@ -53,8 +53,8 @@ export class UserDataServiceHttp extends UserDataService {
     });
   }
 
-  getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/userscount`).map(x=> UserEntitiesCountInfo.ToUserEntitiesCounts(x.json()));
+  getUserEntitiesCountInfo():Observable<UserEntitiesCountResponse>{
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/userscount`).map(x=> UserEntitiesCountResponse.ToUserEntitiesCountResponse(x.json()));
   }
 
   getUserEntitiesLogins(): Observable<Array<string>>{

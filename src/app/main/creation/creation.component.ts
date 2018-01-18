@@ -12,6 +12,7 @@ import { MapCreationService } from "app/main/map/map-creation.service";
 import { UserService } from "app/main/user/user.service";
 import { Subscription } from "rxjs/Subscription";
 import { RouteBuilder } from "app/tools/route-builder";
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'app-creation',
@@ -30,6 +31,9 @@ export class CreationComponent implements OnInit {
   private isLoginValid: boolean = true;
   private isLoginExist: boolean = false;
 
+  private canCreate: boolean = true;
+  private maxProfilesCount: number = 5;
+
   constructor(private creationService: CreationService,
               private router: Router,
               private route: ActivatedRoute,
@@ -37,7 +41,8 @@ export class CreationComponent implements OnInit {
               private translateService: TranslateService,
               private mapCreationService: MapCreationService,
               private userService: UserService,
-              private musicianTypesProvider: MusicianTypesProvider) {
+              private musicianTypesProvider: MusicianTypesProvider,
+              private userDataService: UserDataService) {
 
     this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
@@ -51,7 +56,15 @@ export class CreationComponent implements OnInit {
       if (params['isComplete']) {
         this.save();
       }
-    })
+    });
+
+    this.checkCanCreate();
+  }
+
+  private checkCanCreate(){
+    this.userDataService.getUserEntitiesCountInfo().subscribe(countInfo => {
+      this.canCreate = countInfo.totalCount < this.maxProfilesCount;
+    });
   }
 
   private save() {

@@ -6,7 +6,7 @@ import { SaveImageRequest } from "./save-image-request";
 import { SearchItem } from "app/main/search/search-item";
 import { EntityType } from "app/main/map/models";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
-import { UserEntitiesCountInfo } from 'app/main/user/user-entities-count';
+import { UserEntitiesCountInfo, UserEntitiesCountResponse } from 'app/main/user/user-entities-count';
 import { UserResponse } from 'app/main/user/user';
 import { ImageInfo } from 'app/main/search/image-info';
 
@@ -37,8 +37,13 @@ export class UserDataServiceStub extends UserDataService {
     return Observable.of(["test", "rogulenkoko"]);
   }
 
-  getUserEntitiesCountInfo():Observable<Array<UserEntitiesCountInfo>>{
-    return Observable.of([]);
+  getUserEntitiesCountInfo():Observable<UserEntitiesCountResponse>{
+
+    var response = new UserEntitiesCountResponse();
+    response.counts = [];
+    response.totalCount = 0;
+
+    return Observable.of(response);
   }
 
   getUser(login: string):Observable<UserResponse>{

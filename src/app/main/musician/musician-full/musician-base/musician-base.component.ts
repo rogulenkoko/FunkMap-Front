@@ -151,9 +151,9 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
   private checkHasBand() {
     if(!this.userService.user) return;
     this.userDataService.getUserEntitiesCountInfo().subscribe(countInfo => {
-      var bandCountInfo = countInfo.find(x => x.entityType == EntityType.Band);
+      var bandCountInfo = countInfo.counts.find(x => x.entityType == EntityType.Band);
       this.hasBand = bandCountInfo && bandCountInfo.count > 0;
-      this.userService.entitiesCountInfo = countInfo;
+      this.userService.entitiesCountInfo = countInfo.counts;
     });
   }
 }

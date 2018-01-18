@@ -1,5 +1,5 @@
-<modal *ngIf="!isComplete" [title]="'Creation_Title'" [minWidth]="'440px'" [width]="'25%'" [height]="'530px'">
-  <div class="main-creation-container d-flex flex-column align-items-center justify-content-center">
+<modal *ngIf="!isComplete" [title]="'Creation_Title'" [minWidth]="'440px'" [width]="'25%'" [height]="canCreate ? '530px' : '300px'">
+  <div *ngIf="canCreate" class="main-creation-container d-flex flex-column align-items-center justify-content-center">
     <div id="creation-container" class="creation-container d-flex flex-column ">
         <div class="d-flex flex-column align-items-baseline">
           <label class="property-title">{{'Creation_EntityType' | translate}}:</label>
@@ -33,5 +33,8 @@
       <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
       <button (click)="validate()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
     </div>
+  </div>
+  <div *ngIf="!canCreate" class="d-flex align-items-center justify-content-center cant-create-container">
+    {{'Creation_CantCreate' | translate: {count: maxProfilesCount} }}
   </div>
 </modal>
