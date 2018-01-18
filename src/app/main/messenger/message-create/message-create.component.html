@@ -30,10 +30,12 @@
 
             <div class="d-flex flex-column">
                 <div class="d-flex flex-row uploaded-file" *ngFor="let file of files">
-                    <span class="icon-file"></span>
+                    <span *ngIf="file.isLoaded" class="icon-file"></span>
+                    <i  *ngIf="!file.isLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                     <span>{{file.name}}</span>
                     <span>{{file.size | size}}</span>
                     <div><i (click)="removeContentItem(file)" class="fa fa-fw fa-close"></i></div>
+                    
                 </div>
             </div>
             

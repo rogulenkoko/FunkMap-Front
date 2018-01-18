@@ -56,7 +56,7 @@ export abstract class Content {
             case FileType.Other:
                 var fileItem = new FileContent(data.Name, data.Size);
                 fileItem.dataUrl = data.DataUrl;
-                return item;
+                return fileItem;
         }
     }
 

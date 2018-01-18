@@ -121,6 +121,9 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
 
     var item = this.queue.dequeue();
     var subscription = this.messengerService.onContentLoaded.subscribe(item=>{
+
+      console.log(item);
+
       var allContent = this.images.map(x=> x as Content).concat(this.files.map(x=> x as Content));
       var existingItem = allContent.find(x=>x.name == item.name);
       if(!existingItem){
@@ -129,6 +132,7 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
       }
       existingItem.dataUrl = item.dataUrl;
       existingItem.isLoaded = true;
+      console.log("Загрузилось", existingItem);
       subscription.unsubscribe();
       this.subscribeServerUploaded();
       
