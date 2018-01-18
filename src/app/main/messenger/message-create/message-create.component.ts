@@ -65,11 +65,11 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   private sendMessage() {
 
     var content = this.files.concat(this.images);
-
-    if (!this.text && (!content || content.length == 0 )) return;
+    if (content.find(x => x.isLoaded)) return;
+    if (!this.text && (!content || content.length == 0)) return;
     let message = new Message(this.userService.user.login, this.dialogService.dialog.dialogId, this.text);
     message.content = content;
-    
+
     this.clear();
     this.messengerService.sendMessage(message).subscribe(response => {
 
@@ -79,14 +79,14 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   private onUploadedStart($event: Array<FileItem>) {
 
     $event.forEach(item => {
-      
+
       switch (item.type) {
         case FileType.Image:
-          if(!this.images.find(x=>x.name == item.name)) this.images.push(new ImageContent(item.name, item.size));
+          if (!this.images.find(x => x.name == item.name)) this.images.push(new ImageContent(item.name, item.size));
           break;
 
         case FileType.Other:
-        if(!this.files.find(x=>x.name == item.name)) this.files.push(new FileContent(item.name, item.size));
+          if (!this.files.find(x => x.name == item.name)) this.files.push(new FileContent(item.name, item.size));
           break;
       }
     });
@@ -97,49 +97,45 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
     $event.forEach(element => {
       let item: Content;
       switch (element.type) {
-  
+
         case FileType.Image:
           item = this.images.find(x => x.name == element.name);
           break;
-  
+
         case FileType.Other:
           item = this.files.find(x => x.name == element.name);
           break;
       }
-  
+
       item.data = element.bytes;
-      if(!this.queue.contains(item)) this.queue.enqueue(item);
+      if (!this.queue.contains(item)) this.queue.enqueue(item);
     });
 
-    
+
     this.subscribeServerUploaded();
   }
 
-  private subscribeServerUploaded(){
+  private subscribeServerUploaded() {
 
-    if(this.queue.isEmpty()) return;
+    if (this.queue.isEmpty()) return;
 
     var item = this.queue.dequeue();
-    var subscription = this.messengerService.onContentLoaded.subscribe(item=>{
-
-      console.log(item);
-
-      var allContent = this.images.map(x=> x as Content).concat(this.files.map(x=> x as Content));
-      var existingItem = allContent.find(x=>x.name == item.name);
-      if(!existingItem){
+    var subscription = this.messengerService.onContentLoaded.subscribe(item => {
+      var allContent = this.images.map(x => x as Content).concat(this.files.map(x => x as Content));
+      var existingItem = allContent.find(x => x.name == item.name);
+      if (!existingItem) {
         subscription.unsubscribe();
         return;
       }
       existingItem.dataUrl = item.dataUrl;
       existingItem.isLoaded = true;
-      console.log("Загрузилось", existingItem);
       subscription.unsubscribe();
       this.subscribeServerUploaded();
-      
+
     });
 
-    this.messengerService.startUpload(item).subscribe(repsponse=>{
-      
+    this.messengerService.startUpload(item).subscribe(repsponse => {
+
     });
   }
 

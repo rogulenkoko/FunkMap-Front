@@ -22,6 +22,8 @@ export class UploadComponent implements OnInit, AfterViewInit {
   private selectedFilesCount: number;
   private uploaded: Array<FileUploadFinishedEvent> = [];
 
+  private maxFileCount = 5;
+
   constructor() {
     this.onUploadedStart = new EventEmitter<Array<FileItem>>();
     this.onUploadedFinished = new EventEmitter<Array<FileUploadFinishedEvent>>();
@@ -47,8 +49,8 @@ export class UploadComponent implements OnInit, AfterViewInit {
     if (!selectedFiles) return;
 
     var files = new Array<FileItem>();
-    this.selectedFilesCount = selectedFiles.length;
-    for (var i = 0; i < selectedFiles.length; i++) {
+    this.selectedFilesCount = selectedFiles.length >= this.maxFileCount ? this.maxFileCount : selectedFiles.length;
+    for (var i = 0; i < selectedFiles.length && i < this.maxFileCount; i++) {
       var file = selectedFiles[i];
       files.push(new FileItem(this.fileType, file.name, file.size));
       switch (this.fileType) {
@@ -70,7 +72,6 @@ export class UploadComponent implements OnInit, AfterViewInit {
       this.uploaded.push(new FileUploadFinishedEvent(this.fileType, file.name, imageBase64));
 
       if(this.uploaded.length == this.selectedFilesCount){
-        console.log("заэмитил");
         this.onUploadedFinished.emit(this.uploaded.map(x=> new FileUploadFinishedEvent(this.fileType, x.name, x.bytes)));
         this.uploaded = [];
       }
@@ -91,7 +92,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
       let data: string = fileReader.result;
       data = data.split(',')[1];
       this.uploaded.push(new FileUploadFinishedEvent(this.fileType, file.name, data));
-      
+
       if(this.uploaded.length == this.selectedFilesCount){
         this.onUploadedFinished.emit(this.uploaded.map(x=> new FileUploadFinishedEvent(this.fileType, x.name, x.bytes)));
         this.uploaded = [];
