@@ -44,4 +44,9 @@ canvas{
     cursor:  pointer;
 }
 
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  cursor: pointer;
+}
+
 

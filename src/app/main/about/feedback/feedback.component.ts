@@ -4,6 +4,8 @@ import { FeedbackType, FeedbackItem } from 'app/main/about/feedback/feedback-ite
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateSelectItem } from 'app/tools/select';
 import { FeedbackService } from 'app/main/about/feedback.service';
+import { FileContent } from 'app/main/messenger/models/message';
+import { FileUploadFinishedEvent, FileItem } from 'app/tools/upload/upload.component';
 
 @Component({
   selector: 'feedback',
@@ -20,6 +22,8 @@ export class FeedbackComponent implements OnInit {
   private feedbackWasSent: boolean;
   private feedbackWasSentSuccessful: boolean;
 
+  private files: Array<FileContent> = [];
+
   constructor(private translateService: TranslateService,
               private feedbackService: FeedbackService) {
     this.feedbackTypes = [
@@ -35,7 +39,7 @@ export class FeedbackComponent implements OnInit {
   private send(){
     if(!this.message) return;
     
-    var feedback = new FeedbackItem(this.feedbackType, this.message);
+    var feedback = new FeedbackItem(this.feedbackType, this.message, this.files);
     this.feedbackService.sendFeedback(feedback).subscribe(response=>{
       this.feedbackWasSent = true;
       this.feedbackWasSentSuccessful = response.success;
@@ -49,9 +53,29 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
+  private onUploadedStart($event: Array<FileItem>) {
+
+    $event.forEach(item => {
+      if (!this.files.find(x => x.name == item.name)) this.files.push(new FileContent(item.name, item.size));
+    });
+  }
+
+  private onUploadedFinished($event: Array<FileUploadFinishedEvent>) {
+    $event.forEach(item => {
+      var file = this.files.find(x => x.name == item.name);
+      if (file) file.data = item.bytes;
+    });
+    
+  }
+
+  private removeContentItem(item: FileContent) {
+    this.files = this.files.filter(x => x.name != item.name);
+  }
+
   private clear(){
     this.feedbackType = FeedbackType.Bug;
     this.message = "";
+    this.files = [];
   }
 
 }

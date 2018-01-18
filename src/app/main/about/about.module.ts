@@ -8,11 +8,13 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { environment } from 'environments/environment';
 import { FeedbackService, FeedbackServiceHttp } from 'app/main/about/feedback.service';
 import { FeedbackServiceStub } from 'app/main/about/feedback.service.stub';
+import { ToolsModule } from 'app/tools/tools.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    CoreModule
+    CoreModule,
+    ToolsModule
   ],
   declarations: [AboutComponent, AboutInfoComponent, ContactsComponent, FeedbackComponent],
   exports: [AboutComponent],

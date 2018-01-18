@@ -27,7 +27,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   private uploaded: Array<FileUploadFinishedEvent> = [];
 
   private stringTooltipKey: string;
-  @Input() useTooltip: boolean;
+  @Input() useTooltip: boolean = true;
 
   
 
@@ -43,7 +43,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
         if(this.useTooltip) this.stringTooltipKey = "Upload_Images";
         break;
       case FileType.Other:
-        this.acceptFormats = "application/*";
+        this.acceptFormats = "application/*,image/*";
         if(this.useTooltip) this.stringTooltipKey = "Upload_Files";
         break;
     }

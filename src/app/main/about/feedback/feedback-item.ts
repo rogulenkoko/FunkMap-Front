@@ -1,7 +1,9 @@
+import { FileContent } from "app/main/messenger/models/message";
+
 
 export class FeedbackItem{
 
-    constructor(public feedbackType: FeedbackType, public message: string){}
+    constructor(public feedbackType: FeedbackType, public message: string, public content?: Array<FileContent>){}
 
 
 }
