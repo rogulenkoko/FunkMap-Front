@@ -11,9 +11,9 @@ export class ContactsComponent implements OnInit {
 
   constructor() {
     this.contacts = [
-      new Contact("icon-pin", "+7 (969) 702-55-46"),
-      new Contact("icon-pin", "bandmap@mail.ru"),
-      new Contact("icon-pin", "vk.com/bandmapofficial")
+      new Contact("fa fa-phone", "+7 (969) 702-55-46"),
+      new Contact("fa fa-envelope", "bandmap@mail.ru"),
+      new Contact("fa fa-vk", "vk.com/bandmapofficial")
     ];
    }
 

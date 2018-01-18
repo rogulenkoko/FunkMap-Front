@@ -194,5 +194,7 @@
     "Messenger_PhotoContent":"Photo",
     "Messenger_FileContent":"Document",
     "Messenger_MediaContent":"Media content",
-    "Stub_Info": "At the moment Bandmap is not supported on this type of device"
+    "Stub_Info": "At the moment Bandmap is not supported on this type of device",
+    "Upload_Files":"Upload files (no more than {{count}} files smaller than {{size}})",
+    "Upload_Images":"Upload photos (no more than {{count}} photos smaller than {{size}})"
 }

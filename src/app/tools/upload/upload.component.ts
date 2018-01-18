@@ -14,6 +14,9 @@ export class UploadComponent implements OnInit, AfterViewInit {
 
   @Input() fileType: FileType;
 
+  @Input() maxFileCount = 5;
+  @Input() maxFileSize = 20 * 1000000;
+
   @Output() onUploadedStart: EventEmitter<Array<FileItem>>;
   @Output() onUploadedFinished: EventEmitter<Array<FileUploadFinishedEvent>>;
 
@@ -22,7 +25,9 @@ export class UploadComponent implements OnInit, AfterViewInit {
   private selectedFilesCount: number;
   private uploaded: Array<FileUploadFinishedEvent> = [];
 
-  private maxFileCount = 5;
+  private stringTooltipKey: string;
+
+  
 
   constructor() {
     this.onUploadedStart = new EventEmitter<Array<FileItem>>();
@@ -33,9 +38,11 @@ export class UploadComponent implements OnInit, AfterViewInit {
     switch (this.fileType) {
       case FileType.Image:
         this.acceptFormats = "image/*";
+        this.stringTooltipKey = "Upload_Images";
         break;
       case FileType.Other:
         this.acceptFormats = "application/*";
+        this.stringTooltipKey = "Upload_Files";
         break;
     }
   }
@@ -52,6 +59,12 @@ export class UploadComponent implements OnInit, AfterViewInit {
     this.selectedFilesCount = selectedFiles.length >= this.maxFileCount ? this.maxFileCount : selectedFiles.length;
     for (var i = 0; i < selectedFiles.length && i < this.maxFileCount; i++) {
       var file = selectedFiles[i];
+
+      if(file.size > this.maxFileSize){
+        this.selectedFilesCount--;
+        continue;
+      }
+
       files.push(new FileItem(this.fileType, file.name, file.size));
       switch (this.fileType) {
         case FileType.Image: this.processImage(file); break;

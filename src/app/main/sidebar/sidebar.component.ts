@@ -68,7 +68,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
         var settingsItem = new SidebarItem("settings", "Settings", "settings-icon");
         
-        var aboutItem = new SidebarItem("about", "About", "settings-icon");
+        var aboutItem = new SidebarItem("about", "About", "logo-icon");
     
         this.topItems = [
           searchItem,
