@@ -23,7 +23,8 @@
             <div class="d-flex flex-row flex-wrap">
                 <div class="d-flex uploaded-image" *ngFor="let image of images">
                     <img *ngIf="image.data" src="data:image/png;base64,{{image.data}}"/>
-                    <div><span (click)="removeContentItem(image)" class="fa fa-fw fa-close"></span></div>
+                    <span (click)="removeContentItem(image)" class="fa fa-fw fa-close"></span>
+                    <i  *ngIf="image.data && !image.isLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                 </div>
             </div>
 

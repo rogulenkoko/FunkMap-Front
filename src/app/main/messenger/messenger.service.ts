@@ -18,6 +18,7 @@ import { locale } from 'moment';
 import { useAnimation } from '@angular/core/src/animation/dsl';
 import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
 import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
+import { Content } from 'app/main/messenger/models/message';
 
 @Injectable()
 export abstract class MessengerService {
@@ -30,6 +31,7 @@ export abstract class MessengerService {
     this._onUserDisconnected = new Subject<string>();
     this._onUserConnected = new Subject<string>();
     this._onDialogRead = new Subject<DialogReadModel>();
+    this._onContentLoaded = new Subject<Content>();
 
     //инициализация конекшена
     this.signalrService.connection.subscribe(connection => this.subscribeEvents(connection));
@@ -40,6 +42,9 @@ export abstract class MessengerService {
 
 
   abstract sendMessage(message: Message): Observable<BaseResponse>;
+
+  abstract startUpload(contentItem: Content): Observable<BaseResponse>;
+
   abstract createDialog(dialog: CreateDialogRequest): Observable<DialogUpdateResponse>;
   abstract updateDialog(dialog: DialogUpdateRequest): Observable<DialogUpdateResponse>;
 
@@ -89,6 +94,11 @@ export abstract class MessengerService {
     return this._onDialogRead;
   };
 
+  private _onContentLoaded: Subject<Content>;
+  public get onContentLoaded(): Observable<Content> {
+    return this._onContentLoaded;
+  };
+
   private subscribeEvents(connection: ISignalRConnection) {
     if (!connection) return;
     connection.listenFor("OnMessageSent").subscribe(message => this._onMessageRecieved.next(Message.ToMessage(message)));
@@ -97,6 +107,7 @@ export abstract class MessengerService {
     connection.listenFor("onUserDisconnected").subscribe((message: string) => this._onUserDisconnected.next(message));
     connection.listenFor("onUserConnected").subscribe((message: string) => this._onUserConnected.next(message));
     connection.listenFor("onDialogRead").subscribe((message: DialogReadModel) => this._onDialogRead.next(DialogReadModel.ToDialogReadModel(message)));
+    connection.listenFor("OnContentLoaded").subscribe((message: Content) => this._onContentLoaded.next(Content.ToContent(message)));
   }
 
   private dialogsCachePrefix = "dialogs_";
@@ -125,6 +136,11 @@ export class MessengerServiceHttp extends MessengerService {
   sendMessage(message: Message): Observable<BaseResponse> {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/sendMessage`, message).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
+
+  startUpload(contentItem: Content): Observable<BaseResponse>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/startUpload`, contentItem).map(x => BaseResponse.ToBaseResponse(x.json()));
+  }
+
 
   createDialog(dialog: CreateDialogRequest): Observable<DialogUpdateResponse> {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));

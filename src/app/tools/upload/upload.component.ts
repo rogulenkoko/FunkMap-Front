@@ -15,13 +15,16 @@ export class UploadComponent implements OnInit, AfterViewInit {
   @Input() fileType: FileType;
 
   @Output() onUploadedStart: EventEmitter<Array<FileItem>>;
-  @Output() onUploadedFinished: EventEmitter<FileUploadFinishedEvent>;
+  @Output() onUploadedFinished: EventEmitter<Array<FileUploadFinishedEvent>>;
 
   private acceptFormats: string;
 
+  private selectedFilesCount: number;
+  private uploaded: Array<FileUploadFinishedEvent> = [];
+
   constructor() {
     this.onUploadedStart = new EventEmitter<Array<FileItem>>();
-    this.onUploadedFinished = new EventEmitter<FileUploadFinishedEvent>();
+    this.onUploadedFinished = new EventEmitter<Array<FileUploadFinishedEvent>>();
   }
 
   ngOnInit() {
@@ -44,6 +47,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
     if (!selectedFiles) return;
 
     var files = new Array<FileItem>();
+    this.selectedFilesCount = selectedFiles.length;
     for (var i = 0; i < selectedFiles.length; i++) {
       var file = selectedFiles[i];
       files.push(new FileItem(this.fileType, file.name, file.size));
@@ -63,7 +67,13 @@ export class UploadComponent implements OnInit, AfterViewInit {
     fileReader.onloadend = (uploaded) => {
       let imageBase64: string = fileReader.result;
       imageBase64 = imageBase64.split(',')[1];
-      this.onUploadedFinished.emit(new FileUploadFinishedEvent(this.fileType, file.name, imageBase64))
+      this.uploaded.push(new FileUploadFinishedEvent(this.fileType, file.name, imageBase64));
+
+      if(this.uploaded.length == this.selectedFilesCount){
+        console.log("заэмитил");
+        this.onUploadedFinished.emit(this.uploaded.map(x=> new FileUploadFinishedEvent(this.fileType, x.name, x.bytes)));
+        this.uploaded = [];
+      }
     }
 
     fileReader.onprogress = (data) => {
@@ -80,7 +90,12 @@ export class UploadComponent implements OnInit, AfterViewInit {
     fileReader.onloadend = (uploaded) => {
       let data: string = fileReader.result;
       data = data.split(',')[1];
-      this.onUploadedFinished.emit(new FileUploadFinishedEvent(this.fileType, file.name, data))
+      this.uploaded.push(new FileUploadFinishedEvent(this.fileType, file.name, data));
+      
+      if(this.uploaded.length == this.selectedFilesCount){
+        this.onUploadedFinished.emit(this.uploaded.map(x=> new FileUploadFinishedEvent(this.fileType, x.name, x.bytes)));
+        this.uploaded = [];
+      } 
     }
 
     fileReader.onprogress = (data) => {

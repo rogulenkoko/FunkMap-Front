@@ -52,15 +52,16 @@
         }
 
         .uploaded-image{
+            position: relative;
             padding: 6px;
-            margin: 6px;
+            margin: 12px;
             img{
-                margin-right: 6px;
                 height: 60px;
                 border-radius: 5px;
             }
             .fa-close{
-                top: -7px;
+                position: absolute;
+                left: calc(100% + 3px);
             }
             
         }
@@ -133,4 +134,16 @@ p-fileupload{
     width: 9px;
     position: relative;
 
+}
+
+.fa-circle-o-notch{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    font-size: 16px;
+
+    background-image: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }

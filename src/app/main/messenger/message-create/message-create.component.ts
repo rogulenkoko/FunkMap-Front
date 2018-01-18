@@ -7,6 +7,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { FileItem, FileUploadFinishedEvent, FileType } from 'app/tools/upload/upload.component';
 import { ImageContent, FileContent, Content } from 'app/main/messenger/models/message';
+import { Queue } from "typescript-collections";
 
 declare var $;
 
@@ -27,11 +28,14 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   private images: Array<ImageContent> = [];
   private files: Array<FileContent> = [];
 
+  private queue: Queue<Content>;
+
   constructor(private messengerService: MessengerService,
     private dialogService: DialogService,
     private userService: UserService,
     private route: ActivatedRoute) {
     this.subscription = new Subscription();
+    this.queue = new Queue<Content>();
   }
 
   ngOnInit() {
@@ -73,7 +77,9 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
   }
 
   private onUploadedStart($event: Array<FileItem>) {
+
     $event.forEach(item => {
+      
       switch (item.type) {
         case FileType.Image:
           if(!this.images.find(x=>x.name == item.name)) this.images.push(new ImageContent(item.name, item.size));
@@ -86,21 +92,51 @@ export class MessageCreateComponent implements OnInit, OnDestroy {
     });
   }
 
-  private onUploadedFinished($event: FileUploadFinishedEvent) {
-    var item: Content;
-    switch ($event.type) {
+  private onUploadedFinished($event: Array<FileUploadFinishedEvent>) {
 
-      case FileType.Image:
-        item = this.images.find(x => x.name == $event.name);
-        break;
+    $event.forEach(element => {
+      let item: Content;
+      switch (element.type) {
+  
+        case FileType.Image:
+          item = this.images.find(x => x.name == element.name);
+          break;
+  
+        case FileType.Other:
+          item = this.files.find(x => x.name == element.name);
+          break;
+      }
+  
+      item.data = element.bytes;
+      if(!this.queue.contains(item)) this.queue.enqueue(item);
+    });
 
-      case FileType.Other:
-        item = this.files.find(x => x.name == $event.name);
-        break;
-    }
+    
+    this.subscribeServerUploaded();
+  }
 
-    item.data = $event.bytes;
+  private subscribeServerUploaded(){
 
+    if(this.queue.isEmpty()) return;
+
+    var item = this.queue.dequeue();
+    var subscription = this.messengerService.onContentLoaded.subscribe(item=>{
+      var allContent = this.images.map(x=> x as Content).concat(this.files.map(x=> x as Content));
+      var existingItem = allContent.find(x=>x.name == item.name);
+      if(!existingItem){
+        subscription.unsubscribe();
+        return;
+      }
+      existingItem.dataUrl = item.dataUrl;
+      existingItem.isLoaded = true;
+      subscription.unsubscribe();
+      this.subscribeServerUploaded();
+      
+    });
+
+    this.messengerService.startUpload(item).subscribe(repsponse=>{
+      
+    });
   }
 
   private removeContentItem(item: Content) {

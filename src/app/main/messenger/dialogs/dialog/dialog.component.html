@@ -5,7 +5,10 @@
   <div class="middle-container d-flex flex-column">
     <div class="dialog-name">{{dialog.name}}</div>
     
-    <div *ngIf="dialog.lastMessage" class="last-message">{{dialog.lastMessage.text}}</div>
+    <div *ngIf="dialog.lastMessage" class="last-message">
+      <span *ngIf="dialog.lastMessage.text">{{dialog.lastMessage.text}}</span>
+      <span *ngIf="!dialog.lastMessage.text && (dialog.lastMessage.content && dialog.lastMessage.content.length > 0)">{{'Messenger_MediaContent' | translate}}</span>
+    </div>
   </div>
 
   <div class="right-container d-flex flex-column align-items-end">

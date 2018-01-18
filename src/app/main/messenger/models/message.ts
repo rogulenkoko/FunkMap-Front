@@ -42,27 +42,30 @@ export abstract class Content {
     public data: string;
     public dataUrl: string;
 
+    public isLoaded: boolean;
+
+
+    static ToContent(data: any): Content{
+        var type = data.ContentType;
+        switch (type) {
+            case FileType.Image:
+                var item = new ImageContent(data.Name, data.Size);
+                item.dataUrl = data.DataUrl;
+                return item;
+
+            case FileType.Other:
+                var fileItem = new FileContent(data.Name, data.Size);
+                fileItem.dataUrl = data.DataUrl;
+                return item;
+        }
+    }
+
     static ToContents(data: any): Array<Content> {
         var result = new Array<Content>();
         if (!data) return result;
 
         data.forEach(element => {
-            var type = element.ContentType;
-            switch (type) {
-                case FileType.Image:
-                    var item = new ImageContent(element.Name, element.Size);
-                    item.dataUrl = element.DataUrl;
-                    result.push(item);
-                    break;
-
-                case FileType.Other:
-                    var fileItem = new FileContent(element.Name, element.Size);
-                    fileItem.dataUrl = element.DataUrl;
-                    result.push(fileItem);
-                    break;
-            }
-
-
+            result.push(Content.ToContent(element));
         });
         return result;
     }

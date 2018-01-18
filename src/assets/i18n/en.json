@@ -191,5 +191,8 @@
     "Message_CreateDialog": "Create a conversation",
     "Messenger_DialogName": "New conversation name",
     "Messenger_Send": "Send message",
+    "Messenger_PhotoContent":"Photo",
+    "Messenger_FileContent":"Document",
+    "Messenger_MediaContent":"Media content",
     "Stub_Info": "At the moment Bandmap is not supported on this type of device"
 }

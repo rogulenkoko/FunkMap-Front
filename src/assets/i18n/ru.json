@@ -188,5 +188,6 @@
     "Message_CreateDialog": "Создать беседу",
     "Messenger_DialogName": "Новое имя беседы",
     "Messenger_Send": "Написать",
+    "Messenger_MediaContent":"Медиа содержимое",
     "Stub_Info": "На данный Bandmap не поддерживается на данном типе устройств"
 }

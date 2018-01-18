@@ -32,7 +32,6 @@ export class MessageComponent implements OnInit {
         
         image.width = virtualImage.width;
         image.height = virtualImage.height;
-        console.log( image );
       }
       virtualImage.src = image.dataUrl;
     });

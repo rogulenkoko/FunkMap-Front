@@ -11,6 +11,7 @@ import { InviteParticipantsRequest } from 'app/main/messenger/models/invite-part
 import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
 import { DialogType } from 'app/main/messenger/models/dialog';
 import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
+import { Content } from 'app/main/messenger/models/message';
 
 
 @Injectable()
@@ -22,6 +23,10 @@ export class MessengerServiceStub extends MessengerService {
   }
 
   sendMessage(message: Message): Observable<BaseResponse> {
+    return Observable.of(new BaseResponse(true));
+  }
+
+  startUpload(contentItem: Content): Observable<BaseResponse>{
     return Observable.of(new BaseResponse(true));
   }
 
