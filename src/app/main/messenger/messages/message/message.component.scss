@@ -40,18 +40,21 @@ $image-width: 36px;
                 }
             }
             
-            .images-container{
-                a{
-                    cursor: pointer;
-                    text-decoration: none;
-                }   
-                
-                img{
-                    height: 84px;
-                    margin: 12px 0;
-                }
-            }
+            
 
+        }
+
+        .images-container{
+            max-width: 420px;
+            a{
+                cursor: pointer;
+                text-decoration: none;
+            }   
+            
+            img{
+                height: 84px;
+                margin: 12px 0;
+            }
         }
 
         .user-message-content{

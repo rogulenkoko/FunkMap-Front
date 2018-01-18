@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 
 html, body{
     width: 100%;
@@ -12,27 +13,15 @@ body{
     height: calc(100% - 75px);
 }
 
-// iframe{
-//     border-radius: 10px;
-// }
-
 .btn{
     cursor: pointer;
-}
-
-.btn-secondary{
-        color: $app-green;
-    }
-
-.btn-success{
-    background-color:  $app-green;
 }
 
 .navbar{
     height: 75px !important;
 }
 
-i{
+i, span{
     outline: none;
 }
 
@@ -47,6 +36,12 @@ canvas{
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   cursor: pointer;
+}
+
+.icon-close{
+    font-size: 12px;
+    color: $dark-grey;
+    margin-top: -2px;
 }
 
 

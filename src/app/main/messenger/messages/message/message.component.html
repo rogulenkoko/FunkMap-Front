@@ -4,14 +4,10 @@
 
     <avatar-circle  *ngIf="message.sender != userService.user.login" [image]="message.avatar" [size]="'36px'" [iconSize]="'21px'"  [ngClass]="'message-avatar'"></avatar-circle>
 
-    <div class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">
+    <div class="d-flex flex-column">
+    <div *ngIf="message.text || (files && files.length > 0)" class="message-content" [class.user-message-content]="userService.user.login == message.sender" [class.foreign-message-content]="userService.user.login != message.sender">
       <span>{{message.text}}</span>
-      <div *ngIf="images" class="images-container" >
-        <a *ngFor="let image of images" href="{{image.dataUrl}}" [style.width]="image.width*200/image.height + 'px'" [style.flex-grow]="image.width*200/image.height">
-            <i [style.padding-bottom]="image.height/image.width*100 + '%'"></i>
-          <img src="{{image.dataUrl}}"/>
-        </a>
-      </div>
+      
       <div *ngIf="files" class="files-container">
           <a *ngFor="let file of files" class="d-flex file-content align-items-center" href="{{file.dataUrl}}">
               <span class="icon-file"></span>
@@ -22,6 +18,15 @@
             </a>
         </div>
     </div>
+
+    <div *ngIf="images" class="images-container" >
+      <a *ngFor="let image of images" href="{{image.dataUrl}}" [style.width]="image.width*200/image.height + 'px'" [style.flex-grow]="image.width*200/image.height">
+          <i [style.padding-bottom]="image.height/image.width*100 + '%'"></i>
+        <img src="{{image.dataUrl}}"/>
+      </a>
+    </div>
+  </div>
+
   </div>
   <div class="date-container d-flex justify-content-end">
     <div>{{message.date | dateNotification}}</div>

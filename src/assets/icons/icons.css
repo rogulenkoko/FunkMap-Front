@@ -125,9 +125,6 @@
 .icon-rehearsal-point:before {
   content: "\43";
 }
-.icon-close:before {
-  content: "\44";
-}
 .icon-dd-points:before {
   content: "\45";
 }
@@ -145,4 +142,7 @@
 }
 .icon-vk-1:before {
   content: "\4a";
+}
+.icon-close:before {
+  content: "\4b";
 }
