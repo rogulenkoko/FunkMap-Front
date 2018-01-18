@@ -11,7 +11,14 @@
 
   <div class="d-flex flex-column align-items-center justify-content-center main-avatar-container">
      <div *ngIf="!isImageLoaded && !wantsToDelete" class="add-delete-container d-flex flex-row justify-content-around">
-      <p-fileUpload #fileInput  chooseLabel="{{'Avatar_LoadNew' | translate}}" auto="false" mode="basic" accept="image/*" customUpload="true" (uploadHandler)="onImagepload($event)"></p-fileUpload>
+        <upload [id]="'message-image'"
+        [icon]="'icon-plus'"
+        [label]="'Avatar_LoadNew'"
+        [width]="'200px'"
+        [useTooltip]="false"
+        [maxFileCount]="1"
+        [fileType]="1" 
+        (onUploadedFinished)="onImagepload($event)"></upload>
       <div *ngIf="previousPhoto" (click)="checkWantsToDelete()" class="d-flex align-items-center action-container">
         <i class="icon-rubbish-bin"></i>
         <span>{{'Avatar_Delete' | translate}}</span>

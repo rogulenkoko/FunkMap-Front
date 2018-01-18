@@ -9,6 +9,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
 
   @Input() icon: string;
   @Input() id: string;
+  @Input() label: string;
 
   @Input() width: string;
 
@@ -26,6 +27,7 @@ export class UploadComponent implements OnInit, AfterViewInit {
   private uploaded: Array<FileUploadFinishedEvent> = [];
 
   private stringTooltipKey: string;
+  @Input() useTooltip: boolean;
 
   
 
@@ -38,11 +40,11 @@ export class UploadComponent implements OnInit, AfterViewInit {
     switch (this.fileType) {
       case FileType.Image:
         this.acceptFormats = "image/*";
-        this.stringTooltipKey = "Upload_Images";
+        if(this.useTooltip) this.stringTooltipKey = "Upload_Images";
         break;
       case FileType.Other:
         this.acceptFormats = "application/*";
-        this.stringTooltipKey = "Upload_Files";
+        if(this.useTooltip) this.stringTooltipKey = "Upload_Files";
         break;
     }
   }

@@ -12,6 +12,21 @@
 
 }
 
+[class^="icon-"]:before,
+[class*=" icon-"]:before,
+.fa-plus {
+font-family: "untitled-font-3" !important;
+font-style: normal !important;
+font-weight: normal !important;
+font-variant: normal !important;
+text-transform: none !important;
+speak: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+cursor: pointer;
+}
+
 [data-icon]:before {
   font-family: "untitled-font-3" !important;
   content: attr(data-icon);
@@ -26,8 +41,7 @@
 }
 
 [class^="icon-"]:before,
-[class*=" icon-"]:before,
-.fa-plus {
+[class*=" icon-"]:before {
   font-family: "untitled-font-3" !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -37,7 +51,6 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: pointer;
 }
 
 .icon-youtube:before {
@@ -103,7 +116,7 @@
 .icon-edit:before {
   content: "\75";
 }
-.icon-plus:before, .fa-plus:before {
+.icon-plus:before {
   content: "\76";
 }
 .icon-info:before {
@@ -136,6 +149,15 @@
 .icon-logo-symbol:before {
   content: "\46";
 }
-.icon-dd-arrow-up:before {
+.icon-dd-arrow-down:before {
   content: "\47";
+}
+.icon-mail:before {
+  content: "\48";
+}
+.icon-phone:before {
+  content: "\49";
+}
+.icon-vk-1:before {
+  content: "\4a";
 }
