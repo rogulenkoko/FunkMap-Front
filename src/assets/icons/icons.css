@@ -1,34 +1,19 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: "untitled-font-3";
-  src:url("fonts/untitled-font-3.eot");
-  src:url("fonts/untitled-font-3.eot?#iefix") format("embedded-opentype"),
-    url("fonts/untitled-font-3.woff") format("woff"),
-    url("fonts/untitled-font-3.ttf") format("truetype"),
-    url("fonts/untitled-font-3.svg#untitled-font-3") format("svg");
+  font-family: "funkmap-icons";
+  src:url("fonts/funkmap-icons.eot");
+  src:url("fonts/funkmap-icons.eot?#iefix") format("embedded-opentype"),
+    url("fonts/funkmap-icons.woff") format("woff"),
+    url("fonts/funkmap-icons.ttf") format("truetype"),
+    url("fonts/funkmap-icons.svg#funkmap-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 
 }
 
-[class^="icon-"]:before,
-[class*=" icon-"]:before,
-.fa-plus {
-font-family: "untitled-font-3" !important;
-font-style: normal !important;
-font-weight: normal !important;
-font-variant: normal !important;
-text-transform: none !important;
-speak: none;
-line-height: 1;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-cursor: pointer;
-}
-
 [data-icon]:before {
-  font-family: "untitled-font-3" !important;
+  font-family: "funkmap-icons" !important;
   content: attr(data-icon);
   font-style: normal !important;
   font-weight: normal !important;
@@ -42,7 +27,7 @@ cursor: pointer;
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "untitled-font-3" !important;
+  font-family: "funkmap-icons" !important;
   font-style: normal !important;
   font-weight: normal !important;
   font-variant: normal !important;

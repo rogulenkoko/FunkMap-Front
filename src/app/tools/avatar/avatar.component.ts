@@ -74,7 +74,7 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
   save(){
     var avatar = this.cropper.getBase64().replace("data:image/png;base64,","");
     this.onImageUploaded.emit(avatar);
-    this.clear();
+    this.clear(); 
     
   }
 
