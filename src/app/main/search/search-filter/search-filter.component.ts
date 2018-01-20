@@ -37,16 +37,21 @@ export class SearchFilterComponent implements OnInit {
     private iconProvider: IconProvider,
     private router: Router) {
 
-    this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
-    this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
-    this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
-    this.expiriences = musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(musicianTypesProvider.expiriences.getValue(x))));
-
-    this.translateService.get("All").subscribe(value=> this.allTitle = value);
+    
   }
 
   ngOnInit() {
+    this.updateTranslate();
+    this.translateService.onLangChange.subscribe(()=>this.updateTranslate())
+  }
 
+  private updateTranslate(){
+    this.styles = this.musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(this.musicianTypesProvider.musicStyles.getValue(x))));
+    this.instruments = this.musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(this.musicianTypesProvider.instruments.getValue(x))));
+    this.entities = this.entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(this.entityTypeProvider.entities.getValue(x))));
+    this.expiriences = this.musicianTypesProvider.expiriences.keys().map(x => new ExpirienceItem(x, this.translateService.get(this.musicianTypesProvider.expiriences.getValue(x))));
+
+    this.translateService.get("All").subscribe(value=> this.allTitle = value);
   }
 
   selectType(type: EntityType){

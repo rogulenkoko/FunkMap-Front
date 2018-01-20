@@ -206,7 +206,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false,  zoomControl: false });
+    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false,  zoomControl: false  });
     this.initMap();
     this.initMarkersLayer();
   }

@@ -63,8 +63,12 @@ export class MarkerFactory {
     var cluster = L.markerClusterGroup({
       animate: true,
       animateAddingMarkers: true,
+      
       polygonOptions: {
-        opacity: 0
+        opacity: 0.4,
+        color: "#e13dff",
+        
+        fillColor: "#e560fd"
       },
       iconCreateFunction: (cluster) => {
         return L.divIcon({
