@@ -57,6 +57,7 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
 
   private next(value: number){
     var nextIndex = value + this.index;
+    
     if(nextIndex == this.images.length){
       nextIndex = 0;
     } else if (nextIndex == -1){
