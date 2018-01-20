@@ -30,8 +30,8 @@
 
 .map-legend-container{
     position: absolute;
-    bottom: 7%;
-    right: 3.5%;
+    bottom: 5%;
+    right: 45px;
     z-index: 1001;
 
     .zoom-container{
@@ -39,7 +39,7 @@
         height: 36px;
         background-color: $light-main-side;
         border-radius: 20px;
-        margin-left: 48px;
+        margin-left: 95px;
         
         div{
             width: 50%;
@@ -58,8 +58,8 @@
 
 .search-filter{
     position: absolute;
-    top: calc(75px + 5%);
-    right: 3.5%;
+    top: calc(75px + 12%);
+    right: 45px;
     z-index: 1001;
 }
 

@@ -14,6 +14,7 @@ import { MusicianService } from "app/main/musician/musician.service";
 import { Musician } from "app/main/musician/models";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { RouteBuilder } from "app/tools/route-builder";
+import { MapBuilder } from 'app/main/map/map-builder.service';
 
 @Component({
   selector: 'entity-map',
@@ -34,7 +35,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   private markersLayer: L.LayerGroup;
   private subscription: Subscription;
 
-  constructor(private mapProvider: MapProvider,
+  constructor(private mapBuilder: MapBuilder,
               private markerFactory: MarkerFactory,
               private mapCreationService: MapCreationService,
               private mapService: MapService,
@@ -76,11 +77,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   public initMap(mainMarker: Marker) {
     if(!mainMarker) return;
     if (this.map) this.map.remove();
-    this.map = new L.Map('map-mini', { center: new L.LatLng(mainMarker.lat, mainMarker.lng), zoom: 8, zoomAnimation: false, zoomControl: false });
-
-    var options = this.buildMapOptions(this.mapProvider.selectedMap);
-    this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
-    this.map.addLayer(this.baseLayer);
+    this.map = this.mapBuilder.buildMap('map-mini', new L.LatLng(mainMarker.lat, mainMarker.lng), 8);
 
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);

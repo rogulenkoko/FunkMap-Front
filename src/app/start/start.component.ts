@@ -3,6 +3,7 @@ import { MapProvider } from "app/main/map/map-provider.service";
 import { Map, EntityType } from "app/main/map/models";
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
 import { Router } from "@angular/router";
+import { MapBuilder } from 'app/main/map/map-builder.service';
 
 @Component({
   selector: 'start',
@@ -16,14 +17,15 @@ export class StartComponent implements OnInit {
 
   private items: Array<StartPageItem>;
 
-  constructor(private mapProvider: MapProvider,
+  constructor(private mapBuilder: MapBuilder,
               private searchFilterService: SearchFilterService,
               private router: Router) { }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(30, 10), zoom: 0, zoomAnimation: false, zoomControl: false });
-    this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, this.buildMapOptions(this.mapProvider.selectedMap));
-    this.map.addLayer(this.baseLayer);
+    this.map = this.mapBuilder.buildMap("map", new L.LatLng(30, 10), 0);
+    // this.map = new L.Map('map', { center: , zoom: 0, zoomAnimation: false, zoomControl: false });
+    // this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, this.buildMapOptions(this.mapProvider.selectedMap));
+    // this.map.addLayer(this.baseLayer);
 
 
     this.items = [

@@ -10,6 +10,7 @@ import { CreationService } from "../creation/creation.service";
 import { UserService } from "app/main/user/user.service";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { ConfigurationProvider } from 'app/core';
+import { MapBuilder, MapThemeType } from 'app/main/map/map-builder.service';
 
 @Component({
   selector: 'map',
@@ -27,169 +28,9 @@ export class MapComponent implements OnInit {
 
   private markers: Array<Marker>;
 
-  private styles = [
-    {
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#242f3e"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#746855"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#242f3e"
-        }
-      ]
-    },
-    {
-      "featureType": "administrative.locality",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d59563"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d59563"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#263c3f"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#6b9a76"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#38414e"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "color": "#212a37"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9ca5b3"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#746855"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "color": "#1f2835"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#f3d19c"
-        }
-      ]
-    },
-    {
-      "featureType": "transit",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#2f3948"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.station",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d59563"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#17263c"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#17263c"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#17263c"
-        }
-      ]
-    }
-  ]
+  
 
-  constructor(private mapProvider: MapProvider,
+  constructor(private mapBuilder: MapBuilder,
               private markerFactory: MarkerFactory,
               private mapService: MapService,
               private mapFilter: MapFilter,
@@ -197,7 +38,7 @@ export class MapComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private mapCreationService: MapCreationService) {
-    this.mapProvider.onMapChange.subscribe(() => this.updateMap());
+    //this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 
@@ -206,31 +47,14 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.map = new L.Map('map', { center: new L.LatLng(50, 30), zoom: 8, zoomAnimation: false,  zoomControl: false  });
-    this.initMap();
+   this.map = this.mapBuilder.buildMap("map", new L.LatLng(50, 30), 8, MapThemeType.Dark);
     this.initMarkersLayer();
   }
 
-  private initMap() {
-
-    
-
-
-    var roads = (<any>L.gridLayer).googleMutant({
-      type: 'roadmap',
-      styles: this.styles
-
-    }).addTo(this.map);
   
-    // var options = this.buildMapOptions(this.mapProvider.selectedMap);
-    // this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
-    // this.map.addLayer(this.baseLayer);
-
-  }
 
   private updateMap() {
     this.map.removeLayer(this.baseLayer);
-    this.initMap();
   }
 
   private initMarkersLayer() {
@@ -262,30 +86,6 @@ export class MapComponent implements OnInit {
     var cluster = this.markerFactory.getMarkerCluster(this.markers);
     this.markersLayer.clearLayers();
     this.markersLayer.addLayer(cluster);
-  }
-
-  private buildMapOptions(map: Map): any {
-    let options: any;
-
-
-    
-
-    if (map.subdomains.length == 0) {
-      options = {
-        attribution: map.attribution,
-        maxZoom: map.maxZoom,
-        minZoom: 3
-      };
-    }
-    else {
-      options = {
-        attribution: map.attribution,
-        maxZoom: map.maxZoom,
-        subdomains: map.subdomains,
-        minZoom: 3
-      };
-    }
-    return options;
   }
 
   private selectEntityPosition(marker: Marker) {

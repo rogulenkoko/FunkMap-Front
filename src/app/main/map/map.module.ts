@@ -18,6 +18,7 @@ import { MapCreationService } from "app/main/map/map-creation.service";
 import { MapLegendComponent } from './map-legend/map-legend.component';
 import { CoreModule } from "app/core/core.module";
 import { SearchModule } from "app/main/search/search.module";
+import { MapBuilder } from "app/main/map/map-builder.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SearchModule } from "app/main/search/search.module";
     },
     IconProvider,
     MapFilter,
-    MapCreationService
+    MapCreationService,
+    MapBuilder
   ]
 })
 export class MapModule { }

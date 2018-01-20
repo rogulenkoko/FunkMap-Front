@@ -55,6 +55,7 @@
 
 .dropdown{
     cursor: pointer;
+    z-index: 1500;
 }
 
 :host-context(.dark) .nav-link{
@@ -112,4 +113,5 @@ li{
 /deep/ .dropdown-menu{
     padding: 0 !important;
     border: none;
+    z-index: 1500;
 }
