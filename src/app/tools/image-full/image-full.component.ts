@@ -40,6 +40,7 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
   }
 
   private setCrossPosition(){
+    if(this.images.length > 1) return;
     var imageWidth = jQuery("#modal-image").width();
     var imageContainerWidth = jQuery("#modal-image-container").width();
     jQuery("#modal-close").css("left",`${(imageWidth + imageContainerWidth)/2 + 18}px`);
@@ -50,7 +51,20 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
   }
 
   private setImage(index: number){
+    this.index = index;
     this.currentImage = this.images[index];
+  }
+
+  private next(value: number){
+    var nextIndex = value + this.index;
+    if(nextIndex == this.images.length){
+      nextIndex = 0;
+    } else if (nextIndex == -1){
+      nextIndex = this.images.length - 1;
+    }
+    
+
+    this.setImage(nextIndex);
   }
 
   cancel(){

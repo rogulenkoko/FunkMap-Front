@@ -1,3 +1,5 @@
+@import "src/assets/styles/dark-colors.scss";
+
 .modal-back{
     position: fixed;
     width: 100%;
@@ -17,8 +19,8 @@
     top: 20%;
     z-index: 1002;
     display: inline-block;
-    width: 70%;
-    height: 60%;
+    width: 800px;
+    height: 500px;
 
     .image-container{
         width: 100%;
@@ -40,8 +42,35 @@
 
         .icon-close{
             position: absolute;
-            //left: calc(50% + 200px);
+            right: -24px;
+            top:-24px;
         }
+
+        .arrow{
+            position: absolute;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            cursor: pointer;
+            .fa-chevron-right, .fa-chevron-left{
+           
+                top: calc(50% - 10px);
+                color: $inactive-color;
+                font-size: 20px;
+            }
+        }
+
+        .arrow-left{
+            left: -30px;
+        }
+
+        .arrow-right{
+            right: -30px;
+        }
+
+        
     }
 
     
