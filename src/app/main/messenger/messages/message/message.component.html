@@ -20,7 +20,7 @@
     </div>
 
     <div *ngIf="images" class="images-container" >
-      <a *ngFor="let image of images" href="{{image.dataUrl}}" [style.width]="image.width*200/image.height + 'px'" [style.flex-grow]="image.width*200/image.height">
+      <a *ngFor="let image of images; let i = index" (click)="showImages(i)"  [style.width]="image.width*200/image.height + 'px'" [style.flex-grow]="image.width*200/image.height">
           <i [style.padding-bottom]="image.height/image.width*100 + '%'"></i>
         <img src="{{image.dataUrl}}"/>
       </a>
@@ -40,3 +40,5 @@
 <div *ngIf="message.messageType == 2" class="d-flex anonim-message-container align-items-center justify-content-center">
   <span class="anonim-message-text">{{message.text}}</span>
 </div>
+
+<image-full *ngIf="imageViewMode" [(visible)]="imageViewMode" [images]="images" [index]="imageIndex"></image-full>

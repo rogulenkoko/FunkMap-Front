@@ -14,6 +14,9 @@ export class MessageComponent implements OnInit {
   private images: Array<ImageContent>;
   private files: Array<FileContent>;
 
+  private imageViewMode: boolean = false;
+  private imageIndex: number = 0;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -35,6 +38,11 @@ export class MessageComponent implements OnInit {
       }
       virtualImage.src = image.dataUrl;
     });
+  }
+
+  private showImages(selectedIndex: number){
+    this.imageIndex = selectedIndex;
+    this.imageViewMode = true;
   }
 
 }

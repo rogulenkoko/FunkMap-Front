@@ -35,6 +35,8 @@ import { SoundcloudSearchComponent } from './soundcloud/soundcloud-search/soundc
 import { SoundcloudModule } from 'app/tools/soundcloud/soundcloud.module';
 import { UploadComponent } from './upload/upload.component';
 import { SizePipe } from './size.pipe';
+import { ImageFullComponent } from './image-full/image-full.component';
+
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { SizePipe } from './size.pipe';
     AvatarComponent,
     EntitySoundComponent,
     UploadComponent,
-    SizePipe
+    SizePipe,
+    ImageFullComponent
     
   ],
   imports: [
@@ -92,7 +95,8 @@ import { SizePipe } from './size.pipe';
     EntitySoundComponent,
     SoundcloudSearchComponent,
     UploadComponent,
-    SizePipe
+    SizePipe,
+    ImageFullComponent
     ],
   providers: [
     DateSelectProvider,
