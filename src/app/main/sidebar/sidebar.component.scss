@@ -101,23 +101,21 @@
 }
 
 .sidebar-nav{
-    position: absolute;
-    top: 0;
     width: $sidebar-global-size;
     margin: 0;
     padding: 0;
     padding-top: 18px; 
     list-style: none;
+    min-height: 200px
 }
 
 .sidebar-nav-bottom{
-    position: absolute;
-    bottom: 0px;
     width: $sidebar-global-size;
     margin: 0;
     padding: 0;
     padding-bottom: 140px; 
     list-style: none;
+    min-height: 200px;
 }
 
 .sidebar-item{
@@ -143,23 +141,21 @@
     line-height: 60px;
 }
 
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 0;
-    }
+#wrapper {
+    padding-left: 0;
+}
 
-    #wrapper.toggled {
-        padding-left: $sidebar-global-size;
-    }
+#wrapper.toggled {
+    padding-left: $sidebar-global-size;
+}
 
-    #sidebar-wrapper {
-        width: 0;
-    }
+#sidebar-wrapper {
+    width: 0;
+}
 
-    #wrapper.toggled #sidebar-wrapper {
-        
-        width: $sidebar-global-size;
-    }
+#wrapper.toggled #sidebar-wrapper {
+    
+    width: $sidebar-global-size;
 }
 
 li{

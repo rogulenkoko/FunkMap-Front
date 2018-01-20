@@ -1,18 +1,27 @@
-
-<div class="leaflet-map" id="map"></div>
-
-<div routerLink="/create" *ngIf="userService.user" class="d-flex align-items-center justify-content-center add-circle">
-  <img src="assets/images/plus.png" />
+<div class="leaflet-map" id="map">
 </div>
 
-<div class="map-legend-container d-flex">
-  <map-legend></map-legend>
-  <div class="zoom-container d-flex justify-content-between align-items-center">
-    <div (click)="zoom(1)" class="d-flex justify-content-center align-items-center"><span class="icon-plus"></span></div>
-    <div (click)="zoom(-1)" class="d-flex justify-content-center align-items-center"><span class="icon-minus"></span></div>
+
+<ng-container *showItBootstrap="['xl','lg', 'md']">
+  <div routerLink="/create" *ngIf="userService.user" class="d-flex align-items-center justify-content-center add-circle">
+    <img src="assets/images/plus.png" />
   </div>
-</div>
+</ng-container>
 
-<div class="search-filter">
-  <search-filter></search-filter>
-</div>
+<ng-container *showItBootstrap="['xl','lg']">
+  <div class="map-legend-container d-flex">
+    <map-legend></map-legend>
+    <div class="zoom-container d-flex justify-content-between align-items-center">
+      <div (click)="zoom(1)" class="d-flex justify-content-center align-items-center">
+        <span class="icon-plus"></span>
+      </div>
+      <div (click)="zoom(-1)" class="d-flex justify-content-center align-items-center">
+        <span class="icon-minus"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-filter">
+    <search-filter></search-filter>
+  </div>
+</ng-container>

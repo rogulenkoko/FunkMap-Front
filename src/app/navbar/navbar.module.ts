@@ -11,6 +11,7 @@ import { NotificationsInfoService } from "app/navbar/notifications/notifications
 import { NotificationHubServiceReal, NotificationHubService } from "app/navbar/notifications/notification-hub.service";
 import { NotificationHubServiceStub } from "app/navbar/notifications/notification-hub.service.stub";
 import { BandInviteConfirmationNotificationComponent } from './notifications/band-invite-confirmation-notification/band-invite-confirmation-notification.component';
+import { ResponsiveModule } from 'ng2-responsive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BandInviteConfirmationNotificationComponent } from './notifications/ban
   ],
   imports: [
     CoreModule,
-    ToolsModule
+    ToolsModule,
+    ResponsiveModule
   ],
   exports:[NavbarComponent,NotificationsComponent],
   providers: [

@@ -14,12 +14,13 @@ export class LanguageService {
     var en = new Language("Language_En", "en");
     this.availableLanguages = [ru, en];
 
+      var locale = this.availableLanguages.find(x=>window.navigator.language.includes(x.value));
+      this.language = savedLanguage ? savedLanguage : (locale ? locale.value : this.availableLanguages[1].value);
 
     try {
       var savedLanguage = localStorage.getItem("language");
-      this.language = savedLanguage ? savedLanguage : this.availableLanguages[0].value;
+      
     } catch (ex) {
-      this.language = this.availableLanguages[0].value;
     }
     moment.locale(this.language);
 

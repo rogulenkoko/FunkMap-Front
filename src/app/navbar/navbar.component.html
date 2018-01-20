@@ -1,47 +1,49 @@
-<nav class="d-flex navbar navbar-toggleable fixed-top justify-content-between">
+<nav class="d-flex navbar navbar-toggleable  fixed-top justify-content-between">
   <a class="navbar-brand funkmap-title" routerLink="/">
-    <img src="assets/images/logo.svg"/>
+    <img src="assets/images/logo.svg" />
   </a>
 
   <div class="right-nav-container">
     <ul class="navbar-nav d-flex align-items-center">
-      <li *ngIf="userService.user" (click)="changeNotificationsVisibility()" class="nav-item d-flex flex-row align-items-center mr-4 dropdown">
-        <div class="icon icon-middle notification-icon" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
-        <div *ngIf="notificationsInfoService.newNotificationsCount" class="notification-count">{{notificationsInfoService.newNotificationsCount}}</div>
-        <div onClick="event.stopPropagation();" class="dropdown-menu dropdown-menu-right notifications-container" aria-labelledby="navbarDropdownMenuLink">
-          <notifications ></notifications>
-        </div>
-      </li>
 
-      <!--isLogged из сервиса-->
-      <ng-container *ngIf="!userService.user">
-        <li class="nav-item">
-          <a routerLink="/signup" class="signup mr-3">{{'Navbar_SignUp' | translate}}</a>
-        </li>
+      <ng-container *showItBootstrap="['xl','lg']">
+        <!--isLogged из сервиса-->
+        <ng-container *ngIf="!userService.user">
+          <li class="nav-item">
+            <a routerLink="/signup" class="signup mr-3">{{'Navbar_SignUp' | translate}}</a>
+          </li>
 
-        <li class="nav-item ">
-          <a routerLink="/login" class="login mr-3">{{'Navbar_Login' | translate}}</a>
-        </li>
-      </ng-container>
+          <li class="nav-item ">
+            <a routerLink="/login" class="login mr-3">{{'Navbar_Login' | translate}}</a>
+          </li>
+        </ng-container>
 
-      <ng-container *ngIf="userService.user">
-        <li class="nav-item dropdown ml-2">
-          <a class="nav-link d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <avatar-circle [image]="userService.user.avatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
-            <span class="ml-2">{{userService.user.login}}</span> 
-            <i class="fa fa-chevron-down m-2"></i>
-          </a>
-          <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" (click)="changeUserAvatar()">{{'Navbar_AvatarChange' | translate}}</a>
-            <a class="dropdown-item" (click)="logOut()">{{'Logout' | translate}}</a>
+
+
+        <li *ngIf="userService.user" (click)="changeNotificationsVisibility()" class="nav-item d-flex flex-row align-items-center mr-4 dropdown">
+          <div class="icon icon-middle notification-icon" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+          <div *ngIf="notificationsInfoService.newNotificationsCount" class="notification-count">{{notificationsInfoService.newNotificationsCount}}</div>
+          <div onClick="event.stopPropagation();" class="dropdown-menu dropdown-menu-right notifications-container" aria-labelledby="navbarDropdownMenuLink">
+            <notifications></notifications>
           </div>
         </li>
+
+        <ng-container *ngIf="userService.user">
+          <li class="nav-item dropdown ml-2">
+            <a class="nav-link d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <avatar-circle [image]="userService.user.avatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+              <span class="ml-2">{{userService.user.login}}</span>
+              <i class="fa fa-chevron-down m-2"></i>
+            </a>
+            <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" (click)="changeUserAvatar()">{{'Navbar_AvatarChange' | translate}}</a>
+              <a class="dropdown-item" (click)="logOut()">{{'Logout' | translate}}</a>
+            </div>
+          </li>
+        </ng-container>
       </ng-container>
     </ul>
   </div>
 </nav>
 
-<avatar-edit *ngIf="userService.user"
-[(visible)]="changeAvatarMode"
-[previousPhoto]="userService.user.avatar"
- (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>
+<avatar-edit *ngIf="userService.user" [(visible)]="changeAvatarMode" [previousPhoto]="userService.user.avatar" (onImageUploaded)="onAvatarSaved($event)"></avatar-edit>

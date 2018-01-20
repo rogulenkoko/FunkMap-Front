@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from 'app/core';
 
 @Component({
   selector: 'mobile-stub',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MobileStubComponent implements OnInit {
 
-  constructor() { }
+  constructor(private languageService: LanguageService) { }
 
   ngOnInit() {
   }

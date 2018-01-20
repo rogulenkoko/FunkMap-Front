@@ -1,5 +1,5 @@
 <div id="wrapper" class="toggled ">
-  <div id="sidebar-wrapper">
+  <div id="sidebar-wrapper" class="d-flex flex-column justify-content-between">
     <ul class="sidebar-nav d-flex flex-column align-items-left">
       <ng-container *ngFor="let item of topItems">
         <li *ngIf="!item.visibleForLogged || (item.visibleForLogged && userService.user)" 
