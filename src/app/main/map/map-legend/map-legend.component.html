@@ -1,16 +1,12 @@
-<div class="legend-container d-flex flex-column">
+
+<div class="legend-circle d-flex align-items-center justify-content-center">
+    
+    <i class="icon-pin"></i>
 
     <div *ngIf="legendItemsVisible" class="legend-items-container">
-        <div class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
-            <img src="{{iconProvider.getIconByType(key)}}"/>
-            <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
+            <div class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+                <img src="{{iconProvider.getIconByType(key)}}"/>
+                <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
+            </div>
         </div>
-    </div>
-
-    <div (click)="showLegendItems()" class="d-flex align-items-center justify-content-between legend-title-container">
-        <span class="legend-title">{{'Legend' | translate}}</span>
-        <span *ngIf="legendItemsVisible" class="icon-dd-arrow"></span>
-        <span *ngIf="!legendItemsVisible" class="icon-dd-arrow-up"></span>
-    </div>
-
 </div>

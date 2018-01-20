@@ -1,16 +1,40 @@
 @import "src/assets/styles/dark-colors.scss"; 
 
 
-.legend-container{
-    width: 266px;
-    //height: 272px;
-    background-color: #eff2f8;
-    padding: 25px;
+.legend-circle{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $light-main-side;
+    cursor: pointer;
+    position: relative;
+    .icon-pin{
+        color: $active-color;
+        font-size: 22px;
+        margin-top: 6px;
+        margin-right: 2px;
+    }
+
+    .icon-pin:hover{
+        color: $active-color;
+        background-image: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
 
     .legend-items-container{
-
+        display: none;
+        position: absolute;
+        right: 66px;
+        bottom: 0px;
         height: 200px;
-
+        padding: 20px 25px;
+        width: 266px;
+        background-color: $dark-main;
+        border-radius: 5px;
+    
+    
         .legend-item{
             
             margin-bottom: 10px;
@@ -26,19 +50,12 @@
             }
         }
     }
+
     
+}
 
-    .legend-title-container{
-        cursor: pointer;
-        .legend-title{
-            color: $inactive-color;
-            font-size: 13px;
-        }
-
-        .icon-dd-arrow, .icon-dd-arrow-up{
-            color: $inactive-color;
-            font-size: 10px;
-        }
+.legend-circle:hover{
+    .legend-items-container{
+        display: block;
     }
-    
 }

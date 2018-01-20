@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public scrollbarOptions;
 
   private items: Array<SearchItem>;
-  private allItemsCount: number;
+  private allItemsCount: number = 0;
   private portionCount: number = 10;
 
   private isLoading: boolean = false;

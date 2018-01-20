@@ -23,6 +23,7 @@ export class SearchServiceStub extends SearchService{
    getFiltered(skip: number, take: number): Observable<SearchResponse> {
     var response = new SearchResponse();
     response.items = this.getItems();
+    response.allCount = response.items.length;
     return Observable.of(response);
   }
 
