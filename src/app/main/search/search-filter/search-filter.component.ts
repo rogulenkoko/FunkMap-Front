@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 import { MusicianTypesProvider } from "app/main/musician/musician-types-provider";
 import { Dictionary } from "typescript-collections";
@@ -19,9 +19,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-filter.component.scss']
 })
 export class SearchFilterComponent implements OnInit {
-  private currenSelectedStyle: MusicStyle;
-
-  private currenSelectedInstrument: InstrumentType;
 
   private styles: Array<StylesItem>;
   private instruments: Array<InstrumentsItem>;
@@ -30,8 +27,8 @@ export class SearchFilterComponent implements OnInit {
 
   private allTitle: string;
 
-  private isFilterActive: boolean = false;
   private isTypeSelectionMode: boolean = false;
+  private isFilerActive: boolean = false;
 
   constructor(private musicianTypesProvider: MusicianTypesProvider,
     private searchFilterService: SearchFilterService,
@@ -60,15 +57,21 @@ export class SearchFilterComponent implements OnInit {
   onChanged() {
     this.searchFilterService.isFilterClear = false;
     this.searchFilterService.onFilterChanged.emit();
+    this.searchFilterService.cacheFilter();
     this.router.navigate(["/search"])
   }
 
   changeFilerActive(){
-    this.isFilterActive = !this.isFilterActive;
+   this.isFilerActive = !this.isFilerActive;
   }
 
-  private changeTypeSelectionMode(){
-    this.isTypeSelectionMode = !this.isTypeSelectionMode;
+  private changeTypeSelectionMode(forceClose: boolean){
+
+    if(forceClose){
+      this.isTypeSelectionMode = false;
+    } else {
+      this.isTypeSelectionMode = !this.isTypeSelectionMode;
+    }
   }
 
 }

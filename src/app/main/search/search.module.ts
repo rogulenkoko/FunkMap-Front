@@ -14,6 +14,7 @@ import { StudioModule } from "app/main/studio/studio.module";
 import { RehearsalModule } from "app/main/rehearsal/rehearsal.module";
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { SearchFilterService } from "app/main/search/search-filter/search-filter.service";
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { SearchFilterService } from "app/main/search/search-filter/search-filter
     BandModule,
     ShopModule,
     StudioModule,
-    RehearsalModule
+    RehearsalModule,
+    ClickOutsideModule
   ],
   exports: [
     SearchComponent,

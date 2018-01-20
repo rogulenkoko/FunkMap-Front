@@ -7,5 +7,5 @@ import { EntityType } from "app/main/map/models";
 export class MusicianFilter extends BaseFilter {
     public styles: Array<MusicStyle>;
     public instruments: Array<InstrumentType>;
-    public expirience: ExpirienceType;
+    public expirience: Array<ExpirienceType>;
 }

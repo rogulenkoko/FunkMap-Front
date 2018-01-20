@@ -11,7 +11,6 @@
       <span class="result-title">{{'Search_Result' | translate}}</span>
       <span *ngIf="!isLoading" class="count-title">{{'Search_ResultCount' | translate:{count:allItemsCount} }}</span>
     </div>
-    <!-- <search-filter *ngIf="filterService.isFilterEnabled"></search-filter> -->
     <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" id="search-container" class="search-items-container">
       <search-list *ngIf="items" [items]="items"></search-list>
       

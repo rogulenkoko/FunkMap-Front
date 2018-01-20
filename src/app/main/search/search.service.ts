@@ -48,26 +48,10 @@ export class SearchServiceHttp extends SearchService {
   }
 
   getFiltered(skip: number, take: number): Observable<SearchResponse> {
-    
-    var filter: any = {};
-    switch (this.searchFilterService.selectedEntity) {
-      case EntityType.Musician:
-        filter = new MusicianFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
-        filter.instruments = this.searchFilterService.selectedInstruments;
-        filter.expirience = this.searchFilterService.selectedExpiriences;
-        filter.styles = this.searchFilterService.selectedStyles;
-        break;
-      case EntityType.Band:
-        filter = new BandFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
-        filter.styles = this.searchFilterService.selectedStyles;
-        break;
-      default:
-        filter = new BaseFilter(this.searchFilterService.searchText, this.searchFilterService.selectedEntity, skip, take);
-    }
-
-    filter.longitude = this.userService.longitude;
-    filter.latitude = this.userService.latitude;
-    filter.limit = ConfigurationProvider.entitiesLimit;
+    var filter = this.searchFilterService.buildFilter(skip, take);
+    console.log(filter);
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
+
+  
 }

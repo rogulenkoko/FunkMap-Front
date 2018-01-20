@@ -13,7 +13,9 @@
     .filter-title-container-wrapper{
         padding: 16px 20px;
         cursor: pointer;
-        //background-color: $lighter-main-side;
+        z-index: 10000;
+        //box-shadow: 0px 1px 20px 0px rgba( 0, 3, 6, 0.1 );
+
         .filter-title-container{
             font-size: 13px;
             
@@ -38,19 +40,16 @@
     .filter-container{
         padding: 16px 20px;
         cursor: pointer;
-        background-color: $lighter-main-side;
+        background-color: $light-main-side;
         border-radius: 5px;
         position: relative;
-        .filter-label{
-            width: 40% !important;
+        
+
+        .entity-type-label{
             margin-left: 12px;
+            margin-top: -5px;
             font-size: 13px;
             font-weight: bold;
-            margin-top: -5px;
-        }
-
-        .filter-value{
-            width: 60%;
         }
 
         .legend-items-container{
@@ -85,32 +84,43 @@
                 }
             }
         }
+
+        .type-container{
+            padding: 5px 0;            
+
+            span{
+                height: 13px;
+            }
+
+            .icon-close{
+                margin-right: 16px;
+            }
+
+            .item-label{
+                color: $active-color;
+                font-size: 13px;
+                vertical-align: middle;
+                margin-top: -5px;
+            }
+
+            img{
+                width: 15px;
+                margin-right: 6px;
+            }
+        }
     }
 
-    .filter-container:hover{
+    .filter-property-container{
+        padding: 16px 20px;
+        cursor: pointer;
+        background-color: $lighter-main-side;
+        border-radius: 5px;
         background-color: $light-main-side;
-    }
-
-    .separator{
-        height: 32px;
-    }
-
-    .separator-mini{
-        height: 16px;
-    }
-
-    .selected-styles-container{
-        margin-left: 140px;
-        margin-top: 5px;
-        font-size: 13px;
-        flex-wrap: wrap;
-    }
-
-    .selected-instruments-container{
-        margin-left: 140px;
-        margin-top: 5px;
-        font-size: 13px;
-        flex-wrap: wrap;
+        .filter-label{
+            font-size: 13px;
+            color: $inactive-color;
+        }
     }
 }
 
+  

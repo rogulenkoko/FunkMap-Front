@@ -46,6 +46,13 @@
             margin-top: 3px;
             cursor: pointer;
         }
+
+        div:hover{
+            background-image: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
     }
 }
 

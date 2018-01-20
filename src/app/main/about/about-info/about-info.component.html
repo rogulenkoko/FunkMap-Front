@@ -12,7 +12,7 @@
     </div>
 
     <div class="creators d-flex justify-content-between">
-        <a class="creator d-flex" *ngFor="let creator of creators" href="{{creator.link}}" target="_blank">
+        <a class="creator d-flex flex-wrap" *ngFor="let creator of creators" href="{{creator.link}}" target="_blank">
             <img src="{{creator.image}}"/>
             <div class="creator-info d-flex flex-column">
                 <span>{{creator.name | translate}}</span>

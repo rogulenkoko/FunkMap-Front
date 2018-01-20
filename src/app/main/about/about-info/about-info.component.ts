@@ -13,6 +13,7 @@ export class AboutInfoComponent implements OnInit {
     this.creators = [
       new Creator("About_Rogulenko", "About_Developer", "/assets/images/rogulenko.jpeg", "https://vk.com/id30724049"),
       new Creator("About_Grigorjev", "About_Designer","/assets/images/grigorjev.jpg", "https://vk.com/true_kbn"),
+      new Creator("About_Georgiev", "About_Designer","/assets/images/georgiev.jpg", "https://vk.com/dmitriy_georgiev")
     ]
   }
 
