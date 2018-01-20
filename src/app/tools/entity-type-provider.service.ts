@@ -14,10 +14,10 @@ export class EntityTypeProvider {
   private initEntities() {
     this.entities = new Dictionary<EntityType, string>();
     this.entities.setValue(EntityType.Musician, "Musician");
-    this.entities.setValue(EntityType.Shop, "Shop");
     this.entities.setValue(EntityType.Band, "Band");
-    this.entities.setValue(EntityType.Studio, "Studio");
     this.entities.setValue(EntityType.RehearsalPoint, "RehearsalPoint");
+    this.entities.setValue(EntityType.Studio, "Studio");
+    this.entities.setValue(EntityType.Shop, "Shop");
   }
 
 }

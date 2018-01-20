@@ -4,17 +4,91 @@
 @import "src/assets/styles/forms.scss";
 
 .filter-main-container{
-    padding: 12px 25px;
-    .filter-container{
+    
+    width: 265px;
+    border-radius: 5px;
+    background-color: $lighter-main-side;
+    color: $active-color;
 
-        .filter-label{
+    .filter-title-container-wrapper{
+        padding: 16px 20px;
+        cursor: pointer;
+        //background-color: $lighter-main-side;
+        .filter-title-container{
             font-size: 13px;
+            
+            font-weight: bold;
+    
+            .icon-filter{
+                margin-right: 12px;
+                margin-top: 4px;
+                font-size: 15px;
+            }
+        }
+    }
+
+    
+    
+    .icon-dd-arrow, .icon-dd-arrow-down{
+        color: $inactive-color;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    .filter-container{
+        padding: 16px 20px;
+        cursor: pointer;
+        background-color: $lighter-main-side;
+        border-radius: 5px;
+        position: relative;
+        .filter-label{
             width: 40% !important;
+            margin-left: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: -5px;
         }
 
         .filter-value{
             width: 60%;
         }
+
+        .legend-items-container{
+            position: absolute;
+            right: 300px;
+            bottom: -145px;
+            height: 200px;
+            padding: 20px 25px;
+            width: 266px;
+            background-color: $lighter-main-side;
+            border-radius: 5px;
+        
+        
+            .legend-item{
+                
+                margin-bottom: 10px;
+        
+                .item-label{
+                    color: $inactive-color;
+                    font-size: 13px;
+                }
+
+                img{
+                    width: 15px;
+                    margin-right: 25px;
+                }
+            }
+
+            .legend-item:hover{
+                .item-label{
+                    color: $active-color;
+                }
+            }
+        }
+    }
+
+    .filter-container:hover{
+        background-color: $light-main-side;
     }
 
     .separator{
@@ -38,13 +112,5 @@
         font-size: 13px;
         flex-wrap: wrap;
     }
-}
-
-:host-context(.light) .filter-main-container{
-    background-color:  $light-sub-main;
-}
-
-:host-context(.dark) .filter-main-container{
-    background-color: $dark-item-hover;
 }
 

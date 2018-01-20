@@ -1,9 +1,29 @@
 <div class="filter-main-container d-flex flex-column">
-  <div class="d-flex flex-row align-items-baseline filter-container">
-    <label class="filter-label">{{'Entity' | translate}}:</label>
-    <div class="filter-value">
-      <p-dropdown [options]="entities" [placeholder]="allTitle" [(ngModel)]="searchFilterService.selectedEntity" (onChange)="onChanged()"></p-dropdown>
+
+  <div (click)="changeFilerActive()" class="d-flex align-items-center justify-content-between filter-title-container-wrapper">
+      <div class="filter-title-container d-flex align-items-center">
+          <span class="icon-filter"></span>
+          <span>{{'Search_Filter' | translate}}</span>
+        </div>
+        <span *ngIf="!isFilterActive" class="icon-dd-arrow"></span>
+        <span *ngIf="isFilterActive" class="icon-dd-arrow-down"></span>
+  </div>
+  
+
+  <div *ngIf="isFilterActive" (click)="changeTypeSelectionMode()" class="d-flex flex-row align-items-center filter-container">
+    <span class="icon-plus"></span>
+    <span class="filter-label">{{'Entity' | translate}}</span>
+
+    <div *ngIf="isTypeSelectionMode" class="legend-items-container">
+        <div (click)="selectType(key)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+            <img src="{{iconProvider.getIconByType(key)}}"/>
+            <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
+        </div>
     </div>
+
+    <!-- <div class="filter-value">
+      <p-dropdown [options]="entities" [placeholder]="allTitle" [(ngModel)]="searchFilterService.selectedEntity" (onChange)="onChanged()"></p-dropdown>
+    </div> -->
     
   </div>
 

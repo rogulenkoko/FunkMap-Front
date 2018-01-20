@@ -10,6 +10,8 @@ import { EntityType } from "app/main/map/models";
 import { TranslateService } from "@ngx-translate/core";
 import { Observable } from "rxjs/Observable";
 import { StylesItem, InstrumentsItem, EntityItem, ExpirienceItem } from "app/tools/select";
+import { IconProvider } from 'app/main/map/icon-provider.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'search-filter',
@@ -28,10 +30,16 @@ export class SearchFilterComponent implements OnInit {
 
   private allTitle: string;
 
+  private isFilterActive: boolean = false;
+  private isTypeSelectionMode: boolean = false;
+
   constructor(private musicianTypesProvider: MusicianTypesProvider,
     private searchFilterService: SearchFilterService,
     private entityTypeProvider: EntityTypeProvider,
-    private translateService: TranslateService) {
+    private translateService: TranslateService,
+    private iconProvider: IconProvider,
+    private router: Router) {
+
     this.styles = musicianTypesProvider.musicStyles.keys().map(x => new StylesItem(x, this.translateService.get(musicianTypesProvider.musicStyles.getValue(x))));
     this.instruments = musicianTypesProvider.instruments.keys().map(x => new InstrumentsItem(x, this.translateService.get(musicianTypesProvider.instruments.getValue(x))));
     this.entities = entityTypeProvider.entities.keys().map(x => new EntityItem(x, this.translateService.get(entityTypeProvider.entities.getValue(x))));
@@ -44,9 +52,23 @@ export class SearchFilterComponent implements OnInit {
 
   }
 
+  selectType(type: EntityType){
+    this.searchFilterService.selectedEntity = type;
+    this.onChanged();
+  }
+
   onChanged() {
     this.searchFilterService.isFilterClear = false;
     this.searchFilterService.onFilterChanged.emit();
+    this.router.navigate(["/search"])
+  }
+
+  changeFilerActive(){
+    this.isFilterActive = !this.isFilterActive;
+  }
+
+  private changeTypeSelectionMode(){
+    this.isTypeSelectionMode = !this.isTypeSelectionMode;
   }
 
 }
