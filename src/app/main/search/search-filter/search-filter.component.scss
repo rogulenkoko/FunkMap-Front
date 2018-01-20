@@ -84,6 +84,15 @@
                 }
             }
         }
+        
+        .triangle{
+            position: absolute;
+            right: 291px;
+            bottom: 20px;
+            border-style: solid;
+            border-width: 10px 0px 10px 10px;
+            border-color: transparent transparent transparent $lighter-main-side;
+        }
 
         .type-container{
             padding: 5px 0;            

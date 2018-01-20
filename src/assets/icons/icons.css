@@ -146,3 +146,6 @@
 .icon-close:before {
   content: "\4b";
 }
+.icon-minus:before {
+  content: "\44";
+}
