@@ -23,9 +23,6 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.map = this.mapBuilder.buildMap("map", new L.LatLng(30, 10), 0);
-    // this.map = new L.Map('map', { center: , zoom: 0, zoomAnimation: false, zoomControl: false });
-    // this.baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, this.buildMapOptions(this.mapProvider.selectedMap));
-    // this.map.addLayer(this.baseLayer);
 
 
     this.items = [

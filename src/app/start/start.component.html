@@ -1,34 +1,43 @@
 <div class="leaflet-map" id="map"></div>
 
 
-<div class="start-page-container-wrapper">
+<div *isDesktop class="start-page-container-wrapper">
+    <ng-template [ngTemplateOutlet]="start"></ng-template>
+
+</div>
+
+<div *isMobile class="start-page-container-wrapper start-page-container-wrapper-mobile">
+    <ng-template [ngTemplateOutlet]="start"></ng-template>
+</div>
+
+<ng-template #start>
     <div class="start-page-container d-flex align-items-center justify-content-center flex-column">
 
-        <div class="logo-container" routerLink="/" >
-             <img src="assets/images/logo.svg"/>
+        <div class="logo-container" routerLink="/">
+            <img src="assets/images/logo.svg" />
         </div>
 
-        <div class="description-container">
+        <!-- <div class="description-container">
             <span>{{'Start_Title1' | translate}}</span>
-        </div>
+        </div> -->
 
         <div class="description-container">
             <span>{{'Start_Title2' | translate}}</span>
         </div>
 
-        <div class="entities-container d-flex flex-row">
+        <!-- <div class="entities-container d-flex flex-row">
             <div *ngFor="let item of items" (click)="onItemSelected(item.type)" class="d-flex align-items-center justify-content-center flex-column">
                 <i [ngClass]="item.iconClass"></i>
                 <span>{{item.title | translate}}</span>
             </div>
-        </div>
+        </div> -->
 
-        <div class="login-help" >
+        <div class="login-help">
             {{'Start_Help1' | translate}}
-            <span routerLink="/login">{{'Navbar_Login' | translate}}</span> 
+            <span routerLink="/login">{{'Navbar_Login' | translate}}</span>
             {{'Start_Help_Or' | translate}}
             <span routerLink="/signup">{{'Navbar_SignUp' | translate}}</span>
         </div>
 
     </div>
-</div>
+</ng-template>
