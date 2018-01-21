@@ -33,6 +33,7 @@ import { NavbarModule } from "app/navbar/navbar.module";
 import { AboutModule } from "app/main/about/about.module";
 import { ResponsiveModule } from 'ng2-responsive';
 import { MobileStubComponent } from './main/mobile-stub/mobile-stub.component'
+import { SidebarService } from "app/main/sidebar/sidebar.service";
 
 
 
@@ -68,7 +69,7 @@ import { MobileStubComponent } from './main/mobile-stub/mobile-stub.component'
   ],
   exports:[CoreModule, ToolsModule],
   providers: [
-        
+    SidebarService
   ],
   bootstrap: [AppComponent]
 })

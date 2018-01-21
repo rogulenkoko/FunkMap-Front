@@ -20,8 +20,12 @@
       </div>
     </div>
   </div>
-
-  <div class="search-filter">
-    <search-filter></search-filter>
-  </div>
 </ng-container>
+
+<div *isDesktop class="search-filter">
+  <search-filter></search-filter>
+</div>
+
+<div *isMobile class="search-filter-mobile">
+    <search-filter></search-filter>
+</div>

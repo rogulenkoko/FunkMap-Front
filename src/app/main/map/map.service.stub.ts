@@ -45,5 +45,10 @@ export class MapServiceStub extends MapService {
     return Observable.of(this.allMarkers);
   }
 
+  getFiltered(): Observable<Array<Marker>>{
+    return Observable.of(this.allMarkers);
+  }
+
+
 }
 

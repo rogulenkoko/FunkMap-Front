@@ -54,16 +54,16 @@ export class SearchFilterComponent implements OnInit {
     this.translateService.get("All").subscribe(value=> this.allTitle = value);
   }
 
-  selectType(type: EntityType){
+  selectType(type: EntityType, needToNavigate: boolean){
     this.searchFilterService.selectedEntity = type;
-    this.onChanged();
+    this.onChanged(needToNavigate);
   }
 
-  onChanged() {
+  onChanged(needToNavigate: boolean) {
     this.searchFilterService.isFilterClear = false;
     this.searchFilterService.onFilterChanged.emit();
     this.searchFilterService.cacheFilter();
-    this.router.navigate(["/search"])
+    if(needToNavigate) this.router.navigate(["/search"])
   }
 
   changeFilerActive(){

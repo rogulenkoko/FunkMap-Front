@@ -11,6 +11,7 @@ import { UserService } from "app/main/user/user.service";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { ConfigurationProvider } from 'app/core';
 import { MapBuilder, MapThemeType } from 'app/main/map/map-builder.service';
+import { SearchFilterService } from 'app/main/search/search-filter/search-filter.service';
 
 @Component({
   selector: 'map',
@@ -37,12 +38,13 @@ export class MapComponent implements OnInit {
               private creationService: CreationService,
               private router: Router,
               private userService: UserService,
-              private mapCreationService: MapCreationService) {
+              private mapCreationService: MapCreationService,
+              private searchFilterService: SearchFilterService) {
     //this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 
-    this.mapFilter.onItemsFiltered.subscribe(logins => this.getSpecific(logins));
+    this.searchFilterService.onFilterChanged.subscribe(() => this.getFilteredMarkers());
     this.mapCreationService.onCancel.subscribe(() => this.map.off("click"));
   }
 
@@ -72,8 +74,9 @@ export class MapComponent implements OnInit {
     });
   }
 
-  private getSpecific(logins: Array<string>) {
-    this.mapService.getSpecific(logins).subscribe(markers => {
+  private getFilteredMarkers() {
+    
+    this.mapService.getFiltered().subscribe(markers => {
       this.markers = markers;
       this.refreshMarkers();
     })

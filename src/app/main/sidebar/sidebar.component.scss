@@ -70,6 +70,8 @@
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    z-index: 1005;
+    position: absolute;
     
 }
 
@@ -83,12 +85,11 @@
     left: $sidebar-global-size;
     width: 0;
     height: 100%;
+    // height: calc(100%-75px);
+    
     margin-left: -$sidebar-global-size;
     overflow-y: auto;
     
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    transition: all 0.5s ease;
     
 }
 
@@ -106,7 +107,6 @@
     padding: 0;
     padding-top: 18px; 
     list-style: none;
-    min-height: 200px
 }
 
 .sidebar-nav-bottom{
@@ -115,7 +115,6 @@
     padding: 0;
     padding-bottom: 140px; 
     list-style: none;
-    min-height: 200px;
 }
 
 .sidebar-item{

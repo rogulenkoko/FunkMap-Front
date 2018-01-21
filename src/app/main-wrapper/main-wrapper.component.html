@@ -1,5 +1,13 @@
-<sidebar>
-</sidebar>
-<div class="main-content">
-        <router-outlet></router-outlet>
-</div>
+<ng-container *isDesktop>
+        <sidebar></sidebar>
+        <div class="main-content">
+                <router-outlet></router-outlet>
+        </div>
+</ng-container>
+
+<ng-container *isMobile>
+        <sidebar *ngIf="sidebarService.sidebarVisible" [ngClass]="'sidebar'"></sidebar>
+        <div class="main-content-mobile">
+                <router-outlet></router-outlet>
+        </div>
+</ng-container>

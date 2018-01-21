@@ -71,7 +71,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchService.getFiltered(0, this.portionCount).subscribe(response => {
       this.isLoading = false;
       this.onItemsLoaded(response.items);
-      this.mapFilter.onItemsFiltered.emit(response.allLogins);
       this.allItemsCount = response.allCount;
     });
   }

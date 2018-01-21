@@ -1,10 +1,10 @@
-<div id="wrapper" class="toggled ">
+<div id="wrapper" class="toggled">
   <div id="sidebar-wrapper" class="d-flex flex-column justify-content-between">
     <ul class="sidebar-nav d-flex flex-column align-items-left">
       <ng-container *ngFor="let item of topItems">
         <li *ngIf="!item.visibleForLogged || (item.visibleForLogged && userService.user)" 
           [routerLink]="['/' + item.route]" 
-          (click)="onItemClick(item)" 
+          (click)="onItemClick(item, true)" 
           class="d-flex align-items-center sidebar-item">
           <span class="icon icon-middle {{item.iconClass}}" [class.selected-icon]="item.isSelected"></span>
           <span class="menu-text" [class.selected-text]="item.isSelected">{{item.title | translate}}</span>
@@ -17,7 +17,7 @@
     <ul class="sidebar-nav-bottom d-flex flex-column align-items-left">
       <ng-container *ngFor="let item of bottomItems">
         <li *ngIf="!item.visibleForLogged || (item.visibleForLogged && userService.user)" 
-            (click)="onItemClick(item)" 
+            (click)="onItemClick(item, true)" 
             [routerLink]="['/' + item.route]" 
             class="d-flex align-items-center sidebar-item">
           <span class="icon icon-middle {{item.iconClass}}" [class.selected-icon]="item.isSelected"></span>

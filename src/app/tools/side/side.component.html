@@ -1,18 +1,26 @@
-<div class="modal-outlet d-flex flex-column item-content-container">
-
-  <div class="d-flex close-container " >
-      <span [routerLink]="['/']" class="icon-close"></span>
+<ng-template #sideContent>
+  <div class="d-flex close-container ">
+    <span [routerLink]="['/']" class="icon-close"></span>
   </div>
 
-  <div *ngIf="title" class="d-flex title-container" 
-      [class.justify-content-end]="!title" 
-      [class.justify-content-between]="title">
-    <span  class="main-side-title">{{title | translate}}</span>
-    
+  <div *ngIf="title" class="d-flex title-container" [class.justify-content-end]="!title" [class.justify-content-between]="title">
+    <span class="main-side-title">{{title | translate}}</span>
+
   </div>
 
-<div class="side-main-content d-flex flex-column">
-  <ng-content></ng-content>
+  <div class="side-main-content d-flex flex-column">
+    <ng-content></ng-content>
+  </div>
+</ng-template>
+
+<div *isDesktop class="modal-outlet d-flex flex-column item-content-container">
+
+  <ng-template [ngTemplateOutlet]="sideContent"></ng-template>
+
 </div>
-  
+
+<div *isMobile class="modal-outlet d-flex flex-column item-content-container-mobile">
+
+  <ng-template [ngTemplateOutlet]="sideContent"></ng-template>
+
 </div>

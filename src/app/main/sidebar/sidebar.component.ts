@@ -7,6 +7,7 @@ import { Dialog, Message, DialogsNewMessagesCountModel } from "app/main/messenge
 import { Subscription } from "rxjs/Subscription";
 import { SidebarItem } from 'app/main/sidebar/sidebar-item';
 import { DialogReadModel } from 'app/main/messenger/models/dialog-read-model';
+import { SidebarService } from 'app/main/sidebar/sidebar.service';
 
 @Component({
   selector: 'sidebar',
@@ -27,11 +28,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private messengerService: MessengerService,
-              private router: Router) {
+              private router: Router,
+              private sidebarService: SidebarService) {
     this.subscription = new Subscription();
     this.subscription.add(this.messengerService.onMessageRecieved.subscribe((message)=> this.onMessageRecieved(message)));
     this.subscription.add(this.messengerService.onDialogRead.subscribe(dialogRead=> this.onDialogRead(dialogRead)));
-    
   }
 
   ngOnInit() {
@@ -84,7 +85,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         ];
   }
 
-  private onItemClick(item: SidebarItem) {
+  private onItemClick(item: SidebarItem, updateSidebar?: boolean) {
     if (item.clickEvent) {
       item.clickEvent();
     }
@@ -94,6 +95,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
       item.isSelected = false;
     });
     item.isSelected = !item.isSelected;
+
+    if(updateSidebar){
+      this.sidebarService.sidebarVisible = false;
+    }
+
+    
   }
 
   private getNewMessagesCount() {

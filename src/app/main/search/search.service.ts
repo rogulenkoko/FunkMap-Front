@@ -49,7 +49,6 @@ export class SearchServiceHttp extends SearchService {
 
   getFiltered(skip: number, take: number): Observable<SearchResponse> {
     var filter = this.searchFilterService.buildFilter(skip, take);
-    console.log(filter);
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
 

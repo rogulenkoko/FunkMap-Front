@@ -52,13 +52,15 @@
             font-weight: bold;
         }
 
+        
+
         .legend-items-container{
             position: absolute;
             right: 300px;
             bottom: -145px;
             height: 200px;
             padding: 20px 25px;
-            width: 266px;
+            width: 265px;
             background-color: $lighter-main-side;
             border-radius: 5px;
         
@@ -83,6 +85,13 @@
                     color: $active-color;
                 }
             }
+        }
+
+        .legend-items-container-mobile{
+            right: 0;
+            bottom: -210px;
+            background-color: $dark-main;
+            z-index: 1005;
         }
         
         .triangle{

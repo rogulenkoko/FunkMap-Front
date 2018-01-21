@@ -58,8 +58,19 @@
 
 .search-filter{
     position: absolute;
-    top: calc(75px + 12%);
+    top: calc(75px + 10%);
     right: 45px;
     z-index: 1001;
 }
+
+.search-filter-mobile{
+    z-index: 1001;
+    position: absolute;
+    top: calc(75px + 2%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
 

@@ -6,6 +6,7 @@ import { ConfigurationProvider, ServiceType } from "app/core/configuration/confi
 import { GoogleLocation } from "app/main/map/models/location";
 import { TranslateService } from "@ngx-translate/core";
 import { LanguageService } from "app/core";
+import { SearchFilterService } from 'app/main/search/search-filter/search-filter.service';
 
 @Injectable()
 export abstract class MapService {
@@ -17,6 +18,8 @@ export abstract class MapService {
   abstract getNearest(request: NearestRequest): Observable<Array<Marker>>;
 
   abstract getSpecific(logins: Array<string>): Observable<Array<Marker>>;
+
+  abstract getFiltered(): Observable<Array<Marker>>;
 
   public getLocation(): Observable<GoogleLocation> {
     return this.http.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBAe2vqNwz-pbrU2cp1nCWiz1yOAozPfps", {}).map(x => {
@@ -33,10 +36,12 @@ export abstract class MapService {
 
 }
 
+  
+
 @Injectable()
 export class MapServiceHttp extends MapService {
 
-  constructor(http: Http, translateService: LanguageService) {
+  constructor(http: Http, translateService: LanguageService, private searchFilterService: SearchFilterService) {
     super(http, translateService);
   }
 
@@ -50,6 +55,11 @@ export class MapServiceHttp extends MapService {
 
   getSpecific(logins: Array<string>): Observable<Array<Marker>> {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specificmarkers`, logins).map(x => Marker.ToMarkerArray(x.json()));
+  }
+
+  getFiltered(): Observable<Array<Marker>>{
+    var filter = this.searchFilterService.buildFilter(0, ConfigurationProvider.entitiesLimit);
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filteredmarkers`, filter).map(x => Marker.ToMarkerArray(x.json()));
   }
 
 

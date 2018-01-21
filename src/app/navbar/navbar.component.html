@@ -1,7 +1,12 @@
 <nav class="d-flex navbar navbar-toggleable  fixed-top justify-content-between">
-  <a class="navbar-brand funkmap-title" routerLink="/">
-    <img src="assets/images/logo.svg" />
-  </a>
+
+  <div class="d-flex align-items-center">
+    <i *isMobile class="fa fa-bars" aria-hidden="true" (click)="changeSidebarVisible()"></i>
+    <a class="navbar-brand funkmap-title" routerLink="/">
+      <img src="assets/images/logo.svg" />
+    </a>
+  </div>
+
 
   <div class="right-nav-container">
     <ul class="navbar-nav d-flex align-items-center">

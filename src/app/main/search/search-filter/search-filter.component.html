@@ -24,14 +24,27 @@
       <span *ngIf="searchFilterService.selectedEntity" class="item-label">{{entityTypeProvider.entities.getValue(searchFilterService.selectedEntity) | translate}}</span>
     </div>
 
-    <div *ngIf="isTypeSelectionMode" class="legend-items-container">
-      <div (click)="selectType(key)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
-        <img src="{{iconProvider.getIconByType(key)}}" />
-        <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
-      </div>
-    </div>
+    <ng-container *isDesktop>
+        <div *ngIf="isTypeSelectionMode"  class="legend-items-container">
+            <div (click)="selectType(key, true)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+                <img src="{{iconProvider.getIconByType(key)}}" />
+                <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
+              </div>
+          </div>
+          <div *ngIf="isTypeSelectionMode" class="triangle"></div>
+    </ng-container>
 
-    <div *ngIf="isTypeSelectionMode" class="triangle"></div>
+    <ng-container *isMobile>
+        <div *ngIf="isTypeSelectionMode" class="legend-items-container legend-items-container-mobile">
+            <div (click)="selectType(key, false)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+                <img src="{{iconProvider.getIconByType(key)}}" />
+                <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
+              </div>
+          </div>
+    </ng-container>
+
+
+   
 
     <!-- <div class="filter-value">
       <p-dropdown [options]="entities" [placeholder]="allTitle" [(ngModel)]="searchFilterService.selectedEntity" (onChange)="onChanged()"></p-dropdown>
@@ -43,8 +56,11 @@
       <div class="d-flex flex-column filter-property-container">
         <label class="filter-label">{{'Styles' | translate}}:</label>
         <div class="filter-value">
-          <p-multiSelect [options]="styles" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false"
-            (onChange)="onChanged()"></p-multiSelect>
+          <p-multiSelect *isMobile [options]="styles" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false"
+            (onChange)="onChanged(false)"></p-multiSelect>
+
+            <p-multiSelect *isDesktop [options]="styles" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false"
+            (onChange)="onChanged(true)"></p-multiSelect>
         </div>
       </div>
     </ng-container>
