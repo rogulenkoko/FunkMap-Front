@@ -1,10 +1,21 @@
-<div class="about-full-container d-flex justify-content-center">
+<div *isDesktop class="about-full-container d-flex justify-content-center">
     <div class="d-flex justify-content-center row-container">
-      <about-info></about-info>
-    </div>
+        <about-info></about-info>
+      </div>
+  
+      <div class="row-container">
+        <feedback></feedback>
+        <contacts></contacts>
+     </div>
+ </div> 
 
-    <div class="row-container">
-      <feedback></feedback>
-      <contacts></contacts>
-   </div>
+ <div *isMobile class="about-full-container-mobile d-flex flex-column justify-content-center">
+    <div class="column-container">
+        <about-info></about-info>
+      </div>
+  
+      <div>
+        <!-- <feedback></feedback> -->
+        <contacts></contacts>
+     </div>
  </div> 

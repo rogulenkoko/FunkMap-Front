@@ -1,4 +1,4 @@
-<div class="about-info-container d-flex flex-column">
+<div *isDesktop class="about-info-container d-flex flex-column">
 
     <div class="info-title-container d-flex justify-content-between">
         <span class="info-title">{{'About' | translate}}</span>
@@ -22,3 +22,26 @@
     </div>
 
 </div>
+
+<div *isMobile class="about-info-container about-info-container-mobile">
+
+        <div class="info-title-container d-flex justify-content-between">
+            <span class="info-title">{{'About' | translate}}</span>
+        </div>
+    
+        <div class="info-container">
+            <p>{{'About_Info1' | translate}}</p>
+            <p>{{'About_Info2' | translate}}</p>
+        </div>
+    
+        <div class="creators d-flex flex-column justify-content-between">
+            <a class="creator d-flex" *ngFor="let creator of creators" href="{{creator.link}}" target="_blank">
+                <img src="{{creator.image}}"/>
+                <div class="creator-info d-flex flex-column">
+                    <span>{{creator.name | translate}}</span>
+                    <span class="creator-role">{{creator.role | translate}}</span> 
+                </div>
+            </a>
+        </div>
+    
+    </div>

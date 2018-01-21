@@ -1,4 +1,4 @@
-<div class="contacts-container d-flex flex-column">
+<div *isDesktop class="contacts-container d-flex flex-column">
 
   <a class="contact d-flex alig-items-center" *ngFor="let contact of contacts">
     <i [ngClass]="contact.icon"></i>
@@ -10,4 +10,18 @@
     <span>{{contact.info}}</span>
   </a>
 
-</div> 
+</div>
+
+<div *isMobile class="contacts-container contacts-container-mobile d-flex flex-column align-items-center">
+
+  <a class="contact d-flex alig-items-center" *ngFor="let contact of contacts">
+    <i [ngClass]="contact.icon"></i>
+    <span>{{contact.info}}</span>
+  </a>
+
+  <a class="contact d-flex alig-items-center" *ngFor="let contact of linkContacts" [href]="contact.link" target="_blank">
+    <i [ngClass]="contact.icon"></i>
+    <span>{{contact.info}}</span>
+  </a>
+
+</div>
