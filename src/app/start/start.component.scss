@@ -109,27 +109,7 @@
 
     .start-page-container{
         .entities-container{
-            width: 100%;
-            border: 1px solid red;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            margin-top: 0px;
-        }
-    
-        .entities-container > div{
-            width: 116px;
-            height: 110px;
-            //background-color: rgba( 35, 40, 49 , 0.4);
-            border-radius: 4px;
-            margin-right: 20px;
-            cursor: pointer;
-            padding: 0px 18px;
-            text-align: center;
-        }
-    
-        .entities-container > div i{
-            font-size: 36px;
+            display: none !important;
         }
     }
     
