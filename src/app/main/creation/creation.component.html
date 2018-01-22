@@ -1,4 +1,16 @@
+<ng-container *isDesktop>
 <modal *ngIf="!isComplete" [title]="'Creation_Title'" [minWidth]="'440px'" [width]="'25%'" [height]="canCreate ? '530px' : '300px'">
+    <ng-template [ngTemplateOutlet]="createTemplate"></ng-template>
+</modal>
+</ng-container>
+
+<ng-container *isMobile>
+  <modal *ngIf="!isComplete" [title]="'Creation_Title'" [width]="'96%'" [height]="canCreate ? '530px' : '300px'">
+      <ng-template [ngTemplateOutlet]="createTemplate"></ng-template>
+  </modal>
+  </ng-container>
+
+<ng-template #createTemplate>
   <div *ngIf="canCreate" class="main-creation-container d-flex flex-column align-items-center justify-content-center">
     <div id="creation-container" class="creation-container d-flex flex-column ">
         <div class="d-flex flex-column align-items-baseline">
@@ -37,4 +49,4 @@
   <div *ngIf="!canCreate" class="d-flex align-items-center justify-content-center cant-create-container">
     {{'Creation_CantCreate' | translate: {count: maxProfilesCount} }}
   </div>
-</modal>
+</ng-template>

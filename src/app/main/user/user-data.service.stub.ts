@@ -51,4 +51,8 @@ export class UserDataServiceStub extends UserDataService {
     response.isExist = false;
     return Observable.of(response);
   }
+
+  updateUserLocale(locale: string): Observable<BaseResponse>{
+    return Observable.of(new BaseResponse(true));
+  }
 }

@@ -132,6 +132,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   logOut() {
     this.userService.user = undefined;
+    this.router.navigate(["/start"])
   }
 
   private onRouteChanged(url: string){

@@ -1,4 +1,12 @@
-<modal (keyup.enter)="logIn()" [title]="'Login_Entrance'" [width]="'430px'" [height]="'350px'">
+<modal *isDesktop (keyup.enter)="logIn()" [title]="'Login_Entrance'" [width]="'430px'" [height]="'350px'">
+  <ng-template [ngTemplateOutlet]="loginTemplate"></ng-template>
+</modal>
+
+<modal *isMobile (keyup.enter)="logIn()" [title]="'Login_Entrance'" [width]="'96%'" [height]="'350px'">
+  <ng-template [ngTemplateOutlet]="loginTemplate"></ng-template>
+</modal>
+
+<ng-template #loginTemplate>
   <div class="d-flex align-itens-center justify-content-center">
     <div class="login-container d-flex flex-column">
       <div class="login-input-container">
@@ -16,5 +24,4 @@
       </div>
     </div>
   </div>
-
-</modal>
+</ng-template>

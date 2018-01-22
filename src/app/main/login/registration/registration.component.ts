@@ -5,6 +5,8 @@ import { RegistrationModel, RegistrationRequest } from "./registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./confirmation-model";
 import { User } from "app/main/user/user";
 import { UserService } from "app/main/user/user.service";
+import { LanguageService } from 'app/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
@@ -35,7 +37,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private router: Router,
-              private userService: UserService) { }
+              private userService: UserService,
+              private translate: LanguageService) { }
 
   ngOnInit() {
   }
@@ -94,7 +97,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   sendCode() {
-    var request = new RegistrationRequest(this.login, this.email, this.password, this.name);
+    var request = new RegistrationRequest(this.login, this.email, this.password, this.name, this.translate.language);
     this.loginService.sendEmail(request).subscribe(response => {
       this.isEmailSent = true;
       if (response.success) {

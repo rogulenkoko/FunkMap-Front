@@ -23,18 +23,20 @@ export abstract class UserDataService {
 
   abstract saveImage(request: SaveImageRequest): Observable<UpdateImageResponse>;
 
+  abstract updateUserLocale(locale: string): Observable<BaseResponse>;
+
   abstract getUserEntities(): Observable<Array<SearchItem>>;
 
   abstract getUserEntitiesLogins(): Observable<Array<string>>;
-  abstract getUserEntitiesCountInfo():Observable<UserEntitiesCountResponse>;
+  abstract getUserEntitiesCountInfo(): Observable<UserEntitiesCountResponse>;
 
-  abstract getUser(login: string):Observable<UserResponse>;
+  abstract getUser(login: string): Observable<UserResponse>;
 }
 
 @Injectable()
 export class UserDataServiceHttp extends UserDataService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, ) {
     super();
   }
 
@@ -46,34 +48,38 @@ export class UserDataServiceHttp extends UserDataService {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/saveAvatar`, request).map(x => UpdateImageResponse.ToUpdateImageResponse(x.json()));
   }
 
-  getUserEntities(): Observable<Array<SearchItem>>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/users`).switchMap(x=>{
+  updateUserLocale(locale: string): Observable<BaseResponse> {
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/updateLocale`, { locale: locale }).map(x => BaseResponse.ToBaseResponse(x.json()));
+  }
+
+  getUserEntities(): Observable<Array<SearchItem>> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/users`).switchMap(x => {
       var logins = x.json();
-      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`,logins).map(x=>SearchItem.ToSearchItems(x.json()));
+      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`, logins).map(x => SearchItem.ToSearchItems(x.json()));
     });
   }
 
-  getUserEntitiesCountInfo():Observable<UserEntitiesCountResponse>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/userscount`).map(x=> UserEntitiesCountResponse.ToUserEntitiesCountResponse(x.json()));
+  getUserEntitiesCountInfo(): Observable<UserEntitiesCountResponse> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/userscount`).map(x => UserEntitiesCountResponse.ToUserEntitiesCountResponse(x.json()));
   }
 
-  getUserEntitiesLogins(): Observable<Array<string>>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/users`).map(x=>x.json());
+  getUserEntitiesLogins(): Observable<Array<string>> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/users`).map(x => x.json());
   }
 
-  getUser(login: string):Observable<UserResponse>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/user/${login}`).map(x=>UserResponse.ToUserResponse(x.json()));
+  getUser(login: string): Observable<UserResponse> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/user/${login}`).map(x => UserResponse.ToUserResponse(x.json()));
   }
 
 }
 
 
-export class UpdateImageResponse extends BaseResponse{
-  constructor(success: boolean, public path: string){
+export class UpdateImageResponse extends BaseResponse {
+  constructor(success: boolean, public path: string) {
     super(success);
   }
 
-  static ToUpdateImageResponse(data: any): UpdateImageResponse{
+  static ToUpdateImageResponse(data: any): UpdateImageResponse {
     return new UpdateImageResponse(data.Success, data.AvatarPath);
   }
 }

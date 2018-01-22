@@ -1,10 +1,27 @@
-<modal  [title]="''" [width]="'35%'" [canClose]="false" [minWidth]="'500px'">
-    <div>
-       <div [routerLink]="[mapCreationService.backRoute]" class="back-arrow-icon-container d-flex justify-content-center align-items-center"><div class="icon icon-middle back-arrow-icon"></div></div>
-       <span class="title">{{'Creation_MapQustion' | translate}}?</span>
+<modal *isDesktop [title]="''" [width]="'35%'" [canClose]="false" [minWidth]="'500px'">
+  <div>
+    <div [routerLink]="[mapCreationService.backRoute]" class="back-arrow-icon-container d-flex justify-content-center align-items-center">
+      <div class="icon icon-middle back-arrow-icon"></div>
     </div>
- 
-    <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
-      <button (click)="useCurrentPosition()" class="btn btn-secondary">{{'Creation_UseCurrent' | translate}}</button>
-      <button (click)="useCustomPosition()" class="btn btn-success ml-3">{{'Creation_Point' | translate}}</button>
+    <span class="title">{{'Creation_MapQustion' | translate}}?</span>
+  </div>
+
+  <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
+    <button (click)="useCurrentPosition()" class="btn btn-secondary">{{'Creation_UseCurrent' | translate}}</button>
+    <button (click)="useCustomPosition()" class="btn btn-success ml-3">{{'Creation_Point' | translate}}</button>
+  </div>
+</modal>
+
+<modal *isMobile [title]="''" [width]="'96%'" [canClose]="false">
+  <div>
+    <div [routerLink]="[mapCreationService.backRoute]" class="back-arrow-icon-container d-flex justify-content-center align-items-center">
+      <div class="icon icon-middle back-arrow-icon"></div>
     </div>
+    <span class="title">{{'Creation_MapQustion' | translate}}?</span>
+  </div>
+
+  <div class="buttons-container d-flex flex-column justify-content-center align-items-center ">
+    <button (click)="useCustomPosition()" class="btn btn-success mb-3">{{'Creation_Point' | translate}}</button>
+    <button (click)="useCurrentPosition()" class="btn btn-secondary">{{'Creation_UseCurrent' | translate}}</button>
+  </div>
+</modal>

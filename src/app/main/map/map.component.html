@@ -29,3 +29,14 @@
 <div *isMobile class="search-filter-mobile">
     <search-filter></search-filter>
 </div>
+
+<ng-container *isMobile >
+  <div *ngIf="!userService.user" class="footer d-flex">
+    <div class="signup" routerLink="/signup">{{'Navbar_SignUp' | translate}}</div>
+    <div class="login" routerLink="/login">{{'Navbar_Login' | translate}}</div>
+  </div>
+
+  <div *ngIf="userService.user" class="footer d-flex">
+    <div class="create" routerLink="/create">{{'Create_Entity' | translate}}</div>
+  </div>
+</ng-container>

@@ -6,6 +6,7 @@ import { ThemeService } from "app/tools/theme.service";
 import { Observable } from "rxjs/Observable";
 import { TranslateSelectItem } from "app/tools/select";
 import { TranslateService } from "@ngx-translate/core";
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'app-settings',
@@ -22,7 +23,8 @@ export class SettingsComponent implements OnInit {
   constructor(private mapProvider: MapProvider,
               private languageService: LanguageService,
               private themeService: ThemeService,
-              private translateService: TranslateService) { 
+              private translateService: TranslateService, 
+              private userDataService: UserDataService) { 
     
   }
 
@@ -30,9 +32,14 @@ export class SettingsComponent implements OnInit {
     this.updateLanguages();
   }
 
-  private updateLanguages(){
+  private updateLanguages(needServerUpdate?: boolean){
     this.languages = this.languageService.availableLanguages.map(x => new LanguageItem(x.value, this.translateService.get(x.title)));
     this.maps = this.mapProvider.maps.map(x => new MapItem(x, this.translateService.get(x.title)));
+
+    if(needServerUpdate){
+      this.userDataService.updateUserLocale(this.languageService.language).subscribe(response=>{});
+    }
+    
   }
 }
 

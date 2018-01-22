@@ -9,7 +9,7 @@
 
     <div>
       <label>{{'Settings_Language' | translate}}</label>
-      <p-dropdown [options]="languages" [(ngModel)]="languageService.language" (onChange)="languageService.changeLanguage(); updateLanguages();"></p-dropdown>
+      <p-dropdown [options]="languages" [(ngModel)]="languageService.language" (onChange)="languageService.changeLanguage(); updateLanguages(true);"></p-dropdown>
     </div>
 
     <!-- <br>

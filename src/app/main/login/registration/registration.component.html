@@ -1,4 +1,12 @@
-<modal [title]="'Login_SignUp'" [width]="'470px'" [height]="'500px'">
+<modal *isDesktop [title]="'Login_SignUp'" [width]="'470px'" [height]="'500px'">
+  <ng-template [ngTemplateOutlet]="registerTemplate"></ng-template>
+</modal>
+
+<modal *isMobile [title]="'Login_SignUp'" [width]="'96%'" [height]="'500px'">
+  <ng-template [ngTemplateOutlet]="registerTemplate"></ng-template>
+</modal>
+
+<ng-template #registerTemplate>
   <div class="d-flex flex-column align-items-center justify-content-between">
     <div class="d-flex flex-row circle-container justify-content-center">
       <div [class.circle-selected]="currentStep == 1" class="circle d-flex align-items-center justify-content-center"></div>
@@ -72,4 +80,4 @@
         {{'Create_Entity' | translate}}</button> 
     </div>
   </div>
-</modal>
+</ng-template>
