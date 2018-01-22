@@ -22,7 +22,7 @@ export class StartComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.map = this.mapBuilder.buildMap("map", new L.LatLng(30, 10), 0);
+    this.map = this.mapBuilder.buildMap("map", new L.LatLng(30, 10), 0).map;
 
 
     this.items = [

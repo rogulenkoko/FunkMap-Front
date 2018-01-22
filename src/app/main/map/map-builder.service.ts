@@ -10,15 +10,17 @@ export class MapBuilder {
 
   }
 
-  public buildMap(id: string, center: L.LatLng, zoom: number, mapType?: MapThemeType): L.Map {
+  public buildMap(id: string, center: L.LatLng, zoom: number, mapType?: MapThemeType): MapBuildResult {
     var map = new L.Map(id, { center: center, zoom: zoom, zoomAnimation: false, zoomControl: false });
+
+    var layer: any;
 
     if (!mapType) {
       var options = this.buildMapOptions(this.mapProvider.selectedMap);
-      var baseLayer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
-      map.addLayer(baseLayer);
+      layer = new L.TileLayer(this.mapProvider.selectedMap.url, options);
+      map.addLayer(layer);
     } else {
-      var roads = (<any>L.gridLayer).googleMutant({
+      layer = (<any>L.gridLayer).googleMutant({
         type: 'roadmap',
         styles: this.styles,
         minZoom: 3
@@ -26,7 +28,7 @@ export class MapBuilder {
       }).addTo(map);
     }
 
-    return map;
+    return new MapBuildResult(map, layer);
   }
 
   private buildMapOptions(map: Map): any {
@@ -213,6 +215,10 @@ export class MapBuilder {
     }
   ]
 
+}
+
+export class MapBuildResult{
+  constructor(public map: L.Map, public mainLayer: any){}
 }
 
 export enum MapThemeType {

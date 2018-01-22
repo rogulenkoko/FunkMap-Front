@@ -77,7 +77,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   public initMap(mainMarker: Marker) {
     if(!mainMarker) return;
     if (this.map) this.map.remove();
-    this.map = this.mapBuilder.buildMap('map-mini', new L.LatLng(mainMarker.lat, mainMarker.lng), 8);
+    this.map = this.mapBuilder.buildMap('map-mini', new L.LatLng(mainMarker.lat, mainMarker.lng), 8).map;
 
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);

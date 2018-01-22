@@ -29,17 +29,17 @@ export class MapComponent implements OnInit {
 
   private markers: Array<Marker>;
 
-  
+
 
   constructor(private mapBuilder: MapBuilder,
-              private markerFactory: MarkerFactory,
-              private mapService: MapService,
-              private mapFilter: MapFilter,
-              private creationService: CreationService,
-              private router: Router,
-              private userService: UserService,
-              private mapCreationService: MapCreationService,
-              private searchFilterService: SearchFilterService) {
+    private markerFactory: MarkerFactory,
+    private mapService: MapService,
+    private mapFilter: MapFilter,
+    private creationService: CreationService,
+    private router: Router,
+    private userService: UserService,
+    private mapCreationService: MapCreationService,
+    private searchFilterService: SearchFilterService) {
     //this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
@@ -49,11 +49,13 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.map = this.mapBuilder.buildMap("map", new L.LatLng(50, 30), 8, MapThemeType.Dark);
+    var buildResult = this.mapBuilder.buildMap("map", new L.LatLng(50, 30), 8, MapThemeType.Dark);
+    this.map = buildResult.map;
+    this.baseLayer = buildResult.mainLayer;
     this.initMarkersLayer();
   }
 
-  
+
 
   private updateMap() {
     this.map.removeLayer(this.baseLayer);
@@ -75,7 +77,7 @@ export class MapComponent implements OnInit {
   }
 
   private getFilteredMarkers() {
-    
+
     this.mapService.getFiltered().subscribe(markers => {
       this.markers = markers;
       this.refreshMarkers();
@@ -129,7 +131,7 @@ export class MapComponent implements OnInit {
     this.map.zoomOut(4)
   }
 
-  private zoom(value: number){
+  private zoom(value: number) {
     this.map.setZoom(this.map.getZoom() + value);
   }
 
