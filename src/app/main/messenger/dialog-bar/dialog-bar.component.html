@@ -1,6 +1,19 @@
-<div *ngIf="dialogService.dialog" class="dialog-bar-container d-flex flex-row align-items-center justify-content-between">
+<ng-container *isDesktop>
+  <div *ngIf="dialogService.dialog" class="dialog-bar-container d-flex flex-row align-items-center justify-content-between">
+    <ng-template [ngTemplateOutlet]="dialogBarTemplate"></ng-template>
+  </div>
+</ng-container>
 
+<ng-container *isMobile>
+  <div *ngIf="dialogService.dialog" class="dialog-bar-container dialog-bar-container-mobile d-flex flex-row align-items-center justify-content-between">
+    <ng-template [ngTemplateOutlet]="dialogBarTemplate"></ng-template>
+  </div>
+</ng-container>
+
+
+<ng-template #dialogBarTemplate>
   <div class="d-flex align-items-center">
+      <div (click)="moveToDialogs()" class="icon icon-middle back-arrow-icon"></div>
     <avatar-circle [image]="dialogService.dialog.avatar" [size]="'35px'" [iconSize]="'20px'" [isOnline]="dialogService.dialog.isOnline"
       [useLogo]="dialogService.dialog.dialogType == 2" [ngClass]="'dialog-bar-avatar'" [onlineSize]="'9px'"></avatar-circle>
     <div class="d-flex flex-column">
@@ -24,10 +37,10 @@
   <div class="d-flex align-items-center">
     <div class="dialog-bar-action d-flex align-items-center justify-content-center" (click)="addToDialog()">
       <i class="icon-plus"></i>
-      <span>{{'Dialogs_AddParticipant' | translate}}</span>
+      <span class="add-participants-label">{{'Dialogs_AddParticipant' | translate}}</span>
     </div>
   </div>
-</div>
+</ng-template>
 
 <dialog-invite *ngIf="isAddToDialogMode" [(visible)]="isAddToDialogMode"></dialog-invite>
 <dialog-paticipants *ngIf="isVisibleParticipantsList" [(visible)]="isVisibleParticipantsList" [userIsCreator]="userService.user.login == dialogService.dialog.creator"></dialog-paticipants>

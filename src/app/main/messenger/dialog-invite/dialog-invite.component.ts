@@ -40,6 +40,9 @@ export class DialogInviteComponent implements OnInit, OnDestroy {
   private creationStep: number = 1;
   private isError: boolean;
 
+  //адаптивка
+  private modalWidth: number
+
   constructor(private userDataService: UserDataService,
               private dialogService: DialogService,
             private messengerService: MessengerService) {
@@ -48,6 +51,7 @@ export class DialogInviteComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.init();
+    this.modalWidth = window.innerWidth * 0.96;
   }
 
   ngOnDestroy(){

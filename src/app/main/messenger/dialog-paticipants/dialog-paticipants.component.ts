@@ -35,6 +35,9 @@ export class DialogPaticipantsComponent implements OnInit {
 
   private users: Array<User>;
 
+  //адаптивка
+  private modalWidth: number
+
   constructor(private dialogService: DialogService,
               private userDataService: UserDataService,
               private userService: UserService,
@@ -46,6 +49,7 @@ export class DialogPaticipantsComponent implements OnInit {
 
   ngOnInit() {
     this.refreshUsers();
+    this.modalWidth = window.innerWidth * 0.96;
   }
 
   private refreshUsers() {

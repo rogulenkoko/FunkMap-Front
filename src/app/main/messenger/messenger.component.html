@@ -1,4 +1,4 @@
-<div class="main-messenger-container d-flex flex-row justify-content-center">
+<div *isDesktop class="main-messenger-container d-flex flex-row justify-content-center">
     <div class="dialogs-container d-flex flex-column">
         <dialogs [ngClass]="'d-flex flex-column dialogs-component'"></dialogs>
     </div>
@@ -13,3 +13,16 @@
     </div>
    
 </div>
+
+
+<div *isMobile class="main-messenger-container main-messenger-container-mobile d-flex flex-row justify-content-center">
+        <div *ngIf="!dialogService.dialog" class="dialogs-container d-flex flex-column">
+            <dialogs [ngClass]="'d-flex flex-column dialogs-component'"></dialogs>
+        </div>
+        <div *ngIf="dialogService.dialog" class="d-flex flex-column messages-container">
+            <dialog-bar></dialog-bar>
+            <messages [ngClass]="'messages'"></messages>
+            <message-create></message-create>
+        </div>
+       
+    </div>

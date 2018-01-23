@@ -1,9 +1,13 @@
-<label *ngIf="id" for="{{id}}" class="input-wrapper" 
+<label *ngIf="id && useTooltip" for="{{id}}" class="input-wrapper" 
         [ngClass]="icon" 
         [style.width]="width" 
         showDelay="1000" 
         pTooltip="{{stringTooltipKey | translate:{count:maxFileCount, size: maxFileSize | size} }}" 
         tooltipPosition="top"><span class="ml-2" *ngIf="label">{{label | translate}}</span></label>
+
+<label *ngIf="id && !useTooltip" for="{{id}}" class="input-wrapper" 
+        [ngClass]="icon" 
+        [style.width]="width"><span class="ml-2" *ngIf="label">{{label | translate}}</span></label>
 
 
 <input *ngIf="id" id="{{id}}" class="file-upload" type="file" [style.width]="width" length="1" multiple accept="{{acceptFormats}}"> 

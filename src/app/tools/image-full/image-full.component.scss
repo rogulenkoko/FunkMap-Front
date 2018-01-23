@@ -26,6 +26,7 @@
         width: 100%;
         height: 100%;
         position: relative;
+        border: 1px solid pink;
         img{
             max-height: 100%;  
             max-width: 100%; 
@@ -44,6 +45,7 @@
             position: absolute;
             right: -24px;
             top:-24px;
+            z-index: 1010;
         }
 
         .arrow{
@@ -51,14 +53,16 @@
             height: 100%;
             display: flex;
             align-items: center;
+            border: 1px solid red;
             
-            width: 400px;
+            width: 50%;
             cursor: pointer;
             .fa-chevron-right, .fa-chevron-left{
-           
+                
                 top: calc(50% - 10px);
                 color: $inactive-color;
                 font-size: 20px;
+                margin-right:0;
             }
         }
 
@@ -69,12 +73,12 @@
         }
 
         .arrow-left{
-            left: -30px;
+            left: 0px;
             justify-content: flex-start;
         }
 
         .arrow-right{
-            right: -30px;
+            right: 0px;
             justify-content: flex-end;
         }
 

@@ -88,6 +88,18 @@
     }
 }
 
+.message-create-main-container-mobile{
+    .message-content-container{
+        textarea{
+            margin-top: -4px;
+        }
+    }
+
+    .send-label{
+        margin-left: 0;
+    }
+}
+
 .ui-inputtext:focus, textarea:focus{
      border: none !important;
      outline: none;

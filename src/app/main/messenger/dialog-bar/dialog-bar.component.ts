@@ -5,7 +5,7 @@ import { User } from 'app/main/user/user';
 import { MessengerService } from 'app/main/messenger/messenger.service';
 import { Dialog } from 'app/main/messenger/models';
 import { UserService } from 'app/main/user/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-request';
 
 @Component({
@@ -22,15 +22,18 @@ export class DialogBarComponent implements OnInit {
   private isEditNameMode: boolean = false;
   private isChangeAvatarMode: boolean = false;
 
+  
+
   constructor(private dialogService: DialogService,
     private messengerService: MessengerService,
     private userService: UserService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit() {
     this.updateDialogLogin();
-
+    
     this.route.params.subscribe(params => this.onRoute(params));
   }
 
@@ -70,5 +73,11 @@ export class DialogBarComponent implements OnInit {
 
   private changeAvatar(){
     this.isChangeAvatarMode = true;
+  }
+
+  //для мобилки
+  private moveToDialogs(){
+    this.dialogService.setDialog(undefined);
+    this.router.navigate(["/messenger"]);
   }
 }

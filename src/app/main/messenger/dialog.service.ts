@@ -6,6 +6,9 @@ export class DialogService {
 
   public dialog: Dialog;
 
+  public dialogs: Array<Dialog> = [];
+  public allDialogs: Array<Dialog> = [];
+
   public onDialogsLoaded: EventEmitter<any>;
 
   constructor() {

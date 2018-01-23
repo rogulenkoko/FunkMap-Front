@@ -37,10 +37,11 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(){
     this.setCrossPosition();
     window.onresize = ()=> this.setCrossPosition();
+
+    jQuery("#modal-image").on("load", ()=> this.setCrossPosition());
   }
 
   private setCrossPosition(){
-    if(this.images.length > 1) return;
     var imageWidth = jQuery("#modal-image").width();
     var imageContainerWidth = jQuery("#modal-image-container").width();
     jQuery("#modal-close").css("left",`${(imageWidth + imageContainerWidth)/2 + 18}px`);
@@ -48,6 +49,12 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
     var imageHeight = jQuery("#modal-image").height();
     var imageContainerHeight = jQuery("#modal-image-container").height();
     jQuery("#modal-close").css("top",`${(imageContainerHeight - imageHeight)/2 - 24}px`);
+
+
+    var arrowContainerWidth = jQuery(".arrow").width();
+    console.log(arrowContainerWidth);
+    jQuery(".fa-chevron-left").css("margin-right", `${(arrowContainerWidth - imageWidth/2) + 18}px`);
+    // jQuery(".arrow-left").css("width", `${(imageWidth - imageContainerWidth)/2 + 18}px`);
   }
 
   private setImage(index: number){
