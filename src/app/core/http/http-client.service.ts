@@ -8,13 +8,14 @@ import { ConfigurationProvider, ServiceType } from "app/core/configuration/confi
 import { Scheduler } from "rxjs/Scheduler";
 import 'rxjs/add/operator/catch';
 import { Router } from "@angular/router";
+import { LanguageService } from 'app/core';
 
 @Injectable()
 export class HttpClient {
 
   private options: RequestOptions;
 
-  constructor(private http: Http, private userService: UserService, private router: Router) {
+  constructor(private http: Http, private userService: UserService, private languageService: LanguageService, private router: Router) {
     this.initOptions();
     this.updateOptions();
     this.userService.onUserChanged.subscribe(() => this.updateOptions());
@@ -82,6 +83,7 @@ export class HttpClient {
     this.options = new RequestOptions();
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
+    
     this.options.headers = headers;
   }
 
@@ -89,6 +91,8 @@ export class HttpClient {
     var token = this.userService.user ? this.userService.user.authData.token : "";
     this.options.headers.delete("Authorization");
     this.options.headers.append("Authorization", `Bearer ${token}`);
+
+    this.options.headers.append("Accept-Language", this.languageService.language);
   }
 
 }

@@ -1,4 +1,5 @@
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/layout.scss";
 @import "src/assets/styles/icons.scss";
 
@@ -27,8 +28,8 @@
 }
 
 .main-side-title{
-    font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
+    color: $active-color;
 }
 
 .title-container{

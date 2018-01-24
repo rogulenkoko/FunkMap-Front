@@ -36,6 +36,7 @@ import { SoundcloudModule } from 'app/tools/soundcloud/soundcloud.module';
 import { UploadComponent } from './upload/upload.component';
 import { SizePipe } from './size.pipe';
 import { ImageFullComponent } from './image-full/image-full.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -60,7 +61,8 @@ import { ImageFullComponent } from './image-full/image-full.component';
     EntitySoundComponent,
     UploadComponent,
     SizePipe,
-    ImageFullComponent
+    ImageFullComponent,
+    SpinnerComponent
     
   ],
   imports: [
@@ -96,7 +98,8 @@ import { ImageFullComponent } from './image-full/image-full.component';
     SoundcloudSearchComponent,
     UploadComponent,
     SizePipe,
-    ImageFullComponent
+    ImageFullComponent,
+    SpinnerComponent
     ],
   providers: [
     DateSelectProvider,

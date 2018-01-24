@@ -16,10 +16,9 @@
     width: 175px;
     margin-top: 20px;
     background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
-    img{
-        width: 16px;
-        height: 16px;
-        margin-right: 12px;
-        margin-left: 6px;
-    }
+}
+
+.spinner-container{
+    width: 100%;
+    padding: 12px 25px;
 }

@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private items: Array<SearchItem>;
   private allItemsCount: number = 0;
-  private portionCount: number = 10;
+  private portionCount: number = 20;
 
   private isLoading: boolean = false;
 
@@ -98,11 +98,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.items.push(...response.items);
       if (this.userService.user) this.getFavourites();
     });
-  }
-
-
-  private test(){
-    console.log("test");
   }
 
   private enableFilter() {

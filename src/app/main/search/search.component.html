@@ -7,10 +7,17 @@
       </div>
     </div>
     
-    <div class="result-line d-flex flex-column justify-content-between">
+    <div class="result-line d-flex justify-content-between">
+    <div class="d-flex flex-column justify-content-between">
       <span class="result-title">{{'Search_Result' | translate}}</span>
       <span *ngIf="!isLoading" class="count-title">{{'Search_ResultCount' | translate:{count:allItemsCount} }}</span>
     </div>
+    <div>
+      <spinner [(visible)]="isLoading" [width]="'13px'"></spinner>
+    </div>
+   
+  </div>
+
     <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" id="search-container" class="search-items-container">
       <search-list *ngIf="items" [items]="items"></search-list>
       
@@ -18,7 +25,6 @@
         {{'Search_NoItems' | translate}}
       </div>
     </div>
-     <!-- <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-2x mt-2"></i> -->
   </div>
  
 </side>

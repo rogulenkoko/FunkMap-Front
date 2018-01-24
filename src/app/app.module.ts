@@ -34,6 +34,7 @@ import { AboutModule } from "app/main/about/about.module";
 import { ResponsiveModule } from 'ng2-responsive';
 import { MobileStubComponent } from './main/mobile-stub/mobile-stub.component'
 import { SidebarService } from "app/main/sidebar/sidebar.service";
+import { AdaptiveService } from "app/tools/adaptive.service";
 
 
 
@@ -69,7 +70,8 @@ import { SidebarService } from "app/main/sidebar/sidebar.service";
   ],
   exports:[CoreModule, ToolsModule],
   providers: [
-    SidebarService
+    SidebarService,
+    AdaptiveService
   ],
   bootstrap: [AppComponent]
 })
