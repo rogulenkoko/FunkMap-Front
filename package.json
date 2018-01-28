@@ -44,10 +44,11 @@
     "rxjs": "^5.1.0",
     "signalr": "^2.2.2",
     "typescript-collections": "^1.2.3",
+    "webpack": "^3.10.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0",
+    "@angular/cli": "^1.2.4",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.47",
