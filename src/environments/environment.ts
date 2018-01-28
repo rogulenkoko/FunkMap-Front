@@ -5,6 +5,6 @@
 
 export const environment = {
   local: true,
-  useServer: false,
+  useServer: true,
   production: false
 };
