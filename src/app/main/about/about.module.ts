@@ -9,6 +9,7 @@ import { environment } from 'environments/environment';
 import { FeedbackService, FeedbackServiceHttp } from 'app/main/about/feedback.service';
 import { FeedbackServiceStub } from 'app/main/about/feedback.service.stub';
 import { ToolsModule } from 'app/tools/tools.module';
+import { DonatComponent } from 'app/main/about/donat/donat.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ToolsModule } from 'app/tools/tools.module';
     CoreModule,
     ToolsModule
   ],
-  declarations: [AboutComponent, AboutInfoComponent, ContactsComponent, FeedbackComponent],
+  declarations: [AboutComponent, AboutInfoComponent, ContactsComponent, FeedbackComponent, DonatComponent],
   exports: [AboutComponent],
   providers: [
     {

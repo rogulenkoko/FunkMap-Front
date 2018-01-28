@@ -1,0 +1,13 @@
+@import "src/assets/styles/dark-colors.scss";
+
+.donat-container{
+    
+    width: 350px;
+    height: 192px;
+    background-color: $dark-card-background;
+    //padding: 55px;
+    border-radius: 5px; 
+    color: $active-color; 
+    font-size: 13px;
+    font-weight: bold;
+}
