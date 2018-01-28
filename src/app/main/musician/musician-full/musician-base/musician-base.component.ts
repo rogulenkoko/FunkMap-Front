@@ -21,16 +21,16 @@ import { TranslateSelectItem } from 'app/tools/select';
 })
 export class MusicianBaseComponent implements OnInit, OnDestroy {
 
-  private musician: Musician;
-  private newMusician: Musician;
+  public musician: Musician;
+  public newMusician: Musician;
 
-  private infoItems: Array<InfoItem>;
-  private actionItems: Array<ActionItem>;
+  public infoItems: Array<InfoItem>;
+  public actionItems: Array<ActionItem>;
 
   private hasBand: boolean;
-  private isGroupsModalVisible: boolean = false;
-  private inviteInfo: BandInviteInfo;
-  private bandForInvite: string;
+  public isGroupsModalVisible: boolean = false;
+  public inviteInfo: BandInviteInfo;
+  public bandForInvite: string;
 
   private bands: Array<TranslateSelectItem>;
 
@@ -86,7 +86,7 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
     ];
   }
 
-  private save() {
+  public save() {
     this.newMusician.login = this.musician.login;
    
     this.musicianService.updateMusician(this.newMusician).subscribe(response => {
@@ -98,7 +98,7 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
     });
   }
 
-  private cancel(){
+  public cancel(){
     this.newMusician = Object.create(this.musician);
     this.editService.baseModel = this.newMusician;
     this.updateInfoItems();

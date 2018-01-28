@@ -13,9 +13,9 @@ export class UserEntitiesComponent implements OnInit {
 
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark',  scrollInertia: 500 };
 
-  private items: Array<SearchItem>;
+  public items: Array<SearchItem>;
 
-  private isLoading: boolean;
+  public isLoading: boolean;
 
   constructor(private userDataService: UserDataService,
               private baseService: BaseService) { }

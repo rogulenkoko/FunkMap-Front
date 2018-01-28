@@ -22,7 +22,7 @@ import { RehearsalBaseComponent } from './rehearsal-full/rehearsal-base/rehearsa
   providers: [
     {
       provide: RehearsalService,
-      useClass: environment.production ? RehearsalServiceHttp : RehearsalServiceStub
+      useClass: environment.useServer ? RehearsalServiceHttp : RehearsalServiceStub
     }
   ]
 })

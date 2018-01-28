@@ -16,7 +16,7 @@ export class DialogComponent implements OnInit {
  
 
   constructor(private dialogService: DialogService,
-              private userService: UserService) {
+              public userService: UserService) {
   }
 
   ngOnInit() {

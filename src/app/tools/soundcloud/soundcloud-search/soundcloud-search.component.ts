@@ -12,9 +12,9 @@ import { Subscription } from 'rxjs/Subscription';
 export class SoundcloudSearchComponent implements OnInit, OnDestroy {
 
 
-  private tracks: Array<Track>;
+  public tracks: Array<Track>;
 
-  private search: string;
+  public search: string;
 
   private subscription: Subscription;
 
@@ -33,7 +33,7 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private refreshTracks() {
+  public refreshTracks() {
     if(!this.search){
       this.tracks = [];
       return;

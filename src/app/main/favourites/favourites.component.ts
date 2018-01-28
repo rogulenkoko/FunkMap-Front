@@ -12,8 +12,8 @@ export class FavouritesComponent implements OnInit {
 
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark',  scrollInertia: 500 };
 
-  private items: Array<SearchItem>;
-  private isLoading: boolean;
+  public items: Array<SearchItem>;
+  public isLoading: boolean;
   constructor(private baseService: BaseService) { }
 
   ngOnInit() {

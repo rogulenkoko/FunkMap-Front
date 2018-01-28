@@ -106,11 +106,11 @@ import { SpinnerComponent } from './spinner/spinner.component';
     EntityTypeProvider,
     {
       provide: BaseEditService,
-      useClass: environment.production ? BaseEditServiceHttp : BaseEditServiceStub
+      useClass: environment.useServer ? BaseEditServiceHttp : BaseEditServiceStub
     },
     {
       provide: BaseService,
-      useClass: environment.production ? BaseServiceHttp : BaseServiceStub
+      useClass: environment.useServer ? BaseServiceHttp : BaseServiceStub
     },
     CanActivateSearch
     

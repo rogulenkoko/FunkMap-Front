@@ -6,14 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
 export class EditableCard {
-    protected isEditVisible: boolean = false;
-    protected isEditMode: boolean = false;
+    public isEditVisible: boolean = false;
+    public isEditMode: boolean = false;
 
     @Output() onSaved: EventEmitter<any>;
     @Output() onCanceled: EventEmitter<any>;
-    protected onEditModeEnabled: EventEmitter<any>;
+    public onEditModeEnabled: EventEmitter<any>;
 
-    protected isUsers: boolean = false;
+    public isUsers: boolean = false;
 
     constructor() {
         this.onSaved = new EventEmitter();
@@ -21,7 +21,7 @@ export class EditableCard {
         this.onEditModeEnabled = new EventEmitter();
     }
     
-    protected changeEditMode(choice: number) {
+    public changeEditMode(choice: number) {
         if (choice > 0) {
             this.onEditModeEnabled.emit();
             this.isEditMode = true;
@@ -29,18 +29,18 @@ export class EditableCard {
         else this.isEditMode = false;
     }
 
-    protected changeEditVisible(choice: number) {
+    public changeEditVisible(choice: number) {
         if (!this.isUsers) return;
         if (choice > 0) this.isEditVisible = true;
         else this.isEditVisible = false;
     }
 
-    protected save() {
+    public save() {
         this.isEditMode = false;
         this.onSaved.emit();
     }
 
-    protected cancel() {
+    public cancel() {
         this.isEditMode = false;
         this.onCanceled.emit();
     }

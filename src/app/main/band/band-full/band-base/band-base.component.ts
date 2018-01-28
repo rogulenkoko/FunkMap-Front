@@ -12,10 +12,10 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class BandBaseComponent implements OnInit {
 
-  private band: Band;
-  private newBand: Band;
+  public band: Band;
+  public newBand: Band;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
   @ViewChild('nameEditTemplate') nameEditTemplate;
   @ViewChild('netsEditTemplate') netsEditTemplate;
@@ -45,7 +45,7 @@ export class BandBaseComponent implements OnInit {
     ];
   }
 
-  private save(){
+  public save(){
     this.newBand.login = this.band.login;
     this.bandService.updateBand(this.newBand).subscribe(response=>{
       this.refreshBand();

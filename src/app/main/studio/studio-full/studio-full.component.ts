@@ -14,7 +14,7 @@ import { EditableCardContainer } from 'app/tools/entity-full/editable-card';
 })
 export class StudioFullComponent extends EditableCardContainer implements OnInit {
 
-  constructor(private editService: EditService,
+  constructor(public editService: EditService,
               private studioService: StudioService,
               private route: ActivatedRoute,
               userService: UserService,

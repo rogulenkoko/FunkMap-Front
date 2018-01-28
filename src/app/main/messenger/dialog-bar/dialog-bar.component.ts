@@ -16,17 +16,17 @@ import { DialogUpdateRequest } from 'app/main/messenger/models/dialog-update-req
 export class DialogBarComponent implements OnInit {
 
 
-  private userLogin: string;
-  private isAddToDialogMode: boolean = false;
-  private isVisibleParticipantsList: boolean = false;
-  private isEditNameMode: boolean = false;
-  private isChangeAvatarMode: boolean = false;
+  public userLogin: string;
+  public isAddToDialogMode: boolean = false;
+  public isVisibleParticipantsList: boolean = false;
+  public isEditNameMode: boolean = false;
+  public isChangeAvatarMode: boolean = false;
 
   
 
-  constructor(private dialogService: DialogService,
+  constructor(public dialogService: DialogService,
     private messengerService: MessengerService,
-    private userService: UserService,
+    public userService: UserService,
     private route: ActivatedRoute,
     private router: Router) {
   }

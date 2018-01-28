@@ -11,7 +11,7 @@ import { IconProvider } from 'app/main/map/icon-provider.service';
 })
 export class MapLegendComponent implements OnInit {
 
-  private legendItemsVisible: boolean = true;
+  public legendItemsVisible: boolean = true;
 
   constructor(private entityTypeProvider: EntityTypeProvider,
               private iconProvider: IconProvider) {

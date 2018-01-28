@@ -14,17 +14,17 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class BandInfoComponent implements OnInit {
 
-  private band: Band;
-  private newBand: Band;
+  public band: Band;
+  public newBand: Band;
 
-  private styles: Array<StylesItem>;
+  public styles: Array<StylesItem>;
 
   @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
   @ViewChild("stylesEditTemplate") stylesEditTemplate: any;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
-  private allTitle: string;
+  public allTitle: string;
 
 
   constructor(private editService: EditService,

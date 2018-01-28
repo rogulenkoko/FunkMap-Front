@@ -20,21 +20,21 @@ import { Router } from '@angular/router';
 })
 export class SearchFilterComponent implements OnInit {
 
-  private styles: Array<StylesItem>;
-  private instruments: Array<InstrumentsItem>;
-  private entities: Array<EntityItem>;
-  private expiriences: Array<ExpirienceItem>;
+  public styles: Array<StylesItem>;
+  public instruments: Array<InstrumentsItem>;
+  public entities: Array<EntityItem>;
+  public expiriences: Array<ExpirienceItem>;
 
-  private allTitle: string;
+  public allTitle: string;
 
-  private isTypeSelectionMode: boolean = false;
-  private isFilerActive: boolean = false;
+  public isTypeSelectionMode: boolean = false;
+  public isFilerActive: boolean = false;
 
-  constructor(private musicianTypesProvider: MusicianTypesProvider,
-    private searchFilterService: SearchFilterService,
-    private entityTypeProvider: EntityTypeProvider,
+  constructor(public musicianTypesProvider: MusicianTypesProvider,
+    public searchFilterService: SearchFilterService,
+    public entityTypeProvider: EntityTypeProvider,
     private translateService: TranslateService,
-    private iconProvider: IconProvider,
+    public iconProvider: IconProvider,
     private router: Router) {
 
     
@@ -70,7 +70,7 @@ export class SearchFilterComponent implements OnInit {
    this.isFilerActive = !this.isFilerActive;
   }
 
-  private changeTypeSelectionMode(forceClose: boolean){
+  public changeTypeSelectionMode(forceClose: boolean){
 
     if(forceClose){
       this.isTypeSelectionMode = false;

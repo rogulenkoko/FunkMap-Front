@@ -39,7 +39,7 @@ import { MapBuilder } from "app/main/map/map-builder.service";
     MarkerFactory,
     {
       provide: MapService,
-      useClass: environment.production ? MapServiceHttp : MapServiceStub
+      useClass: environment.useServer ? MapServiceHttp : MapServiceStub
     },
     IconProvider,
     MapFilter,

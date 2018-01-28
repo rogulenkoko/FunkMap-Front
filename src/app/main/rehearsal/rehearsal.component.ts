@@ -10,7 +10,7 @@ import { RehearsalPreview } from "app/main/rehearsal/models/rehearsal-preview";
 })
 export class RehearsalComponent implements OnInit {
 
-  private rehearsal: RehearsalPreview;
+  public rehearsal: RehearsalPreview;
 
   constructor(private rehearsalService: RehearsalService,
               private route: ActivatedRoute) { }

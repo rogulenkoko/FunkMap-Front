@@ -12,17 +12,17 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class ShopInfoComponent implements OnInit {
 
-  private shop: Shop;
-  private newShop: Shop;
+  public shop: Shop;
+  public newShop: Shop;
 
 
   @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
   @ViewChild("webSiteEditTemplate") webSiteEditTemplate: any;
   @ViewChild("webSiteValueTemplate") webSiteValueTemplate: any;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
-  private allTitle: string;
+  public allTitle: string;
 
 
   constructor(private editService: EditService,

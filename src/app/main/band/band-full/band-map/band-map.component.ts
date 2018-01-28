@@ -17,7 +17,7 @@ export class BandMapComponent implements OnInit {
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private band: Band;
-  private marker: Marker;
+  public marker: Marker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -37,7 +37,7 @@ export class BandMapComponent implements OnInit {
     return marker;
   }
 
-  private onBaseSaved(){
+  public onBaseSaved(){
     var band = Object.create(this.editService.baseModel);
     band.login = this.editService.baseModel.login;
     band.latitude = this.editService.baseModel.latitude;

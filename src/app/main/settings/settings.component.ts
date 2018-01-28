@@ -17,11 +17,11 @@ export class SettingsComponent implements OnInit {
 
 
   private theme: string = "dark";
-  private languages: Array<LanguageItem>;
+  public languages: Array<LanguageItem>;
   private maps: Array<MapItem>;
 
   constructor(private mapProvider: MapProvider,
-              private languageService: LanguageService,
+              public languageService: LanguageService,
               private themeService: ThemeService,
               private translateService: TranslateService, 
               private userDataService: UserDataService) { 
@@ -32,7 +32,7 @@ export class SettingsComponent implements OnInit {
     this.updateLanguages();
   }
 
-  private updateLanguages(needServerUpdate?: boolean){
+  public updateLanguages(needServerUpdate?: boolean){
     this.languages = this.languageService.availableLanguages.map(x => new LanguageItem(x.value, this.translateService.get(x.title)));
     this.maps = this.mapProvider.maps.map(x => new MapItem(x, this.translateService.get(x.title)));
 

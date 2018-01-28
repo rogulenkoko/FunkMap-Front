@@ -14,10 +14,10 @@ export class MessageComponent implements OnInit {
   private images: Array<ImageContent>;
   private files: Array<FileContent>;
 
-  private imageViewMode: boolean = false;
-  private imageIndex: number = 0;
+  public imageViewMode: boolean = false;
+  public imageIndex: number = 0;
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
     if(this.message.content && this.message.content.length > 0){

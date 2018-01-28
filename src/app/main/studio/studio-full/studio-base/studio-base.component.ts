@@ -11,10 +11,10 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class StudioBaseComponent implements OnInit {
 
-  private studio: Studio;
-  private newStudio: Studio;
+  public studio: Studio;
+  public newStudio: Studio;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
 
   @ViewChild('nameEditTemplate') nameEditTemplate;
@@ -47,7 +47,7 @@ export class StudioBaseComponent implements OnInit {
     ]
   }
 
-  private save(){
+  public save(){
     this.newStudio.login = this.studio.login;
     this.studioService.updateStudio(this.newStudio).subscribe(response=>{
       this.refreshStudio();

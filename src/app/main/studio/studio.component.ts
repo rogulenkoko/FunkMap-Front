@@ -10,7 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class StudioComponent implements OnInit {
 
-  private studio: Studio;
+  public studio: Studio;
 
   constructor(private studioService: StudioService,
               private route: ActivatedRoute) { }

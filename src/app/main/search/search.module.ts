@@ -37,7 +37,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
   providers: [
      {
       provide: SearchService,
-      useClass: environment.production ? SearchServiceHttp : SearchServiceStub
+      useClass: environment.useServer ? SearchServiceHttp : SearchServiceStub
     },
     SearchFilterService
   ]

@@ -16,8 +16,8 @@ export class MusicianMapComponent implements OnInit {
 
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
-  private musician: Musician;
-  private marker: Marker;
+  public musician: Musician;
+  public marker: Marker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -48,7 +48,7 @@ export class MusicianMapComponent implements OnInit {
   //   this.entityMap.initMap(marker);
   // }
 
-  private onBaseSaved(){
+  public onBaseSaved(){
     var musician = Object.create(this.editService.baseModel);
     musician.login = this.editService.baseModel.login;
     musician.latitude = this.editService.baseModel.latitude;

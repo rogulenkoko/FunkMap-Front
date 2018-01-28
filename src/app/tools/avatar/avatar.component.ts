@@ -13,9 +13,9 @@ import { Dialog } from 'primeng/primeng';
 })
 export class AvatarComponent implements OnInit, AfterViewInit  {
 
-  private imageBase64: string = "";
-  private isImageLoaded: boolean;
-  private wantsToDelete: boolean;
+  public imageBase64: string = "";
+  public isImageLoaded: boolean;
+  public wantsToDelete: boolean;
 
   private isVisible: boolean;
 
@@ -91,7 +91,7 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
     this.wantsToDelete = true;
   }
 
-  private onClosed(){
+  public onClosed(){
     this.clear();
   }
 

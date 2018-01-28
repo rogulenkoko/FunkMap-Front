@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   
 
   constructor(private languageService: LanguageService,
-              private userService: UserService,
+              public userService: UserService,
               private mapFilter: MapFilter,
               private userDataService: UserDataService,
               private filterService: SearchFilterService, 

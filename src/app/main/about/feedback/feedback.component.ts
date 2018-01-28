@@ -14,15 +14,15 @@ import { FileUploadFinishedEvent, FileItem } from 'app/tools/upload/upload.compo
 })
 export class FeedbackComponent implements OnInit {
 
-  private feedbackTypes: Array<FeedbackTypeItem>;
+  public feedbackTypes: Array<FeedbackTypeItem>;
 
-  private feedbackType: FeedbackType = FeedbackType.Bug;
-  private message: string;
+  public feedbackType: FeedbackType = FeedbackType.Bug;
+  public message: string;
 
-  private feedbackWasSent: boolean;
-  private feedbackWasSentSuccessful: boolean;
+  public feedbackWasSent: boolean;
+  public feedbackWasSentSuccessful: boolean;
 
-  private files: Array<FileContent> = [];
+  public files: Array<FileContent> = [];
 
   constructor(private translateService: TranslateService,
               private feedbackService: FeedbackService) {
@@ -36,7 +36,7 @@ export class FeedbackComponent implements OnInit {
   ngOnInit() {
   }
 
-  private send(){
+  public send(){
     if(!this.message) return;
     
     var feedback = new FeedbackItem(this.feedbackType, this.message, this.files);
@@ -53,14 +53,14 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  private onUploadedStart($event: Array<FileItem>) {
+  public onUploadedStart($event: Array<FileItem>) {
 
     $event.forEach(item => {
       if (!this.files.find(x => x.name == item.name)) this.files.push(new FileContent(item.name, item.size));
     });
   }
 
-  private onUploadedFinished($event: Array<FileUploadFinishedEvent>) {
+  public onUploadedFinished($event: Array<FileUploadFinishedEvent>) {
     $event.forEach(item => {
       var file = this.files.find(x => x.name == item.name);
       if (file) file.data = item.bytes;

@@ -23,7 +23,7 @@ import { SearchModule } from "app/main/search/search.module";
       UserService,
       {
         provide: UserDataService,
-        useClass: environment.production ? UserDataServiceHttp : UserDataServiceStub
+        useClass: environment.useServer ? UserDataServiceHttp : UserDataServiceStub
       }
   ]
 })

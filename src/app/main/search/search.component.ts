@@ -23,17 +23,17 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public scrollbarOptions;
 
-  private items: Array<SearchItem>;
-  private allItemsCount: number = 0;
+  public items: Array<SearchItem>;
+  public allItemsCount: number = 0;
   private portionCount: number = 20;
 
-  private isLoading: boolean = false;
+  public isLoading: boolean = false;
 
   private subscription: Subscription;
 
   constructor(private searchService: SearchService,
     private userService: UserService,
-    private filterService: SearchFilterService,
+    public filterService: SearchFilterService,
     private mapFilter: MapFilter,
     private baseService: BaseService) {
     this.items = [];
@@ -109,7 +109,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (isDone) this.filterService.onFilterChanged.emit();
   }
 
-  private onTextChanged(value: string) {
+  public onTextChanged(value: string) {
     this.filterService.searchChanged.next(value);
   }
 

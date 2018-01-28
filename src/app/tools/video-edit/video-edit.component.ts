@@ -12,14 +12,14 @@ import { Dialog } from 'primeng/primeng';
 })
 export class VideoEditComponent implements OnInit {
 
-  private videoLink: string;
-  private videoId: string;
+  public videoLink: string;
+  public videoId: string;
 
   private videoType: VideoType;
 
-  private videoInfo: VideoInfo;
+  public videoInfo: VideoInfo;
 
-  private isLinkInvalid: boolean = false;
+  public isLinkInvalid: boolean = false;
 
   @ViewChild("videoEditModal") videoEditModal: Dialog;
 
@@ -48,7 +48,7 @@ export class VideoEditComponent implements OnInit {
    
   }
 
-  private onLinkChanged() {
+  public onLinkChanged() {
     
     if ((!this.videoLink.includes("www.youtube.com") || !this.videoLink.includes("v=")) && !this.videoLink.includes("vimeo.com")) {
       this.isLinkInvalid = true;
@@ -76,7 +76,7 @@ export class VideoEditComponent implements OnInit {
     })
   }
 
-  private save(){
+  public save(){
     this.onVideoSaved.emit(this.videoInfo);
     this.clear();
   }
@@ -86,7 +86,7 @@ export class VideoEditComponent implements OnInit {
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
   }
 
-  private onClosed(){
+  public onClosed(){
     this.clear();
   }
 

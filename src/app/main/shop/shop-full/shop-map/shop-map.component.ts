@@ -17,7 +17,7 @@ export class ShopMapComponent implements OnInit {
    @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private shop: Shop;
-  private marker: Marker;
+  public marker: Marker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -37,7 +37,7 @@ export class ShopMapComponent implements OnInit {
     return marker;
   }
 
-  private onBaseSaved(){
+  public onBaseSaved(){
     var shop = new Shop();
     shop.login = this.editService.baseModel.login;
     shop.latitude = this.editService.baseModel.latitude;

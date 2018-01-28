@@ -19,14 +19,14 @@ export class DialogsComponent implements OnInit, OnDestroy {
 
   private onlineUsers: Array<String> = [];
 
-  private isCreateDialogMode: boolean;
+  public isCreateDialogMode: boolean;
 
   private subscription: Subscription;
 
-  private searchTest: string;
+  public searchTest: string;
 
   constructor(private messengerService: MessengerService,
-    private dialogService: DialogService,
+    public dialogService: DialogService,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -69,7 +69,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     });
   }
 
-  private navigateDialog(dialog: Dialog){
+  public navigateDialog(dialog: Dialog){
     this.router.navigate(["/messenger", {dialogId: dialog.dialogId}]);
   }
 
@@ -80,7 +80,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     });
   }
 
-  private filterDialogs() {
+  public filterDialogs() {
 
     if(this.dialogService.dialogs){
       this.dialogService.dialogs.sort((x, y) => {
@@ -116,7 +116,7 @@ export class DialogsComponent implements OnInit, OnDestroy {
     })
   }
 
-  private toCreateDialogMode() {
+  public toCreateDialogMode() {
     this.isCreateDialogMode = true;
   }
 

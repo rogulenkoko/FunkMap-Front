@@ -19,7 +19,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
 
-  private isAddVideoMode: boolean = false;
+  public isAddVideoMode: boolean = false;
 
   constructor(private editBaseService: BaseEditService,
               private router: Router,

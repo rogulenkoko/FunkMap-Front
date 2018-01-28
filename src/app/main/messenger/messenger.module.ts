@@ -38,11 +38,11 @@ import { DialogNameEditComponent } from './dialog-bar/dialog-name-edit/dialog-na
   providers: [
      {
       provide: MessengerService,
-      useClass: environment.production ? MessengerServiceHttp : MessengerServiceStub
+      useClass: environment.useServer ? MessengerServiceHttp : MessengerServiceStub
     },
     {
       provide: MessengerHubService,
-      useClass: environment.production ? MessengerHubServiceReal : MessengerHubServiceStub
+      useClass: environment.useServer ? MessengerHubServiceReal : MessengerHubServiceStub
     },
     DialogService
   ]

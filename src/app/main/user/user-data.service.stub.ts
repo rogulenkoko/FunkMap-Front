@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserDataService } from "./user-data.service";
+import { UserDataService, UpdateImageResponse } from "./user-data.service";
 import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools/models/base-response";
 import { SaveImageRequest } from "./save-image-request";
@@ -21,8 +21,8 @@ export class UserDataServiceStub extends UserDataService {
     return Observable.of(null);
   }
 
-  saveImage(request: SaveImageRequest): Observable<BaseResponse> {
-    return Observable.of(new BaseResponse(true));
+  saveImage(request: SaveImageRequest): Observable<UpdateImageResponse> {
+    return Observable.of(new UpdateImageResponse(true, ""));
   }
 
   getUserEntities(): Observable<Array<SearchItem>> {

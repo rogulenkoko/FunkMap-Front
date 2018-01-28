@@ -22,7 +22,7 @@ import { ShopMapComponent } from './shop-full/shop-map/shop-map.component';
   providers: [
     {
       provide: ShopService,
-      useClass: environment.production ? ShopServiceHttp : ShopServiceStub
+      useClass: environment.useServer ? ShopServiceHttp : ShopServiceStub
     }
   ]
 })

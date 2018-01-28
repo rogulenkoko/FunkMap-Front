@@ -17,7 +17,7 @@ export class StudioMapComponent implements OnInit {
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private studio: Studio;
-  private marker: Marker;
+  public marker: Marker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,

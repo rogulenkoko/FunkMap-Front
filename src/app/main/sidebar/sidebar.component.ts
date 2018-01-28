@@ -18,8 +18,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   @ViewChild("messageCountTemplate") messageCountTemplate;
 
-  private topItems: Array<SidebarItem>;
-  private bottomItems: Array<SidebarItem>;
+  public topItems: Array<SidebarItem>;
+  public bottomItems: Array<SidebarItem>;
 
   private dialogsCountModels: Array<DialogsNewMessagesCountModel>;
 

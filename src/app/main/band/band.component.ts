@@ -13,7 +13,7 @@ import { MusicianTypesProvider } from "app/main/musician/musician-types-provider
 export class BandComponent implements OnInit {
 
   private lastBandLogin: string;
-  private band: BandPreview;
+  public band: BandPreview;
 
 
   constructor(private bandService: BandService,

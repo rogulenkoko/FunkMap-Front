@@ -21,7 +21,7 @@ import { BaseService } from 'app/tools/base.service';
 export class EntityBaseComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
-  private isFavorite: boolean;
+  public isFavorite: boolean;
 
   @Input() underNameTemplate: any;
 
@@ -31,10 +31,10 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   @Output() onAvatarLoaded: EventEmitter<string>;
 
-  private canEditPhoto: boolean;
+  public canEditPhoto: boolean;
 
-  private isDeleteMode: boolean = false;
-  private changeAvatarMode: boolean = false;
+  public isDeleteMode: boolean = false;
+  public changeAvatarMode: boolean = false;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -64,7 +64,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     });
   }
 
-  private addToFavorites() {
+  public addToFavorites() {
     this.isFavorite = !this.isFavorite;
     this.baseService.setFavourite(this.entity.login,  this.isFavorite).subscribe(response => {
       if (response.success) {
@@ -73,11 +73,11 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     })
   }
 
-  private changeUserAvatar(){
+  public changeUserAvatar(){
     this.changeAvatarMode = true;
   }
 
-  private onAvatarSaved(image: string){
+  public onAvatarSaved(image: string){
       this.baseEditService.updateAvatar(this.entity.login, image).subscribe(response=>{
         if(response.success){
           this.entity.avatarId = image ? `data:image/png;base64,${image}` : image;
@@ -85,7 +85,7 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
       });
   }
 
-  protected changeAvatarEditVisible(choice: number) {
+  public changeAvatarEditVisible(choice: number) {
       if (!this.isUsers) return;
       if (choice > 0) this.canEditPhoto = true;
       else this.canEditPhoto = false;
@@ -95,13 +95,13 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
     
   }
 
-  private deleteEntity(){
+  public deleteEntity(){
     this.baseEditService.delete(this.entity.login).subscribe(resp=>{
       if(resp.success) this.router.navigate(['/']);
     });;
   }
 
-  private changeDeleteMode(){
+  public changeDeleteMode(){
     this.isDeleteMode = !this.isDeleteMode;
   }
 

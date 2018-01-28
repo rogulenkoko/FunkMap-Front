@@ -17,7 +17,7 @@ export class RehearsalMapComponent implements OnInit {
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private rehearsal: Rehearsal;
-  private marker: Marker;
+  public marker: Marker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -37,7 +37,7 @@ export class RehearsalMapComponent implements OnInit {
     return marker;
   }
 
-  private onBaseSaved(){
+  public onBaseSaved(){
     var rehearsal = new Rehearsal();
     rehearsal.login = this.editService.baseModel.login;
     rehearsal.latitude = this.editService.baseModel.latitude;

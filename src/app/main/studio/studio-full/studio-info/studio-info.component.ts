@@ -12,17 +12,17 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class StudioInfoComponent implements OnInit {
 
-  private studio: Studio;
-  private newStudio: Studio;
+  public studio: Studio;
+  public newStudio: Studio;
 
 
   @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
   @ViewChild("webSiteEditTemplate") webSiteEditTemplate: any;
   @ViewChild("webSiteValueTemplate") webSiteValueTemplate: any;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
-  private allTitle: string;
+  public allTitle: string;
 
 
   constructor(private editService: EditService,

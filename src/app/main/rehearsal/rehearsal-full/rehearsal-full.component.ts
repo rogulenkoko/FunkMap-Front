@@ -14,7 +14,7 @@ import { EditableCardContainer } from 'app/tools/entity-full/editable-card';
 })
 export class RehearsalFullComponent extends EditableCardContainer implements OnInit {
 
-  constructor(private editService: EditService,
+  constructor(public editService: EditService,
               private rehearsalService: RehearsalService,
               private route: ActivatedRoute,
               userService: UserService,

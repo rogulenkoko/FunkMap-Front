@@ -20,9 +20,9 @@ import { BaseService } from 'app/tools/base.service';
 export class BandParticipantsComponent extends EditableCard implements OnInit {
 
   @Input() band: Band;
-  private musicians: Array<MusicianPreview> = [];
+  public musicians: Array<MusicianPreview> = [];
   
-  private hoveredMusician: string;
+  public hoveredMusician: string;
 
   constructor(private musicianService: MusicianService,
               private musicianTypesProvider: MusicianTypesProvider,

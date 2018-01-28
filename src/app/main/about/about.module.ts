@@ -21,7 +21,7 @@ import { ToolsModule } from 'app/tools/tools.module';
   providers: [
     {
       provide: FeedbackService,
-      useClass: environment.production ? FeedbackServiceHttp : FeedbackServiceStub
+      useClass: environment.useServer ? FeedbackServiceHttp : FeedbackServiceStub
     },
   ]
 })

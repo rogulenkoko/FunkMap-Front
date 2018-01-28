@@ -28,7 +28,7 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
   private scrollbarOptions: MCustomScrollbar.CustomScrollbarOptions;
 
   constructor(private messengerService: MessengerService,
-              private dialogService: DialogService,
+              public dialogService: DialogService,
               private userService: UserService,
               private userDataService: UserDataService,
               private scrollbarService: MalihuScrollbarService,

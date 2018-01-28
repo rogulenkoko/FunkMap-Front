@@ -16,9 +16,9 @@ export class BandFullComponent extends EditableCardContainer implements OnInit {
 
  
 
-  constructor(private bandService: BandService,
+  constructor(public bandService: BandService,
               private route: ActivatedRoute,
-              private editService: EditService,
+              public editService: EditService,
               userService: UserService,
               userDataService: UserDataService) {
     super(userService, userDataService);

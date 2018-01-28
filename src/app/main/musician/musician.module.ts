@@ -31,7 +31,7 @@ import { MusicianVideoComponent } from './musician-full/musician-video/musician-
   providers: [
     {
       provide: MusicianService,
-      useClass: environment.production ? MusicianServiceHttp : MusicianServiceStub
+      useClass: environment.useServer ? MusicianServiceHttp : MusicianServiceStub
     },
     MusicianTypesProvider
   ]

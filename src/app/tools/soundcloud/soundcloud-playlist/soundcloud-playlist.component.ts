@@ -9,7 +9,7 @@ import { Track } from 'app/tools/soundcloud/track';
 })
 export class SoundcloudPlaylistComponent implements OnInit {
 
-  private tracks: Array<Track>;
+  public tracks: Array<Track>;
 
   constructor(private trackListService: TrackListService) {
     this.trackListService.onTrackAdded.subscribe(()=> this.refresh());

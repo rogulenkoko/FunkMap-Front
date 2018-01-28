@@ -32,7 +32,7 @@ import { BandParticipantsComponent } from './band-full/band-participants/band-pa
   providers: [
     {
       provide: BandService,
-      useClass: environment.production ? BandServiceHttp : BandServiceStub
+      useClass: environment.useServer ? BandServiceHttp : BandServiceStub
     }
   ]
 })

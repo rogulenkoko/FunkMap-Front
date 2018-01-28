@@ -22,7 +22,7 @@ import { StudioInfoComponent } from './studio-full/studio-info/studio-info.compo
   providers: [
     {
       provide: StudioService,
-      useClass: environment.production ? StudioServiceHttp : StudioServiceStub
+      useClass: environment.useServer ? StudioServiceHttp : StudioServiceStub
     }
   ]
 })

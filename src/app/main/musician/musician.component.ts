@@ -13,7 +13,7 @@ import { Subscription } from "rxjs/Subscription";
 export class MusicianComponent implements OnInit,OnDestroy {
 
   private lastMusicianLogin: string;
-  private musician: MusicianPreview;
+  public musician: MusicianPreview;
 
 
   constructor(private musicianService: MusicianService,

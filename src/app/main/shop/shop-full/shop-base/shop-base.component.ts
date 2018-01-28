@@ -12,10 +12,10 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 export class ShopBaseComponent implements OnInit {
 
 
-  private shop: Shop;
-  private newShop: Shop;
+  public shop: Shop;
+  public newShop: Shop;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
 
   @ViewChild('nameEditTemplate') nameEditTemplate;
@@ -48,7 +48,7 @@ export class ShopBaseComponent implements OnInit {
     ]
   }
 
-  private save(){
+  public save(){
     this.newShop.login = this.shop.login;
     this.shopService.updateShop(this.newShop).subscribe(response=>{
       this.refreshBand();

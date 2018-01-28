@@ -23,7 +23,7 @@ import { RestorePasswordComponent } from './restore-password/restore-password.co
   providers: [
     {
       provide: LoginService,
-      useClass: environment.production ? LoginServiceHttp : LoginServiceStub
+      useClass: environment.useServer ? LoginServiceHttp : LoginServiceStub
     }
   ]
 })

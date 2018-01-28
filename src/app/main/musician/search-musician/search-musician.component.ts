@@ -11,7 +11,7 @@ export class SearchMusicianComponent implements OnInit {
 
   @Input() item: SearchItem;
 
-  constructor(private musicianTypesProvider: MusicianTypesProvider) { }
+  constructor(public musicianTypesProvider: MusicianTypesProvider) { }
 
   ngOnInit() {
   

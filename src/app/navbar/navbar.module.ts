@@ -29,11 +29,11 @@ import { ResponsiveModule } from 'ng2-responsive';
   providers: [
     {
       provide: NotificationService,
-      useClass: environment.production ? NotificationServiceHttp : NotificationServiceStub
+      useClass: environment.useServer ? NotificationServiceHttp : NotificationServiceStub
     },
     {
       provide: NotificationHubService,
-      useClass: environment.production ? NotificationHubServiceReal : NotificationHubServiceStub
+      useClass: environment.useServer ? NotificationHubServiceReal : NotificationHubServiceStub
     },
     NotificationsInfoService
   ]

@@ -10,7 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ShopComponent implements OnInit {
 
-  private shop: ShopPreview;
+  public shop: ShopPreview;
 
   constructor(private shopService: ShopService,
               private route: ActivatedRoute) { }

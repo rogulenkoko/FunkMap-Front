@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
 
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
-  private notifications: Array<FunkmapNotification> = [];
+  public notifications: Array<FunkmapNotification> = [];
 
   private subscription: Subscription;
 

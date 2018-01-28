@@ -24,7 +24,7 @@ import { CanActivateCreation } from "./can-activate-creation";
   providers: [
       {
       provide: CreationService,
-      useClass: environment.production ? CreationServiceHttp : CreationServiceStub
+      useClass: environment.useServer ? CreationServiceHttp : CreationServiceStub
     },
     CanActivateCreation
   ]

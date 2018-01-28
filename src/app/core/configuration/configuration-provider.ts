@@ -3,15 +3,8 @@ export class ConfigurationProvider{
 
     public static apiUrl(type: ServiceType): string{
 
-        if(environment.monolith) return environment.local ? "http://localhost:9000/api/" :  "http://95.213.239.58:14080/api/"; 
-
-        switch (type){ 
-            case ServiceType.Auth:
-            return environment.local ? "http://localhost:9001/api/" : "";
-
-            case ServiceType.Messenger:
-            return environment.local ? "" : "";
-        }
+        return environment.local ? "http://localhost:9000/api/" :  "http://95.213.239.58:14080/api/"; 
+        
     }
     
     public static entitiesLimit: number = 1000;

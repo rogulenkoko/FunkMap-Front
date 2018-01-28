@@ -11,10 +11,10 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class RehearsalBaseComponent implements OnInit {
 
-  private rehearsal: Rehearsal;
-  private newRehearsal: Rehearsal;
+  public rehearsal: Rehearsal;
+  public newRehearsal: Rehearsal;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
 
   @ViewChild('nameEditTemplate') nameEditTemplate;
@@ -47,7 +47,7 @@ export class RehearsalBaseComponent implements OnInit {
     ]
   }
 
-  private save(){
+  public save(){
     this.newRehearsal.login = this.rehearsal.login;
     this.rehearsalService.updateRehearsal(this.newRehearsal).subscribe(response=>{
       this.refreshRehearsal();

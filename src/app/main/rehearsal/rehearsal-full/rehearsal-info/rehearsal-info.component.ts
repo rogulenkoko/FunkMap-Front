@@ -12,15 +12,15 @@ import { InfoItem } from 'app/tools/entity-full/info-item';
 })
 export class RehearsalInfoComponent implements OnInit {
 
-  private rehearsal: Rehearsal;
-  private newRehearsal: Rehearsal;
+  public rehearsal: Rehearsal;
+  public newRehearsal: Rehearsal;
 
 
   @ViewChild("descriptionEditTemplate") descriptionEditTemplate: any;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
-  private allTitle: string;
+  public allTitle: string;
 
 
   constructor(private editService: EditService,

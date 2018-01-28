@@ -21,14 +21,14 @@ import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 })
 export class MusicianInfoComponent implements OnInit, OnDestroy {
 
-  private musician: Musician;
-  private newMusician: Musician;
+  public musician: Musician;
+  public newMusician: Musician;
 
 
 
-  private styles: Array<StylesItem>;
-  private instruments: Array<InstrumentsItem>;
-  private expiriences: Array<ExpirienceItem>;
+  public styles: Array<StylesItem>;
+  public instruments: Array<InstrumentsItem>;
+  public expiriences: Array<ExpirienceItem>;
 
   @ViewChild("dateTemplate") dateTemplate: any;
   @ViewChild("bandsTemplate") bandsTemplate: any;
@@ -40,18 +40,18 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   @ViewChild("dateEditTemplate") dateEditTemplate: any;
   @ViewChild("stylesEditTemplate") stylesEditTemplate: any;
 
-  private infoItems: Array<InfoItem>;
+  public infoItems: Array<InfoItem>;
 
-  private allTitle: string;
+  public allTitle: string;
 
   private subscription: Subscription;
 
-  private bands: Array<SearchItem>;
-  private isUsers: boolean;
+  public bands: Array<SearchItem>;
+  public isUsers: boolean;
 
-  private hoveredBandLogin: string;
+  public hoveredBandLogin: string;
 
-  constructor(private musicianTypesProvider: MusicianTypesProvider,
+  constructor(public musicianTypesProvider: MusicianTypesProvider,
               private musicianService: MusicianService,
               private dateProvider: DateSelectProvider,
               private translateService: TranslateService,

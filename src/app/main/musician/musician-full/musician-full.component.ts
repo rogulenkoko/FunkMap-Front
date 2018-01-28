@@ -18,7 +18,7 @@ export class MusicianFullComponent extends EditableCardContainer implements OnIn
 
   constructor(private musicianService: MusicianService,
     private route: ActivatedRoute,
-    private editService: EditService,
+    public editService: EditService,
     userService: UserService,
     userDataService: UserDataService) {
       super(userService, userDataService);
