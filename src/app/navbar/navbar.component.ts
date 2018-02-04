@@ -13,6 +13,7 @@ import { NotificationsInfoService } from 'app/navbar/notifications/notifications
 import { SignalrService } from 'app/tools/signalr/signalr.service';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { SidebarService } from 'app/main/sidebar/sidebar.service';
+import { NavbarService } from 'app/navbar/navbar.service';
 
 @Component({
   selector: 'navbar',
@@ -37,7 +38,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
               private router: Router,
               private notificationService: NotificationService,
               private notificationsInfoService: NotificationsInfoService,
-              private sidebarService: SidebarService) {
+              private sidebarService: SidebarService,
+              private navbarService: NavbarService) {
     
     if(this.userService.user) this.getNotificationsCount();
     this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
@@ -70,7 +72,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private changeNotificationsVisibility(){
-    this.notificationsComponent.refreshNotification();
+    if(this.notificationsComponent) this.notificationsComponent.refreshNotification();
   }
 
   private getNotificationsCount(){

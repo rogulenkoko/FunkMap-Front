@@ -7,6 +7,7 @@ import { UserDataService } from "app/main/user/user-data.service";
 import { RouteBuilder } from "app/tools/route-builder";
 import { Router, ActivatedRoute } from "@angular/router";
 import { BaseService } from 'app/tools/base.service';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'entity-side',
@@ -39,9 +40,16 @@ export class EntitySideComponent implements OnInit {
     private userDataService: UserDataService,
     private router: Router,
     private route: ActivatedRoute,
-    private baseService: BaseService) { }
+    private baseService: BaseService,
+    private adaptiveService: AdaptiveService) { }
 
   ngOnInit() {
+
+    if(this.adaptiveService.isMobile()){
+      this.navigateToPage(this.item.login);
+      return;
+    }
+
     this.checkIsFavorite();
     this.checkIsUserEntity();
     

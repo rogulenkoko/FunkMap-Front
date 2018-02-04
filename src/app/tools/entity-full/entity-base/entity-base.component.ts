@@ -12,6 +12,7 @@ import { BaseEditService } from "app/tools/entity-full/base-edit.service";
 import { InfoItem } from 'app/tools/entity-full/info-item';
 import { ActionItem } from 'app/tools/entity-full/action-item';
 import { BaseService } from 'app/tools/base.service';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'entity-base',
@@ -40,7 +41,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
               private router: Router,
               private baseEditService: BaseEditService,
               private baseService: BaseService,
-              private editService: EditService) {
+              private editService: EditService,
+              private adaptiveService: AdaptiveService) {
     super();
     this.onAvatarLoaded = new EventEmitter<string>();
     
@@ -48,6 +50,12 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
+
+    if(this.isUsers && this.adaptiveService.isMobile()){
+      this.canEditPhoto = true;
+      this.isEditVisible = true;
+    }
+
     this.checkIsFavorite();
   }
 
@@ -87,6 +95,10 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   public changeAvatarEditVisible(choice: number) {
       if (!this.isUsers) return;
+      if(this.adaptiveService.isMobile()){
+        this.canEditPhoto = true;
+        return;
+      }
       if (choice > 0) this.canEditPhoto = true;
       else this.canEditPhoto = false;
   }

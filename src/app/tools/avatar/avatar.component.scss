@@ -56,6 +56,26 @@
     }
 }
 
+.main-avatar-container-mobile{
+    position: relative;
+  
+
+    .add-delete-container{
+        width: 100%;
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+
+        .action-container{
+            margin-top: 24px;
+        }
+    }
+
+    .confirmation-label{
+        text-align: center;
+    }
+}
+
 
 p-fileupload{
     height: 24px;

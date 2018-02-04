@@ -16,8 +16,6 @@ import { Router } from '@angular/router';
 export class DialogPaticipantsComponent implements OnInit {
 
 
-  @ViewChild("dialogComponent") dialogComponent: Dialog;
-
   private isVisible: boolean;
 
   @Input() get visible(): boolean {
@@ -54,9 +52,6 @@ export class DialogPaticipantsComponent implements OnInit {
 
   private refreshUsers() {
     this.users = [];
-
-    if (!this.dialogComponent) return;
-
     var userLogins = this.dialogService.dialog.participants;
     userLogins.forEach(userLogin => this.userDataService.getUser(userLogin).subscribe(user => this.onUserRecieved(user, userLogin, userLogins)));
   }
@@ -64,9 +59,7 @@ export class DialogPaticipantsComponent implements OnInit {
 
   private onUserRecieved(user: UserResponse, userLogin: string, userLogins: Array<string>) {
     if (user.isExist) this.users.push(user.user);
-
     if (userLogin == userLogins[userLogins.length - 1]) {
-      this.dialogComponent.show();
       this.users.sort((x, y) => x.login == this.userService.user.login ? -1 : 1);
     }
   }
@@ -86,7 +79,7 @@ export class DialogPaticipantsComponent implements OnInit {
   }
 
   private onHide() {
-    this.isVisible = false;
+    //this.isVisible = false;
   }
 
 }

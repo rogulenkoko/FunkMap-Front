@@ -17,7 +17,7 @@
 .property-title{
     margin-bottom: 5px;
     width: 120px;
-    color: $active-color;
+    color: $inactive-color;
 }
 
 .property-value{
@@ -32,4 +32,41 @@
 
 .info-title-container{
     margin-bottom: 40px;
+}
+
+.entity-info-container-mobile{
+    height: auto;
+    width: 100%;
+    margin-left: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    .info-title-container{
+        font-size: 20px;
+    }
+
+    .property-container{
+        flex-direction: column !important;
+        margin-bottom: 30px;
+        span, div{
+            font-size: 16px;
+        } 
+    }
+
+    .property-title{
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .all-properties-contaiiner{
+        display: block;
+        height: auto;
+        padding-bottom: 24px;
+    }
+
+    .edit-buttons-container{
+        span{
+             font-size: 14px;
+        } 
+     }
 }

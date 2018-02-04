@@ -4,6 +4,7 @@ import { UserDataService } from "app/main/user/user-data.service";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 export class EditableCard {
     public isEditVisible: boolean = false;
@@ -31,6 +32,7 @@ export class EditableCard {
 
     public changeEditVisible(choice: number) {
         if (!this.isUsers) return;
+
         if (choice > 0) this.isEditVisible = true;
         else this.isEditVisible = false;
     }

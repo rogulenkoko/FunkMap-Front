@@ -52,3 +52,11 @@ canvas{
 .dropdown {
     z-index: 1003;
 }
+
+.ui-widget-overlay{
+    z-index: 1003 !important;
+}
+
+.ui-dialog{
+    z-index: 1004 !important;
+}

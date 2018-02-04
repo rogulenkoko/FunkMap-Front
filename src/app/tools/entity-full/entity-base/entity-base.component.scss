@@ -32,7 +32,7 @@
 
     .image-container-wrapper{
         margin-bottom: 20px;
-
+        position: relative;
         .edit-circle-container{
             position: absolute;
             margin-top: -160px;
@@ -134,3 +134,28 @@
     margin-right: 35px;
 }
 
+.main-entity-base-container-mobile{
+    height: auto;
+    margin-bottom: 8px;
+    .entity-base-container{
+        width: 100%;
+        padding-bottom: 36px;
+        .name-container{
+            font-size: 28px;
+            font-weight: lighter;
+        }
+
+        .nets-container{
+            margin-top: 12px; 
+            margin-bottom: 36px;
+        }
+
+        .edit-buttons-container{
+           span{
+                font-size: 14px;
+           } 
+        }
+    }
+
+    
+}

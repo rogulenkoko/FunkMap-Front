@@ -2,15 +2,23 @@
 <ng-container *ngIf="visible">
   <div class="modal-back"></div>
 
-  <div class="image-main-container">
+  <div *isDesktop class="image-main-container">
+    <ng-template [ngTemplateOutlet]="imageTemplate"></ng-template>
+  </div>
+
+  <div *isMobile class="image-main-container image-main-container-mobile">
+    <ng-template [ngTemplateOutlet]="imageTemplate"></ng-template>
+  </div>
+  
+
+</ng-container>
+
+<ng-template #imageTemplate>
+ 
     <div id="modal-image-container" class="image-container">
         <img id="modal-image" src="{{currentImage.dataUrl}}">
         <span id="modal-close" (click)="cancel()" class="icon-close"></span>
         <div *ngIf="images && images.length > 1" (click)="next(-1)" class="arrow arrow-left"><span  class="fa fa-chevron-left"></span></div>
         <div *ngIf="images && images.length > 1" (click)="next(1)" class="arrow arrow-right"><span  class="fa fa-chevron-right"></span></div>
     </div>
-    
-   
-  </div>
-
-</ng-container>
+</ng-template>

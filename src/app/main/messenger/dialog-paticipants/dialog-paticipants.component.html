@@ -1,30 +1,32 @@
-<p-dialog *isDesktop #dialogComponent header="{{ 'Dialog_ParticipantsList' | translate:{name:dialogService.dialog.name} }}" [(visible)]="visible"
-  [width]="550" [draggable]="false" [modal]="true" (onHide)="onHide()">
-<ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
-  
+<p-dialog *isDesktop header="{{ 'Dialog_ParticipantsList' | translate:{name:dialogService.dialog.name} }}" [(visible)]="visible"
+  [width]="550" [draggable]="false" [modal]="true" (onHide)="onHide()" [positionTop]="175">
+  <div class="users-container">
+    <ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
+  </div>
 </p-dialog>
 
-<p-dialog *isMobile #dialogComponent header="{{ 'Dialog_ParticipantsList' | translate:{name:dialogService.dialog.name} }}" [(visible)]="visible"
-  [width]="modalWidth" [draggable]="false" [modal]="true" (onHide)="onHide()">
-<ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
-  
+<p-dialog *isMobile header="{{ 'Dialog_ParticipantsList' | translate:{name:dialogService.dialog.name} }}" [(visible)]="visible"
+  [positionTop]="150" [width]="modalWidth" [draggable]="false" [modal]="true" (onHide)="onHide()">
+  <div class="users-container users-container-mobile">
+    <ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
+  </div>
 </p-dialog>
 
 <ng-template #participantsTemplate>
-    <div class="users-container">
-        <div *ngFor="let user of users" class="d-flex align-items-center justify-content-between user-container">
-          <div class="d-flex align-items-center">
-            <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
-            <div class="d-flex flex-column">
-              <span class="new-user-name">{{user.name}}</span>
-              <span class="new-user-login">@{{user.login}}</span>
-            </div>
-          </div>
-          <div>
-              <a *ngIf="userService.user.login != user.login" class="user-link" (click)="sendMessage(user.login)">{{'Messenger_Send' | translate}}</a>
-              <i *ngIf="userIsCreator && (userService.user && userService.user.login != user.login) " (click)="removeUser(user.login)" class="icon-close"></i>
-          </div>
-          
-        </div>
+
+  <div *ngFor="let user of users" class="d-flex align-items-center justify-content-between user-container">
+    <div class="d-flex align-items-center">
+      <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'25px'"></avatar-circle>
+      <div class="d-flex flex-column">
+        <span class="new-user-name">{{user.name}}</span>
+        <span class="new-user-login">@{{user.login}}</span>
       </div>
+    </div>
+    <div>
+      <a *ngIf="userService.user.login != user.login" class="user-link" (click)="sendMessage(user.login)">{{'Messenger_Send' | translate}}</a>
+      <i *ngIf="userIsCreator && (userService.user && userService.user.login != user.login) " (click)="removeUser(user.login)"
+        class="icon-close"></i>
+    </div>
+
+  </div>
 </ng-template>

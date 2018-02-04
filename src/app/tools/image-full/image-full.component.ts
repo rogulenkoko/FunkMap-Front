@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FileContent } from 'app/main/messenger/models/message';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'image-full',
@@ -26,7 +27,7 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
 
   @Output() visibleChange: EventEmitter<boolean>;
 
-  constructor() {
+  constructor(private adaptiveService: AdaptiveService) {
     this.visibleChange = new EventEmitter<boolean>();
    }
 
@@ -44,7 +45,14 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
   private setCrossPosition(){
     var imageWidth = jQuery("#modal-image").width();
     var imageContainerWidth = jQuery("#modal-image-container").width();
-    jQuery("#modal-close").css("left",`${(imageWidth + imageContainerWidth)/2 + 18}px`);
+
+    if(this.adaptiveService.isMobile()){
+      jQuery("#modal-close").css("left",`${(imageWidth + imageContainerWidth)/2 - 18}px`);
+    } else {
+      jQuery("#modal-close").css("left",`${(imageWidth + imageContainerWidth)/2 + 18}px`);
+    }
+
+    
 
     var imageHeight = jQuery("#modal-image").height();
     var imageContainerHeight = jQuery("#modal-image-container").height();
@@ -52,7 +60,6 @@ export class ImageFullComponent implements OnInit, AfterViewInit {
 
 
     var arrowContainerWidth = jQuery(".arrow").width();
-    console.log(arrowContainerWidth);
     jQuery(".fa-chevron-left").css("margin-right", `${(arrowContainerWidth - imageWidth/2) + 18}px`);
     // jQuery(".arrow-left").css("width", `${(imageWidth - imageContainerWidth)/2 + 18}px`);
   }

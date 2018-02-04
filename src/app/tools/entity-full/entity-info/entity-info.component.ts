@@ -5,6 +5,7 @@ import { BaseModel } from "app/core";
 import { EditableCard } from "app/tools/entity-full/editable-card";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { InfoItem } from 'app/tools/entity-full/info-item';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'entity-info',
@@ -26,13 +27,17 @@ export class EntityInfoComponent extends EditableCard implements OnInit {
   @Input() width: string;
   @Input() height: string;
   
-  constructor(private editService: EditService) {
+  constructor(private editService: EditService,
+              private adaptiveService: AdaptiveService) {
     super();
     this.entity = this.editService.baseModel;
   }
 
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
+    if(this.isUsers && this.adaptiveService.isMobile()){
+      this.isEditVisible = true;
+    }
   }
 }
 

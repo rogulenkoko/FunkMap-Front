@@ -2,11 +2,21 @@
   (onSaved)="save()" (onCanceled)="cancel()"></entity-base>
 
 <ng-template #underNameTemplate>
-  <div class="sub-info-container">
+  <div *isDesktop class="sub-info-container">
+    <ng-template [ngTemplateOutlet]="underNameAdaptiveTemplate"></ng-template>
+  </div>
+
+  <div *isMobile class="sub-info-container sub-info-container-mobile">
+    <ng-template [ngTemplateOutlet]="underNameAdaptiveTemplate"></ng-template>
+  </div>
+
+
+  <ng-template #underNameAdaptiveTemplate>
     <span *ngIf="musician.instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}</span>
     <span *ngIf="musician.instrument && musician.age">,</span>
     <span *ngIf="musician.age">{{musician.age}} {{'Musician_Years' | translate}}</span>
-  </div>
+  </ng-template>
+
 </ng-template>
 
 <ng-template #nameEditTemplate>

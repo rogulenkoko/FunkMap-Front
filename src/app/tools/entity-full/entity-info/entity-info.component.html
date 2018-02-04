@@ -1,5 +1,13 @@
-<div class="entity-info-container d-flex flex-column" [style.width]="width" [style.height]="height"
+<div *isDesktop class="entity-info-container d-flex flex-column" [style.width]="width" [style.height]="height"
   (mouseover)="changeEditVisible(1)" (mouseleave)="changeEditVisible(-1)">
+  <ng-template [ngTemplateOutlet]="infoTemplate"></ng-template>
+</div>
+
+<div *isMobile class="entity-info-container entity-info-container-mobile d-flex flex-column">
+  <ng-template [ngTemplateOutlet]="infoTemplate"></ng-template>
+</div>
+
+<ng-template #infoTemplate>
   <div class="info-title-container d-flex justify-content-between">
     <span>{{'Information' | translate}}</span>
 
@@ -20,6 +28,4 @@
       </div>
     </div>
   </div>
-
-
-</div>
+</ng-template>

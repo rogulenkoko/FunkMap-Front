@@ -19,6 +19,7 @@
 
 .funkmap-title{
     font-weight: lighter;
+    margin-right: 0 !important;
 
     :host-context(.light) .funk{
          color: black;
@@ -39,6 +40,12 @@
 
     :host-context(.dark) .map{
         color: $dark-orange;
+    }
+
+    span{
+        color: $dark-grey;
+        font-weight: lighter;
+        font-size: 20px;
     }
 }
 
@@ -117,7 +124,15 @@ li{
 }
 
 .fa-bars{
-    color: $light-main-side;
+    color: $dark-grey;
     font-size: 22px;
-    margin-right: 18px;
+}
+
+.notification-icon-mobile{
+    min-width: 22px;
+    i{
+        color: $dark-grey;
+        font-size: 22px;
+    }
+   
 }

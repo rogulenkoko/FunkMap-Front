@@ -5,6 +5,7 @@ import { EditableCard } from 'app/tools/entity-full/editable-card';
 import { UserService } from 'app/main/user/user.service';
 import { UserDataService } from 'app/main/user/user-data.service';
 import { EditService } from 'app/tools/entity-full/edit.service';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'entity-active',
@@ -18,7 +19,8 @@ export class EntityActiveComponent extends EditableCard implements OnInit {
   @Input() entity: BaseModel;
 
   constructor(private baseEditService: BaseEditService,
-              private editService: EditService) {
+              private editService: EditService,
+              private adaptiveService: AdaptiveService) {
     super();
    }
 

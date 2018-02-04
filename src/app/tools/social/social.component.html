@@ -1,6 +1,14 @@
-<div class="nets-container d-flex flex-row" [class.minified]="isMinified">
-    <a *ngIf="vkLink" href="{{vk}}{{vkLink}}" class="icon vk-icon" target="_blank"></a>
-    <a *ngIf="facebookLink" href="{{facebook}}{{facebookLink}}" class="icon facebook-icon" target="_blank"></a>
-    <a *ngIf="youTubeLink" href="{{youTube}}{{youTubeLink}}" class="icon youtube-icon" target="_blank"></a>
-    <a *ngIf="soundCloudLink" href="{{soundCloud}}{{soundCloudLink}}" class="icon soundcloud-icon" target="_blank"></a>
-  </div>
+<div *isDesktop class="nets-container d-flex flex-row" [class.minified]="isMinified">
+  <ng-template [ngTemplateOutlet]="netsTemplate"></ng-template>
+</div>
+
+<div *isMobile class="nets-container nets-container-mobile d-flex flex-row">
+  <ng-template [ngTemplateOutlet]="netsTemplate"></ng-template>
+</div>
+
+<ng-template #netsTemplate>
+  <a *ngIf="vkLink" href="{{vk}}{{vkLink}}" class="icon vk-icon" target="_blank"></a>
+  <a *ngIf="facebookLink" href="{{facebook}}{{facebookLink}}" class="icon facebook-icon" target="_blank"></a>
+  <a *ngIf="youTubeLink" href="{{youTube}}{{youTubeLink}}" class="icon youtube-icon" target="_blank"></a>
+  <a *ngIf="soundCloudLink" href="{{soundCloud}}{{soundCloudLink}}" class="icon soundcloud-icon" target="_blank"></a>
+</ng-template>

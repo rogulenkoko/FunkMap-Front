@@ -36,6 +36,9 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
 
   @Input() previousPhoto: string;
 
+  //адаптивка
+  private modalWidth: number;
+
   constructor(private userDataService: UserDataService, 
               private userService: UserService,
               private router: Router) {
@@ -44,6 +47,7 @@ export class AvatarComponent implements OnInit, AfterViewInit  {
   }
 
   ngOnInit() {
+    this.modalWidth = window.innerWidth * 0.96;
   }
 
   ngAfterViewInit(){
