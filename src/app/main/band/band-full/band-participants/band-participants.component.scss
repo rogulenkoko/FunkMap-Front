@@ -59,3 +59,28 @@
         }
     }
 }
+
+.main-participants-container-mobile{
+    width: 100%;
+    height: auto;
+    margin-left: 0px;
+    padding-bottom: 24px;
+
+    .participants-title{
+        font-size: 20px;
+    }
+
+    .participants-container{
+        .no-members{
+            font-size: 14px;
+        }
+
+        .participant{
+            .participant-instrument, .participant-name{
+                font-size: 14px
+            }
+        }
+    }
+
+    
+}

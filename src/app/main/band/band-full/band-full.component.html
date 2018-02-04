@@ -1,15 +1,28 @@
- <div *ngIf="editService.baseModel" class="band-full-container">
-   <div class="d-flex justify-content-center row-container">
-    <band-base></band-base>
-    <div class="d-flex flex-column">
-      <band-info></band-info>
-      <band-participants  [band]="editService.baseModel"></band-participants>
+<ng-container *ngIf="editService.baseModel">
+
+  <div *isDesktop class="band-full-container">
+    <div class="d-flex justify-content-center row-container">
+      <band-base></band-base>
+      <div class="d-flex flex-column">
+        <band-info></band-info>
+        <band-participants [band]="editService.baseModel"></band-participants>
+      </div>
+      <band-map></band-map>
     </div>
-    <band-map ></band-map>
-   </div>
-   <div class="d-flex justify-content-center row-container">
-    <band-video [band]="editService.baseModel"></band-video>
+    <div class="d-flex justify-content-center row-container">
+      <band-video [band]="editService.baseModel"></band-video>
+    </div>
   </div>
-</div> 
 
+  <div *isMobile class="band-full-container band-full-container-mobile">
+    <div class="d-flex flex-column justify-content-center row-container">
+      <band-base></band-base>
+      <div class="d-flex flex-column">
+        <band-info></band-info>
+        <band-participants [band]="editService.baseModel"></band-participants>
+      </div>
+      <!-- <band-map ></band-map> -->
+    </div>
+  </div>
 
+</ng-container>
