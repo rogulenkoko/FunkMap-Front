@@ -38,6 +38,7 @@ import { SizePipe } from './size.pipe';
 import { ImageFullComponent } from './image-full/image-full.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CanActivateAdaptive } from 'app/tools/can-activate-adaptive';
+import { TrackListService } from 'app/tools/soundcloud/track-list.service';
 
 
 
@@ -114,7 +115,8 @@ import { CanActivateAdaptive } from 'app/tools/can-activate-adaptive';
       useClass: environment.useServer ? BaseServiceHttp : BaseServiceStub
     },
     CanActivateSearch,
-    CanActivateAdaptive
+    CanActivateAdaptive,
+    TrackListService
     
   ]
 })

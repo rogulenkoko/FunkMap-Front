@@ -18,6 +18,8 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class MusicianFullComponent extends EditableCardContainer implements OnInit, OnDestroy {
 
+
+
   constructor(private musicianService: MusicianService,
     private route: ActivatedRoute,
     public editService: EditService,
@@ -31,7 +33,7 @@ export class MusicianFullComponent extends EditableCardContainer implements OnIn
     this.route.params.subscribe(params => {
       var login = params["id"];
       this.refreshMusician(login);
-    })
+    });
 
   }
 

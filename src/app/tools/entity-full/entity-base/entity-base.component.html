@@ -1,4 +1,4 @@
-<div *isDesktop class="main-entity-base-container d-flex flex-column" (mouseover)="changeEditVisible(1)"
+<div *isDesktop class="main-entity-base-container d-flex flex-column" [style.height]="height" (mouseover)="changeEditVisible(1)"
 (mouseleave)="changeEditVisible(-1)">
   <ng-template [ngTemplateOutlet]="entityBaseTemplate"></ng-template>
 </div>

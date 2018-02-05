@@ -7,12 +7,13 @@
 
 .entity-sound-container{
     width: 300px;
-    height: 480px;
     background-color: $dark-card-background;
     border-radius: 5px; 
-
+    padding: 20px 0px;
     
     .nav-item{
+        margin-left: 30px;
+        margin-bottom: 12px;
         width: 50%;
         border-radius: 0; 
         border: none !important;
@@ -24,6 +25,13 @@
             border: none !important;
             background-color: white ;
             font-size: 16px;
+            padding: 0 !important;
+            display: inline !important;
+        }
+
+        .tracks-count{
+            color: $inactive-color;
+            margin-left: 6px;
         }
     }
 }

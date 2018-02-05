@@ -1,13 +1,14 @@
-<div *ngIf="entity" class="entity-sound-container">
+<div *ngIf="entity" class="entity-sound-container" [style.height]="height">
     <ul class="nav nav-tabs d-flex">
-        <li *ngIf="isUsers" class="nav-item" (click)="selectTab(1)">
+        <!-- <li *ngIf="isUsers" class="nav-item" (click)="selectTab(1)">
             <a class="nav-link" [class.active]="selectedTab == 1">{{'Sound_Search' | translate}}</a>
-        </li>
+        </li> -->
         <li class="nav-item" (click)="selectTab(2)">
-            <a class="nav-link" [class.active]="selectedTab == 2">{{'Sound_Playlist' | translate}}</a>
+            <a class="nav-link" [class.active]="selectedTab == 2">{{'Sound_Playlist' | translate}} </a>
+            <a *ngIf="entity.soundCloudTrackIds" class="tracks-count">{{entity.soundCloudTrackIds.length}}</a>
         </li>
     </ul>
 
-    <soundcloud-search [ngClass]="selectedTab == 1 ? '' : 'hidden'"></soundcloud-search>
-    <soundcloud-playlist [ngClass]="selectedTab == 2 ? '' : 'hidden'"></soundcloud-playlist>
+    <!-- <soundcloud-search [ngClass]="selectedTab == 1 ? '' : 'hidden'"></soundcloud-search> -->
+    <soundcloud-playlist [ngClass]="selectedTab == 2 ? '' : 'hidden'" [trackIds]="trackIds"></soundcloud-playlist>
 </div>

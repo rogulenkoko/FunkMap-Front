@@ -4,18 +4,66 @@
 @import "src/assets/styles/icons.scss";
 @import "src/assets/styles/base.scss";
 
+.soundcloud-playlist-container-wrapper{
+    height: 100%;
+    width: 100%;
+    padding-bottom: 24px;
+}
+
 .soundcloud-playlist-container{
 
     width: 100%;
-    padding: 12px; 
+    padding: 0px 30px; 
+    height: 100%;
 
     .soundcloud-track{
         width: 100%;
-        height: 20px;
         margin-top: 12px;
     
-        iframe{
-            margin-right: 6px;
+        .play{
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #e1e5f0;
+            //opacity: 0.6;
+            margin-right: 12px;
+
+            .fa-play, .fa-pause{
+                width: 100%;
+                height: 100%;
+                padding: 11px;
+                color: #a9aeb4;
+                font-size: 14px;
+            }
+
+            .fa-play{
+                margin-left: 5px;
+            }
+
+            .fa-pause{
+                margin-left: 3px;
+            }
+
+            .fa-play:hover{
+                color: $dark-orange-light;
+            }
+        }
+
+        .playing{
+            background-color: $dark-orange-light;
+            .fa-pause{
+                color: white;
+            }
+        }
+
+        .title{
+            color: $active-color;
+            font-size: 14px;
+        }
+
+        .user-name{
+            color:  $inactive-color;
+            font-size: 12px;
         }
     }
 }

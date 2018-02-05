@@ -11,20 +11,22 @@ import { BaseEditService } from 'app/tools/entity-full/base-edit.service';
 @Component({
   selector: 'entity-sound',
   templateUrl: './entity-sound.component.html',
-  styleUrls: ['./entity-sound.component.scss'],
-  providers: [TrackListService]
+  styleUrls: ['./entity-sound.component.scss']
 })
 export class EntitySoundComponent extends EditableCard implements OnInit, OnDestroy {
 
 
   @Input() entity: BaseModel;
 
+  @Input() height: string = "480px";
+
   private selectedTab = 2;
 
   private subscription: Subscription;
 
+  private trackIds: Array<number>;
+
   constructor(private trackListService: TrackListService,
-    private soundcloudService: SoundcloudService,
     private editService: EditService,
     private baseEditService: BaseEditService) {
     super();
@@ -35,15 +37,7 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
-    if (this.entity && this.entity.soundCloudTrackIds && this.entity.soundCloudTrackIds.length > 0) {
-      this.entity.soundCloudTrackIds.forEach(id => {
-        this.soundcloudService.getTrack(id).subscribe(track => {
-          track.isAdded = true;
-          this.trackListService.addTrack(track);
-        });
-      });
-    }
-
+    this.trackIds = this.entity.soundCloudTrackIds;
   }
 
   ngOnDestroy() {
@@ -55,7 +49,7 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
   }
 
   private onAddedToPlaylist(id: number) {
-
+    if(!this.entity) return;
     if(this.entity.soundCloudTrackIds.find(x=> x == id)) return;
 
     var entity = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);

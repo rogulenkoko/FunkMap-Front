@@ -1,13 +1,26 @@
-<div class="soundcloud-playlist-container">
-
-  <ng-container *ngIf="tracks">
-    <div *ngFor="let track of tracks" class="soundcloud-track d-flex flex-row">
-      <iframe width="90%" height="100%" scrolling="no" frameborder="no" [src]="getPlayerFrameUrl(track.id) | safe">
-      </iframe>
-      <span *ngIf="track.isAdded" (click)="removeFromPlaylist(track)" class="icon-close"></span>
+<div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="soundcloud-playlist-container-wrapper">
+  <div class="soundcloud-playlist-container">
+    <ng-container *ngIf="trackListService.tracks">
+      <div *ngFor="let track of trackListService.tracks" class="soundcloud-track d-flex flex-row justify-content-between">
+        <div class="d-flex">
+          <div>
+            <div class="play d-flex align-items-center justify-content-center" [class.playing]="track.isPlaying">
+              <i *ngIf="!track.isPlaying" class="fa fa-play" (click)="play(track)"></i>
+              <i *ngIf="track.isPlaying" class="fa fa-pause" (click)="stop(track)"></i>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <span class="user-name">{{track.username}}</span>
+            <span class="title">{{track.title}}</span>
+          </div>
+        </div>
+        <div class="d-flex">
+          <span class="user-name">{{track.duration}}</span>
+        </div>
+      </div>
+    </ng-container>
+    <div *ngIf="!trackListService.tracks || trackListService.tracks.length == 0" class="empty">
+      <span>{{'Sound_PlaylistEmpty' | translate}}</span>
     </div>
-  </ng-container>
-  <div *ngIf="!tracks || tracks.length == 0" class="empty">
-    <span>{{'Sound_PlaylistEmpty' | translate}}</span>
   </div>
 </div>

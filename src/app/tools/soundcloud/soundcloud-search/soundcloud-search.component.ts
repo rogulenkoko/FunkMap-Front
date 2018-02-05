@@ -40,10 +40,6 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
     }
 
     this.soundcloudService.search(this.search).subscribe(tracks => {
-      tracks.forEach(track => {
-        track.frameUrl = this.getPlayerFrameUrl(track.id);
-      });
-      
       this.tracks = tracks;
       this.refreshTracksCondition();
       
@@ -62,11 +58,6 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
     this.tracks.forEach(track=>{
       track.isAdded = this.trackListService.tracks.find(x=>x.id == track.id) ? true : false;
     });
-  }
-
-
-  private getPlayerFrameUrl(id): string {
-    return `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${id}?buying=false&sharing=false&single_active=true`;
   }
 
 }

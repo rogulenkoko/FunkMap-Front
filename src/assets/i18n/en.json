@@ -95,7 +95,7 @@
     "Creation_LoginIsNotEmpty": "Login can not be empty",
     "Creation_NameIsNotEmpty": "Name can not be empty",
     "Creation_CantCreate":"You can create up to {{count}} profiles",
-    "VideoLink": "Video link (YouTube)",
+    "VideoLink": "Video link (YouTube, Vimeo)",
     "Favourite_NoItems": "You don't have any favourite profiles. To add an profile to your favorites, click on the icon",
     "Search_NoItems": "Results not found",
     "Clear_Filter": "Clear filter",

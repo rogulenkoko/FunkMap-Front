@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TrackListService } from 'app/tools/soundcloud/track-list.service';
 import { Track } from 'app/tools/soundcloud/track';
+import { SoundcloudService } from 'app/tools/soundcloud/soundcloud.service';
 
 @Component({
   selector: 'soundcloud-playlist',
@@ -9,26 +10,50 @@ import { Track } from 'app/tools/soundcloud/track';
 })
 export class SoundcloudPlaylistComponent implements OnInit {
 
-  public tracks: Array<Track>;
+  @Input() trackIds: Array<number>;
 
-  constructor(private trackListService: TrackListService) {
-    this.trackListService.onTrackAdded.subscribe(()=> this.refresh());
-    this.trackListService.onTrackDeleted.subscribe(()=> this.refresh());
-   }
+  public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
+
+  constructor(private trackListService: TrackListService,
+    private soundcloudService: SoundcloudService) {
+  }
 
   ngOnInit() {
-    this.refresh();
+    this.refreshTracks();
   }
 
-  refresh(){
-    this.tracks = this.trackListService.tracks;
+  public refreshTracks() {
+    if (!this.trackIds) return;
+    this.trackListService.tracks = [];
+    this.trackIds.forEach(trackId => {
+      this.soundcloudService.getTrack(trackId).subscribe(track => {
+        if(this.soundcloudService.playingTrackUrl && track.uri.includes(this.soundcloudService.playingTrackUrl)){
+          track.isPlaying = true;
+        }
+        this.trackListService.tracks.push(track);
+      })
+    });
   }
 
-  public getPlayerFrameUrl(id): string {
-    return `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${id}?buying=false&sharing=false&single_active=true`;
+  private play(track: Track){
+    var playing = this.trackListService.tracks.find(x=>x.isPlaying);
+
+    if(playing){
+      this.stop(playing);
+    }
+
+    track.isPlaying = true;
+
+    this.soundcloudService.play(track.uri);
   }
 
-  public removeFromPlaylist(track){
+  private stop(track: Track){
+    track.isPlaying = false;
+
+    this.soundcloudService.stop();
+  }
+
+  public removeFromPlaylist(track) {
     this.trackListService.removeTrack(track);
   }
 

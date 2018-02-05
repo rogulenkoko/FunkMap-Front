@@ -32,6 +32,8 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
 
   @Output() onAvatarLoaded: EventEmitter<string>;
 
+  @Input() height: string = "618px";
+
   public canEditPhoto: boolean;
 
   public isDeleteMode: boolean = false;
