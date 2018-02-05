@@ -37,6 +37,9 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   public isDeleteMode: boolean = false;
   public changeAvatarMode: boolean = false;
 
+  //адаптивка
+  private modalWidth: number;
+
   constructor(private userService: UserService,
               private router: Router,
               private baseEditService: BaseEditService,
@@ -49,6 +52,9 @@ export class EntityBaseComponent extends EditableCard implements OnInit {
   }
 
   ngOnInit() {
+
+    this.modalWidth = window.innerWidth * 0.96;
+
     this.isUsers = this.editService.isUsers;
 
     if(this.isUsers && this.adaptiveService.isMobile()){

@@ -2,7 +2,7 @@
 </div>
 
 
-<ng-container *showItBootstrap="['xl','lg', 'md']">
+<ng-container>
   <div routerLink="/create" *ngIf="userService.user" class="d-flex align-items-center justify-content-center add-circle">
     <img src="assets/images/plus.png" />
   </div>
@@ -34,9 +34,5 @@
   <div *ngIf="!userService.user" class="footer d-flex">
     <div class="signup" routerLink="/signup">{{'Navbar_SignUp' | translate}}</div>
     <div class="login" routerLink="/login">{{'Navbar_Login' | translate}}</div>
-  </div>
-
-  <div *ngIf="userService.user" class="footer d-flex">
-    <div class="create" routerLink="/create">{{'Create_Entity' | translate}}</div>
   </div>
 </ng-container>

@@ -8,3 +8,13 @@
 .row-container{
     margin-top: 8px;
 }
+
+.shop-full-container-mobile{
+    padding: 0;
+    max-height: 100%;
+    overflow-y: auto;
+
+    .row-container{
+        margin-top: 0px;
+    }
+}

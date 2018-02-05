@@ -1,4 +1,4 @@
- <div class="studio-full-container">
+ <div *isDesktop class="studio-full-container">
    <div class="d-flex justify-content-center row-container">
     <studio-base *ngIf="editService.baseModel"></studio-base>
     <studio-info *ngIf="editService.baseModel"></studio-info>
@@ -6,5 +6,12 @@
    </div>
    <div *ngIf="editService.baseModel" class="d-flex justify-content-center row-container">
     <!-- <studio-video [studio]="editService.baseModel"></studio-video> -->
+  </div>
+</div> 
+
+<div *isMobile class="studio-full-container studio-full-container-mobile">
+  <div class="d-flex flex-column justify-content-center row-container">
+   <studio-base *ngIf="editService.baseModel"></studio-base>
+   <studio-info *ngIf="editService.baseModel"></studio-info>
   </div>
 </div> 

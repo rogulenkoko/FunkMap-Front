@@ -75,19 +75,42 @@
 <entity-active *ngIf="entity" [entity]="entity"></entity-active>
 </ng-template>
 
-<p-dialog header="{{ 'DeleteEntity' | translate}}" [(visible)]="isDeleteMode" [width]="465" [draggable]="false" [modal]="true" *ngIf="isDeleteMode">
-  <div class="delete-message-container">
-  <span class="delete-message">{{'DeleteMessage' | translate }}</span>
-  <span class="delete-message-name">{{entity.name}}?</span>
-  <p class="delete-message">{{'CancelImpossible' | translate }}</p>
-</div>
-
-<div class="buttons-container d-flex align-items-center justify-content-center">
-    <button class="btn btn-secondary" (click)="changeDeleteMode()">{{'Cancel' | translate}}</button>
-
-    <button class="btn btn-success"(click)="deleteEntity()">{{'Delete' | translate}}</button>
+<ng-container *isDesktop>
+  <p-dialog header="{{ 'DeleteEntity' | translate}}" [(visible)]="isDeleteMode" [width]="465" [draggable]="false" [modal]="true" *ngIf="isDeleteMode">
+    <div class="delete-message-container">
+    <span class="delete-message">{{'DeleteMessage' | translate }}</span>
+    <span class="delete-message-name">{{entity.name}}?</span>
+    <p class="delete-message">{{'CancelImpossible' | translate }}</p>
   </div>
-</p-dialog>
+  
+  <div class="buttons-container d-flex align-items-center justify-content-center">
+      <button class="btn btn-secondary" (click)="changeDeleteMode()">{{'Cancel' | translate}}</button>
+  
+      <button class="btn btn-success"(click)="deleteEntity()">{{'Delete' | translate}}</button>
+    </div>
+  </p-dialog>
+</ng-container>
+
+
+<ng-container *isMobile>
+  <p-dialog header="{{ 'DeleteEntity' | translate}}" [(visible)]="isDeleteMode" [width]="modalWidth" [draggable]="false" [modal]="true" *ngIf="isDeleteMode">
+    <div class="delete-message-container">
+    <span class="delete-message">{{'DeleteMessage' | translate }}</span>
+    <span class="delete-message-name">{{entity.name}}?</span>
+    <p class="delete-message">{{'CancelImpossible' | translate }}</p>
+  </div>
+  
+  <div class="buttons-container d-flex align-items-center justify-content-center">
+      <button class="btn btn-secondary" (click)="changeDeleteMode()">{{'Cancel' | translate}}</button>
+  
+      <button class="btn btn-success"(click)="deleteEntity()">{{'Delete' | translate}}</button>
+    </div>
+  </p-dialog>
+</ng-container>
+
+
+
+
 
 <avatar-edit
  [(visible)]="changeAvatarMode"
