@@ -37,6 +37,7 @@ import { UploadComponent } from './upload/upload.component';
 import { SizePipe } from './size.pipe';
 import { ImageFullComponent } from './image-full/image-full.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { CanActivateAdaptive } from 'app/tools/can-activate-adaptive';
 
 
 
@@ -112,7 +113,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
       provide: BaseService,
       useClass: environment.useServer ? BaseServiceHttp : BaseServiceStub
     },
-    CanActivateSearch
+    CanActivateSearch,
+    CanActivateAdaptive
     
   ]
 })

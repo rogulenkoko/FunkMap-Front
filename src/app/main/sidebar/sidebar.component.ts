@@ -51,25 +51,25 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   private initItems(){
-    var searchItem = new SidebarItem("search", "Search", "search-icon");
+    var searchItem = new SidebarItem("search", "Search", "icon-search");
     
-        var profileItem = new SidebarItem("profile", "Profile", "person-icon");
+        var profileItem = new SidebarItem("profile", "Profile", "icon-no-name");
         profileItem.visibleForLogged = true;
     
-        var messagesItem = new SidebarItem("messenger", "Messages", "messenger-icon");
+        var messagesItem = new SidebarItem("messenger", "Messages", "icon-mail");
         messagesItem.rightTemplate = this.messageCountTemplate;
         messagesItem.visibleForLogged = true;
     
-        var logoutItem = new SidebarItem("", "Logout", "exit-icon");
+        var logoutItem = new SidebarItem("", "Logout", "icon-logout");
         logoutItem.clickEvent = () => this.logOut();
         logoutItem.visibleForLogged = true;
     
-        var favouriteItem = new SidebarItem("favorites", "Favorites", "star-icon");
+        var favouriteItem = new SidebarItem("favorites", "Favorites", "icon-favorite");
         favouriteItem.visibleForLogged = true;
     
-        var settingsItem = new SidebarItem("settings", "Settings", "settings-icon");
+        var settingsItem = new SidebarItem("settings", "Settings", "icon-settings");
         
-        var aboutItem = new SidebarItem("about", "About", "logo-icon");
+        var aboutItem = new SidebarItem("about", "About", "icon-logo-symbol");
     
         this.topItems = [
           searchItem,

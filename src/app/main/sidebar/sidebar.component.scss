@@ -8,20 +8,26 @@
     font-size: 20px;
 }
 
-:host-context(.light) .icon{
-    background-color: #85878c;
+.side-icon{
+    margin-top: 3px;
+    width: 24px;
+    font-size: 18px;
 }
 
-:host-context(.dark) .icon{
-    background-color: $dark-icon;
+:host-context(.light) .side-icon{
+    color: #85878c;
+}
+
+:host-context(.dark) .side-icon{
+    color: $dark-icon;
 }
 
 :host-context(.light) .selected-icon{
-    background-color: $app-green;
+    color: $app-green;
 }
 
 :host-context(.dark) .selected-icon{
-    background-color: white !important;
+    color: white !important;
 }
 
 .menu-text{
@@ -115,6 +121,7 @@
     padding: 0;
     padding-bottom: 140px; 
     list-style: none;
+    margin-left: 3px;
 }
 
 .sidebar-item{
@@ -163,3 +170,19 @@ li{
     outline: none;
 }
 
+.icon-search{
+    font-size: 16px;
+    width: 22px;
+}
+
+.icon-no-name{
+    font-size: 24px;
+    margin-top: 6px;
+    margin-left: -3px;
+    width: 26px;
+}
+
+.icon-logout{
+    margin-left: 4px;
+    width: 20px;
+}

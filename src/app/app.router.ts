@@ -26,6 +26,8 @@ import { RehearsalFullComponent } from "app/main/rehearsal/rehearsal-full/rehear
 import { CanActivateSearch } from "app/tools/can-activate-search";
 import { RestorePasswordComponent } from "app/main/login/restore-password/restore-password.component";
 import { AboutComponent } from "app/main/about/about.component";
+import { NotificationSideComponent } from "app/navbar/notifications/notification-side/notification-side.component";
+import { CanActivateAdaptive } from "app/tools/can-activate-adaptive";
 
 const appRoutes: Routes = [
   {
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
               { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
               { path: "checkmap", component: MapCreationComponent },
               { path: "search", component: SearchComponent },
-              { path: "favorites", component: FavouritesComponent }
+              { path: "favorites", component: FavouritesComponent },
+              { path: "notifications", component: NotificationSideComponent , canActivate: [CanActivateAdaptive]}
             ],
           },
           { path: "musicianPage", component: MusicianFullComponent },

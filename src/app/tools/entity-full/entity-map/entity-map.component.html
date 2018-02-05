@@ -12,7 +12,7 @@
       </div>
     </div>
     <div *ngIf="!isEditMode" class="address-container d-flex flex-row">
-      <span class="icon icon-middle pin-icon mr-2"></span>
+      <span class="icon-pin mr-2"></span>
       <span *ngIf="!mapCreationService.address">{{address}}</span>
       <span *ngIf="mapCreationService.address">{{mapCreationService.address}}</span>
     </div>

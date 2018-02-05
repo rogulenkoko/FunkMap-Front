@@ -13,8 +13,8 @@
       <span *ngIf="navbarService.title">{{navbarService.title}}</span>
     </a>
 
-    <span class="notification-icon-mobile">
-      <!-- <i *ngIf="userService.user" (click)="changeNotificationsVisibility()" class="fa fa-bell"></i> -->
+    <span class="notification-icon-mobile d-flex align-items-center">
+      <i *ngIf="userService.user" routerLink="/notifications" (click)="changeNotificationsVisibility()" class="icon-notification"></i>
     </span>
    
     
@@ -39,7 +39,7 @@
 
 
         <li *ngIf="userService.user" (click)="changeNotificationsVisibility()" class="nav-item d-flex flex-row align-items-center mr-4 dropdown">
-          <div class="icon icon-middle notification-icon" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+          <div class="icon-notification" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
           <div *ngIf="notificationsInfoService.newNotificationsCount" class="notification-count">{{notificationsInfoService.newNotificationsCount}}</div>
           <div onClick="event.stopPropagation();" class="dropdown-menu dropdown-menu-right notifications-container" aria-labelledby="navbarDropdownMenuLink">
             <notifications></notifications>

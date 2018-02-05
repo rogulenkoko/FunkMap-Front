@@ -149,3 +149,18 @@
 .icon-minus:before {
   content: "\44";
 }
+.icon-favorite:before {
+  content: "\4c";
+}
+.icon-logout:before {
+  content: "\4d";
+}
+.icon-notification:before {
+  content: "\4e";
+}
+.icon-search:before {
+  content: "\4f";
+}
+.icon-settings:before {
+  content: "\50";
+}

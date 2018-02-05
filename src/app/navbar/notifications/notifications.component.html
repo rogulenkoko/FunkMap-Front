@@ -1,29 +1,8 @@
 <div class="notifications-main-container">
   <span class="notifications-title">{{'Notifications' | translate}}</span>
   <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="notifications-container">
-    <div *ngFor="let notification of notifications">
-      <div class="d-flex flex-row">
-        <div class="notification-content d-flex flex-column">
-          <div class="d-flex flex-row">
-            <avatar-circle [ngClass]="'notifications-avatar'" [image]="notification.userAvatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
-            <ng-container [ngSwitch]="notification.notificationType">
-              <band-invite-notification *ngSwitchCase="1" [notification]="notification"></band-invite-notification>
-              <band-invite-confirmation-notification *ngSwitchCase="2" [notification]="notification"></band-invite-confirmation-notification>
-            </ng-container>
-            
-          </div>
-
-          <p class="notification-date">{{notification.date | dateNotification}}</p>
-        </div>
-
-        <div *ngIf="notification.needAnswer"  class="actions-cotainer">
-            <span *ngIf="!notification.isConfirmed" (click)="sendResponse(-1, notification.id)" class="icon-close"></span>
-            <span *ngIf="!notification.isConfirmed" (click)="sendResponse(1, notification.id)" class="fa fa-check"></span>
-            <span *ngIf="notification.isConfirmed" class="action-label">{{'Notifications_IsSent' | translate}}</span>
-        </div>
-      </div>
-    </div>
-
+   
+    <notification-list [notifications]="notifications"></notification-list>
     <div *ngIf="!notifications || notifications.length == 0" class="empty-label">
       {{'Notifications_Empty' | translate}}
     </div>

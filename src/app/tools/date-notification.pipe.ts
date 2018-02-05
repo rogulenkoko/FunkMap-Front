@@ -7,6 +7,9 @@ import * as moment from "moment";
 export class DateNotificationPipe implements PipeTransform {
 
   transform(value: any): string {
+
+    console.log(value);
+
     let result = "";
     if (!value) {
       return;
@@ -17,23 +20,21 @@ export class DateNotificationPipe implements PipeTransform {
 
     var daysFromWeekStart = end.diff(moment().startOf('week'), "days");
     if (daysDifference == 0) {
-      result = start.format("HH:mm")
+      return start.format("HH:mm")
     }
 
     if (daysDifference > 0 && daysDifference <= daysFromWeekStart) {
-      result = start.format("ddd").toString();
+      return start.format("ddd").toString();
     }
 
     if (daysDifference > daysFromWeekStart && daysDifference < 365) {
-      result = start.format("DD.MM").toString();
+      return start.format("DD.MM").toString();
     }
 
     if (daysDifference > 365) {
-      result = start.format("DD.MM.YY").toString();
+      return start.format("DD.MM.YY").toString();
     }
-
-    result = start.format("HH:mm").toString();
-    return result;
+    return start.format("HH:mm").toString();
   }
 
 }

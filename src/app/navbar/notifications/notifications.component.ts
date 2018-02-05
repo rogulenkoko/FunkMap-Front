@@ -39,15 +39,7 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
-  private sendResponse(response: number, id: string){
-    var notificationResponse = new NotificationResponse(response > 0, id);
-    this.notificationService.sendNotificationResponse(notificationResponse).subscribe(resp=>{
-      if(resp.success){
-        var notification = this.notifications.find(x=>x.id == id);
-        notification.isConfirmed = true;
-      }
-    });
-  }
+  
 
   private getUsers(){
     if(!this.notifications && this.notifications.length == 0) return;

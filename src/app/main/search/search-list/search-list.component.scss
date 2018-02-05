@@ -62,11 +62,9 @@
     }
 }
 
-.star-icon, .star-selected-icon{
-    width: 15px;
-    height: 15px;
-    background-size: 15px 15px;
-    mask-size: 100%;
+.icon-favorite, .star-selected-icon{
+    font-size: 15px;
+    color: $dark-grey;
 }
 
 .search-item-content-container{
@@ -91,22 +89,23 @@
     outline: none;
 }
 
-:host-context(.light) .send-message-label, :host-context(.light) .selected-favorite, :host-context(.light) .title:hover{
+:host-context(.light) .send-message-label, :host-context(.light) .title:hover{
     color: $app-green;
 }
 
 
-:host-context(.dark) .send-message-label,  :host-context(.dark) .selected-favorite, :host-context(.dark) .title:hover{
+:host-context(.dark) .send-message-label{
     color: $dark-orange-light;
 }
 
-:host-context(.light) .selected-favorite{
-    background-color: $app-green;
-}
 
 
-:host-context(.dark) .selected-favorite{
-    background: linear-gradient(to top, $button-gradient-yellow, $button-gradient-red);
+.selected-favorite{
+    background-image: linear-gradient(to bottom, $button-gradient-yellow, $button-gradient-red);
+    color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    max-height: 20px;
 }
 
 .title{

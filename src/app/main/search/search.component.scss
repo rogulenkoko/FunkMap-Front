@@ -68,8 +68,9 @@
    position: absolute;
 }
 
-.filter-icon{
-     background-color: $app-grey;
+.icon-search{
+     color: $app-grey;
+     margin-top: 4px;
 }
 
 :host-context(.light) .selected-filter{

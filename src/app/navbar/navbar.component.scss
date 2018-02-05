@@ -5,7 +5,7 @@
 
 .navbar{
     height: 75px;
-    padding-left: 35px;
+    padding: 0 30px;
     z-index:1020;
 }
 
@@ -134,5 +134,15 @@ li{
         color: $dark-grey;
         font-size: 22px;
     }
+
+    .icon-notification{
+        margin-top: 9px;
+    }
    
+}
+
+.icon-notification{
+    font-size: 22px;
+    color: $dark-grey;
+    margin-top: 3px;
 }

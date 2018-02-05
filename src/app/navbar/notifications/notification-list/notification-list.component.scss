@@ -1,0 +1,48 @@
+@import "src/assets/styles/dark-colors.scss";
+
+.notification-content{
+    width: 330px;
+}
+
+.actions-cotainer{
+    width: 70px;
+    margin-left: 15px;
+    text-align: right;
+
+    .icon-close{
+        font-size: 12px;
+    }
+
+    .fa, .icon-close{
+        color: #d6dbe1;
+    }
+
+    .fa:hover, .icon-close:hover{
+        color: $dark-orange-light;
+    }
+
+    .fa-check{
+        margin-left: 20px;
+        font-size: 18px;
+    }
+
+    .action-label{
+        font-size: 11px;
+        color: $inactive-color;
+    }
+}
+
+.notifications-avatar{
+    margin-right: 10px;
+}
+
+.notification-date{
+    margin-left: 50px;
+    font-size: 11px;
+    color: $inactive-color;
+}
+
+.empty-label{
+    color: $inactive-color;
+    font-size: 13px;
+}
