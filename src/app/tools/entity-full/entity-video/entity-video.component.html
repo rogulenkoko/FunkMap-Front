@@ -15,7 +15,7 @@
   <div class="video-container d-flex flex-wrap">
     <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
       <ng-container *ngFor="let info of entity.videoInfos">
-        <div class="d-flex flex-row specific-video-container">
+        <div class="d-flex flex-column specific-video-container">
           <div *ngIf="info.type == 1">
               <youtube-player  [playerId]="info.id" [width]="350" [height]="200" [videoId]="info.id"></youtube-player>
           </div>

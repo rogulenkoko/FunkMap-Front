@@ -143,7 +143,10 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   }
 
   private updateBands() {
-    if (!this.musician || !this.musician.bandLogins || this.musician.bandLogins.length == 0 ) return;
+    if (!this.musician || !this.musician.bandLogins || this.musician.bandLogins.length == 0 ){
+      this.bands = [];
+      return;
+    }
     this.baseService.getSpecific(this.musician.bandLogins).subscribe(bands => {
       this.bands = bands;
     });
@@ -179,8 +182,10 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   private leaveBand(bandLogin: string) {
     var request = new LeaveBandRequest(bandLogin, this.musician.login);
     this.musicianService.leaveBand(request).subscribe(response => {
+      console.log(response);
       if (!response.success) return;
       this.musician.bandLogins = this.musician.bandLogins.filter(x => x != bandLogin);
+      
       this.updateBands();
     });
   }
