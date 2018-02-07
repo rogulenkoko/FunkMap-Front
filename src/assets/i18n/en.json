@@ -43,6 +43,7 @@
     "Login_Password": "Password",
     "Login_ForgotPassword": "Forgot password?",
     "Login_ToLogIn": "Log in",
+    "Login_ToSignup": "Sign up",
     "Login_WrongCreds": "Wrong login or password",
     "Login_RepeatPassword": "Repeat password",
     "Login_Cancel": "Cancel",

@@ -42,6 +42,7 @@
     "Login_Password": "Пароль",
     "Login_ForgotPassword": "Забыли пароль?",
     "Login_ToLogIn": "Войти",
+    "Login_ToSignup": "Зарегистрироваться",
     "Login_Cancel": "Отмена",
     "Login_WrongCreds": "Неверный логин или пароль",
     "Login_RepeatPassword": "Повторите пароль",

@@ -31,8 +31,10 @@
 </div>
 
 <ng-container *isMobile >
-  <div *ngIf="!userService.user" class="footer d-flex">
-    <div class="signup" routerLink="/signup">{{'Navbar_SignUp' | translate}}</div>
-    <div class="login" routerLink="/login">{{'Navbar_Login' | translate}}</div>
+  <div *ngIf="!userService.user" class="footer">
+    {{'Start_Help1' | translate}}
+            <span routerLink="/login">{{'Login_ToLogIn' | translate}}</span>
+            {{'Start_Help_Or' | translate}}
+            <span routerLink="/signup">{{'Login_ToSignup' | translate}}</span>
   </div>
 </ng-container>
