@@ -16,11 +16,24 @@ export class Track{
 
     static toTrack(data: any): Track{
         if(!data) return null;
-        var result = new Track(data.id, data.title, data.description, data.uri);
+
+        var title;
+        var singer;
+
+        var splittedTitle = (<string>data.title).split("-");
+        if(splittedTitle.length == 2){
+            title = splittedTitle[1];
+            singer = splittedTitle[0];
+        } else {
+            title = data.title;
+            singer =  data.user.username;
+        }
+
+        var result = new Track(data.id, title, data.description, data.uri);
         result.durationS = data.duration / (1000);
         result.duration = moment(data.duration).format("mm:ss");
 
-        result.username = data.user.username;
+        result.username = singer;
         return result;
     }
 

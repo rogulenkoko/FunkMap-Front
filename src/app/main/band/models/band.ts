@@ -33,7 +33,7 @@ export class Band extends BaseModel{
         result.avatarMiniId = data.AvatarMiniId;
         
         result.styles = data.Styles;
-
+        result.soundCloudTrackIds = data.SoundCloudTrackIds;
         result.description = data.Description;
         result.address = data.Address;
         result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);

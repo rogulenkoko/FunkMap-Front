@@ -30,6 +30,7 @@ export class SoundcloudPlaylistComponent implements OnInit {
         if(this.soundcloudService.playingTrackUrl && track.uri.includes(this.soundcloudService.playingTrackUrl)){
           track.isPlaying = true;
         }
+        track.isAdded = true;
         this.trackListService.tracks.push(track);
       })
     });

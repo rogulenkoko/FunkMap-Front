@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from '@angular/core';
 import { SoundcloudService } from 'app/tools/soundcloud/soundcloud.service';
 import { Track } from 'app/tools/soundcloud/track';
 import { TrackListService } from 'app/tools/soundcloud/track-list.service';
@@ -11,18 +11,33 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class SoundcloudSearchComponent implements OnInit, OnDestroy {
 
+  public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
   public tracks: Array<Track>;
 
-  public search: string;
+
+  private searchText: string;
+
+  @Input() get search(): string {
+    return this.searchText;
+  }
+
+  set search(value: string) {
+    this.searchText = value;
+    this.searchChange.emit(this.searchText);
+  }
+
+  @Output() searchChange: EventEmitter<string>;
 
   private subscription: Subscription;
 
   constructor(private soundcloudService: SoundcloudService,
               private trackListService: TrackListService) {
       this.subscription = new Subscription();
+      this.searchChange = new EventEmitter<string>();
       this.subscription.add(this.trackListService.onTrackAdded.subscribe(id=> this.refreshTracksCondition()));
       this.subscription.add(this.trackListService.onTrackDeleted.subscribe(id=> this.refreshTracksCondition()));
+      this.subscription.add(this.searchChange.subscribe(search=>this.refreshTracks()))
    }
 
   ngOnInit() {
@@ -58,6 +73,24 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
     this.tracks.forEach(track=>{
       track.isAdded = this.trackListService.tracks.find(x=>x.id == track.id) ? true : false;
     });
+  }
+
+  private play(track: Track){
+    var playing = this.trackListService.tracks.find(x=>x.isPlaying);
+
+    if(playing){
+      this.stop(playing);
+    }
+
+    track.isPlaying = true;
+
+    this.soundcloudService.play(track.uri);
+  }
+
+  private stop(track: Track){
+    track.isPlaying = false;
+
+    this.soundcloudService.stop();
   }
 
 }

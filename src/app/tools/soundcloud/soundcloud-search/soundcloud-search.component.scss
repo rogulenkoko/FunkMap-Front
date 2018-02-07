@@ -5,9 +5,16 @@
 @import "src/assets/styles/base.scss";
 
 
+.soundcloud-playlist-container-wrapper{
+    height: 85%;
+    width: 100%;
+    padding-bottom: 24px;
+}
+
 .soundcloud-search-sontainer{
     width: 100%;
-    padding: 12px; 
+    padding: 0px 30px; 
+    height: 100%;
     
     .search-input-container{
         margin-bottom: 24px;
@@ -15,12 +22,7 @@
 
     .soundcloud-track{
         width: 100%;
-        height: 20px;
         margin-top: 12px;
-
-        iframe{
-            margin-right: 6px;
-        }
     }
 
     .search-button{

@@ -20,11 +20,11 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   @Input() height: string = "480px";
 
-  private selectedTab = 2;
-
   private subscription: Subscription;
 
   private trackIds: Array<number>;
+
+  private search: string;
 
   constructor(private trackListService: TrackListService,
     private editService: EditService,
@@ -44,21 +44,18 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
     this.subscription.unsubscribe();
   }
 
-  private selectTab(tab: number) {
-    this.selectedTab = tab;
-  }
-
   private onAddedToPlaylist(id: number) {
+
     if(!this.entity) return;
-    if(this.entity.soundCloudTrackIds.find(x=> x == id)) return;
+    if(!this.entity.soundCloudTrackIds){
+      this.entity.soundCloudTrackIds = [id];
+    } else if(this.entity.soundCloudTrackIds.find(x=> x == id)) return;
+
+    this.entity.soundCloudTrackIds.push(id);
 
     var entity = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
 
-    if (entity.soundCloudTrackIds) {
-      entity.soundCloudTrackIds.push(id);
-    } else {
-      entity.soundCloudTrackIds = [id];
-    }
+    entity.soundCloudTrackIds = this.entity.soundCloudTrackIds;
 
     this.baseEditService.update(entity).subscribe(response => {
 
@@ -71,10 +68,16 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
     var entity = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
     
-    entity.soundCloudTrackIds = this.entity.soundCloudTrackIds.filter(x=> x != id); 
+    this.entity.soundCloudTrackIds = this.entity.soundCloudTrackIds.filter(x=> x != id); 
+    entity.soundCloudTrackIds = this.entity.soundCloudTrackIds;
+
     this.baseEditService.update(entity).subscribe(response => {
 
     });
+  }
+
+  private clear(){
+    this.search = undefined;
   }
 
 }

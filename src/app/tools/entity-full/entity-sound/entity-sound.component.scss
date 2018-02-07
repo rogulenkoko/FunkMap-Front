@@ -9,7 +9,7 @@
     width: 300px;
     background-color: $dark-card-background;
     border-radius: 5px; 
-    padding: 20px 0px;
+    padding: 0px 0px 20px 0px;
     
     .nav-item{
         margin-left: 30px;
@@ -23,7 +23,6 @@
             width: 100%;
             color: $active-color !important;
             border: none !important;
-            background-color: white ;
             font-size: 16px;
             padding: 0 !important;
             display: inline !important;
@@ -33,6 +32,23 @@
             color: $inactive-color;
             margin-left: 6px;
         }
+    }
+
+    .search-text-container{
+        border-bottom: 1px solid #ececec;
+        padding-top: 6px; 
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 6px;
+        margin-bottom: 12px;
+        .form-control{
+            border: none !important;
+        }
+
+        .icon-search{
+            color: $app-grey;
+            margin-top: 4px;
+       }
     }
 }
 
