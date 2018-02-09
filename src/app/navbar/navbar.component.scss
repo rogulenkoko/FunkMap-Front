@@ -73,15 +73,11 @@
     display: block;
     margin-right: 4.5%;
     font-size: 14px;
+    width: 60%;
 }
 
 .fa-chevron-down{
     font-size: 10px;
-}
-
-.show-all-img{
-    width: 26px;
-    height: 19px;
 }
 
 li{
@@ -145,4 +141,8 @@ li{
     font-size: 22px;
     color: $dark-grey;
     margin-top: 3px;
+}
+
+.player{
+    width: 60%;
 }

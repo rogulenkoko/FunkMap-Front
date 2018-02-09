@@ -1,6 +1,7 @@
 import { BaseModel } from "app/core";
 import { EntityType } from "app/main/map/models";
 import { VideoInfo } from "app/tools/video-edit/video-info";
+import { AudioInfo } from "app/core/models/base-model";
 
 export class Musician extends BaseModel{
 
@@ -46,7 +47,7 @@ export class Musician extends BaseModel{
         result.address = data.Address;
         result.userLogin = data.UserLogin;
         result.isActive = data.IsActive;
-        result.soundCloudTrackIds = data.SoundCloudTrackIds;
+        result.soundCloudTracks = AudioInfo.toAudioInfos(data.SoundCloudTracks);
 
         return result;
     }

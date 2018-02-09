@@ -1,0 +1,69 @@
+@import "src/assets/styles/dark-colors.scss";
+
+
+.player-container{
+
+    .cover{
+        img, span{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        span{
+            background-color: $dark-sub-main;
+        }
+
+        .icon-logo-symbol{
+            color: $player-color;
+            margin-top: 10px;
+            font-size: 26px;
+        }
+    }
+
+    .track-title{
+        font-size: 14px;
+        color: $player-color;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-left: 12px;
+    }
+
+    .actions-container{
+        width: 100px;
+        margin-right: 6px;
+        .fa{
+            color: $player-color;
+            font-size: 18px;
+            margin-right: 18px;
+        }
+
+        .fa:hover{
+            color: $dark-orange-light;
+        }
+
+        .fa-play, .fa-pause{
+            font-size: 24px;
+            margin-left: 3px;
+        }
+    }
+
+    .track-info-container{
+        position: relative;
+        cursor: pointer;
+        .full-player{
+            position: absolute;
+            top: calc(75px + 12px);
+            left: -200px;
+            width: 700px;
+            height: 78px;
+
+            background-color: rgb( 244, 246, 250 );
+            box-shadow: 0px 12px 25px 0px rgba( 0, 3, 6, 0.3);
+        }
+    }
+}
+  
+

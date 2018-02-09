@@ -15,12 +15,8 @@ import { SignalRModule } from 'ng2-signalr';
 import { SignalRConfiguration } from 'ng2-signalr';
 import { environment } from "environments/environment";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
-import { MultiSelectModule, DropdownModule, TooltipModule } from 'primeng/primeng';
+import { MultiSelectModule, DropdownModule, TooltipModule, FileUploadModule, DialogModule, InputTextareaModule, InputSwitchModule, SliderModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputTextareaModule } from 'primeng/primeng';
-import { FileUploadModule } from 'primeng/primeng';
-import { DialogModule } from 'primeng/primeng';
-import {InputSwitchModule} from 'primeng/primeng';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 import { ResponsiveModule } from 'ng2-responsive'
 
@@ -49,6 +45,7 @@ import { ResponsiveModule } from 'ng2-responsive'
     InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule,
+    SliderModule,
     MalihuScrollbarModule,
     ResponsiveModule
   ],
@@ -67,6 +64,7 @@ import { ResponsiveModule } from 'ng2-responsive'
     InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule,
+    SliderModule,
     MalihuScrollbarModule,
     ResponsiveModule
   ],

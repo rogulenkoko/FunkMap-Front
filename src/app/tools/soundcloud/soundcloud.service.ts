@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { ConfigurationProvider } from 'app/core/configuration/configuration-provider';
@@ -9,7 +9,12 @@ declare var SC;
 @Injectable()
 export class SoundcloudService {
 
+
+  public onFinished: EventEmitter<Track>;
+
   constructor(private http: Http) {
+    this.onFinished = new EventEmitter<Track>();
+
     SC.initialize({
       client_id: ConfigurationProvider.soundcloudKey
     });
@@ -27,20 +32,22 @@ export class SoundcloudService {
   }
 
   private player;
-  public playingTrackUrl: string;
+  public playingTrack: Track;
 
-  public play(url: string){
-    SC.stream(url.replace("https://api.soundcloud.com/", "")).then((player)=>{
+  public play(track: Track){
+    SC.stream(track.url.replace("https://api.soundcloud.com/", "")).then((player)=>{
       this.player = player;
-      player.play();
-      this.playingTrackUrl = url;
+      //player.play();
+      var that = this;
+      this.playingTrack = track;
+      player.on("finish", ()=> that.onFinished.emit(track));
     });
   }
 
   public stop(){
     if(this.player){
       this.player.kill();
-      this.playingTrackUrl = undefined;
+      this.playingTrack = undefined;
     }
   }
 

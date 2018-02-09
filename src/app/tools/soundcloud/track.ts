@@ -2,7 +2,7 @@ import * as moment from "moment";
 
 export class Track{
 
-    constructor(public id: number,  public title: string, public description: string, public uri: string){
+    constructor(public id: number,  public title: string, public description: string, public url: string){
 
     }
 
@@ -10,13 +10,13 @@ export class Track{
     public durationS: number;
     public duration: string;
     public username: string;
+    public imageUrl: string;
 
     public isAdded: boolean;
     public isPlaying: boolean;
 
     static toTrack(data: any): Track{
         if(!data) return null;
-
         var title;
         var singer;
 
@@ -32,7 +32,7 @@ export class Track{
         var result = new Track(data.id, title, data.description, data.uri);
         result.durationS = data.duration / (1000);
         result.duration = moment(data.duration).format("mm:ss");
-
+        result.imageUrl = data.artwork_url;
         result.username = singer;
         return result;
     }

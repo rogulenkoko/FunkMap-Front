@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { TrackListService } from 'app/tools/soundcloud/track-list.service';
 import { Subscription } from 'rxjs/Subscription';
-import { BaseModel } from 'app/core/models/base-model';
+import { BaseModel, AudioInfo } from 'app/core/models/base-model';
 import { UserService } from 'app/main/user/user.service';
 import { EditService } from 'app/tools/entity-full/edit.service';
 import { EditableCard } from 'app/tools/entity-full/editable-card';
@@ -37,25 +37,28 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
-    this.trackIds = this.entity.soundCloudTrackIds;
+    this.trackIds = this.entity.soundCloudTracks.map(x=>x.id);
   }
 
   ngOnDestroy() {
+    this.trackListService.tracks = [];
     this.subscription.unsubscribe();
   }
 
   private onAddedToPlaylist(id: number) {
 
-    if(!this.entity) return;
-    if(!this.entity.soundCloudTrackIds){
-      this.entity.soundCloudTrackIds = [id];
-    } else if(this.entity.soundCloudTrackIds.find(x=> x == id)) return;
+    var audio = new AudioInfo(id, new Date());
 
-    this.entity.soundCloudTrackIds.push(id);
+    if (!this.entity) return;
+    if (!this.entity.soundCloudTracks) {
+      this.entity.soundCloudTracks = [audio];
+    } else if (this.entity.soundCloudTracks.find(x => x.id == id)) return;
+
+    this.entity.soundCloudTracks.push(audio);
 
     var entity = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
 
-    entity.soundCloudTrackIds = this.entity.soundCloudTrackIds;
+    entity.soundCloudTracks = this.entity.soundCloudTracks;
 
     this.baseEditService.update(entity).subscribe(response => {
 
@@ -64,19 +67,19 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   private onDeletedFromPlaylist(id: number) {
 
-    if(!this.entity.soundCloudTrackIds.find(x=> x == id)) return;
+    if (!this.entity.soundCloudTracks.find(x => x.id == id)) return;
 
     var entity = new BaseModel(this.entity.login, this.entity.name, this.entity.entityType);
-    
-    this.entity.soundCloudTrackIds = this.entity.soundCloudTrackIds.filter(x=> x != id); 
-    entity.soundCloudTrackIds = this.entity.soundCloudTrackIds;
+
+    this.entity.soundCloudTracks = this.entity.soundCloudTracks.filter(x => x.id != id);
+    entity.soundCloudTracks = this.entity.soundCloudTracks;
 
     this.baseEditService.update(entity).subscribe(response => {
 
     });
   }
 
-  private clear(){
+  private clear() {
     this.search = undefined;
   }
 

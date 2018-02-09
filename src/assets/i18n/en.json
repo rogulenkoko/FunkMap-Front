@@ -168,6 +168,7 @@
     "Band_NoMembers": "There are no members in the group",
     "User_NoEntities": "Youe haven't got any profile",
     "Sound_Search": "Found tracks",
+    "Sound_SearchTooltip": "Track search is performed via Soundcloud service",
     "Sound_SearchPlaceholder": "Search track..",
     "Sound_Playlist": "Playlist",
     "Sound_TracksNotFound": "Tracks not found",

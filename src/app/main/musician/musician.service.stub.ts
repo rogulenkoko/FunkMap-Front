@@ -9,6 +9,7 @@ import { BandPreview } from 'app/main/band/models';
 import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
 import { InviteBandResponse } from 'app/main/musician/invite-band-response';
 import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
+import { AudioInfo } from 'app/core/models/base-model';
 
 @Injectable()
 export class MusicianServiceStub extends MusicianService {
@@ -46,7 +47,7 @@ export class MusicianServiceStub extends MusicianService {
      musician.videoInfos = [new VideoInfo("kCsrmTxEZhE", VideoType.Youtube), new VideoInfo("59777392", VideoType.Vimeo)];
      musician.facebookLink = "asd";
      musician.vkLink = "aaa";
-     musician.soundCloudTrackIds = [95474742];
+     musician.soundCloudTracks = [new AudioInfo(95474742, new Date)];
      musician.soundCloudLink = "aaaa";
      musician.youTubeLink = "zz";
      musician.description = `Мик Томсон (род. 3 ноября 1973 ) - американский музыкант. Он известен как один из трех гитаристов Slipknot`;

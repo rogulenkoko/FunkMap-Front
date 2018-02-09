@@ -1,0 +1,30 @@
+@import "src/assets/styles/dark-colors.scss";
+
+.player-container{
+    height: 100%;
+    padding: 16px 36px;
+
+    .actions-left-container{
+        width: 100px;
+        margin-right: 6px;
+        .fa{
+            color: $player-color;
+            font-size: 22px;
+            margin-right: 18px;
+        }
+    
+        .fa:hover{
+            color: $dark-orange-light;
+        }
+    
+        .fa-play, .fa-pause{
+            font-size: 28px;
+            margin-left: 3px;
+        }
+    }
+
+    .actions-right-container{
+        width: 100px;
+    }
+}
+

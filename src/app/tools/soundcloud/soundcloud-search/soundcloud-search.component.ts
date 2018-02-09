@@ -84,13 +84,14 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
 
     track.isPlaying = true;
 
-    this.soundcloudService.play(track.uri);
+    this.trackListService.tracks = this.tracks;
+    this.trackListService.play(track);
   }
 
   private stop(track: Track){
     track.isPlaying = false;
 
-    this.soundcloudService.stop();
+    this.trackListService.stop(track);
   }
 
 }

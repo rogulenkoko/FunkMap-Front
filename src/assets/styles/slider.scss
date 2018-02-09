@@ -1,0 +1,26 @@
+@import "src/assets/styles/dark-colors.scss";
+
+.ui-slider .ui-slider-handle{
+    background-color: $dark-orange-light !important;
+    border-radius: 50% !important;
+    background-image: none !important;
+    width: 12px !important;
+    height: 12px !important;
+    margin-top: -3px;
+}
+
+.ui-slider{
+    box-shadow: none !important;
+    height: 2px !important;
+    border: none !important;
+    background-color: $player-color !important;
+    //background-color: red !important;
+    border-radius: 2px;
+}
+
+.ui-slider-range{
+    background: $dark-orange-light !important;
+    opacity: 1 !important;
+    border: none !important;
+    box-shadow: none !important;
+}

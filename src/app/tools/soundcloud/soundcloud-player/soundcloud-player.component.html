@@ -1,0 +1,21 @@
+<div *ngIf="trackListService.lastTrack" class="player-container d-flex align-items-center justify-content-between">
+  <div class="actions-left-container d-flex align-items-center justify-content-between">
+      <i class="fa fa-backward" (click)="prev(trackListService.lastTrack)"></i>
+      <i *ngIf="!trackListService.lastTrack.isPlaying" class="fa fa-play" (click)="play(trackListService.lastTrack)"></i>
+      <i *ngIf="trackListService.lastTrack.isPlaying" class="fa fa-pause" (click)="stop(trackListService.lastTrack)"></i>
+      <i class="fa fa-forward" (click)="next(trackListService.lastTrack)"></i>
+  </div>
+
+  <div>
+asd
+  </div>
+
+  <div class="actions-right-container d-flex flex-column">
+    <div class="actions-container">
+      
+    </div>
+    <div class="volume-slider">
+        <p-slider [(ngModel)]="volume" [animate]="true" (onChange)="volumeChange($event)"></p-slider> 
+    </div>
+  </div>
+</div>

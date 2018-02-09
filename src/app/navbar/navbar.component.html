@@ -1,6 +1,6 @@
 <nav class="d-flex navbar navbar-toggleable  fixed-top justify-content-between">
 
-  <div *isDesktop class="d-flex align-items-center" >
+  <div *isDesktop class="d-flex align-items-center">
     <a class="navbar-brand funkmap-title" routerLink="/">
       <img src="assets/images/logo.svg" />
     </a>
@@ -16,17 +16,23 @@
     <span class="notification-icon-mobile d-flex align-items-center">
       <i *ngIf="userService.user" routerLink="/notifications" (click)="changeNotificationsVisibility()" class="icon-notification"></i>
     </span>
-   
-    
+
+
   </div>
 
 
-  <div class="right-nav-container">
-    <ul class="navbar-nav d-flex align-items-center">
+  <div class="right-nav-container d-flex justify-content-between">
+
+
+    <div *showItBootstrap="['xl','lg']" class="player">
+      <soundcloud-player-mini></soundcloud-player-mini>
+    </div>
+
+    <ul class="navbar-nav d-flex align-items-center n">
 
       <ng-container *showItBootstrap="['xl','lg']">
         <!--isLogged из сервиса-->
-        <ng-container *ngIf="!userService.user">
+        <div *ngIf="!userService.user">
           <li class="nav-item">
             <a routerLink="/signup" class="signup mr-3">{{'Navbar_SignUp' | translate}}</a>
           </li>
@@ -34,7 +40,7 @@
           <li class="nav-item ">
             <a routerLink="/login" class="login mr-3">{{'Navbar_Login' | translate}}</a>
           </li>
-        </ng-container>
+        </div>
 
 
 

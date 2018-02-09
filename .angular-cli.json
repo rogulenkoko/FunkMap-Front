@@ -21,6 +21,8 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
+        "../node_modules/primeng/resources/primeng.min.css",
+        "../node_modules/primeng/resources/themes/omega/theme.css",
         "assets/font-awesome-4.7.0/css/font-awesome.min.css",
         "assets/icons/icons.css",
         "assets/styles/leaflet.scss",
@@ -30,11 +32,10 @@
         "assets/styles/cropper.scss",
         "assets/styles/modal.scss",
         "assets/styles/switch.scss",
+        "assets/styles/slider.scss",
         "../node_modules/leaflet/dist/leaflet.css",
         "../node_modules/cropper/dist/cropper.css",
         "../node_modules/leaflet.markercluster/dist/MarkerCluster.css",
-        "../node_modules/primeng/resources/primeng.min.css",
-        "../node_modules/primeng/resources/themes/omega/theme.css",
         "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
       ],
       "scripts": [

@@ -1,5 +1,5 @@
 <div *ngIf="entity" class="entity-sound-container" [style.height]="height">
-    <div class="search-text-container d-flex justify-content-between">
+    <div *ngIf="isUsers" class="search-text-container d-flex justify-content-between">
         <div class="search-input d-flex flex-row align-items-center">
             <span class="icon-search mr-3"></span>
             <input placeholder="{{'Search_Placeholder' | translate}}" class="form-control" [(ngModel)]="search" />
@@ -12,8 +12,9 @@
             <a *ngIf="entity.soundCloudTrackIds" class="tracks-count">{{entity.soundCloudTrackIds.length}}</a>
         </li>
 
-        <li *ngIf="search" class="nav-item" (click)="selectTab(2)">
+        <li *ngIf="search" class="nav-item d-flex align-items-center" (click)="selectTab(2)">
                 <a class="nav-link">{{'Sound_Search' | translate}} </a>
+                <i pTooltip="{{'Sound_SearchTooltip' | translate}}" escape="true" tooltipPosition="top" class="icon-info ml-2"></i>
             </li>
     </ul>
 

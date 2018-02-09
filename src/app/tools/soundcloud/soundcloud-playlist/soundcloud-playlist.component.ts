@@ -27,31 +27,13 @@ export class SoundcloudPlaylistComponent implements OnInit {
     this.trackListService.tracks = [];
     this.trackIds.forEach(trackId => {
       this.soundcloudService.getTrack(trackId).subscribe(track => {
-        if(this.soundcloudService.playingTrackUrl && track.uri.includes(this.soundcloudService.playingTrackUrl)){
+        if(this.soundcloudService.playingTrack && track.id == this.soundcloudService.playingTrack.id){
           track.isPlaying = true;
         }
         track.isAdded = true;
         this.trackListService.tracks.push(track);
       })
     });
-  }
-
-  private play(track: Track){
-    var playing = this.trackListService.tracks.find(x=>x.isPlaying);
-
-    if(playing){
-      this.stop(playing);
-    }
-
-    track.isPlaying = true;
-
-    this.soundcloudService.play(track.uri);
-  }
-
-  private stop(track: Track){
-    track.isPlaying = false;
-
-    this.soundcloudService.stop();
   }
 
   public removeFromPlaylist(track) {
