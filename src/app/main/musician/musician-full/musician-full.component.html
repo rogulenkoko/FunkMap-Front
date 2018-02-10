@@ -17,8 +17,9 @@
 
 <div *isMobile class="musician-full-container musician-full-container-mobile">
 
-  <div class="d-flex flex-column justify-content-center row-container">
-    <musician-base *ngIf="editService.baseModel"></musician-base>
-    <musician-info *ngIf="editService.baseModel"></musician-info>
+  <div *ngIf="editService.baseModel" class="d-flex flex-column justify-content-center row-container">
+    <musician-base></musician-base>
+    <musician-info></musician-info>
+    <musician-video [musician]="editService.baseModel"></musician-video>
   </div>
 </div>

@@ -9,6 +9,7 @@ import { Subscription } from "rxjs/Subscription";
 import { RouteBuilder } from "app/tools/route-builder";
 import { BaseEditService } from "app/tools/entity-full/base-edit.service";
 import { VideoInfo } from 'app/tools/video-edit/video-info';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'entity-video',
@@ -22,17 +23,32 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
   public config: any;
   index: number = 0;
 
-  public isAddVideoMode: boolean = false;
+  public isAddVideoMode: boolean = false; 
+
+
+  public playerWidth: number;
+  public playerHeight: number;
 
   constructor(private editBaseService: BaseEditService,
               private router: Router,
-            private editService: EditService) {
+              private editService: EditService,
+              private adaptiveService: AdaptiveService) {
     super();
+    
     
   }
 
   ngOnInit() {
-    this.isEditVisible = true;
+    if(this.adaptiveService.isMobile()){
+      this.playerHeight = 180;
+      this.playerWidth = 320;
+      this.isEditVisible = false;
+    } else {
+      this.playerHeight = 200;
+      this.playerWidth = 350;
+      this.isEditVisible = true;
+    }
+    
     this.isUsers = this.editService.isUsers;
     this.config = {
       direction: 'horizontal',

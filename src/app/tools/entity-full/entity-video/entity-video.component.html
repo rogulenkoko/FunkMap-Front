@@ -1,45 +1,51 @@
-<div class="entity-video-container">
-
-
-  <div class="info-title-container d-flex justify-content-between">
-    <div class="title-container">
-      <span>{{'Video' | translate}}</span>
-      <span class="video-count">{{entity.videoInfos ? entity.videoInfos.length : 0}}</span>
-    </div>
-    <div class="edit-buttons-container d-flex align-items-center" (click)="editVideo()">
-      <i *ngIf="isEditVisible && isUsers" class="icon-plus"></i>
-      <span *ngIf="isEditVisible && isUsers">{{'Video_Add' | translate}}</span>
-    </div>
-  </div>
-
-  <div class="video-container">
-    <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
-      <swiper [config]="config" [(index)]="index">
-        <ng-container *ngFor="let info of entity.videoInfos">
-          <div class="d-flex flex-column specific-video-container">
-            <div *ngIf="info.type == 1">
-              <youtube-player [playerId]="info.id" [width]="350" [height]="200" [videoId]="info.id"></youtube-player>
-            </div>
-            <div *ngIf="info.type == 2">
-              <vimeo-player [videoId]="info.id" [width]="360" [height]="200"></vimeo-player>
-            </div>
-
-            <span>{{info.name}}</span>
-          </div>
-
-        </ng-container>
-      </swiper>
-
-
-    </ng-container>
-    <ng-container *ngIf="!entity.videoInfos || entity.videoInfos.length == 0">
-      <div class="no-video-container d-flex flex-column align-items-center justify-content-center">
-        <span>{{'NoVideo' | translate}}</span>
-        <span *ngIf="isUsers" (click)="editVideo()" class="add-video-label">{{'Video_Add' | translate}}</span>
-
-      </div>
-    </ng-container>
-  </div>
+<div *isDesktop class="entity-video-container">
+    <ng-template [ngTemplateOutlet]="videoTemplate"></ng-template>
 </div>
+
+<div *isMobile class="entity-video-container entity-video-container-mobile">
+    <ng-template [ngTemplateOutlet]="videoTemplate"></ng-template>
+</div>
+
+<ng-template #videoTemplate>
+    <div class="info-title-container d-flex justify-content-between">
+        <div class="title-container">
+          <span>{{'Video' | translate}}</span>
+          <span class="video-count">{{entity.videoInfos ? entity.videoInfos.length : 0}}</span>
+        </div>
+        <div class="edit-buttons-container d-flex align-items-center" (click)="editVideo()">
+          <i *ngIf="isEditVisible && isUsers" class="icon-plus"></i>
+          <span *ngIf="isEditVisible && isUsers">{{'Video_Add' | translate}}</span>
+        </div>
+      </div>
+    
+      <div class="video-container">
+        <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
+          <swiper [config]="config" [(index)]="index">
+            <ng-container *ngFor="let info of entity.videoInfos">
+              <div class="d-flex flex-column specific-video-container">
+                <div *ngIf="info.type == 1">
+                  <youtube-player [playerId]="info.id" [width]="playerWidth" [height]="playerHeight" [videoId]="info.id"></youtube-player>
+                </div>
+                <div *ngIf="info.type == 2">
+                  <vimeo-player [videoId]="info.id" [width]="playerWidth" [height]="playerHeight"></vimeo-player>
+                </div>
+    
+                <span>{{info.name}}</span>
+              </div>
+    
+            </ng-container>
+          </swiper>
+    
+    
+        </ng-container>
+        <ng-container *ngIf="!entity.videoInfos || entity.videoInfos.length == 0">
+          <div class="no-video-container d-flex flex-column align-items-center justify-content-center">
+            <span>{{'NoVideo' | translate}}</span>
+            <span *ngIf="isUsers" (click)="editVideo()" class="add-video-label">{{'Video_Add' | translate}}</span>
+    
+          </div>
+        </ng-container>
+      </div>
+</ng-template>
 
 <video-edit *ngIf="isAddVideoMode" [(isAddVideoMode)]="isAddVideoMode" (onVideoSaved)="saveVideo($event)"></video-edit>
