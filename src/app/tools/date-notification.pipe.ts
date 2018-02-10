@@ -7,9 +7,6 @@ import * as moment from "moment";
 export class DateNotificationPipe implements PipeTransform {
 
   transform(value: any): string {
-
-    console.log(value);
-
     let result = "";
     if (!value) {
       return;

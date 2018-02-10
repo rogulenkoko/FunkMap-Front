@@ -19,12 +19,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
 
-  config = {
-    direction: 'horizontal',
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-    }};
+  public config: any;
   index: number = 0;
 
   public isAddVideoMode: boolean = false;
@@ -33,11 +28,19 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
               private router: Router,
             private editService: EditService) {
     super();
+    
   }
 
   ngOnInit() {
     this.isEditVisible = true;
     this.isUsers = this.editService.isUsers;
+    this.config = {
+      direction: 'horizontal',
+      slidesPerView: 'auto'};
+
+      if(this.entity.videoInfos && this.entity.videoInfos.length > 2){
+        this.config.pagination = { el: '.swiper-pagination'}
+      }
   }
 
   private editVideo() {

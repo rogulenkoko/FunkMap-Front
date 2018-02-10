@@ -15,6 +15,7 @@
 
     <span class="notification-icon-mobile d-flex align-items-center">
       <i *ngIf="userService.user" routerLink="/notifications" (click)="changeNotificationsVisibility()" class="icon-notification"></i>
+      <div *ngIf="notificationsInfoService.newNotificationsCount" class="notification-count"></div>
     </span>
 
 
