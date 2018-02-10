@@ -18,6 +18,8 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
 
   private searchText: string;
 
+  @Input() isUsers: boolean;
+
   @Input() get search(): string {
     return this.searchText;
   }
@@ -55,9 +57,8 @@ export class SoundcloudSearchComponent implements OnInit, OnDestroy {
     }
 
     this.soundcloudService.search(this.search).subscribe(tracks => {
-      this.tracks = tracks;
+      this.tracks = this.trackListService.mixPlaylist(false, tracks);
       this.refreshTracksCondition();
-      
     })
   }
 

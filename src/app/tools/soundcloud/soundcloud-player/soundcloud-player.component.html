@@ -6,16 +6,36 @@
       <i class="fa fa-forward" (click)="next(trackListService.lastTrack)"></i>
   </div>
 
-  <div>
-asd
+  <div class="info-container d-flex flex-column">
+    <div class="d-flex justify-content-between">
+        <div class="title-container d-flex align-tems-end">
+            <span class="name">{{trackListService.lastTrack.title}}</span>
+            <span class="username">{{trackListService.lastTrack.username}}</span>
+          </div>
+          <div class="time-container">
+            <span class="current-time">{{currentDuration}}</span>
+            <span class="current-time">/</span>
+            <span class="full-time">{{trackListService.lastTrack.duration}}</span>
+          </div>
+    </div>
+   
+    <div>
+      <!-- <div class="progress">
+        <div class="progress-bar" role="progressbar" [style.width]="durationPercent + '%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div> -->
+      <p-slider [(ngModel)]="durationPercent" [animate]="true" (onChange)="timeChanged($event)"></p-slider>
+    </div>
   </div>
 
   <div class="actions-right-container d-flex flex-column">
-    <div class="actions-container">
-      
+    <div class="actions-container d-flex justify-content-between">
+      <i *ngIf="!trackListService.settings.mute" class="icon-mute-off" (click)="mute()"></i>
+      <i *ngIf="trackListService.settings.mute" class="icon-mute selected" (click)="mute()"></i>
+      <i class="icon-repeat" [class.selected]="trackListService.settings.repeat" (click)="repeat()"></i>
+      <!-- <i class="icon-shuffle" [class.selected]="trackListService.settings.mix" (click)="mix()"></i> -->
     </div>
     <div class="volume-slider">
-        <p-slider [(ngModel)]="volume" [animate]="true" (onChange)="volumeChange($event)"></p-slider> 
+        <p-slider [(ngModel)]="trackListService.settings.volume" [animate]="true" (onChange)="volumeChange($event)"></p-slider> 
     </div>
   </div>
 </div>

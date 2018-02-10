@@ -28,11 +28,11 @@
       <soundcloud-player-mini></soundcloud-player-mini>
     </div>
 
-    <ul class="navbar-nav d-flex align-items-center n">
+    <ul class="navbar-nav d-flex align-items-center">
 
       <ng-container *showItBootstrap="['xl','lg']">
         <!--isLogged из сервиса-->
-        <div *ngIf="!userService.user">
+        <div *ngIf="!userService.user" class="d-flex">
           <li class="nav-item">
             <a routerLink="/signup" class="signup mr-3">{{'Navbar_SignUp' | translate}}</a>
           </li>

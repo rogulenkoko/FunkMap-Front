@@ -5,16 +5,18 @@
     <i *ngIf="trackListService.lastTrack.isPlaying" class="fa fa-pause" (click)="stop(trackListService.lastTrack)"></i>
     <i class="fa fa-forward" (click)="next(trackListService.lastTrack)"></i>
   </div>
-  <div class="d-flex align-items-center track-info-container" (click)="showPlayer()" >
-      <!-- (clickOutside)="showPlayer(true)" -->
+  <div class="d-flex align-items-center track-info-container" (click)="showPlayer()">
     <div class="cover">
       <img *ngIf="trackListService.lastTrack.imageUrl" src={{trackListService.lastTrack.imageUrl}}/>
-      <span *ngIf="!trackListService.lastTrack.imageUrl" class="d-flex align-items-center justify-content-center"><i class="icon-logo-symbol"></i></span>
+      <span *ngIf="!trackListService.lastTrack.imageUrl" class="d-flex align-items-center justify-content-center">
+        <i class="icon-logo-symbol"></i>
+      </span>
     </div>
     <span class="track-title">{{trackListService.lastTrack.title}}</span>
-
-    <div *ngIf="playerVisible"  class="full-player">
-      <soundcloud-player></soundcloud-player>
-    </div>
+    <!-- (clickOutside)="showPlayer(true)" -->
+  </div>
+  
+  <div [style.display]="playerVisible ? 'block' : 'none'" class="full-player">
+    <soundcloud-player></soundcloud-player>
   </div>
 </div>

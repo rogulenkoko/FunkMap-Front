@@ -164,3 +164,15 @@
 .icon-settings:before {
   content: "\50";
 }
+.icon-mute:before {
+  content: "\52";
+}
+.icon-repeat:before {
+  content: "\53";
+}
+.icon-shuffle:before {
+  content: "\54";
+}
+.icon-mute-off:before {
+  content: "\55";
+}

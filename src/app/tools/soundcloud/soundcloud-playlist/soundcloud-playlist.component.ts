@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TrackListService } from 'app/tools/soundcloud/track-list.service';
 import { Track } from 'app/tools/soundcloud/track';
 import { SoundcloudService } from 'app/tools/soundcloud/soundcloud.service';
+import { AudioInfo } from 'app/core/models/base-model';
 
 @Component({
   selector: 'soundcloud-playlist',
@@ -10,7 +11,9 @@ import { SoundcloudService } from 'app/tools/soundcloud/soundcloud.service';
 })
 export class SoundcloudPlaylistComponent implements OnInit {
 
-  @Input() trackIds: Array<number>;
+  @Input() tracks: Array<AudioInfo>;
+
+  @Input() isUsers: boolean;
 
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
@@ -23,15 +26,21 @@ export class SoundcloudPlaylistComponent implements OnInit {
   }
 
   public refreshTracks() {
-    if (!this.trackIds) return;
+    if (!this.tracks) return;
     this.trackListService.tracks = [];
-    this.trackIds.forEach(trackId => {
+    this.tracks.forEach(audio => {
+      var trackId = audio.id;
       this.soundcloudService.getTrack(trackId).subscribe(track => {
         if(this.soundcloudService.playingTrack && track.id == this.soundcloudService.playingTrack.id){
           track.isPlaying = true;
         }
         track.isAdded = true;
+        track.saveDate = audio.date;
         this.trackListService.tracks.push(track);
+
+        if(this.tracks.length == this.trackListService.tracks.length){
+          this.trackListService.tracks = this.trackListService.mixPlaylist(false, this.trackListService.tracks);
+        }
       })
     });
   }

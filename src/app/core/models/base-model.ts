@@ -36,8 +36,7 @@ export class AudioInfo{
 
     static toAudioInfo(data: any): AudioInfo{
         if(!data) return null;
-
-        var result = new AudioInfo(data.Id, data.SaveDateUtc);
+        var result = new AudioInfo(data.Id, data.Date);
 
         return result;
     }

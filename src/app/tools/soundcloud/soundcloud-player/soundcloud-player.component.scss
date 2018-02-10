@@ -5,7 +5,7 @@
     padding: 16px 36px;
 
     .actions-left-container{
-        width: 100px;
+        width: 120px;
         margin-right: 6px;
         .fa{
             color: $player-color;
@@ -17,14 +17,86 @@
             color: $dark-orange-light;
         }
     
-        .fa-play, .fa-pause{
+        .fa-play{
+            width: 30px;
             font-size: 28px;
-            margin-left: 3px;
+            padding-left: 3px;
+        }
+
+        .fa-pause{
+            width: 30px;
+            font-size: 28px;
         }
     }
 
     .actions-right-container{
         width: 100px;
+
+        .actions-container{
+            font-size: 20px;
+            margin-bottom: 12px;
+
+            i{
+                color: $player-color;
+            }
+
+            i:hover, .selected{
+                color: $dark-orange-light;
+            }
+        }
+
+    }
+
+    .info-container{
+        width: 60%;
+
+        .progress{
+            height: 3px;
+            background-color: $player-color;
+
+            .progress-bar{
+                background: linear-gradient(to right, $button-gradient-yellow, $button-gradient-red);
+            }
+        }
+
+        
+
+        .title-container{
+            width: 75%;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            .name{
+                color: $player-color;
+                font-size: 16px;
+            }
+
+            .username{
+                font-size: 14px;
+                color: $inactive-color;
+                margin-left: 12px;
+                padding-top: 2px;
+            }
+
+            margin-bottom: 18px;
+        }
+
+        .time-container{
+            span{
+                font-size: 14px;
+                padding-top: 2px;
+            }
+
+            .current-time{
+                color: $player-color;
+            }
+
+            .full-time{
+                color: $inactive-color;
+            }
+        }
     }
 }
 

@@ -22,7 +22,7 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   private subscription: Subscription;
 
-  private trackIds: Array<number>;
+  private tracks: Array<AudioInfo>;
 
   private search: string;
 
@@ -37,7 +37,7 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
-    this.trackIds = this.entity.soundCloudTracks.map(x=>x.id);
+    this.tracks = this.entity.soundCloudTracks ? this.entity.soundCloudTracks : [];
   }
 
   ngOnDestroy() {

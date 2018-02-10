@@ -9,6 +9,7 @@ import { Track } from 'app/tools/soundcloud/track';
 export class TrackComponent implements OnInit {
 
   @Input() track: Track;
+  @Input() isUsers: boolean;
 
   @Output() onPlay: EventEmitter<Track>;
   @Output() onPause: EventEmitter<Track>;

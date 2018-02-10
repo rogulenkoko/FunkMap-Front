@@ -13,7 +13,7 @@
   </div>
   <div class="d-flex flex-column action-container align-items-end">
     <span class="user-name">{{track.duration}}</span>
-    <span *ngIf="!track.isAdded" (click)="addToPlaylist(track)" class="icon-plus"></span>
-    <span *ngIf="track.isAdded" (click)="removeFromPlaylist(track)" class="icon-rubbish-bin"></span>
+    <span *ngIf="!track.isAdded && isUsers" (click)="addToPlaylist(track)" class="icon-plus"></span>
+    <span *ngIf="track.isAdded && isUsers" (click)="removeFromPlaylist(track)" class="icon-rubbish-bin"></span>
   </div>
 </div>

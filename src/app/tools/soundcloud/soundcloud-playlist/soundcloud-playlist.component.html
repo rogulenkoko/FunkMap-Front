@@ -2,7 +2,7 @@
   <div class="soundcloud-playlist-container">
     <ng-container *ngIf="trackListService.tracks">
       <div *ngFor="let track of trackListService.tracks" class="soundcloud-track d-flex flex-row justify-content-between">
-          <soundcloud-track [track]="track" (onPlay)="trackListService.play($event)" (onPause)="trackListService.stop($event)" (onRemoved)="removeFromPlaylist($event)"></soundcloud-track>
+          <soundcloud-track [track]="track" [isUsers]="isUsers" (onPlay)="trackListService.play($event)" (onPause)="trackListService.stop($event)" (onRemoved)="removeFromPlaylist($event)"></soundcloud-track>
       </div>
     </ng-container>
     <div *ngIf="!trackListService.tracks || trackListService.tracks.length == 0" class="empty">

@@ -51,18 +51,20 @@
     }
 
     .track-info-container{
-        position: relative;
         cursor: pointer;
-        .full-player{
-            position: absolute;
-            top: calc(75px + 12px);
-            left: -200px;
-            width: 700px;
-            height: 78px;
+    }
 
-            background-color: rgb( 244, 246, 250 );
-            box-shadow: 0px 12px 25px 0px rgba( 0, 3, 6, 0.3);
-        }
+    position: relative;
+
+    .full-player{
+        position: absolute;
+        top: calc(75px + 12px);
+        left: -100px;
+        width: 700px;
+        height: 78px;
+
+        background-color: rgb( 244, 246, 250 );
+        box-shadow: 0px 12px 25px 0px rgba( 0, 3, 6, 0.3);
     }
 }
   

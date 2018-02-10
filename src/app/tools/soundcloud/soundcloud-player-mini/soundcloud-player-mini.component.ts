@@ -10,7 +10,7 @@ import { Track } from 'app/tools/soundcloud/track';
 })
 export class SoundcloudPlayerMiniComponent implements OnInit {
 
-  public playerVisible: boolean = true;
+  public playerVisible: boolean = false;
 
   constructor(private trackListService: TrackListService,
               private soundcloudService: SoundcloudService) { }
@@ -35,11 +35,11 @@ export class SoundcloudPlayerMiniComponent implements OnInit {
   }
 
   showPlayer(forceClose?:boolean){
-    // if(forceClose){
-    //   this.playerVisible = false;
-    //   return;  
-    // }
-    // this.playerVisible = !this.playerVisible;
+    if(forceClose){
+      this.playerVisible = false;
+      return;  
+    }
+    this.playerVisible = !this.playerVisible;
   }
 
 }

@@ -12,6 +12,8 @@ export class Track{
     public username: string;
     public imageUrl: string;
 
+    public saveDate: Date;
+
     public isAdded: boolean;
     public isPlaying: boolean;
 
@@ -28,12 +30,12 @@ export class Track{
             title = data.title;
             singer =  data.user.username;
         }
-
         var result = new Track(data.id, title, data.description, data.uri);
         result.durationS = data.duration / (1000);
         result.duration = moment(data.duration).format("mm:ss");
         result.imageUrl = data.artwork_url;
         result.username = singer;
+        result.saveDate = data.created_at;
         return result;
     }
 

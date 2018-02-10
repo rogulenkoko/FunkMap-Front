@@ -18,6 +18,6 @@
             </li>
     </ul>
 
-    <soundcloud-search *ngIf="search" [(search)]="search"></soundcloud-search>
-    <soundcloud-playlist *ngIf="!search" [trackIds]="trackIds"></soundcloud-playlist>
+    <soundcloud-search *ngIf="search" [(search)]="search" [isUsers]="isUsers"></soundcloud-search>
+    <soundcloud-playlist *ngIf="!search" [tracks]="tracks" [isUsers]="isUsers"></soundcloud-playlist>
 </div>
