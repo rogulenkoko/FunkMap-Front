@@ -19,6 +19,14 @@ export class EntityVideoComponent extends EditableCard implements OnInit {
 
   @Input() entity: BaseModel;
 
+  config = {
+    direction: 'horizontal',
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+    }};
+  index: number = 0;
+
   public isAddVideoMode: boolean = false;
 
   constructor(private editBaseService: BaseEditService,

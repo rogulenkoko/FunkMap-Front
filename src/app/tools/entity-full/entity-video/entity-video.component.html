@@ -12,21 +12,24 @@
     </div>
   </div>
 
-  <div class="video-container d-flex flex-wrap">
+  <div class="video-container">
     <ng-container *ngIf="entity.videoInfos && entity.videoInfos.length > 0">
-      <ng-container *ngFor="let info of entity.videoInfos">
-        <div class="d-flex flex-column specific-video-container">
-          <div *ngIf="info.type == 1">
-              <youtube-player  [playerId]="info.id" [width]="350" [height]="200" [videoId]="info.id"></youtube-player>
-          </div>
-          <div *ngIf="info.type == 2">
-              <vimeo-player [videoId]="info.id" [width]="360" [height]="200"></vimeo-player> 
-          </div>
-          
-          <span>{{info.name}}</span>
-        </div>
+      <swiper [config]="config" [(index)]="index">
+        <ng-container *ngFor="let info of entity.videoInfos">
+          <div class="d-flex flex-column specific-video-container">
+            <div *ngIf="info.type == 1">
+              <youtube-player [playerId]="info.id" [width]="350" [height]="200" [videoId]="info.id"></youtube-player>
+            </div>
+            <div *ngIf="info.type == 2">
+              <vimeo-player [videoId]="info.id" [width]="360" [height]="200"></vimeo-player>
+            </div>
 
-      </ng-container>
+            <span>{{info.name}}</span>
+          </div>
+
+        </ng-container>
+      </swiper>
+
 
     </ng-container>
     <ng-container *ngIf="!entity.videoInfos || entity.videoInfos.length == 0">

@@ -18,7 +18,8 @@ import { ConfigurationProvider, ServiceType } from "app/core/configuration/confi
 import { MultiSelectModule, DropdownModule, TooltipModule, FileUploadModule, DialogModule, InputTextareaModule, InputSwitchModule, SliderModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
-import { ResponsiveModule } from 'ng2-responsive'
+import { ResponsiveModule } from 'ng2-responsive';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ResponsiveModule } from 'ng2-responsive'
     DialogModule,
     SliderModule,
     MalihuScrollbarModule,
-    ResponsiveModule
+    ResponsiveModule,
+    SwiperModule
   ],
   exports: [
     TranslateModule,
@@ -66,7 +68,8 @@ import { ResponsiveModule } from 'ng2-responsive'
     DialogModule,
     SliderModule,
     MalihuScrollbarModule,
-    ResponsiveModule
+    ResponsiveModule,
+    SwiperModule
   ],
   providers: [
     LanguageService,
