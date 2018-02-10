@@ -6,6 +6,8 @@ import { MapCreationService } from "app/main/map/map-creation.service";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { ShopService } from "app/main/shop/shop.service";
+import { RouteBuilder } from 'app/tools/route-builder';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shop-map',
@@ -22,7 +24,8 @@ export class ShopMapComponent implements OnInit {
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
               private shopService: ShopService,
-              private editService: EditService) { 
+              private editService: EditService,
+              private router: Router) { 
     this.shop = this.editService.baseModel as Shop;
   }
 
@@ -44,7 +47,7 @@ export class ShopMapComponent implements OnInit {
     shop.longitude = this.editService.baseModel.longitude;
     shop.address = this.mapCreationService.address;
     this.shopService.updateShop(shop).subscribe(response => {
-      
+      this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
     });
   }
 

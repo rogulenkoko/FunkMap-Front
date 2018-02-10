@@ -6,6 +6,8 @@ import { Marker, EntityType } from "app/main/map/models";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { BandService } from "app/main/band/band.service";
+import { RouteBuilder } from 'app/tools/route-builder';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'band-map',
@@ -22,7 +24,8 @@ export class BandMapComponent implements OnInit {
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
               private bandService: BandService,
-              private editService: EditService) { 
+              private editService: EditService,
+              private router: Router) { 
     this.band = this.editService.baseModel as Band;
   }
 
@@ -46,7 +49,7 @@ export class BandMapComponent implements OnInit {
 
 
     this.bandService.updateBand(band).subscribe(response => {
-      
+      this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
     });
   }
 

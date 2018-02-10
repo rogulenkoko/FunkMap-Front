@@ -6,6 +6,8 @@ import { IconProvider } from "app/main/map/icon-provider.service";
 import { MusicianService } from "app/main/musician/musician.service";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { EntityMapComponent } from "app/tools/entity-full/entity-map/entity-map.component";
+import { RouteBuilder } from 'app/tools/route-builder';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'musician-map',
@@ -22,7 +24,8 @@ export class MusicianMapComponent implements OnInit {
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
               private musicianService: MusicianService,
-              private editService: EditService) { 
+              private editService: EditService, 
+              private router: Router) { 
     this.musician = this.editService.baseModel as Musician;
     //this.editService.onSaved.subscribe(()=> this.updateMap());
   }
@@ -56,7 +59,7 @@ export class MusicianMapComponent implements OnInit {
     musician.address = this.mapCreationService.address;
 
     this.musicianService.updateMusician(musician).subscribe(response => {
-      
+      this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
     });
   }
 }

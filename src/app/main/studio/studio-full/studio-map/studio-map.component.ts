@@ -6,6 +6,8 @@ import { MapCreationService } from "app/main/map/map-creation.service";
 import { EntityMapComponent } from "app/tools/entity-full/entity-map/entity-map.component";
 import { EditService } from "app/tools/entity-full/edit.service";
 import { StudioService } from "app/main/studio/studio.service";
+import { RouteBuilder } from 'app/tools/route-builder';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'studio-map',
@@ -22,7 +24,8 @@ export class StudioMapComponent implements OnInit {
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
               private studioService: StudioService,
-              private editService: EditService) { 
+              private editService: EditService,
+              private router: Router) { 
     this.studio = this.editService.baseModel as Studio;
   }
 
@@ -44,7 +47,7 @@ export class StudioMapComponent implements OnInit {
     studio.longitude = this.editService.baseModel.longitude;
     studio.address = this.mapCreationService.address;
     this.studioService.updateStudio(studio).subscribe(response => {
-      
+      this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
     });
   }
 

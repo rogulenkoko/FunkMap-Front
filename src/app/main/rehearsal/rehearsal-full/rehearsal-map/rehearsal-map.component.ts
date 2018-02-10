@@ -6,6 +6,8 @@ import { Marker, EntityType } from "app/main/map/models";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { RehearsalService } from "app/main/rehearsal/rehearsal.service";
 import { EditService } from "app/tools/entity-full/edit.service";
+import { RouteBuilder } from 'app/tools/route-builder';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rehearsal-map',
@@ -22,7 +24,8 @@ export class RehearsalMapComponent implements OnInit {
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
               private rehearsalService: RehearsalService,
-              private editService: EditService) { 
+              private editService: EditService,
+              private router: Router) { 
     this.rehearsal = this.editService.baseModel as Rehearsal;
   }
 
@@ -44,7 +47,7 @@ export class RehearsalMapComponent implements OnInit {
     rehearsal.longitude = this.editService.baseModel.longitude;
     rehearsal.address = this.mapCreationService.address;
     this.rehearsalService.updateRehearsal(rehearsal).subscribe(response => {
-      
+      this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
     });
   }
 

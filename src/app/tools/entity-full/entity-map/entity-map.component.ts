@@ -51,7 +51,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
 
   ngOnInit() {
     this.isUsers = this.editService.isUsers;
-    this.initMap(this.marker);
+    // this.initMap(this.marker);
     this.route.params.subscribe(params => {
       this.onParamsLoaded(params);
     });
@@ -70,6 +70,8 @@ export class EntityMapComponent extends EditableCard implements OnInit {
       this.editService.baseModel.longitude = this.newMarker.lng;
 
       this.isEditMode = true;
+    } else {
+      this.initMap(this.marker);
     }
 
   }
@@ -90,7 +92,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   
   private saveLocation() {
     this.isEditMode = false;
-    this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
+    
   }
 
   private cancelChanges() {
