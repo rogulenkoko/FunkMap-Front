@@ -136,6 +136,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   private onRouteChanged(url: string){
+    console.log(url);
+    if(!url) return;
     var item = this.topItems.concat(this.bottomItems).find(x=> x.route != "" && url.includes(x.route));
     if(item){
       this.onItemClick(item);

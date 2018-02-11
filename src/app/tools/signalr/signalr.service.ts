@@ -1,10 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { SignalR, SignalRConnection, ISignalRConnection, IConnectionOptions, SignalRConfiguration } from "ng2-signalr";
+import { SignalR, SignalRConnection, ISignalRConnection, IConnectionOptions, SignalRConfiguration, ConnectionStatus } from "@dharapvj/ngx-signalr";
 import { UserService } from "app/main/user/user.service";
 import { ConfigurationProvider } from 'app/core';
 import { ServiceType } from 'app/core/configuration/configuration-provider';
 import { Observable } from 'rxjs/Observable';
-import { ConnectionStatus } from 'ng2-signalr/src/services/connection/connection.status';
 import { Subject } from 'rxjs/Subject';
 
 

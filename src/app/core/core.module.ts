@@ -11,8 +11,7 @@ import { HttpClient } from "./http/http-client.service";
 import { ThemeService } from "app/tools/theme.service";
 import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 
-import { SignalRModule } from 'ng2-signalr';
-import { SignalRConfiguration } from 'ng2-signalr';
+import { SignalRModule, SignalRConfiguration } from '@dharapvj/ngx-signalr';
 import { environment } from "environments/environment";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
 import { MultiSelectModule, DropdownModule, TooltipModule, FileUploadModule, DialogModule, InputTextareaModule, InputSwitchModule, SliderModule } from 'primeng/primeng';

@@ -8,7 +8,7 @@ import { NotificationsFactory } from 'app/navbar/notifications/notifications-fac
 import { NotificationResponse } from 'app/navbar/notifications/models/notification-response';
 import { BaseResponse } from 'app/tools';
 import { SignalrService } from 'app/tools/signalr/signalr.service';
-import { BroadcastEventListener, ISignalRConnection } from 'ng2-signalr';
+import { BroadcastEventListener, ISignalRConnection } from '@dharapvj/ngx-signalr';
 import { NotificationHubService } from 'app/navbar/notifications/notification-hub.service';
 import { Subject } from 'rxjs/Subject';
 

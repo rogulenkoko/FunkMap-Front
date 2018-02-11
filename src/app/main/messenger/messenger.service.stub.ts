@@ -3,7 +3,7 @@ import { SignalrService } from "app/tools/signalr/signalr.service";
 import { Message, Dialog, DialogMessagesRequest, DialogsRequest, DialogsNewMessagesCountModel, DialogUpdateResponse } from "app/main/messenger/models";
 import { Observable } from "rxjs/Observable";
 import { BaseResponse } from "app/tools";
-import { BroadcastEventListener } from "ng2-signalr";
+import { BroadcastEventListener } from "@dharapvj/ngx-signalr";
 import { MessengerService } from "app/main/messenger/messenger.service";
 import { MessengerHubService } from 'app/main/messenger/messenger-hub.service';
 import { LeaveDialogRequest } from 'app/main/messenger/models/leave-dialog-request';
