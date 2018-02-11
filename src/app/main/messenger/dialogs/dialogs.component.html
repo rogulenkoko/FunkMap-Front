@@ -8,7 +8,7 @@
 
 <div class="title-container d-flex flex-row justify-content-between">
   <span>{{'Messages' | translate}}</span>
-  <span (click)="toCreateDialogMode()" class="icon-plus"></span>
+  <span *ngIf="!isMobile" (click)="toCreateDialogMode()" class="icon-plus"></span>
 </div>
 
 <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="dialogs">

@@ -49,7 +49,12 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-    var buildResult = this.mapBuilder.buildMap("map", new L.LatLng(50, 30), 8, MapThemeType.Dark);
+
+   
+    var lastMarker = this.userService.getLastCoordinates();
+    var latLng = lastMarker ? lastMarker : new L.LatLng(50, 30);
+
+    var buildResult = this.mapBuilder.buildMap("map", latLng, 10, MapThemeType.Dark);
     this.map = buildResult.map;
     this.baseLayer = buildResult.mainLayer;
     this.initMarkersLayer();
@@ -64,7 +69,10 @@ export class MapComponent implements OnInit {
   private initMarkersLayer() {
     this.markersLayer = L.layerGroup([]);
     this.map.addLayer(this.markersLayer);
-    this.map.setView(new L.LatLng(this.userService.latitude, this.userService.longitude), this.map.getZoom());
+    var lastMarker = this.userService.getLastCoordinates();
+    var latLng = lastMarker ? lastMarker : new L.LatLng(this.userService.latitude, this.userService.longitude);
+
+    this.map.setView(latLng, this.map.getZoom());
     this.getNearest();
   }
 

@@ -58,7 +58,6 @@
 
 .main-avatar-container-mobile{
     position: relative;
-  
 
     .add-delete-container{
         width: 100%;
@@ -73,6 +72,18 @@
 
     .confirmation-label{
         text-align: center;
+    }
+
+    .avatar-buttons-container{
+        margin-top: 20px;
+    }
+
+    .cropper-container{
+        padding: 0 0px;
+        img{
+            width: 100%;
+            max-height: 300px !important;
+        }
     }
 }
 

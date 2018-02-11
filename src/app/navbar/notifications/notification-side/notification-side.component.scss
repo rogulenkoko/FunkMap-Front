@@ -1,3 +1,11 @@
+@import "src/assets/styles/dark-colors.scss";
+
 .notifications-container{
     padding: 15px 25px;
+}
+
+.empty-label{
+    color: $inactive-color;
+    font-size: 14px;
+    margin-top: 24px;
 }

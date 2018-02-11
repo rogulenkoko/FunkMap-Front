@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { Marker, EntityType } from "./models";
 import { IconProvider } from "./icon-provider.service";
+import { UserService } from 'app/main/user/user.service';
 
 @Injectable()
 export class MarkerFactory {
 
-  constructor(private router: Router, private iconProvider: IconProvider) {
+  constructor(private router: Router, private iconProvider: IconProvider, private userService: UserService) {
 
   }
 
@@ -26,6 +27,10 @@ export class MarkerFactory {
       })
     });
     marker.on("click", (marker) => {
+
+      var latLng = new L.LatLng(point.lat, point.lng);
+      this.userService.setLastCoordinates(latLng);
+
       switch (point.entityType) {
         case EntityType.Musician: this.router.navigate(["/musician/" + point.login]); break;
         case EntityType.Shop: this.router.navigate(["/shop/" + point.login]); break;

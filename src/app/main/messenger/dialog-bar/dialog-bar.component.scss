@@ -49,6 +49,11 @@
 }
 
 .dialog-bar-container-mobile{
+
+    .dialog-bar-action{
+        display: none;
+    }
+
     .add-participants-label{
         display: none;
     }

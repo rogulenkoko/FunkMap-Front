@@ -1,7 +1,11 @@
 <side [title]="'Notifications'">
 
-  <div class="notifications-container">
+  <div *ngIf="notifications && notifications.length > 0" class="notifications-container">
       <notification-list [notifications]="notifications"></notification-list>
+  </div>
+
+  <div *ngIf="!notifications || notifications.length == 0" class="empty-label d-flex justify-content-center">
+    {{'Notifications_Empty' | translate}}
   </div>
     
 

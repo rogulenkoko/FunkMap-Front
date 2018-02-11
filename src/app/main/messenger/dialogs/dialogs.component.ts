@@ -7,6 +7,7 @@ import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DialogReadModel } from 'app/main/messenger/models/dialog-read-model';
 import { CreateDialogRequest } from 'app/main/messenger/models/create-dialog-request';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'dialogs',
@@ -25,13 +26,17 @@ export class DialogsComponent implements OnInit, OnDestroy {
 
   public searchTest: string;
 
+  public isMobile: boolean;
+
   constructor(private messengerService: MessengerService,
     public dialogService: DialogService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private adaptiveService: AdaptiveService) {
 
     this.initializeSubscriptions();
+    this.isMobile = this.adaptiveService.isMobile();
   }
 
   ngOnInit() {

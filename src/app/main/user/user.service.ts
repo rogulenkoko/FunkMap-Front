@@ -46,5 +46,18 @@ export class UserService {
     }
   }
 
+  private lastMarkerKey: string = "last_marker";
+
+  public setLastCoordinates(marker: L.LatLng){
+    var markerJson = JSON.stringify(marker);
+    localStorage.setItem(this.lastMarkerKey,markerJson);
+  }
+
+  public getLastCoordinates(): L.LatLng{
+    var markerJson = localStorage.getItem(this.lastMarkerKey);
+    var marker = JSON.parse(markerJson) as L.LatLng;
+    return marker;
+  }
+
  
 }

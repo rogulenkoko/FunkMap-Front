@@ -17,7 +17,8 @@
 
 
 <ng-container *isMobile>
-    <div (keyup.enter)="sendMessage()" class="d-flex flex-column message-create-main-container message-create-main-container-mobile" *ngIf="dialogService.dialog || isNewDialog">
+    <div (keyup.enter)="sendMessage()" class="d-flex flex-column message-create-main-container message-create-main-container-mobile"
+        *ngIf="dialogService.dialog || isNewDialog">
         <div class="d-flex">
             <div class="content-load-container">
                 <upload [id]="'message-image'" [useTooltip]="false" [icon]="'icon-image'" [width]="'20px'" [fileType]="1" (onUploadedStart)="onUploadedStart($event)"
@@ -36,33 +37,37 @@
 
 
 <ng-template #messageCreateTemplate>
-        <div class="message-content-container d-flex flex-column">
-                <textarea onkeydown="if(event.keyCode == 13) return false;" id="text-input" placeholder="{{'WriteMessage' | translate}}"
-                    rows="0" cols="100" [(ngModel)]="text" pInputTextarea autoResize="false"></textarea>
+    <div class="message-content-container d-flex flex-column">
+        <textarea onkeydown="if(event.keyCode == 13) return false;" id="text-input" placeholder="{{'WriteMessage' | translate}}"
+            rows="0" cols="100" [(ngModel)]="text" pInputTextarea autoResize="false"></textarea>
 
-                <div class="d-flex flex-row flex-wrap">
-                    <div class="d-flex uploaded-image" *ngFor="let image of images">
-                        <img *ngIf="image.data" src="data:image/png;base64,{{image.data}}" />
-                        <span (click)="removeContentItem(image)" class="fa fa-fw fa-close"></span>
-                        <i *ngIf="image.data && !image.isLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    </div>
+        <div class="d-flex flex-row flex-wrap">
+            <div class="d-flex uploaded-image" *ngFor="let image of images">
+                <div class="image-loaded">
+                    <img *ngIf="image.data" src="data:image/png;base64,{{image.data}}" />
+                    <i *ngIf="image.data && !image.isLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                 </div>
 
-                <div class="d-flex flex-column">
-                    <div class="d-flex flex-row uploaded-file" *ngFor="let file of files">
-                        <span *ngIf="file.isLoaded" class="icon-file"></span>
-                        <i *ngIf="!file.isLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                        <span>{{file.name}}</span>
-                        <span>{{file.size | size}}</span>
-                        <div>
-                            <i (click)="removeContentItem(file)" class="fa fa-fw fa-close"></i>
-                        </div>
+                <span (click)="removeContentItem(image)" class="fa fa-fw fa-close"></span>
 
-                    </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-row uploaded-file" *ngFor="let file of files">
+                <span *ngIf="file.isLoaded" class="icon-file"></span>
+                <i *ngIf="!file.isLoaded" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                <span>{{file.name}}</span>
+                <span>{{file.size | size}}</span>
+                <div>
+                    <i (click)="removeContentItem(file)" class="fa fa-fw fa-close"></i>
                 </div>
 
             </div>
+        </div>
+
+    </div>
 
 
-            <span (click)="sendMessage()" class="send-label">{{'Send' | translate}}</span>
+    <span (click)="sendMessage()" class="send-label">{{'Send' | translate}}</span>
 </ng-template>
