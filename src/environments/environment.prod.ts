@@ -1,5 +1,5 @@
 export const environment = {
-  local: false,
+  local: true,
   useServer: true,
   production: true
 };

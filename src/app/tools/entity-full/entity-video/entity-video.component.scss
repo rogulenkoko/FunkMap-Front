@@ -79,6 +79,17 @@
     margin-top: 8px;
     margin-bottom: 12px;
     padding: 30px;
+
+    .info-title-container{
+        margin-bottom: 30px;
+       .title-container{
+           font-size: 20px;
+
+           .video-count{
+            font-size: 18px;
+        }
+       }
+    }
 }
 
 .no-video-container{

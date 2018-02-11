@@ -29,6 +29,7 @@
     "@vimeo/player": "^2.1.1",
     "core-js": "^2.4.1",
     "cropper": "^3.0.0-rc.3",
+    "enhanced-resolve": "^3.3.0",
     "jquery": "^3.2.1",
     "leaflet": "^1.0.3",
     "leaflet-plugins": "^3.0.0",
@@ -40,16 +41,16 @@
     "ng2-signalr": "^2.1.0",
     "ng2-youtube-player-mini": "^2.2.4",
     "ngx-malihu-scrollbar": "^1.2.2",
-    "ngx-swiper-wrapper": "^5.3.4",
+    "ngx-swiper-wrapper": "^4.8.0",
     "primeng": "^5.2.0",
     "rxjs": "^5.1.0",
     "signalr": "^2.2.2",
     "typescript-collections": "^1.2.3",
     "webpack": "^3.10.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "^1.2.4",
+    "@angular/cli": "1.2.4",
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.47",

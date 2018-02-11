@@ -7,6 +7,7 @@ import { EditService } from 'app/tools/entity-full/edit.service';
 import { EditableCard } from 'app/tools/entity-full/editable-card';
 import { SoundcloudService } from 'app/tools/soundcloud/soundcloud.service';
 import { BaseEditService } from 'app/tools/entity-full/base-edit.service';
+import { AdaptiveService } from 'app/tools/adaptive.service';
 
 @Component({
   selector: 'entity-sound',
@@ -28,7 +29,8 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
 
   constructor(private trackListService: TrackListService,
     private editService: EditService,
-    private baseEditService: BaseEditService) {
+    private baseEditService: BaseEditService,
+    private adaptiveService: AdaptiveService) {
     super();
     this.subscription = new Subscription();
     this.subscription.add(this.trackListService.onTrackAdded.subscribe(x => this.onAddedToPlaylist(x)));
@@ -36,13 +38,24 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
   }
 
   ngOnInit() {
-    this.isUsers = this.editService.isUsers;
+    if(this.adaptiveService.isMobile()){
+      this.isUsers = false;
+    } else {
+      this.isUsers = this.editService.isUsers;
+    }
     this.tracks = this.entity.soundCloudTracks ? this.entity.soundCloudTracks : [];
   }
 
   ngOnDestroy() {
+
+    if(this.adaptiveService.isMobile()){
+      this.trackListService.clear();
+    }
+
     this.trackListService.tracks = [];
     this.subscription.unsubscribe();
+
+   
   }
 
   private onAddedToPlaylist(id: number) {

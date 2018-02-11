@@ -6,5 +6,5 @@
 export const environment = {
   local: true,
   useServer: true,
-  production: false
+  production: true
 };

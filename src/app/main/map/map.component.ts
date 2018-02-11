@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
     private mapFilter: MapFilter,
     private creationService: CreationService,
     private router: Router,
-    private userService: UserService,
+    public userService: UserService,
     private mapCreationService: MapCreationService,
     private searchFilterService: SearchFilterService) {
     //this.mapProvider.onMapChange.subscribe(() => this.updateMap());

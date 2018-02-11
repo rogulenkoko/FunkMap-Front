@@ -10,7 +10,7 @@ export class SoundSettings{
         var settings = new SoundSettings();
         settings.mix = false;
         settings.mute = false;
-        settings.volume = 50;
+        settings.volume = 100;
         settings.repeat = false;
         return settings;
     }

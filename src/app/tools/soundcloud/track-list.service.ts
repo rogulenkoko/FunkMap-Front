@@ -94,6 +94,13 @@ export class TrackListService {
     this.soundcloudService.stop();
   }
 
+  public clear(){
+    this.lastTrack = undefined;
+    if(this.soundcloudService.playingTrack) this.soundcloudService.playingTrack.isPlaying = false;
+    this.soundcloudService.playingTrack = undefined;
+    this.soundcloudService.stop();
+  }
+
   private soundSettingsKey = "sound_settings";
 
   public setSettings(settings: SoundSettings) {

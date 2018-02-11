@@ -2,7 +2,7 @@
     <ng-template [ngTemplateOutlet]="videoTemplate"></ng-template>
 </div>
 
-<div *isMobile class="entity-video-container entity-video-container-mobile">
+<div *isMobile id="mobile-container" class="entity-video-container entity-video-container-mobile">
     <ng-template [ngTemplateOutlet]="videoTemplate"></ng-template>
 </div>
 
@@ -23,10 +23,10 @@
           <swiper [config]="config" [(index)]="index">
             <ng-container *ngFor="let info of entity.videoInfos">
               <div class="d-flex flex-column specific-video-container">
-                <div *ngIf="info.type == 1">
+                <div *ngIf="info.type == 1 && playerWidth">
                   <youtube-player [playerId]="info.id" [width]="playerWidth" [height]="playerHeight" [videoId]="info.id"></youtube-player>
                 </div>
-                <div *ngIf="info.type == 2">
+                <div *ngIf="info.type == 2 && playerWidth">
                   <vimeo-player [videoId]="info.id" [width]="playerWidth" [height]="playerHeight"></vimeo-player>
                 </div>
     

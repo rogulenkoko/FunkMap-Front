@@ -17,7 +17,7 @@ export class SoundcloudPlaylistComponent implements OnInit {
 
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
 
-  constructor(private trackListService: TrackListService,
+  constructor(public trackListService: TrackListService,
     private soundcloudService: SoundcloudService) {
   }
 

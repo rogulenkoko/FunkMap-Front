@@ -12,7 +12,7 @@ export class SoundcloudPlayerMiniComponent implements OnInit {
 
   public playerVisible: boolean = false;
 
-  constructor(private trackListService: TrackListService,
+  constructor(public trackListService: TrackListService,
               private soundcloudService: SoundcloudService) { }
 
   ngOnInit() {

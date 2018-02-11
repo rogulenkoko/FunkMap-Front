@@ -20,6 +20,7 @@
   <div *ngIf="editService.baseModel" class="d-flex flex-column justify-content-center row-container">
     <musician-base></musician-base>
     <musician-info></musician-info>
+    <entity-sound [entity]="editService.baseModel" [height]="'400px'"></entity-sound>    
     <musician-video [musician]="editService.baseModel"></musician-video>
   </div>
 </div>

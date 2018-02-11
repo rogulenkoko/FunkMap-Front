@@ -15,7 +15,7 @@ export class SoundcloudPlayerComponent implements OnInit {
   private durationPercent: number = 0;
   private currentDuration: string = "00:00";
 
-  constructor(private trackListService: TrackListService,
+  constructor(public trackListService: TrackListService,
               private soundcloudService: SoundcloudService) { }
 
   ngOnInit() {

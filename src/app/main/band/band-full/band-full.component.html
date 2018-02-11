@@ -20,10 +20,10 @@
   <div *isMobile class="band-full-container band-full-container-mobile">
     <div class="d-flex flex-column justify-content-center row-container">
       <band-base></band-base>
-      <div class="d-flex flex-column">
-        <band-info></band-info>
-        <band-participants [band]="editService.baseModel"></band-participants>
-      </div>
+      <band-info></band-info>
+      <band-participants [band]="editService.baseModel"></band-participants>
+      <entity-sound [entity]="editService.baseModel" [height]="'400px'"></entity-sound>    
+      <band-video [band]="editService.baseModel"></band-video>
     </div>
   </div>
 
