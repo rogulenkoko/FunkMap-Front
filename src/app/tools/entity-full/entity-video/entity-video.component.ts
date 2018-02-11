@@ -45,12 +45,10 @@ export class EntityVideoComponent extends EditableCard implements OnInit, AfterV
     var config:any = {
       direction: 'horizontal',
       slidesPerView: 'auto',
-      paginationClickable: true
+      paginationClickable: true,
+      pagination:'.swiper-pagination'
+      
     };
-
-    if (this.entity.videoInfos && this.entity.videoInfos.length > 2) {
-      config.pagination = '.swiper-pagination';
-    }
 
     this.config = config;
   }
