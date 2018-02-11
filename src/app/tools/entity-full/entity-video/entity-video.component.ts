@@ -58,11 +58,8 @@ export class EntityVideoComponent extends EditableCard implements OnInit, AfterV
   ngAfterViewInit(){
     if (this.adaptiveService.isMobile()) {
       var containerWidth:number = jQuery("#mobile-container").width();
-      console.log(containerWidth);
       this.playerHeight = containerWidth / 1.6;
       this.playerWidth = containerWidth;
-      console.log(this.playerWidth);
-      console.log(this.playerHeight);
       this.isEditVisible = false;
     } else {
       this.playerHeight = 200;

@@ -3,7 +3,7 @@ export class ConfigurationProvider{
 
     public static apiUrl(type: ServiceType): string{
 
-        return environment.local ? "http://localhost:9000/api/" :  "http://95.213.239.58:14080/api/"; 
+        return environment.local ? "http://localhost:49447/api/" :  "http://bandmap-api.azurewebsites.net/api/"; 
         
     }
     

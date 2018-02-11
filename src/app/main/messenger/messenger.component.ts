@@ -55,7 +55,6 @@ export class MessengerComponent implements OnInit, OnDestroy {
 
   private setDialog(dialog: Dialog) {
     this.dialogService.setDialog(dialog);
-    console.log(this.dialogService.dialog);
     var dialogId = dialog ? dialog.dialogId : undefined;
     this.messengerService.setOpenedDialog(dialogId).subscribe(response => {
       if (!response.success) alert("set dialog failed");

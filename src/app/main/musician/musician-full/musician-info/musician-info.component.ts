@@ -182,7 +182,6 @@ export class MusicianInfoComponent implements OnInit, OnDestroy {
   private leaveBand(bandLogin: string) {
     var request = new LeaveBandRequest(bandLogin, this.musician.login);
     this.musicianService.leaveBand(request).subscribe(response => {
-      console.log(response);
       if (!response.success) return;
       this.musician.bandLogins = this.musician.bandLogins.filter(x => x != bandLogin);
       

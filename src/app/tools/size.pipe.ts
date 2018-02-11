@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SizePipe implements PipeTransform {
 
   transform(value: number, args?: any): string {
-    console.log(value);
 
     var mb = 1000000;
     if(value > mb){

@@ -98,7 +98,6 @@ export class DialogInviteComponent implements OnInit, OnDestroy {
 
     if (this.isNewDialog) {
       dialog.name = this.dialogName;
-      console.log(dialog);
       this.messengerService.createDialog(dialog).subscribe(response => {
         if (response.isSuccess) {
           this.clear();

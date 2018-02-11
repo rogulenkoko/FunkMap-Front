@@ -121,7 +121,7 @@ fi
 # 4. Angular Prod Build
 if [ -e "$DEPLOYMENT_TARGET/.angular-cli.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval ./node_modules/.bin/ng build --prod
+  eval node --max_old_space_size=5048 ".\node_modules\@angular\cli\bin\ng" build --prod
   exitWithMessageOnError "Angular build failed"
   cd - > /dev/null
 fi
