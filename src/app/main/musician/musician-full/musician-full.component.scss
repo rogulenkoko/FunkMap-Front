@@ -3,6 +3,9 @@
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 25px; 
+    musician-base{
+        margin-bottom: 8px;
+    }
 }
 
 .row-container{
@@ -16,5 +19,9 @@
 
     .row-container{
         margin-top: 0px;
+    }
+
+    musician-base{
+        margin-bottom: 0;
     }
 }

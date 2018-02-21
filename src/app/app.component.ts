@@ -15,6 +15,6 @@ export class AppComponent {
 
   constructor(private themeService: ThemeService, private userService: UserService, 
               private router: Router){
-    //if(!userService.user) this.router.navigate(['/start']);
+    if(!userService.user) this.router.navigate(['/start']);
   }
 }

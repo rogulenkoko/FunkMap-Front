@@ -1,24 +1,47 @@
 <div *isDesktop class="main-participants-container">
-  <ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
+    <ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
 </div>
 
 <div *isMobile class="main-participants-container main-participants-container-mobile">
     <ng-template [ngTemplateOutlet]="participantsTemplate"></ng-template>
-  </div>
+</div>
 
 <ng-template #participantsTemplate>
-    <span class="participants-title">{{'Band_Participants' | translate}}</span>
+    <div class="d-flex justify-content-between">
+        <span class="participants-title">{{'Band_Participants' | translate}}</span>
+        <div class="edit-buttons-container d-flex align-items-center" (click)="addParticipants()">
+            <i *ngIf="isUsers" class="icon-plus"></i>
+            <span *ngIf="isUsers">{{'Band_Participants_Add' | translate}}</span>
+        </div>
+    </div>
+
 
     <div class="participants-container">
-        <div *ngFor="let musician of musicians" class="d-flex align-items-center justify-content-between participant" (mouseover)="overMusician(musician.login)" (mouseleave)="overMusician('')">
-          <div class="d-flex align-items-center">
-              <span class="participant-instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}:</span>
-              <avatar-circle [ngClass]="'participant-avatar'" [image]="musician.avatarId" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
-              <a [routerLink]="['/musicianPage/' + musician.login]" class="participant-name">{{musician.name}}</a> 
-          </div>
-          <i *ngIf="isUsers && hoveredMusician == musician.login" (click)="removeMusician(musician)" class="icon-close"></i>
-            
-          </div>
-          <span class="no-members" *ngIf="!band.musicians || band.musicians.length == 0">{{'Band_NoMembers' | translate}}</span>
+        <div *ngFor="let musician of musicians" class="d-flex align-items-center justify-content-between participant" (mouseover)="overMusician(musician.login)"
+            (mouseleave)="overMusician('')">
+            <div class="d-flex align-items-center">
+                <span class="participant-instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}:</span>
+                <avatar-circle [ngClass]="'participant-avatar'" [image]="musician.avatarId" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
+                <a [routerLink]="['/musicianPage/' + musician.login]" class="participant-name">{{musician.name}}</a>
+            </div>
+            <i *ngIf="isUsers && hoveredMusician == musician.login" (click)="removeMusician(musician)" class="icon-close"></i>
+
+        </div>
+        <span class="no-members" *ngIf="!band.musicians || band.musicians.length == 0">{{'Band_NoMembers' | translate}}</span>
     </div>
 </ng-template>
+
+<ng-container *showItBootstrap="['xl']">
+    <p-dialog *ngIf="addRarticipantsMode" #videoEditModal [contentStyle]="{'height':'90%'}" header="{{ 'Band_Participants_AddModal' | translate}}"
+        [(visible)]="addRarticipantsMode" [width]="550" [height]="modalHeight" [draggable]="false" [modal]="true" [positionTop]="90">
+        <band-participants-search [band]="band" (onCanceled)="onInviteCanceled()" (ownAdded)="onOwnAdded($event)"></band-participants-search>
+    </p-dialog>
+</ng-container>
+
+
+<ng-container *showItBootstrap="['xs','sm', 'md','lg']">
+    <p-dialog *ngIf="addRarticipantsMode" #videoEditModal [contentStyle]="{'height':'85%'}" header="{{ 'Band_Participants_AddModal' | translate}}"
+        [(visible)]="addRarticipantsMode" [width]="550" [height]="modalHeight" [draggable]="false" [modal]="true" [positionTop]="90">
+        <band-participants-search [band]="band" (onCanceled)="onInviteCanceled()" (ownAdded)="onOwnAdded($event)"></band-participants-search>
+    </p-dialog>
+</ng-container>
