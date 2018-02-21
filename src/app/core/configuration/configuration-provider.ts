@@ -8,6 +8,7 @@ export class ConfigurationProvider{
     }
     
     public static entitiesLimit: number = 1000;
+    public static maxProfilesCount: number = 5;
 
     public static soundcloudApi = "https://api.soundcloud.com/";
     public static soundcloudKey = "8e1349e63dfd43dc67a63e0de3befc68"; //todo сделать свой

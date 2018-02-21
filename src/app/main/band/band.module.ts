@@ -12,6 +12,7 @@ import { BandInfoComponent } from './band-full/band-info/band-info.component';
 import { BandMapComponent } from './band-full/band-map/band-map.component';
 import { BandVideoComponent } from './band-full/band-video/band-video.component';
 import { BandParticipantsComponent } from './band-full/band-participants/band-participants.component';
+import { BandParticipantsSearchComponent } from 'app/main/band/band-full/band-participants/band-participants-search/band-participants-search.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BandParticipantsComponent } from './band-full/band-participants/band-pa
       BandInfoComponent,
       BandMapComponent,
       BandVideoComponent,
-      BandParticipantsComponent
+      BandParticipantsComponent,
+      BandParticipantsSearchComponent
   ],
   imports: [
     CoreModule,

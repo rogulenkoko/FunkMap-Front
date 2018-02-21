@@ -13,6 +13,7 @@ import { UserService } from "app/main/user/user.service";
 import { Subscription } from "rxjs/Subscription";
 import { RouteBuilder } from "app/tools/route-builder";
 import { UserDataService } from 'app/main/user/user-data.service';
+import { ConfigurationProvider } from 'app/core';
 
 @Component({
   selector: 'app-creation',
@@ -32,7 +33,7 @@ export class CreationComponent implements OnInit {
   private isLoginExist: boolean = false;
 
   private canCreate: boolean = true;
-  private maxProfilesCount: number = 5;
+  
 
   constructor(private creationService: CreationService,
               private router: Router,
@@ -63,7 +64,7 @@ export class CreationComponent implements OnInit {
 
   private checkCanCreate(){
     this.userDataService.getUserEntitiesCountInfo().subscribe(countInfo => {
-      this.canCreate = countInfo.totalCount < this.maxProfilesCount;
+      this.canCreate = countInfo.totalCount < ConfigurationProvider.maxProfilesCount;
     });
   }
 

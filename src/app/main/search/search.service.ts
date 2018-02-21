@@ -25,7 +25,7 @@ export abstract class SearchService {
 
   abstract getNearest(request: FullLocationRequest): Observable<Array<SearchItem>>;
 
-  abstract getFiltered(skip: number, take: number): Observable<SearchResponse>;
+  abstract getFiltered(skip: number, take: number, filter?: BaseFilter): Observable<SearchResponse>;
 
 }
 
@@ -47,10 +47,8 @@ export class SearchServiceHttp extends SearchService {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/fullnearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
-  getFiltered(skip: number, take: number): Observable<SearchResponse> {
-    var filter = this.searchFilterService.buildFilter(skip, take);
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered`, filter).map(x => SearchResponse.ToSearchResponse(x.json()));
+  getFiltered(skip: number, take: number, filter?: BaseFilter): Observable<SearchResponse> {
+    var defaultFilter = this.searchFilterService.buildFilter(skip, take);
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered`, filter ? filter : defaultFilter).map(x => SearchResponse.ToSearchResponse(x.json()));
   }
-
-  
 }

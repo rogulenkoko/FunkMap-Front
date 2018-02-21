@@ -7,7 +7,7 @@ import { SearchItem } from "app/main/search/search-item";
 import { BaseResponse } from "app/tools";
 import { HttpClient } from "app/core/http/http-client.service";
 import { EntityType } from "app/main/map/models";
-import { BandInviteMusicianRequest, BandInviteInfoRequest, BandInviteInfo } from 'app/main/musician/models/band-invite-musician-request';
+import { BandInviteMusicianRequest, BandInviteInfoRequest, BandInviteInfo, BandInviteMusiciansRequest } from 'app/main/musician/models/band-invite-musician-request';
 import { InviteBandResponse } from 'app/main/musician/invite-band-response';
 import { LeaveBandRequest } from 'app/main/band/models/leave-band-request';
 
@@ -23,6 +23,8 @@ export abstract class MusicianService {
   abstract updateMusician(musician: Musician):Observable<BaseResponse>;
 
   abstract inviteToBand(request: BandInviteMusicianRequest): Observable<InviteBandResponse>;
+
+  abstract inviteManyToBand(request: BandInviteMusiciansRequest): Observable<Array<InviteBandResponse>>;
 
   abstract getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>;
 
@@ -53,6 +55,10 @@ export class MusicianServiceHttp extends MusicianService {
 
    inviteToBand(request: BandInviteMusicianRequest): Observable<InviteBandResponse>{
      return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/invite`, request).map(x=> InviteBandResponse.ToInviteBandResponse(x.json()));;
+   }
+
+   inviteManyToBand(request: BandInviteMusiciansRequest): Observable<Array<InviteBandResponse>>{
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}musician/inviteMany`, request).map(x=> InviteBandResponse.ToInviteBandResponseArray(x.json()));;
    }
 
    getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>{
