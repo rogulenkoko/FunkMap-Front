@@ -40,17 +40,9 @@ export class EntityVideoComponent extends EditableCard implements OnInit, AfterV
 
   ngOnInit() {
     
-
+    this.setSliderOptions();
     this.isUsers = this.editService.isUsers;
-    var config:any = {
-      direction: 'horizontal',
-      slidesPerView: 'auto',
-      paginationClickable: true,
-      pagination:'.swiper-pagination'
-      
-    };
-
-    this.config = config;
+    
   }
 
   ngAfterViewInit(){
@@ -66,6 +58,20 @@ export class EntityVideoComponent extends EditableCard implements OnInit, AfterV
     }
   }
 
+  private setSliderOptions(){
+    var config:any = {
+      direction: 'horizontal',
+      slidesPerView: 'auto',
+      paginationClickable: true
+    };
+
+    if(this.entity && this.entity.videoInfos && this.entity.videoInfos.length > 2){
+      config.pagination = ".swiper-pagination";
+    }
+
+    this.config = config;
+  }
+
   private editVideo() {
     this.isAddVideoMode = false;
     this.isAddVideoMode = true;
@@ -78,6 +84,7 @@ export class EntityVideoComponent extends EditableCard implements OnInit, AfterV
     }
     this.entity.videoInfos.push(info);
     request.videoInfos = this.entity.videoInfos;
+    this.setSliderOptions();
     this.editBaseService.update(request).subscribe(response => {
       if (response.success) {
 

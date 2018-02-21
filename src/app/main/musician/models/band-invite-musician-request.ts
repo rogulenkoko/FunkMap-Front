@@ -1,7 +1,13 @@
 import { BandPreview } from "app/main/band/models";
 
 export class BandInviteMusicianRequest {
-    constructor(public bandLogin: string, public musicianLogin){
+    constructor(public bandLogin: string, public musicianLogin: string){
+        
+    }
+}
+
+export class BandInviteMusiciansRequest {
+    constructor(public bandLogin: string, public musicianLogins: Array<string>){
         
     }
 }

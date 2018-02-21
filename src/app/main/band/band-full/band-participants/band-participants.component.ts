@@ -24,6 +24,10 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
   
   public hoveredMusician: string;
 
+  public addRarticipantsMode: boolean;
+
+  private modalHeight: number;
+
   constructor(private musicianService: MusicianService,
               private musicianTypesProvider: MusicianTypesProvider,
               private bandService: BandService,
@@ -61,6 +65,24 @@ export class BandParticipantsComponent extends EditableCard implements OnInit {
 
   private overMusician(login: string){
     this.hoveredMusician = login;
+  }
+
+  addParticipants(){
+
+    this.modalHeight = (window.innerHeight - 75) * 0.98;
+
+    this.addRarticipantsMode = true;
+  }
+
+  onInviteCanceled(){
+    this.addRarticipantsMode = false; 
+  }
+
+  onOwnAdded(logins: Array<string>){
+    if(!this.band.musicians) this.band.musicians = [];
+
+    logins.forEach(x=> this.band.musicians.push(x));
+    this.refreshMusicians();
   }
 
 }

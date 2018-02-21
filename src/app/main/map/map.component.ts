@@ -40,7 +40,6 @@ export class MapComponent implements OnInit {
     public userService: UserService,
     private mapCreationService: MapCreationService,
     private searchFilterService: SearchFilterService) {
-    //this.mapProvider.onMapChange.subscribe(() => this.updateMap());
     this.mapCreationService.onSelectPosition.subscribe((event) => this.selectEntityPosition(event));
     this.mapFilter.onOutItemsSelected.subscribe((marker) => this.selectMarker(marker));
 

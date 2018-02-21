@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { Musician, MusicStyle, Sex, InstrumentType, MusicianPreview } from "./models";
 import { BaseResponse } from "app/tools";
 import { EntityType } from "app/main/map/models";
-import { BandInviteMusicianRequest, BandInviteInfo, BandInviteInfoRequest } from 'app/main/musician/models/band-invite-musician-request';
+import { BandInviteMusicianRequest, BandInviteInfo, BandInviteInfoRequest, BandInviteMusiciansRequest } from 'app/main/musician/models/band-invite-musician-request';
 import { BandPreview } from 'app/main/band/models';
 import { VideoType, VideoInfo } from 'app/tools/video-edit/video-info';
 import { InviteBandResponse } from 'app/main/musician/invite-band-response';
@@ -57,6 +57,11 @@ export class MusicianServiceStub extends MusicianService {
    inviteToBand(request: BandInviteMusicianRequest): Observable<InviteBandResponse>{
     return Observable.of(new InviteBandResponse(true, true));
   }
+
+
+  inviteManyToBand(request: BandInviteMusiciansRequest): Observable<Array<InviteBandResponse>>{
+    return Observable.of([]);
+   }
 
 
   getInviteBandInfo(request: BandInviteInfoRequest): Observable<BandInviteInfo>{

@@ -8,4 +8,6 @@ export class BaseFilter {
     public longitude: number;
     public latitude: number;
     public limit: number;
+
+    public userLogin: string;
 }

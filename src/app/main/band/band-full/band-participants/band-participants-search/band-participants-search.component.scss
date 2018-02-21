@@ -1,0 +1,89 @@
+@import "src/assets/styles/dark-colors.scss";
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/forms.scss";
+
+.new-participants-container{
+    height: 100%;
+   
+    .search-input{
+        padding: 0px 20px;
+
+        .icon-search{
+            color: $app-grey;
+            margin-top: 4px;
+       }
+    }
+
+    
+
+   .profiles-container{
+       margin-top: 24px;
+
+       .title{
+            font-size: 14px;
+            color: $active-color;
+       }
+
+       .profile-container{
+            margin-top: 24px;
+
+            .name-container{
+                margin-left: 12px;
+                .name{
+                    color: $active-color;
+                    font-size: 13px;
+               }
+    
+               .login{
+                    color: $dark-title-color;
+                    font-size: 12px;
+               }
+            }
+
+            .invite-label{
+                color: $dark-title-color;
+                font-size: 13px;
+                cursor: pointer;
+            }
+
+            .cancel{
+                color: $app-green;
+            }
+
+           
+       }
+   }
+
+   .no-results-container{
+       text-align: center;
+       margin-top: 36px;
+       span{
+           font-size: 14px;
+           color: $dark-title-color;
+       }
+   }
+
+   
+}
+
+.search-result{
+    padding: 0px 20px;
+    height: 90%;
+}
+
+.buttons-container{
+    //padding-bottom: 24px;
+    .btn-success{
+        margin-left: 36px;
+    }
+}
+
+.search-input-alternative{
+    height: 29px;
+}
+
+.icon-close{
+    color: $inactive-color;
+    font-size: 8px;
+    margin-top: 12px;
+}

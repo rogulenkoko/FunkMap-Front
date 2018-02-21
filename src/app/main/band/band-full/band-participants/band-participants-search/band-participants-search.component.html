@@ -1,0 +1,100 @@
+<div *ngIf="step == 1" class="new-participants-container d-flex flex-column justify-content-center">
+  <div class="search-input d-flex flex-row align-items-center">
+    <span class="icon-search mr-3"></span>
+    <input placeholder="{{'Search_Placeholder' | translate}}" class="form-control" [(ngModel)]="search" (ngModelChange)="onSearchChanged($event)"
+    />
+  </div>
+
+  <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="search-result">
+    <div *ngIf="ownProfiles && ownProfiles.length > 0" class="profiles-container own">
+      <span class="title">{{'Profile' | translate}}</span>
+      <div *ngFor="let profile of ownProfiles">
+        <div class="d-flex profile-container justify-content-between">
+          <div class="d-flex">
+            <avatar-circle [image]="profile.imageId" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+            <div class="d-flex flex-column name-container">
+              <span class="name">{{profile.title}}</span>
+              <span class="login">@{{profile.login}}</span>
+            </div>
+          </div>
+          <span *ngIf="!profile.isInvited" (click)="invite(profile)" class="invite-label">{{'InviteToBand' | translate}}</span>
+          <span *ngIf="profile.isInvited" (click)="remove(profile)" class="invite-label cancel">{{'InvitedToBand' | translate}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="favoriteProfiles && favoriteProfiles.length > 0" class="profiles-container own">
+      <span class="title">{{'Favorites' | translate}}</span>
+      <div *ngFor="let profile of favoriteProfiles">
+        <div class="d-flex profile-container justify-content-between">
+          <div class="d-flex">
+            <avatar-circle [image]="profile.imageId" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+            <div class="d-flex flex-column name-container">
+              <span class="name">{{profile.title}}</span>
+              <span class="login">@{{profile.login}}</span>
+            </div>
+          </div>
+          <span *ngIf="!profile.isInvited" (click)="invite(profile)" class="invite-label">{{'InviteToBand' | translate}}</span>
+          <span *ngIf="profile.isInvited" (click)="remove(profile)" class="invite-label cancel">{{'InvitedToBand' | translate}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="searchedProfiles && searchedProfiles.length > 0" class="profiles-container own">
+      <span class="title">{{'Search_Result' | translate}}</span>
+      <div *ngFor="let profile of searchedProfiles">
+        <div class="d-flex profile-container justify-content-between">
+          <div class="d-flex">
+            <avatar-circle [image]="profile.imageId" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+            <div class="d-flex flex-column name-container">
+              <span class="name">{{profile.title}}</span>
+              <span class="login">@{{profile.login}}</span>
+            </div>
+          </div>
+          <span *ngIf="!profile.isInvited" (click)="invite(profile)" class="invite-label">{{'InviteToBand' | translate}}</span>
+          <span *ngIf="profile.isInvited" (click)="remove(profile)" class="invite-label cancel">{{'InvitedToBand' | translate}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-results-container" *ngIf="(!searchedProfiles || searchedProfiles.length == 0) && (!favoriteProfiles || favoriteProfiles.length == 0) && (!ownProfiles || ownProfiles.length == 0)">
+      <span>{{'Search_NoItems' | translate}}</span>
+    </div>
+  </div>
+
+
+  <div class="d-flex flex-row justify-content-center buttons-container">
+    <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
+    <button (click)="next()" class="btn btn-success" [class.disabled]="invited.length == 0">{{'Login_Continue' | translate}}</button>
+  </div>
+
+</div>
+
+<div *ngIf="step == 2" class="new-participants-container d-flex flex-column justify-content-center">
+  <div class="search-input-alternative">
+  </div>
+  <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="search-result">
+    <div *ngIf="invited && invited.length > 0" class="profiles-container own">
+      <div *ngFor="let profile of invited">
+        <div class="d-flex profile-container justify-content-between">
+          <div class="d-flex">
+            <avatar-circle [image]="profile.imageId" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+            <div class="d-flex flex-column name-container">
+              <span class="name">{{profile.title}}</span>
+              <span class="login">@{{profile.login}}</span>
+            </div>
+          </div>
+          <i class="icon-close" (click)="remove(profile)"></i>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!invited || invited.length == 0" class="no-results-container">
+        <span>{{'InvitedListEmpty' | translate}}</span>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-center buttons-container">
+    <button (click)="previous()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
+    <button (click)="finish()" class="btn btn-success" [class.disabled]="invited.length == 0">{{'Invite' | translate}}</button>
+  </div>
+</div>
