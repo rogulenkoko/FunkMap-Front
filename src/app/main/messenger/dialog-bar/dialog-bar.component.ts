@@ -22,8 +22,6 @@ export class DialogBarComponent implements OnInit {
   public isEditNameMode: boolean = false;
   public isChangeAvatarMode: boolean = false;
 
-  
-
   constructor(public dialogService: DialogService,
     private messengerService: MessengerService,
     public userService: UserService,

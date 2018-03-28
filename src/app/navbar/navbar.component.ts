@@ -14,6 +14,7 @@ import { SignalrService } from 'app/tools/signalr/signalr.service';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { SidebarService } from 'app/main/sidebar/sidebar.service';
 import { NavbarService } from 'app/navbar/navbar.service';
+import { User } from 'app/main/user/user';
 
 @Component({
   selector: 'navbar',
@@ -28,6 +29,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private changeAvatarMode: boolean = false;
   private subscription: Subscription;
+
+  private user: User;
   
 
   constructor(private languageService: LanguageService,
@@ -42,18 +45,28 @@ export class NavbarComponent implements OnInit, OnDestroy {
               private navbarService: NavbarService) {
     
     if(this.userService.user) this.getNotificationsCount();
-    this.userService.onUserChanged.subscribe(() => this.getNotificationsCount());
+    this.userService.onUserChanged.subscribe(() => {this.getNotificationsCount(); this.getUser()});
     
     this.subscription = new Subscription();
     this.initializeSubscriptions();
   }
 
   ngOnInit() {
-    
+    this.getUser();
   }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
+   
+  }
+
+  private getUser(){
+    if(this.userService.user){
+      this.userDataService.getUser(this.userService.user.login).subscribe(user=>{
+        if(!user.isExist) return;
+        this.user = user.user;
+      });
+    }
   }
 
   private changeUserAvatar(){
@@ -66,6 +79,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userDataService.saveImage(request).subscribe(response=>{
       if(response.success){
         this.userService.user.avatar = response.path;
+        this.user.avatar = response.path;
         this.userService.user = this.userService.user;
       }
     })

@@ -3,7 +3,7 @@ export class ConfigurationProvider{
 
     public static apiUrl(type: ServiceType): string{
 
-        return environment.local ? "http://localhost:49447/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
+        return environment.local ? "http://localhost:9000/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
         
     }
     
@@ -12,6 +12,8 @@ export class ConfigurationProvider{
 
     public static soundcloudApi = "https://api.soundcloud.com/";
     public static soundcloudKey = "8e1349e63dfd43dc67a63e0de3befc68"; //todo сделать свой
+
+    public static facebookKey = "211667802913192";
 
 }
 

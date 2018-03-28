@@ -3,10 +3,16 @@ import { LoginService } from "../login.service";
 import { Router } from "@angular/router";
 import { RegistrationModel, RegistrationRequest } from "./registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./confirmation-model";
-import { User } from "app/main/user/user";
+import { User, AuthProvider } from "app/main/user/user";
 import { UserService } from "app/main/user/user.service";
 import { LanguageService } from 'app/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+import { ExternalSignupRequest } from 'app/main/login/registration/external-signup';
+import { toArray } from 'rxjs/operator/toArray';
+import { AuthResponse } from 'app/main/login/login-response';
+import { BaseResponse } from 'app/tools/models/base-response';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-registration',
@@ -35,10 +41,13 @@ export class RegistrationComponent implements OnInit {
 
   private isCodeWrong: boolean;
 
+  private externalSignupFaild: boolean;
+
   constructor(private loginService: LoginService,
               private router: Router,
               private userService: UserService,
-              private translate: LanguageService) { }
+              private translate: LanguageService,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -111,18 +120,44 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
+  onEmailChanded(){
+    this.isCodeSent = false;
+  }
+
   logIn() {
     this.loginService.login(this.login, this.password).subscribe(response => {
-      if (response.token) {
-        var user = new User();
-        user.login = response.login;
-        user.authData = response;
-        this.userService.user = user; 
-        this.currentStep++;
-      } else {
-        //todo
-      }
+        this.onLoggedIn(response);
+        this.currentStep ++;
     });
+  }
+
+  facebookSignup(){
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+
+    var subscription = this.authService.authState.subscribe((user: SocialUser) =>{ 
+      if(!user) return;
+      this.onExternalLoggedIn(user.authToken, AuthProvider.Facebook);
+      if(subscription) subscription.unsubscribe();
+    });
+  }
+
+  private onExternalLoggedIn( token: string, provider: AuthProvider){
+    var request = new ExternalSignupRequest(token, provider);
+    this.loginService.externalLogin(token, provider).subscribe((response: AuthResponse) =>{
+      if(!response) return;
+      this.onLoggedIn(response);
+      this.currentStep = 3;
+    });
+  }
+
+  private onLoggedIn(response: AuthResponse){
+    if (response.token) {
+      var user = new User();
+      user.login = response.login;
+      this.userService.setAuthData(response, user);
+    } else {
+      //todo
+    }
   }
 
   moveBack() {

@@ -58,6 +58,7 @@
     "Login_CodeSent": "Code have sent",
     "Login_CodeNotSent": "Code haven't sent",
     "Login_WrongCode": "Wrong code",
+    "Login_SignupFailed": "Sign up failed",
     "Restore": "Password restore",
     "Restore_PasswordOrEmail": "Enter your e-mail or login",
     "Restore_InvalidPasswordOrEmail": "Invalid e-mail or login",
