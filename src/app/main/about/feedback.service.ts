@@ -23,7 +23,7 @@ export class FeedbackServiceHttp extends FeedbackService {
    }
 
    sendFeedback(feedback: FeedbackItem): Observable<BaseResponse>{
-     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}feedback/save`, feedback).map(x=> BaseResponse.ToBaseResponse(x.json()));
+     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}feedback`, feedback).map(x=> BaseResponse.ToBaseResponse(x.json()));
    }
 
 }

@@ -18,10 +18,9 @@ export class ConfigurationProvider{
 }
 
 
-export enum ServiceType{
+export enum ServiceType {
     Auth = 1,
     Messenger = 2,
     Funkmap = 3,
     Notifications = 4
-
 }

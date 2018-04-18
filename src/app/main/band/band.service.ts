@@ -30,20 +30,20 @@ export class BandServiceHttp extends BandService {
    }
 
    getBandPreview(id: string): Observable<BandPreview>{
-     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/get/${id}`).map(res=>BandPreview.ToBandPreview(res.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile-preview/${id}`).map(res=>BandPreview.ToBandPreview(res.json()));
    }
 
    getBand(login: string): Observable<Band>{
-     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getFull/${login}`).map(x=>Band.ToBand(x.json()));
+     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile/${login}`).map(x=>Band.ToBand(x.json()));
    }
 
    updateBand(band:Band): Observable<BaseResponse>{
      band.entityType = EntityType.Band;
-     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, band).map(res=>BaseResponse.ToBaseResponse(res.json()));
+     return this.http.put(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile`, band).map(res=>BaseResponse.ToBaseResponse(res.json()));
    }
 
    removeMusician(request: LeaveBandRequest):Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/removeMusician`, request).map(res=>BaseResponse.ToBaseResponse(res.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}band/remove-musician`, request).map(res=>BaseResponse.ToBaseResponse(res.json()));
    }
 
 }

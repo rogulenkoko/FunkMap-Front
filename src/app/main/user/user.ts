@@ -26,14 +26,15 @@ export class UserResponse {
     public isExist: boolean;
 
     public static ToUserResponse(data: any): UserResponse {
+        console.log(data);
         var result = new UserResponse();
 
-        result.isExist = data.IsExist;
+        result.isExist = data.IsExists;
         if (result.isExist) {
             var user = new User();
-            user.login = data.Login;
-            user.avatar = data.Avatar;
-            user.name = data.Name;
+            user.login = data.User.Login;
+            user.avatar = data.User.AvatarUrl;
+            user.name = data.User.Name;
             user.provider = AuthProvider.Funkmap;
             result.user = user;
         }

@@ -28,20 +28,7 @@ export class LoginServiceStub extends LoginService {
     return Observable.of(new AuthResponse("test", "test"))
   }
 
-
-  validate(login: string): Observable<RegistrationModel> {
-    var response = new RegistrationModel(true);
-    if (login == "test") {
-      response.success = false;
-    }
-    return Observable.of(response);
-  }
-
-  externalLogin(token: string, provider: AuthProvider): Observable<AuthResponse> {
-    return Observable.of(null);
-  }
-
-  sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse> {
+  signup(request: RegistrationRequest): Observable<ConfirmationResponse> {
     var response = new ConfirmationResponse(true);
     if (request.email == "test") {
       response.success = false;

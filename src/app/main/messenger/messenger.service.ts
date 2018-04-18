@@ -133,24 +133,24 @@ export class MessengerServiceHttp extends MessengerService {
   }
 
   sendMessage(message: Message): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/sendMessage`, message).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/message`, message).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
   startUpload(contentItem: Content): Observable<BaseResponse>{
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/startUpload`, contentItem).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/content`, contentItem).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
 
   createDialog(dialog: CreateDialogRequest): Observable<DialogUpdateResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/createDialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));
   }
 
   updateDialog(dialog: DialogUpdateRequest): Observable<DialogUpdateResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/updateDialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));
+    return this.http.put(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/updateDialog`, dialog).map(x => DialogUpdateResponse.ToDialogCreateResponse(x.json()));
   }
 
   inviteParticipants(request: InviteParticipantsRequest): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/inviteParticipants`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialog/participants`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
   setOpenedDialog(dialogId: string): Observable<BaseResponse> {
@@ -158,22 +158,22 @@ export class MessengerServiceHttp extends MessengerService {
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogMessages`, request).map(x => Message.ToMessages(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialog/messages`, request).map(x => Message.ToMessages(x.json()));
   }
   getDialogs(): Observable<Array<Dialog>> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogs`).map(x => Dialog.ToDialogs(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialogs`).map(x => Dialog.ToDialogs(x.json()));
   }
 
   getOnlineUsersLogins(): Observable<string[]> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getOnlineUsers`).map(x => x.json());
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialogs/online`).map(x => x.json());
   }
 
   getDialogsWithNewMessagesCount(): Observable<Array<DialogsNewMessagesCountModel>> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/getDialogsWithNewMessagesCount`).map(x => DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialogs/new`).map(x => DialogsNewMessagesCountModel.ToDialogsNewMessagesCountModels(x.json()));
   }
 
   leaveDialog(request: LeaveDialogRequest): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/leaveDialog`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Messenger)}messenger/dialog/leave`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
 }

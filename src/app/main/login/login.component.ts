@@ -34,31 +34,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.login, this.password).subscribe(response => this.onLoggenIn(response), error => this.handleLoginError());
   }
 
-  private onExternalLoggedIn(token: string, provider: AuthProvider){
-    this.loginService.externalLogin(token, provider).subscribe(response => this.onLoggenIn(response), error => this.handleLoginError());
-  }
-
-  facebookLogin(){
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-
-    var subscription = this.authService.authState.subscribe((user: SocialUser) =>{ 
-      if(!user) return;
-      this.onExternalLoggedIn(user.authToken, AuthProvider.Facebook);
-      if(subscription) subscription.unsubscribe();
-    });
-  }
-
-
-  googleLogin(){
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-
-    var subscription = this.authService.authState.subscribe((user: SocialUser) =>{ 
-      if(!user) return;
-      this.onExternalLoggedIn(user.authToken, AuthProvider.Google);
-      if(subscription) subscription.unsubscribe();
-    });
-  }
-
   private onLoggenIn(response: AuthResponse){
     if (response.token) {
       var user = new User();

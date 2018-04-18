@@ -64,6 +64,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if(this.userService.user){
       this.userDataService.getUser(this.userService.user.login).subscribe(user=>{
         if(!user.isExist) return;
+        console.log(user.user);
         this.user = user.user;
       });
     }

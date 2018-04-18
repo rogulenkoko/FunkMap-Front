@@ -13,6 +13,7 @@ import { toArray } from 'rxjs/operator/toArray';
 import { AuthResponse } from 'app/main/login/login-response';
 import { BaseResponse } from 'app/tools/models/base-response';
 import { Observable } from 'rxjs/Observable';
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'app-registration',
@@ -46,6 +47,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private loginService: LoginService,
               private router: Router,
               private userService: UserService,
+              private userDataService: UserDataService,
               private translate: LanguageService,
               private authService: AuthService) { }
 
@@ -71,8 +73,8 @@ export class RegistrationComponent implements OnInit {
 
     switch (this.currentStep) {
       case 1:
-        this.loginService.validate(this.login).subscribe(response => {
-          if (!response.success) {
+        this.userDataService.getUser(this.login).subscribe(response => {
+          if (response.isExist) {
             this.existingLogin = true;
             setTimeout(() => {
               this.existingLogin = false;
@@ -107,7 +109,7 @@ export class RegistrationComponent implements OnInit {
 
   sendCode() {
     var request = new RegistrationRequest(this.login, this.email, this.password, this.name, this.translate.language);
-    this.loginService.sendEmail(request).subscribe(response => {
+    this.loginService.signup(request).subscribe(response => {
       this.isEmailSent = true;
       if (response.success) {
         this.isCodeSent = true;
@@ -128,25 +130,6 @@ export class RegistrationComponent implements OnInit {
     this.loginService.login(this.login, this.password).subscribe(response => {
         this.onLoggedIn(response);
         this.currentStep ++;
-    });
-  }
-
-  facebookSignup(){
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-
-    var subscription = this.authService.authState.subscribe((user: SocialUser) =>{ 
-      if(!user) return;
-      this.onExternalLoggedIn(user.authToken, AuthProvider.Facebook);
-      if(subscription) subscription.unsubscribe();
-    });
-  }
-
-  private onExternalLoggedIn( token: string, provider: AuthProvider){
-    var request = new ExternalSignupRequest(token, provider);
-    this.loginService.externalLogin(token, provider).subscribe((response: AuthResponse) =>{
-      if(!response) return;
-      this.onLoggedIn(response);
-      this.currentStep = 3;
     });
   }
 

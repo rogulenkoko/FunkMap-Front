@@ -33,6 +33,31 @@ export class HttpClient {
     return this.http.post(url, data, options ? options : this.options).catch(error=> this.handleError(error));
   }
 
+  public put(url: string, data: any, options?: any): Observable<any> {
+    if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
+      return this.prolongate().switchMap(response => {
+
+        this.setRefreshedData(response, true);
+        this.updateOptions();
+        return this.http.put(url, data, options ? options : this.options).catch(error=> this.handleError(error));
+      }).catch(error => this.handleError(error))
+    }
+    return this.http.put(url, data, options ? options : this.options).catch(error=> this.handleError(error));
+  }
+
+  public delete(url: string, options?: any): Observable<any> {
+    if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
+      return this.prolongate().switchMap(response => {
+
+        this.setRefreshedData(response, true);
+        this.updateOptions();
+        return this.http.delete(url, options ? options : this.options).catch(error=> this.handleError(error));
+      }).catch(error => this.handleError(error))
+    }
+    return this.http.delete(url, options ? options : this.options).catch(error=> this.handleError(error));
+  }
+
+
   public get(url: string, options?: any): Observable<any> {
     if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
       return this.prolongate().switchMap(response => {

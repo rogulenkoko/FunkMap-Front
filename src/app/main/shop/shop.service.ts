@@ -27,16 +27,16 @@ export class ShopServiceHttp extends ShopService {
   }
 
   getShopPreview(login: string): Observable<ShopPreview> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/get/${login}`).map(x => ShopPreview.ToShopPreview(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile-preview/${login}`).map(x => ShopPreview.ToShopPreview(x.json()));
   }
 
   getShop(login: string): Observable<Shop> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getFull/${login}`).map(x => Shop.ToShop(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile/${login}`).map(x => Shop.ToShop(x.json()));
   }
 
   updateShop(shop: Shop): Observable<BaseResponse> {
     shop.entityType = EntityType.Shop;
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/update`, shop).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.put(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile`, shop).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
 }

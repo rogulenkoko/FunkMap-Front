@@ -27,7 +27,6 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
   public infoItems: Array<InfoItem>;
   public actionItems: Array<ActionItem>;
 
-  private hasBand: boolean;
   public isGroupsModalVisible: boolean = false;
   public inviteInfo: BandInviteInfo;
   public bandForInvite: string;
@@ -54,7 +53,6 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateInfoItems();
-    this.checkHasBand();
   }
 
   ngOnDestroy(){
@@ -146,14 +144,5 @@ export class MusicianBaseComponent implements OnInit, OnDestroy {
 
   private cancelInvite(){
     this.isGroupsModalVisible = false;
-  }
-
-  private checkHasBand() {
-    if(!this.userService.user) return;
-    this.userDataService.getUserEntitiesCountInfo().subscribe(countInfo => {
-      var bandCountInfo = countInfo.counts.find(x => x.entityType == EntityType.Band);
-      this.hasBand = bandCountInfo && bandCountInfo.count > 0;
-      this.userService.entitiesCountInfo = countInfo.counts;
-    });
   }
 }

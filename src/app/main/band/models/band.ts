@@ -16,7 +16,6 @@ export class Band extends BaseModel{
     public styles: Array<MusicStyle>;
 
     public static ToBand(data: any): Band{
-        console.log(data);
         var result = new Band(data.Login, data.Name);
         result.desiredInstruments = data.DesiredInstruments;
         result.showPrice = data.ShowPrice;
@@ -28,8 +27,8 @@ export class Band extends BaseModel{
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
 
-        result.latitude = data.Latitude;
-        result.longitude = data.Longitude;
+        result.latitude = data.Location.Latitude;
+        result.longitude = data.Location.Longitude;
 
         result.avatarId = data.AvatarId;
         result.avatarMiniId = data.AvatarMiniId;

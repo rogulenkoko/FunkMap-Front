@@ -21,8 +21,8 @@ export class Studio extends BaseModel {
         result.youTubeLink = data.YoutubeLink;
         result.facebookLink = data.FacebookLink;
         result.soundCloudLink = data.SoundCloudLink;
-        result.latitude = data.Latitude;
-        result.longitude = data.Longitude;
+        result.latitude = data.Location.Latitude;
+        result.longitude = data.Location.Longitude;
         result.address = data.Address;
         result.userLogin = data.UserLogin;
         result.isActive = data.IsActive;

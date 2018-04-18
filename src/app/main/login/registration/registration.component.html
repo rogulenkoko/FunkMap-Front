@@ -43,16 +43,6 @@
             </div>
 
           </div>
-
-          <div class="social-auth">
-            <div>
-              <a class="icon facebook-icon" (click)="facebookSignup()"></a>
-            </div>
-
-            <div *ngIf="externalSignupFaild" class="external-failed error-label">{{'Login_SignupFailed' | translate}}</div>
-          </div>
-
-
         </ng-container>
 
         <ng-container *ngIf="currentStep == 2">

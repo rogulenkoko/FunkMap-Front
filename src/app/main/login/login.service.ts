@@ -18,11 +18,7 @@ export abstract class LoginService {
 
   abstract login(login: string, password: string): Observable<AuthResponse>;
 
-  abstract externalLogin(token: string, provider: AuthProvider): Observable<AuthResponse>;
-
-  abstract validate(login: string): Observable<RegistrationModel>;
-
-  abstract sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse>;
+  abstract signup(request: RegistrationRequest): Observable<ConfirmationResponse>;
 
   abstract confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>;
 
@@ -50,42 +46,23 @@ export class LoginServiceHttp extends LoginService {
     params.set("grant_type", "password");
     params.set("client_id", "funkmap");
     params.set("client_secret", "funkmap");
-    params.set("provider", "facebook");
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}token`, params, options).map(x => AuthResponse.ToLoginResponsne(x.json()));
   }
 
-  externalLogin(token: string, provider: AuthProvider): Observable<AuthResponse> {
-    var options = new RequestOptions();
-    options.headers = new Headers();
-    options.headers.append("Content-Type", "x-www-form-urlencoded");
-
-    var params = new URLSearchParams();
-    params.set("token", token);
-    params.set("grant_type", "external");
-    params.set("client_id", "funkmap");
-    params.set("client_secret", "funkmap");
-    params.set("provider", AuthProvider[provider]);
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}token`, params, options).map(x => AuthResponse.ToLoginResponsne(x.json()));
-  }
-
-  validate(login: string): Observable<RegistrationModel> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/validate/${login}`).map(x => RegistrationModel.ToRegistrationModel(x.json()));
-  }
-
-  sendEmail(request: RegistrationRequest): Observable<ConfirmationResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/sendEmail`, request).map(x => RegistrationModel.ToRegistrationModel(x.json()));
+  signup(request: RegistrationRequest): Observable<ConfirmationResponse> {
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/signup`, request).map(x => RegistrationModel.ToRegistrationModel(x.json()));
   }
 
   confirm(request: ConfirmationRequest): Observable<ConfirmationResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/confirm`, request).map(x => RegistrationModel.ToRegistrationModel(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/signup/confirm`, request).map(x => RegistrationModel.ToRegistrationModel(x.json()));
   }
 
   askRestoreCode(loginOrEmail: string): Observable<BaseResponse> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/restore/${loginOrEmail}`).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/restore`, {email:loginOrEmail}).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
   confirmRestore(request: ConfirmRestoreRequest): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/confirmRestore`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/restore/cofirm`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
 }
