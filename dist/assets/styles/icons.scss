@@ -1,0 +1,56 @@
+.icon{
+    min-width: 12px;
+    min-height: 12px;
+    outline:none;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #b9babb;
+    mask-repeat: no-repeat;
+}
+
+.icon-middle{
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.icon-big{
+    min-width: 36px;
+    min-height: 36px;
+}
+
+.icon-close-red{
+    background: url("/assets/images/close-red.png") no-repeat;
+}
+
+
+.success-icon{
+    background: url("/assets/images/success.png") no-repeat;
+}
+
+.back-arrow-icon{
+    mask-image: url("/assets/images/back.svg");
+}
+
+.filter-icon{
+    mask-image: url("/assets/images/filter.svg");
+}
+
+.youtube-icon{
+    mask-image: url("/assets/images/youtube.svg");
+    background-color: #d22215;
+}
+
+.vk-icon{
+    mask-image: url("/assets/images/vk.svg");
+    background-color: #4d77a2;
+}
+
+.facebook-icon{
+    mask-image: url("/assets/images/facebook.svg");
+    background-color: #3b5998;
+}
+
+.soundcloud-icon{
+    mask-image: url("/assets/images/soundcloud.svg");
+    background-color: #ff6a22;
+}

@@ -1,0 +1,112 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/dark-colors.scss";
+
+
+
+$select-width: 100%;
+
+.ui-multiselect-header{
+  display: none;
+}
+
+p-dropdown{
+  width: $select-width;
+}
+
+.ui-multiselect-label-container{
+  width: $select-width;
+  height: 30px;
+  background-color: rgba(0,0,0,0) !important;
+  border:none !important;
+  border-bottom: 1px solid $dark-control-border !important;
+}
+
+.ui-multiselect, .ui-dropdown{
+  background-color: rgba(0,0,0,0) !important;
+  
+}
+
+.ui-multiselect-label, .ui-dropdown-label{
+  background-color: rgba(0,0,0,0) !important;
+  font-size: 14px;
+  margin: 0 !important;
+  color: black;
+}
+
+.ui-state-default{
+  border: none !important;
+  outline: none !important;
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.ui-multiselect-trigger, .ui-dropdown-trigger{
+   background-color: rgba(0,0,0,0) !important;
+   content: url("/assets/images/dd_arrow.svg") !important;
+   width: 18px !important;
+}
+
+.ui-chkbox-box.ui-state-default{
+  content: url("/assets/images/checked_empty.svg") !important;
+}
+
+.ui-chkbox-box.ui-state-active {
+  content: url("/assets/images/checked.svg") !important;
+}
+
+
+
+.ui-chkbox-box.ui-state-active{
+  background-color: rgba(0,0,0,0) !important;
+  color: black !important;
+}
+
+.ui-chkbox-box:hover{
+    background-color: rgba(0,0,0,0) !important;
+}
+
+.ui-multiselect-item, .ui-dropdown-item{
+  background-color: rgba(0,0,0,0) !important;
+  color: black !important;
+   font-size: 14px;
+
+   label{
+       height: 10px;
+   }
+}
+
+.ui-multiselect-items-wrapper li, .ui-dropdown-items-wrapper li{
+  padding: 5px !important;
+  padding-left: 10px !important;
+}
+
+.ui-multiselect-items-wrapper li:hover, .ui-dropdown-items-wrapper li:hover{
+  background-color: $dark-control-border !important;
+}
+
+.ui-multiselect-panel, .ui-dropdown-panel{
+  width:$select-width;
+  padding: 0 !important;
+  z-index: 20000;
+}
+
+.ui-helper-hidden-accessible{
+    display: none;
+}
+
+.ui-dropdown{
+  width: $select-width !important;
+  border-bottom: 1px solid $dark-control-border !important;
+  
+}
+
+.ui-dropdown-items, .ui-multiselect-list {
+  padding: 0 !important;
+}
+
+.ui-multiselect{
+  width: $select-width !important;
+
+
+}
+
+
