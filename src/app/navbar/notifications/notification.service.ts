@@ -54,7 +54,7 @@ export class NotificationServiceHttp extends NotificationService {
   }
 
   getNotifications(): Observable<Array<FunkmapNotification>> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Notifications)}notifications/getNotifications`).map(x => NotificationsFactory.BuildNotifications(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Notifications)}notifications`).map(x => NotificationsFactory.BuildNotifications(x.json()));
   }
 
   sendNotificationResponse(request: NotificationResponse): Observable<BaseResponse> {
@@ -62,7 +62,7 @@ export class NotificationServiceHttp extends NotificationService {
   }
 
   getNewNotificationsCount(): Observable<number> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Notifications)}notifications/getNewNotificationsCount`).map(x => x.json());
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Notifications)}notifications/new/count`).map(x => x.json());
   }
 
 }

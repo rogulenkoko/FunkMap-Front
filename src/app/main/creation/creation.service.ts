@@ -20,19 +20,19 @@ export abstract class CreationService {
 
   public instrument: InstrumentType;
 
-  abstract save():Observable<BaseResponse>;
+  abstract save(): Observable<BaseResponse>;
 
   abstract checkLogin(login: string): Observable<boolean>;
 
   constructor() {
     this.baseModel = new BaseModel();
     this.musician = new Musician();
-   }
+  }
 
 
-   buildEntity(): BaseModel{
-     switch(this.selectedEntity){
-       case EntityType.Musician:
+  buildEntity(): BaseModel {
+    switch (this.selectedEntity) {
+      case EntityType.Musician:
         this.musician.login = this.baseModel.login;
         this.musician.latitude = this.baseModel.latitude;
         this.musician.longitude = this.baseModel.longitude;
@@ -41,26 +41,29 @@ export abstract class CreationService {
         this.musician.instrument = this.instrument;
         return this.musician;
 
-        default: return this.baseModel;
-     }
-   }
+      default: return this.baseModel;
+    }
+  }
 
 }
 
 @Injectable()
-export class CreationServiceHttp extends CreationService{
+export class CreationServiceHttp extends CreationService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     super();
   }
 
-  save():Observable<BaseResponse>{
+  save(): Observable<BaseResponse> {
+
     var entity = this.buildEntity();
     entity.entityType = this.selectedEntity;
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/save`,entity).map(x=>BaseResponse.ToBaseResponse(x.json()));
+    entity.location = { latitude: entity.latitude, longitude: entity.longitude };
+
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/profile`, entity).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
-  checkLogin(login: string): Observable<boolean>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/checkLogin/${login}`).map(x=> x.json());
+  checkLogin(login: string): Observable<boolean> {
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/check/${login}`).map(x => x.json());
   }
 }

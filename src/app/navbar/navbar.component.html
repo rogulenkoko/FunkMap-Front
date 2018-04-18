@@ -53,11 +53,11 @@
           </div>
         </li>
 
-        <ng-container *ngIf="userService.user">
+        <ng-container *ngIf="userService.user && user">
           <li class="nav-item dropdown ml-2">
             <a class="nav-link d-flex flex-row align-items-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <avatar-circle [image]="userService.user.avatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
-              <span class="ml-2">{{userService.user.login}}</span>
+              <avatar-circle [image]="user.avatar" [size]="'40px'" [iconSize]="'20px'"></avatar-circle>
+              <span class="ml-2">{{user.name}}</span>
               <i class="fa fa-chevron-down m-2"></i>
             </a>
             <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">

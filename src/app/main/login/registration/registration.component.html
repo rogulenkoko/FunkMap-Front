@@ -1,4 +1,4 @@
-<modal *isDesktop [title]="'Login_SignUp'" [width]="'470px'" [height]="'500px'">
+<modal *isDesktop [title]="'Login_SignUp'" [width]="'470px'" [height]="'510px'">
   <ng-template [ngTemplateOutlet]="registerTemplate"></ng-template>
 </modal>
 
@@ -14,70 +14,74 @@
       <div [class.circle-selected]="currentStep == 3" class="circle d-flex align-items-center justify-content-center"></div>
     </div>
     <div class="d-flex align-items-center justify-content-center">
-        <div class="registration-container">
-          <ng-container *ngIf="currentStep == 1">
-              <div class="d-flex flex-column">
-                <input   placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="existingLogin || isWrongCreds" />
-                <div *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}</div>
-                <div *ngIf="isWrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</div>
-              </div>
+      <div class="registration-container">
+        <ng-container *ngIf="currentStep == 1">
+          <div class="d-flex flex-column">
+            <input placeholder="{{'Login_Login' | translate}}" class="form-control" [(ngModel)]="login" [class.error-form-control]="existingLogin || isWrongCreds"
+            />
+            <div *ngIf="existingLogin" class="error-label">{{'Login_LoginExist' | translate}}</div>
+            <div *ngIf="isWrongCreds" class="error-label">{{'Login_WrongCreds' | translate}}</div>
+          </div>
 
-              <div class="d-flex flex-column">
-                  <input   placeholder="{{'Musician_Name' | translate}}" class="form-control" [(ngModel)]="name" [class.error-form-control]="isWrongCreds" />
-                </div>
+          <div class="d-flex flex-column">
+            <input placeholder="{{'Musician_Name' | translate}}" class="form-control" [(ngModel)]="name" [class.error-form-control]="isWrongCreds"
+            />
+          </div>
 
+          <div class="d-flex flex-column">
+            <input placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds"
+            />
+          </div>
+
+
+          <!--  -->
+          <div>
             <div class="d-flex flex-column">
-              <input   placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds" />
-            </div>
-            <!--  -->
-            <div>
-              <div class="d-flex flex-column">
-                <input autocomplete="new-password" placeholder="{{'Login_RepeatPassword' | translate}}" type="password" [(ngModel)]="passwordRepeat" class="form-control" [class.error-form-control]="passwordsAreNotMacthing"
-                />
-                <label *ngIf="passwordsAreNotMacthing" class="error-label">{{'Login_WrongPasswords' | translate}}</label>
-              </div>
-              
+              <input autocomplete="new-password" placeholder="{{'Login_RepeatPassword' | translate}}" type="password" [(ngModel)]="passwordRepeat"
+                class="form-control" [class.error-form-control]="passwordsAreNotMacthing" />
+              <label *ngIf="passwordsAreNotMacthing" class="error-label">{{'Login_WrongPasswords' | translate}}</label>
             </div>
 
-          </ng-container>
+          </div>
+        </ng-container>
 
-          <ng-container *ngIf="currentStep == 2">
-            <div class="d-flex flex-row justify-content-between align-items-end email-container">
-              <div class="email">
-                <input   placeholder="{{'Login_Email' | translate}}" [(ngModel)]="email" class="form-control" [class.error-form-control]="wrongCreds" />
-                
-              </div>
-              <div class="code">
-                <button *ngIf="!(isEmailSent && isCodeSent) && !(isEmailSent && !isCodeSent)" (click)="sendCode()" class="btn btn-secondary">{{'Login_SendCode' | translate}}</button>
-                <label *ngIf="isEmailSent && isCodeSent" class="is-sent code-label d-flex align-items-center">
-                  <img src="assets/images/apply.png"/>
-                  {{'Login_CodeSent' | translate}}
-                </label>
-                <label *ngIf="isEmailSent && !isCodeSent" class="error-label code-label">{{'Login_CodeNotSent' | translate}}</label>
-              </div>
-            </div>
-            <div class="d-flex flex-column">
-                <input   placeholder="{{'Login_Code' | translate}}" [(ngModel)]="code" class="form-control" [class.error-form-control]="isCodeWrong" />
-                <label class="error-label" *ngIf="isCodeWrong">{{'Login_WrongCode' | translate}}</label>
-            </div>
-          </ng-container>
+        <ng-container *ngIf="currentStep == 2">
+          <div class="d-flex flex-row justify-content-between align-items-end email-container">
+            <div class="email">
+              <input placeholder="{{'Login_Email' | translate}}" [(ngModel)]="email" (ngModelChange)="onEmailChanded()" class="form-control" [class.error-form-control]="wrongCreds"
+              />
 
-          <ng-container *ngIf="currentStep == 3">
-            <div class="d-flex flex-column align-items-center justify-content-center">
-              <span class="complete-label">{{'Registration_Compete' | translate}}</span>
-              <span class="info-label">{{'Regastration_Finish' | translate}}</span>
             </div>
-          </ng-container>
-        </div>
+            <div class="code">
+              <button *ngIf="!(isEmailSent && isCodeSent) && !(isEmailSent && !isCodeSent)" (click)="sendCode()" class="btn btn-secondary">{{'Login_SendCode' | translate}}</button>
+              <label *ngIf="isEmailSent && isCodeSent" class="is-sent code-label d-flex align-items-center">
+                <img src="assets/images/apply.png" /> {{'Login_CodeSent' | translate}}
+              </label>
+              <label *ngIf="isEmailSent && !isCodeSent" class="error-label code-label">{{'Login_CodeNotSent' | translate}}</label>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <input placeholder="{{'Login_Code' | translate}}" [(ngModel)]="code" class="form-control" [class.error-form-control]="isCodeWrong"
+            />
+            <label class="error-label" *ngIf="isCodeWrong">{{'Login_WrongCode' | translate}}</label>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="currentStep == 3">
+          <div class="d-flex flex-column align-items-center justify-content-center">
+            <span class="complete-label">{{'Registration_Compete' | translate}}</span>
+            <span class="info-label">{{'Regastration_Finish' | translate}}</span>
+          </div>
+        </ng-container>
+      </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-between registration-buttons-container" [class.buttons-container-third]="currentStep == 3">
       <button *ngIf="currentStep == 1" (click)="cancel()" class="btn btn-secondary">{{'Login_Cancel' | translate}}</button>
       <button *ngIf="currentStep == 2" (click)="moveBack()" class="btn btn-secondary">{{'Login_Back' | translate}}</button>
       <button *ngIf="currentStep != 3" [class.disabled]="(!isCodeSent || !code) && currentStep == 2" (click)="moveNext()" class="btn btn-success">{{'Login_Continue' | translate}}</button>
-       <button *ngIf="currentStep == 3" routerLink="/" class="btn btn-secondary">{{'Close' | translate}}</button> 
-       <button *ngIf="currentStep == 3" routerLink="/create" class="btn btn-success create-button d-flex align-items-center">
-        <img src="assets/images/plus.png" />
-        {{'Create_Entity' | translate}}</button> 
+      <button *ngIf="currentStep == 3" routerLink="/" class="btn btn-secondary">{{'Close' | translate}}</button>
+      <button *ngIf="currentStep == 3" routerLink="/create" class="btn btn-success create-button d-flex align-items-center">
+        <img src="assets/images/plus.png" /> {{'Create_Entity' | translate}}</button>
     </div>
   </div>
 </ng-template>

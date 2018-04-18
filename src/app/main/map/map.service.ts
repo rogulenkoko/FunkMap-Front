@@ -50,16 +50,16 @@ export class MapServiceHttp extends MapService {
   }
 
   getNearest(request: NearestRequest): Observable<Array<Marker>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/nearest`, request).map(x => Marker.ToMarkerArray(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/nearest/markers`, request).map(x => Marker.ToMarkerArray(x.json()));
   }
 
   getSpecific(logins: Array<string>): Observable<Array<Marker>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specificmarkers`, logins).map(x => Marker.ToMarkerArray(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific/markers`, logins).map(x => Marker.ToMarkerArray(x.json()));
   }
 
   getFiltered(): Observable<Array<Marker>>{
     var filter = this.searchFilterService.buildFilter(0, ConfigurationProvider.entitiesLimit);
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filteredmarkers`, filter).map(x => Marker.ToMarkerArray(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/filtered/markers`, filter).map(x => Marker.ToMarkerArray(x.json()));
   }
 
 

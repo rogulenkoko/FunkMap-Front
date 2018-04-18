@@ -8,7 +8,6 @@ import { SaveImageRequest } from "./save-image-request";
 import { HttpClient } from "app/core/http/http-client.service";
 import { SearchItem } from "app/main/search/search-item";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
-import { UserEntitiesCountInfo, UserEntitiesCountResponse } from 'app/main/user/user-entities-count';
 import { User, UserResponse } from 'app/main/user/user';
 import { ImageInfo } from 'app/main/search/image-info';
 import 'rxjs/add/operator/switchMap';
@@ -28,7 +27,6 @@ export abstract class UserDataService {
   abstract getUserEntities(): Observable<Array<SearchItem>>;
 
   abstract getUserEntitiesLogins(): Observable<Array<string>>;
-  abstract getUserEntitiesCountInfo(): Observable<UserEntitiesCountResponse>;
 
   abstract getUser(login: string): Observable<UserResponse>;
 }
@@ -45,11 +43,11 @@ export class UserDataServiceHttp extends UserDataService {
   }
 
   saveImage(request: SaveImageRequest): Observable<UpdateImageResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/saveAvatar`, request).map(x => UpdateImageResponse.ToUpdateImageResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/avatar`, request).map(x => UpdateImageResponse.ToUpdateImageResponse(x.json()));
   }
 
   updateUserLocale(locale: string): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/updateLocale`, { locale: locale }).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/locale`, { locale: locale }).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
   getUserEntities(): Observable<Array<SearchItem>> {
@@ -59,16 +57,12 @@ export class UserDataServiceHttp extends UserDataService {
     });
   }
 
-  getUserEntitiesCountInfo(): Observable<UserEntitiesCountResponse> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/userscount`).map(x => UserEntitiesCountResponse.ToUserEntitiesCountResponse(x.json()));
-  }
-
   getUserEntitiesLogins(): Observable<Array<string>> {
     return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/users`).map(x => x.json());
   }
 
   getUser(login: string): Observable<UserResponse> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/user/${login}`).map(x => UserResponse.ToUserResponse(x.json()));
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}user/${login}`).map(x => UserResponse.ToUserResponse(x.json()));
   }
 
 }

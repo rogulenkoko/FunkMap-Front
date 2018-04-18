@@ -44,7 +44,7 @@ export class SearchServiceHttp extends SearchService {
   }
 
   getNearest(request: FullLocationRequest): Observable<Array<SearchItem>> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/fullnearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/nearest`, request).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
   getFiltered(skip: number, take: number, filter?: BaseFilter): Observable<SearchResponse> {

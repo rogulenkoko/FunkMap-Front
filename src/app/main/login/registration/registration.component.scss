@@ -1,9 +1,10 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/dark-colors.scss";
 @import "src/assets/styles/forms.scss";
+@import "src/assets/styles/icons.scss";
 
 .registration-container{
-    height: 260px;
+    height: 300px;
     color: $app-grey;
     font-size: 14px;
     margin-top: 50px;
@@ -12,7 +13,7 @@
 
 .registration-container > div{
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
     height: 50px;
 }
 
@@ -123,5 +124,14 @@
             margin-right: 12px;
             margin-left: 6px;
         }
+    }
+}
+
+.social-auth{
+    margin-bottom: 18px !important;
+
+    .icon, img{
+        width: 36px;
+        height: 36px;
     }
 }

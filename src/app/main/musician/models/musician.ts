@@ -41,8 +41,8 @@ export class Musician extends BaseModel{
         result.soundCloudLink = data.SoundCloudLink;
         result.instrument = data.Instrument;
         result.age = data.Age;
-        result.latitude = data.Latitude;
-        result.longitude = data.Longitude;
+        result.latitude = data.Location.Latitude;
+        result.longitude = data.Location.Longitude;
         result.videoInfos = VideoInfo.ToVideoInfos(data.VideoInfos);
         result.address = data.Address;
         result.userLogin = data.UserLogin;

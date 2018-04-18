@@ -3,10 +3,17 @@ import { LoginService } from "../login.service";
 import { Router } from "@angular/router";
 import { RegistrationModel, RegistrationRequest } from "./registration-model";
 import { ConfirmationRequest, ConfirmationResponse } from "./confirmation-model";
-import { User } from "app/main/user/user";
+import { User, AuthProvider } from "app/main/user/user";
 import { UserService } from "app/main/user/user.service";
 import { LanguageService } from 'app/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+import { ExternalSignupRequest } from 'app/main/login/registration/external-signup';
+import { toArray } from 'rxjs/operator/toArray';
+import { AuthResponse } from 'app/main/login/login-response';
+import { BaseResponse } from 'app/tools/models/base-response';
+import { Observable } from 'rxjs/Observable';
+import { UserDataService } from 'app/main/user/user-data.service';
 
 @Component({
   selector: 'app-registration',
@@ -35,10 +42,14 @@ export class RegistrationComponent implements OnInit {
 
   private isCodeWrong: boolean;
 
+  private externalSignupFaild: boolean;
+
   constructor(private loginService: LoginService,
               private router: Router,
               private userService: UserService,
-              private translate: LanguageService) { }
+              private userDataService: UserDataService,
+              private translate: LanguageService,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -62,8 +73,8 @@ export class RegistrationComponent implements OnInit {
 
     switch (this.currentStep) {
       case 1:
-        this.loginService.validate(this.login).subscribe(response => {
-          if (!response.success) {
+        this.userDataService.getUser(this.login).subscribe(response => {
+          if (response.isExist) {
             this.existingLogin = true;
             setTimeout(() => {
               this.existingLogin = false;
@@ -98,7 +109,7 @@ export class RegistrationComponent implements OnInit {
 
   sendCode() {
     var request = new RegistrationRequest(this.login, this.email, this.password, this.name, this.translate.language);
-    this.loginService.sendEmail(request).subscribe(response => {
+    this.loginService.signup(request).subscribe(response => {
       this.isEmailSent = true;
       if (response.success) {
         this.isCodeSent = true;
@@ -111,18 +122,25 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
+  onEmailChanded(){
+    this.isCodeSent = false;
+  }
+
   logIn() {
     this.loginService.login(this.login, this.password).subscribe(response => {
-      if (response.token) {
-        var user = new User();
-        user.login = response.login;
-        user.authData = response;
-        this.userService.user = user; 
-        this.currentStep++;
-      } else {
-        //todo
-      }
+        this.onLoggedIn(response);
+        this.currentStep ++;
     });
+  }
+
+  private onLoggedIn(response: AuthResponse){
+    if (response.token) {
+      var user = new User();
+      user.login = response.login;
+      this.userService.setAuthData(response, user);
+    } else {
+      //todo
+    }
   }
 
   moveBack() {

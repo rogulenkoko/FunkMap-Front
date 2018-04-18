@@ -22,7 +22,7 @@ export class HttpClient {
   }
 
   public post(url: string, data: any, options?: any): Observable<any> {
-    if (this.userService.user && this.userService.user.authData && new Date(this.userService.user.authData.expiresDate) <= new Date()) {
+    if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
       return this.prolongate().switchMap(response => {
 
         this.setRefreshedData(response, true);
@@ -33,8 +33,33 @@ export class HttpClient {
     return this.http.post(url, data, options ? options : this.options).catch(error=> this.handleError(error));
   }
 
+  public put(url: string, data: any, options?: any): Observable<any> {
+    if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
+      return this.prolongate().switchMap(response => {
+
+        this.setRefreshedData(response, true);
+        this.updateOptions();
+        return this.http.put(url, data, options ? options : this.options).catch(error=> this.handleError(error));
+      }).catch(error => this.handleError(error))
+    }
+    return this.http.put(url, data, options ? options : this.options).catch(error=> this.handleError(error));
+  }
+
+  public delete(url: string, options?: any): Observable<any> {
+    if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
+      return this.prolongate().switchMap(response => {
+
+        this.setRefreshedData(response, true);
+        this.updateOptions();
+        return this.http.delete(url, options ? options : this.options).catch(error=> this.handleError(error));
+      }).catch(error => this.handleError(error))
+    }
+    return this.http.delete(url, options ? options : this.options).catch(error=> this.handleError(error));
+  }
+
+
   public get(url: string, options?: any): Observable<any> {
-    if (this.userService.user && this.userService.user.authData && new Date(this.userService.user.authData.expiresDate) <= new Date()) {
+    if (this.userService.user && new Date(this.userService.user.expiresDate) <= new Date()) {
       return this.prolongate().switchMap(response => {
         this.setRefreshedData(response, true);
         this.updateOptions();
@@ -54,7 +79,7 @@ export class HttpClient {
     options.headers.append("Content-Type", "x-www-form-urlencoded");
 
     var params = new URLSearchParams();
-    params.set("refresh_token", this.userService.user.authData.refreshToken);
+    params.set("refresh_token", this.userService.user.refreshToken);
     params.set("grant_type", "refresh_token");
 
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}token`, params, options).map(x => AuthResponse.ToLoginResponsne(x.json()));
@@ -70,13 +95,13 @@ export class HttpClient {
 
   private setRefreshedData(authData: AuthResponse, withoutUserUpdate?: boolean) {
     if (withoutUserUpdate) {
-      this.userService.user.authData = authData;
+      this.userService.setAuthData(authData);
       return;
     }
     var user = new User();
     user.login = authData.login;
-    user.authData = authData;
     this.userService.user = user;
+    this.userService.setAuthData(authData);
   }
 
   private initOptions() {
@@ -88,7 +113,7 @@ export class HttpClient {
   }
 
   private updateOptions() {
-    var token = this.userService.user ? this.userService.user.authData.token : "";
+    var token = this.userService.user ? this.userService.user.token : "";
     this.options.headers.delete("Authorization");
     this.options.headers.append("Authorization", `Bearer ${token}`);
 

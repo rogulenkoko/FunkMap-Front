@@ -1,21 +1,25 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/forms.scss";
+@import "src/assets/styles/icons.scss";
 
 $container-width:310px;
 
 .login-container{
     color: $app-grey;
     font-size: 14px;
-    margin-top: 50px; 
+    margin-top: 30px; 
     width: $container-width;
 }
 
 .login-container > div{
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 18px;
 }
 
 .login-buttons-container{
+
+    margin-top: 36px;
+
     button{
         width: 48%;
         height: 44px;
@@ -39,5 +43,21 @@ $container-width:310px;
 
 .login-input-container{
     height: 50px;
-    margin-bottom: 10px !important;
 }
+
+.social-auth{
+    margin-top: 12px !important;
+    margin-bottom: 18px !important;
+    height: 40px;
+    .icon, img{
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+//удалить
+.fa-google{
+    font-size: 20px;
+}
+

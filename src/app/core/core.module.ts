@@ -20,6 +20,7 @@ import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 import { ResponsiveModule } from 'ng2-responsive';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 
+
 @NgModule({
   declarations: [
   ],
@@ -91,3 +92,4 @@ export function createSignalRConfig() {
   var config = new SignalRConfiguration();
   return config;
 }
+

@@ -28,15 +28,15 @@ export class BaseEditServiceHttp extends BaseEditService {
   }
 
   update(request: BaseModel): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/update`, request).map(x => BaseResponse.ToBaseResponse(x.json()))
+    return this.http.put(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/profile`, request).map(x => BaseResponse.ToBaseResponse(x.json()))
   }
 
   updateAvatar(login: string, image: string): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/updateavatar`,{Login: login, Photo: image}).map(x => BaseResponse.ToBaseResponse(x.json()))
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/avatar`,{Login: login, Photo: image}).map(x => BaseResponse.ToBaseResponse(x.json()))
   }
 
   delete(login: string): Observable<BaseResponse> {
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/delete/${login}`).map(x => BaseResponse.ToBaseResponse(x.json()))
+    return this.http.delete(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}base/profile/${login}`).map(x => BaseResponse.ToBaseResponse(x.json()))
   }
 
   getImages(ids: Array<string>): Observable<Array<ImageInfo>>{

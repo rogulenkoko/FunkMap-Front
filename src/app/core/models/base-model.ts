@@ -12,6 +12,9 @@ export class BaseModel {
     public latitude: number;
     public longitude: number;
 
+    //для запроса создания профиля
+    public location: Location;
+
     public description: string;
 
     public avatar: string;//байты
@@ -27,6 +30,12 @@ export class BaseModel {
     public address: string;
 
     public isActive: boolean;
+}
+
+export class Location{
+    constructor(public latitude: number, public longitude: number){
+
+    }
 }
 
 export class AudioInfo{

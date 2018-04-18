@@ -13,8 +13,6 @@ export abstract class BaseService {
 
   abstract getSpecific(logins: Array<string>): Observable<Array<SearchItem>>;
 
-  abstract getEntityImage(id: string): Observable<string>;
-
   abstract getFavourites(): Observable<Array<SearchItem>>;
 
   abstract getFavouritesLogins(): Observable<Array<string>>;
@@ -34,12 +32,8 @@ export class BaseServiceHttp extends BaseService {
     return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/specific`, logins).map(x => SearchItem.ToSearchItems(x.json()));
   }
 
-  getEntityImage(id: string): Observable<string> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/getimage?id=${id}`,null).map(x => x.json());
-  }
-
   getFavouritesLogins(): Observable<Array<string>>{
-    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/favoritesLogins`).map(x => x.json());
+    return this.http.get(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/favorites/logins`).map(x => x.json());
   }
 
   getFavourites(): Observable<Array<SearchItem>>{
@@ -48,6 +42,6 @@ export class BaseServiceHttp extends BaseService {
 
   setFavourite(login: string, isFavourite: boolean): Observable<BaseResponse>{
     var request = new FavoriteRequest(login, isFavourite);
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/updateFavorite`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Funkmap)}base/favorites`, request).map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 }

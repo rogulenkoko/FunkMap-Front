@@ -63,8 +63,8 @@ export class CreationComponent implements OnInit {
   }
 
   private checkCanCreate(){
-    this.userDataService.getUserEntitiesCountInfo().subscribe(countInfo => {
-      this.canCreate = countInfo.totalCount < ConfigurationProvider.maxProfilesCount;
+    this.userDataService.getUserEntitiesLogins().subscribe(logins => {
+      this.canCreate = logins.length < ConfigurationProvider.maxProfilesCount;
     });
   }
 

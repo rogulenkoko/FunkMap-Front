@@ -58,6 +58,7 @@
     "Login_CodeSent": "Код отправлен",
     "Login_CodeNotSent": "Код не отправлен",
     "Login_WrongCode": "Неверный код",
+    "Login_SignupFailed": "Не удалось зарегистрироваться",
     "Restore": "Восстановление пароля",
     "Restore_PasswordOrEmail": "Укажите свой e-mail или логин",
     "Restore_InvalidPasswordOrEmail": "Неверный логин или e-mail",
