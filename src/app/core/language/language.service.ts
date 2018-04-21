@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import * as moment from "moment";
 
@@ -9,37 +9,45 @@ export class LanguageService {
 
   public availableLanguages: Array<Language>;
 
-  constructor(private translate: TranslateService){
+  public onLanguageChange: EventEmitter<string>;
+
+  constructor(private translate: TranslateService) {
     var ru = new Language("Language_Ru", "ru");
     var en = new Language("Language_En", "en");
     this.availableLanguages = [ru, en];
 
-      var locale = this.availableLanguages.find(x=>window.navigator.language.includes(x.value));
-      this.language = savedLanguage ? savedLanguage : (locale ? locale.value : this.availableLanguages[1].value);
+    this.onLanguageChange = new EventEmitter<string>();
 
+    var locale = this.availableLanguages.find(x => window.navigator.language.includes(x.value));
+   
+    var savedLanguage
     try {
-      var savedLanguage = localStorage.getItem("language");
-      
+      savedLanguage = localStorage.getItem("language");
+
     } catch (ex) {
     }
+
+    this.language = savedLanguage ? savedLanguage : (locale ? locale.value : this.availableLanguages[1].value);
     moment.locale(this.language);
 
-    
-    this.translate.addLangs(this.availableLanguages.map(x=>x.value));
+
+    this.translate.addLangs(this.availableLanguages.map(x => x.value));
 
     this.translate.setDefaultLang(this.language);
   }
 
-  public changeLanguage(){
+  public changeLanguage() {
     this.translate.use(this.language);
+    this.translate.currentLang = this.language;
     localStorage.setItem("language", this.language);
     moment.lang(this.language);
+    this.onLanguageChange.emit(this.language);
   }
 
 }
 
-export class Language{
-  constructor(public title: string, public value: string){
+export class Language {
+  constructor(public title: string, public value: string) {
 
   }
 }

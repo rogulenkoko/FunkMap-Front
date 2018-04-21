@@ -19,6 +19,7 @@ export class HttpClient {
     this.initOptions();
     this.updateOptions();
     this.userService.onUserChanged.subscribe(() => this.updateOptions());
+    this.languageService.onLanguageChange.subscribe(()=>this.updateOptions());
   }
 
   public post(url: string, data: any, options?: any): Observable<any> {
@@ -116,7 +117,7 @@ export class HttpClient {
     var token = this.userService.user ? this.userService.user.token : "";
     this.options.headers.delete("Authorization");
     this.options.headers.append("Authorization", `Bearer ${token}`);
-
+    console.log("Обновил язык на ", this.languageService.language);
     this.options.headers.append("Accept-Language", this.languageService.language);
   }
 
