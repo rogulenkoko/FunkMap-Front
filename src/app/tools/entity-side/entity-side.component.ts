@@ -24,6 +24,7 @@ export class EntitySideComponent implements OnInit {
 
   set item(value: BaseModel){
     this._item = value;
+    this.checkIsUserEntity();
   }
 
   @Input() styles: Array<MusicStyle>;
@@ -51,15 +52,11 @@ export class EntitySideComponent implements OnInit {
     }
 
     this.checkIsFavorite();
-    this.checkIsUserEntity();
-    
   }
 
   private checkIsUserEntity() {
     if(!this.userService.user) return;
-    this.userDataService.getUserEntitiesLogins().subscribe(logins => {
-      this.isUsers = logins.find(x => x == this.item.login) ? true : false;
-    });
+    this.isUsers = this.userService.user.login == this.item.userLogin;
   }
 
   private checkIsFavorite() {

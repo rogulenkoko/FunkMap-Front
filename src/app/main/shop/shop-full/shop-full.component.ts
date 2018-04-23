@@ -15,10 +15,10 @@ import { EditableCardContainer } from 'app/tools/entity-full/editable-card';
 export class ShopFullComponent extends EditableCardContainer implements OnInit {
 
   constructor(public editService: EditService,
-              private shopService: ShopService,
-              private route: ActivatedRoute,
-              userService: UserService,
-              userDataService: UserDataService) {
+    private shopService: ShopService,
+    private route: ActivatedRoute,
+    userService: UserService,
+    userDataService: UserDataService) {
     super(userService, userDataService);
   }
 
@@ -30,13 +30,12 @@ export class ShopFullComponent extends EditableCardContainer implements OnInit {
   }
 
   private refreshBand(login: string) {
-    this.checkIsUserEntity(login).subscribe(isUsers=>{
-      this.editService.isUsers = isUsers;
-      this.shopService.getShop(login).subscribe(shop => {
-        this.editService.baseModel = shop;
-      });
-    })
-    
+    this.shopService.getShop(login).subscribe(shop => {
+      this.editService.baseModel = shop;
+      this.isUsers = this.userService.user && this.userService.user.login == this.editService.baseModel.userLogin;
+      this.editService.isUsers = this.isUsers;
+    });
+
   }
 
 }

@@ -55,12 +55,4 @@ export class EditableCardContainer {
     }
 
     protected isUsers: boolean = false;
-
-    protected checkIsUserEntity(login: string) : Observable<boolean> {
-        if (!this.userService.user) return Observable.of(false);
-        return Observable.create((observer: Observer<boolean>)=> this.userDataService.getUserEntitiesLogins().subscribe(logins => {
-            this.isUsers = logins.find(x => x == login) ? true : false;
-            observer.next(this.isUsers);
-        }));
-    }
 }

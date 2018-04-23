@@ -36,16 +36,11 @@ export class BandFullComponent extends EditableCardContainer implements OnInit {
       return;
     }
 
-    this.checkIsUserEntity(login).subscribe(isUsers=>{
+    this.bandService.getBand(login).subscribe(band => {
+      this.editService.baseModel = band;
+      this.isUsers = this.userService.user && this.userService.user.login == this.editService.baseModel.userLogin;
       this.editService.isUsers = this.isUsers;
-
-      this.bandService.getBand(login).subscribe(band => {
-        this.editService.baseModel = band;
-      })
-      
-    });
-   
-    
+    })
   }
 
 }

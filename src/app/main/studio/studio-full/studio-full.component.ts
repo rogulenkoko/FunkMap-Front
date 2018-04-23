@@ -30,12 +30,12 @@ export class StudioFullComponent extends EditableCardContainer implements OnInit
   }
 
   private refreshBand(login: string) {
-    this.checkIsUserEntity(login).subscribe(isUsers=>{
-      this.editService.isUsers = isUsers;
-      this.studioService.getStudio(login).subscribe(studio => {
-        this.editService.baseModel = studio;
-      });
-    })
+
+    this.studioService.getStudio(login).subscribe(studio => {
+      this.editService.baseModel = studio;
+      this.isUsers = this.userService.user && this.userService.user.login == this.editService.baseModel.userLogin;
+      this.editService.isUsers = this.isUsers;
+    });
     
   }
 

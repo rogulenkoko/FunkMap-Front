@@ -26,7 +26,7 @@ export class MusicianFullComponent extends EditableCardContainer implements OnIn
     private navbarService: NavbarService,
     userService: UserService,
     userDataService: UserDataService) {
-      super(userService, userDataService);
+    super(userService, userDataService);
   }
 
   ngOnInit() {
@@ -37,23 +37,21 @@ export class MusicianFullComponent extends EditableCardContainer implements OnIn
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.navbarService.title = undefined;
   }
 
   private refreshMusician(login: string) {
-    if(this.editService.baseModel && this.editService.baseModel.login == login){
+    if (this.editService.baseModel && this.editService.baseModel.login == login) {
       return;
     }
-    this.checkIsUserEntity(login).subscribe(isUsers=>{
-      this.editService.isUsers = isUsers;
-      this.musicianService.getMusician(login).subscribe(musician => {
-        this.editService.baseModel = musician;
-        this.navbarService.title = musician.name;
-      });
+
+    this.musicianService.getMusician(login).subscribe(musician => {
+      this.editService.baseModel = musician;
+      this.navbarService.title = musician.name;
+      this.isUsers = this.userService.user && this.userService.user.login == this.editService.baseModel.userLogin;
+      this.editService.isUsers = this.isUsers;
     });
-    
-    
   }
 
 }

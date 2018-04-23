@@ -15,10 +15,10 @@ import { EditableCardContainer } from 'app/tools/entity-full/editable-card';
 export class RehearsalFullComponent extends EditableCardContainer implements OnInit {
 
   constructor(public editService: EditService,
-              private rehearsalService: RehearsalService,
-              private route: ActivatedRoute,
-              userService: UserService,
-              userDataService: UserDataService) {
+    private rehearsalService: RehearsalService,
+    private route: ActivatedRoute,
+    userService: UserService,
+    userDataService: UserDataService) {
     super(userService, userDataService);
   }
 
@@ -30,12 +30,10 @@ export class RehearsalFullComponent extends EditableCardContainer implements OnI
   }
 
   private refreshRehearsal(login: string) {
-    this.checkIsUserEntity(login).subscribe(isUsers=>{
-      this.editService.isUsers = isUsers;
-      this.rehearsalService.getRehearsal(login).subscribe(rehearsal => {
-        this.editService.baseModel = rehearsal;
-      });
-    })
+    this.rehearsalService.getRehearsal(login).subscribe(rehearsal => {
+      this.editService.baseModel = rehearsal;
+      this.isUsers = this.userService.user && this.userService.user.login == this.editService.baseModel.userLogin;
+      this.editService.isUsers = this.isUsers;
+    });
   }
-
 }

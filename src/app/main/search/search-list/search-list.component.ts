@@ -17,8 +17,6 @@ export class SearchListComponent implements OnInit, OnDestroy {
 
   @Input() items: Array<SearchItem>;
 
-  private userEntities: Array<string> = [];
-
   constructor(private userService: UserService,
     private baseService: BaseService,
     private mapFilter: MapFilter,
@@ -26,19 +24,13 @@ export class SearchListComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
 ngOnInit() {
-    this.getFavouriteLogins();
+
   }
 
   ngOnDestroy(){
     this.items = undefined;
   }
 
-  private getFavouriteLogins(){
-    if(!this.userService.user) return;
-    this.userDataService.getUserEntitiesLogins().subscribe(userItems => {
-      this.userEntities = userItems;
-    })
-  }
 
   private changeFavourite(login: string) {
     var selected = this.items.find(x => x.login == login);
@@ -53,10 +45,6 @@ ngOnInit() {
   selectMarkerOnMap(item: SearchItem) {
     var marker = new Marker(item.login, item.latitude, item.longitude, item.type);
     this.mapFilter.onOutItemsSelected.emit(marker);
-  }
-
-  private checkIfUserEntity(login: string): boolean {
-    return this.userEntities.find(x => x == login) ? true : false;
   }
   
   private navigate(login: string, type: EntityType){
