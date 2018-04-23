@@ -154,7 +154,7 @@ export class MessengerServiceHttp extends MessengerService {
   }
 
   setOpenedDialog(dialogId: string): Observable<BaseResponse> {
-    return this.signalrService.connection.switchMap(connection => Observable.fromPromise(connection.invoke("setOpenedDialog", dialogId))).map(x => BaseResponse.ToBaseResponse(x));
+    return this.signalrService.connection.switchMap(connection => Observable.fromPromise(connection.invoke("open-dialog", dialogId))).map(x => BaseResponse.ToBaseResponse(x));
   }
 
   getDialogMessages(request: DialogMessagesRequest): Observable<Message[]> {

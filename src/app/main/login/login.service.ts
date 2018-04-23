@@ -58,7 +58,7 @@ export class LoginServiceHttp extends LoginService {
   }
 
   askRestoreCode(loginOrEmail: string): Observable<BaseResponse> {
-    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/restore`, {email:loginOrEmail}).map(x => BaseResponse.ToBaseResponse(x.json()));
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}auth/restore/${loginOrEmail}`, "").map(x => BaseResponse.ToBaseResponse(x.json()));
   }
 
   confirmRestore(request: ConfirmRestoreRequest): Observable<BaseResponse> {
