@@ -1,0 +1,36 @@
+.info-title-container{
+        font-size: 16px;
+        color: #7a7a7b;
+    }
+
+    .property-container{
+        margin-bottom: 15px;
+    }
+
+    .property-title{
+        width: 160px;
+        font-size: 13px;
+        color: $dark-title-color;
+    }
+
+    .property-value{
+        font-size: 13px;
+        width: 300px;
+    }
+
+    .edit-buttons-container{
+        span{
+            font-size: 13px;
+            cursor: pointer;
+            color: $dark-title-color;
+        }
+
+        span:hover{
+            color: $dark-orange-hard;
+        }
+
+        .save-button{
+            color: $dark-orange-hard;
+            margin-left: 25px;
+        }
+    }
