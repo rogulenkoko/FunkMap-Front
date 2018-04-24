@@ -75,7 +75,9 @@ export class MessagesComponent implements OnInit, OnDestroy, AfterViewInit {
     let request = new DialogMessagesRequest(dialogId, 0, this.messagesPackCount)
     this.messengerService.getDialogMessages(request).subscribe(messages=>{
       this.messages = messages;
-     
+      this.messages.forEach(message=>{
+        message.avatar = this.dialogService.dialog.avatar;
+      });
       this.scrollbarService.scrollTo(this.messagesContainerId,100000,{scrollInertia:0});
     });
   }

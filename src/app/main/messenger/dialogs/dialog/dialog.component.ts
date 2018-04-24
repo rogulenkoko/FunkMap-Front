@@ -16,10 +16,20 @@ export class DialogComponent implements OnInit {
  
 
   constructor(private dialogService: DialogService,
-              public userService: UserService) {
+              public userService: UserService,
+              private userDataSerive: UserDataService) {
   }
 
   ngOnInit() {
+
+    if(this.dialog && !this.dialog.avatar && this.dialog.participants.length == 2){
+
+      var userLogin = this.dialog.participants.filter(x=> x != this.userService.user.login)[0];
+      this.userDataSerive.getUser(userLogin).subscribe(user=>{
+        if(!user.isExist) return;
+        this.dialog.avatar = user.user.avatar;
+      });
+    }
     
   }
 

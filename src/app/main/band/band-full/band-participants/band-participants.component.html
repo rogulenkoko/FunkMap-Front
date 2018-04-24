@@ -21,7 +21,7 @@
             (mouseleave)="overMusician('')">
             <div class="d-flex align-items-center">
                 <span class="participant-instrument">{{musicianTypesProvider.instruments.getValue(musician.instrument) | translate}}:</span>
-                <avatar-circle [ngClass]="'participant-avatar'" [image]="musician.avatarId" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
+                <avatar-circle [ngClass]="'participant-avatar'" [image]="musician.avatarMiniId" [size]="'35px'" [iconSize]="'18px'"></avatar-circle>
                 <a [routerLink]="['/musicianPage/' + musician.login]" class="participant-name">{{musician.name}}</a>
             </div>
             <i *ngIf="isUsers && hoveredMusician == musician.login" (click)="removeMusician(musician)" class="icon-close"></i>

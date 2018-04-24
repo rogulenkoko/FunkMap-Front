@@ -24,6 +24,7 @@ export class EntitySideComponent implements OnInit {
 
   set item(value: BaseModel){
     this._item = value;
+    console.log(value);
     this.checkIsUserEntity();
   }
 
