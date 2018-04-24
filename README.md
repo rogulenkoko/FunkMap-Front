@@ -22,8 +22,6 @@ Demo user: demo/demo.
 #### 3. run "npm install" and "ng serve"
 #### 4. specify API keys in ConfigurationProvider
 
-Для установки необходимы Node.js, npm, angular-cli.
-
 ## Links
 
 * [Back-end, REST API documentaion](https://bandmap-api.azurewebsites.net/swagger/ui/index)
