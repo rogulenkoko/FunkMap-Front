@@ -11,9 +11,9 @@ export class ConfigurationProvider{
     public static maxProfilesCount: number = 5;
 
     public static soundcloudApi = "https://api.soundcloud.com/";
-    public static soundcloudKey = "8e1349e63dfd43dc67a63e0de3befc68"; //todo сделать свой
+    public static soundcloudKey = "<souncloudkey>";
 
-    public static facebookKey = "211667802913192";
+    public static facebookKey = "<facebookkey>";
 
 }
 
