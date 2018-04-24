@@ -1,14 +1,31 @@
-# Funkmap-front
-### Клиентская сторона проекта
-### Технологии: Angular, TypeScript, SASS, HTML5
+# Bandmap
 
-Ссылка на макеты: https://drive.google.com/drive/folders/0B3VWeKEo7dyydktxRUdYX2V4Sm8
+Bandmap is an evolving service for fast and convenient communication between musicians and music lovers around the world.
 
-Демо: http://95.213.239.58:14081
+The repository contains the front-end application, which uses API of [Bandmap back-end](https://github.com/rogulenkoko/funkmap-back). 
+
+Demo is available on [Bandmap](https://bandmap.azurewebsites.net).
+Demo user: demo/demo.
+
+## Technology Stack
+
+1. Angular 5
+2. TypeScript 
+3. HTML5
+4. SASS
+
+
+## Installation
+
+#### 1. Node.js
+#### 2. angular-cli
+#### 3. run "npm install" and "ng serve"
+#### 4. specify API keys in ConfigurationProvider
 
 Для установки необходимы Node.js, npm, angular-cli.
 
+## Links
 
-1.  Клонировать репозиторий
-2.  Выполнить npm install
-3.  Выполнить ng serve
+* [Back-end, REST API documentaion](https://bandmap-api.azurewebsites.net/swagger/ui/index)
+
+* [Bandmap (demo)](https://bandmap.azurewebsites.net)
