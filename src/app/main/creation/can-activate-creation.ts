@@ -11,7 +11,6 @@ export class CanActivateCreation implements CanActivate {
         state: RouterStateSnapshot
     ): boolean {
         var canActivate = this.userService.user ? true : false;
-        console.log(canActivate);
         if(!canActivate){
             this.router.navigate(['/login']);
         }

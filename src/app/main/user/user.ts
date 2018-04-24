@@ -26,7 +26,6 @@ export class UserResponse {
     public isExist: boolean;
 
     public static ToUserResponse(data: any): UserResponse {
-        console.log(data);
         var result = new UserResponse();
 
         result.isExist = data.IsExists;

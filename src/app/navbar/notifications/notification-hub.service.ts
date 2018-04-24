@@ -53,7 +53,6 @@ export class NotificationHubServiceReal extends NotificationHubService {
       return Observable.of(connection);
 
     }).catch(error => {
-      console.log(error);
       return Observable.of(null);
     });
   }

@@ -43,12 +43,8 @@ export class EntitySoundComponent extends EditableCard implements OnInit, OnDest
     } else {
       this.isUsers = this.editService.isUsers;
     }
-
-    console.log(this.entity, "из омпонента");
-
     this.tracks = this.entity.soundCloudTracks ? this.entity.soundCloudTracks : [];
 
-    console.log(this.tracks);
   }
 
   ngOnDestroy() {

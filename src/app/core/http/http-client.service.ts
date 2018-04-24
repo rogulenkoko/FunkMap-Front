@@ -117,7 +117,6 @@ export class HttpClient {
     var token = this.userService.user ? this.userService.user.token : "";
     this.options.headers.delete("Authorization");
     this.options.headers.append("Authorization", `Bearer ${token}`);
-    console.log("Обновил язык на ", this.languageService.language);
     this.options.headers.append("Accept-Language", this.languageService.language);
   }
 
