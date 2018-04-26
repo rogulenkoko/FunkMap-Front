@@ -3,8 +3,6 @@ import { Router } from "@angular/router";
 import { LoginService } from "./login.service";
 import { UserService } from "../user/user.service";
 import { User, AuthProvider } from "../user/user";
-import { FacebookLoginProvider } from 'angularx-social-login';
-import { SocialUser } from 'angularx-social-login';
 import { AuthResponse } from 'app/main/login/login-response';
 
 @Component({

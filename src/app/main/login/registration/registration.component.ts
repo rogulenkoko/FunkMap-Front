@@ -7,7 +7,6 @@ import { User, AuthProvider } from "app/main/user/user";
 import { UserService } from "app/main/user/user.service";
 import { LanguageService } from 'app/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 import { ExternalSignupRequest } from 'app/main/login/registration/external-signup';
 import { toArray } from 'rxjs/operator/toArray';
 import { AuthResponse } from 'app/main/login/login-response';
@@ -48,8 +47,7 @@ export class RegistrationComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private userDataService: UserDataService,
-              private translate: LanguageService,
-              private authService: AuthService) { }
+              private translate: LanguageService) { }
 
   ngOnInit() {
   }
