@@ -28,6 +28,7 @@ import { RestorePasswordComponent } from "app/main/login/restore-password/restor
 import { AboutComponent } from "app/main/about/about.component";
 import { NotificationSideComponent } from "app/navbar/notifications/notification-side/notification-side.component";
 import { CanActivateAdaptive } from "app/tools/can-activate-adaptive";
+import { PaymentsComponent } from "app/main/payments/payments.component";
 
 const appRoutes: Routes = [
   {
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
           { path: "messenger", component: MessengerComponent },
           { path: "messenger/:login", component: MessengerComponent },
           { path: "about", component: AboutComponent },
+          { path: "shop", loadChildren: "app/main/payments/payments.module#PaymentsModule" }
         ]
       },
       { path: "start", component: StartComponent }

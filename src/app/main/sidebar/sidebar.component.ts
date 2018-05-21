@@ -67,6 +67,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
         var favouriteItem = new SidebarItem("favorites", "Favorites", "icon-favorite");
         favouriteItem.visibleForLogged = true;
     
+        var shopItem = new SidebarItem("shop", "OnlineShop", "fas fa-shopping-bag")
+
         var settingsItem = new SidebarItem("settings", "Settings", "icon-settings");
         
         var aboutItem = new SidebarItem("about", "About", "icon-logo-symbol");
@@ -79,6 +81,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         ]
     
         this.bottomItems = [
+          shopItem,
           settingsItem,
           aboutItem,
           logoutItem
