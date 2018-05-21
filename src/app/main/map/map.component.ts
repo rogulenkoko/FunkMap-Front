@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
 import { MapProvider } from "./map-provider.service";
-import { Map, Marker, EntityType, NearestRequest } from "./models";
+import { Map, ProfileMarker, EntityType, NearestRequest } from "./models";
 import { MarkerFactory } from "./marker-factory.service";
 import { MapService } from "./map.service";
 import { MapFilter } from "./map-filter.service";
@@ -12,6 +12,8 @@ import { MapCreationService } from "app/main/map/map-creation.service";
 import { ConfigurationProvider } from 'app/core';
 import { MapBuilder, MapThemeType } from 'app/main/map/map-builder.service';
 import { SearchFilterService } from 'app/main/search/search-filter/search-filter.service';
+import { Mode } from 'app/tools/mode';
+import { Marker } from 'app/main/map/models/marker';
 
 @Component({
   selector: 'map',
@@ -23,7 +25,7 @@ export class MapComponent implements OnInit {
   private map: L.Map;
   private baseLayer: L.TileLayer;
 
-  private center: Marker;
+  private center: ProfileMarker;
 
   private markersLayer: L.LayerGroup;
 
@@ -49,7 +51,7 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-   
+
     var lastMarker = this.userService.getLastCoordinates();
     var latLng = lastMarker ? lastMarker : new L.LatLng(50, 30);
 
@@ -83,12 +85,24 @@ export class MapComponent implements OnInit {
     });
   }
 
-  private getFilteredMarkers() {
+  private async getFilteredMarkers() {
+    console.log("asda");
+    console.log(this.searchFilterService.mode);
 
-    this.mapService.getFiltered().subscribe(markers => {
-      this.markers = markers;
-      this.refreshMarkers();
-    })
+    switch (this.searchFilterService.mode) {
+      case Mode.Profiles:
+        this.markers = await this.mapService.getFiltered().toPromise();
+
+        this.refreshMarkers();
+        break;
+
+      case Mode.Events:
+        this.markers = await this.mapService.getFilteredEvents().toPromise();
+        this.refreshMarkers();
+        break;
+    }
+
+
   }
 
   private refreshMarkers() {
@@ -100,7 +114,7 @@ export class MapComponent implements OnInit {
     this.markersLayer.addLayer(cluster);
   }
 
-  private selectEntityPosition(marker: Marker) {
+  private selectEntityPosition(marker: ProfileMarker) {
     this.clearAllLayers();
     var result = this.drawCreationMarker(marker);
     this.map.on("click", (event: any) => {
@@ -111,7 +125,7 @@ export class MapComponent implements OnInit {
     })
   }
 
-  private drawCreationMarker(marker: Marker): L.Marker {
+  private drawCreationMarker(marker: ProfileMarker): L.Marker {
     var result = this.markerFactory.getCreationMarker(marker);
     result.on("click", (event: any) => {
       if (event.originalEvent.target.id == "cross" || event.originalEvent.target.id == "cross-img") {
@@ -132,7 +146,7 @@ export class MapComponent implements OnInit {
     return result;
   }
 
-  private selectMarker(point: Marker) {
+  private selectMarker(point: ProfileMarker) {
     var markerBounds = L.latLngBounds([[point.lat, point.lng]]);
     this.map.fitBounds(markerBounds);
     this.map.zoomOut(4)

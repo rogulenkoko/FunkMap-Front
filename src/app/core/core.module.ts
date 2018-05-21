@@ -14,7 +14,7 @@ import { YoutubePlayerMiniModule } from "ng2-youtube-player-mini";
 import { SignalRModule, SignalRConfiguration } from '@dharapvj/ngx-signalr';
 import { environment } from "environments/environment";
 import { ConfigurationProvider, ServiceType } from "app/core/configuration/configuration-provider";
-import { MultiSelectModule, DropdownModule, TooltipModule, FileUploadModule, DialogModule, InputTextareaModule, InputSwitchModule, SliderModule } from 'primeng/primeng';
+import { MultiSelectModule, DropdownModule, TooltipModule, FileUploadModule, DialogModule, InputTextareaModule, SliderModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 import { ResponsiveModule } from 'ng2-responsive';
@@ -43,7 +43,6 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
-    InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule,
     SliderModule,
@@ -63,7 +62,6 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     TooltipModule,
     InputTextareaModule,
     FileUploadModule,
-    InputSwitchModule,
     BrowserAnimationsModule,
     DialogModule,
     SliderModule,

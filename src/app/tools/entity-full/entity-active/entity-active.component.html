@@ -1,14 +1,22 @@
 <ng-container *isDesktop>
     <div *ngIf="isUsers" class="active-container d-flex justify-content-between">
         <span>{{'Entity_Activity' | translate}}</span>
-        <p-inputSwitch onLabel="" offLabel="" [(ngModel)]="isNotActive" (onChange)="changeActivity(!$event.checked)"></p-inputSwitch>
+        <label class="switch">
+            <input type="checkbox" [(ngModel)]="isNotActive" (onChange)="changeActivity(!$event.checked)">
+            <span class="slider round"></span>
+        </label>
     </div>
 </ng-container>
 
 <ng-container *isMobile>
     <div *ngIf="isUsers" class="active-container active-container-mobile d-flex justify-content-between">
         <span>{{'Entity_Activity' | translate}}</span>
-        <p-inputSwitch onLabel="" offLabel="" [(ngModel)]="isNotActive" (onChange)="changeActivity(!$event.checked)"></p-inputSwitch>
+
+        <label class="switch">
+            <input type="checkbox" [(ngModel)]="isNotActive" (onChange)="changeActivity(!$event.checked)">
+            <span class="slider round"></span>
+        </label>
+
+        <!-- <p-inputSwitch onLabel="" offLabel="" ></p-inputSwitch> -->
     </div>
 </ng-container>
-

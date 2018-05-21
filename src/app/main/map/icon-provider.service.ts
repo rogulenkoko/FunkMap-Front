@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InstrumentType } from "../musician/models";
 import { Dictionary } from "typescript-collections";
-import { Marker, EntityType } from "./models";
+import { ProfileMarker, EntityType } from "./models";
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class IconProvider {
 
   }
 
-  public getIcon(point: Marker): string {
+  public getIcon(point: ProfileMarker): string {
 
 
     switch (point.entityType) {

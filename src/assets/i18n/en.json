@@ -102,6 +102,8 @@
     "Search_NoItems": "Results not found",
     "Clear_Filter": "Clear filter",
     "Search_Filter":"Filter",
+    "Mode_Profiles":"Profiles",
+    "Mode_Events":"Events",
     "Styles": "Styles",
     "Instruments": "Instruments",
     "Entity": "Profile type",

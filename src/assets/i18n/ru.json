@@ -99,6 +99,8 @@
     "Search_NoItems": "Результатов не найдено",
     "Clear_Filter": "Сбросить фильтр",
     "Search_Filter":"Фильтр",
+    "Mode_Profiles":"Профили",
+    "Mode_Events":"События",
     "Styles": "Стили",
     "Instruments": "Инструменты",
     "Entity": "Тип профиля",

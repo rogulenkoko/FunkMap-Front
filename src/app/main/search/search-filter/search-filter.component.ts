@@ -12,6 +12,7 @@ import { Observable } from "rxjs/Observable";
 import { StylesItem, InstrumentsItem, EntityItem, ExpirienceItem } from "app/tools/select";
 import { IconProvider } from 'app/main/map/icon-provider.service';
 import { Router } from '@angular/router';
+import { Mode } from 'app/tools/mode';
 
 @Component({
   selector: 'search-filter',
@@ -30,13 +31,15 @@ export class SearchFilterComponent implements OnInit {
   public isTypeSelectionMode: boolean = false;
   public isFilerActive: boolean = false;
 
+  public mode: Mode = Mode.Profiles;
+
   constructor(public musicianTypesProvider: MusicianTypesProvider,
     public searchFilterService: SearchFilterService,
     public entityTypeProvider: EntityTypeProvider,
     private translateService: TranslateService,
     public iconProvider: IconProvider,
     private router: Router) {
-
+      this.searchFilterService.mode
     
   }
 
@@ -77,6 +80,11 @@ export class SearchFilterComponent implements OnInit {
     } else {
       this.isTypeSelectionMode = !this.isTypeSelectionMode;
     }
+  }
+
+  public onModeChanged(mode: boolean){
+    this.searchFilterService.setMode(Number(mode));
+    
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EntityMapComponent } from "app/tools/entity-full/entity-map/entity-map.component";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { Rehearsal } from "app/main/rehearsal/models/rehearsal-preview";
-import { Marker, EntityType } from "app/main/map/models";
+import { ProfileMarker, EntityType } from "app/main/map/models";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { RehearsalService } from "app/main/rehearsal/rehearsal.service";
 import { EditService } from "app/tools/entity-full/edit.service";
@@ -19,7 +19,7 @@ export class RehearsalMapComponent implements OnInit {
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private rehearsal: Rehearsal;
-  public marker: Marker;
+  public marker: ProfileMarker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -34,8 +34,8 @@ export class RehearsalMapComponent implements OnInit {
     this.marker = this.buildMarker();
   }
 
-  private buildMarker():Marker{
-    var marker = new Marker(this.rehearsal.login, this.rehearsal.latitude, this.rehearsal.longitude, EntityType.RehearsalPoint);
+  private buildMarker():ProfileMarker{
+    var marker = new ProfileMarker(this.rehearsal.login, this.rehearsal.latitude, this.rehearsal.longitude, EntityType.RehearsalPoint);
     marker.iconUrl = this.iconProvider.getIcon(marker);
     return marker;
   }

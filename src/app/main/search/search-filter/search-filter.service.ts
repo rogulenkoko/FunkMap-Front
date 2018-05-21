@@ -10,10 +10,21 @@ import { BaseFilter } from 'app/main/search/search-filter/base-filter';
 import { BandFilter } from 'app/main/band/models/band-filter';
 import { UserService } from 'app/main/user/user.service';
 import { ConfigurationProvider } from 'app/core';
+import { Mode } from 'app/tools/mode';
 
 
 @Injectable()
 export class SearchFilterService {
+
+  private modeKey = "mode";
+
+  public mode: Mode = Mode.Profiles;
+
+  public setMode(mode: Mode){
+    this.mode = mode;
+    localStorage.setItem(this.modeKey, mode.toString());
+    this.onFilterChanged.emit();
+  }
 
   public searchTextStub: string; //используется только для сохранения текста в фильтре
   public searchText: string;
@@ -43,6 +54,8 @@ export class SearchFilterService {
     this.onFilterChanged = new EventEmitter();
     this.searchChanged = new Subject<string>();
 
+    this.setMode(Number(localStorage.getItem(this.modeKey)));
+    
     this.fillDefaultValues();
     this.parseCachedFilter();
     

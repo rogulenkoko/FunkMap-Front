@@ -6,7 +6,7 @@ import { SaveImageRequest } from "./save-image-request";
 import { SearchItem } from "app/main/search/search-item";
 import { EntityType } from "app/main/map/models";
 import { UserAvatarResponse } from "app/main/user/user-avatar-response";
-import { UserResponse } from 'app/main/user/user';
+import { UserResponse, User } from 'app/main/user/user';
 import { ImageInfo } from 'app/main/search/image-info';
 
 @Injectable()
@@ -38,7 +38,11 @@ export class UserDataServiceStub extends UserDataService {
 
   getUser(login: string):Observable<UserResponse>{
     var response = new UserResponse();
-    response.isExist = false;
+    var user = new User();
+    user.login = "rogulenkoko";
+    user.name = "Kirill Rogulenko";
+    response.user = user;
+    response.isExist = true;
     return Observable.of(response);
   }
 

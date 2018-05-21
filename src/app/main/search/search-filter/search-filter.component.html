@@ -1,5 +1,16 @@
 <div class="filter-main-container d-flex flex-column" (clickOutside)="changeTypeSelectionMode(true)">
 
+  <div class="d-flex align-items-center justify-content-between filter-title-container-wrapper filter-title-container-mode-wrapper">
+    <div class="filter-title-container d-flex align-items-center">
+      <span *ngIf="searchFilterService.mode == 0">{{'Mode_Profiles' | translate}}</span>
+      <span *ngIf="searchFilterService.mode == 1">{{'Mode_Events' | translate}}</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="searchFilterService.mode" (ngModelChange)="onModeChanged($event)">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
   <div (click)="changeFilerActive()" class="d-flex align-items-center justify-content-between filter-title-container-wrapper">
     <div class="filter-title-container d-flex align-items-center">
       <span class="icon-filter"></span>
@@ -10,78 +21,80 @@
   </div>
 
 
-  <div *ngIf="isFilerActive" (click)="changeTypeSelectionMode()" class="d-flex flex-row align-items-center filter-container">
-    <span *ngIf="!searchFilterService.selectedEntity" class="icon-plus"></span>
-    <span *ngIf="!searchFilterService.selectedEntity" class="entity-type-label">{{'Entity' | translate}}</span>
+  <ng-container *ngIf="searchFilterService.mode == 0">
+    <div *ngIf="isFilerActive" (click)="changeTypeSelectionMode()" class="d-flex flex-row align-items-center filter-container">
+      <span *ngIf="!searchFilterService.selectedEntity" class="icon-plus"></span>
+      <span *ngIf="!searchFilterService.selectedEntity" class="entity-type-label">{{'Entity' | translate}}</span>
 
 
-    <div class="type-container d-flex align-items-center">
+      <div class="type-container d-flex align-items-center">
 
-      <span (click)="searchFilterService.clearFilter()" *ngIf="searchFilterService.selectedEntity" class="icon-close"></span>
+        <span (click)="searchFilterService.clearFilter()" *ngIf="searchFilterService.selectedEntity" class="icon-close"></span>
 
-      <img *ngIf="searchFilterService.selectedEntity" src="{{iconProvider.getIconByType(searchFilterService.selectedEntity)}}"
-      />
-      <span *ngIf="searchFilterService.selectedEntity" class="item-label">{{entityTypeProvider.entities.getValue(searchFilterService.selectedEntity) | translate}}</span>
-    </div>
+        <img *ngIf="searchFilterService.selectedEntity" src="{{iconProvider.getIconByType(searchFilterService.selectedEntity)}}"
+        />
+        <span *ngIf="searchFilterService.selectedEntity" class="item-label">{{entityTypeProvider.entities.getValue(searchFilterService.selectedEntity) | translate}}</span>
+      </div>
 
-    <ng-container *isDesktop>
-        <div *ngIf="isTypeSelectionMode"  class="legend-items-container">
-            <div (click)="selectType(key, true)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
-                <img src="{{iconProvider.getIconByType(key)}}" />
-                <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
-              </div>
+      <ng-container *isDesktop>
+        <div *ngIf="isTypeSelectionMode" class="legend-items-container">
+          <div (click)="selectType(key, true)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+            <img src="{{iconProvider.getIconByType(key)}}" />
+            <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
           </div>
-          <div *ngIf="isTypeSelectionMode" class="triangle"></div>
-    </ng-container>
+        </div>
+        <div *ngIf="isTypeSelectionMode" class="triangle"></div>
+      </ng-container>
 
-    <ng-container *isMobile>
+      <ng-container *isMobile>
         <div *ngIf="isTypeSelectionMode" class="legend-items-container legend-items-container-mobile">
-            <div (click)="selectType(key, false)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
-                <img src="{{iconProvider.getIconByType(key)}}" />
-                <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
-              </div>
+          <div (click)="selectType(key, false)" class="legend-item" *ngFor="let key of entityTypeProvider.entities.keys()">
+            <img src="{{iconProvider.getIconByType(key)}}" />
+            <span class="item-label">{{entityTypeProvider.entities.getValue(key) | translate}}</span>
           </div>
-    </ng-container>
+        </div>
+      </ng-container>
 
-  </div>
-  <ng-container *ngIf="isFilerActive">
-    <ng-container *ngIf="searchFilterService.selectedEntity  == 1 || searchFilterService.selectedEntity  == 3">
-      <div class="d-flex flex-column filter-property-container">
-        <label class="filter-label">{{'Styles' | translate}}:</label>
-        <div class="filter-value">
-          <p-multiSelect *isMobile [options]="styles" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false"
-            (onChange)="onChanged(false)"></p-multiSelect>
+    </div>
+    <ng-container *ngIf="isFilerActive">
+      <ng-container *ngIf="searchFilterService.selectedEntity  == 1 || searchFilterService.selectedEntity  == 3">
+        <div class="d-flex flex-column filter-property-container">
+          <label class="filter-label">{{'Styles' | translate}}:</label>
+          <div class="filter-value">
+            <p-multiSelect *isMobile [options]="styles" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false"
+              (onChange)="onChanged(false)"></p-multiSelect>
 
             <p-multiSelect *isDesktop [options]="styles" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedStyles" [filter]="false"
-            (onChange)="onChanged(true)"></p-multiSelect>
+              (onChange)="onChanged(true)"></p-multiSelect>
+          </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
 
 
-    <ng-container *ngIf="searchFilterService.selectedEntity  == 1">
-      <div class="d-flex flex-column filter-property-container">
-        <label class="filter-label">{{'Instruments' | translate}}:</label>
+      <ng-container *ngIf="searchFilterService.selectedEntity  == 1">
+        <div class="d-flex flex-column filter-property-container">
+          <label class="filter-label">{{'Instruments' | translate}}:</label>
 
-        <div class="filter-value">
-          <p-multiSelect [options]="instruments" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedInstruments" [filter]="false"
-            [scrollHeight]="'120px'" (onChange)="onChanged()"></p-multiSelect>
+          <div class="filter-value">
+            <p-multiSelect [options]="instruments" [defaultLabel]="allTitle" [(ngModel)]="searchFilterService.selectedInstruments" [filter]="false"
+              [scrollHeight]="'120px'" (onChange)="onChanged()"></p-multiSelect>
+          </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
 
 
-    <ng-container *ngIf="searchFilterService.selectedEntity  == 1">
-      <div class="d-flex flex-column filter-property-container">
-        <label class="filter-label">{{'Musician_Expirience' | translate}}:</label>
+      <ng-container *ngIf="searchFilterService.selectedEntity  == 1">
+        <div class="d-flex flex-column filter-property-container">
+          <label class="filter-label">{{'Musician_Expirience' | translate}}:</label>
 
-        <div class="filter-value">
-          <p-multiSelect [defaultLabel]="allTitle" [options]="expiriences" [(ngModel)]="searchFilterService.selectedExpiriences" [filter]="false"
-            [scrollHeight]="'120px'" (onChange)="onChanged()"></p-multiSelect>
+          <div class="filter-value">
+            <p-multiSelect [defaultLabel]="allTitle" [options]="expiriences" [(ngModel)]="searchFilterService.selectedExpiriences" [filter]="false"
+              [scrollHeight]="'120px'" (onChange)="onChanged()"></p-multiSelect>
+          </div>
+
         </div>
+      </ng-container>
 
-      </div>
     </ng-container>
-
   </ng-container>
 </div>
