@@ -73,7 +73,7 @@ const appRoutes: Routes = [
           { path: "messenger", component: MessengerComponent },
           { path: "messenger/:login", component: MessengerComponent },
           { path: "about", component: AboutComponent },
-          { path: "shop", loadChildren: "app/main/payments/payments.module#PaymentsModule" }
+          //{ path: "store", loadChildren: "app/main/payments/payments.module#PaymentsModule" }
         ]
       },
       { path: "start", component: StartComponent }
