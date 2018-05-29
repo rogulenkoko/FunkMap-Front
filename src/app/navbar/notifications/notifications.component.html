@@ -1,6 +1,7 @@
 <div class="notifications-main-container">
   <span class="notifications-title">{{'Notifications' | translate}}</span>
-  <div malihu-scrollbar [scrollbarOptions]="scrollbarOptions" class="notifications-container">
+  <div class="notifications-container">
+      <!-- malihu-scrollbar [scrollbarOptions]="scrollbarOptions" -->
    
     <notification-list [notifications]="notifications"></notification-list>
     <div *ngIf="!notifications || notifications.length == 0" class="empty-label">
