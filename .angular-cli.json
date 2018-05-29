@@ -78,6 +78,10 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {},
+    "serve": {
+      "sslKey": "./Bandmap.key",
+      "sslCert": "./Bandmap.cer"
+    }
   }
 }
