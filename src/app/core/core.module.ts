@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 import { ResponsiveModule } from 'ng2-responsive';
 import { SwiperModule } from 'ngx-swiper-wrapper';
+import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
       multi: true
     },
     HttpClient,
-    ThemeService
+    ThemeService,
+    MalihuScrollbarService
   ]
 })
 export class CoreModule { }

@@ -18,6 +18,12 @@
         <input  autocomplete="new-password" placeholder="{{'Login_Password' | translate}}" type="password" [(ngModel)]="password" class="form-control" [class.error-form-control]="wrongCreds"
         />
       </div>
+      <div class="d-flex justify-content-between social-auth">
+        <img src="assets/images/facebook.svg" (click)="facebook()"/>
+        <img src="assets/images/google.svg" (click)="google()" />
+        <img src="assets/images/facebook.svg" />
+        <img src="assets/images/facebook.svg" />
+      </div>
       <div class="d-flex flex-row justify-content-between login-buttons-container">
         <button routerLink="/restore" class="btn btn-secondary">{{'Login_ForgotPassword' | translate}}</button>
         <button (click)="logIn()" class="btn btn-success">{{'Login_ToLogIn' | translate}}</button>

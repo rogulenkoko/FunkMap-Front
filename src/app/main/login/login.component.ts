@@ -5,6 +5,9 @@ import { UserService } from "../user/user.service";
 import { User, AuthProvider } from "../user/user";
 import { AuthResponse } from 'app/main/login/login-response';
 
+import { AuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from "angularx-social-login";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,9 +21,12 @@ export class LoginComponent implements OnInit {
   
   private wrongCreds: boolean = false;
 
+  
+
   constructor(private loginService: LoginService,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private socialAuthService: AuthService) { }
 
   ngOnInit() {
    
@@ -39,6 +45,18 @@ export class LoginComponent implements OnInit {
     } else {
       this.handleLoginError();
     }
+  }
+
+  facebook(){
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(data =>{
+      this.loginService.socialLogin(data.authToken, "facebook").subscribe(response => this.onLoggenIn(response), error => this.handleLoginError());
+    });
+  }
+
+  google(){
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(data =>{
+      this.loginService.socialLogin(data.idToken, "google").subscribe(response => this.onLoggenIn(response), error => this.handleLoginError());
+    });
   }
 
   handleLoginError() {

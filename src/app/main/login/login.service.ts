@@ -18,6 +18,8 @@ export abstract class LoginService {
 
   abstract login(login: string, password: string): Observable<AuthResponse>;
 
+  abstract socialLogin(token: string, provider: string): Observable<AuthResponse>;
+
   abstract signup(request: RegistrationRequest): Observable<ConfirmationResponse>;
 
   abstract confirm(request: ConfirmationRequest): Observable<ConfirmationResponse>;
@@ -43,6 +45,20 @@ export class LoginServiceHttp extends LoginService {
     var params = new URLSearchParams();
     params.set("username", login);
     params.set("password", password);
+    params.set("grant_type", "password");
+    params.set("client_id", "funkmap");
+    params.set("client_secret", "funkmap");
+    return this.http.post(`${ConfigurationProvider.apiUrl(ServiceType.Auth)}token`, params, options).map(x => AuthResponse.ToLoginResponsne(x.json()));
+  }
+
+  socialLogin(token: string, provider: string): Observable<AuthResponse>{
+    var options = new RequestOptions();
+    options.headers = new Headers();
+    options.headers.append("Content-Type", "x-www-form-urlencoded");
+
+    var params = new URLSearchParams();
+    params.set("provider", provider);
+    params.set("token", token);
     params.set("grant_type", "password");
     params.set("client_id", "funkmap");
     params.set("client_secret", "funkmap");

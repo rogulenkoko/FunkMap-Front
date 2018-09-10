@@ -10,6 +10,24 @@ import { RestorePasswordComponent } from './restore-password/restore-password.co
 
 import { ConfigurationProvider } from "app/core";
 
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("649991936405-7dg10pb9ea6o42fncbt6615jcqmtcu4p.apps.googleusercontent.com")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("211667802913192")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -19,7 +37,8 @@ import { ConfigurationProvider } from "app/core";
   ],
   imports: [
     CoreModule,
-    ToolsModule
+    ToolsModule,
+    SocialLoginModule
   ],
   exports:[LoginComponent,
             RegistrationComponent],
@@ -27,6 +46,10 @@ import { ConfigurationProvider } from "app/core";
     {
       provide: LoginService,
       useClass: environment.useServer ? LoginServiceHttp : LoginServiceStub
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
     }
   ]
 })

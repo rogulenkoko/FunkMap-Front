@@ -19,6 +19,8 @@ export class User {
 
     public provider: AuthProvider;
 
+    public isSocial: boolean;
+
 }
 
 export class UserResponse {
@@ -27,7 +29,6 @@ export class UserResponse {
 
     public static ToUserResponse(data: any): UserResponse {
         var result = new UserResponse();
-
         result.isExist = data.IsExists;
         if (result.isExist) {
             var user = new User();
@@ -35,6 +36,7 @@ export class UserResponse {
             user.avatar = data.User.AvatarUrl;
             user.name = data.User.Name;
             user.provider = AuthProvider.Funkmap;
+            user.isSocial = data.User.IsSocial;
             result.user = user;
         }
 

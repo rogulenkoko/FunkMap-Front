@@ -18,7 +18,7 @@ $container-width:310px;
 
 .login-buttons-container{
 
-    margin-top: 36px;
+    margin-top: 0px;
 
     button{
         width: 48%;
@@ -47,17 +47,8 @@ $container-width:310px;
 
 .social-auth{
     margin-top: 12px !important;
-    margin-bottom: 18px !important;
     height: 40px;
-    .icon, img{
+    img{
         width: 36px;
-        height: 36px;
     }
 }
-
-
-//удалить
-.fa-google{
-    font-size: 20px;
-}
-

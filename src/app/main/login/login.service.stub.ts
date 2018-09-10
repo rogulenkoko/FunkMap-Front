@@ -24,6 +24,10 @@ export class LoginServiceStub extends LoginService {
     return Observable.of(new AuthResponse("token", "test"));
   }
 
+  socialLogin(token: string, provider: string): Observable<AuthResponse>{
+    return this.login("test", "test");
+  }
+
   prolongate(refreshToken: string): Observable<AuthResponse> {
     return Observable.of(new AuthResponse("test", "test"))
   }
