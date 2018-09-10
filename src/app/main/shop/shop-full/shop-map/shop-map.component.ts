@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Marker, EntityType } from "app/main/map/models";
+import { ProfileMarker, EntityType } from "app/main/map/models";
 import { Shop } from "app/main/shop/models";
 import { EntityMapComponent } from "app/tools/entity-full/entity-map/entity-map.component";
 import { MapCreationService } from "app/main/map/map-creation.service";
@@ -19,7 +19,7 @@ export class ShopMapComponent implements OnInit {
    @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private shop: Shop;
-  public marker: Marker;
+  public marker: ProfileMarker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -34,8 +34,8 @@ export class ShopMapComponent implements OnInit {
     this.marker = this.buildMarker();
   }
 
-  private buildMarker():Marker{
-    var marker = new Marker(this.shop.login, this.shop.latitude, this.shop.longitude, EntityType.Shop);
+  private buildMarker():ProfileMarker{
+    var marker = new ProfileMarker(this.shop.login, this.shop.latitude, this.shop.longitude, EntityType.Shop);
     marker.iconUrl = this.iconProvider.getIcon(marker);
     return marker;
   }

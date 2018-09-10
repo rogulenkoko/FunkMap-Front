@@ -31,7 +31,6 @@
         "assets/styles/tooltip.scss",
         "assets/styles/cropper.scss",
         "assets/styles/modal.scss",
-        "assets/styles/switch.scss",
         "assets/styles/slider.scss",
         "../node_modules/leaflet/dist/leaflet.css",
         "../node_modules/cropper/dist/cropper.css",

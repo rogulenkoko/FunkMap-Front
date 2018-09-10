@@ -1,16 +1,16 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Marker } from "app/main/map/models";
+import { ProfileMarker } from "app/main/map/models";
 
 @Injectable()
 export class MapFilter {
 
   public isAllShown: boolean;
 
-  public onOutItemsSelected: EventEmitter<Marker>;
+  public onOutItemsSelected: EventEmitter<ProfileMarker>;
 
   constructor() {
     this.isAllShown = false;
-    this.onOutItemsSelected = new EventEmitter<Marker>();
+    this.onOutItemsSelected = new EventEmitter<ProfileMarker>();
    }
 
 }

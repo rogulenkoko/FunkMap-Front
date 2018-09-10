@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EditService } from "app/tools/entity-full/edit.service";
 import { EntityMapComponent } from "app/tools/entity-full/entity-map/entity-map.component";
 import { Band } from "app/main/band/models";
-import { Marker, EntityType } from "app/main/map/models";
+import { ProfileMarker, EntityType } from "app/main/map/models";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { BandService } from "app/main/band/band.service";
@@ -19,7 +19,7 @@ export class BandMapComponent implements OnInit {
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   private band: Band;
-  public marker: Marker;
+  public marker: ProfileMarker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -34,8 +34,8 @@ export class BandMapComponent implements OnInit {
     this.marker = this.buildMarker();
   }
 
-  private buildMarker():Marker{
-    var marker = new Marker(this.band.login, this.band.latitude, this.band.longitude, EntityType.Band);
+  private buildMarker():ProfileMarker{
+    var marker = new ProfileMarker(this.band.login, this.band.latitude, this.band.longitude, EntityType.Band);
     marker.iconUrl = this.iconProvider.getIcon(marker);
     return marker;
   }

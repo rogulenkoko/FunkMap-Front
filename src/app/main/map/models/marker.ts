@@ -1,7 +1,16 @@
 import { InstrumentType } from "../../musician/models";
 
-export class Marker {
-    constructor(public login: string, public lat: number, public lng: number, public entityType: EntityType, public iconUrl?: string) {
+
+export class Marker{
+
+    constructor(public login: string, public lat: number, public lng: number) {
+        
+    }
+}
+
+export class ProfileMarker extends Marker {
+    constructor(login: string, lat: number, lng: number, public entityType: EntityType, public iconUrl?: string) {
+        super(login, lat, lng);
         this.iconUrl = iconUrl;
     }
 
@@ -9,19 +18,19 @@ export class Marker {
     public instrument: InstrumentType;
 
 
-    public static ToMarker(data: any): Marker {
-        var result = new Marker(data.Login, data.Latitude, data.Longitude, data.ModelType);
+    public static ToMarker(data: any): ProfileMarker {
+        var result = new ProfileMarker(data.Login, data.Latitude, data.Longitude, data.ModelType);
         if (result.entityType == EntityType.Musician) {
             result.instrument = data.Instrument;
         }
         return result;
     }
 
-    public static ToMarkerArray(data: any): Array<Marker> {
-        var result = new Array<Marker>();
+    public static ToMarkerArray(data: any): Array<ProfileMarker> {
+        var result = new Array<ProfileMarker>();
         if (data) {
             data.forEach(element => {
-                result.push(Marker.ToMarker(element));
+                result.push(ProfileMarker.ToMarker(element));
             });
         }
         return result;

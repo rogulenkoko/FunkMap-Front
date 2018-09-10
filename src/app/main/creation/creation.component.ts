@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { InstrumentType, Musician, MusicStyle, Sex } from "../musician/models";
 import { DateSelectProvider } from "app/tools/date/date-select-provider.service";
 import { MusicianTypesProvider } from "../musician/musician-types-provider";
-import { EntityType, Marker } from "../map/models";
+import { EntityType, ProfileMarker } from "../map/models";
 import { CreationService } from "./creation.service";
 import { EntityTypeProvider } from "app/tools/entity-type-provider.service";
 import { EntityItem, InstrumentsItem } from "app/tools/select";
@@ -78,7 +78,7 @@ export class CreationComponent implements OnInit {
 
   }
 
-  private setCoordinates(marker: Marker) {
+  private setCoordinates(marker: ProfileMarker) {
     this.subscription.unsubscribe();
     this.creationService.baseModel.latitude = marker.lat;
     this.creationService.baseModel.longitude = marker.lng;
@@ -108,7 +108,7 @@ export class CreationComponent implements OnInit {
   }
 
   toMapCreation() {
-    this.mapCreationService.marker = new Marker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
+    this.mapCreationService.marker = new ProfileMarker(this.creationService.baseModel.login, this.userService.latitude, this.userService.longitude, this.creationService.selectedEntity);
     if (this.creationService.selectedEntity == EntityType.Musician) {
       this.mapCreationService.marker.instrument = this.creationService.instrument;
     }

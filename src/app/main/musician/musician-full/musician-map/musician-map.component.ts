@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Musician } from "app/main/musician/models";
-import { Marker, EntityType } from "app/main/map/models";
+import { ProfileMarker, EntityType } from "app/main/map/models";
 import { MapCreationService } from "app/main/map/map-creation.service";
 import { IconProvider } from "app/main/map/icon-provider.service";
 import { MusicianService } from "app/main/musician/musician.service";
@@ -19,7 +19,7 @@ export class MusicianMapComponent implements OnInit {
   @ViewChild('entityMap') entityMap: EntityMapComponent;
 
   public musician: Musician;
-  public marker: Marker;
+  public marker: ProfileMarker;
 
   constructor(private mapCreationService: MapCreationService,
               private iconProvider: IconProvider,
@@ -35,8 +35,8 @@ export class MusicianMapComponent implements OnInit {
     this.marker = this.buildMarker();
   }
 
-  private buildMarker():Marker{
-    var marker = new Marker(this.musician.login, this.musician.latitude, this.musician.longitude, EntityType.Musician);
+  private buildMarker():ProfileMarker{
+    var marker = new ProfileMarker(this.musician.login, this.musician.latitude, this.musician.longitude, EntityType.Musician);
     marker.instrument = this.musician.instrument;
     marker.iconUrl = this.iconProvider.getIcon(marker);
     return marker;

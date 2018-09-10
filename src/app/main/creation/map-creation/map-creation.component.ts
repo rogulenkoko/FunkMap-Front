@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { MapProvider } from "../../map/map-provider.service";
-import { Map, Marker, EntityType } from "../../map/models";
+import { Map, ProfileMarker, EntityType } from "../../map/models";
 import { IconProvider } from "../../map/icon-provider.service";
 import { MarkerFactory } from "../../map/marker-factory.service";
 import { CreationService } from "../creation.service";

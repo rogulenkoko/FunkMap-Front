@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MapProvider } from "app/main/map/map-provider.service";
-import { Map, Marker, EntityType } from "app/main/map/models"
+import { Map, ProfileMarker, EntityType } from "app/main/map/models"
 import { BaseModel } from "app/core";
 import { MarkerFactory } from "app/main/map/marker-factory.service";
 import { MapService } from "app/main/map/map.service";
@@ -23,10 +23,10 @@ import { MapBuilder } from 'app/main/map/map-builder.service';
 })
 export class EntityMapComponent extends EditableCard implements OnInit {
 
-  @Input() marker: Marker;
+  @Input() marker: ProfileMarker;
   @Input() height: string;
 
-  private newMarker: Marker;
+  private newMarker: ProfileMarker;
 
   private address: string;
 
@@ -60,7 +60,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
   private onParamsLoaded(params) {
     if (params['isComplete']) {
       if(!this.mapCreationService.marker) return;
-      this.newMarker = new Marker(this.marker.login, this.mapCreationService.marker.lat, this.mapCreationService.marker.lng, this.marker.entityType);
+      this.newMarker = new ProfileMarker(this.marker.login, this.mapCreationService.marker.lat, this.mapCreationService.marker.lng, this.marker.entityType);
       if (this.newMarker.entityType == EntityType.Musician) {
         this.newMarker.instrument = this.marker.instrument;
       }
@@ -76,7 +76,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
 
   }
 
-  public initMap(mainMarker: Marker) {
+  public initMap(mainMarker: ProfileMarker) {
     if(!mainMarker) return;
     if (this.map) this.map.remove();
     this.map = this.mapBuilder.buildMap('map-mini', new L.LatLng(mainMarker.lat, mainMarker.lng), 8).map;
@@ -101,7 +101,7 @@ export class EntityMapComponent extends EditableCard implements OnInit {
     this.router.navigate([RouteBuilder.buildRoute(this.marker.entityType, this.marker.login)]);
   }
 
-  private onLocationChosen(marker: Marker) {
+  private onLocationChosen(marker: ProfileMarker) {
     this.subscription.unsubscribe();
 
     this.router.navigate([RouteBuilder.buildRoute(marker.entityType, marker.login), { isComplete: true }]);
