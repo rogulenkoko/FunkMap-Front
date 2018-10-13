@@ -211,5 +211,6 @@
     "Upload_Images":"Загрузить фото (не больше {{count}} фото размером не больше {{size}})",
     "Event_Concert":"Концерт",
     "Event_Jam":"Джэм",
-    "Event_MasterClass":"Мастер-класс"
+    "Event_MasterClass":"Мастер-класс",
+    "Donation": "Пожертвование"
 }

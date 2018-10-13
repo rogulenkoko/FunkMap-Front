@@ -1,4 +1,14 @@
 <div *isDesktop class="donat-container d-flex flex-column">
-    <div id="paypal-button"></div>
-
+    <div class="feedback-title d-flex flex-column">
+        <span>{{'Donation' | translate}}</span>
+    </div>
+    <div class="d-flex total-container">
+        <input class="form-control" [(ngModel)]="total" type="number" value="100">
+        <div class="currency-container">
+            <p-dropdown [options]="currencies" [(ngModel)]="currency"></p-dropdown>
+        </div>
+    </div>
+    <div class="d-flex payment-methods">
+        <i class="fa fa-cc-paypal" (click)="payPalDonation()"></i>
+    </div>
 </div>

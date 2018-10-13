@@ -10,6 +10,7 @@ import { FeedbackService, FeedbackServiceHttp } from 'app/main/about/feedback.se
 import { FeedbackServiceStub } from 'app/main/about/feedback.service.stub';
 import { ToolsModule } from 'app/tools/tools.module';
 import { DonatComponent } from 'app/main/about/donat/donat.component';
+import { DonationServiceHttp, DonationServiceStub, DonationService } from './donat/donation.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,10 @@ import { DonatComponent } from 'app/main/about/donat/donat.component';
       provide: FeedbackService,
       useClass: environment.useServer ? FeedbackServiceHttp : FeedbackServiceStub
     },
+    {
+      provide: DonationService,
+      useClass: environment.useServer ? DonationServiceHttp : DonationServiceStub
+    }
   ]
 })
 export class AboutModule { }

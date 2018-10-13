@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectItem } from 'primeng/primeng';
+import { CurrencyType, Donation } from './donation';
+import { DonationService } from './donation.service';
 
 declare var paypal;
 
@@ -9,34 +12,23 @@ declare var paypal;
 })
 export class DonatComponent implements OnInit {
 
-  constructor() { }
+  currencies: SelectItem[] = [
+    {value: CurrencyType.USD, label: "USD"},
+    {value: CurrencyType.RUB, label: "RUB"}
+  ]
+
+  currency: CurrencyType = CurrencyType.RUB;
+  total: number = 100;
+
+  constructor(private readonly donationService: DonationService) { }
 
   ngOnInit() {
-    paypal.Button.render({
-     
+  }
 
-      payment: function(data, actions) {
-        /*
-         * Set up the payment here
-         */
-      },
-
-      onAuthorize: function(data, actions) {
-        console.log(data);
-      },
-
-      onCancel: function(data, actions) {
-        /*
-         * Buyer cancelled the payment
-         */
-      },
-
-      onError: function(err) {
-        /*
-         * An error occurred during the transaction
-         */
-      }
-    }, '#paypal-button');
-   }
-
+  payPalDonation(){
+    var donation = new Donation(this.total, this.currency);
+    this.donationService.createPaypalDonation(donation).subscribe(response=>{
+      window.open(response.redirectUrl, '_blank').open();
+    });
+  }
 }

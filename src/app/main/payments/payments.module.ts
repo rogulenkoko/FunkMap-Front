@@ -4,6 +4,7 @@ import { CoreModule } from "app/core/core.module";
 import { ToolsModule } from "app/tools/tools.module";
 import { PaymentsComponent } from "./payments.component";
 import { Routes, RouterModule } from "@angular/router";
+import { PaypalPaymentsService, PaypalPaymentsServiceHttp, PaypalPaymentsServiceStub } from "./paypal-payments.service";
 
 
 const routes: Routes = [

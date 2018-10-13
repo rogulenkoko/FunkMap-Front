@@ -5,7 +5,7 @@ export class ConfigurationProvider{
         
         switch (type){
             case ServiceType.Events: return environment.local ? "http://localhost:14343/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
-
+            case ServiceType.Payments : return environment.local ? "http://localhost:60377/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
             default: return environment.local ? "http://localhost:49447/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
         }
     }
@@ -26,5 +26,6 @@ export enum ServiceType {
     Messenger = 2,
     Funkmap = 3,
     Notifications = 4,
-    Events = 5
+    Events = 5,
+    Payments = 6
 }

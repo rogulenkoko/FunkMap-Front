@@ -216,5 +216,6 @@
     "Upload_Images":"Upload photos (no more than {{count}} photos smaller than {{size}})",
     "Event_Concert":"Concert",
     "Event_Jam":"Jam",
-    "Event_MasterClass":"Master class"
+    "Event_MasterClass":"Master class",
+    "Donation": "Donation"    
 }

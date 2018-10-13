@@ -34,7 +34,7 @@ export abstract class UserDataService {
 @Injectable()
 export class UserDataServiceHttp extends UserDataService {
 
-  constructor(private http: HttpClient, ) {
+  constructor(private http: HttpClient) {
     super();
   }
 
