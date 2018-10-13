@@ -29,6 +29,7 @@ import { AboutComponent } from "app/main/about/about.component";
 import { NotificationSideComponent } from "app/navbar/notifications/notification-side/notification-side.component";
 import { CanActivateAdaptive } from "app/tools/can-activate-adaptive";
 import { EventsCreationComponent } from "app/main/creation/events-creation/events-creation.component";
+import { PaymentsComponent } from "app/main/payments/payments.component";
 
 const appRoutes: Routes = [
   {
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
           { path: "messenger", component: MessengerComponent },
           { path: "messenger/:login", component: MessengerComponent },
           { path: "about", component: AboutComponent },
+          //{ path: "store", loadChildren: "app/main/payments/payments.module#PaymentsModule" }
         ]
       },
       { path: "start", component: StartComponent }
