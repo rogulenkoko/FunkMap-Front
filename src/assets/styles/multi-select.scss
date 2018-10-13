@@ -110,3 +110,20 @@ p-dropdown{
 }
 
 
+
+//-------Calendar
+//todo в отдельный файл
+
+.ui-calendar{
+  border: none;
+  border-bottom: 1px solid $dark-control-border !important;
+  width: 100%;
+  font-size: 14px;
+
+  input{
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+

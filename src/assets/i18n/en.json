@@ -89,7 +89,9 @@
     "Address": "Address",
     "Website": "Website",
     "Creation_Title": "New profile",
+    "Creation_Title_Event": "New event",
     "Creation_EntityType": "Profile type",
+    "Creation_EventType": "Event type",    
     "Creation_Login": "Login",
     "Creation_Point": "Specify it manually",
     "Creation_UseCurrent": "Use the current",
@@ -211,5 +213,8 @@
     "Messenger_MediaContent":"Media content",
     "Stub_Info": "At the moment Bandmap is not supported on this type of device",
     "Upload_Files":"Upload files (no more than {{count}} files smaller than {{size}})",
-    "Upload_Images":"Upload photos (no more than {{count}} photos smaller than {{size}})"
+    "Upload_Images":"Upload photos (no more than {{count}} photos smaller than {{size}})",
+    "Event_Concert":"Concert",
+    "Event_Jam":"Jam",
+    "Event_MasterClass":"Master class"
 }

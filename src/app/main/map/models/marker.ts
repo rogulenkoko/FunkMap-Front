@@ -42,5 +42,6 @@ export enum EntityType {
     Shop = 2,
     Band = 3,
     RehearsalPoint = 4,
-    Studio = 5
+    Studio = 5,
+    Event = 6
 }

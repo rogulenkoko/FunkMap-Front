@@ -28,6 +28,7 @@ import { RestorePasswordComponent } from "app/main/login/restore-password/restor
 import { AboutComponent } from "app/main/about/about.component";
 import { NotificationSideComponent } from "app/navbar/notifications/notification-side/notification-side.component";
 import { CanActivateAdaptive } from "app/tools/can-activate-adaptive";
+import { EventsCreationComponent } from "app/main/creation/events-creation/events-creation.component";
 
 const appRoutes: Routes = [
   {
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
               { path: "rehearsal", component: RehearsalComponent },
               { path: "rehearsal/:id", component: RehearsalComponent },
               { path: "create", component: CreationComponent, canActivate: [CanActivateCreation] },
+              { path: "create-event", component: EventsCreationComponent, canActivate: [CanActivateCreation] },
               { path: "checkmap", component: MapCreationComponent },
               { path: "search", component: SearchComponent },
               { path: "favorites", component: FavouritesComponent },

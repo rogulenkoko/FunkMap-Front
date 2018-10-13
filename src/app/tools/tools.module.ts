@@ -39,6 +39,7 @@ import { ImageFullComponent } from './image-full/image-full.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { CanActivateAdaptive } from 'app/tools/can-activate-adaptive';
 import { TrackListService } from 'app/tools/soundcloud/track-list.service';
+import { EventTypeProvider } from 'app/tools/event-type-provider';
 
 
 
@@ -116,7 +117,8 @@ import { TrackListService } from 'app/tools/soundcloud/track-list.service';
     },
     CanActivateSearch,
     CanActivateAdaptive,
-    TrackListService
+    TrackListService,
+    EventTypeProvider
     
   ]
 })

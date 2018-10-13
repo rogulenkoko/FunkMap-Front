@@ -2,6 +2,7 @@ import { MusicStyle, InstrumentType, ExpirienceType } from "app/main/musician/mo
 import { Observable } from "rxjs/Observable";
 import { SelectItem } from "primeng/primeng";
 import { EntityType } from "app/main/map/models";
+import { EventType } from "../../main/event/models/event";
 
 export class TranslateSelectItem implements SelectItem {
   constructor(public value: any, label: string | Observable<string>) {
@@ -42,6 +43,12 @@ export class EntityItem extends TranslateSelectItem {
 
 export class ExpirienceItem extends TranslateSelectItem {
   constructor(value: ExpirienceType, label: string | Observable<string>) {
+    super(value, label);
+  }
+}
+
+export class EventTypeItem extends TranslateSelectItem{
+  constructor(value: EventType, label: string | Observable<string>){
     super(value, label);
   }
 }

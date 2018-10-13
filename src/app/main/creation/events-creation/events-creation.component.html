@@ -1,0 +1,29 @@
+<modal [title]="'Creation_Title_Event'" [minWidth]="'440px'" [width]="'25%'" [height]="canCreate ? '430px' : '300px'">
+  <div class="main-creation-container d-flex flex-column align-items-center justify-content-center">
+    <div id="creation-container" class="creation-container d-flex flex-column ">
+      <div class="d-flex flex-column align-items-baseline">
+        <label class="property-title">{{'Creation_EventType' | translate}}:</label>
+        <p-dropdown [options]="eventTypes" [(ngModel)]="eventCreationService.eventType"></p-dropdown>
+      </div>
+      <div class="d-flex flex-row align-items-baseline text-field">
+        <div class="property-value">
+          <input placeholder="{{'Musician_Name' | translate}}"
+                 class="form-control secondary"
+                 [class.error-form-control]="!isNameValid" 
+                 [(ngModel)]="eventCreationService.name" />
+          <span class="error-label" *ngIf="!isNameValid">{{'Creation_NameIsNotEmpty' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row align-items-baseline text-field">
+        <div class="property-value">
+          <p-calendar [(ngModel)]="eventCreationService.date" showTime="true" hourFormat="24" dateFormat="dd.mm.yy" [minDate]="minDate"></p-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-container d-flex flex-row justify-content-center align-items-center ">
+      <button (click)="cancel()" class="btn btn-secondary">{{'Cancel' | translate}}</button>
+      <button (click)="validate()" class="btn btn-success ml-3">{{'Save' | translate}}</button>
+    </div>
+  </div>
+</modal>

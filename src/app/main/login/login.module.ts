@@ -12,6 +12,7 @@ import { ConfigurationProvider } from "app/core";
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+import { SoundCloudLoginProvider } from "./soundcloud-login-provider";
 
 
 let config = new AuthServiceConfig([
@@ -23,6 +24,7 @@ let config = new AuthServiceConfig([
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider("211667802913192")
   }
+  
 ]);
 
 export function provideConfig() {
@@ -43,6 +45,7 @@ export function provideConfig() {
   exports:[LoginComponent,
             RegistrationComponent],
   providers: [
+    SoundCloudLoginProvider,
     {
       provide: LoginService,
       useClass: environment.useServer ? LoginServiceHttp : LoginServiceStub

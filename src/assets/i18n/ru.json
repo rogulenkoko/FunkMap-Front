@@ -86,8 +86,10 @@
     "Studio": "Студия звукозаписи",
     "Band": "Музыкальная группа",
     "Creation_EntityType": "Тип профиля",
+    "Creation_EventType": "Тип события",
     "Creation_Login": "Логин",
     "Creation_Title": "Новый профиль",
+    "Creation_Title_Event": "Новое событие",
     "Creation_Point": "Указать",
     "Creation_UseCurrent": "Использовать текущее",
     "Creation_MapQustion": "Вы хотите использовать текущее местоположение или указать вручную",
@@ -206,5 +208,8 @@
     "Messenger_MediaContent":"Медиа содержимое",
     "Stub_Info": "На данный Bandmap не поддерживается на данном типе устройств",
     "Upload_Files":"Загрузить файлы (не больше {{count}} файлов размером не больше {{size}})",
-    "Upload_Images":"Загрузить фото (не больше {{count}} фото размером не больше {{size}})"
+    "Upload_Images":"Загрузить фото (не больше {{count}} фото размером не больше {{size}})",
+    "Event_Concert":"Концерт",
+    "Event_Jam":"Джэм",
+    "Event_MasterClass":"Мастер-класс"
 }

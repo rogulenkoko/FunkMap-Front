@@ -35,6 +35,7 @@ import { ResponsiveModule } from 'ng2-responsive';
 import { MobileStubComponent } from './main/mobile-stub/mobile-stub.component'
 import { SidebarService } from "app/main/sidebar/sidebar.service";
 import { AdaptiveService } from "app/tools/adaptive.service";
+import { EventComponent } from './main/event/event.component';
 
 
 
@@ -45,7 +46,8 @@ import { AdaptiveService } from "app/tools/adaptive.service";
     SidebarComponent,
     StartComponent,
     MainWrapperComponent,
-    MobileStubComponent
+    MobileStubComponent,
+    EventComponent
   ],
   imports: [
     CoreModule,

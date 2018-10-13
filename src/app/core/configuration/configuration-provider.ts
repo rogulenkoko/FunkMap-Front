@@ -2,9 +2,12 @@ import { environment } from "environments/environment";
 export class ConfigurationProvider{
 
     public static apiUrl(type: ServiceType): string{
-
-        return environment.local ? "http://localhost:49447/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
         
+        switch (type){
+            case ServiceType.Events: return environment.local ? "http://localhost:14343/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
+
+            default: return environment.local ? "http://localhost:49447/api/" :  "https://bandmap-api.azurewebsites.net/api/"; 
+        }
     }
     
     public static entitiesLimit: number = 1000;
@@ -22,5 +25,6 @@ export enum ServiceType {
     Auth = 1,
     Messenger = 2,
     Funkmap = 3,
-    Notifications = 4
+    Notifications = 4,
+    Events = 5
 }

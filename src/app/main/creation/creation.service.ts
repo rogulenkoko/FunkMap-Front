@@ -16,7 +16,6 @@ export abstract class CreationService {
   public selectedEntity: EntityType;
   public baseModel: BaseModel
   public musician: Musician;
-  public band: Band;
 
   public instrument: InstrumentType;
 
